@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TestFileManager</string>
+    <string name="no_filemanager_installed">No compatible file manager found</string>
+    <string name="file_name">File name</string>
+    <string name="open_title">Select file to open</string>
+    <string name="open_button">Open</string>
+    <string name="save_title">Select file to save</string>
+    <string name="save_button">Save</string>
+    <string name="pick_directory_title">Select a folder</string>
+    <string name="pick_directory_button">Use this folder</string>
+</resources>

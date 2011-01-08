@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="@string/file_name"
+	android:textAppearance="?android:attr/textAppearanceMedium"
+    android:layout_marginTop="10dip"
+    android:layout_marginLeft="10dip"
+    />
+    <LinearLayout android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    >
+	    <EditText android:id="@+id/file_path"
+		    android:layout_width="0dip" 
+		    android:layout_height="wrap_content" 
+		    android:layout_weight="1"/>
+		<ImageButton android:id="@+id/file_manager"
+			android:src="@drawable/ic_launcher_folder_small"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+	</LinearLayout>
+	
+	<Button android:id="@+id/open"
+		android:text="@string/open_button"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dip" />
+		
+	<Button android:id="@+id/save"
+		android:text="@string/save_button"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+		
+	<Button android:id="@+id/pick_directory"
+		android:text="@string/pick_directory_title"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+		
+</LinearLayout>

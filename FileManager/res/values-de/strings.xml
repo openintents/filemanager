@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  Flosen https://launchpad.net/~flose
+  Peli https://launchpad.net/~peli0101
+  marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
+	
+    <string name="about_comments">OI Dateimanager ist ein offener Dateimanager, der nahtlos mit anderen Anwendungen zusammenarbeitet.</string>  
+	<string name="about_website_label">OI Dateimanager auf OpenIntents</string> 
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+    <string name="app_name">OI Dateimanager</string>
+    
+    <string name="menu_new_folder">Neuer Ordner</string>
+    <string name="menu_delete">Löschen</string>
+    <string name="menu_rename">Umbenennen</string>
+    <string name="menu_send">Senden</string>
+    <string name="menu_open">Öffnen</string>
+    <string name="menu_move">Verschieben</string>
+    <string name="menu_copy">Kopie</string>
+    <string name="menu_include_in_media_scan">Include in media scan</string>
+    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    
+    <string name="create_new_folder">Neuen Ordner erstellen</string>
+    <string name="folder_name">Name des Ordners</string>
+    <string name="file_name">Name des Ordners</string>
+    <string name="this_folder_is_empty">Dieser Ordner ist leer.</string>
+    <string name="really_delete">Soll %s wirklich gelöscht werden?</string>
+    <string name="file_deleted">Datei gelöscht.</string>
+    <string name="folder_deleted">Ordner gelöscht.</string>
+    <string name="file_renamed">Datei umbenannt.</string>
+    <string name="folder_renamed">Ordner umbenannt.</string>
+    <string name="file_moved">Datei verschoben.</string>
+    <string name="folder_moved">Ordner verschoben.</string>
+    <string name="file_copied">Datei kopiert.</string>
+    <string name="move_title">Ordner zum Verschieben auswählen</string>
+    <string name="move_button">Hierher verschieben</string>
+    <string name="copy_title">Wählen Sie Zielverzeichnis für den Kopiervorgang</string>
+    <string name="copy_button">Hierher kopieren</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">Kopie von %s</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    
+    <string name="media_scan_included">This folder will be included in the next media scan.</string>
+    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    
+    <string name="error_creating_new_folder">Neuer Ordner konnte nicht erstellt werden.</string>
+    <string name="error_deleting_file">Datei konnte nicht gelöscht werden.</string>
+    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_renaming_file">Datei konnte nicht umbenannt werden.</string>
+    <string name="error_renaming_folder">Ordner konnte nicht umbenannt werden.</string>
+    <string name="error_moving_file">Datei konnte nicht verschoben werden.</string>
+    <string name="error_moving_folder">Ordner konnte nicht verschoben werden.</string>
+    <string name="error_copying_file">Datei kann nicht kopiert werden.</string>
+    <string name="error_file_does_not_exists">Datei existiert nicht.</string>
+    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
+    <string name="error_generic">An error occurred: </string>
+    <string name="error_media_scan">Could not change media scan settings.</string>
+    
+    <string name="send_not_available">Keine Anwendung zum Senden vorhanden.</string>
+    
+    <string name="application_not_available">Anwendung nicht vorhanden.</string>
+
+	<!-- ***************************
+	     Distribution
+	     *************************** -->
+	
+	<!-- EULA -->
+	<string name="eula_title">OI Dateimanager EULA</string>
+	<string name="eula_accept">Annehmen</string>
+	<string name="eula_refuse">Ablehnen</string>
+	
+	<!-- Update -->
+	<string name="update_box_text">Bitte manuell nach Updates suchen, oder OI Info installieren um automatisch benachrichtigt zu werden.
+Aktuelle Version: %s</string>
+	<string name="update_check_now">Jetzt prüfen.</string>
+	<string name="update_get_updater">OI Update herunterladen</string>
+	<string name="update_error">Keine Anwendung zum Herunterladen verfügbar.</string>
+	<string name="update">Nach Updates suchen</string>
+	
+    <!-- About -->
+    <string name="about">Info</string>
+	<string name="aboutapp_not_available">Version %s\n\nKeine kompatible Erweiterung verfügbar um vollständige Information anzuzeigen (Kontakt, Beitragende, Lizenz).</string>
+    <string name="aboutapp_get">OI Info herunterladen</string>
+    
+    
+</resources>

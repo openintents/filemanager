@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  CSro https://launchpad.net/~choongsan</string>
+	
+    <string name="about_comments">OI File Manager is an open file manager that seamlessly cooperates with other applications.</string>  
+	<string name="about_website_label">OpenIntents의 OI 파일 관리자</string> 
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+    <string name="app_name">OI 파일 관리자</string>
+    
+    <string name="menu_new_folder">새 폴더</string>
+    <string name="menu_delete">삭제</string>
+    <string name="menu_rename">이름 변경</string>
+    <string name="menu_send">보내기</string>
+    <string name="menu_open">열기</string>
+    <string name="menu_move">이동</string>
+    <string name="menu_copy">복사</string>
+    <string name="menu_include_in_media_scan">Include in media scan</string>
+    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    
+    <string name="create_new_folder">새 폴더 생성</string>
+    <string name="folder_name">폴더 이름</string>
+    <string name="file_name">폴더 이름</string>
+    <string name="this_folder_is_empty">This folder is empty.</string>
+    <string name="really_delete">Do you really want to delete %s?</string>
+    <string name="file_deleted">파일이 삭제되었습니다.</string>
+    <string name="folder_deleted">폴더가 삭제되었습니다.</string>
+    <string name="file_renamed">파일 이름이 변경되었습니다.</string>
+    <string name="folder_renamed">폴더 이름이 변경되었습니다.</string>
+    <string name="file_moved">File moved.</string>
+    <string name="folder_moved">폴더가 이동되었습니다.</string>
+    <string name="file_copied">폴더가 복사되었습니다.</string>
+    <string name="move_title">이동할 폴더 선택</string>
+    <string name="move_button">여기로 옮기기</string>
+    <string name="copy_title">복사할 폴더 선택</string>
+    <string name="copy_button">여기로 복사</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">%s의 복사</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    
+    <string name="media_scan_included">This folder will be included in the next media scan.</string>
+    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    
+    <string name="error_creating_new_folder">새 폴더를 생성할 수 없습니다.</string>
+    <string name="error_deleting_file">파일을 삭제할 수 없습니다.</string>
+    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_renaming_file">파일의 이름을 변경할 수 없습니다.</string>
+    <string name="error_renaming_folder">폴더의 이름을 변경할 수 없습니다.</string>
+    <string name="error_moving_file">파일을 이동할 수 없습니다.</string>
+    <string name="error_moving_folder">폴더를 이동할 수 없습니다.</string>
+    <string name="error_copying_file">파일을 복사할 수 없습니다.</string>
+    <string name="error_file_does_not_exists">파일이 존재하지 않습니다.</string>
+    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
+    <string name="error_generic">An error occurred: </string>
+    <string name="error_media_scan">Could not change media scan settings.</string>
+    
+    <string name="send_not_available">No application available for sending.</string>
+    
+    <string name="application_not_available">Application not available</string>
+
+	<!-- ***************************
+	     Distribution
+	     *************************** -->
+	
+	<!-- EULA -->
+	<string name="eula_title">OI File Manager EULA</string>
+	<string name="eula_accept">수락</string>
+	<string name="eula_refuse">취소</string>
+	
+	<!-- Update -->
+	<string name="update_box_text">Please check manually for updates or install OI Update
+for automatic notifications.
+Current version: %s
+	</string>
+	<string name="update_check_now">지금 확인</string>
+	<string name="update_get_updater">OI 업데이트기 가져오기</string>
+	<string name="update_error">Download application not available.</string>
+	<string name="update">업데이트 확인</string>
+	
+    <!-- About -->
+    <string name="about">프로그램 정보</string>
+	<string name="aboutapp_not_available">Version %s\n\nNo compatible extension available to display full info (contact, credits, license).</string>
+    <string name="aboutapp_get">Get OI About</string>
+    
+    
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<MimeTypes>
+	<!-- Image types -->
+	<type extension=".png" mimetype="image/png" />
+	<type extension=".gif" mimetype="image/gif" />
+	<type extension=".jpg" mimetype="image/jpg" />
+	<type extension=".jpeg" mimetype="image/jpeg" />
+	<type extension=".bmp" mimetype="image/bmp" />
+	    
+	<!-- Audio types -->
+	<type extension=".mp3" mimetype="audio/mp3" />
+	<type extension=".wav" mimetype="audio/wav" />
+	<type extension=".ogg" mimetype="audio/x-ogg" />
+	<type extension=".mid" mimetype="audio/mid" />
+	<type extension=".midi" mimetype="audio/midi" />
+	<type extension=".amr" mimetype="audio/AMR" />
+	<type extension=".aac" mimetype="audio/x-aac"/>
+	
+	<!-- Video types -->
+	<type extension=".mpeg" mimetype="video/mpeg" />
+	<type extension=".3gp" mimetype="video/3gpp" />
+	
+	<!-- Package types -->
+	<type extension=".jar" mimetype="application/java-archive" />
+	<type extension=".zip" mimetype="application/zip" />
+	<type extension=".rar" mimetype="application/x-rar-compressed" />
+	<type extension=".gz" mimetype="application/gzip" />
+	
+	<!-- Web browser types -->
+	<type extension=".htm" mimetype="text/html" />
+	<type extension=".html" mimetype="text/html" />
+	<type extension=".php" mimetype="text/php " />
+	
+	<!-- Text types -->
+	<type extension=".txt" mimetype="text/plain" />
+	<type extension=".csv" mimetype="text/csv" />
+	<type extension=".xml" mimetype="text/xml" />
+	
+	<!-- Android specific -->
+	<type extension=".apk" mimetype="application/vnd.android.package-archive" />
+	
+</MimeTypes>

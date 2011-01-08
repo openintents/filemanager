@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  Peli https://launchpad.net/~peli0101
+  Vasily Bogantsev https://launchpad.net/~bas-eurogym</string>
+	
+    <string name="about_comments">OI File Manager - открытый менеджер файлов интегрирующийся с дргими приложениями.</string>  
+	<string name="about_website_label">OI File Manager на OpenIntents</string> 
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+    <string name="app_name">OI File Manager</string>
+    
+    <string name="menu_new_folder">Новая папка</string>
+    <string name="menu_delete">Удалить</string>
+    <string name="menu_rename">Переименовать</string>
+    <string name="menu_send">Отправить</string>
+    <string name="menu_open">Открыть</string>
+    <string name="menu_move">Переместить</string>
+    <string name="menu_copy">Копировать</string>
+    <string name="menu_include_in_media_scan">Include in media scan</string>
+    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    
+    <string name="create_new_folder">Создать новую папку</string>
+    <string name="folder_name">Имя папки</string>
+    <string name="file_name">Имя папки</string>
+    <string name="this_folder_is_empty">Эта папка пуста.</string>
+    <string name="really_delete">Вы точно хотите удалить %s?</string>
+    <string name="file_deleted">Файл удалён.</string>
+    <string name="folder_deleted">Папка удалена.</string>
+    <string name="file_renamed">Файл переименован.</string>
+    <string name="folder_renamed">Папка переименована.</string>
+    <string name="file_moved">Файл перемещён.</string>
+    <string name="folder_moved">Папка перемещена.</string>
+    <string name="file_copied">Файл скопирован.</string>
+    <string name="move_title">Выберите папку куда переместить</string>
+    <string name="move_button">Переместить сюда</string>
+    <string name="copy_title">Выберите папку куда скопировать</string>
+    <string name="copy_button">Скопировать сюда</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">Копия %s</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    
+    <string name="media_scan_included">This folder will be included in the next media scan.</string>
+    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    
+    <string name="error_creating_new_folder">Невозможно создать новую папку.</string>
+    <string name="error_deleting_file">Невозможно удалить файл.</string>
+    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_renaming_file">Невозможно переименовать файл.</string>
+    <string name="error_renaming_folder">Невозможно переименовать папку.</string>
+    <string name="error_moving_file">Невозможно переместить файл.</string>
+    <string name="error_moving_folder">Невозможно переместить папку.</string>
+    <string name="error_copying_file">Невозможно скопировать файл.</string>
+    <string name="error_file_does_not_exists">Файл не существует.</string>
+    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
+    <string name="error_generic">An error occurred: </string>
+    <string name="error_media_scan">Could not change media scan settings.</string>
+    
+    <string name="send_not_available">Нет приложения для отправки.</string>
+    
+    <string name="application_not_available">Приложение недоступно.</string>
+
+	<!-- ***************************
+	     Distribution
+	     *************************** -->
+	
+	<!-- EULA -->
+	<string name="eula_title">Лицензионное соглашение OI File Manager</string>
+	<string name="eula_accept">Принять</string>
+	<string name="eula_refuse">Отменить</string>
+	
+	<!-- Update -->
+	<string name="update_box_text">Проверяйте обновления вручную или установите OI Update для автоматического уведомления. Текущая версия: %s</string>
+	<string name="update_check_now">Проверить сейчас</string>
+	<string name="update_get_updater">Получить OI Updater.</string>
+	<string name="update_error">Приложение загрузчик отсутствует</string>
+	<string name="update">Проверить обновления</string>
+	
+    <!-- About -->
+    <string name="about">О программе</string>
+	<string name="aboutapp_not_available">Версия %s\n\n Отсутствует совместимое расширение для отображения полной информации (контакты, авторы, лицензия).</string>
+    <string name="aboutapp_get">Получить OI About</string>
+    
+    
+</resources>

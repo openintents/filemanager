@@ -25,7 +25,8 @@ To obtain the current release, visit
 ---------------------------------------------------------
 release: 1.1.4
 date: 2011-?
-
+- exclude/include directories from media scan.
+- support Android 2.3.
 - translations into various languages.
 
 ---------------------------------------------------------

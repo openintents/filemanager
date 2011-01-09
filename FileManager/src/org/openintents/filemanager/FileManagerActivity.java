@@ -1405,6 +1405,7 @@ public class FileManagerActivity extends ListActivity {
 		}
 	}
 
+	// This code seems to work for SDK 2.3 (target="9")
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		

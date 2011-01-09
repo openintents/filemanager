@@ -16,9 +16,11 @@
  -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.openintents.filemanager"
-	android:versionName="1.1.4-rc3"
-	android:versionCode="12">
+	android:versionName="1.1.4-rc4"
+	android:versionCode="13">
 	<!-- History: 
+	 * * * UPDATE ATRACKDOG METADATA BELOW FOR RELEASE CANDIDATES * * *
+	[13] 1.1.4-rc4:2011-?
 	[12] 1.1.4-rc3:2010-09-14
 	[11] 1.1.4-rc2:2010-09-04
 	[10] 1.1.4-rc1:2010-06-23
@@ -35,9 +37,11 @@
 	
 	    
         <uses-sdk android:minSdkVersion="2"
-            android:targetSdkVersion="4" />
-        <!-- If targetSdkVersion is increased, the following needs to be adjusted:
-             * FileManagerActivity: onKeyDown(): New way how "back" key is handled. -->
+            android:targetSdkVersion="9" />
+        <!-- If targetSdkVersion is increased from 4 to 5 or higher, 
+        	the following needs to be adjusted:
+             * FileManagerActivity: onKeyDown(): New way how "back" key is handled.
+            NOTE: Tested on target=9, and it works both on Android 2.3 and Android 1.6. -->
      
 <supports-screens android:smallScreens="true"
                   android:normalScreens="true"
@@ -49,7 +53,7 @@
     
         <!-- aTrackDog metadata -->
         <meta-data android:name="com.a0soft.gphone.aTrackDog.testVersion"
-           android:value="6" />
+           android:value="13" />
            
 		<meta-data android:name="org.openintents.metadata.COMMENTS"
                        android:value="@string/about_comments" />

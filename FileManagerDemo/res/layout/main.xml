@@ -21,23 +21,27 @@
 		    android:layout_height="wrap_content" 
 		    android:layout_weight="1"/>
 		<ImageButton android:id="@+id/file_manager"
+			android:onClick="onClickOpenFile"
 			android:src="@drawable/ic_launcher_folder_small"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content" />
 	</LinearLayout>
 	
 	<Button android:id="@+id/open"
+		android:onClick="onClickOpenFile"
 		android:text="@string/open_button"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="10dip" />
 		
 	<Button android:id="@+id/save"
+		android:onClick="onClickSaveFile"
 		android:text="@string/save_button"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 		
 	<Button android:id="@+id/pick_directory"
+		android:onClick="onClickPickDirectory"
 		android:text="@string/pick_directory_title"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />

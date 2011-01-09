@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TestFileManager</string>
+    <string name="app_name">OI File Manager Demo</string>
     <string name="no_filemanager_installed">No compatible file manager found</string>
     <string name="file_name">File name</string>
     <string name="open_title">Select file to open</string>

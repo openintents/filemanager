@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package org.openintents.samples.TestFileManager;
+package org.openintents.filemanager.demo;
+
+import java.io.File;
 
 import org.openintents.intents.FileManagerIntents;
 
@@ -24,12 +26,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class TestFileManager extends Activity {
+public class Demo extends Activity {
 	
 	protected static final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 1;
 
@@ -42,50 +42,31 @@ public class TestFileManager extends Activity {
         setContentView(R.layout.main);
         
         mEditText = (EditText) findViewById(R.id.file_path);
-
-        ImageButton buttonFileManager = (ImageButton) findViewById(R.id.file_manager);
-        buttonFileManager.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View arg0) {
-				openFile();
-			}
-        });
-        
-        Button button = (Button) findViewById(R.id.open);
-        button.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View arg0) {
-				openFile();
-			}
-        });
-
-        button = (Button) findViewById(R.id.save);
-        button.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View arg0) {
-				saveFile();
-			}
-        });
-
-        button = (Button) findViewById(R.id.pick_directory);
-        button.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View arg0) {
-				pickDirectory();
-			}
-        });
     }
-    
+
+	public void onClickOpenFile(View view) {
+		openFile();
+	}
+	
+	public void onClickSaveFile(View view) {
+		saveFile();
+	}
+	
+	public void onClickPickDirectory(View view) {
+		pickDirectory();
+	}
+	
     /**
      * Opens the file manager to select a file to open.
      */
-    private void openFile() {
+    public void openFile() {
 		String fileName = mEditText.getText().toString();
 		
 		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_FILE);
 		
 		// Construct URI from file name.
-		intent.setData(Uri.parse("file://" + fileName));
+		File file = new File(fileName);
+		intent.setData(Uri.fromFile(file));
 		
 		// Set fancy title and button (optional)
 		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.open_title));
@@ -109,7 +90,8 @@ public class TestFileManager extends Activity {
 		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_FILE);
 		
 		// Construct URI from file name.
-		intent.setData(Uri.parse("file://" + fileName));
+		File file = new File(fileName);
+		intent.setData(Uri.fromFile(file));
 		
 		// Set fancy title and button (optional)
 		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.save_title));
@@ -134,7 +116,8 @@ public class TestFileManager extends Activity {
 		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
 		
 		// Construct URI from file name.
-		intent.setData(Uri.parse("file://" + fileName));
+		File file = new File(fileName);
+		intent.setData(Uri.fromFile(file));
 		
 		// Set fancy title and button (optional)
 		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.pick_directory_title));
@@ -161,16 +144,13 @@ public class TestFileManager extends Activity {
 		case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
 			if (resultCode == RESULT_OK && data != null) {
 				// obtain the filename
-				String filename = data.getDataString();
-				if (filename != null) {
-					// Get rid of URI prefix:
-					if (filename.startsWith("file://")) {
-						filename = filename.substring(7);
+				Uri fileUri = data.getData();
+				if (fileUri != null) {
+					String filePath = fileUri.getPath();
+					if (filePath != null) {
+						mEditText.setText(filePath);
 					}
-					
-					mEditText.setText(filename);
-				}				
-				
+				}
 			}
 			break;
 		}

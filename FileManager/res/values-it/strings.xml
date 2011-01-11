@@ -29,6 +29,13 @@
 	<string name="about_website_label">OI Gestore File di OpenIntents</string> 
 	
 	<!-- ***************************
+	     Distribution
+	     *************************** -->
+	
+	<!-- EULA -->
+	<string name="eula_title">EULA OI Gestore File</string>
+	
+	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI Gestore File</string>
@@ -85,27 +92,5 @@
     <string name="send_not_available">Nessuna applicazione disponibile per l\'invio</string>
     
     <string name="application_not_available">Applicazione non disponibile</string>
-
-	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">EULA OI Gestore File</string>
-	<string name="eula_accept">Accetto</string>
-	<string name="eula_refuse">Annulla</string>
-	
-	<!-- Update -->
-	<string name="update_box_text">Controlla manualmente gli aggiornamenti o installa OI Aggiornamenti per le notifiche automatiche. Versione attuale: %s</string>
-	<string name="update_check_now">Controlla adesso.</string>
-	<string name="update_get_updater">Scarica OI Aggiornamenti.</string>
-	<string name="update_error">Scaricamento dell\'applicazione non disponibile.</string>
-	<string name="update">Controlla aggiornamenti</string>
-	
-    <!-- About -->
-    <string name="about">Info</string>
-	<string name="aboutapp_not_available">Versione %s\n\nNessuna estensione compatibile disponibile per mostrare tutte le info (contatti, crediti, licenza).</string>
-    <string name="aboutapp_get">Scarica OI Info</string>
-    
     
 </resources>

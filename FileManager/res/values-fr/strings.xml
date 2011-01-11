@@ -28,6 +28,13 @@
 	<string name="about_website_label">OI File Manager chez OpenIntents</string> 
 	
 	<!-- ***************************
+	     Distribution
+	     *************************** -->
+	
+	<!-- EULA -->
+	<string name="eula_title">OI File Manager EULA</string>
+	
+	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI File Manager</string>
@@ -84,27 +91,5 @@
     <string name="send_not_available">Pas d\'application disponible pour l\'envoi</string>
     
     <string name="application_not_available">Application non disponible</string>
-
-	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI File Manager EULA</string>
-	<string name="eula_accept">Accepter</string>
-	<string name="eula_refuse">Annuler</string>
-	
-	<!-- Update -->
-	<string name="update_box_text">Veuillez vérifier manuellement les mises à jour ou installer OI Update pour les notifications automatique. Version actuelle: %s</string>
-	<string name="update_check_now">Vérifier maintenant.</string>
-	<string name="update_get_updater">Obtenir OI Updater.</string>
-	<string name="update_error">Application téléchargée non disponible</string>
-	<string name="update">Vérifier les mises à jour</string>
-	
-    <!-- About -->
-    <string name="about">À propos de</string>
-	<string name="aboutapp_not_available">Version %s\n\nAucune extension disponible pour afficher la totalité des informations (contact, crédits, licence).</string>
-    <string name="aboutapp_get">Obtenir OI About</string>
-    
     
 </resources>

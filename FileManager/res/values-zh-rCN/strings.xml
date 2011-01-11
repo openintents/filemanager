@@ -27,6 +27,13 @@
 	<string name="about_website_label">开放组件的OI文件管理器</string> 
 	
 	<!-- ***************************
+	     Distribution
+	     *************************** -->
+	
+	<!-- EULA -->
+	<string name="eula_title">OI 文件管理用户协议</string>
+	
+	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI文件管理器</string>
@@ -83,27 +90,5 @@
     <string name="send_not_available">无法找到用于传送的应用程序</string>
     
     <string name="application_not_available">未找到应用程序</string>
-
-	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI 文件管理用户协议</string>
-	<string name="eula_accept">接受</string>
-	<string name="eula_refuse">取消</string>
-	
-	<!-- Update -->
-	<string name="update_box_text">请手动检查更新，或安装自动通知更新程序。当前版本：%s</string>
-	<string name="update_check_now">立即检查</string>
-	<string name="update_get_updater">获得自动更新程序</string>
-	<string name="update_error">没有应用程序可供下载</string>
-	<string name="update">检查更新</string>
-	
-    <!-- About -->
-    <string name="about">关于</string>
-	<string name="aboutapp_not_available">版本 %s\n\n找不到兼容的扩展用于显示完整信息（联系人，信用，许可）</string>
-    <string name="aboutapp_get">获得关于OI</string>
-    
     
 </resources>

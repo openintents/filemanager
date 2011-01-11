@@ -23,10 +23,18 @@
 	<string name="about_translators">This is a dummy translation so that the credits are counted as translated.
 
 Launchpad Contributions:
+  Peli https://launchpad.net/~peli0101
   zeugma https://launchpad.net/~sunder67</string>
 	
     <string name="about_comments">OI File Manager is an open file manager that seamlessly cooperates with other applications.</string>  
 	<string name="about_website_label">OI File Manager at OpenIntents</string> 
+	
+	<!-- ***************************
+	     Distribution
+	     *************************** -->
+	
+	<!-- EULA -->
+	<string name="eula_title">OI Dosya Yöneticisi kullanıcı lisans anlaşması (EULA)</string>
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -85,30 +93,5 @@ Launchpad Contributions:
     <string name="send_not_available">No application available for sending.</string>
     
     <string name="application_not_available">Uygulama mevcut değil</string>
-
-	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI Dosya Yöneticisi kullanıcı lisans anlaşması (EULA)</string>
-	<string name="eula_accept">Kabul Et</string>
-	<string name="eula_refuse">İptal</string>
-	
-	<!-- Update -->
-	<string name="update_box_text">Please check manually for updates or install OI Update
-for automatic notifications.
-Current version: %s
-	</string>
-	<string name="update_check_now">Şimdi kontrol et.</string>
-	<string name="update_get_updater">OI Güncellemelerini al.</string>
-	<string name="update_error">Download application not available.</string>
-	<string name="update">Güncellemeleri kontrol et</string>
-	
-    <!-- About -->
-    <string name="about">Hakkında</string>
-	<string name="aboutapp_not_available">Sürüm %s\n\n Uyumlu uzantısı mevcut tüm bilgileri (iletişim, krediler, lisans) gösterilecek.</string>
-    <string name="aboutapp_get">Get OI About</string>
-    
     
 </resources>

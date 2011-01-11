@@ -27,6 +27,13 @@
 	<string name="about_website_label">OpenIntents 的檔案總管</string> 
 	
 	<!-- ***************************
+	     Distribution
+	     *************************** -->
+	
+	<!-- EULA -->
+	<string name="eula_title">OI 檔案總管用戶協議</string>
+	
+	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">檔案總管</string>
@@ -83,27 +90,5 @@
     <string name="send_not_available">找不到傳送用的應用程式。</string>
     
     <string name="application_not_available">找不到應用程式。</string>
-
-	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI 檔案總管用戶協議</string>
-	<string name="eula_accept">接受</string>
-	<string name="eula_refuse">取消</string>
-	
-	<!-- Update -->
-	<string name="update_box_text">請手動檢查是否有更新，或者安裝更新自動通知程式。目前的版本：%s</string>
-	<string name="update_check_now">立刻檢查</string>
-	<string name="update_get_updater">取得自動更新程式。</string>
-	<string name="update_error">無應用程式可下載。</string>
-	<string name="update">檢查更新</string>
-	
-    <!-- About -->
-    <string name="about">關於</string>
-	<string name="aboutapp_not_available">版本 %s\n\n找不到相容的擴充以顯示完整資訊(聯絡人、榮譽榜和授權)</string>
-    <string name="aboutapp_get">取得關於 OI</string>
-    
     
 </resources>

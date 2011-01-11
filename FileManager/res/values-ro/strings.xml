@@ -28,6 +28,13 @@
 	<string name="about_website_label">OI File Manager pe OpenIntents</string> 
 	
 	<!-- ***************************
+	     Distribution
+	     *************************** -->
+	
+	<!-- EULA -->
+	<string name="eula_title">OI File Manager ALUF</string>
+	
+	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI File Manager</string>
@@ -84,27 +91,5 @@
     <string name="send_not_available">Nu există aplicație pentru trimitere.</string>
     
     <string name="application_not_available">Aplicație indisponibilă</string>
-
-	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI File Manager ALUF</string>
-	<string name="eula_accept">Acceptă</string>
-	<string name="eula_refuse">Renunță</string>
-	
-	<!-- Update -->
-	<string name="update_box_text">Verificați manual existența versiunilor noi sau instalați OI Update pentru noitificări automate. Versiunea curentă: %s</string>
-	<string name="update_check_now">Verifică acum</string>
-	<string name="update_get_updater">Instalează OI Updater</string>
-	<string name="update_error">Download application not available.</string>
-	<string name="update">Verifică versiuni noi</string>
-	
-    <!-- About -->
-    <string name="about">Despre</string>
-	<string name="aboutapp_not_available">Version %s\n\nNo compatible extension available to display full info (contact, credits, license).</string>
-    <string name="aboutapp_get">Instalează OI About</string>
-    
     
 </resources>

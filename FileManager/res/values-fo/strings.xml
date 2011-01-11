@@ -28,6 +28,13 @@
 	<string name="about_website_label">OI File Manager at OpenIntents</string> 
 	
 	<!-- ***************************
+	     Distribution
+	     *************************** -->
+	
+	<!-- EULA -->
+	<string name="eula_title">OI File Manager EULA</string>
+	
+	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI File Manager</string>
@@ -84,30 +91,5 @@
     <string name="send_not_available">Eingin nýtsluskipan tøk til sending.</string>
     
     <string name="application_not_available">Nýtsluskipan ikki tøk</string>
-
-	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI File Manager EULA</string>
-	<string name="eula_accept">Játta</string>
-	<string name="eula_refuse">Ógilda</string>
-	
-	<!-- Update -->
-	<string name="update_box_text">Please check manually for updates or install OI Update
-for automatic notifications.
-Current version: %s
-	</string>
-	<string name="update_check_now">Kanna nú.</string>
-	<string name="update_get_updater">Get OI Updater.</string>
-	<string name="update_error">Niðurtøku nýtsluskipan ikki tøk.</string>
-	<string name="update">Kanna dagføringar</string>
-	
-    <!-- About -->
-    <string name="about">Um</string>
-	<string name="aboutapp_not_available">Version %s\n\nNo compatible extension available to display full info (contact, credits, license).</string>
-    <string name="aboutapp_get">Get OI About</string>
-    
     
 </resources>

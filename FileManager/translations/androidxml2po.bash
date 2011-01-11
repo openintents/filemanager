@@ -10,8 +10,8 @@
 # Jan 8, 2011: Peli: Check if a language .po file exists. In this way, all language codes can be included in this file.
 
 #Set the languages here (long version is the android resource append string).
-short_lang=("ar" "cs" "da" "de" "es" "fo" "fi" "fr" "it" "ja" "ko" "lo" "nl" "oc" "pl" "pt" "ro" "ru" "sk" "tr" "zh_CN" "zh_TW") #do not include template language ("en" usually).
-long_lang=("ar" "cs" "da" "de" "es" "fo" "fi" "fr" "it" "ja" "ko" "lo" "nl" "oc" "pl" "pt" "ro" "ru" "sk" "tr" "zh-rCN" "zh-rTW") #do not include template language ("en" usually).
+short_lang=("ar" "cs" "da" "de" "es" "fo" "fi" "fr" "it" "ja" "ko" "lo" "nl" "oc" "pl" "pt" "ro" "ru" "sk" "sv" "tr" "zh_CN" "zh_TW") #do not include template language ("en" usually).
+long_lang=("ar" "cs" "da" "de" "es" "fo" "fi" "fr" "it" "ja" "ko" "lo" "nl" "oc" "pl" "pt" "ro" "ru" "sk" "sv" "tr" "zh-rCN" "zh-rTW") #do not include template language ("en" usually).
 
 #Change the dirs where the files are located. Dirs cannot have leading "."'s or msgmerge will complain.
 launchpad_po_files_dir="."

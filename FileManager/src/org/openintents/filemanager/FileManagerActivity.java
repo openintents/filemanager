@@ -95,12 +95,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	private static final int MENU_COPY = Menu.FIRST + 10;
 	private static final int MENU_INCLUDE_IN_MEDIA_SCAN = Menu.FIRST + 11;
 	private static final int MENU_EXCLUDE_FROM_MEDIA_SCAN = Menu.FIRST + 12;
-	protected static final int MENU_DISTRIBUTION_START = Menu.FIRST + 13; // MUST BE LAST
+	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 13; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
 	private static final int DIALOG_DELETE = 2;
 	private static final int DIALOG_RENAME = 3;
-	protected static final int DIALOG_DISTRIBUTION_START = 4; // MUST BE LAST
+	private static final int DIALOG_DISTRIBUTION_START = 4; // MUST BE LAST
 	
 	private static final int COPY_BUFFER_SIZE = 32 * 1024;
 	

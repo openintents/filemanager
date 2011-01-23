@@ -82,3 +82,13 @@ Features:
   list.
 - Create directory, rename, delete files.
 - Move files.
+
+---------------------------------------------------------
+For the complete list of changes and a list of frequently asked questions, please visit:
+http://www.openintents.org
+
+You can help to improve the translation into your language at Launchpad:
+https://translations.launchpad.net/openintents/trunk
+
+The source code of this free and open source application is available at:
+http://code.google.com/p/openintents/

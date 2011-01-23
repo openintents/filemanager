@@ -1,0 +1,27 @@
+---------------------------------------------------------
+release: 1.1.4
+date: 2011-?
+- exclude/include directories from media scan.
+- support Android 2.3.
+- translations into various languages.
+
+---------------------------------------------------------
+release: 1.1.3
+date: 2010-05-29
+- backward compatibility with Android 1.5.
+
+---------------------------------------------------------
+release: 1.1.2
+date: 2010-05-29
+- fix thumbnail size on high-density devices.
+- translations: Occitan (post 1500), Polish, Russian
+
+---------------------------------------------------------
+For the complete list of changes and a list of frequently asked questions, please visit:
+http://www.openintents.org
+
+You can help to improve the translation into your language at Launchpad:
+https://translations.launchpad.net/openintents/trunk
+
+The source code of this free and open source application is available at:
+http://code.google.com/p/openintents/

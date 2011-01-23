@@ -23,16 +23,11 @@ package org.openintents.filemanager;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FilePermission;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import org.openintents.distribution.AboutDialog;
-import org.openintents.distribution.EulaActivity;
-import org.openintents.distribution.UpdateMenu;
+import org.openintents.distribution.DistributionLibraryListActivity;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.MimeTypeParser;
 import org.openintents.filemanager.util.MimeTypes;
@@ -42,35 +37,30 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
+import android.content.Intent;
 import android.content.res.XmlResourceParser;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Contacts.Intents;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,9 +70,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 
-public class FileManagerActivity extends ListActivity { 
+public class FileManagerActivity extends DistributionLibraryListActivity { 
 	private static final String TAG = "FileManagerActivity";
 
 	private static final String NOMEDIA_FILE = ".nomedia";
@@ -96,8 +85,6 @@ public class FileManagerActivity extends ListActivity {
 	protected static final int REQUEST_CODE_MOVE = 1;
 	protected static final int REQUEST_CODE_COPY = 2;
 
-	private static final int MENU_ABOUT = Menu.FIRST + 1;
-	private static final int MENU_UPDATE = Menu.FIRST + 2;
 	private static final int MENU_PREFERENCES = Menu.FIRST + 3;
 	private static final int MENU_NEW_FOLDER = Menu.FIRST + 4;
 	private static final int MENU_DELETE = Menu.FIRST + 5;
@@ -108,11 +95,12 @@ public class FileManagerActivity extends ListActivity {
 	private static final int MENU_COPY = Menu.FIRST + 10;
 	private static final int MENU_INCLUDE_IN_MEDIA_SCAN = Menu.FIRST + 11;
 	private static final int MENU_EXCLUDE_FROM_MEDIA_SCAN = Menu.FIRST + 12;
+	protected static final int MENU_DISTRIBUTION_START = Menu.FIRST + 13; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
 	private static final int DIALOG_DELETE = 2;
 	private static final int DIALOG_RENAME = 3;
-	private static final int DIALOG_ABOUT = 4;
+	protected static final int DIALOG_DISTRIBUTION_START = 4; // MUST BE LAST
 	
 	private static final int COPY_BUFFER_SIZE = 32 * 1024;
 	
@@ -181,8 +169,12 @@ public class FileManagerActivity extends ListActivity {
      public void onCreate(Bundle icicle) { 
           super.onCreate(icicle); 
 
-          if (!EulaActivity.checkEula(this)) {
-             return;
+          mDistribution.setFirst(MENU_DISTRIBUTION_START, DIALOG_DISTRIBUTION_START);
+          
+          // Check whether EULA has been accepted
+          // or information about new version can be presented.
+          if (mDistribution.showEulaOrNewVersion()) {
+              return;
           }
 
           currentHandler = new Handler() {
@@ -828,11 +820,8 @@ public class FileManagerActivity extends ListActivity {
 				.setIcon(android.R.drawable.ic_menu_gallery);
 		mExcludeMediaScanMenuItem = menu.add(0, MENU_EXCLUDE_FROM_MEDIA_SCAN, 0, R.string.menu_exclude_from_media_scan).setShortcut('1', 's')
 				.setIcon(android.R.drawable.ic_menu_gallery);
-		
- 		UpdateMenu
- 				.addUpdateMenu(this, menu, 0, MENU_UPDATE, 0, R.string.menu_update);
- 		menu.add(0, MENU_ABOUT, 0, R.string.about).setIcon(
- 				android.R.drawable.ic_menu_info_details).setShortcut('0', 'a');
+
+ 		mDistribution.onCreateOptionsMenu(menu);
  		
  		return true;
  	}
@@ -878,14 +867,6 @@ public class FileManagerActivity extends ListActivity {
 		switch (item.getItemId()) {
 		case MENU_NEW_FOLDER:
 			showDialog(DIALOG_NEW_FOLDER);
-			return true;
-			
-		case MENU_UPDATE:
-			UpdateMenu.showUpdateBox(this);
-			return true;
-
-		case MENU_ABOUT:
-			showAboutBox();
 			return true;
 			
 		case MENU_INCLUDE_IN_MEDIA_SCAN:
@@ -1083,12 +1064,9 @@ public class FileManagerActivity extends ListActivity {
 						}
 						
 					}).create();
-		
-		case DIALOG_ABOUT:
-			return new AboutDialog(this);
 			
 		}
-		return null;
+		return super.onCreateDialog(id);
 		
 	}
 
@@ -1117,9 +1095,6 @@ public class FileManagerActivity extends ListActivity {
 				tv.setText(R.string.file_name);
 			}
 			((AlertDialog) dialog).setIcon(mContextIcon);
-			break;
-
-		case DIALOG_ABOUT:
 			break;
 		}
 	}
@@ -1150,11 +1125,6 @@ public class FileManagerActivity extends ListActivity {
 			// That didn't work.
 			Toast.makeText(this, getString(R.string.error_generic) + e.getMessage(), Toast.LENGTH_LONG).show();
 		}
-	}
-
-	private void showAboutBox() {
-		//startActivity(new Intent(this, AboutDialog.class));
-		AboutDialog.showDialogOrStartActivity(this, DIALOG_ABOUT);
 	}
 	
 	private void promptDestinationAndMoveFile() {

@@ -19,8 +19,8 @@
 	<!-- ***************************
 	     About information
 	     *************************** -->
-	<string name="about_copyright">Copyright © 2008-2009 OpenIntents</string> 
-	<string name="about_website_url">http://www.openintents.org/en/node/159</string>
+	<string name="about_copyright">Copyright © 2008-2011 OpenIntents</string> 
+	<string name="about_website_url">http://www.openintents.org/en/filemanager</string>
 	<string name="about_email">support@openintents.org</string>
 	
     <string-array name="about_authors"><!-- Add your name here if you helped out -->
@@ -47,8 +47,7 @@
 	     Distribution
 	     *************************** -->
 	<!-- Update -->
-	<string name="update_app_url">market://search?q=pname:org.openintents.filemanager</string>
-	<string name="update_app_developer_url">http://www.openintents.org/en/node/159</string><!-- 159 = OI File Manager -->
+	<string name="oi_distribution_update_app_developer_url">http://www.openintents.org/en/filemanager</string>
 	
 	<!-- ***************************
 	     Preferences

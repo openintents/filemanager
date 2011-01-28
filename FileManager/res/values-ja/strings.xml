@@ -30,13 +30,6 @@
 	<string name="about_website_label">OpenIntentsのOI File Manager</string> 
 	
 	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI File Managerの利用者規約</string>
-	
-	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI File Manager</string>

@@ -30,13 +30,6 @@ Launchpad Contributions:
 	<string name="about_website_label">OI File Manager at OpenIntents</string> 
 	
 	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI Dosya Yöneticisi kullanıcı lisans anlaşması (EULA)</string>
-	
-	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI Dosya Yöneticisi</string>

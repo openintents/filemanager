@@ -27,13 +27,6 @@
 	<string name="about_website_label">开放组件的OI文件管理器</string> 
 	
 	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI 文件管理用户协议</string>
-	
-	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI文件管理器</string>

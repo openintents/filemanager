@@ -27,13 +27,6 @@
 	<string name="about_website_label">OpenIntents의 OI 파일 관리자</string> 
 	
 	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI File Manager EULA</string>
-	
-	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI 파일 관리자</string>

@@ -29,13 +29,6 @@
 	<string name="about_website_label">OI Dateimanager auf OpenIntents</string> 
 	
 	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI Dateimanager EULA</string>
-	
-	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI Dateimanager</string>

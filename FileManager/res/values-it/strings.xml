@@ -29,13 +29,6 @@
 	<string name="about_website_label">OI Gestore File di OpenIntents</string> 
 	
 	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">EULA OI Gestore File</string>
-	
-	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI Gestore File</string>

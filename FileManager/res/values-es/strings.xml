@@ -22,18 +22,12 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   DiegoJ https://launchpad.net/~diegojromerolopez
+  Javier Martínez Arrieta https://launchpad.net/~javote87
   Paco Molinero https://launchpad.net/~franciscomol
   miwie https://launchpad.net/~mw-miwie</string>
 	
     <string name="about_comments">OI File Manager es un gestor abierto de archivos que cooperar fluidamente con otras aplicaciones.</string>  
 	<string name="about_website_label">OI File Manager en OpenIntents</string> 
-	
-	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI File Manager EULA</string>
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -48,7 +42,7 @@
     <string name="menu_move">Mover</string>
     <string name="menu_copy">Copiar</string>
     <string name="menu_include_in_media_scan">Include in media scan</string>
-    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="menu_exclude_from_media_scan">Excluir de la exploración de archivos multimedia</string>
     
     <string name="create_new_folder">Crear nueva carpeta</string>
     <string name="folder_name">Nombre de carpeta</string>
@@ -87,7 +81,7 @@
     <string name="error_file_does_not_exists">El archivo no existe.</string>
     <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
     <string name="error_generic">An error occurred: </string>
-    <string name="error_media_scan">Could not change media scan settings.</string>
+    <string name="error_media_scan">No pudo cambiarse la configuración de exploración de archivos multimedia</string>
     
     <string name="send_not_available">Aplicación no disponible para enviar.</string>
     

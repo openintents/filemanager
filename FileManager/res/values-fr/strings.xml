@@ -22,17 +22,11 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Abdessamad Derraz https://launchpad.net/~derraz
+  Anges https://launchpad.net/~az24
   kawazzzzzz@yahoo.fr https://launchpad.net/~kawazzzzzz</string>
 	
     <string name="about_comments">OI File Manager est un gestionnaire de fichiers qui interagit avec les autres applications.</string>  
 	<string name="about_website_label">OI File Manager chez OpenIntents</string> 
-	
-	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI File Manager EULA</string>
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -46,8 +40,8 @@
     <string name="menu_open">Ouvrir</string>
     <string name="menu_move">Déplacer</string>
     <string name="menu_copy">Copier</string>
-    <string name="menu_include_in_media_scan">Include in media scan</string>
-    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="menu_include_in_media_scan">Inclure dans les recherches</string>
+    <string name="menu_exclude_from_media_scan">Exclure des recherches</string>
     
     <string name="create_new_folder">Créer un nouveau dossier</string>
     <string name="folder_name">Nom du dossier</string>
@@ -72,8 +66,8 @@
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">Copy %1$d of %2$s</string>
     
-    <string name="media_scan_included">This folder will be included in the next media scan.</string>
-    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    <string name="media_scan_included">Ce dossier sera inclus dans la prochaine recherche</string>
+    <string name="media_scan_excluded">Ce dossier sera exclus de la prochaine recherche</string>
     
     <string name="error_creating_new_folder">Impossible de créer le nouveau dossier.</string>
     <string name="error_deleting_file">Impossible de supprimer le fichier.</string>

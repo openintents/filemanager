@@ -27,13 +27,6 @@
 	<string name="about_website_label">OI ແຟ້ມ ບໍລີຫານຂອງ OpenIntents</string> 
 	
 	<!-- ***************************
-	     Distribution
-	     *************************** -->
-	
-	<!-- EULA -->
-	<string name="eula_title">OI File Manager EULA</string>
-	
-	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
     <string name="app_name">OI ແຟ້ມ ບໍລີຫານ</string>

@@ -69,14 +69,14 @@
     
     <string name="error_creating_new_folder">Impossible de crear lo dorsièr novèl.</string>
     <string name="error_deleting_file">Impossible de suprimir lo fichièr.</string>
-    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_deleting_folder">Impossible de suprimir lo dorsièr «%s».</string>
     <string name="error_renaming_file">Impossible de tornar nomenar lo fichièr.</string>
     <string name="error_renaming_folder">Impossible de tornar nomenar lo dorsièr.</string>
     <string name="error_moving_file">Impossible de desplaçar lo fichièr.</string>
     <string name="error_moving_folder">Impossible de desplaçar lo dorsièr.</string>
     <string name="error_copying_file">Impossible de copiar lo fichièr.</string>
     <string name="error_file_does_not_exists">Lo fichièr existís pas.</string>
-    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
+    <string name="error_deleting_child_file">Impossible de suprimir lo fichièr enfant «%s».</string>
     <string name="error_generic">An error occurred: </string>
     <string name="error_media_scan">Could not change media scan settings.</string>
     

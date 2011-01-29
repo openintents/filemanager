@@ -72,14 +72,14 @@
     
     <string name="error_creating_new_folder">新規フォルダーを作成できませんでした。</string>
     <string name="error_deleting_file">ファイルを削除できませんでした。</string>
-    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_deleting_folder">\'%s\' のフォルダを削除できません。</string>
     <string name="error_renaming_file">ファイル名を変更できませんでした。</string>
     <string name="error_renaming_folder">フォルダ名を変更できませんでした。</string>
     <string name="error_moving_file">ファイルを移動できませんでした。</string>
     <string name="error_moving_folder">フォルダーを移動できませんでした。</string>
     <string name="error_copying_file">ファイルのコピーができません。</string>
     <string name="error_file_does_not_exists">ファイルが存在しません。</string>
-    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
+    <string name="error_deleting_child_file">フォルダの中の \'%s\' を削除できません。</string>
     <string name="error_generic">An error occurred: </string>
     <string name="error_media_scan">Could not change media scan settings.</string>
     

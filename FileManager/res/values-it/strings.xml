@@ -71,14 +71,14 @@
     
     <string name="error_creating_new_folder">Impossibile creare una nuova cartella.</string>
     <string name="error_deleting_file">Impossibile eliminare il file.</string>
-    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_deleting_folder">Impossibile eliminare la cartella \'%s\'.</string>
     <string name="error_renaming_file">Impossibile rinominare il file.</string>
     <string name="error_renaming_folder">Impossibile rinominare la cartella.</string>
     <string name="error_moving_file">Impossibile spostare il file.</string>
     <string name="error_moving_folder">Impossibile spostare la cartella.</string>
     <string name="error_copying_file">Impossibile copiare il file.</string>
     <string name="error_file_does_not_exists">Il file non esiste.</string>
-    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
+    <string name="error_deleting_child_file">Impossibile eliminare il sotto file \'%s\'.</string>
     <string name="error_generic">An error occurred: </string>
     <string name="error_media_scan">Could not change media scan settings.</string>
     

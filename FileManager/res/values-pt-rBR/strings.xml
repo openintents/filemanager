@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  DanielElias https://launchpad.net/~danielelias</string>
+	
+    <string name="about_comments">OI File Manager é um gerenciador de arquivos que coopera facilmente com outras aplicações.</string>  
+	<string name="about_website_label">OI File Manager na OpenIntents</string> 
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+    <string name="app_name">OI File Manager</string>
+    
+    <string name="menu_new_folder">Nova Pasta</string>
+    <string name="menu_delete">Deletar</string>
+    <string name="menu_rename">Renomear</string>
+    <string name="menu_send">Enviar</string>
+    <string name="menu_open">Abrir</string>
+    <string name="menu_move">Mover</string>
+    <string name="menu_copy">Copiar</string>
+    <string name="menu_include_in_media_scan">Incluir no scanner de mídia.</string>
+    <string name="menu_exclude_from_media_scan">Remover do scanner de mídia.</string>
+    
+    <string name="create_new_folder">Criar nova pasta</string>
+    <string name="folder_name">Nome da Pasta</string>
+    <string name="file_name">Nome da Pasta</string>
+    <string name="this_folder_is_empty">Esta pasta está vazia.</string>
+    <string name="really_delete">Você realmente deseja deletar %s ?</string>
+    <string name="file_deleted">Arquivo deletado.</string>
+    <string name="folder_deleted">Pasta deletada.</string>
+    <string name="file_renamed">Arquivo renomeado.</string>
+    <string name="folder_renamed">Pasta renomeada.</string>
+    <string name="file_moved">Arquivo movido.</string>
+    <string name="folder_moved">Pasta movida.</string>
+    <string name="file_copied">Arquivo copiado.</string>
+    <string name="move_title">Escolha a pasta para onde deseja mover</string>
+    <string name="move_button">Mover aqui</string>
+    <string name="copy_title">Escolha a pasta para onde deseja copiar</string>
+    <string name="copy_button">Copiar aqui</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">Cópia de %s</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Copia %1$d de %2$s</string>
+    
+    <string name="media_scan_included">Esta pasta será incluída no próximo escaneamento de mídia</string>
+    <string name="media_scan_excluded">Esta pasta será excluída durante o próximo escaneamento de mídia.</string>
+    
+    <string name="error_creating_new_folder">Não é possível criar nova pasta.</string>
+    <string name="error_deleting_file">Não é possível deletar arquivo.</string>
+    <string name="error_deleting_folder">Não é possível deletar pasta \'%s\'.</string>
+    <string name="error_renaming_file">Não é possível renomar arquivo.</string>
+    <string name="error_renaming_folder">Não é possível renomar pasta.</string>
+    <string name="error_moving_file">Não é possível mover arquivo.</string>
+    <string name="error_moving_folder">Não é possível mover pasta.</string>
+    <string name="error_copying_file">Não é possível copiar arquivo.</string>
+    <string name="error_file_does_not_exists">Arquivo não existe.</string>
+    <string name="error_deleting_child_file">Não é possível excluir arquivo filho \'%s\'.</string>
+    <string name="error_generic">Um erro ocorreu:</string>
+    <string name="error_media_scan">Não é possível mudar configurações do scanner de mídia.</string>
+    
+    <string name="send_not_available">Sem aplicativos disponíveis para envio.</string>
+    
+    <string name="application_not_available">Aplicativo indisponível.</string>
+    
+</resources>

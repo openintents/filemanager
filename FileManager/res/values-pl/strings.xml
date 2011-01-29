@@ -69,14 +69,14 @@
     
     <string name="error_creating_new_folder">Nie udało się utworzyć katalogu.</string>
     <string name="error_deleting_file">Nie udało się usunąć pliku.</string>
-    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_deleting_folder">Nie udało się usunąć katalogu \'%s\'.</string>
     <string name="error_renaming_file">Nie udało się zmienić nazwy pliku.</string>
     <string name="error_renaming_folder">Nie udało się zmienić nazwy katalogu.</string>
     <string name="error_moving_file">Nie udało się przenieść pliku.</string>
     <string name="error_moving_folder">Nie udało się przenieść katalogu.</string>
     <string name="error_copying_file">Nie udało się skopiować pliku.</string>
     <string name="error_file_does_not_exists">Plik nie istnieje</string>
-    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
+    <string name="error_deleting_child_file">Nie udało się usunąć pliku potomnego \'%s\'.</string>
     <string name="error_generic">An error occurred: </string>
     <string name="error_media_scan">Could not change media scan settings.</string>
     

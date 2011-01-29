@@ -70,14 +70,14 @@
     
     <string name="error_creating_new_folder">Kundi ikki stovna nýggja skjáttu.</string>
     <string name="error_deleting_file">Kundi ikki strika fílu.</string>
-    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_deleting_folder">Kundi ikki strika skjáttu \'%s\'.</string>
     <string name="error_renaming_file">Kundi ikki nýnevna fílu.</string>
     <string name="error_renaming_folder">Kundi ikki nýnevna skjáttu.</string>
     <string name="error_moving_file">Kundi ikki flýta fílu.</string>
     <string name="error_moving_folder">Kundi ikki flyta skjáttu.</string>
     <string name="error_copying_file">Kundi ikki avrita fílu.</string>
     <string name="error_file_does_not_exists">Fíla finnst ei.</string>
-    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
+    <string name="error_deleting_child_file">Kundi ikki strika fílu \'%s\'.</string>
     <string name="error_generic">An error occurred: </string>
     <string name="error_media_scan">Could not change media scan settings.</string>
     

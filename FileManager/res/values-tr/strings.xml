@@ -72,7 +72,7 @@ Launchpad Contributions:
     
     <string name="error_creating_new_folder">Yeni klasör oluşturulamadı.</string>
     <string name="error_deleting_file">Dosya silinemedi.</string>
-    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_deleting_folder">\'%s\' Klasör silinemedi.</string>
     <string name="error_renaming_file">Dosyayı yeniden adlandırma başarısız.</string>
     <string name="error_renaming_folder">Klasörü yeniden adlandırma başarısız.</string>
     <string name="error_moving_file">Dosya taşınamadı.</string>

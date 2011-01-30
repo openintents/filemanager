@@ -28,6 +28,7 @@ date: 2011-?
 - exclude/include directories from media scan.
 - support Android 2.3.
 - translations into various languages.
+- bug fixes (issue 308).
 
 ---------------------------------------------------------
 release: 1.1.3

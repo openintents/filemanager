@@ -23,12 +23,13 @@
 	<string name="about_translators">Launchpad Contributions:
   Cédric VALMARY (Tot en òc) https://launchpad.net/~cvalmary</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI File Manager es un gestionari de fichièrs qu\'interagís amb las autras aplicacions.</string>  
-	<string name="about_website_label">OI File Manager a cò d\'OpenIntents</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">Dorsièr novèl</string>

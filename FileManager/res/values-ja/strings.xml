@@ -26,12 +26,13 @@
   maimuzo https://launchpad.net/~maimuzo
   tiantian https://launchpad.net/~tsukida-cmkc</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI File Managerは他のアプリとシームレスに協力するみんなのためのファイルマネージャーです。</string>  
-	<string name="about_website_label">OpenIntentsのOI File Manager</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">新規フォルダ</string>

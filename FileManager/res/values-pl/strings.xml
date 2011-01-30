@@ -23,12 +23,13 @@
 	<string name="about_translators">Launchpad Contributions:
   usul https://launchpad.net/~usultis</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI File Manager jest otwartym menadzerem plików, który bezproblemowo współpracuje z innymi aplikacjami.</string>  
-	<string name="about_website_label">OI File Manager na OpenIntents</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">Nowy katalog</string>

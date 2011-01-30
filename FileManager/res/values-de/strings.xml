@@ -25,12 +25,13 @@
   Peli https://launchpad.net/~peli0101
   marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI Dateimanager ist ein offener Dateimanager, der nahtlos mit anderen Anwendungen zusammenarbeitet.</string>  
-	<string name="about_website_label">OI Dateimanager auf OpenIntents</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI Dateimanager</string>
     
     <string name="menu_new_folder">Neuer Ordner</string>

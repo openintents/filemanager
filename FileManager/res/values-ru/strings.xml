@@ -24,12 +24,13 @@
   Peli https://launchpad.net/~peli0101
   Vasily Bogantsev https://launchpad.net/~bas-eurogym</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI File Manager - открытый менеджер файлов интегрирующийся с дргими приложениями.</string>  
-	<string name="about_website_label">OI File Manager на OpenIntents</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">Новая папка</string>

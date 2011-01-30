@@ -21,15 +21,17 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Henk van der Velden https://launchpad.net/~henkvandervelden86
   Simon de Vlieger https://launchpad.net/~ikanobori
   pjv https://launchpad.net/~pjv</string>
 	
-    <string name="about_comments">OI File Manager is an open file manager that seamlessly cooperates with other applications.</string>  
-	<string name="about_website_label">OI Bestandsbeheer bij OpenIntents</string> 
+    <!-- Short explanation of the application -->
+    <string name="about_comments">OI bestandsmanager is een open bestandsmanager die naadloos samenwerkt met andere applicaties.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI Bestandsbeheer</string>
     
     <string name="menu_new_folder">Nieuwe Map</string>
@@ -39,8 +41,8 @@
     <string name="menu_open">Openen</string>
     <string name="menu_move">Verplaatsen</string>
     <string name="menu_copy">Kopieer</string>
-    <string name="menu_include_in_media_scan">Include in media scan</string>
-    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="menu_include_in_media_scan">Meenemen bij media scan</string>
+    <string name="menu_exclude_from_media_scan">Negeren bij media scan</string>
     
     <string name="create_new_folder">Nieuwe map aanmaken</string>
     <string name="folder_name">Naam van de map</string>
@@ -63,26 +65,26 @@
     <string name="copied_file_name">Kopie van %s</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
-    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    <string name="copied_file_name_2">Kopieer %1$d van %2$s</string>
     
-    <string name="media_scan_included">This folder will be included in the next media scan.</string>
-    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    <string name="media_scan_included">Deze map zal worden meegenomen bij de volgende media scan.</string>
+    <string name="media_scan_excluded">Deze map zal worden genegeerd bij de volgende media scan.</string>
     
-    <string name="error_creating_new_folder">Could not create new folder.</string>
-    <string name="error_deleting_file">Could not delete file.</string>
-    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
-    <string name="error_renaming_file">Could not rename file.</string>
-    <string name="error_renaming_folder">Could not rename folder.</string>
-    <string name="error_moving_file">Could not move file.</string>
-    <string name="error_moving_folder">Could not move folder.</string>
-    <string name="error_copying_file">Could not copy file.</string>
-    <string name="error_file_does_not_exists">File does not exist.</string>
-    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
-    <string name="error_generic">An error occurred: </string>
-    <string name="error_media_scan">Could not change media scan settings.</string>
+    <string name="error_creating_new_folder">Kan geen nieuwe map maken.</string>
+    <string name="error_deleting_file">Kan het bestand niet verwijderen.</string>
+    <string name="error_deleting_folder">Kan de map \'%s\' niet verwijderen.</string>
+    <string name="error_renaming_file">Kan het bestand niet hernoemen.</string>
+    <string name="error_renaming_folder">Kan de map niet hernoemen.</string>
+    <string name="error_moving_file">Kan het bestand niet verplaatsen.</string>
+    <string name="error_moving_folder">Kan de map niet verplaatsen.</string>
+    <string name="error_copying_file">Kan het betand niet kopieren.</string>
+    <string name="error_file_does_not_exists">Bestand bestaat niet.</string>
+    <string name="error_deleting_child_file">Kan het onderliggende bestand \'%s\' niet verwijderen.</string>
+    <string name="error_generic">Er is een fout opgetreden:</string>
+    <string name="error_media_scan">Kan de media scan instellingen niet wijzigen.</string>
     
-    <string name="send_not_available">No application available for sending.</string>
+    <string name="send_not_available">Geen applicatie beschikbaar voor het verzenden.</string>
     
-    <string name="application_not_available">Application not available</string>
+    <string name="application_not_available">Applicatie niet beschikbaar</string>
     
 </resources>

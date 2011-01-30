@@ -25,12 +25,13 @@
   Federico https://launchpad.net/~federico-deactivatedaccount
   Peli https://launchpad.net/~peli0101</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI Gestore File è un gestore di file che coopera senza soluzione di continuità con altre applicazioni.</string>  
-	<string name="about_website_label">OI Gestore File di OpenIntents</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI Gestore File</string>
     
     <string name="menu_new_folder">Nuova cartella</string>

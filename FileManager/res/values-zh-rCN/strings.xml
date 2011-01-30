@@ -23,12 +23,13 @@
 	<string name="about_translators">Launchpad Contributions:
   Swandle https://launchpad.net/~swandle</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI文件管理器是一个开源的文件管理软件，它可以与其它应用程序进行无缝整合。</string>  
-	<string name="about_website_label">开放组件的OI文件管理器</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI文件管理器</string>
     
     <string name="menu_new_folder">新建文件夹</string>

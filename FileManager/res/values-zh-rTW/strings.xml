@@ -23,12 +23,13 @@
 	<string name="about_translators">Launchpad Contributions:
   Chih-Wei Huang https://launchpad.net/~cwhuang</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI 檔案總管是一個開放源碼計劃，可與其它的應用程式良好的整合。</string>  
-	<string name="about_website_label">OpenIntents 的檔案總管</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">檔案總管</string>
     
     <string name="menu_new_folder">新增資料夾</string>

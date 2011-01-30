@@ -27,12 +27,13 @@
   Peli https://launchpad.net/~peli0101
   miwie https://launchpad.net/~mw-miwie</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI File Manager es un gestor abierto de archivos que cooperar fluidamente con otras aplicaciones.</string>  
-	<string name="about_website_label">OI File Manager en OpenIntents</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">Carpeta nueva</string>

@@ -23,12 +23,13 @@
 	<string name="about_translators">Launchpad Contributions:
   Anousak https://launchpad.net/~anousak</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI File Manager is an open file manager that seamlessly cooperates with other applications.</string>  
-	<string name="about_website_label">OI ແຟ້ມ ບໍລີຫານຂອງ OpenIntents</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI ແຟ້ມ ບໍລີຫານ</string>
     
     <string name="menu_new_folder">New Folder</string>

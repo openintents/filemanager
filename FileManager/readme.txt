@@ -24,7 +24,8 @@ To obtain the current release, visit
 
 ---------------------------------------------------------
 release: 1.1.4
-date: 2011-?
+date: ?
+- new application icon for Android 2.0 or higher.
 - exclude/include directories from media scan.
 - support Android 2.3.
 - translations into various languages.

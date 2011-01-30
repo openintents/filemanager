@@ -68,7 +68,7 @@
         <meta-data android:name="org.openintents.metadata.ARTISTS"
                        android:resource="@array/about_artists" />
         <meta-data android:name="org.openintents.metadata.WEBSITE_LABEL"
-                       android:value="@string/about_website_label" />
+                       android:value="@string/app_name" />
         <meta-data android:name="org.openintents.metadata.WEBSITE_URL"
                        android:value="@string/about_website_url" />
         <meta-data android:name="org.openintents.metadata.LICENSE"

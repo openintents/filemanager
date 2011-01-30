@@ -22,12 +22,13 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">translator-credits</string>
 	
+    <!-- Short explanation of the application -->
     <string name="about_comments">OI File Manager is an open file manager that seamlessly cooperates with other applications.</string>  
-	<string name="about_website_label">OI File Manager at OpenIntents</string> 
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">New Folder</string>

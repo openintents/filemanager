@@ -95,6 +95,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	private static final int MENU_COPY = Menu.FIRST + 10;
 	private static final int MENU_INCLUDE_IN_MEDIA_SCAN = Menu.FIRST + 11;
 	private static final int MENU_EXCLUDE_FROM_MEDIA_SCAN = Menu.FIRST + 12;
+	private static final int MENU_SETTINGS = Menu.FIRST + 13;
 	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
@@ -821,6 +822,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		mExcludeMediaScanMenuItem = menu.add(0, MENU_EXCLUDE_FROM_MEDIA_SCAN, 0, R.string.menu_exclude_from_media_scan).setShortcut('1', 's')
 				.setIcon(android.R.drawable.ic_menu_gallery);
 
+		menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(
+				android.R.drawable.ic_menu_preferences).setShortcut('9', 's');
+
  		mDistribution.onCreateOptionsMenu(menu);
  		
  		return true;
@@ -833,9 +837,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 
 		mIncludeMediaScanMenuItem.setVisible(false);
 		mExcludeMediaScanMenuItem.setVisible(false);
-		 
+		
+		boolean showMediaScanMenuItem = PreferenceActivity.getMediaScanFromPreference(this);
+		
  		// We only know about ".nomedia" once we have the results list back.
- 		if (mListDir != null) {
+ 		if (showMediaScanMenuItem && mListDir != null) {
 			if (mNoMedia) {
 				mIncludeMediaScanMenuItem.setVisible(true);
 			} else {
@@ -863,7 +869,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		//Intent intent;
 		switch (item.getItemId()) {
 		case MENU_NEW_FOLDER:
 			showDialog(DIALOG_NEW_FOLDER);
@@ -876,17 +881,20 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		case MENU_EXCLUDE_FROM_MEDIA_SCAN:
 			excludeFromMediaScan();
 			return true;
-/*
-		case MENU_PREFERENCES:
-			intent = new Intent(this, PreferenceActivity.class);
-			startActivity(intent);
+			
+		case MENU_SETTINGS:
+			showSettings();
 			return true;
-			*/
 		}
 		return super.onOptionsItemSelected(item);
 
 	}
 
+	private void showSettings() {
+		Intent intent = new Intent(this, PreferenceActivity.class);
+		startActivity(intent);
+	}
+	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View view,
 			ContextMenuInfo menuInfo) {

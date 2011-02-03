@@ -26,9 +26,11 @@ To obtain the current release, visit
 release: 1.1.4
 date: ?
 - new application icon for Android 2.0 or higher.
-- exclude/include directories from media scan.
+- exclude/include directories from media scan
+  (activate this feature in advanced settings).
 - allow app installation on external storage
   (requires Android 2.2 or higher)
+- fix browser file upload (issue 288)
 - support Android 2.3.
 - translations into various languages.
 - bug fixes (issue 308).

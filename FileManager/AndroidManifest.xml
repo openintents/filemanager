@@ -106,9 +106,8 @@
             </intent-filter>
         </activity>
         
-        <!-- 
-        <activity android:name=".PreferenceActivity" android:label="@string/preferences">
-        </activity>  -->
+        <activity android:name=".PreferenceActivity" android:label="@string/settings" />
+        
     <provider android:name=".FileManagerProvider" android:authorities="org.openintents.filemanager"></provider>
     
 		<!-- Activities from OI Distribution Library -->

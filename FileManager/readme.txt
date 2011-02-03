@@ -27,6 +27,8 @@ release: 1.1.4
 date: ?
 - new application icon for Android 2.0 or higher.
 - exclude/include directories from media scan.
+- allow app installation on external storage
+  (requires Android 2.2 or higher)
 - support Android 2.3.
 - translations into various languages.
 - bug fixes (issue 308).

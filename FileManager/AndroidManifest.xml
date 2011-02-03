@@ -16,6 +16,7 @@
  -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.openintents.filemanager"
+    android:installLocation="auto"
 	android:versionName="1.1.4-rc4"
 	android:versionCode="13">
 	<!-- History: 
@@ -43,12 +44,10 @@
              * FileManagerActivity: onKeyDown(): New way how "back" key is handled.
             NOTE: Tested on target=9, and it works both on Android 2.3 and Android 1.6. -->
      
-<supports-screens android:smallScreens="true"
-                  android:normalScreens="true"
-                  android:largeScreens="true"		
-/>    
-	
-	    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	    
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+    
     <application android:icon="@drawable/ic_launcher_folder" android:label="@string/app_name">
     
         <!-- aTrackDog metadata -->

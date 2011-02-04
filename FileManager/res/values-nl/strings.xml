@@ -22,6 +22,7 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Henk van der Velden https://launchpad.net/~henkvandervelden86
+  Peli https://launchpad.net/~peli0101
   Simon de Vlieger https://launchpad.net/~ikanobori
   pjv https://launchpad.net/~pjv</string>
 	
@@ -86,5 +87,17 @@
     <string name="send_not_available">Geen applicatie beschikbaar voor het verzenden.</string>
     
     <string name="application_not_available">Applicatie niet beschikbaar</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">Settings</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">Advanced features</string>
+	<string name="preference_mediascan_title">Negeren bij media scan</string>
+    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
+    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
     
 </resources>

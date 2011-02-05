@@ -22,7 +22,7 @@ To obtain the current release, visit
 
 ---------------------------------------------------------
 release: 1.0.1
-date: 2011-?
+date: 2011-02-05
 
 - Properly encode / decode file URIs.
 - Support Android 2.3

@@ -1182,6 +1182,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		// Recursively delete all contents.
 		File[] files = file.listFiles();
 		
+		if (files == null) {
+			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG);
+			return false;
+		}
+		
 		for (int x=0; x<files.length; x++) {
 			File childFile = files[x];
 			if (childFile.isDirectory()) {

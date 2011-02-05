@@ -33,7 +33,7 @@ date: ?
 - fix browser file upload (issue 288)
 - support Android 2.3.
 - translations into various languages.
-- bug fixes (issue 308).
+- bug fixes (issue 308, 318).
 
 ---------------------------------------------------------
 release: 1.1.3

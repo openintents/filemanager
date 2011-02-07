@@ -35,7 +35,6 @@
 	[1] 1.0.0: 2008-12-10
 	-->
 	
-	    
         <uses-sdk android:minSdkVersion="2"
             android:targetSdkVersion="9" />
         <!-- If targetSdkVersion is increased from 4 to 5 or higher, 

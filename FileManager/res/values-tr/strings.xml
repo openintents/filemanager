@@ -92,10 +92,10 @@ Launchpad Contributions:
 	     Preferences
 	     *************************** -->
     <!-- Menu item for Settings -->
-	<string name="settings">Settings</string>
+	<string name="settings">Ayarlar</string>
 	
     <!-- Category for preferences. -->
-    <string name="preference_advanced_features">Advanced features</string>
+    <string name="preference_advanced_features">Gelişmiş özellikler</string>
 	<string name="preference_mediascan_title">Exclude from media scan</string>
     <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>

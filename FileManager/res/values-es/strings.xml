@@ -43,7 +43,7 @@
     <string name="menu_open">Abrir</string>
     <string name="menu_move">Mover</string>
     <string name="menu_copy">Copiar</string>
-    <string name="menu_include_in_media_scan">Include in media scan</string>
+    <string name="menu_include_in_media_scan">Incluir en la exploración de archivos multimedia</string>
     <string name="menu_exclude_from_media_scan">Excluir de la exploración de archivos multimedia</string>
     
     <string name="create_new_folder">Crear nueva carpeta</string>
@@ -67,10 +67,10 @@
     <string name="copied_file_name">Copia de %s</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
-    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    <string name="copied_file_name_2">Copiar %1$d de %2$s</string>
     
-    <string name="media_scan_included">This folder will be included in the next media scan.</string>
-    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    <string name="media_scan_included">Esta carpeta se incluirá en la siguiente exploración de archivos multimedia</string>
+    <string name="media_scan_excluded">Esta carpeta se excluirá durante la exploración de archivos multimedia</string>
     
     <string name="error_creating_new_folder">No se puede crear la carpeta nueva.</string>
     <string name="error_deleting_file">No se puede borrar el fichero.</string>
@@ -82,7 +82,7 @@
     <string name="error_copying_file">No se pudo copiar el archivo.</string>
     <string name="error_file_does_not_exists">El archivo no existe.</string>
     <string name="error_deleting_child_file">No se puede borrar el archivo hijo «%s».</string>
-    <string name="error_generic">An error occurred: </string>
+    <string name="error_generic">Ocurrió un error:</string>
     <string name="error_media_scan">No pudo cambiarse la configuración de exploración de archivos multimedia</string>
     
     <string name="send_not_available">Aplicación no disponible para enviar.</string>
@@ -93,10 +93,10 @@
 	     Preferences
 	     *************************** -->
     <!-- Menu item for Settings -->
-	<string name="settings">Settings</string>
+	<string name="settings">Configuración</string>
 	
     <!-- Category for preferences. -->
-    <string name="preference_advanced_features">Advanced features</string>
+    <string name="preference_advanced_features">Características avanzadas</string>
 	<string name="preference_mediascan_title">Excluir de la exploración de archivos multimedia</string>
     <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>

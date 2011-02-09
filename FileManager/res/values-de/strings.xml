@@ -23,6 +23,7 @@
 	<string name="about_translators">Launchpad Contributions:
   Flosen https://launchpad.net/~flose
   Peli https://launchpad.net/~peli0101
+  hani https://launchpad.net/~markushahnenkamm
   marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
 	
     <!-- Short explanation of the application -->
@@ -41,8 +42,8 @@
     <string name="menu_open">Öffnen</string>
     <string name="menu_move">Verschieben</string>
     <string name="menu_copy">Kopie</string>
-    <string name="menu_include_in_media_scan">Include in media scan</string>
-    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="menu_include_in_media_scan">In Mediensuche einschließen</string>
+    <string name="menu_exclude_from_media_scan">Von Mediensuche ausschließen</string>
     
     <string name="create_new_folder">Neuen Ordner erstellen</string>
     <string name="folder_name">Name des Ordners</string>
@@ -68,7 +69,7 @@
     <string name="copied_file_name_2">Copy %1$d of %2$s</string>
     
     <string name="media_scan_included">This folder will be included in the next media scan.</string>
-    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    <string name="media_scan_excluded">Dieser Ordner wird bei der nächsten Mediensuche ausgeschlossen.</string>
     
     <string name="error_creating_new_folder">Neuer Ordner konnte nicht erstellt werden.</string>
     <string name="error_deleting_file">Datei konnte nicht gelöscht werden.</string>
@@ -78,10 +79,10 @@
     <string name="error_moving_file">Datei konnte nicht verschoben werden.</string>
     <string name="error_moving_folder">Ordner konnte nicht verschoben werden.</string>
     <string name="error_copying_file">Datei kann nicht kopiert werden.</string>
-    <string name="error_file_does_not_exists">Datei existiert nicht.</string>
+    <string name="error_file_does_not_exists">Datei ist nicht vorhanden.</string>
     <string name="error_deleting_child_file">Konnte Unterdatei %s nicht löschen</string>
-    <string name="error_generic">An error occurred: </string>
-    <string name="error_media_scan">Could not change media scan settings.</string>
+    <string name="error_generic">Ein Fehler ist aufgetreten:</string>
+    <string name="error_media_scan">Mediensucheinstellungen konnten nicht verändert werden.</string>
     
     <string name="send_not_available">Keine Anwendung zum Senden vorhanden.</string>
     
@@ -91,12 +92,12 @@
 	     Preferences
 	     *************************** -->
     <!-- Menu item for Settings -->
-	<string name="settings">Settings</string>
+	<string name="settings">Einstellungen</string>
 	
     <!-- Category for preferences. -->
-    <string name="preference_advanced_features">Advanced features</string>
-	<string name="preference_mediascan_title">Exclude from media scan</string>
-    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
+    <string name="preference_advanced_features">Erweitert</string>
+	<string name="preference_mediascan_title">Von Mediensuche ausschließen</string>
+    <string name="preference_mediascan_summary_on">Zeige von der Mediensuche ausgeschlossene Ordner.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
     
 </resources>

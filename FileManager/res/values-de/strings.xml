@@ -23,6 +23,7 @@
 	<string name="about_translators">Launchpad Contributions:
   Flosen https://launchpad.net/~flose
   Peli https://launchpad.net/~peli0101
+  cmdrhenner https://launchpad.net/~cmdrhenner
   hani https://launchpad.net/~markushahnenkamm
   marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
 	
@@ -68,7 +69,7 @@
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">Copy %1$d of %2$s</string>
     
-    <string name="media_scan_included">This folder will be included in the next media scan.</string>
+    <string name="media_scan_included">Dieser Ordner wird bei der nächsten Mediensuche einbezogen.</string>
     <string name="media_scan_excluded">Dieser Ordner wird bei der nächsten Mediensuche ausgeschlossen.</string>
     
     <string name="error_creating_new_folder">Neuer Ordner konnte nicht erstellt werden.</string>

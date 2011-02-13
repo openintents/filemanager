@@ -22,6 +22,7 @@ package org.openintents.filemanager;
  */
 
 import android.content.Context; 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable; 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,5 +67,13 @@ public class IconifiedTextView extends LinearLayout {
      
      public void setIcon(Drawable bullet) { 
           mIcon.setImageDrawable(bullet); 
-     } 
+     }
+
+	public void setTextColor(int color) {
+		mText.setTextColor(color); 
+    }
+
+	public void setInfoColor(int color) {
+		mInfo.setTextColor(color); 
+    } 
 }

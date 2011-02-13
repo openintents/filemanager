@@ -16,6 +16,8 @@
 
 package org.openintents.intents;
 
+import android.content.Intent;
+
 // Version Dec 9, 2008
 
 
@@ -45,6 +47,14 @@ public final class FileManagerIntents {
 	 */
 	public static final String ACTION_PICK_DIRECTORY = "org.openintents.action.PICK_DIRECTORY";
 	
+	/**
+	 * Activity Action: Move, copy or delete after select entries.
+     * Data is the current directory name or directory name suggestion.
+     * 
+     * <p>Constant Value: "org.openintents.action.MULTI_SELECT"</p>
+	 */
+	public static final String ACTION_MULTI_SELECT = "org.openintents.action.MULTI_SELECT";
+
 	/**
 	 * The title to display.
 	 * 

@@ -32,6 +32,10 @@
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">New Folder</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Multi Select</string>
+
     <string name="menu_delete">Delete</string>
     <string name="menu_rename">Rename</string>
     <string name="menu_send">Send</string>
@@ -57,6 +61,13 @@
     <string name="move_button">Move here</string>
     <string name="copy_title">Select folder to copy to</string>
     <string name="copy_button">Copy here</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">Move</string>
+    <string name="copy_button_multiselect">Copy</string>
+    <string name="delete_button_multiselect">Delete</string>
+    <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copy of %s</string>

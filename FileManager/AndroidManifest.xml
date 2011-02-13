@@ -104,6 +104,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.OPENABLE" />
             </intent-filter>
+
+		    <!-- Filter for a multi select feature -->
+   			<intent-filter>
+                <action android:name="org.openintents.action.MULTI_SELECT"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="file" />
+            </intent-filter>
         </activity>
         
         <activity android:name=".PreferenceActivity" android:label="@string/settings" />

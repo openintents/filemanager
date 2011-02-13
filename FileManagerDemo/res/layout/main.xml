@@ -46,4 +46,9 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
 		
+	<Button android:id="@+id/get_content"
+		android:onClick="onClickGetContent"
+		android:text="@string/get_content_title"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
 </LinearLayout>

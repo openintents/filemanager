@@ -21,6 +21,12 @@ To obtain the current release, visit
   http://www.openintents.org
 
 ---------------------------------------------------------
+release: 1.0.2
+date: 2011-02-13
+
+- Provide GET_CONTENT demo.
+
+---------------------------------------------------------
 release: 1.0.1
 date: 2011-02-05
 

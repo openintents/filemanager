@@ -23,8 +23,10 @@ import org.openintents.intents.FileManagerIntents;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore.Images;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ import android.widget.Toast;
 public class Demo extends Activity {
 	
 	protected static final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 1;
+	protected static final int REQUEST_CODE_GET_CONTENT = 2;
 
 	protected EditText mEditText;
 	
@@ -54,6 +57,10 @@ public class Demo extends Activity {
 	
 	public void onClickPickDirectory(View view) {
 		pickDirectory();
+	}
+
+	public void onClickGetContent(View view) {
+		getContent();
 	}
 	
     /**
@@ -131,7 +138,24 @@ public class Demo extends Activity {
 					Toast.LENGTH_SHORT).show();
 		}
 	}
-    
+
+    /**
+     * Use GET_CONTENT to open a file.
+     */
+    public void getContent() {
+		
+		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+		intent.setType("*/*");
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		
+		try {
+			startActivityForResult(intent, REQUEST_CODE_GET_CONTENT);
+		} catch (ActivityNotFoundException e) {
+			// No compatible file manager was found.
+			Toast.makeText(this, R.string.no_filemanager_installed, 
+					Toast.LENGTH_SHORT).show();
+		}
+    }
 
     /**
      * This is called after the file manager finished.
@@ -153,6 +177,21 @@ public class Demo extends Activity {
 				}
 			}
 			break;
+		case REQUEST_CODE_GET_CONTENT:
+			if (resultCode == RESULT_OK && data != null) {
+				String filePath = null;
+				Uri uri = data.getData();
+				Cursor c = getContentResolver().query(uri, null, null, null, null);
+				if (c != null && c.moveToFirst()) {
+					int id = c.getColumnIndex(Images.Media.DATA);
+					if (id != -1) {
+						filePath = c.getString(id);
+					}
+				}
+				if (filePath != null) {
+					mEditText.setText(filePath);
+				}
+			}
 		}
 	}
 }

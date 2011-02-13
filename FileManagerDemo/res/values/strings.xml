@@ -9,4 +9,5 @@
     <string name="save_button">Save</string>
     <string name="pick_directory_title">Select a folder</string>
     <string name="pick_directory_button">Use this folder</string>
+    <string name="get_content_title">Open using GET_CONTENT</string>
 </resources>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.openintents.filemanager.demo"
-      android:versionCode="2"
-      android:versionName="1.0.1-rc1">
+      android:versionCode="3"
+      android:versionName="1.0.2">
 	<!-- History:
-	1.0.1 [2]: 2011-?
+	1.0.2 [3]: 2011-02-13
+	1.0.1 [2]: 2011-02-05
 	1.0.0 [1]: 2008-12-11 -->
       
 	<uses-sdk android:minSdkVersion="2" android:targetSdkVersion="9"/>

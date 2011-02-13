@@ -67,6 +67,7 @@
     <string name="move_button_multiselect">Move</string>
     <string name="copy_button_multiselect">Copy</string>
     <string name="delete_button_multiselect">Delete</string>
+    <string name="multiselect_title">Select multiple files</string>
     <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Construct a unique file name of a file called %s. -->

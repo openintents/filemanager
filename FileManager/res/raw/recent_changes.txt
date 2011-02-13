@@ -1,4 +1,9 @@
 ---------------------------------------------------------
+release: 1.1.5-beta
+date: ?
+- new menu item for multiselect: copy, move or delete multiple files at once (patch by John Doe)
+
+---------------------------------------------------------
 release: 1.1.4
 date: 2011-02-05
 - new application icon for Android 2.0 or higher.
@@ -13,12 +18,6 @@ date: 2011-02-05
 release: 1.1.3
 date: 2010-05-29
 - backward compatibility with Android 1.5.
-
----------------------------------------------------------
-release: 1.1.2
-date: 2010-05-29
-- fix thumbnail size on high-density devices.
-- translations: Occitan (post 1500), Polish, Russian
 
 ---------------------------------------------------------
 For the complete list of changes and a list of frequently asked questions, please visit:

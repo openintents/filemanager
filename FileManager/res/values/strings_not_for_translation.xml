@@ -29,6 +29,7 @@
         <item>"Nicolas 'plusminus' Gramlich"</item>
         <item>Steven Osborn</item>
         <item>"Michael 'EboMike' Krehan"</item>
+        <item>John Doe</item>
     </string-array>
     
     <string-array name="about_documenters"><!-- Add your name here if you helped out -->
@@ -41,6 +42,7 @@
     
     <string-array name="about_artists"><!-- Add your name here if you helped out -->
         <item>Peli</item>
+        <item>Androidicons www.androidicons.com</item>
     </string-array>
     
 	<!-- ***************************

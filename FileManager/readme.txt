@@ -23,6 +23,11 @@ To obtain the current release, visit
 
 
 ---------------------------------------------------------
+release: 1.1.5-beta
+date: ?
+- new menu item for multiselect: copy, move or delete multiple files at once (patch by John Doe)
+
+---------------------------------------------------------
 release: 1.1.4
 date: 2011-02-05
 - new application icon for Android 2.0 or higher.

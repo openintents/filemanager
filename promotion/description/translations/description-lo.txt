@@ -1,0 +1,7 @@
+# Application:
+OI ແຟ້ມ ບໍລີຫານ
+
+# Promo text:
+Manage files on the SD card.
+
+# Description:

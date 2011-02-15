@@ -1,0 +1,7 @@
+# Application:
+OI Dosya Yöneticisi
+
+# Promo text:
+Manage files on the SD card.
+
+# Description:

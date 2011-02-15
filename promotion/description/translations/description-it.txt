@@ -1,0 +1,7 @@
+# Application:
+OI Gestore File
+
+# Promo text:
+Manage files on the SD card.
+
+# Description:

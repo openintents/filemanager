@@ -1,0 +1,7 @@
+# Application:
+OI Bestandsbeheer
+
+# Promo text:
+Manage files on the SD card.
+
+# Description:

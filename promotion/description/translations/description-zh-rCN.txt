@@ -1,0 +1,7 @@
+# Application:
+OI文件管理器
+
+# Promo text:
+Manage files on the SD card.
+
+# Description:

@@ -25,8 +25,8 @@
   Federico https://launchpad.net/~federico-deactivatedaccount
   Peli https://launchpad.net/~peli0101</string>
 	
-    <!-- Short explanation of the application -->
-    <string name="about_comments">OI Gestore File è un gestore di file che coopera senza soluzione di continuità con altre applicazioni.</string>  
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Manage files on the SD card.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

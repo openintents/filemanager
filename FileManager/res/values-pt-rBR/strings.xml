@@ -23,8 +23,8 @@
 	<string name="about_translators">Launchpad Contributions:
   DanielElias https://launchpad.net/~danielelias</string>
 	
-    <!-- Short explanation of the application -->
-    <string name="about_comments">OI File Manager é um gerenciador de arquivos que coopera facilmente com outras aplicações.</string>  
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Manage files on the SD card.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

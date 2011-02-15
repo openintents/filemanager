@@ -24,8 +24,8 @@
   Gunleif Joensen https://launchpad.net/~gunleif
   Peli https://launchpad.net/~peli0101</string>
 	
-    <!-- Short explanation of the application -->
-    <string name="about_comments">OI File Manager is an open file manager that seamlessly cooperates with other applications.</string>  
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Manage files on the SD card.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

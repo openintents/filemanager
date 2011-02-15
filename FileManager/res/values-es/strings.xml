@@ -27,8 +27,8 @@
   Peli https://launchpad.net/~peli0101
   miwie https://launchpad.net/~mw-miwie</string>
 	
-    <!-- Short explanation of the application -->
-    <string name="about_comments">OI File Manager es un gestor abierto de archivos que cooperar fluidamente con otras aplicaciones.</string>  
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Manage files on the SD card.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

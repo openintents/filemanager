@@ -24,8 +24,8 @@
   OpenIntents devs https://launchpad.net/~openintents-devs
   Rex Sanna https://launchpad.net/~rex-sanna</string>
 	
-    <!-- Short explanation of the application -->
-    <string name="about_comments">OI File Manager este unu programma chi ti serviti pro sa gestione de sos files</string>  
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Manage files on the SD card.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

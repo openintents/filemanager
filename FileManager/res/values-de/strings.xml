@@ -27,8 +27,8 @@
   hani https://launchpad.net/~markushahnenkamm
   marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
 	
-    <!-- Short explanation of the application -->
-    <string name="about_comments">OI Dateimanager ist ein offener Dateimanager, der nahtlos mit anderen Anwendungen zusammenarbeitet.</string>  
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Manage files on the SD card.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

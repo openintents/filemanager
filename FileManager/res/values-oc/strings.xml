@@ -23,8 +23,8 @@
 	<string name="about_translators">Launchpad Contributions:
   Cédric VALMARY (Tot en òc) https://launchpad.net/~cvalmary</string>
 	
-    <!-- Short explanation of the application -->
-    <string name="about_comments">OI File Manager es un gestionari de fichièrs qu\'interagís amb las autras aplicacions.</string>  
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Manage files on the SD card.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

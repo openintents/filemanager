@@ -24,8 +24,8 @@
   Peli https://launchpad.net/~peli0101
   Vasily Bogantsev https://launchpad.net/~bas-eurogym</string>
 	
-    <!-- Short explanation of the application -->
-    <string name="about_comments">OI File Manager - открытый менеджер файлов интегрирующийся с дргими приложениями.</string>  
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Manage files on the SD card.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

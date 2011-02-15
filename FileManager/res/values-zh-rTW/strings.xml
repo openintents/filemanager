@@ -23,8 +23,8 @@
 	<string name="about_translators">Launchpad Contributions:
   Chih-Wei Huang https://launchpad.net/~cwhuang</string>
 	
-    <!-- Short explanation of the application -->
-    <string name="about_comments">OI 檔案總管是一個開放源碼計劃，可與其它的應用程式良好的整合。</string>  
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Manage files on the SD card.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

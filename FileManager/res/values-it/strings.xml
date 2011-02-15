@@ -35,6 +35,10 @@
     <string name="app_name">OI Gestore File</string>
     
     <string name="menu_new_folder">Nuova cartella</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Multi Select</string>
+
     <string name="menu_delete">Elimina</string>
     <string name="menu_rename">Rinomina</string>
     <string name="menu_send">Invia</string>
@@ -60,6 +64,14 @@
     <string name="move_button">Sposta qui</string>
     <string name="copy_title">Seleziona la cartella dove copiare</string>
     <string name="copy_button">Copia qui</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">Sposta</string>
+    <string name="copy_button_multiselect">Copia</string>
+    <string name="delete_button_multiselect">Elimina</string>
+    <string name="multiselect_title">Select multiple files</string>
+    <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copia di %s</string>

@@ -34,6 +34,10 @@
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">Dosar nou</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Multi Select</string>
+
     <string name="menu_delete">Șterge</string>
     <string name="menu_rename">Redenumește</string>
     <string name="menu_send">Trimite</string>
@@ -59,6 +63,14 @@
     <string name="move_button">Mută aici</string>
     <string name="copy_title">Selectați dosarul destinație</string>
     <string name="copy_button">Copiază aici</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">Mută</string>
+    <string name="copy_button_multiselect">Copy</string>
+    <string name="delete_button_multiselect">Șterge</string>
+    <string name="multiselect_title">Select multiple files</string>
+    <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copie a %s</string>

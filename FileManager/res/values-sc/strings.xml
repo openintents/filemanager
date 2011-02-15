@@ -21,6 +21,7 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  OpenIntents devs https://launchpad.net/~openintents-devs
   Rex Sanna https://launchpad.net/~rex-sanna</string>
 	
     <!-- Short explanation of the application -->
@@ -33,6 +34,10 @@
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">Nova Cartelledda</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Multi Select</string>
+
     <string name="menu_delete">Doga</string>
     <string name="menu_rename">Torra a lu nominare</string>
     <string name="menu_send">Manda</string>
@@ -58,6 +63,14 @@
     <string name="move_button">Moghe inoche</string>
     <string name="copy_title">Issepera sa cartelledda auve lu copiare</string>
     <string name="copy_button">Copia inoche</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">Moghe</string>
+    <string name="copy_button_multiselect">Cópia</string>
+    <string name="delete_button_multiselect">Doga</string>
+    <string name="multiselect_title">Select multiple files</string>
+    <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copiande %s</string>

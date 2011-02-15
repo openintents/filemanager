@@ -34,6 +34,10 @@
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">Nýggj skjátta</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Multi Select</string>
+
     <string name="menu_delete">Strika</string>
     <string name="menu_rename">Nýnevna</string>
     <string name="menu_send">Senda</string>
@@ -59,6 +63,14 @@
     <string name="move_button">Flyt hertil</string>
     <string name="copy_title">Vel skjáttu at avrita til</string>
     <string name="copy_button">Avrita her</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">Flyt</string>
+    <string name="copy_button_multiselect">Copy</string>
+    <string name="delete_button_multiselect">Strika</string>
+    <string name="multiselect_title">Select multiple files</string>
+    <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Avrita av %s</string>

@@ -36,6 +36,10 @@
     <string name="app_name">OI File Manager</string>
     
     <string name="menu_new_folder">新規フォルダ</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Multi Select</string>
+
     <string name="menu_delete">削除</string>
     <string name="menu_rename">名前を変更</string>
     <string name="menu_send">送信</string>
@@ -61,6 +65,14 @@
     <string name="move_button">ここに移動</string>
     <string name="copy_title">コピーするフォルダを選択してください</string>
     <string name="copy_button">ここへコピー</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">移動</string>
+    <string name="copy_button_multiselect">コピー</string>
+    <string name="delete_button_multiselect">削除</string>
+    <string name="multiselect_title">Select multiple files</string>
+    <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">%s のコピー</string>

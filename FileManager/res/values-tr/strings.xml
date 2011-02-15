@@ -36,6 +36,10 @@ Launchpad Contributions:
     <string name="app_name">OI Dosya Yöneticisi</string>
     
     <string name="menu_new_folder">Yeni Klasör</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Multi Select</string>
+
     <string name="menu_delete">Sil</string>
     <string name="menu_rename">Yeniden adlandır</string>
     <string name="menu_send">Gönder</string>
@@ -61,6 +65,14 @@ Launchpad Contributions:
     <string name="move_button">Buraya taşı</string>
     <string name="copy_title">Select folder to copy to</string>
     <string name="copy_button">Buraya kopyala</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">Taşı</string>
+    <string name="copy_button_multiselect">Kopyala</string>
+    <string name="delete_button_multiselect">Sil</string>
+    <string name="multiselect_title">Select multiple files</string>
+    <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">%s kopyası</string>

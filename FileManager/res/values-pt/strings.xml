@@ -20,8 +20,7 @@
 	     *************************** -->
 	
 	<!-- Automatically filled in by Launchpad: -->
-	<string name="about_translators">Launchpad Contributions:
-  CSro https://launchpad.net/~choongsan</string>
+	<string name="about_translators">translator-credits</string>
 	
     <!-- Short explanation of the application -->
     <string name="about_comments">OI File Manager is an open file manager that seamlessly cooperates with other applications.</string>  
@@ -30,49 +29,49 @@
 	     Applicatio-specific strings
 	     *************************** -->
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
-    <string name="app_name">OI 파일 관리자</string>
+    <string name="app_name">OI File Manager</string>
     
-    <string name="menu_new_folder">새 폴더</string>
+    <string name="menu_new_folder">New Folder</string>
     
     <!-- Multi select option menu -->
     <string name="menu_multi_select">Multi Select</string>
 
-    <string name="menu_delete">삭제</string>
-    <string name="menu_rename">이름 변경</string>
-    <string name="menu_send">보내기</string>
-    <string name="menu_open">열기</string>
-    <string name="menu_move">이동</string>
-    <string name="menu_copy">복사</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_rename">Rename</string>
+    <string name="menu_send">Send</string>
+    <string name="menu_open">Open</string>
+    <string name="menu_move">Move</string>
+    <string name="menu_copy">Copy</string>
     <string name="menu_include_in_media_scan">Include in media scan</string>
     <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
     
-    <string name="create_new_folder">새 폴더 생성</string>
-    <string name="folder_name">폴더 이름</string>
-    <string name="file_name">폴더 이름</string>
+    <string name="create_new_folder">Create new folder</string>
+    <string name="folder_name">Folder name</string>
+    <string name="file_name">Folder name</string>
     <string name="this_folder_is_empty">This folder is empty.</string>
     <string name="really_delete">Do you really want to delete %s?</string>
-    <string name="file_deleted">파일이 삭제되었습니다.</string>
-    <string name="folder_deleted">폴더가 삭제되었습니다.</string>
-    <string name="file_renamed">파일 이름이 변경되었습니다.</string>
-    <string name="folder_renamed">폴더 이름이 변경되었습니다.</string>
+    <string name="file_deleted">File deleted.</string>
+    <string name="folder_deleted">Folder deleted.</string>
+    <string name="file_renamed">File renamed.</string>
+    <string name="folder_renamed">Folder renamed.</string>
     <string name="file_moved">File moved.</string>
-    <string name="folder_moved">폴더가 이동되었습니다.</string>
-    <string name="file_copied">폴더가 복사되었습니다.</string>
-    <string name="move_title">이동할 폴더 선택</string>
-    <string name="move_button">여기로 옮기기</string>
-    <string name="copy_title">복사할 폴더 선택</string>
-    <string name="copy_button">여기로 복사</string>
+    <string name="folder_moved">Folder moved.</string>
+    <string name="file_copied">File copied.</string>
+    <string name="move_title">Select folder to move to</string>
+    <string name="move_button">Move here</string>
+    <string name="copy_title">Select folder to copy to</string>
+    <string name="copy_button">Copy here</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
-    <string name="move_button_multiselect">이동</string>
-    <string name="copy_button_multiselect">복사</string>
-    <string name="delete_button_multiselect">삭제</string>
+    <string name="move_button_multiselect">Move</string>
+    <string name="copy_button_multiselect">Copy</string>
+    <string name="delete_button_multiselect">Delete</string>
     <string name="multiselect_title">Select multiple files</string>
     <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Construct a unique file name of a file called %s. -->
-    <string name="copied_file_name">%s의 복사</string>
+    <string name="copied_file_name">Copy of %s</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">Copy %1$d of %2$s</string>
@@ -80,15 +79,15 @@
     <string name="media_scan_included">This folder will be included in the next media scan.</string>
     <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
     
-    <string name="error_creating_new_folder">새 폴더를 생성할 수 없습니다.</string>
-    <string name="error_deleting_file">파일을 삭제할 수 없습니다.</string>
+    <string name="error_creating_new_folder">Could not create new folder.</string>
+    <string name="error_deleting_file">Could not delete file.</string>
     <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
-    <string name="error_renaming_file">파일의 이름을 변경할 수 없습니다.</string>
-    <string name="error_renaming_folder">폴더의 이름을 변경할 수 없습니다.</string>
-    <string name="error_moving_file">파일을 이동할 수 없습니다.</string>
-    <string name="error_moving_folder">폴더를 이동할 수 없습니다.</string>
-    <string name="error_copying_file">파일을 복사할 수 없습니다.</string>
-    <string name="error_file_does_not_exists">파일이 존재하지 않습니다.</string>
+    <string name="error_renaming_file">Could not rename file.</string>
+    <string name="error_renaming_folder">Could not rename folder.</string>
+    <string name="error_moving_file">Could not move file.</string>
+    <string name="error_moving_folder">Could not move folder.</string>
+    <string name="error_copying_file">Could not copy file.</string>
+    <string name="error_file_does_not_exists">File does not exist.</string>
     <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
     <string name="error_generic">An error occurred: </string>
     <string name="error_media_scan">Could not change media scan settings.</string>

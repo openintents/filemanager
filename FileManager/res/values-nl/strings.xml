@@ -36,6 +36,10 @@
     <string name="app_name">OI Bestandsbeheer</string>
     
     <string name="menu_new_folder">Nieuwe Map</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Multi Select</string>
+
     <string name="menu_delete">Verwijderen</string>
     <string name="menu_rename">Hernoemen</string>
     <string name="menu_send">Verzenden</string>
@@ -61,6 +65,14 @@
     <string name="move_button">Hierheen verplaatsen</string>
     <string name="copy_title">Kies map om naartoe te kopiëren</string>
     <string name="copy_button">Kopieer hier</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">Verplaatsen</string>
+    <string name="copy_button_multiselect">Kopieer</string>
+    <string name="delete_button_multiselect">Verwijderen</string>
+    <string name="multiselect_title">Select multiple files</string>
+    <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Kopie van %s</string>

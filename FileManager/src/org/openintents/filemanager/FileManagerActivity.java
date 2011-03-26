@@ -76,6 +76,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 
 	private static final String NOMEDIA_FILE = ".nomedia";
 	
+	/**
+	 * @since 2011-03-23
+	 */
+	private static final Character FILE_EXTENSION_SEPARATOR = '.';
+	
 	private int mState;
 	
 	private static final int STATE_BROWSE = 1;
@@ -1484,8 +1489,16 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 			return file;
 		}
 		
+		// Split file's name and extension to fix internationalization issue #307
+		int fromIndex = fileName.lastIndexOf(FILE_EXTENSION_SEPARATOR);
+		String extension = "";
+		if (fromIndex > 0) {
+			extension = fileName.substring(fromIndex);
+			fileName = fileName.substring(0, fromIndex);
+		}
+		
 		// Try a simple "copy of".
-		file = FileUtils.getFile(path, context.getString(R.string.copied_file_name, fileName));
+		file = FileUtils.getFile(path, context.getString(R.string.copied_file_name, fileName).concat(extension));
 		
 		if (!file.exists()) {
 			// Nope - we can take that.
@@ -1496,7 +1509,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		
 		// Well, we gotta find a unique name at some point.
 		while (copyIndex < 500) {
-			file = FileUtils.getFile(path, context.getString(R.string.copied_file_name_2, copyIndex, fileName));
+			file = FileUtils.getFile(path, context.getString(R.string.copied_file_name_2, copyIndex, fileName).concat(extension));
 			
 			if (!file.exists()) {
 				// Nope - we can take that.

@@ -27,6 +27,7 @@ release: 1.1.5-beta
 date: ?
 - new menu item for multiselect: copy, move or delete multiple files at once (patch by John Doe)
 - case insensitive sort order (issue 334, patch by Vishrut Patel)
+- handle projections in the provider (issue 324, patch by Dominik Pretzsch)
 
 ---------------------------------------------------------
 release: 1.1.4

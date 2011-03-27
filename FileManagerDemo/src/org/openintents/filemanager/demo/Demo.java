@@ -26,9 +26,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.MediaStore.Images;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Demo extends Activity {
@@ -37,6 +39,7 @@ public class Demo extends Activity {
 	protected static final int REQUEST_CODE_GET_CONTENT = 2;
 
 	protected EditText mEditText;
+	protected TextView mTextView;
 	
     /** Called when the activity is first created. */
     @Override
@@ -45,6 +48,7 @@ public class Demo extends Activity {
         setContentView(R.layout.main);
         
         mEditText = (EditText) findViewById(R.id.file_path);
+        mTextView = (TextView) findViewById(R.id.info);
     }
 
 	public void onClickOpenFile(View view) {
@@ -164,6 +168,8 @@ public class Demo extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
+		mTextView.setText("");
+		
 		switch (requestCode) {
 		case REQUEST_CODE_PICK_FILE_OR_DIRECTORY:
 			if (resultCode == RESULT_OK && data != null) {
@@ -180,16 +186,27 @@ public class Demo extends Activity {
 		case REQUEST_CODE_GET_CONTENT:
 			if (resultCode == RESULT_OK && data != null) {
 				String filePath = null;
+				long fileSize = 0;
+				String displayName = null;
 				Uri uri = data.getData();
-				Cursor c = getContentResolver().query(uri, null, null, null, null);
+				Cursor c = getContentResolver().query(uri, new String[] {MediaStore.MediaColumns.DATA,
+					MediaStore.MediaColumns.MIME_TYPE,
+					MediaStore.MediaColumns.DISPLAY_NAME,
+					MediaStore.MediaColumns.SIZE
+				}, null, null, null);
 				if (c != null && c.moveToFirst()) {
 					int id = c.getColumnIndex(Images.Media.DATA);
 					if (id != -1) {
 						filePath = c.getString(id);
 					}
+					displayName = c.getString(2);
+					fileSize = c.getLong(3);
 				}
 				if (filePath != null) {
 					mEditText.setText(filePath);
+					String strFileSize = getString(R.string.get_content_info,
+							displayName, "" + fileSize);
+					mTextView.setText(strFileSize);
 				}
 			}
 		}

@@ -27,6 +27,12 @@
 	        android:layout_height="wrap_content" />
 	</LinearLayout>
 	
+	<TextView android:id="@+id/info"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:layout_marginTop="10dip"
+	    android:layout_marginLeft="10dip" />
+	    
 	<Button android:id="@+id/open"
 		android:onClick="onClickOpenFile"
 		android:text="@string/open_button"

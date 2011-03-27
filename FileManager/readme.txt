@@ -26,6 +26,7 @@ To obtain the current release, visit
 release: 1.1.5-beta
 date: ?
 - new menu item for multiselect: copy, move or delete multiple files at once (patch by John Doe)
+- case insensitive sort order (issue 334, patch by Vishrut Patel)
 
 ---------------------------------------------------------
 release: 1.1.4

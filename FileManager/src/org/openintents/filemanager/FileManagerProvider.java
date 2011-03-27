@@ -20,7 +20,7 @@ import android.util.Log;
 
 public class FileManagerProvider extends ContentProvider {
 
-	static final String MIME_TYPE_PREFIX = "content://org.openintents.filemanager/mimetype/";
+	static final String FILE_PROVIDER_PREFIX = "content://org.openintents.filemanager";
 	private static final String TAG = "FileManagerProvider";
 	public static final String AUTHORITY = "org.openintents.filemanager";
 	private MimeTypes mMimeTypes;
@@ -70,7 +70,7 @@ public class FileManagerProvider extends ContentProvider {
 	@Override
 	public Cursor query(Uri uri, String[] projection, String s, 
 			String[] as1, String s1) {
-		if (uri.toString().startsWith(MIME_TYPE_PREFIX)) {
+		if (uri.toString().startsWith(FILE_PROVIDER_PREFIX)) {
 			if (projection == null || projection.length == 0) {
 				// Standard projection including all supported rows
 				projection = new String [] {
@@ -83,8 +83,8 @@ public class FileManagerProvider extends ContentProvider {
 			MatrixCursor c = new MatrixCursor(projection);
 			MatrixCursor.RowBuilder row = c.newRow();
 			
-			// data = absolute path = uri - content://authority/mimetype
-			String data = uri.toString().substring(20 + AUTHORITY.length());
+			// data = absolute path to file
+			String data = uri.getPath();
 			
 			int fromIndex = data.lastIndexOf(File.separatorChar) + 1;
 			if (fromIndex >= data.length()) {
@@ -138,11 +138,11 @@ public class FileManagerProvider extends ContentProvider {
 	@Override
 	public ParcelFileDescriptor openFile(Uri uri, String mode)
 			throws FileNotFoundException {
-		if (uri.toString().startsWith(MIME_TYPE_PREFIX)) {
+		if (uri.toString().startsWith(FILE_PROVIDER_PREFIX)) {
 			int m = ParcelFileDescriptor.MODE_READ_ONLY;
 			if (mode.equalsIgnoreCase("rw"))
-				m = ParcelFileDescriptor.MODE_READ_WRITE;			
-			File f = new File(uri.toString().substring(20 + AUTHORITY.length()));
+				m = ParcelFileDescriptor.MODE_READ_WRITE;
+			File f = new File(uri.getPath());
 			ParcelFileDescriptor pfd = ParcelFileDescriptor.open(f, m);
 			return pfd;
 		} else {

@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.openintents.filemanager.util.FileUtils;
@@ -192,8 +193,8 @@ public class DirectoryScanner extends Thread {
 		Log.v(TAG, "Sorting results...");
 		
 		//Collections.sort(mListSdCard); 
-		Collections.sort(listDir); 
-		Collections.sort(listFile); 
+		Collections.sort(listDir, new ICComparator()); 
+		Collections.sort(listFile, new ICComparator()); 
 
 		if (!cancel) {
 			Log.v(TAG, "Sending data back to main thread");
@@ -283,4 +284,15 @@ public class DirectoryScanner extends Thread {
         }
     }
 }
-	
+
+class ICComparator implements Comparator{
+	public int compare(Object o1, Object o2) {
+		IconifiedText it1 = (IconifiedText) o1;
+		IconifiedText it2 = (IconifiedText) o2;
+
+	    String s1 = it1.getText();
+	    String s2 = it2.getText();
+	    return s1.toLowerCase().compareTo(s2.toLowerCase());
+	  }
+	}
+

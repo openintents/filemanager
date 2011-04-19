@@ -29,6 +29,7 @@ date: ?
 - case insensitive sort order (issue 334, patch by Vishrut Patel).
 - handle projections in the provider (issue 324, patch by Dominik Pretzsch).
 - drop "mimetype" from provider path.
+- delete files and folders in background (issue 294, patch by Damienix).
 
 ---------------------------------------------------------
 release: 1.1.4

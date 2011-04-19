@@ -25,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.openintents.distribution.DistributionLibraryListActivity;
@@ -46,6 +47,7 @@ import android.content.Intent;
 import android.content.res.XmlResourceParser;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -1387,52 +1389,141 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		
 		return true;
 	}
+	
+	private class RecursiveDeleteTask extends AsyncTask<Object, Void, Integer> {
+
+		private FileManagerActivity activity = FileManagerActivity.this;
+		private static final int success = 0;
+		private static final int err_deleting_folder = 1;
+		private static final int err_deleting_child_file = 2;
+		private static final int err_deleting_file = 3;
+
+		private File errorFile;
+
+		/**
+		 * Recursively delete a file or directory and all of its children.
+		 * 
+		 * @returns 0 if successful, error value otherwise.
+		 */
+		private int recursiveDelete(File file) {
+			if (file.isDirectory() && file.listFiles() != null)
+				for (File childFile : file.listFiles()) {
+					if (childFile.isDirectory()) {
+						int result = recursiveDelete(childFile);
+						if (result > 0) {
+							return result;
+						}
+					} else {
+						if (!childFile.delete()) {
+							errorFile = childFile;
+							return err_deleting_child_file;
+						}
+					}
+				}
+
+			if (!file.delete()) {
+				errorFile = file;
+				return file.isFile() ? err_deleting_file : err_deleting_folder;
+			}
+
+			return success;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			Toast.makeText(activity, R.string.deleting_files, Toast.LENGTH_SHORT).show();
+		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		protected Integer doInBackground(Object... params) {
+			Object files = params[0];
+			
+			if (files instanceof List<?>) {
+				for (File file: (List<File>)files) {
+					int result = recursiveDelete(file);
+					if (result != success) return result;
+				}
+				return success;
+			} else
+				return recursiveDelete((File)files);
+
+		}
+
+		@Override
+		protected void onPostExecute(Integer result) {
+			switch (result) {
+			case success:
+				activity.refreshList();
+				Toast.makeText(activity, R.string.folder_deleted,Toast.LENGTH_SHORT).show();
+				break;
+			case err_deleting_folder:
+				Toast.makeText(activity,getString(R.string.error_deleting_folder,
+						errorFile.getAbsolutePath()), Toast.LENGTH_LONG).show();
+				break;
+			case err_deleting_child_file:
+				Toast.makeText(activity,getString(R.string.error_deleting_child_file,
+						errorFile.getAbsolutePath()),Toast.LENGTH_SHORT).show();
+				break;
+			case err_deleting_file:
+				Toast.makeText(activity,getString(R.string.error_deleting_file,
+						errorFile.getAbsolutePath()), Toast.LENGTH_LONG).show();
+				break;
+			}
+		}
+
+	}
 
 	private void deleteFileOrFolder(File file) {
 		
-		if (file.isDirectory()) {
-			if (recursiveDelete(file, true)) {
-				refreshList();
-				Toast.makeText(this, R.string.folder_deleted, Toast.LENGTH_SHORT).show();
-			}
-		} else {
-			if (file.delete()) {
-				// Delete was successful.
-				refreshList();
-				Toast.makeText(this, R.string.file_deleted, Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(this, R.string.error_deleting_file, Toast.LENGTH_SHORT).show();
-			}
-		}
+		new RecursiveDeleteTask().execute(file);
+//		if (file.isDirectory()) {
+//			if (recursiveDelete(file, true)) {
+//				refreshList();
+//				Toast.makeText(this, R.string.folder_deleted, Toast.LENGTH_SHORT).show();
+//			}
+//		} else {
+//			if (file.delete()) {
+//				// Delete was successful.
+//				refreshList();
+//				Toast.makeText(this, R.string.file_deleted, Toast.LENGTH_SHORT).show();
+//			} else {
+//				Toast.makeText(this, R.string.error_deleting_file, Toast.LENGTH_SHORT).show();
+//			}
+//		}
 	}
 	
     private void deleteMultiFile() {
-        int toast = 0;
+//        int toast = 0;
+        LinkedList<File> files = new LinkedList<File>();
         for (IconifiedText it : mDirectoryEntries) {
             if (!it.isSelected()) {
                 continue;
             }
 
             File file = FileUtils.getFile(currentDirectory, it.getText());
-            if (file.isDirectory()) {
-                if (!recursiveDelete(file, true)) {
-                    break;
-                }
-            } else {
-                if (!file.delete()) {
-                    toast = R.string.error_deleting_file;
-                    break;
-                }
-            }
+            files.add(file);
+//            if (file.isDirectory()) {
+//                if (!recursiveDelete(file, true)) {
+//                    break;
+//                }
+//            } else {
+//                if (!file.delete()) {
+//                    toast = R.string.error_deleting_file;
+//                    break;
+//                }
+//            }
         }
 
-        if (toast == 0) {
-            // Delete was successful.
-            refreshList();
-            toast = R.string.file_deleted;
-        }
-
-        Toast.makeText(FileManagerActivity.this, toast, Toast.LENGTH_SHORT).show();
+        new RecursiveDeleteTask().execute(files);
+        
+//        if (toast == 0) {
+//            // Delete was successful.
+//            refreshList();
+//            toast = R.string.file_deleted;
+//        }
+//
+//        Toast.makeText(FileManagerActivity.this, toast, Toast.LENGTH_SHORT).show();
     }
     
     private void renameFileOrFolder(File file, String newFileName) {

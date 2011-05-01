@@ -62,6 +62,7 @@
     <string name="move_button">여기로 옮기기</string>
     <string name="copy_title">복사할 폴더 선택</string>
     <string name="copy_button">여기로 복사</string>
+	<string name="deleting_files">Deleting files...</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
@@ -108,5 +109,6 @@
 	<string name="preference_mediascan_title">Exclude from media scan</string>
     <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    
     
 </resources>

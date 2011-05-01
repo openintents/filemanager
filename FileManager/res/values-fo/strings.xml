@@ -63,6 +63,7 @@
     <string name="move_button">Flyt hertil</string>
     <string name="copy_title">Vel skjáttu at avrita til</string>
     <string name="copy_button">Avrita her</string>
+	<string name="deleting_files">Deleting files...</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
@@ -109,5 +110,6 @@
 	<string name="preference_mediascan_title">Exclude from media scan</string>
     <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    
     
 </resources>

@@ -63,6 +63,7 @@
     <string name="move_button">Moghe inoche</string>
     <string name="copy_title">Issepera sa cartelledda auve lu copiare</string>
     <string name="copy_button">Copia inoche</string>
+	<string name="deleting_files">Deleting files...</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
@@ -109,5 +110,6 @@
 	<string name="preference_mediascan_title">Esclude da sa scansione</string>
     <string name="preference_mediascan_summary_on">Mustra su menu pro che dogare cartelleddasa dae sa scansione</string>
     <string name="preference_mediascan_summary_off">Doga su menu pro che dogare cartelleddasa dae sa scansione</string>
+    
     
 </resources>

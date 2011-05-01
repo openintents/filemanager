@@ -27,7 +27,7 @@ Launchpad Contributions:
   zeugma https://launchpad.net/~sunder67</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Manage files on the SD card.</string>  
+    <string name="about_comments">SD karttaki dosyaları yönet</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -38,7 +38,7 @@ Launchpad Contributions:
     <string name="menu_new_folder">Yeni Klasör</string>
     
     <!-- Multi select option menu -->
-    <string name="menu_multi_select">Multi Select</string>
+    <string name="menu_multi_select">Çoklu Seçme</string>
 
     <string name="menu_delete">Sil</string>
     <string name="menu_rename">Yeniden adlandır</string>
@@ -46,8 +46,8 @@ Launchpad Contributions:
     <string name="menu_open">Aç</string>
     <string name="menu_move">Taşı</string>
     <string name="menu_copy">Kopyala</string>
-    <string name="menu_include_in_media_scan">Include in media scan</string>
-    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="menu_include_in_media_scan">Medya tarama dahil</string>
+    <string name="menu_exclude_from_media_scan">Medya tarama hariç</string>
     
     <string name="create_new_folder">Yeni klasör oluştur</string>
     <string name="folder_name">Klasör adı</string>
@@ -65,14 +65,15 @@ Launchpad Contributions:
     <string name="move_button">Buraya taşı</string>
     <string name="copy_title">Select folder to copy to</string>
     <string name="copy_button">Buraya kopyala</string>
+	<string name="deleting_files">Deleting files...</string>
     
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+	<string name="really_delete_multiselect">%d dosyayı gerçekten silmek istediğinize emin misiniz?</string>
     <string name="move_button_multiselect">Taşı</string>
     <string name="copy_button_multiselect">Kopyala</string>
     <string name="delete_button_multiselect">Sil</string>
-    <string name="multiselect_title">Select multiple files</string>
-    <string name="error_selection">Please select one or more file(s).</string>
+    <string name="multiselect_title">Dosyaları çoklu seçin</string>
+    <string name="error_selection">Lütfen bir veya daha çok dosya seçin.</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">%s kopyası</string>
@@ -90,11 +91,11 @@ Launchpad Contributions:
     <string name="error_renaming_folder">Klasörü yeniden adlandırma başarısız.</string>
     <string name="error_moving_file">Dosya taşınamadı.</string>
     <string name="error_moving_folder">Klasör taşınamadı.</string>
-    <string name="error_copying_file">Dsoaya kopyalanamadı.</string>
+    <string name="error_copying_file">Dosya kopyalanamadı.</string>
     <string name="error_file_does_not_exists">Dosya yok.</string>
     <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
     <string name="error_generic">An error occurred: </string>
-    <string name="error_media_scan">Could not change media scan settings.</string>
+    <string name="error_media_scan">Medya tarama ayarları değiştirilemedi.</string>
     
     <string name="send_not_available">No application available for sending.</string>
     
@@ -108,8 +109,9 @@ Launchpad Contributions:
 	
     <!-- Category for preferences. -->
     <string name="preference_advanced_features">Gelişmiş özellikler</string>
-	<string name="preference_mediascan_title">Exclude from media scan</string>
+	<string name="preference_mediascan_title">Medya tarama hariç</string>
     <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    
     
 </resources>

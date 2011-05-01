@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  met https://launchpad.net/~dot-cis</string>
+	
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Upravljajte z dokumenti na SD kartici.</string>  
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI File Manager</string>
+    
+    <string name="menu_new_folder">Nova mapa</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Izberi več</string>
+
+    <string name="menu_delete">Izbriši</string>
+    <string name="menu_rename">Preimenuj</string>
+    <string name="menu_send">Pošlji</string>
+    <string name="menu_open">Odpri</string>
+    <string name="menu_move">Prestavi</string>
+    <string name="menu_copy">Kopiraj</string>
+    <string name="menu_include_in_media_scan">Vključi v pregled datotek</string>
+    <string name="menu_exclude_from_media_scan">Izključi iz pregleda datotek</string>
+    
+    <string name="create_new_folder">Ustvari novo mapo</string>
+    <string name="folder_name">Ime mape</string>
+    <string name="file_name">Ime mape</string>
+    <string name="this_folder_is_empty">Ta mapa je prazna.</string>
+    <string name="really_delete">Res želiš izbrisati datoteko %s?</string>
+    <string name="file_deleted">Datoteka je izbrisana.</string>
+    <string name="folder_deleted">Mapa je izbrisana.</string>
+    <string name="file_renamed">Datoteka je preimenovana.</string>
+    <string name="folder_renamed">Mapa je preimenovana.</string>
+    <string name="file_moved">Datoteka je prestavljena.</string>
+    <string name="folder_moved">Mapa je prestavljena.</string>
+    <string name="file_copied">Datoteka je skopirana.</string>
+    <string name="move_title">Izberi mapo, kamor bo datoteka prestavljena</string>
+    <string name="move_button">Prestavi sem</string>
+    <string name="copy_title">Izberi mapo, kamor bo datoteka skopirana</string>
+    <string name="copy_button">Skopiraj sem</string>
+	<string name="deleting_files">Deleting files...</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Res želiš izbrisati datoteke %d?</string>
+    <string name="move_button_multiselect">Prestavi</string>
+    <string name="copy_button_multiselect">Kopiraj</string>
+    <string name="delete_button_multiselect">Izbriši</string>
+    <string name="multiselect_title">Izberi več datotek</string>
+    <string name="error_selection">Prosim izberi eno ali več datotek.</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">%s - kopija</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Kopija %1$d datoteke %2$s</string>
+    
+    <string name="media_scan_included">Ta mapa bo vključena v naslednji pregled datotek.</string>
+    <string name="media_scan_excluded">Ta mapa bo izključena iz naslednjega pregleda datotek.</string>
+    
+    <string name="error_creating_new_folder">Ne morem ustvariti nove mape.</string>
+    <string name="error_deleting_file">Ne morem izbrisati datoteke.</string>
+    <string name="error_deleting_folder">Ne morem izbrisati mape \'%s\'.</string>
+    <string name="error_renaming_file">Ne morem preimenovati datoteke.</string>
+    <string name="error_renaming_folder">Ne morem preimenovati mape.</string>
+    <string name="error_moving_file">Ne morem prestaviti datoteke.</string>
+    <string name="error_moving_folder">Ne morem prestaviti mape.</string>
+    <string name="error_copying_file">Ne morem kopirati datoteke.</string>
+    <string name="error_file_does_not_exists">Datoteka ne obstaja.</string>
+    <string name="error_deleting_child_file">Ne morem izbrisati poddatoteke \'%s\'.</string>
+    <string name="error_generic">Napaka:</string>
+    <string name="error_media_scan">Ne morem spremeniti nastavitev pregleda datotek.</string>
+    
+    <string name="send_not_available">Ni aplikacije za pošiljanje.</string>
+    
+    <string name="application_not_available">Aplikacija ni dosegljiva</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">Nastavitve</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">Napredne možnosti</string>
+	<string name="preference_mediascan_title">Izključi iz pregleda datotek</string>
+    <string name="preference_mediascan_summary_on">Pokaži meni za izključitev map iz pregleda datotek.</string>
+    <string name="preference_mediascan_summary_off">Skrij meni za izključitev map iz pregleda datotek.</string>
+    
+    
+</resources>

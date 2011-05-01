@@ -25,10 +25,11 @@
   Javier Martínez Arrieta https://launchpad.net/~javote87
   Paco Molinero https://launchpad.net/~franciscomol
   Peli https://launchpad.net/~peli0101
-  miwie https://launchpad.net/~mw-miwie</string>
+  miwie https://launchpad.net/~mw-miwie
+  simon https://launchpad.net/~hurtadosimon</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Manage files on the SD card.</string>  
+    <string name="about_comments">Gestionar archivos en la tarjeta SD.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -66,14 +67,15 @@
     <string name="move_button">Mover acá</string>
     <string name="copy_title">Seleccione carpeta a copiar a</string>
     <string name="copy_button">Copiar aquí</string>
+	<string name="deleting_files">Deleting files...</string>
     
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+	<string name="really_delete_multiselect">¿Realmente quiere eliminar los archivos %d?</string>
     <string name="move_button_multiselect">Mover</string>
     <string name="copy_button_multiselect">Copiar</string>
     <string name="delete_button_multiselect">Borrar</string>
-    <string name="multiselect_title">Select multiple files</string>
-    <string name="error_selection">Please select one or more file(s).</string>
+    <string name="multiselect_title">Sleccione varios archivos</string>
+    <string name="error_selection">Por favor, selecciona uno o mas archivos</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copia de %s</string>
@@ -112,5 +114,6 @@
 	<string name="preference_mediascan_title">Excluir de la exploración de archivos multimedia</string>
     <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    
     
 </resources>

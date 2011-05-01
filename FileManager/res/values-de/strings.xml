@@ -28,7 +28,7 @@
   marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Manage files on the SD card.</string>  
+    <string name="about_comments">Verwalten Sie Dateien auf der SD Karte.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -66,6 +66,7 @@
     <string name="move_button">Hierher verschieben</string>
     <string name="copy_title">Wählen Sie Zielverzeichnis für den Kopiervorgang</string>
     <string name="copy_button">Hierher kopieren</string>
+	<string name="deleting_files">Deleting files...</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
@@ -112,5 +113,6 @@
 	<string name="preference_mediascan_title">Von Mediensuche ausschließen</string>
     <string name="preference_mediascan_summary_on">Zeige von der Mediensuche ausgeschlossene Ordner.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    
     
 </resources>

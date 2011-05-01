@@ -65,6 +65,7 @@
     <string name="move_button">Hierheen verplaatsen</string>
     <string name="copy_title">Kies map om naartoe te kopiëren</string>
     <string name="copy_button">Kopieer hier</string>
+	<string name="deleting_files">Deleting files...</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
@@ -111,5 +112,6 @@
 	<string name="preference_mediascan_title">Negeren bij media scan</string>
     <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    
     
 </resources>

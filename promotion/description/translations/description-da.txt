@@ -1,13 +1,6 @@
-# Application:
-OI Dosya Yöneticisi
+OI Filhåndtering lader dig gennemse dit SD-kort, oprette mapper, omdøbe, kopiere, flytte og slette filer. Den fungerer også som en udvidelse til andre programmer til at vise "Åbn"- og "Gem"-dialoger. 
 
-# Promo text:
-SD karttaki dosyaları yönet
-
-# Description:
-OI Dosya Yöneticisi, yeniden adlandırma, kopyalama, taşıma, dizinler oluşturma ,SD karta göz atma ve dosyaları silmenizi sağlar. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
-
-This application is ad free and does not require the internet permission. 
+Dette program er reklamefrit og kræver ikke internetadgang. 
 
 For the complete list of changes and a list of frequently asked questions, please visit: 
 http://www.openintents.org
@@ -18,7 +11,7 @@ https://translations.launchpad.net/openintents/trunk
 The source code of this free and open source application is available at: 
 http://code.google.com/p/openintents
 
-Özellikler: 
+Features: 
 * Show list of files with thumbnails for images.
 * Move, copy, rename, and delete files.
 * Create and delete directories (folders).
@@ -27,7 +20,7 @@ http://code.google.com/p/openintents
 * Support for many file endings and mime types.
 * Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
 
-Anahtar kelimeler: 
+Keywords: 
 * file manager, filemanager, file explorer
 * OI, IO, OpenIntents, Open Intents
 
@@ -35,7 +28,7 @@ International versions:
 OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Gestore File, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
-Uzantılar: 
+Extensions: 
 * uses OI About
 
 

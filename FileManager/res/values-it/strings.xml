@@ -23,7 +23,8 @@
 	<string name="about_translators">Launchpad Contributions:
   Diego Pierotto https://launchpad.net/~gringo
   Federico https://launchpad.net/~federico-deactivatedaccount
-  Peli https://launchpad.net/~peli0101</string>
+  Peli https://launchpad.net/~peli0101
+  simone.sandri https://launchpad.net/~lexluxsox</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
     <string name="about_comments">Manage files on the SD card.</string>  
@@ -37,7 +38,7 @@
     <string name="menu_new_folder">Nuova cartella</string>
     
     <!-- Multi select option menu -->
-    <string name="menu_multi_select">Multi Select</string>
+    <string name="menu_multi_select">Selezione Multipla</string>
 
     <string name="menu_delete">Elimina</string>
     <string name="menu_rename">Rinomina</string>

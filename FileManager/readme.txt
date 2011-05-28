@@ -23,8 +23,8 @@ To obtain the current release, visit
 
 
 ---------------------------------------------------------
-release: 1.1.5-rc1
-date: 2011-05-01
+release: 1.1.5
+date: 2011-05-28
 - new menu item for multiselect: copy, move or delete multiple files at once (patch by John Doe).
 - case insensitive sort order (issue 334, patch by Vishrut Patel).
 - handle projections in the provider (issue 324, patch by Dominik Pretzsch).

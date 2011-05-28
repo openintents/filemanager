@@ -64,7 +64,7 @@
     <string name="move_button">Przenieś tutaj</string>
     <string name="copy_title">Wybierz katalog docelowy</string>
     <string name="copy_button">Skopiuj tutaj</string>
-	<string name="deleting_files">Deleting files...</string>
+	<string name="deleting_files">Usuwanie plików...</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Czy na pewno chcesz usunąć %d plików?</string>
@@ -78,7 +78,7 @@
     <string name="copied_file_name">Kopia %s</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
-    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    <string name="copied_file_name_2">Kopiowanie %1$d z %2$s</string>
     
     <string name="media_scan_included">Katalog będzie brany pod uwagę podczas następnego skanowania.</string>
     <string name="media_scan_excluded">Katalog będzie wyłączony z następnego skanowania.</string>
@@ -109,8 +109,8 @@
     <!-- Category for preferences. -->
     <string name="preference_advanced_features">Zaawansowane</string>
 	<string name="preference_mediascan_title">Ignoruj podczas skanowania mediów</string>
-    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
-    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    <string name="preference_mediascan_summary_on">Pokaż w menu przycisk do wyłączania folderów ze skanowanych mediów.</string>
+    <string name="preference_mediascan_summary_off">Ukryj w menu przycisk do wyłączania folderów ze skanowanych mediów.</string>
     
     
 </resources>

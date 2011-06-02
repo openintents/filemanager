@@ -1,4 +1,9 @@
 ---------------------------------------------------------
+release: 1.1.6
+date: 2011-06-02
+- fix bug that prevented sending attachments through menu "Send" (patch by Alex)
+
+---------------------------------------------------------
 release: 1.1.5
 date: 2011-05-28
 - new menu item for multiselect: copy, move or delete multiple files at once (patch by John Doe).
@@ -17,11 +22,6 @@ date: 2011-02-05
 - support Android 2.3.
 - translations into various languages.
 - bug fixes (issue 308, 318).
-
----------------------------------------------------------
-release: 1.1.3
-date: 2010-05-29
-- backward compatibility with Android 1.5.
 
 ---------------------------------------------------------
 For the complete list of changes and a list of frequently asked questions, please visit:

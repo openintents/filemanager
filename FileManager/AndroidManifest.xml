@@ -17,10 +17,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.openintents.filemanager"
     android:installLocation="auto"
-	android:versionName="1.1.5"
-	android:versionCode="16">
+	android:versionName="1.1.6"
+	android:versionCode="17">
 	<!-- History: 
 	 * * * UPDATE ATRACKDOG METADATA BELOW FOR RELEASE CANDIDATES * * *
+	[17] 1.1.6: 2011-06-02
 	[16] 1.1.5: 2011-05-28
 	[15] 1.1.5-rc1: 2011-05-01
 	[14] 1.1.4: 2011-02-05

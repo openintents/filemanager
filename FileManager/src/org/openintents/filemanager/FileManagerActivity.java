@@ -1653,7 +1653,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		i.setType(mMimeTypes.getMimeType(file.getName()));
 		i.putExtra(Intent.EXTRA_SUBJECT, filename);
 		//i.putExtra(Intent.EXTRA_STREAM, FileUtils.getUri(file));
-		i.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://" + FileManagerProvider.AUTHORITY + "/mimetype/" + file.getAbsolutePath()));
+		i.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://" + FileManagerProvider.AUTHORITY + file.getAbsolutePath()));
 
 		i = Intent.createChooser(i, getString(R.string.menu_send));
 		

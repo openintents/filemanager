@@ -21,12 +21,11 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
-  DiegoJ https://launchpad.net/~diegojromerolopez
+  Aldo Mann https://launchpad.net/~aldomann
   Javier Martínez Arrieta https://launchpad.net/~javote87
   OpenIntents devs https://launchpad.net/~openintents-devs
   Paco Molinero https://launchpad.net/~franciscomol
   Peli https://launchpad.net/~peli0101
-  miwie https://launchpad.net/~mw-miwie
   simon https://launchpad.net/~sianhulo</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
@@ -41,7 +40,7 @@
     <string name="menu_new_folder">Carpeta nueva</string>
     
     <!-- Multi select option menu -->
-    <string name="menu_multi_select">Multi Select</string>
+    <string name="menu_multi_select">Selección multiple</string>
 
     <string name="menu_delete">Borrar</string>
     <string name="menu_rename">Renombrar</string>
@@ -68,7 +67,7 @@
     <string name="move_button">Mover acá</string>
     <string name="copy_title">Seleccione carpeta a copiar a</string>
     <string name="copy_button">Copiar aquí</string>
-	<string name="deleting_files">Deleting files...</string>
+	<string name="deleting_files">Eliminando archivos...</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">¿Realmente quiere eliminar los archivos %d?</string>
@@ -113,8 +112,8 @@
     <!-- Category for preferences. -->
     <string name="preference_advanced_features">Características avanzadas</string>
 	<string name="preference_mediascan_title">Excluir de la exploración de archivos multimedia</string>
-    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
-    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    <string name="preference_mediascan_summary_on">Muestra el elemento del menú para excluir carpetas del escaneo del medio</string>
+    <string name="preference_mediascan_summary_off">Esconde el elemento del menú para excluir carpetas del escaneo del medio</string>
     
     
 </resources>

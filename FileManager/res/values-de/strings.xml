@@ -21,11 +21,11 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Alexander Sapronov https://launchpad.net/~warmonger
   Flosen https://launchpad.net/~flose
   Peli https://launchpad.net/~peli0101
   cmdrhenner https://launchpad.net/~cmdrhenner
-  hani https://launchpad.net/~markushahnenkamm
-  marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
+  hani https://launchpad.net/~markushahnenkamm</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
     <string name="about_comments">Verwalten Sie Dateien auf der SD Karte.</string>  
@@ -39,7 +39,7 @@
     <string name="menu_new_folder">Neuer Ordner</string>
     
     <!-- Multi select option menu -->
-    <string name="menu_multi_select">Multi Select</string>
+    <string name="menu_multi_select">Множественный выбор</string>
 
     <string name="menu_delete">Löschen</string>
     <string name="menu_rename">Umbenennen</string>
@@ -66,21 +66,21 @@
     <string name="move_button">Hierher verschieben</string>
     <string name="copy_title">Wählen Sie Zielverzeichnis für den Kopiervorgang</string>
     <string name="copy_button">Hierher kopieren</string>
-	<string name="deleting_files">Deleting files...</string>
+	<string name="deleting_files">Удаление файлов...</string>
     
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+	<string name="really_delete_multiselect">Вы действительно хотите удалить %d файл(ы)?</string>
     <string name="move_button_multiselect">Verschieben</string>
     <string name="copy_button_multiselect">Kopie</string>
     <string name="delete_button_multiselect">Löschen</string>
-    <string name="multiselect_title">Select multiple files</string>
-    <string name="error_selection">Please select one or more file(s).</string>
+    <string name="multiselect_title">Выберите несколько файлов</string>
+    <string name="error_selection">Пожалуйста выберите один или более файлов</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Kopie von %s</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
-    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    <string name="copied_file_name_2">Копировать %1$d из %2$s</string>
     
     <string name="media_scan_included">Dieser Ordner wird bei der nächsten Mediensuche einbezogen.</string>
     <string name="media_scan_excluded">Dieser Ordner wird bei der nächsten Mediensuche ausgeschlossen.</string>
@@ -112,7 +112,7 @@
     <string name="preference_advanced_features">Erweitert</string>
 	<string name="preference_mediascan_title">Von Mediensuche ausschließen</string>
     <string name="preference_mediascan_summary_on">Zeige von der Mediensuche ausgeschlossene Ordner.</string>
-    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    <string name="preference_mediascan_summary_off">Скрыть пункт меню, что бы исключить папки из сканирования</string>
     
     
 </resources>

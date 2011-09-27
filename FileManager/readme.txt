@@ -23,6 +23,11 @@ To obtain the current release, visit
 
 
 ---------------------------------------------------------
+release: 1.1.7
+date: ?
+- Limit icon size in file list (issue 319, patch by John Doe)
+
+---------------------------------------------------------
 release: 1.1.6
 date: 2011-06-02
 - fix bug that prevented sending attachments through menu "Send" (patch by Alex)

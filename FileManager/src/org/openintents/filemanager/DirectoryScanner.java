@@ -14,6 +14,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
@@ -163,6 +167,12 @@ public class DirectoryScanner extends Thread {
 					currentIcon = getDrawableForMimetype(currentFile, mimetype);
 					if (currentIcon == null) {
 						currentIcon = genericFileIcon;
+					} else {
+						int width = genericFileIcon.getIntrinsicWidth();
+						int height = genericFileIcon.getIntrinsicHeight();
+						// Resizing image.
+						currentIcon = resizeDrawable(currentIcon, width, height);
+
 					}
 
 					String size = "";
@@ -274,6 +284,34 @@ public class DirectoryScanner extends Thread {
    	 
    	 return null;
     }
+
+    /**		
+     * Resizes specific a Drawable with keeping ratio.		
+     * Added for the issue #319.		
+     * 
+     * @since 2011-09-28
+	 */		
+    private Drawable resizeDrawable(Drawable drawable, int desireWidth, int desireHeight) {		
+        int width = drawable.getIntrinsicWidth();		
+    	int height = drawable.getIntrinsicHeight();	
+    		
+        if (0 < width && 0 < height && desireWidth < width || desireHeight < height) {		
+            // Calculate scale		
+        	float scale = Math.min((float) desireWidth / (float) width, 
+                    (float) desireHeight / (float) height);
+
+            // Draw resized image		
+        	Matrix matrix = new Matrix();	
+        	matrix.postScale(scale, scale);	
+        	Bitmap bitmap = Bitmap.createBitmap(((BitmapDrawable) drawable).getBitmap(), 0, 0, width, height, matrix, true);	
+        	Canvas canvas = new Canvas(bitmap);	
+        	canvas.drawBitmap(bitmap, 0, 0, null);	
+            		
+            drawable = new BitmapDrawable(bitmap);		
+        }		
+    		
+        return drawable;		
+    }		
 
     private static void initializeCupcakeInterface() {
         try {

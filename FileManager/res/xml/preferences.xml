@@ -28,6 +28,13 @@
                 android:summaryOn="@string/preference_mediascan_summary_on"
                 android:summaryOff="@string/preference_mediascan_summary_off" />
 
+        <CheckBoxPreference
+                android:key="showallwarning"
+                android:defaultValue="true"
+                android:title="@string/preference_showallwarning_title"
+                android:summaryOn="@string/preference_showallwarning_summary_on"
+                android:summaryOff="@string/preference_showallwarning_summary_off" />
+
     </PreferenceCategory>
     
 </PreferenceScreen>

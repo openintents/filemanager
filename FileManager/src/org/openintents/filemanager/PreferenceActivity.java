@@ -17,12 +17,17 @@
 package org.openintents.filemanager;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 public class PreferenceActivity extends android.preference.PreferenceActivity {
 
 	public static final String PREFS_MEDIASCAN = "mediascan";
+	/**
+	 * @since 2011-09-30
+	 */
+	public static final String PREFS_SHOWALLWARNING = "showallwarning";
 	
 	@Override
 	protected void onCreate(Bundle icicle) {
@@ -40,5 +45,23 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
 	static boolean getMediaScanFromPreference(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 					.getBoolean(PREFS_MEDIASCAN, false);
+	}
+
+	/**
+	 * @since 2011-09-30
+	 */
+	static void setShowAllWarning(Context context, boolean enabled) {
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean(PREFS_SHOWALLWARNING, enabled);
+		editor.commit();
+	}
+
+	/**
+	 * @since 2011-09-30
+	 */
+	static boolean getShowAllWarning(Context context) {
+		return PreferenceManager.getDefaultSharedPreferences(context)
+				.getBoolean(PREFS_SHOWALLWARNING, true);
 	}
 }

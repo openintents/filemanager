@@ -67,6 +67,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -126,16 +127,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
      * @since 2011-02-12
      */
     private static final int DIALOG_MULTI_DELETE = 4;
-
-    /**
-     * @since 2011-09-29
-     */
-    private static final int DIALOG_WARNING = 5;
-
-    /**
-     * @since 2011-09-29
-     */
-    private static final int DIALOG_MORE_COMMANDS = 6;
 
     private static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
 
@@ -1133,7 +1124,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 			return true;
 
 		case MENU_MORE:
-			showDialog(DIALOG_WARNING);
+			if (!PreferenceActivity.getShowAllWarning(FileManagerActivity.this)) {
+				showMoreCommandsDialog();
+				return true;
+			}
+
+			showWarningDialog();
 
 			return true;
 		}
@@ -1208,60 +1204,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 						
 					}).create();
 
-        case DIALOG_WARNING:
-        	return new AlertDialog.Builder(this).setTitle(getString(R.string.title_warning_some_may_not_work))
-        			.setMessage(getString(R.string.warning_some_may_not_work, mContextText))
-                	.setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
-    					android.R.string.ok, new OnClickListener() {
-    						
-    						public void onClick(DialogInterface dialog, int which) {
-    							showDialog(DIALOG_MORE_COMMANDS);
-    						}
-    						
-    					}).create();
-
-        case DIALOG_MORE_COMMANDS:
-			final Uri data = Uri.fromFile(mContextFile);
-			final Intent intent = new Intent(null, data);
-			String type = mMimeTypes.getMimeType(mContextFile.getName());
-
-			intent.setDataAndType(data, type);
-
-			Log.v(TAG, "Data=" + data);
-			Log.v(TAG, "Type=" + type);
-
-			if (type != null) {
-				// Add additional options for the MIME type of the selected file.
-				PackageManager pm = getPackageManager();
-				final List<ResolveInfo> lri = pm.queryIntentActivityOptions(
-						new ComponentName(this, FileManagerActivity.class),
-						null, intent, 0);
-				final int N = lri != null ? lri.size() : 0;
-
-				// Create name list for menu item.
-				final List<CharSequence> items = new ArrayList<CharSequence>();
-				for (int i = 0; i < N; i++) {
-					final ResolveInfo ri = lri.get(i);
-					items.add(ri.loadLabel(pm));
-				}
-    			
-				return new AlertDialog.Builder(this)
-						.setTitle(mContextText)
-						.setIcon(mContextIcon)
-						.setItems(items.toArray(new CharSequence[0]),
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog, int item) {
-										final ResolveInfo ri = lri.get(item);
-										Intent rintent = new Intent(intent)
-												.setComponent(new ComponentName(
-														ri.activityInfo.applicationInfo.packageName,
-														ri.activityInfo.name));
-										startActivity(rintent);
-									}
-								}).create();
-			}
-	        return super.onCreateDialog(id);
-			
         case DIALOG_MULTI_DELETE:
             String contentText = null;
             int count = 0;
@@ -1337,6 +1279,77 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 		}
 	}
 	
+	/**
+	 * @since 2011-09-30
+	 */
+	private void showWarningDialog() {
+		LayoutInflater li = LayoutInflater.from(this);
+		View warningView = li.inflate(R.layout.dialog_warning, null);
+		final CheckBox showWarningAgain = (CheckBox)warningView.findViewById(R.id.showagaincheckbox);
+		
+		showWarningAgain.setChecked(PreferenceActivity.getShowAllWarning(FileManagerActivity.this));
+		
+		new AlertDialog.Builder(this).setView(warningView).setTitle(getString(R.string.title_warning_some_may_not_work))
+				.setMessage(getString(R.string.warning_some_may_not_work, mContextText))
+		    	.setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
+					android.R.string.ok, new OnClickListener() {
+						
+						public void onClick(DialogInterface dialog, int which) {
+							PreferenceActivity.setShowAllWarning(FileManagerActivity.this, showWarningAgain.isChecked());
+
+							showMoreCommandsDialog();
+						}
+						
+					}).create()
+				.show();
+	}
+
+	/**
+	 * @since 2011-09-30
+	 */
+	private void showMoreCommandsDialog() {
+		final Uri data = Uri.fromFile(mContextFile);
+		final Intent intent = new Intent(null, data);
+		String type = mMimeTypes.getMimeType(mContextFile.getName());
+
+		intent.setDataAndType(data, type);
+
+		Log.v(TAG, "Data=" + data);
+		Log.v(TAG, "Type=" + type);
+
+		if (type != null) {
+			// Add additional options for the MIME type of the selected file.
+			PackageManager pm = getPackageManager();
+			final List<ResolveInfo> lri = pm.queryIntentActivityOptions(
+					new ComponentName(this, FileManagerActivity.class),
+					null, intent, 0);
+			final int N = lri != null ? lri.size() : 0;
+
+			// Create name list for menu item.
+			final List<CharSequence> items = new ArrayList<CharSequence>();
+			for (int i = 0; i < N; i++) {
+				final ResolveInfo ri = lri.get(i);
+				items.add(ri.loadLabel(pm));
+			}
+			
+			new AlertDialog.Builder(this)
+					.setTitle(mContextText)
+					.setIcon(mContextIcon)
+					.setItems(items.toArray(new CharSequence[0]),
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int item) {
+									final ResolveInfo ri = lri.get(item);
+									Intent rintent = new Intent(intent)
+											.setComponent(new ComponentName(
+													ri.activityInfo.applicationInfo.packageName,
+													ri.activityInfo.name));
+									startActivity(rintent);
+								}
+							}).create()
+						.show();
+		}
+	}
+
 	private void includeInMediaScan() {
 		// Delete the .nomedia file.
 		File file = FileUtils.getFile(currentDirectory, NOMEDIA_FILE);

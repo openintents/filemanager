@@ -112,10 +112,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
      * @since 2011-09-29
      */
     private static final int MENU_MORE = Menu.FIRST + 11;
-	private static final int MENU_INCLUDE_IN_MEDIA_SCAN = Menu.FIRST + 11;
-	private static final int MENU_EXCLUDE_FROM_MEDIA_SCAN = Menu.FIRST + 12;
-	private static final int MENU_SETTINGS = Menu.FIRST + 13;
-	private static final int MENU_MULTI_SELECT = Menu.FIRST + 14;
+	private static final int MENU_INCLUDE_IN_MEDIA_SCAN = Menu.FIRST + 12;
+	private static final int MENU_EXCLUDE_FROM_MEDIA_SCAN = Menu.FIRST + 13;
+	private static final int MENU_SETTINGS = Menu.FIRST + 14;
+	private static final int MENU_MULTI_SELECT = Menu.FIRST + 15;
 	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
@@ -1209,7 +1209,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 					}).create();
 
         case DIALOG_WARNING:
-        	return new AlertDialog.Builder(this).setTitle(getString(R.string.warning_some_may_not_work, mContextText))
+        	return new AlertDialog.Builder(this).setTitle(getString(R.string.title_warning_some_may_not_work))
+        			.setMessage(getString(R.string.warning_some_may_not_work, mContextText))
                 	.setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
     					android.R.string.ok, new OnClickListener() {
     						

@@ -26,6 +26,7 @@ To obtain the current release, visit
 release: 1.1.7
 date: ?
 - Limit icon size in file list (issue 319, patch by John Doe)
+- Hide optional commands in context menu (issue 329, patch by John Doe).
 
 ---------------------------------------------------------
 release: 1.1.6

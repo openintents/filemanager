@@ -63,7 +63,8 @@
     <string name="copy_title">Select folder to copy to</string>
     <string name="copy_button">Copy here</string>
 	<string name="deleting_files">Deleting files...</string>
-    <string name="warning_some_may_not_work">Warning some may not work</string>
+    <string name="title_warning_some_may_not_work">Warning</string>
+    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>

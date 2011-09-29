@@ -42,6 +42,7 @@
     <string name="menu_open">Open</string>
     <string name="menu_move">Move</string>
     <string name="menu_copy">Copy</string>
+    <string name="menu_more">More</string>
     <string name="menu_include_in_media_scan">Include in media scan</string>
     <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
     
@@ -62,6 +63,7 @@
     <string name="copy_title">Select folder to copy to</string>
     <string name="copy_button">Copy here</string>
 	<string name="deleting_files">Deleting files...</string>
+    <string name="warning_some_may_not_work">Warning some may not work</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>

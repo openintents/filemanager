@@ -44,6 +44,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.XmlResourceParser;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -106,6 +108,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	private static final int MENU_OPEN = Menu.FIRST + 8;
 	private static final int MENU_MOVE = Menu.FIRST + 9;
 	private static final int MENU_COPY = Menu.FIRST + 10;
+	/**
+     * @since 2011-09-29
+     */
+    private static final int MENU_MORE = Menu.FIRST + 11;
 	private static final int MENU_INCLUDE_IN_MEDIA_SCAN = Menu.FIRST + 11;
 	private static final int MENU_EXCLUDE_FROM_MEDIA_SCAN = Menu.FIRST + 12;
 	private static final int MENU_SETTINGS = Menu.FIRST + 13;
@@ -120,6 +126,16 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
      * @since 2011-02-12
      */
     private static final int DIALOG_MULTI_DELETE = 4;
+
+    /**
+     * @since 2011-09-29
+     */
+    private static final int DIALOG_WARNING = 5;
+
+    /**
+     * @since 2011-09-29
+     */
+    private static final int DIALOG_MORE_COMMANDS = 6;
 
     private static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
 
@@ -1058,7 +1074,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 	        String type = mMimeTypes.getMimeType(file.getName());
 	
 	        intent.setDataAndType(data, type);
-	        //intent.addCategory(Intent.CATEGORY_SELECTED_ALTERNATIVE);
+	        intent.addCategory(Intent.CATEGORY_SELECTED_ALTERNATIVE);
+	        //intent.addCategory(Intent.CATEGORY_ALTERNATIVE);
 	
 	        Log.v(TAG, "Data=" + data);
 	        Log.v(TAG, "Type=" + type);
@@ -1069,6 +1086,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 						new ComponentName(this, FileManagerActivity.class), null, intent, 0, null);
 	        }
 		//}
+        menu.add(0, MENU_MORE, 0, R.string.menu_more);
 	}
 
 	@Override
@@ -1112,6 +1130,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 			
 		case MENU_SEND:
 			sendFile(mContextFile);
+			return true;
+
+		case MENU_MORE:
+			showDialog(DIALOG_WARNING);
+
 			return true;
 		}
 
@@ -1184,6 +1207,59 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 						}
 						
 					}).create();
+
+        case DIALOG_WARNING:
+        	return new AlertDialog.Builder(this).setTitle(getString(R.string.warning_some_may_not_work, mContextText))
+                	.setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
+    					android.R.string.ok, new OnClickListener() {
+    						
+    						public void onClick(DialogInterface dialog, int which) {
+    							showDialog(DIALOG_MORE_COMMANDS);
+    						}
+    						
+    					}).create();
+
+        case DIALOG_MORE_COMMANDS:
+			final Uri data = Uri.fromFile(mContextFile);
+			final Intent intent = new Intent(null, data);
+			String type = mMimeTypes.getMimeType(mContextFile.getName());
+
+			intent.setDataAndType(data, type);
+
+			Log.v(TAG, "Data=" + data);
+			Log.v(TAG, "Type=" + type);
+
+			if (type != null) {
+				// Add additional options for the MIME type of the selected file.
+				PackageManager pm = getPackageManager();
+				final List<ResolveInfo> lri = pm.queryIntentActivityOptions(
+						new ComponentName(this, FileManagerActivity.class),
+						null, intent, 0);
+				final int N = lri != null ? lri.size() : 0;
+
+				// Create name list for menu item.
+				final List<CharSequence> items = new ArrayList<CharSequence>();
+				for (int i = 0; i < N; i++) {
+					final ResolveInfo ri = lri.get(i);
+					items.add(ri.loadLabel(pm));
+				}
+    			
+				return new AlertDialog.Builder(this)
+						.setTitle(mContextText)
+						.setIcon(mContextIcon)
+						.setItems(items.toArray(new CharSequence[0]),
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int item) {
+										final ResolveInfo ri = lri.get(item);
+										Intent rintent = new Intent(intent)
+												.setComponent(new ComponentName(
+														ri.activityInfo.applicationInfo.packageName,
+														ri.activityInfo.name));
+										startActivity(rintent);
+									}
+								}).create();
+			}
+	        return super.onCreateDialog(id);
 			
         case DIALOG_MULTI_DELETE:
             String contentText = null;

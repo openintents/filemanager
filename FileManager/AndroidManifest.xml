@@ -115,6 +115,32 @@
         
         <activity android:name=".PreferenceActivity" android:label="@string/settings" />
         
+        <!-- Filters for the Save as feature -->
+        <activity android:name=".SaveAsActivity" android:label="Save as">
+            <!-- Save as a file: scheme (e.g. After downloading attachment in GMail -->
+            <intent-filter>
+		        <action android:name="android.intent.action.VIEW" />
+		        <category android:name="android.intent.category.DEFAULT" />
+		        <category android:name="android.intent.category.BROWSABLE" />
+		        <data android:scheme="file" android:host="*" android:mimeType="*/*"/>
+       		</intent-filter>
+            <!-- Save as a content: scheme with CATHEGORY_OPENABLE - the right way -->
+            <intent-filter>
+		        <action android:name="android.intent.action.VIEW" />
+		        <category android:name="android.intent.category.OPENABLE" />
+		        <data android:scheme="content" android:mimeType="*/*"/>
+       		</intent-filter>
+            <!-- Special intent for GMail attachments. GMail doesn't use CATHEGORY_OPENABLE,
+            	 although it's possible to use ContentResolver.openFileReader().
+            	 For further applications like GMail, just copy following five lines and change "gmail-ls"
+            	 to something else. You will also have to do some changes in SaveAsActivity.java -->
+            <intent-filter>
+		        <action android:name="android.intent.action.VIEW" />
+		        <category android:name="android.intent.category.DEFAULT" />
+		        <data android:scheme="content" android:mimeType="*/*" android:host="gmail-ls"/>
+       		</intent-filter>
+ 		</activity>
+        
     <provider android:name=".FileManagerProvider" android:authorities="org.openintents.filemanager"></provider>
     
 		<!-- Activities from OI Distribution Library -->

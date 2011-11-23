@@ -116,4 +116,12 @@
     <string name="preference_showallwarning_title">Show all warnings</string>
     <string name="preference_showallwarning_summary_on">Show all warning messages</string>
     <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+       
+        
+    <!-- ***************************
+   		 Strings for the 'Save as' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
+    <string name="saveas_error">An error occured.</string>
+    <string name="saveas_file_saved">File successfully saved!</string>
 </resources>

@@ -23,10 +23,11 @@ To obtain the current release, visit
 
 
 ---------------------------------------------------------
-release: 1.1.7
+release: 1.2
 date: ?
 - Limit icon size in file list (issue 319, patch by John Doe)
 - Hide optional commands in context menu (issue 329, patch by John Doe).
+- "Save as" integration for Google Mail (Google Code-in task by Matej Konecny)
 
 ---------------------------------------------------------
 release: 1.1.6

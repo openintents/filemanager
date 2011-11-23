@@ -28,6 +28,7 @@ date: ?
 - Limit icon size in file list (issue 319, patch by John Doe)
 - Hide optional commands in context menu (issue 329, patch by John Doe).
 - "Save as" integration for Google Mail (Google Code-in task by Matej Konecny)
+- Option to hide hidden files (Google Code-In task by Matěj Konečný)
 
 ---------------------------------------------------------
 release: 1.1.6

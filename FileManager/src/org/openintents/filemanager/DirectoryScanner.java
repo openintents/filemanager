@@ -119,6 +119,8 @@ public class DirectoryScanner extends Thread {
 
 		Drawable currentIcon = null; 
 		
+		boolean displayHiddenFiles = PreferenceActivity.getDisplayHiddenFiles(context);
+		
 		if (files != null) {
 			for (File currentFile : files){ 
 				if (cancel) {
@@ -131,11 +133,12 @@ public class DirectoryScanner extends Thread {
 				progress++;
 				updateProgress(progress, totalCount);
 
-				/*
-        	  if (currentFile.isHidden()) {
-        		  continue;
-        	  }
-				 */				
+				//If the user doesn't want to display hidden files and the file is hidden,
+				//skip displaying the file
+				if (!displayHiddenFiles && currentFile.isHidden()){
+					continue;
+				}
+				 			
 				
 				if (currentFile.isDirectory()) { 
 					if (currentFile.getAbsolutePath().equals(mSdCardPath)) {

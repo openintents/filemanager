@@ -29,6 +29,9 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
 	 */
 	public static final String PREFS_SHOWALLWARNING = "showallwarning";
 	
+	
+	public static final String PREFS_DISPLAYHIDDENFILES = "displayhiddenfiles";
+	
 	@Override
 	protected void onCreate(Bundle icicle) {
 		
@@ -63,5 +66,20 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
 	static boolean getShowAllWarning(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(PREFS_SHOWALLWARNING, true);
+	}
+	
+
+	
+	static void setDisplayHiddenFiles(Context context, boolean enabled) {
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean(PREFS_DISPLAYHIDDENFILES, enabled);
+		editor.commit();
+	}
+
+
+	static boolean getDisplayHiddenFiles(Context context) {
+		return PreferenceManager.getDefaultSharedPreferences(context)
+				.getBoolean(PREFS_DISPLAYHIDDENFILES, true);
 	}
 }

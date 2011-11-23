@@ -117,6 +117,10 @@
     <string name="preference_showallwarning_summary_on">Show all warning messages</string>
     <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
        
+    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+
         
     <!-- ***************************
    		 Strings for the 'Save as' feature

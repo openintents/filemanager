@@ -44,6 +44,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.XmlResourceParser;
@@ -53,6 +55,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -76,7 +79,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FileManagerActivity extends DistributionLibraryListActivity { 
+public class FileManagerActivity extends DistributionLibraryListActivity implements OnSharedPreferenceChangeListener { 
 	private static final String TAG = "FileManagerActivity";
 
 	private static final String NOMEDIA_FILE = ".nomedia";
@@ -240,6 +243,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
 
 		  requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
           setContentView(R.layout.filelist);
+          
+          
+          SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+          prefs.registerOnSharedPreferenceChangeListener(this);
+
           
           mEmptyText = (TextView) findViewById(R.id.empty_text);
           mProgressBar = (ProgressBar) findViewById(R.id.scan_progress);
@@ -1933,6 +1941,15 @@ public class FileManagerActivity extends DistributionLibraryListActivity {
             }
             break;
         }
+		
 	}
+	
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+		//When user chooses to show/hide hidden files, update the list to correspond with the user's choice
+	    if (PreferenceActivity.PREFS_DISPLAYHIDDENFILES.equals(key))
+	        refreshList();
+	}
+
 
 }

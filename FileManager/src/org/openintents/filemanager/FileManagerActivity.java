@@ -1276,6 +1276,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         case DIALOG_FILTER:
 			inflater = LayoutInflater.from(this);
 			view = inflater.inflate(R.layout.dialog_new_folder, null);
+			((TextView)view.findViewById(R.id.foldernametext)).setText(R.string.extension);
 			final EditText et3 = (EditText) view
 					.findViewById(R.id.foldername);
 			et3.setText("");
@@ -1286,6 +1287,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 						
 						public void onClick(DialogInterface dialog, int which) {
 							mFilterFiletype = et3.getText().toString().trim();
+							refreshList();
 						}
 						
 					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {

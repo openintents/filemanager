@@ -50,6 +50,7 @@
     <string name="create_new_folder">Create new folder</string>
     <string name="folder_name">Folder name</string>
     <string name="file_name">Folder name</string>
+    <string name="extension">Extension (with \'.\')</string>
     <string name="this_folder_is_empty">This folder is empty.</string>
     <string name="really_delete">Do you really want to delete %s?</string>
     <string name="file_deleted">File deleted.</string>

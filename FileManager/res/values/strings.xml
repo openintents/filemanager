@@ -43,6 +43,7 @@
     <string name="menu_move">Move</string>
     <string name="menu_copy">Copy</string>
     <string name="menu_more">More</string>
+    <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Include in media scan</string>
     <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
     

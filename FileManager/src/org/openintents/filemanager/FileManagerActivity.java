@@ -120,6 +120,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final int MENU_EXCLUDE_FROM_MEDIA_SCAN = Menu.FIRST + 13;
 	private static final int MENU_SETTINGS = Menu.FIRST + 14;
 	private static final int MENU_MULTI_SELECT = Menu.FIRST + 15;
+	private static final int MENU_FILTER = Menu.FIRST + 16;
 	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
@@ -130,6 +131,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      * @since 2011-02-12
      */
     private static final int DIALOG_MULTI_DELETE = 4;
+    private static final int DIALOG_FILTER = 5;
 
     private static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
 
@@ -161,6 +163,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      private String mSdCardPath = "";
      
      private MimeTypes mMimeTypes;
+     /** Files shown are filtered using this extension */
+     private String mFilterFiletype = "";
+     /** Files shown are filtered using this mimetype */
+     private String mFilterMimetype = null;
 
      private String mContextText;
      private File mContextFile = new File("");
@@ -300,6 +306,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	  
         	  if (action.equals(FileManagerIntents.ACTION_PICK_FILE)) {
         		  mState = STATE_PICK_FILE;        		
+        		  mFilterFiletype = intent.getStringExtra("FILE_EXTENSION");
+        		  if(mFilterFiletype == null)
+        			  mFilterFiletype = "";
+        		  mFilterMimetype = intent.getType();
+        		  if(mFilterMimetype == null)
+        			  mFilterMimetype = "";
           	  } else if (action.equals(FileManagerIntents.ACTION_PICK_DIRECTORY)) {
         		  mState = STATE_PICK_DIRECTORY;        		          		          
         		  mWritableOnly = intent.getBooleanExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, false);
@@ -750,7 +762,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
           mProgressBar.setVisibility(View.GONE);
           setListAdapter(null); 
           
-		  mDirectoryScanner = new DirectoryScanner(currentDirectory, this, currentHandler, mMimeTypes, mSdCardPath, mWritableOnly, directoriesOnly);
+		  mDirectoryScanner = new DirectoryScanner(currentDirectory, this, currentHandler, mMimeTypes, mFilterFiletype, mFilterMimetype, mSdCardPath, mWritableOnly, directoriesOnly);
 		  mDirectoryScanner.start();
 		  
 		  
@@ -947,6 +959,14 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
 		menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(
 				android.R.drawable.ic_menu_preferences).setShortcut('9', 's');
+		
+		/* We don't want to allow the user to override a filter set
+		 * by an application.
+		 */
+		if(mState != STATE_PICK_FILE) {
+			menu.add(0, MENU_FILTER, 0, R.string.menu_filter).setIcon(
+					android.R.drawable.ic_menu_search);
+		}
 
  		mDistribution.onCreateOptionsMenu(menu);
  		
@@ -1011,6 +1031,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			
 		case MENU_SETTINGS:
 			showSettings();
+			return true;
+			
+		case MENU_FILTER:
+			showDialog(DIALOG_FILTER);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -1248,6 +1272,30 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                         }
                     
                     }).create();
+            
+        case DIALOG_FILTER:
+			inflater = LayoutInflater.from(this);
+			view = inflater.inflate(R.layout.dialog_new_folder, null);
+			final EditText et3 = (EditText) view
+					.findViewById(R.id.foldername);
+			et3.setText("");
+			return new AlertDialog.Builder(this)
+            	.setIcon(android.R.drawable.ic_dialog_alert)
+            	.setTitle(R.string.menu_filter).setView(view).setPositiveButton(
+					android.R.string.ok, new OnClickListener() {
+						
+						public void onClick(DialogInterface dialog, int which) {
+							mFilterFiletype = et3.getText().toString().trim();
+						}
+						
+					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
+						
+						public void onClick(DialogInterface dialog, int which) {
+							// Cancel should not do anything.
+						}
+						
+					}).create();
+			
 
 		}
 		return super.onCreateDialog(id);

@@ -37,6 +37,8 @@ public class DirectoryScanner extends Thread {
     private MimeTypes mMimeTypes;
 	private Handler handler;
 	private long operationStartTime;
+	private String mFilterFiletype;
+	private String mFilterMimetype;
 
 	private boolean mWriteableOnly;
 
@@ -54,12 +56,14 @@ public class DirectoryScanner extends Thread {
     
 
 
-	DirectoryScanner(File directory, Context context, Handler handler, MimeTypes mimeTypes, String sdCardPath, boolean writeableOnly, boolean directoriesOnly) {
+	DirectoryScanner(File directory, Context context, Handler handler, MimeTypes mimeTypes, String filterFiletype, String filterMimetype, String sdCardPath, boolean writeableOnly, boolean directoriesOnly) {
 		super("Directory Scanner");
 		currentDirectory = directory;
 		this.context = context;
 		this.handler = handler;
 		this.mMimeTypes = mimeTypes;
+		this.mFilterFiletype = filterFiletype;
+		this.mFilterMimetype = filterMimetype;
 		this.mSdCardPath = sdCardPath;
 		this.mWriteableOnly = writeableOnly;
 		this.mDirectoriesOnly = directoriesOnly;
@@ -191,11 +195,16 @@ public class DirectoryScanner extends Thread {
 						size +=" KB";
 
 						// Technically "KB" should come from a string resource,
-						// but this is just a Cupcake 1.1 fallback, and KB is universal
+						// but this is just a Cupcake 1.1 callback, and KB is universal
 						// enough.
 					}
 
-					if (!mDirectoriesOnly){
+					String filetype = FileUtils.getExtension(fileName);
+					boolean ext_allow = filetype.equalsIgnoreCase(mFilterFiletype) || mFilterFiletype == "";
+					boolean mime_allow = mFilterMimetype != null && 
+							(mimetype.contentEquals(mFilterMimetype) || mFilterMimetype.contentEquals("*/*") ||
+									mFilterFiletype == null);
+					if (!mDirectoriesOnly && (ext_allow || mime_allow)) { 
 						listFile.add(new IconifiedText( 
 							currentFile.getName(), size, currentIcon));
 					}

@@ -48,12 +48,16 @@
     <string name="menu_open">Abrir</string>
     <string name="menu_move">Mover</string>
     <string name="menu_copy">Copiar</string>
+    <string name="menu_details">Details</string>
+    <string name="menu_more">More</string>
+    <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Incluir en la exploración de archivos multimedia</string>
     <string name="menu_exclude_from_media_scan">Excluir de la exploración de archivos multimedia</string>
     
     <string name="create_new_folder">Crear nueva carpeta</string>
     <string name="folder_name">Nombre de carpeta</string>
     <string name="file_name">Nombre de carpeta</string>
+    <string name="extension">Extension (with \'.\')</string>
     <string name="this_folder_is_empty">Esta carpeta es vacia.</string>
     <string name="really_delete">Verdaderamente quiere borrar %s?</string>
     <string name="file_deleted">Archivo borrado.</string>
@@ -68,6 +72,9 @@
     <string name="copy_title">Seleccione carpeta a copiar a</string>
     <string name="copy_button">Copiar aquí</string>
 	<string name="deleting_files">Eliminando archivos...</string>
+    <string name="title_warning_some_may_not_work">Warning</string>
+    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
+    <string name="show_warning_again">Show warning again</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">¿Realmente quiere eliminar los archivos %d?</string>
@@ -76,6 +83,18 @@
     <string name="delete_button_multiselect">Borrar</string>
     <string name="multiselect_title">Sleccione varios archivos</string>
     <string name="error_selection">Por favor, selecciona uno o mas archivos</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">Type</string>
+    <string name="details_type_folder">Folder</string>
+    <string name="details_type_file">File</string>
+    <string name="details_type_other">Other</string>
+    <string name="details_size">Size</string>
+    <string name="details_permissions">Permissions</string>
+    <string name="details_hidden">Hidden</string>
+    <string name="details_lastmodified">Last Modified</string>
+    <string name="details_yes">Yes</string>
+    <string name="details_no">No</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copia de %s</string>
@@ -115,5 +134,19 @@
     <string name="preference_mediascan_summary_on">Muestra el elemento del menú para excluir carpetas del escaneo del medio</string>
     <string name="preference_mediascan_summary_off">Esconde el elemento del menú para excluir carpetas del escaneo del medio</string>
     
-    
+    <string name="preference_showallwarning_title">Show all warnings</string>
+    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
+    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+       
+    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
+    <string name="saveas_error">An error occured.</string>
+    <string name="saveas_file_saved">File successfully saved!</string>
 </resources>

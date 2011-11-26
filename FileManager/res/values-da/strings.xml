@@ -21,11 +21,10 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
-  Peli https://launchpad.net/~peli0101
-  iulargsb https://launchpad.net/~iulargsb</string>
+  Patrick Nielsen https://launchpad.net/~trivkz</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Manage files on the SD card.</string>  
+    <string name="about_comments">Administrer filer på SD kort.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -33,52 +32,52 @@
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
     
-    <string name="menu_new_folder">Dosar nou</string>
+    <string name="menu_new_folder">Ny mappe</string>
     
     <!-- Multi select option menu -->
-    <string name="menu_multi_select">Selecție multiplă</string>
+    <string name="menu_multi_select">Multi Select</string>
 
-    <string name="menu_delete">Șterge</string>
-    <string name="menu_rename">Redenumește</string>
-    <string name="menu_send">Trimite</string>
-    <string name="menu_open">Deschide</string>
-    <string name="menu_move">Mută</string>
-    <string name="menu_copy">Copiază</string>
+    <string name="menu_delete">Slet</string>
+    <string name="menu_rename">Omdøb</string>
+    <string name="menu_send">Send</string>
+    <string name="menu_open">Åbn</string>
+    <string name="menu_move">Flyt</string>
+    <string name="menu_copy">Kopier</string>
     <string name="menu_details">Details</string>
     <string name="menu_more">More</string>
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Include in media scan</string>
-    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="menu_exclude_from_media_scan">Udeluk fra media scanning</string>
     
-    <string name="create_new_folder">Crează un dosar nou</string>
-    <string name="folder_name">Numele dosarului</string>
-    <string name="file_name">Numele dosarului</string>
+    <string name="create_new_folder">Opret ny mappe</string>
+    <string name="folder_name">Mappenavn</string>
+    <string name="file_name">Mappenavn</string>
     <string name="extension">Extension (with \'.\')</string>
-    <string name="this_folder_is_empty">Dosarul este gol.</string>
-    <string name="really_delete">Doriți sa ștergeți %s?</string>
-    <string name="file_deleted">Fișier sters.</string>
-    <string name="folder_deleted">Dosar șters.</string>
-    <string name="file_renamed">Fișier redenumit.</string>
-    <string name="folder_renamed">Dosar redenumit.</string>
-    <string name="file_moved">Fișier mutat.</string>
-    <string name="folder_moved">Dosar mutat.</string>
-    <string name="file_copied">Fișier copiat.</string>
-    <string name="move_title">Selectați dosarul destinație</string>
-    <string name="move_button">Mută aici</string>
-    <string name="copy_title">Selectați dosarul destinație</string>
-    <string name="copy_button">Copiază aici</string>
+    <string name="this_folder_is_empty">Denne mappe er tom.</string>
+    <string name="really_delete">Er du sikker på, at du vil slette %s?</string>
+    <string name="file_deleted">Fil slettet.</string>
+    <string name="folder_deleted">Mappe slettet.</string>
+    <string name="file_renamed">Fil omdøbt.</string>
+    <string name="folder_renamed">Folder renamed.</string>
+    <string name="file_moved">File moved.</string>
+    <string name="folder_moved">Folder moved.</string>
+    <string name="file_copied">File copied.</string>
+    <string name="move_title">Select folder to move to</string>
+    <string name="move_button">Move here</string>
+    <string name="copy_title">Select folder to copy to</string>
+    <string name="copy_button">Copy here</string>
 	<string name="deleting_files">Deleting files...</string>
     <string name="title_warning_some_may_not_work">Warning</string>
     <string name="warning_some_may_not_work">Some of the following options may not work.</string>
     <string name="show_warning_again">Show warning again</string>
     
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">Sigur doriți ștergerea a %d fișiere?</string>
-    <string name="move_button_multiselect">Mută</string>
-    <string name="copy_button_multiselect">Copiază</string>
-    <string name="delete_button_multiselect">Șterge</string>
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">Flyt</string>
+    <string name="copy_button_multiselect">Kopier</string>
+    <string name="delete_button_multiselect">Slet</string>
     <string name="multiselect_title">Select multiple files</string>
-    <string name="error_selection">Selectați unul sau mai multe fișiere.</string>
+    <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Type</string>
@@ -93,7 +92,7 @@
     <string name="details_no">No</string>
     
     <!-- Construct a unique file name of a file called %s. -->
-    <string name="copied_file_name">Copie a %s</string>
+    <string name="copied_file_name">Copy of %s</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">Copy %1$d of %2$s</string>
@@ -101,32 +100,32 @@
     <string name="media_scan_included">This folder will be included in the next media scan.</string>
     <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
     
-    <string name="error_creating_new_folder">Nu am putut crea un dosar nou.</string>
-    <string name="error_deleting_file">Nu am putut șterge fișierul.</string>
-    <string name="error_deleting_folder">Nu s-a putut șterge dosarul \'%s\'.</string>
-    <string name="error_renaming_file">Nu am putut redenumi fișierul.</string>
-    <string name="error_renaming_folder">Nu am putut redenumi dosarul.</string>
-    <string name="error_moving_file">Nu am putut muta fișierul.</string>
-    <string name="error_moving_folder">Nu am putut muta dosarul.</string>
-    <string name="error_copying_file">Nu am putut copia fișierul.</string>
-    <string name="error_file_does_not_exists">Fișierul nu există.</string>
+    <string name="error_creating_new_folder">Could not create new folder.</string>
+    <string name="error_deleting_file">Could not delete file.</string>
+    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_renaming_file">Could not rename file.</string>
+    <string name="error_renaming_folder">Could not rename folder.</string>
+    <string name="error_moving_file">Could not move file.</string>
+    <string name="error_moving_folder">Could not move folder.</string>
+    <string name="error_copying_file">Could not copy file.</string>
+    <string name="error_file_does_not_exists">File does not exist.</string>
     <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
-    <string name="error_generic">A apărut o eroare:</string>
+    <string name="error_generic">An error occurred: </string>
     <string name="error_media_scan">Could not change media scan settings.</string>
     
-    <string name="send_not_available">Nu există aplicație pentru trimitere.</string>
+    <string name="send_not_available">No application available for sending.</string>
     
-    <string name="application_not_available">Aplicație indisponibilă</string>
+    <string name="application_not_available">Application not available</string>
     
 	<!-- ***************************
 	     Preferences
 	     *************************** -->
     <!-- Menu item for Settings -->
-	<string name="settings">Configurare</string>
+	<string name="settings">Settings</string>
 	
     <!-- Category for preferences. -->
-    <string name="preference_advanced_features">Funcțiuni avansate</string>
-	<string name="preference_mediascan_title">Exclude from media scan</string>
+    <string name="preference_advanced_features">Advanced features</string>
+	<string name="preference_mediascan_title">Udeluk fra media scanning</string>
     <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
     

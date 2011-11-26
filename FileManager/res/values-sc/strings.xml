@@ -44,12 +44,16 @@
     <string name="menu_open">Apperi</string>
     <string name="menu_move">Moghe</string>
     <string name="menu_copy">Cópia</string>
+    <string name="menu_details">Details</string>
+    <string name="menu_more">More</string>
+    <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Azzunghe a sa scansione</string>
     <string name="menu_exclude_from_media_scan">Esclude da sa scansione</string>
     
     <string name="create_new_folder">Crea un\'attera cartelledda</string>
     <string name="folder_name">Numene</string>
     <string name="file_name">Numene</string>
+    <string name="extension">Extension (with \'.\')</string>
     <string name="this_folder_is_empty">Custa cartelledda este bodia</string>
     <string name="really_delete">Cherese abberu dogare %s?</string>
     <string name="file_deleted">File dogau.</string>
@@ -64,6 +68,9 @@
     <string name="copy_title">Issepera sa cartelledda auve lu copiare</string>
     <string name="copy_button">Copia inoche</string>
 	<string name="deleting_files">Deleting files...</string>
+    <string name="title_warning_some_may_not_work">Warning</string>
+    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
+    <string name="show_warning_again">Show warning again</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
@@ -72,6 +79,18 @@
     <string name="delete_button_multiselect">Doga</string>
     <string name="multiselect_title">Select multiple files</string>
     <string name="error_selection">Please select one or more file(s).</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">Type</string>
+    <string name="details_type_folder">Folder</string>
+    <string name="details_type_file">File</string>
+    <string name="details_type_other">Other</string>
+    <string name="details_size">Size</string>
+    <string name="details_permissions">Permissions</string>
+    <string name="details_hidden">Hidden</string>
+    <string name="details_lastmodified">Last Modified</string>
+    <string name="details_yes">Yes</string>
+    <string name="details_no">No</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copiande %s</string>
@@ -111,5 +130,19 @@
     <string name="preference_mediascan_summary_on">Mustra su menu pro che dogare cartelleddasa dae sa scansione</string>
     <string name="preference_mediascan_summary_off">Doga su menu pro che dogare cartelleddasa dae sa scansione</string>
     
-    
+    <string name="preference_showallwarning_title">Show all warnings</string>
+    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
+    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+       
+    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
+    <string name="saveas_error">An error occured.</string>
+    <string name="saveas_file_saved">File successfully saved!</string>
 </resources>

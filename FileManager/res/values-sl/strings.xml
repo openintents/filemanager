@@ -44,12 +44,16 @@
     <string name="menu_open">Odpri</string>
     <string name="menu_move">Prestavi</string>
     <string name="menu_copy">Kopiraj</string>
+    <string name="menu_details">Details</string>
+    <string name="menu_more">More</string>
+    <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Vključi v pregled datotek</string>
     <string name="menu_exclude_from_media_scan">Izključi iz pregleda datotek</string>
     
     <string name="create_new_folder">Ustvari novo mapo</string>
     <string name="folder_name">Ime mape</string>
     <string name="file_name">Ime mape</string>
+    <string name="extension">Extension (with \'.\')</string>
     <string name="this_folder_is_empty">Ta mapa je prazna.</string>
     <string name="really_delete">Res želiš izbrisati datoteko %s?</string>
     <string name="file_deleted">Datoteka je izbrisana.</string>
@@ -64,6 +68,9 @@
     <string name="copy_title">Izberi mapo, kamor bo datoteka skopirana</string>
     <string name="copy_button">Skopiraj sem</string>
 	<string name="deleting_files">Deleting files...</string>
+    <string name="title_warning_some_may_not_work">Warning</string>
+    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
+    <string name="show_warning_again">Show warning again</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Res želiš izbrisati datoteke %d?</string>
@@ -72,6 +79,18 @@
     <string name="delete_button_multiselect">Izbriši</string>
     <string name="multiselect_title">Izberi več datotek</string>
     <string name="error_selection">Prosim izberi eno ali več datotek.</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">Type</string>
+    <string name="details_type_folder">Folder</string>
+    <string name="details_type_file">File</string>
+    <string name="details_type_other">Other</string>
+    <string name="details_size">Size</string>
+    <string name="details_permissions">Permissions</string>
+    <string name="details_hidden">Hidden</string>
+    <string name="details_lastmodified">Last Modified</string>
+    <string name="details_yes">Yes</string>
+    <string name="details_no">No</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">%s - kopija</string>
@@ -111,5 +130,19 @@
     <string name="preference_mediascan_summary_on">Pokaži meni za izključitev map iz pregleda datotek.</string>
     <string name="preference_mediascan_summary_off">Skrij meni za izključitev map iz pregleda datotek.</string>
     
-    
+    <string name="preference_showallwarning_title">Show all warnings</string>
+    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
+    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+       
+    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
+    <string name="saveas_error">An error occured.</string>
+    <string name="saveas_file_saved">File successfully saved!</string>
 </resources>

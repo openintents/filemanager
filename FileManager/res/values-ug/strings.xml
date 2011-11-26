@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  Sahran https://launchpad.net/~sahran</string>
+	
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">SD كارتىدىكى ھۆججەتلەرنى باشقۇرىدۇ.</string>  
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI ھۆججەت باشقۇرغۇچ</string>
+    
+    <string name="menu_new_folder">يېڭى قىسقۇچ</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">كۆپ تاللا</string>
+
+    <string name="menu_delete">ئۆچۈر</string>
+    <string name="menu_rename">ئات ئۆزگەرت</string>
+    <string name="menu_send">يوللا</string>
+    <string name="menu_open">ئاچ</string>
+    <string name="menu_move">يۆتكە</string>
+    <string name="menu_copy">كۆچۈر</string>
+    <string name="menu_details">Details</string>
+    <string name="menu_more">More</string>
+    <string name="menu_filter">Filter</string>
+    <string name="menu_include_in_media_scan">ۋاسىتە تەكشۈرۈش ئىچىدە</string>
+    <string name="menu_exclude_from_media_scan">ۋاسىتە تەكشۈرۈش سىرتىدا</string>
+    
+    <string name="create_new_folder">يېڭى قىسقۇچ قۇر</string>
+    <string name="folder_name">قىسقۇچ ئاتى</string>
+    <string name="file_name">قىسقۇچ ئاتى</string>
+    <string name="extension">Extension (with \'.\')</string>
+    <string name="this_folder_is_empty">بۇ قىسقۇچ بوش.</string>
+    <string name="really_delete">%s نى راستىنلا ئۆچۈرەمسىز؟</string>
+    <string name="file_deleted">ھۆججەت ئۆچۈرۈلدى.</string>
+    <string name="folder_deleted">قىسقۇچ ئۆچۈرۈلدى.</string>
+    <string name="file_renamed">ھۆججەت ئاتى ئۆزگەرتىلدى.</string>
+    <string name="folder_renamed">قىسقۇچ ئاتى ئۆزگەرتىلدى.</string>
+    <string name="file_moved">ھۆججەت يۆتكەلدى.</string>
+    <string name="folder_moved">قىسقۇچ يۆتكەلدى.</string>
+    <string name="file_copied">ھۆججەت كۆچۈرۈلدى.</string>
+    <string name="move_title">يۆتكەيدىغان قىسقۇچنى تاللاڭ</string>
+    <string name="move_button">بۇ جايغا يۆتكە</string>
+    <string name="copy_title">كۆچۈرىدىغان قىسقۇچنى تاللاڭ</string>
+    <string name="copy_button">بۇ جايغا كۆچۈر</string>
+	<string name="deleting_files">ھۆججەت ئۆچۈرۈۋاتىدۇ...</string>
+    <string name="title_warning_some_may_not_work">Warning</string>
+    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
+    <string name="show_warning_again">Show warning again</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">راستىنلا %d ھۆججەتنى ئۆچۈرەمسىز؟</string>
+    <string name="move_button_multiselect">يۆتكە</string>
+    <string name="copy_button_multiselect">كۆچۈر</string>
+    <string name="delete_button_multiselect">ئۆچۈر</string>
+    <string name="multiselect_title">كۆپ ھۆججەت تاللاڭ</string>
+    <string name="error_selection">بىر ياكى بىر قانچە ھۆججەت تاللاڭ.</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">Type</string>
+    <string name="details_type_folder">Folder</string>
+    <string name="details_type_file">File</string>
+    <string name="details_type_other">Other</string>
+    <string name="details_size">Size</string>
+    <string name="details_permissions">Permissions</string>
+    <string name="details_hidden">Hidden</string>
+    <string name="details_lastmodified">Last Modified</string>
+    <string name="details_yes">Yes</string>
+    <string name="details_no">No</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">%s كۆچۈر</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">%2$s نىڭ %1$d نى كۆچۈر</string>
+    
+    <string name="media_scan_included">بۇ قىسقۇچنى كېيىنكى قېتىم ۋاسىتە تەكشۈرگەندە ئۆز ئىچىگە ئالىدۇ.</string>
+    <string name="media_scan_excluded">بۇ قىسقۇچنى كېيىنكى قېتىم ۋاسىتە تەكشۈرگەندە ئۆز ئىچىگە ئالمايدۇ.</string>
+    
+    <string name="error_creating_new_folder">يېڭى قىسقۇچ قۇرالمىدى.</string>
+    <string name="error_deleting_file">ھۆججەتنى ئۆچۈرەلمىدى.</string>
+    <string name="error_deleting_folder">قىسقۇچ  \'%s\' نى ئۆچۈرەلمىدى.</string>
+    <string name="error_renaming_file">ھۆججەت ئاتىنى ئۆزگەرتەلمىدى.</string>
+    <string name="error_renaming_folder">قىسقۇچ ئاتىنى ئۆزگەرتەلمىدى.</string>
+    <string name="error_moving_file">ھۆججەتنى يۆتكىيەلمىدى.</string>
+    <string name="error_moving_folder">قىسقۇچنى يۆتكىيەلمىدى.</string>
+    <string name="error_copying_file">ھۆججەتنى كۆچۈرەلمىدى.</string>
+    <string name="error_file_does_not_exists">ھۆججەت مەۋجۇت ئەمەس.</string>
+    <string name="error_deleting_child_file">تارماق ھۆججەت \'%s\' نى ئۆچۈرەلمىدى.</string>
+    <string name="error_generic">خاتالىق كۆرۈلدى:</string>
+    <string name="error_media_scan">ۋاسىتە تەكشۈرۈش تەڭشىكىنى ئۆزگەرتەلمىدى.</string>
+    
+    <string name="send_not_available">يوللاشقا ئىشلىتىدىغان قوللىنىشچان پىروگرامما يوق.</string>
+    
+    <string name="application_not_available">قوللىنىشچان پىروگرامما تېپىلمىدى</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">تەڭشەكلەر</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">ئالىي ئىقتىدارلار</string>
+	<string name="preference_mediascan_title">ۋاسىتە تەكشۈرۈش سىرتىدا</string>
+    <string name="preference_mediascan_summary_on">ۋاسىتە تەكشۈرۈشنىڭ سىرتىدا قالدۇرۇلغان قىسقۇچلارنىڭ تىزىملىك تۈرىنى كۆرسەت</string>
+    <string name="preference_mediascan_summary_off">ۋاسىتە تەكشۈرۈشنىڭ سىرتىدا قالدۇرۇلغان قىسقۇچلارنىڭ تىزىملىك تۈرىنى يوشۇر.</string>
+    
+    <string name="preference_showallwarning_title">Show all warnings</string>
+    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
+    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+       
+    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
+    <string name="saveas_error">An error occured.</string>
+    <string name="saveas_file_saved">File successfully saved!</string>
+</resources>

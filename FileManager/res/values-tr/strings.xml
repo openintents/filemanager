@@ -23,6 +23,7 @@
 	<string name="about_translators">This is a dummy translation so that the credits are counted as translated.
 
 Launchpad Contributions:
+  Huseyin AKSU https://launchpad.net/~huseyinaksu95
   Peli https://launchpad.net/~peli0101
   zeugma https://launchpad.net/~sunder67</string>
 	
@@ -46,12 +47,16 @@ Launchpad Contributions:
     <string name="menu_open">Aç</string>
     <string name="menu_move">Taşı</string>
     <string name="menu_copy">Kopyala</string>
+    <string name="menu_details">Details</string>
+    <string name="menu_more">More</string>
+    <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Medya tarama dahil</string>
     <string name="menu_exclude_from_media_scan">Medya tarama hariç</string>
     
     <string name="create_new_folder">Yeni klasör oluştur</string>
     <string name="folder_name">Klasör adı</string>
     <string name="file_name">Klasör adı</string>
+    <string name="extension">Extension (with \'.\')</string>
     <string name="this_folder_is_empty">Bu klasör boş.</string>
     <string name="really_delete">%s  gerçekten silmek istiyor musunuz?</string>
     <string name="file_deleted">Dosya silindi.</string>
@@ -61,11 +66,14 @@ Launchpad Contributions:
     <string name="file_moved">Dosya taşındı.</string>
     <string name="folder_moved">Klasör taşındı.</string>
     <string name="file_copied">Dosya kopyalandı.</string>
-    <string name="move_title">Select folder to move to</string>
+    <string name="move_title">Taşınacak klasörü seçin</string>
     <string name="move_button">Buraya taşı</string>
-    <string name="copy_title">Select folder to copy to</string>
+    <string name="copy_title">Kopyalanacak klasörü seçin</string>
     <string name="copy_button">Buraya kopyala</string>
-	<string name="deleting_files">Deleting files...</string>
+	<string name="deleting_files">Dosyalar siliniyor...</string>
+    <string name="title_warning_some_may_not_work">Warning</string>
+    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
+    <string name="show_warning_again">Show warning again</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">%d dosyayı gerçekten silmek istediğinize emin misiniz?</string>
@@ -75,14 +83,26 @@ Launchpad Contributions:
     <string name="multiselect_title">Dosyaları çoklu seçin</string>
     <string name="error_selection">Lütfen bir veya daha çok dosya seçin.</string>
     
+    <!-- Strings for details table -->
+    <string name="details_type">Type</string>
+    <string name="details_type_folder">Folder</string>
+    <string name="details_type_file">File</string>
+    <string name="details_type_other">Other</string>
+    <string name="details_size">Size</string>
+    <string name="details_permissions">Permissions</string>
+    <string name="details_hidden">Hidden</string>
+    <string name="details_lastmodified">Last Modified</string>
+    <string name="details_yes">Yes</string>
+    <string name="details_no">No</string>
+    
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">%s kopyası</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
-    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    <string name="copied_file_name_2">%2$s \'nin %1$d \'ini kopyala</string>
     
-    <string name="media_scan_included">This folder will be included in the next media scan.</string>
-    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    <string name="media_scan_included">Bu dosya sonraki medya taramasına eklenecek.</string>
+    <string name="media_scan_excluded">Bu dosya sonraki medya taraması boyunca yok sayılacak.</string>
     
     <string name="error_creating_new_folder">Yeni klasör oluşturulamadı.</string>
     <string name="error_deleting_file">Dosya silinemedi.</string>
@@ -93,11 +113,11 @@ Launchpad Contributions:
     <string name="error_moving_folder">Klasör taşınamadı.</string>
     <string name="error_copying_file">Dosya kopyalanamadı.</string>
     <string name="error_file_does_not_exists">Dosya yok.</string>
-    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
-    <string name="error_generic">An error occurred: </string>
+    <string name="error_deleting_child_file">\'%s\' alt dosyası silinemedi.</string>
+    <string name="error_generic">Bir hata meydana geldi:</string>
     <string name="error_media_scan">Medya tarama ayarları değiştirilemedi.</string>
     
-    <string name="send_not_available">No application available for sending.</string>
+    <string name="send_not_available">Hiçbir uygulama göndermeye uygun değil.</string>
     
     <string name="application_not_available">Uygulama mevcut değil</string>
     
@@ -110,8 +130,22 @@ Launchpad Contributions:
     <!-- Category for preferences. -->
     <string name="preference_advanced_features">Gelişmiş özellikler</string>
 	<string name="preference_mediascan_title">Medya tarama hariç</string>
-    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
-    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    <string name="preference_mediascan_summary_on">Klasörleri medya taramasına eklememek için menü öğesini göster.</string>
+    <string name="preference_mediascan_summary_off">Klasörleri medya taramasına eklememek için menü öğesini gizle.</string>
     
-    
+    <string name="preference_showallwarning_title">Show all warnings</string>
+    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
+    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+       
+    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
+    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
+    <string name="saveas_error">An error occured.</string>
+    <string name="saveas_file_saved">File successfully saved!</string>
 </resources>

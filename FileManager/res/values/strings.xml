@@ -42,6 +42,7 @@
     <string name="menu_open">Open</string>
     <string name="menu_move">Move</string>
     <string name="menu_copy">Copy</string>
+    <string name="menu_details">Details</string>
     <string name="menu_more">More</string>
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Include in media scan</string>
@@ -76,6 +77,18 @@
     <string name="delete_button_multiselect">Delete</string>
     <string name="multiselect_title">Select multiple files</string>
     <string name="error_selection">Please select one or more file(s).</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">Type</string>
+    <string name="details_type_folder">Folder</string>
+    <string name="details_type_file">File</string>
+    <string name="details_type_other">Other</string>
+    <string name="details_size">Size</string>
+    <string name="details_permissions">Permissions</string>
+    <string name="details_hidden">Hidden</string>
+    <string name="details_lastmodified">Last Modified</string>
+    <string name="details_yes">Yes</string>
+    <string name="details_no">No</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copy of %s</string>

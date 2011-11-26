@@ -57,6 +57,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -121,6 +123,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final int MENU_SETTINGS = Menu.FIRST + 14;
 	private static final int MENU_MULTI_SELECT = Menu.FIRST + 15;
 	private static final int MENU_FILTER = Menu.FIRST + 16;
+	private static final int MENU_DETAILS = Menu.FIRST + 17;
 	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
@@ -132,6 +135,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      */
     private static final int DIALOG_MULTI_DELETE = 4;
     private static final int DIALOG_FILTER = 5;
+	private static final int DIALOG_DETAILS = 6;
 
     private static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
 
@@ -1109,6 +1113,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 						new ComponentName(this, FileManagerActivity.class), null, intent, 0, null);
 	        }
 		//}
+	    menu.add(0, MENU_DETAILS, 0, R.string.menu_details);
         menu.add(0, MENU_MORE, 0, R.string.menu_more);
 	}
 
@@ -1153,6 +1158,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			
 		case MENU_SEND:
 			sendFile(mContextFile);
+			return true;
+		
+		case MENU_DETAILS:
+			showDialog(DIALOG_DETAILS);
 			return true;
 
 		case MENU_MORE:
@@ -1299,9 +1308,15 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 					}).create();
 			
 
+        case DIALOG_DETAILS:
+        	inflater = LayoutInflater.from(this);
+        	view =  inflater.inflate(R.layout.dialog_details, null);
+        	        	
+        	return new AlertDialog.Builder(this).setTitle(mContextText).
+        			setIcon(mContextIcon).setView(view).create();
 		}
 		return super.onCreateDialog(id);
-		
+			
 	}
 
 
@@ -1333,6 +1348,31 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
 		case DIALOG_MULTI_DELETE:
             break;
+            
+		case DIALOG_DETAILS:
+			final TextView type = ((TextView)dialog.findViewById(R.id.details_type_value));
+        	type.setText((mContextFile.isDirectory() ? R.string.details_type_folder :
+        				(mContextFile.isFile() ? R.string.details_type_file :
+        					R.string.details_type_other)));
+        	
+        	final TextView size = ((TextView)dialog.findViewById(R.id.details_size_value));
+        	size.setText(FileUtils.formatSize(this, mContextFile.length()));
+        	
+        	String perms = (mContextFile.canRead() ? "R" : "-") +
+        			(mContextFile.canWrite() ? "W" : "-") +
+        			(mContextFile.canExecute() ? "X" : "-");
+        	
+        	final TextView permissions = ((TextView)dialog.findViewById(R.id.details_permissions_value));
+        	permissions.setText(perms);
+        	
+        	final TextView hidden = ((TextView)dialog.findViewById(R.id.details_hidden_value));
+        	hidden.setText(mContextFile.isHidden() ? R.string.details_yes : R.string.details_no);
+        	
+        	final TextView lastmodified = ((TextView)dialog.findViewById(R.id.details_lastmodified_value));
+        	lastmodified.setText(FileUtils.formatDate(this, mContextFile.lastModified()));
+        	((AlertDialog) dialog).setIcon(mContextIcon);
+        	((AlertDialog) dialog).setTitle(mContextText);
+			break;
 
 		}
 	}

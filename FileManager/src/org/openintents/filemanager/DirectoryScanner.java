@@ -206,7 +206,8 @@ public class DirectoryScanner extends Thread {
 									mFilterFiletype == null);
 					if (!mDirectoriesOnly && (ext_allow || mime_allow)) { 
 						listFile.add(new IconifiedText( 
-							currentFile.getName(), size, currentIcon));
+							currentFile.getName(), size + " , " + FileUtils.formatDate(
+									context, currentFile.lastModified()), currentIcon));
 					}
 				} 
 			}

@@ -17,10 +17,14 @@
 package org.openintents.filemanager.util;
 
 import java.io.File;
+import java.util.Date;
 
+import android.content.Context;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
 import android.provider.MediaStore.Video;
+import android.text.format.DateFormat;
+import android.text.format.Formatter;
 
 /**
  * @version 2009-07-03
@@ -169,5 +173,13 @@ public class FileUtils {
 	
 	public static File getFile(File curdir, String file) {
 		return getFile(curdir.getAbsolutePath(), file);
+	}
+	
+	public static String formatSize(Context context, long sizeInBytes) {
+		return Formatter.formatFileSize(context, sizeInBytes);
+	}
+	
+	public static String formatDate(Context context, long dateTime) {
+		return DateFormat.getDateFormat(context).format(new Date(dateTime));
 	}
 }

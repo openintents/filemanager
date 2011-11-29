@@ -197,6 +197,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
       * @since 2011-02-11
       */
      private Button mButtonDelete;
+     
+     private boolean fileDeleted = false;
+     private int positionAtDelete;
 
      private LinearLayout mDirectoryInput;
      private EditText mEditDirectory;
@@ -488,6 +491,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
          itla.setListItems(directoryEntries, getListView().hasTextFilter());          
          setListAdapter(itla); 
 	     getListView().setTextFilterEnabled(true);
+	     
+	     if(fileDeleted){
+	    	 getListView().setSelection(positionAtDelete);
+	     }
 
          selectInList(mPreviousDirectory);
          refreshDirectoryPanel();
@@ -1663,7 +1670,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	}
 
 	private void deleteFileOrFolder(File file) {
-		
+		fileDeleted = true;
+		positionAtDelete = getListView().getFirstVisiblePosition();
 		new RecursiveDeleteTask().execute(file);
 //		if (file.isDirectory()) {
 //			if (recursiveDelete(file, true)) {

@@ -31,6 +31,7 @@ date: ?
 - Option to hide hidden files (Google Code-In task by Matej Konecny)
 - Filter by file type (issue 166, Google Code-in task by Aviral Dasgupta)
 - Show file details through context menu (Google Code-in task by Aviral Dasgupta)
+- Option to sort files (Google Code-In task by Matěj Konečný)
 
 ---------------------------------------------------------
 release: 1.1.6

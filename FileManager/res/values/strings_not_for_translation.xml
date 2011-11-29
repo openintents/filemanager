@@ -30,6 +30,7 @@
         <item>Steven Osborn</item>
         <item>"Michael 'EboMike' Krehan"</item>
         <item>John Doe</item>
+        <item>Matěj Konečný</item>
     </string-array>
     
     <string-array name="about_documenters"><!-- Add your name here if you helped out -->
@@ -48,5 +49,11 @@
 	<!-- ***************************
 	     Preferences
 	     *************************** -->
+	
+    <string-array name="sortby_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 	
 </resources> 

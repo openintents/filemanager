@@ -17,6 +17,24 @@
 
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
+        
+    <PreferenceCategory
+            android:title="@string/preference_sort_settings">
+        
+        <ListPreference 
+                android:key="sortby"
+                android:defaultValue="1"
+                android:entries="@array/preference_sortby_names"
+                android:entryValues="@array/sortby_values"
+                android:title="@string/preference_sortby" />
+        
+        <CheckBoxPreference
+                android:title="@string/preference_sortby_ascending"
+                android:key="ascending"
+                android:summaryOff="@string/preference_sortby_ascending_summary_off"
+                android:summaryOn="@string/preference_sortby_ascending_summary_on"
+                android:defaultValue="true" />
+    </PreferenceCategory>
 
     <PreferenceCategory
             android:title="@string/preference_advanced_features">

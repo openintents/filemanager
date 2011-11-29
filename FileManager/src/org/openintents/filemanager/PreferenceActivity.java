@@ -18,10 +18,13 @@ package org.openintents.filemanager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 
-public class PreferenceActivity extends android.preference.PreferenceActivity {
+public class PreferenceActivity extends android.preference.PreferenceActivity
+                                implements OnSharedPreferenceChangeListener {
 
 	public static final String PREFS_MEDIASCAN = "mediascan";
 	/**
@@ -31,6 +34,10 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
 	
 	
 	public static final String PREFS_DISPLAYHIDDENFILES = "displayhiddenfiles";
+ 	
+	public static final String PREFS_SORTBY = "sortby";
+	
+	public static final String PREFS_ASCENDING = "ascending";
 	
 	@Override
 	protected void onCreate(Bundle icicle) {
@@ -38,6 +45,11 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
 		super.onCreate(icicle);
 
 		addPreferencesFromResource(R.xml.preferences);
+		
+		/* Register the onSharedPreferenceChanged listener to update the SortBy ListPreference summary */
+		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+		/* Set the onSharedPreferenceChanged listener summary to its initial value */
+		changeListPreferenceSummaryToCurrentValue((ListPreference)findPreference("sortby"));
 	}
 
 	@Override
@@ -81,5 +93,29 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
 	static boolean getDisplayHiddenFiles(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(PREFS_DISPLAYHIDDENFILES, true);
+	}
+	
+	
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+		if(key.equals("sortby")){
+			changeListPreferenceSummaryToCurrentValue((ListPreference)findPreference(key));
+		}
+	}
+	
+	private void changeListPreferenceSummaryToCurrentValue(ListPreference listPref){
+		listPref.setSummary(listPref.getEntry());
+	}
+	
+
+	static int getSortBy(Context context) {
+		/* entryValues must be a string-array while we need integers */
+		return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
+								 .getString(PREFS_SORTBY, "1"));
+	}
+	
+	static boolean getAscending(Context context) {
+		return PreferenceManager.getDefaultSharedPreferences(context)
+				.getBoolean(PREFS_ASCENDING, true);
 	}
 }

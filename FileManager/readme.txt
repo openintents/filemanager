@@ -33,6 +33,7 @@ date: ?
 - Show file details through context menu (Google Code-in task by Aviral Dasgupta)
 - Option to sort files (Google Code-In task by Matěj Konečný)
 - Keep list position after delete (Google Code-in task by Chickenbellyfinn)
+- Show correct toast when deleting file (issue 365, Google Code-in task by Chickenbellyfinn)
 
 ---------------------------------------------------------
 release: 1.1.6

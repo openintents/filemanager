@@ -200,6 +200,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      
      private boolean fileDeleted = false;
      private int positionAtDelete;
+     private boolean deletedFileIsDirectory = false;
 
      private LinearLayout mDirectoryInput;
      private EditText mEditDirectory;
@@ -1650,7 +1651,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			switch (result) {
 			case success:
 				activity.refreshList();
-				Toast.makeText(activity, R.string.folder_deleted,Toast.LENGTH_SHORT).show();
+				if(deletedFileIsDirectory){
+					Toast.makeText(activity, R.string.folder_deleted,Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(activity, R.string.file_deleted,Toast.LENGTH_SHORT).show();
+				}
 				break;
 			case err_deleting_folder:
 				Toast.makeText(activity,getString(R.string.error_deleting_folder,
@@ -1672,6 +1677,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private void deleteFileOrFolder(File file) {
 		fileDeleted = true;
 		positionAtDelete = getListView().getFirstVisiblePosition();
+		deletedFileIsDirectory = file.isDirectory();
 		new RecursiveDeleteTask().execute(file);
 //		if (file.isDirectory()) {
 //			if (recursiveDelete(file, true)) {
@@ -2042,7 +2048,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		
 	}
 	
-	@Override
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
 	    if (//When the user chooses to show/hide hidden files, update the list
     		//to correspond with the user's choice

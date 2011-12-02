@@ -295,15 +295,17 @@ public class DirectoryScanner extends Thread {
    	 if(mimetype.equals(MIME_APK)){
    		 String path = file.getPath();
    		 PackageInfo pInfo = pm.getPackageArchiveInfo(path, PackageManager.GET_ACTIVITIES);
-   		 ApplicationInfo aInfo = pInfo.applicationInfo;
-   		 
-   		 // Bug in SDK versions >= 8. See here: http://code.google.com/p/android/issues/detail?id=9151
-   		 if(Build.VERSION.SDK_INT >= 8){
-   			 aInfo.sourceDir = path;
-   			 aInfo.publicSourceDir = path;
+   		 if (pInfo!=null) {
+	   		 ApplicationInfo aInfo = pInfo.applicationInfo;
+	   		 
+	   		 // Bug in SDK versions >= 8. See here: http://code.google.com/p/android/issues/detail?id=9151
+	   		 if(Build.VERSION.SDK_INT >= 8){
+	   			 aInfo.sourceDir = path;
+	   			 aInfo.publicSourceDir = path;
+	   		 }
+	   		 
+	   		 return aInfo.loadIcon(pm);
    		 }
-   		 
-   		 return aInfo.loadIcon(pm);
    	 }
    	 
    	 Uri data = FileUtils.getUri(file);

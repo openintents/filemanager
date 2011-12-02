@@ -12,7 +12,10 @@ import org.openintents.filemanager.util.MimeTypes;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -20,6 +23,7 @@ import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -47,6 +51,9 @@ public class DirectoryScanner extends Thread {
 	// Update progress bar every n files
 	static final private int PROGRESS_STEPS = 50;
 
+	// APK MIME type
+	private static final String MIME_APK = "application/vnd.android.package-archive";
+	
 	// Cupcake-specific methods
     static Method formatter_formatFileSize;
 
@@ -283,6 +290,21 @@ public class DirectoryScanner extends Thread {
      }
      
    	 PackageManager pm = context.getPackageManager();
+   	 
+   	 // Returns the icon packaged in files with the .apk MIME type.
+   	 if(mimetype.equals(MIME_APK)){
+   		 String path = file.getPath();
+   		 PackageInfo pInfo = pm.getPackageArchiveInfo(path, PackageManager.GET_ACTIVITIES);
+   		 ApplicationInfo aInfo = pInfo.applicationInfo;
+   		 
+   		 // Bug in SDK versions >= 8. See here: http://code.google.com/p/android/issues/detail?id=9151
+   		 if(Build.VERSION.SDK_INT >= 8){
+   			 aInfo.sourceDir = path;
+   			 aInfo.publicSourceDir = path;
+   		 }
+   		 
+   		 return aInfo.loadIcon(pm);
+   	 }
    	 
    	 Uri data = FileUtils.getUri(file);
    	

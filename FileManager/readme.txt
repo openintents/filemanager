@@ -34,6 +34,7 @@ date: ?
 - Option to sort files (Google Code-In task by Matěj Konečný)
 - Keep list position after delete (Google Code-in task by Chickenbellyfinn)
 - Show correct toast when deleting file (issue 365, Google Code-in task by Chickenbellyfinn)
+- Apk icon support (Google Code-in task by philip9)
 
 ---------------------------------------------------------
 release: 1.1.6

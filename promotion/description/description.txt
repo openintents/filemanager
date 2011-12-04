@@ -28,6 +28,14 @@ Features:
 * Support for many file endings and mime types.
 * Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
 
+Available extensions for "OI File Manager":
+
+* Show the license information with "OI About".
+
+Applications that work with "OI File Manager":
+
+* Open and save text files in "OI Notepad".
+
 Keywords:
 # Keywords: List several related key words and variations in your language and in English that people might search for.
 * file manager, filemanager, file explorer
@@ -37,5 +45,5 @@ Keywords:
 International versions:
 #$ international
 
-Extensions:
+Search strings for Market:
 #$ include description_extensions.txt

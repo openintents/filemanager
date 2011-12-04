@@ -21,11 +21,13 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Florentina Mușat https://launchpad.net/~kuchiki14
   Peli https://launchpad.net/~peli0101
+  Robert https://launchpad.net/~usamird
   iulargsb https://launchpad.net/~iulargsb</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Manage files on the SD card.</string>  
+    <string name="about_comments">Gestionează fișierele de pe cardul SD.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -44,16 +46,16 @@
     <string name="menu_open">Deschide</string>
     <string name="menu_move">Mută</string>
     <string name="menu_copy">Copiază</string>
-    <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_filter">Filter</string>
-    <string name="menu_include_in_media_scan">Include in media scan</string>
-    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="menu_details">Detalii</string>
+    <string name="menu_more">Mai mult</string>
+    <string name="menu_filter">Filtru</string>
+    <string name="menu_include_in_media_scan">Include în scanare media</string>
+    <string name="menu_exclude_from_media_scan">Exclude din scanare media</string>
     
     <string name="create_new_folder">Crează un dosar nou</string>
     <string name="folder_name">Numele dosarului</string>
     <string name="file_name">Numele dosarului</string>
-    <string name="extension">Extension (with \'.\')</string>
+    <string name="extension">Extensie (cu \'.\')</string>
     <string name="this_folder_is_empty">Dosarul este gol.</string>
     <string name="really_delete">Doriți sa ștergeți %s?</string>
     <string name="file_deleted">Fișier sters.</string>
@@ -67,39 +69,39 @@
     <string name="move_button">Mută aici</string>
     <string name="copy_title">Selectați dosarul destinație</string>
     <string name="copy_button">Copiază aici</string>
-	<string name="deleting_files">Deleting files...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+	<string name="deleting_files">Se șterg fișierele...</string>
+    <string name="title_warning_some_may_not_work">Avertizare</string>
+    <string name="warning_some_may_not_work">Una din următoarele opțiuni s-ar putea să nu funcționeze.</string>
+    <string name="show_warning_again">Arată avertizarea din nou</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Sigur doriți ștergerea a %d fișiere?</string>
     <string name="move_button_multiselect">Mută</string>
     <string name="copy_button_multiselect">Copiază</string>
     <string name="delete_button_multiselect">Șterge</string>
-    <string name="multiselect_title">Select multiple files</string>
+    <string name="multiselect_title">Selectează fișiere multiple</string>
     <string name="error_selection">Selectați unul sau mai multe fișiere.</string>
     
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
-    <string name="details_no">No</string>
+    <string name="details_type">Tip</string>
+    <string name="details_type_folder">Document</string>
+    <string name="details_type_file">Fișier</string>
+    <string name="details_type_other">Alte</string>
+    <string name="details_size">Dimensiune</string>
+    <string name="details_permissions">Permisii</string>
+    <string name="details_hidden">Ascuns</string>
+    <string name="details_lastmodified">Ultimul Modificat</string>
+    <string name="details_yes">Da</string>
+    <string name="details_no">Nu</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copie a %s</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
-    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    <string name="copied_file_name_2">Copiază %1$d din %2$s</string>
     
-    <string name="media_scan_included">This folder will be included in the next media scan.</string>
-    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    <string name="media_scan_included">Acest dosar va fi inclus în următoarea scanare media.</string>
+    <string name="media_scan_excluded">Acest dosar va fi exclus în timpul următoarei scanări media.</string>
     
     <string name="error_creating_new_folder">Nu am putut crea un dosar nou.</string>
     <string name="error_deleting_file">Nu am putut șterge fișierul.</string>
@@ -110,9 +112,9 @@
     <string name="error_moving_folder">Nu am putut muta dosarul.</string>
     <string name="error_copying_file">Nu am putut copia fișierul.</string>
     <string name="error_file_does_not_exists">Fișierul nu există.</string>
-    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
+    <string name="error_deleting_child_file">Nu s-a putut șterge fișierul inferior „%s”.</string>
     <string name="error_generic">A apărut o eroare:</string>
-    <string name="error_media_scan">Could not change media scan settings.</string>
+    <string name="error_media_scan">Nu s-au putut schimba configurările scanării media.</string>
     
     <string name="send_not_available">Nu există aplicație pentru trimitere.</string>
     
@@ -126,23 +128,34 @@
 	
     <!-- Category for preferences. -->
     <string name="preference_advanced_features">Funcțiuni avansate</string>
-	<string name="preference_mediascan_title">Exclude from media scan</string>
-    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
-    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+	<string name="preference_mediascan_title">Exclude din scanare media</string>
+    <string name="preference_mediascan_summary_on">Afișează elementul meniu pentru a exclude dosare din scanarea media.</string>
+    <string name="preference_mediascan_summary_off">Ascunde elementul meniu pentru a exclude dosare din scanarea media.</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_title">Arată toate avertizările</string>
+    <string name="preference_showallwarning_summary_on">Arată toate mesajele avertizărilor</string>
+    <string name="preference_showallwarning_summary_off">Suprimă mesajele avertizărilor</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">Arată toate fișierele ascuns</string>
+    <string name="preference_displayhiddenfiles_summary_on">Arată toate fișierele ascuns</string>
+    <string name="preference_displayhiddenfiles_summary_off">Ascunde fișierele ascunse</string>
+    
+    <string name="preference_sort_settings">Sort settings</string>
+    <string name="preference_sortby">Sort by</string>
+    <string name="preference_sortby_ascending">In ascending order</string>
+    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
+    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string-array name="preference_sortby_names">
+        <item>Name</item>
+        <item>Dimensiune</item>
+        <item>Last modified</item>
+    </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">Nu ați ales nici un fișier.</string>
+    <string name="saveas_error">A apărut o eroare.</string>
+    <string name="saveas_file_saved">Fișierul a fost salvat cu succes!</string>
 </resources>

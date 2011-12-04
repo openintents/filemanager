@@ -21,6 +21,7 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Andrzej Ziółek https://launchpad.net/~andro-v-zik
   Damian Skrodzki https://launchpad.net/~damienix
   Schlussarz https://launchpad.net/~schlussarz
   usul https://launchpad.net/~usultis</string>
@@ -32,9 +33,9 @@
 	     Applicatio-specific strings
 	     *************************** -->
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
-    <string name="app_name">OI File Manager</string>
+    <string name="app_name">OI Menedżer plików</string>
     
-    <string name="menu_new_folder">Nowy katalog</string>
+    <string name="menu_new_folder">Nowy folder</string>
     
     <!-- Multi select option menu -->
     <string name="menu_multi_select">Wielokrotne zaznaczanie</string>
@@ -45,16 +46,16 @@
     <string name="menu_open">Otwórz</string>
     <string name="menu_move">Przenieś</string>
     <string name="menu_copy">Kopiuj</string>
-    <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_filter">Filter</string>
+    <string name="menu_details">Szczegóły</string>
+    <string name="menu_more">Więcej</string>
+    <string name="menu_filter">Filtr</string>
     <string name="menu_include_in_media_scan">Załącz do skanowanych mediów</string>
     <string name="menu_exclude_from_media_scan">Ignoruj podczas skanowania mediów</string>
     
     <string name="create_new_folder">Utwórz nowy katalog</string>
     <string name="folder_name">Nazwa katalogu</string>
     <string name="file_name">Nazwa katalogu</string>
-    <string name="extension">Extension (with \'.\')</string>
+    <string name="extension">Rozszerzenie (z ".")</string>
     <string name="this_folder_is_empty">Ten katalog jest pusty.</string>
     <string name="really_delete">Na na pewno chcesz usunąć %s?</string>
     <string name="file_deleted">Plik usunięty</string>
@@ -69,9 +70,9 @@
     <string name="copy_title">Wybierz katalog docelowy</string>
     <string name="copy_button">Skopiuj tutaj</string>
 	<string name="deleting_files">Usuwanie plików...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+    <string name="title_warning_some_may_not_work">Ostrzeżenie</string>
+    <string name="warning_some_may_not_work">Niektóre z poniższych opcji mogą nie działać</string>
+    <string name="show_warning_again">Pokaż ostrzeżenie ponownie</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Czy na pewno chcesz usunąć %d plików?</string>
@@ -82,16 +83,16 @@
     <string name="error_selection">Proszę wybrać plik(i).</string>
     
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
+    <string name="details_type">Typ</string>
     <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
-    <string name="details_no">No</string>
+    <string name="details_type_file">Plik</string>
+    <string name="details_type_other">Inne</string>
+    <string name="details_size">Rozmiar</string>
+    <string name="details_permissions">Uprawnienia</string>
+    <string name="details_hidden">Ukryty</string>
+    <string name="details_lastmodified">Ostatnio modyfikowane</string>
+    <string name="details_yes">Tak</string>
+    <string name="details_no">Nie</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Kopia %s</string>
@@ -131,19 +132,30 @@
     <string name="preference_mediascan_summary_on">Pokaż w menu przycisk do wyłączania folderów ze skanowanych mediów.</string>
     <string name="preference_mediascan_summary_off">Ukryj w menu przycisk do wyłączania folderów ze skanowanych mediów.</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_title">Pokaż wszystkie ostrzeżenia</string>
+    <string name="preference_showallwarning_summary_on">Wyświetlaj wszystkie ostrzeżenia</string>
+    <string name="preference_showallwarning_summary_off">Zawieś wyświetlanie ostrzeżeń</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">Pokaż ukryte pliki</string>
+    <string name="preference_displayhiddenfiles_summary_on">Pokaż ukryte pliki</string>
+    <string name="preference_displayhiddenfiles_summary_off">Ukryj ukryte pliki</string>
+    
+    <string name="preference_sort_settings">Sort settings</string>
+    <string name="preference_sortby">Sort by</string>
+    <string name="preference_sortby_ascending">In ascending order</string>
+    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
+    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string-array name="preference_sortby_names">
+        <item>Name</item>
+        <item>Rozmiar</item>
+        <item>Last modified</item>
+    </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">Nie zaznaczono żadnych plików</string>
+    <string name="saveas_error">Wystąpił błąd.</string>
+    <string name="saveas_file_saved">Plik zapisany pomyślnie!</string>
 </resources>

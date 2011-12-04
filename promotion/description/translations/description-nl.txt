@@ -2,7 +2,7 @@
 OI Bestandsbeheer
 
 # Promo text:
-Manage files on the SD card.
+Bestanden op SD kaart beheren.
 
 # Description:
 OI File Manager biedt de mogelijkheid om de inhoud van de SD kaart te doorzoeken, directory's aan te maken, en bestanden te hernoemen, kopiëren, verplaatsen en te verwijderen. Wordt als extensie gebuikt door andere programma's, om de dialoogboxen "open" en "save" te tonen, 
@@ -32,11 +32,11 @@ Sleutelwoorden:
 * OI, IO, OpenIntents, Open Intents
 
 Internationale versies 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Gestore File, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
 Extensies: 
 * uses OI About
-
+* extension for OI Notepad
 
 

@@ -23,6 +23,7 @@
 	<string name="about_translators">Launchpad Contributions:
   Henk van der Velden https://launchpad.net/~henkvandervelden86
   Menno Vogel https://launchpad.net/~mennovogel90
+  OpenIntents devs https://launchpad.net/~openintents-devs
   Peli https://launchpad.net/~peli0101
   Simon de Vlieger https://launchpad.net/~ikanobori
   Willem-Martijn Brink https://launchpad.net/~willem-brink
@@ -141,6 +142,17 @@
     <string name="preference_displayhiddenfiles_title">Display hidden files</string>
     <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
     <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    
+    <string name="preference_sort_settings">Sort settings</string>
+    <string name="preference_sortby">Sort by</string>
+    <string name="preference_sortby_ascending">In ascending order</string>
+    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
+    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string-array name="preference_sortby_names">
+        <item>Name</item>
+        <item>Size</item>
+        <item>Last modified</item>
+    </string-array>
 
         
     <!-- ***************************

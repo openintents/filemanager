@@ -21,6 +21,7 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  OpenIntents devs https://launchpad.net/~openintents-devs
   Patrick Nielsen https://launchpad.net/~trivkz</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
@@ -136,6 +137,17 @@
     <string name="preference_displayhiddenfiles_title">Display hidden files</string>
     <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
     <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    
+    <string name="preference_sort_settings">Sort settings</string>
+    <string name="preference_sortby">Sort by</string>
+    <string name="preference_sortby_ascending">In ascending order</string>
+    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
+    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string-array name="preference_sortby_names">
+        <item>Name</item>
+        <item>Size</item>
+        <item>Last modified</item>
+    </string-array>
 
         
     <!-- ***************************

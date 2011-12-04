@@ -21,6 +21,7 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  OpenIntents devs https://launchpad.net/~openintents-devs
   Sahran https://launchpad.net/~sahran</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
@@ -43,16 +44,16 @@
     <string name="menu_open">ئاچ</string>
     <string name="menu_move">يۆتكە</string>
     <string name="menu_copy">كۆچۈر</string>
-    <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_filter">Filter</string>
+    <string name="menu_details">تەپسىلاتلار</string>
+    <string name="menu_more">تېخىمۇ كۆپ</string>
+    <string name="menu_filter">سۈزگۈچ</string>
     <string name="menu_include_in_media_scan">ۋاسىتە تەكشۈرۈش ئىچىدە</string>
     <string name="menu_exclude_from_media_scan">ۋاسىتە تەكشۈرۈش سىرتىدا</string>
     
     <string name="create_new_folder">يېڭى قىسقۇچ قۇر</string>
     <string name="folder_name">قىسقۇچ ئاتى</string>
     <string name="file_name">قىسقۇچ ئاتى</string>
-    <string name="extension">Extension (with \'.\')</string>
+    <string name="extension">كېڭەيتىلمە (\'.\' بىلەن)</string>
     <string name="this_folder_is_empty">بۇ قىسقۇچ بوش.</string>
     <string name="really_delete">%s نى راستىنلا ئۆچۈرەمسىز؟</string>
     <string name="file_deleted">ھۆججەت ئۆچۈرۈلدى.</string>
@@ -67,9 +68,9 @@
     <string name="copy_title">كۆچۈرىدىغان قىسقۇچنى تاللاڭ</string>
     <string name="copy_button">بۇ جايغا كۆچۈر</string>
 	<string name="deleting_files">ھۆججەت ئۆچۈرۈۋاتىدۇ...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+    <string name="title_warning_some_may_not_work">ئاگاھلاندۇرۇش</string>
+    <string name="warning_some_may_not_work">تۆۋەندىكى بەزى تاللانمىلار ئىشلىمەيۋاتقان بولۇشى مۇمكىن.</string>
+    <string name="show_warning_again">ئاگاھلاندۇرۇشنى قايتا كۆرسەت</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">راستىنلا %d ھۆججەتنى ئۆچۈرەمسىز؟</string>
@@ -80,16 +81,16 @@
     <string name="error_selection">بىر ياكى بىر قانچە ھۆججەت تاللاڭ.</string>
     
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
-    <string name="details_no">No</string>
+    <string name="details_type">تىپى</string>
+    <string name="details_type_folder">قىسقۇچ</string>
+    <string name="details_type_file">ھۆججەت</string>
+    <string name="details_type_other">باشقا</string>
+    <string name="details_size">چوڭلۇقى</string>
+    <string name="details_permissions">ھوقۇقلار</string>
+    <string name="details_hidden">يوشۇرۇن</string>
+    <string name="details_lastmodified">ئاخىرقى ئۆزگەرتىش</string>
+    <string name="details_yes">ھەئە</string>
+    <string name="details_no">ياق</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">%s كۆچۈر</string>
@@ -129,19 +130,30 @@
     <string name="preference_mediascan_summary_on">ۋاسىتە تەكشۈرۈشنىڭ سىرتىدا قالدۇرۇلغان قىسقۇچلارنىڭ تىزىملىك تۈرىنى كۆرسەت</string>
     <string name="preference_mediascan_summary_off">ۋاسىتە تەكشۈرۈشنىڭ سىرتىدا قالدۇرۇلغان قىسقۇچلارنىڭ تىزىملىك تۈرىنى يوشۇر.</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_title">ھەممە ئاگاھلاندۇرۇشنى كۆرسەت</string>
+    <string name="preference_showallwarning_summary_on">ھەممە ئاگاھلاندۇرۇش ئۇچۇرىنى كۆرسەت</string>
+    <string name="preference_showallwarning_summary_off">ئاگاھلاندۇرۇش ئۇچۇرىنى چەكلە</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">يوشۇرۇن ھۆججەتلەرنى كۆرسەت</string>
+    <string name="preference_displayhiddenfiles_summary_on">يوشۇرۇن ھۆججەتلەرنى كۆرسەت</string>
+    <string name="preference_displayhiddenfiles_summary_off">يوشۇرۇن ھۆججەتلەرنى يوشۇر</string>
+    
+    <string name="preference_sort_settings">Sort settings</string>
+    <string name="preference_sortby">Sort by</string>
+    <string name="preference_sortby_ascending">In ascending order</string>
+    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
+    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string-array name="preference_sortby_names">
+        <item>Name</item>
+        <item>چوڭلۇقى</item>
+        <item>Last modified</item>
+    </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">ھېچقانداق ھۆججەتنى تاللىمىدىڭىز.</string>
+    <string name="saveas_error">خاتالىق كۆرۈلدى.</string>
+    <string name="saveas_file_saved">ھۆججەت مۇۋەپپەقىيەتلىك ساقلاندى!</string>
 </resources>

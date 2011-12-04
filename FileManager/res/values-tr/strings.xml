@@ -24,7 +24,9 @@
 
 Launchpad Contributions:
   Huseyin AKSU https://launchpad.net/~huseyinaksu95
+  OpenIntents devs https://launchpad.net/~openintents-devs
   Peli https://launchpad.net/~peli0101
+  ariza95 https://launchpad.net/~alirizanazli95
   zeugma https://launchpad.net/~sunder67</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
@@ -47,16 +49,16 @@ Launchpad Contributions:
     <string name="menu_open">Aç</string>
     <string name="menu_move">Taşı</string>
     <string name="menu_copy">Kopyala</string>
-    <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_filter">Filter</string>
+    <string name="menu_details">Detaylar.</string>
+    <string name="menu_more">Daha Fazla</string>
+    <string name="menu_filter">Filtre</string>
     <string name="menu_include_in_media_scan">Medya tarama dahil</string>
     <string name="menu_exclude_from_media_scan">Medya tarama hariç</string>
     
     <string name="create_new_folder">Yeni klasör oluştur</string>
     <string name="folder_name">Klasör adı</string>
     <string name="file_name">Klasör adı</string>
-    <string name="extension">Extension (with \'.\')</string>
+    <string name="extension">Uzantı(\'.\' ile)</string>
     <string name="this_folder_is_empty">Bu klasör boş.</string>
     <string name="really_delete">%s  gerçekten silmek istiyor musunuz?</string>
     <string name="file_deleted">Dosya silindi.</string>
@@ -71,9 +73,9 @@ Launchpad Contributions:
     <string name="copy_title">Kopyalanacak klasörü seçin</string>
     <string name="copy_button">Buraya kopyala</string>
 	<string name="deleting_files">Dosyalar siliniyor...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+    <string name="title_warning_some_may_not_work">Uyarı</string>
+    <string name="warning_some_may_not_work">Aşağıdaki seçeneklerden bazıları çalışmoypr olabilir.</string>
+    <string name="show_warning_again">Uyarıyı tekrar göster.</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">%d dosyayı gerçekten silmek istediğinize emin misiniz?</string>
@@ -84,16 +86,16 @@ Launchpad Contributions:
     <string name="error_selection">Lütfen bir veya daha çok dosya seçin.</string>
     
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
-    <string name="details_no">No</string>
+    <string name="details_type">Tür</string>
+    <string name="details_type_folder">Klasör</string>
+    <string name="details_type_file">Dosya</string>
+    <string name="details_type_other">Diğer</string>
+    <string name="details_size">Boyut</string>
+    <string name="details_permissions">İzinler</string>
+    <string name="details_hidden">Gizli</string>
+    <string name="details_lastmodified">Son değişiklikler</string>
+    <string name="details_yes">Evet</string>
+    <string name="details_no">Hayır</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">%s kopyası</string>
@@ -133,19 +135,30 @@ Launchpad Contributions:
     <string name="preference_mediascan_summary_on">Klasörleri medya taramasına eklememek için menü öğesini göster.</string>
     <string name="preference_mediascan_summary_off">Klasörleri medya taramasına eklememek için menü öğesini gizle.</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_title">Tüm uyarıları göster</string>
+    <string name="preference_showallwarning_summary_on">Tüm uyarı mesajlarını göster</string>
+    <string name="preference_showallwarning_summary_off">Uyarı mesajını sil.</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">Gizli dosyaları göster</string>
+    <string name="preference_displayhiddenfiles_summary_on">Gizli dosyaları göster</string>
+    <string name="preference_displayhiddenfiles_summary_off">Gizli dosyaları gizle</string>
+    
+    <string name="preference_sort_settings">Sort settings</string>
+    <string name="preference_sortby">Sort by</string>
+    <string name="preference_sortby_ascending">In ascending order</string>
+    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
+    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string-array name="preference_sortby_names">
+        <item>Name</item>
+        <item>Boyut</item>
+        <item>Last modified</item>
+    </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">Hiç bir dosya seçilmedi.</string>
+    <string name="saveas_error">Hata oluştu.</string>
+    <string name="saveas_file_saved">Dosya başarılı bir şekilde kaydedildi.</string>
 </resources>

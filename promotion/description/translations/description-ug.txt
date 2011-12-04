@@ -1,13 +1,13 @@
 # Application:
-OI File Manager
+OI ھۆججەت باشقۇرغۇچ
 
 # Promo text:
-Administrer filer på SD kort.
+SD كارتىدىكى ھۆججەتلەرنى باشقۇرىدۇ.
 
 # Description:
-OI Filhåndtering lader dig gennemse dit SD-kort, oprette mapper, omdøbe, kopiere, flytte og slette filer. Den fungerer også som en udvidelse til andre programmer til at vise "Åbn"- og "Gem"-dialoger. 
+OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
 
-Dette program er reklamefrit og kræver ikke internetadgang. 
+This application is ad free and does not require the internet permission. 
 
 For the complete list of changes and a list of frequently asked questions, please visit: 
 http://www.openintents.org

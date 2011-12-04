@@ -2,6 +2,41 @@
 OI File Manager
 
 # Promo text:
-Manage files on the SD card.
+Управление файлами на SD карте.
 
 # Description:
+OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+
+Это приложение является бесплатным и не требует постоянного подключения к Интернет. 
+
+С полным списком изменений и списком часто задаваемых вопросов можно ознакомиться на: 
+http://www.openintents.org
+
+Вы можете помочь улучшить перевод прилоежния на ваш язык, посетите Launchpad: 
+https://translations.launchpad.net/openintents/trunk
+
+Исходный код этой программы является свободным и открытым. Доступен по адресу: 
+http://code.google.com/p/openintents
+
+Возможности: 
+* Показать список файлов с эскизами изображений.
+* Переместить, копировать, переименовывать и удалять файлы.
+* ￼  Создание и удаление директорий (папок).
+* Отправить файлы по электронной почте.
+* Acts as an extension to other applications, like GMail, to attach files.
+* Support for many file endings and mime types.
+* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+
+Ключевые слова: 
+* файловый менеджер, файловый менеджер, файловый менеджер
+* Copy text 	 OI, IO, OpenIntents, Open Intents
+
+Переведенные версии: 
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+
+
+Расширения: 
+* uses OI About
+* extension for OI Notepad
+
+

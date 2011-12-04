@@ -18,7 +18,7 @@ https://translations.launchpad.net/openintents/trunk
 The source code of this free and open source application is available at: 
 http://code.google.com/p/openintents
 
-Features: 
+Caracteristici: 
 * Show list of files with thumbnails for images.
 * Mută, copiază, redenumește și șterge fișiere.
 * Crează și șterge dosare.
@@ -31,12 +31,12 @@ Cuvinte cheie:
 * file manager, filemanager, file explorer
 * OI, IO, OpenIntents, Open Intents
 
-International versions: 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Gestore File, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+Versiuni internaționale: 
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
 Extensii: 
 * uses OI About
-
+* extension for OI Notepad
 
 

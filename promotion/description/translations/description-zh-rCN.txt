@@ -2,6 +2,41 @@
 OI文件管理器
 
 # Promo text:
-Manage files on the SD card.
+管理SD卡上的文件。
 
 # Description:
+文件管理器允许你浏览SD卡，创建目录，重命名，复制，移动和删除文件。 作为一个扩展到其他应用程序，显示“打开”和“保存”对话框。 
+
+应用程序的广告是免费的，不需要网络权限。 
+
+完整列表的更改，请访问： 
+http://www.openintents.org
+
+可以翻译成您的语言： 
+https://translations.launchpad.net/openintents/trunk
+
+开放源码应用程序的源代码是： 
+http://code.google.com/p/openintents
+
+功能 
+* 显示的图像的缩略图文件列表。
+* 移动，复制，重命名，和删除文件
+* 创建和删除目录（文件夹）
+* 通过电子邮件发送文件
+* 也可用其他应用程序，如Gmail，附加档案。
+* 支持的许多文件结尾和MIME类型。
+* 支持PICK_FILE 和PICK_DIRECTORY，这样其他应用程序可使用OI文件管理器。
+
+关键字： 
+* 文件管理器，文件管理器，文件浏览器
+* OI, IO, OpenIntents, Open Intents
+
+国际版本： 
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+
+
+扩展: 
+* uses OI About
+* extension for OI Notepad
+
+

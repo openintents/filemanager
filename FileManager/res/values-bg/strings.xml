@@ -20,127 +20,142 @@
 	     *************************** -->
 	
 	<!-- Automatically filled in by Launchpad: -->
-	<string name="about_translators">translator-credits</string>
+	<string name="about_translators">Launchpad Contributions:
+  Stefani Soyanova https://launchpad.net/~stefi-stoyanova95
+  Tsvetelina https://launchpad.net/~ts-borisova
+  Valentin Kirilov https://launchpad.net/~val-kirilov
+  kosyo https://launchpad.net/~kosyokk</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Manage files on the SD card.</string>  
+    <string name="about_comments">Управление на файловете на SD карта</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
-    <string name="app_name">OI File Manager</string>
+    <string name="app_name">OI Файлов Мениджър</string>
     
-    <string name="menu_new_folder">New Folder</string>
+    <string name="menu_new_folder">Нова директория</string>
     
     <!-- Multi select option menu -->
-    <string name="menu_multi_select">Multi Select</string>
+    <string name="menu_multi_select">Избиране на много</string>
 
-    <string name="menu_delete">Delete</string>
-    <string name="menu_rename">Rename</string>
-    <string name="menu_send">Send</string>
-    <string name="menu_open">Open</string>
-    <string name="menu_move">Move</string>
-    <string name="menu_copy">Copy</string>
-    <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_filter">Filter</string>
-    <string name="menu_include_in_media_scan">Include in media scan</string>
-    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="menu_delete">Изтрий</string>
+    <string name="menu_rename">Преименувай</string>
+    <string name="menu_send">Изпрати</string>
+    <string name="menu_open">Отвори</string>
+    <string name="menu_move">Премести</string>
+    <string name="menu_copy">Копирай</string>
+    <string name="menu_details">Подробности</string>
+    <string name="menu_more">Повече</string>
+    <string name="menu_filter">Филтриране</string>
+    <string name="menu_include_in_media_scan">Включване в сканирането на медийни приложения</string>
+    <string name="menu_exclude_from_media_scan">Изключване от сканирането на медийни приложения</string>
     
-    <string name="create_new_folder">Create new folder</string>
-    <string name="folder_name">Folder name</string>
-    <string name="file_name">Folder name</string>
-    <string name="extension">Extension (with \'.\')</string>
-    <string name="this_folder_is_empty">This folder is empty.</string>
-    <string name="really_delete">Do you really want to delete %s?</string>
-    <string name="file_deleted">File deleted.</string>
-    <string name="folder_deleted">Folder deleted.</string>
-    <string name="file_renamed">File renamed.</string>
-    <string name="folder_renamed">Folder renamed.</string>
-    <string name="file_moved">File moved.</string>
-    <string name="folder_moved">Folder moved.</string>
-    <string name="file_copied">File copied.</string>
-    <string name="move_title">Select folder to move to</string>
-    <string name="move_button">Move here</string>
-    <string name="copy_title">Select folder to copy to</string>
-    <string name="copy_button">Copy here</string>
-	<string name="deleting_files">Deleting files...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+    <string name="create_new_folder">Създаване на нова папка</string>
+    <string name="folder_name">Име на папка</string>
+    <string name="file_name">Име на папка</string>
+    <string name="extension">Разширение (с \'.\')</string>
+    <string name="this_folder_is_empty">Директорията е празна.</string>
+    <string name="really_delete">Наистина ли искате да изтриете %s?</string>
+    <string name="file_deleted">Файлът е изтрит=</string>
+    <string name="folder_deleted">Директорията е изтрита.</string>
+    <string name="file_renamed">Файлът е преименуван.</string>
+    <string name="folder_renamed">Директорията е преименувана.</string>
+    <string name="file_moved">Файлът е преместен.</string>
+    <string name="folder_moved">Директорията е преместена.</string>
+    <string name="file_copied">Файлът е копиран.</string>
+    <string name="move_title">Избери директория за преместване в</string>
+    <string name="move_button">Премести тук</string>
+    <string name="copy_title">Избери директория за копиране в</string>
+    <string name="copy_button">Копиране тук</string>
+	<string name="deleting_files">Изтриване на файлове...</string>
+    <string name="title_warning_some_may_not_work">Внимание</string>
+    <string name="warning_some_may_not_work">Някои от следните опции може да не работят.</string>
+    <string name="show_warning_again">Покажи предупреждението отново</string>
     
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
-    <string name="move_button_multiselect">Move</string>
-    <string name="copy_button_multiselect">Copy</string>
-    <string name="delete_button_multiselect">Delete</string>
-    <string name="multiselect_title">Select multiple files</string>
-    <string name="error_selection">Please select one or more file(s).</string>
+	<string name="really_delete_multiselect">Наистина ли искате да изтриете %d файла?</string>
+    <string name="move_button_multiselect">Премести</string>
+    <string name="copy_button_multiselect">Копирай</string>
+    <string name="delete_button_multiselect">Изтрий</string>
+    <string name="multiselect_title">Изберете много файлове.</string>
+    <string name="error_selection">Моля, изберете един или повече файла.</string>
     
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
-    <string name="details_no">No</string>
+    <string name="details_type">Вид</string>
+    <string name="details_type_folder">Директория</string>
+    <string name="details_type_file">Файл</string>
+    <string name="details_type_other">Други</string>
+    <string name="details_size">Размер</string>
+    <string name="details_permissions">Права</string>
+    <string name="details_hidden">Скрит</string>
+    <string name="details_lastmodified">Последно променен</string>
+    <string name="details_yes">Да</string>
+    <string name="details_no">Не</string>
     
     <!-- Construct a unique file name of a file called %s. -->
-    <string name="copied_file_name">Copy of %s</string>
+    <string name="copied_file_name">Копие на %s</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
-    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    <string name="copied_file_name_2">Копие %1$d от %2$s</string>
     
-    <string name="media_scan_included">This folder will be included in the next media scan.</string>
-    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    <string name="media_scan_included">Тази директория ще бъде включена в следващото сканиране на паметта.</string>
+    <string name="media_scan_excluded">Тази директория ще бъде изключена при следващото сканиране на паметта.</string>
     
-    <string name="error_creating_new_folder">Could not create new folder.</string>
-    <string name="error_deleting_file">Could not delete file.</string>
-    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
-    <string name="error_renaming_file">Could not rename file.</string>
-    <string name="error_renaming_folder">Could not rename folder.</string>
-    <string name="error_moving_file">Could not move file.</string>
-    <string name="error_moving_folder">Could not move folder.</string>
-    <string name="error_copying_file">Could not copy file.</string>
-    <string name="error_file_does_not_exists">File does not exist.</string>
-    <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
-    <string name="error_generic">An error occurred: </string>
-    <string name="error_media_scan">Could not change media scan settings.</string>
+    <string name="error_creating_new_folder">Не може да бъде създадена нова папка.</string>
+    <string name="error_deleting_file">Файлът не може да бъде изтрит.</string>
+    <string name="error_deleting_folder">Не може да изтриете директорията \'%s\'.</string>
+    <string name="error_renaming_file">Файлът не може да бъде преименуван.</string>
+    <string name="error_renaming_folder">Директорията не може да бъде преименувана.</string>
+    <string name="error_moving_file">Файлът не може да бъде преместен.</string>
+    <string name="error_moving_folder">Директорията не може да бъде преместена.</string>
+    <string name="error_copying_file">Файлът не може да бъде копиран.</string>
+    <string name="error_file_does_not_exists">Файлът не съществува.</string>
+    <string name="error_deleting_child_file">Дъщерния файл \'%s\' не може да бъде изтрит.</string>
+    <string name="error_generic">Появи се грешка:</string>
+    <string name="error_media_scan">Не може да промените настройките за сканиране на паметта.</string>
     
-    <string name="send_not_available">No application available for sending.</string>
+    <string name="send_not_available">Не е открито приложение за изпращане.</string>
     
-    <string name="application_not_available">Application not available</string>
+    <string name="application_not_available">Приложението не е налично.</string>
     
 	<!-- ***************************
 	     Preferences
 	     *************************** -->
     <!-- Menu item for Settings -->
-	<string name="settings">Settings</string>
+	<string name="settings">Настройки</string>
 	
     <!-- Category for preferences. -->
-    <string name="preference_advanced_features">Advanced features</string>
-	<string name="preference_mediascan_title">Exclude from media scan</string>
-    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
-    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    <string name="preference_advanced_features">Функции за напреднали</string>
+	<string name="preference_mediascan_title">Изключване от сканирането на медийни приложения</string>
+    <string name="preference_mediascan_summary_on">Покажи елементите на менюто за да изключиш директориите от сканирането на паметта.</string>
+    <string name="preference_mediascan_summary_off">Скрий менюто за да изключиш директориите от сканирането на паметта.</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_title">Покажи всички предупреждения.</string>
+    <string name="preference_showallwarning_summary_on">Покажи всички съобщения с предупреждения.</string>
+    <string name="preference_showallwarning_summary_off">Не показвай съобщенията за предупреждение.</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">Показване на скритите файлове</string>
+    <string name="preference_displayhiddenfiles_summary_on">Показване на скритите файлове</string>
+    <string name="preference_displayhiddenfiles_summary_off">Скрии скритите файлове</string>
+    
+    <string name="preference_sort_settings">Sort settings</string>
+    <string name="preference_sortby">Sort by</string>
+    <string name="preference_sortby_ascending">In ascending order</string>
+    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
+    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string-array name="preference_sortby_names">
+        <item>Name</item>
+        <item>Размер</item>
+        <item>Last modified</item>
+    </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">Не сте избрали файл.</string>
+    <string name="saveas_error">Появи се грешка.</string>
+    <string name="saveas_file_saved">Файлът е запазен успешно.</string>
 </resources>

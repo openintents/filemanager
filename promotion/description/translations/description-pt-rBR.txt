@@ -2,6 +2,6 @@
 OI File Manager
 
 # Promo text:
-Manage files on the SD card.
+Administrar arquivos no cartão SD.
 
 # Description:

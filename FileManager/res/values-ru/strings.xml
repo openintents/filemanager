@@ -47,16 +47,16 @@
     <string name="menu_open">Открыть</string>
     <string name="menu_move">Переместить</string>
     <string name="menu_copy">Копировать</string>
-    <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_filter">Filter</string>
-    <string name="menu_include_in_media_scan">Include in media scan</string>
-    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="menu_details">Подробная информация</string>
+    <string name="menu_more">Подробнее</string>
+    <string name="menu_filter">Фильтр</string>
+    <string name="menu_include_in_media_scan">Включить в сканирование</string>
+    <string name="menu_exclude_from_media_scan">Исключить из сканирования</string>
     
     <string name="create_new_folder">Создать новую папку</string>
     <string name="folder_name">Имя папки</string>
     <string name="file_name">Имя папки</string>
-    <string name="extension">Extension (with \'.\')</string>
+    <string name="extension">Расширение файла (с \'.\')</string>
     <string name="this_folder_is_empty">Эта папка пуста.</string>
     <string name="really_delete">Вы точно хотите удалить %s?</string>
     <string name="file_deleted">Файл удалён.</string>
@@ -71,9 +71,9 @@
     <string name="copy_title">Выберите папку куда скопировать</string>
     <string name="copy_button">Скопировать сюда</string>
 	<string name="deleting_files">Удаление файлов...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+    <string name="title_warning_some_may_not_work">Внимание</string>
+    <string name="warning_some_may_not_work">Некоторые из следующих настроек могут не работать.</string>
+    <string name="show_warning_again">Показать предупреждение снова</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Вы действительно желаете удалить %d файлы?</string>
@@ -84,16 +84,16 @@
     <string name="error_selection">Пожалуйства выберите один или больше файлов.</string>
     
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
-    <string name="details_no">No</string>
+    <string name="details_type">Тип</string>
+    <string name="details_type_folder">Папка</string>
+    <string name="details_type_file">Файл</string>
+    <string name="details_type_other">Другое</string>
+    <string name="details_size">Размер</string>
+    <string name="details_permissions">Права доступа</string>
+    <string name="details_hidden">Скрыта</string>
+    <string name="details_lastmodified">Последнее изменение</string>
+    <string name="details_yes">Да</string>
+    <string name="details_no">Нет</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Копия %s</string>
@@ -101,8 +101,8 @@
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">Скопировать %1$d как %2$s</string>
     
-    <string name="media_scan_included">This folder will be included in the next media scan.</string>
-    <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
+    <string name="media_scan_included">Эта папка будет просканирована при следующем скинровании</string>
+    <string name="media_scan_excluded">Эта папка будет исключена из следующего сканирования.</string>
     
     <string name="error_creating_new_folder">Невозможно создать новую папку.</string>
     <string name="error_deleting_file">Невозможно удалить файл.</string>
@@ -115,7 +115,7 @@
     <string name="error_file_does_not_exists">Файл не существует.</string>
     <string name="error_deleting_child_file">Невозможно удалить вложенный файл \'%s\'.</string>
     <string name="error_generic">Произошла ошибка:</string>
-    <string name="error_media_scan">Could not change media scan settings.</string>
+    <string name="error_media_scan">Невозможно изменить настройки сканирования.</string>
     
     <string name="send_not_available">Нет приложения для отправки.</string>
     
@@ -128,24 +128,35 @@
 	<string name="settings">Параметры</string>
 	
     <!-- Category for preferences. -->
-    <string name="preference_advanced_features">Advanced features</string>
-	<string name="preference_mediascan_title">Exclude from media scan</string>
-    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
-    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    <string name="preference_advanced_features">Дополнительные функции</string>
+	<string name="preference_mediascan_title">Исключить из сканирования</string>
+    <string name="preference_mediascan_summary_on">Показать меню для исключения папок из сканирования.</string>
+    <string name="preference_mediascan_summary_off">Скрыть меню для исключения папок из сканирования.</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_title">Показать все предупреждения</string>
+    <string name="preference_showallwarning_summary_on">Показать все предупреждения</string>
+    <string name="preference_showallwarning_summary_off">Скрывать предупреждения</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">Отображать скрытые файлы</string>
+    <string name="preference_displayhiddenfiles_summary_on">Отображать скрытые файлы</string>
+    <string name="preference_displayhiddenfiles_summary_off">Скрыть скрытые файлы</string>
+    
+    <string name="preference_sort_settings">Sort settings</string>
+    <string name="preference_sortby">Sort by</string>
+    <string name="preference_sortby_ascending">In ascending order</string>
+    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
+    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string-array name="preference_sortby_names">
+        <item>Name</item>
+        <item>Размер</item>
+        <item>Last modified</item>
+    </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">Вы не выбрали файл.</string>
+    <string name="saveas_error">Произошла ошибка.</string>
+    <string name="saveas_file_saved">Файл успешно сохранён!</string>
 </resources>

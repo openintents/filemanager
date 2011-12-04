@@ -5,38 +5,38 @@ OI Dateimanager
 Verwalten Sie Dateien auf der SD Karte.
 
 # Description:
-OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. Außerdem ist es wie... 
+Der OI Dateimanager ermöglicht das Durchstöbern der SD Karte, die Erstellung von Ordnern und das Umbenennen, Kopieren, Verschieben und Löschen von Dateien. Es dient auch als Erweiterung für andere Applikationen zur Darstellung von "Öffnen" und "Speichern" Dialogen. 
 
-This application is ad free and does not require the internet permission. 
+Diese Applikation ist werbefrei und benötigt keine Internetverbindung. 
 
-For the complete list of changes and a list of frequently asked questions, please visit: 
+Für eine vollständige Liste der Änderungen und häufig gestellten Fragen besuchen sie bitte: 
 http://www.openintents.org
 
-You can help to improve the translation into your language at Launchpad: 
+Sie können uns mit der Verbesserung der Übersetzung in ihre Sprache auf Launchpad unterstützen: 
 https://translations.launchpad.net/openintents/trunk
 
-The source code of this free and open source application is available at: 
+Der Quellcode dieser kostenlosen und quelloffenen Applikation ist verfügbar auf: 
 http://code.google.com/p/openintents
 
 Eigentschaften: 
-* Show list of files with thumbnails for images.
+* Zeigt eine Liste der Dateien mit Vorschauen für Bilder.
 * Move, copy, rename, and delete files.
-* Create and delete directories (folders).
-* Send files by email.
-* Acts as an extension to other applications, like GMail, to attach files.
+* Erstellt und löscht Ordner.
+* Dateien via e-Mail versenden
+* Dient als Erweiterung für andere Applikationen, wie GMail, zum Anfügen von Dateien.
 * Support for many file endings and mime types.
-* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+* Unterstützt PICK_FILE und PICK_DIRECTORY Anfragen, sodass andere Applikationen den OI Dateimanager nutzen können.
 
-Keywords: 
-* file manager, filemanager, file explorer
+Schlüsselwörter: 
+* Dateimanager
 * OI, IO, OpenIntents, Open Intents
 
 International versions: 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Gestore File, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
-Extensions: 
+Erweiterungen: 
 * uses OI About
-
+* extension for OI Notepad
 
 

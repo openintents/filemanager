@@ -1,7 +1,7 @@
 # Application:
-OI Gestore File
+OI Fájlkezelő
 
 # Promo text:
-Gestisce file nella scheda SD.
+Manage files on the SD card.
 
 # Description:

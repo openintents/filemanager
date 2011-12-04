@@ -1,3 +1,2 @@
-# Search strings for Market (these are not translated into other languages)
 * uses OI About
 * extension for OI Notepad

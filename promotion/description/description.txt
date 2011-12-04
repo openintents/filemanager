@@ -29,11 +29,9 @@ Features:
 * Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
 
 Available extensions for "OI File Manager":
-
 * Show the license information with "OI About".
 
 Applications that work with "OI File Manager":
-
 * Open and save text files in "OI Notepad".
 
 Keywords:
@@ -46,4 +44,5 @@ International versions:
 #$ international
 
 Search strings for Market:
+# (these are not translated into other languages)
 #$ include description_extensions.txt

@@ -4,6 +4,8 @@ OI Dosya Yöneticisi
 OI File Manager
 OI Fájlkezelő
 OI Gestore File
+OI Menedżer plików
+OI Файлов Мениджър
 OI ھۆججەت باشقۇرغۇچ
 OI ແຟ້ມ ບໍລີຫານ
 OI 파일 관리자

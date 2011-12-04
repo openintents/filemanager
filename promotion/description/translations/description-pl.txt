@@ -1,7 +1,47 @@
 # Application:
-OI File Manager
+OI Menedżer plików
 
 # Promo text:
 Zarządzaj plikami na karcie pamięci.
 
 # Description:
+OI File Manager pozwala przeglądać karty SD, tworzyć katalogi, kopiować, przenosić i usuwać pliki. Działa również jako rozszerzenie do innych aplikacji do wyświetlenia okien dialogowych otwierania i zapisywania plików. 
+
+Ta aplikacja jest darmowa i nie wymaga dostępu do internetu. 
+
+Aby zobaczyć pełną listę zmian oraz FAQ, odwiedź: 
+http://www.openintents.org
+
+Możesz poprawić tłumaczenie na Twój język: 
+https://translations.launchpad.net/openintents/trunk
+
+Kod źródłowy tej darmowej i open-source-owej aplikacji jest dostępny pod adresem: 
+http://code.google.com/p/openintents
+
+Cechy: 
+* Pokaż listę plików z miniaturami obrazów.
+* Przenosić, kopiować, zmieniać nazwy i usuwać pliki.
+* Tworzenie i usuwanie katalogów (folderów).
+* Wysyłanie plików e-mailem.
+* Działa jako rozszerzenie do innych aplikacji, takich jak GMail, aby dołącząć pliki.
+* Wsparcie dla wielu rozszerzeń plików i typów MIME.
+* Obsługuje PICK_FILE i PICK_DIRECTORY, tak aby inne aplikacje mogły korzystać z OI File Manager.
+
+Available extensions for "OI File Manager": 
+* Show the license information with "OI About".
+
+Applications that work with "OI File Manager": 
+* Open and save text files in "OI Notepad".
+
+Słowa kluczowe: 
+* menedżer plików, menedżer plików, eksplorator plików
+* OI, IO, OpenIntents, Open Intents
+
+Wersje międzynarodowe: 
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+
+
+Search strings for Market: 
+* uses OI About
+* extension for OI Notepad
+

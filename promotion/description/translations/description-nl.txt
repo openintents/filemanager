@@ -27,16 +27,21 @@ Eigenschappen:
 * Ondersteunt vele bestandsformaten en mime types.
 * Ondersteunt PICK_FILE en PICK_DIRECTORY intents, waardoor andere programma's OI File Manager ook kunnen gebruiken.
 
+Available extensions for "OI File Manager": 
+* Show the license information with "OI About".
+
+Applications that work with "OI File Manager": 
+* Open and save text files in "OI Notepad".
+
 Sleutelwoorden: 
 * Copy text 	 file manager, filemanager, file explorer
 * OI, IO, OpenIntents, Open Intents
 
 Internationale versies 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
-Extensies: 
+Search strings for Market: 
 * uses OI About
 * extension for OI Notepad
-
 

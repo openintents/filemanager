@@ -28,13 +28,9 @@ Features:
 * Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
 
 Available extensions for "OI File Manager": 
-
-
 * Show the license information with "OI About".
 
 Applications that work with "OI File Manager": 
-
-
 * Open and save text files in "OI Notepad".
 
 Keywords: 
@@ -42,7 +38,7 @@ Keywords:
 * OI, IO, OpenIntents, Open Intents
 
 International versions: 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
 Search strings for Market: 

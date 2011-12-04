@@ -5,38 +5,43 @@ OI Dosya Yöneticisi
 SD karttaki dosyaları yönet
 
 # Description:
-OI Dosya Yöneticisi, yeniden adlandırma, kopyalama, taşıma, dizinler oluşturma ,SD karta göz atma ve dosyaları silmenizi sağlar. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+OI Dosya Yöneticisi, yeniden adlandırma, kopyalama, taşıma, dizinler oluşturma ,SD karta göz atma ve dosyaları silmenizi sağlar. O "Aç" ve "Kaydet" diyaloglarını göstermek için diğer uygulamalara bir ek gibi davranır. 
 
-This application is ad free and does not require the internet permission. 
+Bu uygulama ücretsiz reklamdır ve internet izni gerektirmez. 
 
-For the complete list of changes and a list of frequently asked questions, please visit: 
+Değişiklikler ve sık sorulan sorular listesini tamamlamak için lütfen şurayı ziyaret edin: 
 http://www.openintents.org
 
-You can help to improve the translation into your language at Launchpad: 
+Launchpad'te dilinize çevirileri geliştirmek için yardım edebilirsiniz: 
 https://translations.launchpad.net/openintents/trunk
 
-The source code of this free and open source application is available at: 
+Bunun kaynak kodu ücretsizdir ve açık kaynak uygulamalarına şuradan ulaşabilirsiniz: 
 http://code.google.com/p/openintents
 
 Özellikler: 
-* Show list of files with thumbnails for images.
-* Move, copy, rename, and delete files.
-* Create and delete directories (folders).
-* Send files by email.
-* Acts as an extension to other applications, like GMail, to attach files.
-* Support for many file endings and mime types.
-* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+* Listeyi resimler için küçük resim ekleyerek göster.
+* Dosyaları taşı, kopyala, yeniden adlandır ve sil.
+* Dizinleri (dosyaları) oluştur ve sil.
+* Dosyaları email ile gönder.
+* Dosya eklemek için GMail gibi diğer uygulamalara eklenti gibi davranır.
+* Bir çok dosya ve mime tipi desteği.
+* PICK_FILE ve PICK_DIRECTORY amaçlarını destekler, bu sayede diğer uygulamalar OI Dosya Yönetici'yi kullanabilir.
+
+Available extensions for "OI File Manager": 
+* Show the license information with "OI About".
+
+Applications that work with "OI File Manager": 
+* Open and save text files in "OI Notepad".
 
 Anahtar kelimeler: 
-* file manager, filemanager, file explorer
+* dosya yönetici, dosyayönetici, dosya araştırıcı
 * OI, IO, OpenIntents, Open Intents
 
-International versions: 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+Uluslararası versiyonlar: 
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
-Uzantılar: 
+Search strings for Market: 
 * uses OI About
 * extension for OI Notepad
-
 

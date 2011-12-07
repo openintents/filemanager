@@ -23,7 +23,9 @@
 	<string name="about_translators">Launchpad Contributions:
   Andrzej Ziółek https://launchpad.net/~andro-v-zik
   Damian Skrodzki https://launchpad.net/~damienix
+  OpenIntents devs https://launchpad.net/~openintents-devs
   Schlussarz https://launchpad.net/~schlussarz
+  Tomasz Zieliński https://launchpad.net/~tomek0517
   usul https://launchpad.net/~usultis</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
@@ -140,7 +142,7 @@
     <string name="preference_displayhiddenfiles_summary_on">Pokaż ukryte pliki</string>
     <string name="preference_displayhiddenfiles_summary_off">Ukryj ukryte pliki</string>
     
-    <string name="preference_sort_settings">Sort settings</string>
+    <string name="preference_sort_settings">Posortuj ustawienia</string>
     <string name="preference_sortby">Sort by</string>
     <string name="preference_sortby_ascending">In ascending order</string>
     <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>

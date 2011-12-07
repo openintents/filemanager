@@ -20,28 +20,28 @@ http://code.google.com/p/openintents
 
 Eigentschaften: 
 * Zeigt eine Liste der Dateien mit Vorschauen für Bilder.
-* Move, copy, rename, and delete files.
+* Dateien verschieben, kopieren, umbennen oder löschen
 * Erstellt und löscht Ordner.
 * Dateien via e-Mail versenden
 * Dient als Erweiterung für andere Applikationen, wie GMail, zum Anfügen von Dateien.
-* Support for many file endings and mime types.
+* Unterstützung von vielen Dateiendungen und MIME-Typen.
 * Unterstützt PICK_FILE und PICK_DIRECTORY Anfragen, sodass andere Applikationen den OI Dateimanager nutzen können.
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+Verfügbare Erweiterungen für "OI File Manager" 
+* Zeige die Lizenzinformationen mit OI About
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+Anwendungen, die mit "OI File Manager" funktionieren: 
+* Textdateien in "OI Notepad" öffnen und speichern.
 
 Schlüsselwörter: 
 * Dateimanager
 * OI, IO, OpenIntents, Open Intents
 
-International versions: 
+Internationale Versionen: 
 OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
-Search strings for Market: 
+Im Market suchen nach: 
 * uses OI About
 * extension for OI Notepad
 

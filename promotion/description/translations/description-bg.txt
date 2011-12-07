@@ -28,11 +28,11 @@ http://code.google.com/p/openintents
 * Поддържа много файлови разширения и mime видове.
 * Поддържа PICK_FILE и PICK_DIRECTORY ,така че и други приложения да могат да използват OI File Manager.
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+Налични разширения за "OI File Manager": 
+* Покажи информация за лиценза с "OI About".
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+Приложения, които работят със "OI File Manager": 
+* Отваряйте и запазвайте текстови файлове в "OI Notepad".
 
 Ключови думи: 
 * файлов мениджър,файловмениджър,файлов изследовател
@@ -42,7 +42,7 @@ Applications that work with "OI File Manager":
 OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
-Search strings for Market: 
+Стрингове за търсенето в Market 
 * uses OI About
 * extension for OI Notepad
 

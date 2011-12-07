@@ -21,6 +21,8 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Dariel Kremov https://launchpad.net/~dkremov
+  OpenIntents devs https://launchpad.net/~openintents-devs
   Stefani Soyanova https://launchpad.net/~stefi-stoyanova95
   Tsvetelina https://launchpad.net/~ts-borisova
   Valentin Kirilov https://launchpad.net/~val-kirilov
@@ -140,15 +142,15 @@
     <string name="preference_displayhiddenfiles_summary_on">Показване на скритите файлове</string>
     <string name="preference_displayhiddenfiles_summary_off">Скрии скритите файлове</string>
     
-    <string name="preference_sort_settings">Sort settings</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sort_settings">Настройки на сортирането</string>
+    <string name="preference_sortby">Сортирай по</string>
+    <string name="preference_sortby_ascending">Във възходящ ред</string>
+    <string name="preference_sortby_ascending_summary_on">Сортирай във възходящ ред</string>
+    <string name="preference_sortby_ascending_summary_off">Сортирай във низходящ ред</string>
     <string-array name="preference_sortby_names">
-        <item>Name</item>
+        <item>Име</item>
         <item>Размер</item>
-        <item>Last modified</item>
+        <item>Последна промяна</item>
     </string-array>
 
         

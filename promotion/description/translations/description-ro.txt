@@ -27,11 +27,11 @@ Caracteristici:
 * Suport pentru multe sfârșituri de fișiere și tipuri mime.
 * Suportă intents PICK_FILE și PICK_DIRECTORY pentru ca alte aplicații să utilizeze Gestionarul de Fișiere OI.
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+Extensii disponibile pentru "OI File Manager": 
+* Arată informaţiile de licenţă cu "OI About".
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+Aplicaţii care funcţionează cu "OI File Manager": 
+* Deschideţi şi salvaţi fişiere text în "OI Notepad".
 
 Cuvinte cheie: 
 * gestionar de fișiere, gestionar fișiere, explorator de fișiere
@@ -41,7 +41,7 @@ Versiuni internaționale:
 OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
-Search strings for Market: 
+Şiruri de căutare pentru Market: 
 * uses OI About
 * extension for OI Notepad
 

@@ -1,40 +1,40 @@
-OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+OI File Manager дазваляе вам праглядаць вашу SD картку, ствараць дырэкторыі, пераназываць, капіраваць, перамяшчаць і выдаляць файлы. Ён таксама працуе як пашырэнне для другіх прыкладанняў, каб адлюстроўваць дыялогі "Адкрыць" і "Захаваць" 
 
-This application is ad free and does not require the internet permission. 
+У прыкладанні няма рэкламы і яно не патрабуе доступу ў інтэрнэт. 
 
-For the complete list of changes and a list of frequently asked questions, please visit: 
+З поўным спісам змен і спісам пытянняў, якія часта задаюцца, можна азнаёміцца ​​на: 
 http://www.openintents.org
 
-You can help to improve the translation into your language at Launchpad: 
+Вы можаце палепшыць пераклад на вашу мову пры дапамозе Launchpad: 
 https://translations.launchpad.net/openintents/trunk
 
-The source code of this free and open source application is available at: 
+Зыходны код гэтага бясплатнага прыкладання даступны на: 
 http://code.google.com/p/openintents
 
-Features: 
-* Show list of files with thumbnails for images.
-* Move, copy, rename, and delete files.
-* Create and delete directories (folders).
-* Send files by email.
-* Acts as an extension to other applications, like GMail, to attach files.
-* Support for many file endings and mime types.
-* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+Магчымасці: 
+* Паказвае спіс файлаў з эскізамі малюнкаў.
+* Перамяшчае, капіруе, пераназывае і выдаляе файлы.
+* Стварае і выдаляе дырэкторыі (папкі).
+* Адпраўляе файлы па электроннай пошце.
+* Працуе як пашырэнне для іншых прыкладанняў, такіх як GMail, каб прымацоўваць файлы.
+* Падтрымлівае шмат пашырэнняў файлаў і mime тыпаў.
+* Падтрымлівае PICK_FILE і PICK_DIRECTORY intents, такім чынам іншыя прыкладанні могуць карыстацца OI File Manager.
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+Даступныя пашырэнні для "OI File Manager": 
+* Паказваць інфармацыю аб ліцэнзіі пры дапамозе "OI About".
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+Прыкладанні, якія працуюць з "OI File Manager": 
+* Адкрываць і захоўваць тэкставыя файлы ў "OI Notepad".
 
-Keywords: 
+Ключавыя словы: 
 * file manager, filemanager, file explorer
 * OI, IO, OpenIntents, Open Intents
 
-International versions: 
+Перекладзеныя версіі: 
 OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
-Search strings for Market: 
+Пошук у Market: 
 * uses OI About
 * extension for OI Notepad
 

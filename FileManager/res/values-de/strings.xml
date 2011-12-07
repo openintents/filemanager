@@ -24,9 +24,11 @@
   Alexander Sapronov https://launchpad.net/~warmonger
   Flosen https://launchpad.net/~flose
   OpenIntents devs https://launchpad.net/~openintents-devs
+  Patrick Eigensatz https://launchpad.net/~p.eigensatz
   Peli https://launchpad.net/~peli0101
   cmdrhenner https://launchpad.net/~cmdrhenner
-  hani https://launchpad.net/~markushahnenkamm</string>
+  hani https://launchpad.net/~markushahnenkamm
+  marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
     <string name="about_comments">Verwalten Sie Dateien auf der SD Karte.</string>  
@@ -40,16 +42,16 @@
     <string name="menu_new_folder">Neuer Ordner</string>
     
     <!-- Multi select option menu -->
-    <string name="menu_multi_select">Множественный выбор</string>
+    <string name="menu_multi_select">Mehrfachauswahl</string>
 
     <string name="menu_delete">Löschen</string>
     <string name="menu_rename">Umbenennen</string>
     <string name="menu_send">Senden</string>
     <string name="menu_open">Öffnen</string>
     <string name="menu_move">Verschieben</string>
-    <string name="menu_copy">Kopie</string>
+    <string name="menu_copy">Kopieren</string>
     <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
+    <string name="menu_more">Mehr</string>
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">In Mediensuche einschließen</string>
     <string name="menu_exclude_from_media_scan">Von Mediensuche ausschließen</string>
@@ -57,7 +59,7 @@
     <string name="create_new_folder">Neuen Ordner erstellen</string>
     <string name="folder_name">Name des Ordners</string>
     <string name="file_name">Name des Ordners</string>
-    <string name="extension">Extension (with \'.\')</string>
+    <string name="extension">Erweiterung (mit \'.\')</string>
     <string name="this_folder_is_empty">Dieser Ordner ist leer.</string>
     <string name="really_delete">Soll %s wirklich gelöscht werden?</string>
     <string name="file_deleted">Datei gelöscht.</string>
@@ -72,29 +74,29 @@
     <string name="copy_title">Wählen Sie Zielverzeichnis für den Kopiervorgang</string>
     <string name="copy_button">Hierher kopieren</string>
 	<string name="deleting_files">Удаление файлов...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+    <string name="title_warning_some_may_not_work">Achtung</string>
+    <string name="warning_some_may_not_work">Es könnte sein, dass einige der folgenden Optionen nicht funktionieren.</string>
+    <string name="show_warning_again">Zeige diese Warnung noch einmal</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Вы действительно хотите удалить %d файл(ы)?</string>
     <string name="move_button_multiselect">Verschieben</string>
-    <string name="copy_button_multiselect">Kopie</string>
+    <string name="copy_button_multiselect">Kopieren</string>
     <string name="delete_button_multiselect">Löschen</string>
     <string name="multiselect_title">Выберите несколько файлов</string>
     <string name="error_selection">Пожалуйста выберите один или более файлов</string>
     
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
-    <string name="details_no">No</string>
+    <string name="details_type">Typ</string>
+    <string name="details_type_folder">Ordner</string>
+    <string name="details_type_file">Datei</string>
+    <string name="details_type_other">Andere</string>
+    <string name="details_size">Größe</string>
+    <string name="details_permissions">Berechtigungen</string>
+    <string name="details_hidden">Versteckt</string>
+    <string name="details_lastmodified">Zuletzt geändert</string>
+    <string name="details_yes">Ja</string>
+    <string name="details_no">Nein</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Kopie von %s</string>
@@ -134,30 +136,30 @@
     <string name="preference_mediascan_summary_on">Zeige von der Mediensuche ausgeschlossene Ordner.</string>
     <string name="preference_mediascan_summary_off">Скрыть пункт меню, что бы исключить папки из сканирования</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_title">Zeige alle Warnungen</string>
+    <string name="preference_showallwarning_summary_on">Zeige alle Warnmeldungen</string>
+    <string name="preference_showallwarning_summary_off">Unterdrücke Warnmeldungen</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">Zeige versteckte Dateien</string>
+    <string name="preference_displayhiddenfiles_summary_on">Zeige versteckte Dateien</string>
+    <string name="preference_displayhiddenfiles_summary_off">Verberge versteckte Dateien</string>
     
-    <string name="preference_sort_settings">Sort settings</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sort_settings">Sortiereinstellungen</string>
+    <string name="preference_sortby">Sortieren nach</string>
+    <string name="preference_sortby_ascending">In aufsteigender Reihenfolge</string>
+    <string name="preference_sortby_ascending_summary_on">In aufsteigender Reihenfolge sortieren</string>
+    <string name="preference_sortby_ascending_summary_off">In absteigender Reihenfolge sortieren</string>
     <string-array name="preference_sortby_names">
         <item>Name</item>
-        <item>Size</item>
-        <item>Last modified</item>
+        <item>Größe</item>
+        <item>Zuletzt geändert</item>
     </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">Es wurde keine Datei ausgewählt</string>
+    <string name="saveas_error">Es ist ein Fehler aufgetreten.</string>
+    <string name="saveas_file_saved">Datei erfolgreich gespeichert!</string>
 </resources>

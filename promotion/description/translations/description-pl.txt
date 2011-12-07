@@ -27,11 +27,11 @@ Cechy:
 * Wsparcie dla wielu rozszerzeń plików i typów MIME.
 * Obsługuje PICK_FILE i PICK_DIRECTORY, tak aby inne aplikacje mogły korzystać z OI File Manager.
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+Dostępne rozszerzenia dla "Ol File Manager": 
+* Pokaż informacje licencyjne z "O Ol".
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+Aplikacje, który pracują z "Ol File Manager": 
+* Otwórz i zapisz pliki tekstowe używając "Ol Notepad".
 
 Słowa kluczowe: 
 * menedżer plików, menedżer plików, eksplorator plików
@@ -41,7 +41,7 @@ Wersje międzynarodowe:
 OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
 
 
-Search strings for Market: 
+Wyszukane ciągi znakó w Markecie: 
 * uses OI About
 * extension for OI Notepad
 

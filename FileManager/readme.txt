@@ -35,6 +35,7 @@ date: ?
 - Keep list position after delete (Google Code-in task by Chickenbellyfinn)
 - Show correct toast when deleting file (issue 365, Google Code-in task by Chickenbellyfinn)
 - Apk icon support (Google Code-in task by philip9)
+- Bookmarks of folder locations (Google Code-In task by Matěj Konečný)
 
 ---------------------------------------------------------
 release: 1.1.6

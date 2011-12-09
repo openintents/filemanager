@@ -40,6 +40,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -49,6 +52,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.XmlResourceParser;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -57,8 +61,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
-import android.text.format.Formatter;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -124,6 +126,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final int MENU_MULTI_SELECT = Menu.FIRST + 15;
 	private static final int MENU_FILTER = Menu.FIRST + 16;
 	private static final int MENU_DETAILS = Menu.FIRST + 17;
+	private static final int MENU_BOOKMARKS = Menu.FIRST + 18;
+	private static final int MENU_BOOKMARK = Menu.FIRST + 19;
 	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
@@ -133,11 +137,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	/**
      * @since 2011-02-12
      */
-    private static final int DIALOG_MULTI_DELETE = 4;
-    private static final int DIALOG_FILTER = 5;
+	private static final int DIALOG_MULTI_DELETE = 4;
+	private static final int DIALOG_FILTER = 5;
 	private static final int DIALOG_DETAILS = 6;
+	
+	private static final int DIALOG_BOOKMARKS = 7;
 
-    private static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
+	private static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
 
 	private static final int COPY_BUFFER_SIZE = 32 * 1024;
 	
@@ -968,6 +974,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 				.setIcon(android.R.drawable.ic_menu_gallery);
 		mExcludeMediaScanMenuItem = menu.add(0, MENU_EXCLUDE_FROM_MEDIA_SCAN, 0, R.string.menu_exclude_from_media_scan).setShortcut('2', 's')
 				.setIcon(android.R.drawable.ic_menu_gallery);
+		
+		menu.add(0, MENU_BOOKMARKS, 0, R.string.bookmarks).setIcon(
+				R.drawable.ic_menu_star);
+		
 
 		menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(
 				android.R.drawable.ic_menu_preferences).setShortcut('9', 's');
@@ -1048,6 +1058,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		case MENU_FILTER:
 			showDialog(DIALOG_FILTER);
 			return true;
+		
+		case MENU_BOOKMARKS:
+			showDialog(DIALOG_BOOKMARKS);
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 
@@ -1122,6 +1136,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	        }
 		//}
 	    menu.add(0, MENU_DETAILS, 0, R.string.menu_details);
+	    menu.add(0, MENU_BOOKMARK, 0, R.string.menu_bookmark);
         menu.add(0, MENU_MORE, 0, R.string.menu_more);
 	}
 
@@ -1170,6 +1185,25 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		
 		case MENU_DETAILS:
 			showDialog(DIALOG_DETAILS);
+			return true;
+			
+		case MENU_BOOKMARK:
+			String path = mContextFile.getAbsolutePath();
+			Cursor query = managedQuery(BookmarksProvider.CONTENT_URI,
+										new String[]{BookmarksProvider._ID},
+										BookmarksProvider.PATH + "=?",
+										new String[]{path},
+										null);
+			if(!query.moveToFirst()){
+				ContentValues values = new ContentValues();
+				values.put(BookmarksProvider.NAME, mContextFile.getName());
+				values.put(BookmarksProvider.PATH, path);
+				getContentResolver().insert(BookmarksProvider.CONTENT_URI, values);
+				Toast.makeText(this, R.string.bookmark_added, Toast.LENGTH_SHORT).show();
+			}
+			else{
+				Toast.makeText(this, R.string.bookmark_already_exists, Toast.LENGTH_SHORT).show();
+			}
 			return true;
 
 		case MENU_MORE:
@@ -1322,9 +1356,46 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	        	
         	return new AlertDialog.Builder(this).setTitle(mContextText).
         			setIcon(mContextIcon).setView(view).create();
+        	
+        case DIALOG_BOOKMARKS:
+        	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        	final Cursor bookmarksCursor = getBookmarks();
+        	
+        	builder.setTitle(R.string.bookmarks);
+        	
+        	builder.setCursor(bookmarksCursor, new DialogInterface.OnClickListener() {
+	        	    public void onClick(DialogInterface dialog, int item) {
+	        	    	if (bookmarksCursor.moveToPosition(item)) {
+	        	    		String path = bookmarksCursor.getString(
+		        	    			bookmarksCursor.getColumnIndex(BookmarksProvider.PATH));
+		        	    	File file = new File(path);
+		        	    	if (file != null) {
+			        	    	if (file.isDirectory()) {
+				        	    	mStepsBack++;
+			        	    	}
+			        	    	browseTo(file);
+		        	    	}
+	        	    	} else{
+	        	    		Toast.makeText(FileManagerActivity.this, R.string.bookmark_not_found,
+	        	    				Toast.LENGTH_SHORT).show();
+	        	    	}
+	        	    }
+	        	}, BookmarksProvider.NAME);
+        	
+        	return builder.create();
 		}
 		return super.onCreateDialog(id);
 			
+	}
+	
+	private Cursor getBookmarks(){
+		return managedQuery(BookmarksProvider.CONTENT_URI,
+					new String[] {
+						BookmarksProvider._ID,
+						BookmarksProvider.NAME,
+						BookmarksProvider.PATH,
+					}, null, null, null);
 	}
 
 

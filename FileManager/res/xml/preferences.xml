@@ -61,6 +61,8 @@
                 android:summaryOn="@string/preference_displayhiddenfiles_summary_on" />
 
     </PreferenceCategory>
-    
+    <PreferenceCategory android:title="@string/bookmarks">
+        <Preference android:key="editbookmarks" android:title="@string/bookmarks_manage"/>
+    </PreferenceCategory>
 </PreferenceScreen>
     

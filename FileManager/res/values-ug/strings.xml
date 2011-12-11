@@ -49,6 +49,7 @@
     <string name="menu_filter">سۈزگۈچ</string>
     <string name="menu_include_in_media_scan">ۋاسىتە تەكشۈرۈش ئىچىدە</string>
     <string name="menu_exclude_from_media_scan">ۋاسىتە تەكشۈرۈش سىرتىدا</string>
+    <string name="menu_bookmark">Add to bookmarks</string>
     
     <string name="create_new_folder">يېڭى قىسقۇچ قۇر</string>
     <string name="folder_name">قىسقۇچ ئاتى</string>
@@ -156,4 +157,16 @@
     <string name="saveas_no_file_picked">ھېچقانداق ھۆججەتنى تاللىمىدىڭىز.</string>
     <string name="saveas_error">خاتالىق كۆرۈلدى.</string>
     <string name="saveas_file_saved">ھۆججەت مۇۋەپپەقىيەتلىك ساقلاندى!</string>
+    
+        
+   
+    <string name="bookmarks">Bookmarks</string>
+    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks_delete">ئۆچۈر</string>
+    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
+    <string name="bookmarks_manage">Manage bookmarks</string>
+    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_not_found">Bookmarked destination not found.</string>
+    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
+    <string name="bookmark_already_exists">This file is already bookmarked</string>
 </resources>

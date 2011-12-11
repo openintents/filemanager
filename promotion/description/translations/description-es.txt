@@ -5,3 +5,43 @@ OI File Manager
 Gestionar archivos en la tarjeta SD.
 
 # Description:
+OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+
+This application is ad free and does not require the internet permission. 
+
+For the complete list of changes and a list of frequently asked questions, please visit: 
+http://www.openintents.org
+
+You can help to improve the translation into your language at Launchpad: 
+https://translations.launchpad.net/openintents/trunk
+
+The source code of this free and open source application is available at: 
+http://code.google.com/p/openintents
+
+Features: 
+* Show list of files with thumbnails for images.
+* Mover, copiar, renombrar y borrar archivos.
+* Create and delete directories (folders).
+* Send files by email.
+* Acts as an extension to other applications, like GMail, to attach files.
+* Support for many file endings and mime types.
+* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+
+Available extensions for "OI File Manager": 
+* Show the license information with "OI About".
+
+Applications that work with "OI File Manager": 
+* Open and save text files in "OI Notepad".
+
+Keywords: 
+* file manager, filemanager, file explorer
+* OI, IO, OpenIntents, Open Intents
+
+International versions: 
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+
+
+Search strings for Market: 
+* uses OI About
+* extension for OI Notepad
+

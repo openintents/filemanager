@@ -5,8 +5,10 @@ OI File Manager
 OI Fájlkezelő
 OI Gestore File
 OI Menedżer plików
+OI Správca Súborov
 OI Файлов Мениджър
 OI ھۆججەت باشقۇرغۇچ
+OI फ़ाइल प्रबंधक
 OI ແຟ້ມ ບໍລີຫານ
 OI 파일 관리자
 OI文件管理器

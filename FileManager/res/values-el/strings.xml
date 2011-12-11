@@ -21,7 +21,8 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
-  Giannis Konstantinidis https://launchpad.net/~giankonstantinidis</string>
+  Giannis Konstantinidis https://launchpad.net/~giankonstantinidis
+  OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
     <string name="about_comments">Διαχείριση αρχείων στην κάρτα SD.</string>  
@@ -48,6 +49,7 @@
     <string name="menu_filter">Φίλτρο</string>
     <string name="menu_include_in_media_scan">Συμπερίληψη στη σάρωση μέσων</string>
     <string name="menu_exclude_from_media_scan">Εξαίρεση από τη σάρωση μέσων</string>
+    <string name="menu_bookmark">Add to bookmarks</string>
     
     <string name="create_new_folder">Δημιουργία νέου φακέλου</string>
     <string name="folder_name">Όνομα φακέλου</string>
@@ -155,4 +157,16 @@
     <string name="saveas_no_file_picked">Δεν έχετε επιλεξει κάποιο αρχείο.</string>
     <string name="saveas_error">Προέκυψε ένα σφάλμα.</string>
     <string name="saveas_file_saved">Το αρχείο αποθηκεύτηκε επιτυχώς!</string>
+    
+        
+   
+    <string name="bookmarks">Bookmarks</string>
+    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks_delete">Διαγραφή</string>
+    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
+    <string name="bookmarks_manage">Manage bookmarks</string>
+    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_not_found">Bookmarked destination not found.</string>
+    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
+    <string name="bookmark_already_exists">This file is already bookmarked</string>
 </resources>

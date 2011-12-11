@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  Lacko545 https://launchpad.net/~lackorauch</string>
+	
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Spravovať súbory na SD karte.</string>  
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI Správca Súborov</string>
+    
+    <string name="menu_new_folder">Nový Priečinok</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Viacnásobné Označenie</string>
+
+    <string name="menu_delete">Zmazať</string>
+    <string name="menu_rename">Premenovať</string>
+    <string name="menu_send">Odoslať</string>
+    <string name="menu_open">Otvoriť</string>
+    <string name="menu_move">Presunúť</string>
+    <string name="menu_copy">Kopírovať</string>
+    <string name="menu_details">Detaily</string>
+    <string name="menu_more">Viac</string>
+    <string name="menu_filter">Filter</string>
+    <string name="menu_include_in_media_scan">Zahrnúť v prehľadávaní médií</string>
+    <string name="menu_exclude_from_media_scan">Vyňať z prehľadávania médií</string>
+    <string name="menu_bookmark">Add to bookmarks</string>
+    
+    <string name="create_new_folder">Vytvoriť nový priečinok</string>
+    <string name="folder_name">Názov priečinka</string>
+    <string name="file_name">Názov priečinka</string>
+    <string name="extension">Rozšírenie (s \'.\')</string>
+    <string name="this_folder_is_empty">Tento priečinok je prázdny.</string>
+    <string name="really_delete">Naozaj chcete zmazať %s?</string>
+    <string name="file_deleted">Súbor bol zmazaný.</string>
+    <string name="folder_deleted">Priečinok bol zmazaný.</string>
+    <string name="file_renamed">Súbor bol premenovaný.</string>
+    <string name="folder_renamed">Priečinok bol premenovaný.</string>
+    <string name="file_moved">Súbor bol presunutý.</string>
+    <string name="folder_moved">Priečinok bol presunutý.</string>
+    <string name="file_copied">Súbor bol skopírovaný.</string>
+    <string name="move_title">Vybrať priečinok do ktorého presunúť</string>
+    <string name="move_button">Presunúť sem</string>
+    <string name="copy_title">Vybrať priečinok do ktorého kopírovať</string>
+    <string name="copy_button">Kopírovať sem</string>
+	<string name="deleting_files">Súbory sa odstraňujú...</string>
+    <string name="title_warning_some_may_not_work">Varovanie</string>
+    <string name="warning_some_may_not_work">Niektoré z nasledujúcich možností nemusia fungovať.</string>
+    <string name="show_warning_again">Znovu zobraziť varovanie.</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Naozaj chcete zmazať %d súborov?</string>
+    <string name="move_button_multiselect">Presunúť</string>
+    <string name="copy_button_multiselect">Kopírovať</string>
+    <string name="delete_button_multiselect">Zmazať</string>
+    <string name="multiselect_title">Označiť viacero súborov</string>
+    <string name="error_selection">Prosím označte jeden alebo viac súborov.</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">Typ</string>
+    <string name="details_type_folder">Priečinok</string>
+    <string name="details_type_file">Súbor</string>
+    <string name="details_type_other">Iné</string>
+    <string name="details_size">Veľkosť</string>
+    <string name="details_permissions">Práva</string>
+    <string name="details_hidden">Skryté</string>
+    <string name="details_lastmodified">Naposledy zmenené</string>
+    <string name="details_yes">Áno</string>
+    <string name="details_no">Nie</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">Kópia z %s</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Kopírovať %1$d z %2$s</string>
+    
+    <string name="media_scan_included">Tento priečinok bude zahrnutý v nasledujúcom prehľadávaní médií.</string>
+    <string name="media_scan_excluded">Tento priečinok bude vyňatý z nasledujúceho prehľadávania médií.</string>
+    
+    <string name="error_creating_new_folder">Nebolo možné vytvoriť priečinok.</string>
+    <string name="error_deleting_file">Nebolo možné zmazať súbor.</string>
+    <string name="error_deleting_folder">Nebolo možné zmazať priečinok \'%s\'.</string>
+    <string name="error_renaming_file">Nebolo možné premenovať súbor.</string>
+    <string name="error_renaming_folder">Nebolo možné premenovať priečinok.</string>
+    <string name="error_moving_file">Nebolo možné presunúť súbor.</string>
+    <string name="error_moving_folder">Nebolo možné presunúť priečinok.</string>
+    <string name="error_copying_file">Nebolo možné skopírovať súbor.</string>
+    <string name="error_file_does_not_exists">Súbor neexistuje.</string>
+    <string name="error_deleting_child_file">Nebolo možné zmazať dcérsky súbor \'%s\'.</string>
+    <string name="error_generic">Nastala chyba.</string>
+    <string name="error_media_scan">Nebolo možné zmeniť nastavenia prehľadávania médií.</string>
+    
+    <string name="send_not_available">Nie je dostupná žiadna aplikácia pre odosielanie.</string>
+    
+    <string name="application_not_available">Aplikácia nie je dostupná.</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">Nastavenia</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">Pokročilé funkcie</string>
+	<string name="preference_mediascan_title">Vyňať z prehľadávania médií</string>
+    <string name="preference_mediascan_summary_on">Zobraziť položku menu pre vyňatie priečinkov z prehľadávania médií.</string>
+    <string name="preference_mediascan_summary_off">Skryť položku menu pre vyňatie priečinkov z prehľadávania médií.</string>
+    
+    <string name="preference_showallwarning_title">Zobraziť všetky varovania</string>
+    <string name="preference_showallwarning_summary_on">Zobraziť všetky správy varovaní</string>
+    <string name="preference_showallwarning_summary_off">Zakázať správy varovaní</string>
+       
+    <string name="preference_displayhiddenfiles_title">Zobraziť skryté súbory</string>
+    <string name="preference_displayhiddenfiles_summary_on">Zobraziť skryté súbory</string>
+    <string name="preference_displayhiddenfiles_summary_off">Skryť skryté súbory</string>
+    
+    <string name="preference_sort_settings">Nastavenia triedenia</string>
+    <string name="preference_sortby">Triediť podľa</string>
+    <string name="preference_sortby_ascending">Vo vzostupnom poradí</string>
+    <string name="preference_sortby_ascending_summary_on">Triediť vo vzostupnom poradí</string>
+    <string name="preference_sortby_ascending_summary_off">Triediť v zostupnom poradí</string>
+    <string-array name="preference_sortby_names">
+        <item>Meno</item>
+        <item>Veľkosť</item>
+        <item>Naposledy zmenené</item>
+    </string-array>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">Nevybrali ste žiadny súbor.</string>
+    <string name="saveas_error">Nastala chyba.</string>
+    <string name="saveas_file_saved">Súbor bol úspešne uložený!</string>
+    
+        
+   
+    <string name="bookmarks">Bookmarks</string>
+    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks_delete">Zmazať</string>
+    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
+    <string name="bookmarks_manage">Manage bookmarks</string>
+    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_not_found">Bookmarked destination not found.</string>
+    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
+    <string name="bookmark_already_exists">This file is already bookmarked</string>
+</resources>

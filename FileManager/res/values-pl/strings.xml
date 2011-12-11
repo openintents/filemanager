@@ -53,6 +53,7 @@
     <string name="menu_filter">Filtr</string>
     <string name="menu_include_in_media_scan">Załącz do skanowanych mediów</string>
     <string name="menu_exclude_from_media_scan">Ignoruj podczas skanowania mediów</string>
+    <string name="menu_bookmark">Add to bookmarks</string>
     
     <string name="create_new_folder">Utwórz nowy katalog</string>
     <string name="folder_name">Nazwa katalogu</string>
@@ -143,14 +144,14 @@
     <string name="preference_displayhiddenfiles_summary_off">Ukryj ukryte pliki</string>
     
     <string name="preference_sort_settings">Posortuj ustawienia</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sortby">Sortu według</string>
+    <string name="preference_sortby_ascending">W porządku rosnącym</string>
+    <string name="preference_sortby_ascending_summary_on">Posortuj w porządku rosnącym</string>
+    <string name="preference_sortby_ascending_summary_off">Posortuj w porządku malejącym</string>
     <string-array name="preference_sortby_names">
-        <item>Name</item>
+        <item>Imię</item>
         <item>Rozmiar</item>
-        <item>Last modified</item>
+        <item>Ostatnio zmodyfikowano</item>
     </string-array>
 
         
@@ -160,4 +161,16 @@
     <string name="saveas_no_file_picked">Nie zaznaczono żadnych plików</string>
     <string name="saveas_error">Wystąpił błąd.</string>
     <string name="saveas_file_saved">Plik zapisany pomyślnie!</string>
+    
+        
+   
+    <string name="bookmarks">Bookmarks</string>
+    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks_delete">Usuń</string>
+    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
+    <string name="bookmarks_manage">Manage bookmarks</string>
+    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_not_found">Bookmarked destination not found.</string>
+    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
+    <string name="bookmark_already_exists">This file is already bookmarked</string>
 </resources>

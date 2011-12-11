@@ -48,6 +48,7 @@
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Include in media scan</string>
     <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
+    <string name="menu_bookmark">Add to bookmarks</string>
     
     <string name="create_new_folder">새 폴더 생성</string>
     <string name="folder_name">폴더 이름</string>
@@ -155,4 +156,16 @@
     <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
     <string name="saveas_error">An error occured.</string>
     <string name="saveas_file_saved">File successfully saved!</string>
+    
+        
+   
+    <string name="bookmarks">Bookmarks</string>
+    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks_delete">삭제</string>
+    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
+    <string name="bookmarks_manage">Manage bookmarks</string>
+    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_not_found">Bookmarked destination not found.</string>
+    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
+    <string name="bookmark_already_exists">This file is already bookmarked</string>
 </resources>

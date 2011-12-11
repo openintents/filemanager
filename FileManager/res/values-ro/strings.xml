@@ -52,6 +52,7 @@
     <string name="menu_filter">Filtru</string>
     <string name="menu_include_in_media_scan">Include în scanare media</string>
     <string name="menu_exclude_from_media_scan">Exclude din scanare media</string>
+    <string name="menu_bookmark">Add to bookmarks</string>
     
     <string name="create_new_folder">Crează un dosar nou</string>
     <string name="folder_name">Numele dosarului</string>
@@ -159,4 +160,16 @@
     <string name="saveas_no_file_picked">Nu ați ales nici un fișier.</string>
     <string name="saveas_error">A apărut o eroare.</string>
     <string name="saveas_file_saved">Fișierul a fost salvat cu succes!</string>
+    
+        
+   
+    <string name="bookmarks">Bookmarks</string>
+    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks_delete">Șterge</string>
+    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
+    <string name="bookmarks_manage">Manage bookmarks</string>
+    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_not_found">Bookmarked destination not found.</string>
+    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
+    <string name="bookmark_already_exists">This file is already bookmarked</string>
 </resources>

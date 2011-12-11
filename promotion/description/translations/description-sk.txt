@@ -1,0 +1,7 @@
+# Application:
+OI Správca Súborov
+
+# Promo text:
+Spravovať súbory na SD karte.
+
+# Description:

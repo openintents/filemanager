@@ -54,6 +54,7 @@ Launchpad Contributions:
     <string name="menu_filter">Filtre</string>
     <string name="menu_include_in_media_scan">Medya tarama dahil</string>
     <string name="menu_exclude_from_media_scan">Medya tarama hariç</string>
+    <string name="menu_bookmark">Add to bookmarks</string>
     
     <string name="create_new_folder">Yeni klasör oluştur</string>
     <string name="folder_name">Klasör adı</string>
@@ -161,4 +162,16 @@ Launchpad Contributions:
     <string name="saveas_no_file_picked">Hiç bir dosya seçilmedi.</string>
     <string name="saveas_error">Hata oluştu.</string>
     <string name="saveas_file_saved">Dosya başarılı bir şekilde kaydedildi.</string>
+    
+        
+   
+    <string name="bookmarks">Bookmarks</string>
+    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks_delete">Sil</string>
+    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
+    <string name="bookmarks_manage">Manage bookmarks</string>
+    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_not_found">Bookmarked destination not found.</string>
+    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
+    <string name="bookmark_already_exists">This file is already bookmarked</string>
 </resources>

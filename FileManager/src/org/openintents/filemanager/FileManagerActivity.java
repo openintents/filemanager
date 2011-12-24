@@ -45,6 +45,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -1436,6 +1437,53 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	
         	final TextView size = ((TextView)dialog.findViewById(R.id.details_size_value));
         	size.setText(FileUtils.formatSize(this, mContextFile.length()));
+        	
+        	// Creates a background thread that obtains the size of a directory and updates
+        	// the TextView accordingly.
+        	if(mContextFile.isDirectory()){
+        		final AsyncTask folderSizeTask = new AsyncTask<File, Long, Long>(){
+        			
+        			protected long totalSize = 0L;
+        			
+    				@Override
+    				protected Long doInBackground(File... file) {
+    					sizeOf(file[0]);
+    					return totalSize;
+    				}
+            		
+    				@Override
+    				protected void onProgressUpdate(Long... updatedSize){
+    					size.setText(FileUtils.formatSize(size.getContext(), updatedSize[0]));
+    				}
+    				
+    				@Override
+    				protected void onPostExecute(Long result){
+    					size.setText(FileUtils.formatSize(size.getContext(), result));
+    				}
+    				
+    				private void sizeOf(File file){
+    					if(file.isFile()){
+    						totalSize += file.length();
+    						publishProgress(totalSize);
+    					} else {
+    						File[] files = file.listFiles();
+    						
+    						if(files != null && files.length != 0){
+        						for(File subFile : files){
+        							sizeOf(subFile);
+        						}
+    						}
+    					}
+    				}
+            	}.execute(mContextFile);
+            	
+            	((AlertDialog) dialog).setOnCancelListener(new OnCancelListener(){
+    				@Override
+    				public void onCancel(DialogInterface dialog) {
+    					folderSizeTask.cancel(true);
+    				}
+            	});
+        	}
         	
         	String perms = (mContextFile.canRead() ? "R" : "-") +
         			(mContextFile.canWrite() ? "W" : "-") +

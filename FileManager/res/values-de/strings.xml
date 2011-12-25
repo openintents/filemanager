@@ -22,10 +22,12 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Alexander Sapronov https://launchpad.net/~warmonger
+  Daniel Winzen https://launchpad.net/~q-d
   Flosen https://launchpad.net/~flose
   OpenIntents devs https://launchpad.net/~openintents-devs
   Patrick Eigensatz https://launchpad.net/~p.eigensatz
   Peli https://launchpad.net/~peli0101
+  Schrotti https://launchpad.net/~schrott-micha
   cmdrhenner https://launchpad.net/~cmdrhenner
   hani https://launchpad.net/~markushahnenkamm
   marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
@@ -55,7 +57,7 @@
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">In Mediensuche einschließen</string>
     <string name="menu_exclude_from_media_scan">Von Mediensuche ausschließen</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">Als Lesezeichnen hinzufügen</string>
     
     <string name="create_new_folder">Neuen Ordner erstellen</string>
     <string name="folder_name">Name des Ordners</string>
@@ -166,13 +168,13 @@
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Lesezeichen</string>
+    <string name="bookmarks_cancel">Abbrechen</string>
     <string name="bookmarks_delete">Löschen</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">Wähle ein Lesezeichen zum Löschen</string>
+    <string name="bookmarks_manage">Lesezeichen verwalten</string>
+    <string name="bookmark_added">Lesezeichen hinzugefügt</string>
+    <string name="bookmark_not_found">Adresse des Lesezeichens nicht gefunden</string>
+    <string name="bookmarks_deleted">Ausgeählte Lesezeichen wurden gelöscht</string>
+    <string name="bookmark_already_exists">Diese Datei hat schon ein Lesezeichen</string>
 </resources>

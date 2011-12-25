@@ -21,6 +21,7 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Alexander \'FONTER\' Zinin https://launchpad.net/~spore-09
   Alexander Sapronov https://launchpad.net/~warmonger
   Andrey Zaytsev https://launchpad.net/~a.einsam
   Nkolay Parukhin https://launchpad.net/~parukhin
@@ -52,7 +53,7 @@
     <string name="menu_filter">Фильтр</string>
     <string name="menu_include_in_media_scan">Включить в сканирование</string>
     <string name="menu_exclude_from_media_scan">Исключить из сканирования</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">Добавить в избранное</string>
     
     <string name="create_new_folder">Создать новую папку</string>
     <string name="folder_name">Имя папки</string>
@@ -142,15 +143,15 @@
     <string name="preference_displayhiddenfiles_summary_on">Отображать скрытые файлы</string>
     <string name="preference_displayhiddenfiles_summary_off">Скрыть скрытые файлы</string>
     
-    <string name="preference_sort_settings">Sort settings</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sort_settings">Сортировать настройки</string>
+    <string name="preference_sortby">Сортировать по</string>
+    <string name="preference_sortby_ascending">В порядке возрастания</string>
+    <string name="preference_sortby_ascending_summary_on">Сортировать в порядке возрастания</string>
+    <string name="preference_sortby_ascending_summary_off">Сортировать в порядке убывания</string>
     <string-array name="preference_sortby_names">
-        <item>Name</item>
+        <item>Имя</item>
         <item>Размер</item>
-        <item>Last modified</item>
+        <item>Последнее изменение</item>
     </string-array>
 
         
@@ -163,13 +164,13 @@
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="bookmarks_cancel">Отменить</string>
     <string name="bookmarks_delete">Удалить</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">Выберите закладку для удаления</string>
+    <string name="bookmarks_manage">Управление закладками</string>
+    <string name="bookmark_added">Закладка добавленна</string>
+    <string name="bookmark_not_found">Назначение закладки не найденно</string>
+    <string name="bookmarks_deleted">Выбранные закладки удалены</string>
+    <string name="bookmark_already_exists">Этот файл уже в закладках</string>
 </resources>

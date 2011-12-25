@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  Angad Singh  https://launchpad.net/~angad21-02-1996</string>
+	
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">ਏਸ ਡੀ ਕਾਰਡ ਤੇ ਉਤੇ ਫਾਇਲ ਸਮਭਾਲੋ</string>  
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI ਫਾਇਲ ਮੈਨਿਜਰ</string>
+    
+    <string name="menu_new_folder">ਨਵਾਂ ਫੋਲਡਰ</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">ਮਲਟੀ ਸੈਲੇਕਟ</string>
+
+    <string name="menu_delete">ਹਟਾਉ</string>
+    <string name="menu_rename">ਨਾਂ ਬਦਲੋ</string>
+    <string name="menu_send">ਭੇਜੋ</string>
+    <string name="menu_open">ਖੋਲੋ</string>
+    <string name="menu_move">ਹਿਲਾਓ</string>
+    <string name="menu_copy">ਕਾਪੀ</string>
+    <string name="menu_details">ਵਿਸਤਾਰ</string>
+    <string name="menu_more">ਹੋਰ</string>
+    <string name="menu_filter">ਫਿਲਟਰ</string>
+    <string name="menu_include_in_media_scan">ਮਿਡਿਯਾ ਸਕੈਨ ਮੇ ਜੋੜੋ</string>
+    <string name="menu_exclude_from_media_scan">ਮਿਡਿਯਾ ਸਕੈਨ ਸੇ ਹਟਾਓ</string>
+    <string name="menu_bookmark">ਬੁਕਮਾਰਕ ਕੋ ਜੋੜੋ</string>
+    
+    <string name="create_new_folder">ਨਵਾ ਫੋਲਡਰ ਬਨਾਓ</string>
+    <string name="folder_name">ਫੋਲਡਰ ਦਾ ਨਾਮ</string>
+    <string name="file_name">ਫੋਲਡਰ ਦਾ ਨਾਮ</string>
+    <string name="extension">ਇਕਸਟੈੰਸ਼ਨ (\'.\' ਤੇ ਨਾਲ</string>
+    <string name="this_folder_is_empty">ਇਹ ਫੋਲਡਰ ਖਾਲੀ ਹੈ।</string>
+    <string name="really_delete">ਕਯਾ ਆਪ %s ਹਟਾਨਾ ਚਾਹਤੇ ਹੈ ?</string>
+    <string name="file_deleted">ਫਾਇਲ ਹਟਾਦੀ</string>
+    <string name="folder_deleted">ਫੋਲਡਰ  ਹਟਾਦੀ</string>
+    <string name="file_renamed">ਫਾਇਲ ਕਾ ਨਹਮ ਬਦਲਾ</string>
+    <string name="folder_renamed">ਫੋਲਡਰ ਕਾ ਨਹਮ ਬਦਲਾ</string>
+    <string name="file_moved">ਫਾਇਲ ਹਟਾਦੀ</string>
+    <string name="folder_moved">ਫੋਲਡਰ ਹਟਾਦੀ</string>
+    <string name="file_copied">ਫਾਇਲ ਦੀ ਨਕਲ ਕਰੀ</string>
+    <string name="move_title">ਫੋਲਡਰ ਸੈਲੇਕਟ ਕਰੇ ਹਟਾਨੇ ਕੇ ਲਿਏ</string>
+    <string name="move_button">ਇੱਥੇ ਭੇਜੋ</string>
+    <string name="copy_title">ਫੋਲਡਰ ਚੁਨੇ ਨਕਲ ਕਰਣ ਦੇ ਲਿਏ</string>
+    <string name="copy_button">ਇੱਥੇ ਨਕਲ ਕਰੋ</string>
+	<string name="deleting_files">ਫਾਇਲ ਹਟ ਰਹੀ ਹੈ</string>
+    <string name="title_warning_some_may_not_work">ਚੇਤਾਵਨੀ</string>
+    <string name="warning_some_may_not_work">ਕਇ ਕਾਮ ਨਹੀ ਕਰੇੰਗੇ</string>
+    <string name="show_warning_again">ਚੇਤਾਵਨੀ ਫਿਰਸੇ ਦਿਖਾਓ</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect"> </string>
+    <string name="move_button_multiselect">ਹਿਲਾਓ</string>
+    <string name="copy_button_multiselect">ਕਾਪੀ</string>
+    <string name="delete_button_multiselect">ਹਟਾਉ</string>
+    <string name="multiselect_title">ਕਇ ਫਾਇਲ ਚੁਨੇ</string>
+    <string name="error_selection">1 ਯਾ ਜਯਾਦਾ ਫਾਇਲ ਚੁਨੇ</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">ਟਾਈਪ</string>
+    <string name="details_type_folder">ਫੋਲਡਰ</string>
+    <string name="details_type_file">ਫਾਇਲ</string>
+    <string name="details_type_other">ਹੋਰ</string>
+    <string name="details_size">ਸਾਈਜ਼</string>
+    <string name="details_permissions">ਅਧਿਕਾਰ</string>
+    <string name="details_hidden">ਲੁਕਵਾਂ</string>
+    <string name="details_lastmodified">ਆਖਰੀ ਬਦਲਾਵ</string>
+    <string name="details_yes">ਹਾਂ</string>
+    <string name="details_no">ਨਹੀ</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name"> </string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">ਕਾਪੀ %1$d ਓਫ %2$s</string>
+    
+    <string name="media_scan_included">ਯੇ ਫੋਲਡਰ ਅਗਲੇ ਮੀਜਿਯਾ ਸਕੈਨ ਮੇ ਡਾਲੋ</string>
+    <string name="media_scan_excluded">ਯੇ ਫੋਲਡਰ ਅਗਲੇ ਮੀਜਿਯਾ ਸਕੈਨ ਮੇ ਨਹੀ ਹੋਗਾ</string>
+    
+    <string name="error_creating_new_folder">ਨਵਾ ਫੋਲਡਰ ਨਹੀ ਪਨਾ</string>
+    <string name="error_deleting_file">ਫਾਇਲ ਨਹੀ ਹਟੀ</string>
+    <string name="error_deleting_folder">%s ਫੋਲਡਰ ਨਹੀ ਪਨਾ</string>
+    <string name="error_renaming_file">ਫਾਇਲ ਦਾ ਨਾਂ ਨਹੀ ਬਦਲਾ</string>
+    <string name="error_renaming_folder">ਫੋਲਡਰ  ਦਾ ਨਾਂ ਨਹੀ ਬਦਲਾ</string>
+    <string name="error_moving_file">ਫਾਇਲ ਨਹੀ ਹਟੀ</string>
+    <string name="error_moving_folder">ਫੋਲਡਰ ਨਹੀ ਹਟਾ</string>
+    <string name="error_copying_file">ਫਾਇਲ ਕਾਪੀ ਨਹੀ ਹੁਇ</string>
+    <string name="error_file_does_not_exists">ਫਾਇਲ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।</string>
+    <string name="error_deleting_child_file">ਫਾਇਲ ਨਹੀ ਹਟੀ</string>
+    <string name="error_generic">ਏਰਰ ਆ ਗਯਾ</string>
+    <string name="error_media_scan">ਮੀਡਿਯਾ ਸਕੈਨ  ਸੈਟਿੰਗ ਨਹੀ ਬਦਲੀ</string>
+    
+    <string name="send_not_available">ਰ ਸੈਟਿੰਗ ਨਹੀ ਬਦਲੀ</string>
+    
+    <string name="application_not_available">ਐਪਲਿਕੇਸ਼ਨ ਨਹੀ ਹੈ</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">ਸੈਟਿੰਗ</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">ਆਗੇ ਦੇ ਫੀਚਰ</string>
+	<string name="preference_mediascan_title">ਮਿਡਿਯਾ ਸਕੈਨ ਸੇ ਹਟਾਓ</string>
+    <string name="preference_mediascan_summary_on">ਸ਼ੋ ਮੈਨੂ ਆਇਟਮ ਮੀਡਿਯਾ ਸਕੈਨ ਦੇ ਲਿਏ</string>
+    <string name="preference_mediascan_summary_off">ਮੀਡਿਯਾ ਸਕੈਨ ਦੇ ਲਿਏਸ਼ੋ ਮੈਨੂ ਆਇਟਮ</string>
+    
+    <string name="preference_showallwarning_title">ਸਾਰੀ ਚੇਤਾਵਨੀ ਦਿਖਾਓ</string>
+    <string name="preference_showallwarning_summary_on">ਸਾਰੀ ਚੇਤਾਵਨੀ ਦਿਖਾਓ</string>
+    <string name="preference_showallwarning_summary_off">ਚੇਤਾਵਨੀ ਰੋਕੋ</string>
+       
+    <string name="preference_displayhiddenfiles_title">ਛੁਪੀ ਫਾਇਲ ਦਿਖਾਓ</string>
+    <string name="preference_displayhiddenfiles_summary_on">ਛੁਪੀ ਫਾਇਲ ਦਿਖਾਓ</string>
+    <string name="preference_displayhiddenfiles_summary_off">ਫਾਇਲ ਛੁਪਾਓ</string>
+    
+    <string name="preference_sort_settings">ਸੋਰਟ ਸੈਟਿੰਗ</string>
+    <string name="preference_sortby">ਸੋਰਟ</string>
+    <string name="preference_sortby_ascending">ਉਪਰ ਸੇ ਨੀਚੇ</string>
+    <string name="preference_sortby_ascending_summary_on">ਉਪਰ ਸੇ ਨੀਚੇ ਛਾਟੋ</string>
+    <string name="preference_sortby_ascending_summary_off">ਨੀਚੇ ਸੇ  ਉਪਰ ਛਾਟੋ</string>
+    <string-array name="preference_sortby_names">
+        <item>ਨਾਮ</item>
+        <item>ਸਾਈਜ਼</item>
+        <item>ਆਖਰੀ ਸੋਧ</item>
+    </string-array>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">ਕੋਇ ਫਾਇਲ ਨਹੀ ਉਠਾਇ</string>
+    <string name="saveas_error">ਏਰਰ ਆ ਗਯਾ</string>
+    <string name="saveas_file_saved">ਫਾਇਲ ਰਖ ਲੀ ਗਯੀ</string>
+    
+        
+   
+    <string name="bookmarks">ਬੁੱਕਮਾਰਕ</string>
+    <string name="bookmarks_cancel">ਰਦ ਕਰੋ</string>
+    <string name="bookmarks_delete">ਹਟਾਉ</string>
+    <string name="bookmarks_select_to_delete">ਸੇਲੇਕਟ ਬੁੱਕਮਾਰਕ ਟੂ ਡਿਲੀਟ</string>
+    <string name="bookmarks_manage">ਮੈਨੇਜ ਬੁਕਮਾਰਕ</string>
+    <string name="bookmark_added">ਬੁਕਮਾਰਕ ਡਾਲਾ</string>
+    <string name="bookmark_not_found">ਬੁਕਮਾਰਕ ਨਹੀ ਮਿਲਾ</string>
+    <string name="bookmarks_deleted">ਬੁਕਮਾਰਕ ਹਟ ਗਯੇ</string>
+    <string name="bookmark_already_exists">ਯੇ ਫਾਇਲ ਬੁਕਮਾਰਕ ਹੁਈ ਹੁਈ ਹੈ</string>
+</resources>

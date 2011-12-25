@@ -5,3 +5,43 @@ OI 파일 관리자
 Manage files on the SD card.
 
 # Description:
+OI 파일 관리자에서는 SD 카드 탐색, 폴더 만들기, 파일의 이름을 바꾸거나, 복사하기, 옮기기, 삭제를 할 수 있습니다. 또 다른 앱의 확장으로서 "열기"와 "저장" 대화 상자를 표시하는 데 쓰입니다. 
+
+이 앱은 광고가 없으며 인터넷에 접속하지 않습니다. 
+
+모든 변경 내역과 FAQ는 다음 주소에서 볼 수 있습니다: 
+http://www.openintents.org
+
+당신의 언어로의 번역을 Launchpad에서 도울 수 있습니다: 
+https://translations.launchpad.net/openintents/trunk
+
+이 무료 오픈 소스 앱의 소스 코드는 다음 주소에서 받을 수 있습니다: 
+http://code.google.com/p/openintents
+
+기능: 
+* 이미지 썸네일과 함께 파일 목록을 보입니다.
+* 파일 옮기기, 이름 바꾸기, 삭제하기.
+* 폴더 만들기, 삭제하기.
+* 이메일로 파일 보내기.
+* 지메일과 같은 다은 앱의 확장 역할을 하여 파일을 첨부합니다.
+* 다양한 MIME 타입과 확장자를 지원합니다.
+* 다른 앱이 OI 파일 관리자를 사용할 수 있도록 PICK_FILE과 PICK_DIRECTORY intent를 지원합니다.
+
+사용 가능한 "OI 파일 관리자" 확장들: 
+* "OI에 대해서" 로 라이선스 정보를 봅니다.
+
+"OI 파일 관리자" 와 호환되는 앱들: 
+* "OI 메모장" 으로 텍스트 파일을 열고 저장합니다.
+
+키워드: 
+* 파일 매니저, 탐색기
+* OI, IO, OpenIntents, Open Intents
+
+국제 버전들: 
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, 檔案總管
+
+
+마켓에서 검색하기: 
+* uses OI About
+* extension for OI Notepad
+

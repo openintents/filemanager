@@ -2,46 +2,46 @@
 OI File Manager
 
 # Promo text:
-Manage files on the SD card.
+Gérer les fichiers sur la carte SD.
 
 # Description:
-OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+OI File Manager vous permet de naviguer sur votre carte SD, créer des répertoires, renommer, copier, déplacer et supprimer le gestionnaire de fichiers files.OI vous permet de parcourir votre carte SD, créer des répertoires, renommer, copier, déplacer et supprimer des fichiers. Il agit aussi comme une extension à d'autres applications à afficher  "Ouvrir " et  "Sauvegarder " dialogues. 
 
-This application is ad free and does not require the internet permission. 
+Cette application est petite annonce gratuite et ne nécessite pas l'autorisation d'Internet. 
 
-For the complete list of changes and a list of frequently asked questions, please visit: 
+Pour la liste complète des changements et une liste de questions fréquemment posées, s'il vous plaît visitez: 
 http://www.openintents.org
 
-You can help to improve the translation into your language at Launchpad: 
+Vous pouvez contribuer à améliorer la traduction dans votre langue au Launchpad: 
 https://translations.launchpad.net/openintents/trunk
 
-The source code of this free and open source application is available at: 
+Le code source de cette application libre et open source est disponible à l'adresse: 
 http://code.google.com/p/openintents
 
-Features: 
-* Show list of files with thumbnails for images.
-* Move, copy, rename, and delete files.
-* Create and delete directories (folders).
-* Send files by email.
-* Acts as an extension to other applications, like GMail, to attach files.
-* Support for many file endings and mime types.
-* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+caractéristiques: 
+* Voir la liste des fichiers avec des vignettes pour les images.
+* Déplacer, copier, renommer et supprimer des fichiers.
+* Créer et supprimer des répertoires (dossiers).
+* Envoyer des fichiers par email.
+* Agit comme une extension à d'autres applications, comme Gmail, de joindre des fichiers.
+* Support pour les terminaisons de nombreux fichiers et types MIME.
+* Supporte intentions PICK_FILE et PICK_DIRECTORY afin que les applications peuvent utiliser d'autres OI File
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+Extensions disponibles pour  "OI File Manager ": 
+* Voir les informations de licence avec "OI propos ".
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+Applications qui fonctionnent avec  "OI File Manager ": 
+* Ouvrir et enregistrer des fichiers texte dans "OI Notepad ".
 
-Keywords: 
+Mots-clés: 
 * file manager, filemanager, file explorer
 * OI, IO, OpenIntents, Open Intents
 
-International versions: 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+Les versions internationales: 
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, 檔案總管
 
 
-Search strings for Market: 
+Les chaînes de recherche pour le marché: 
 * uses OI About
 * extension for OI Notepad
 

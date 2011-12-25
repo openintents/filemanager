@@ -27,21 +27,21 @@ http://code.google.com/p/openintents
 * Bir çok dosya ve mime tipi desteği.
 * PICK_FILE ve PICK_DIRECTORY amaçlarını destekler, bu sayede diğer uygulamalar OI Dosya Yönetici'yi kullanabilir.
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+"OI File Manager" için uygun eklentiler: 
+* "OI About" ile lisans bilgilerini görüntüle.
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+"OI File Manager" ile birlikte çalışan uygulamalar: 
+* "OI Notepad" içinde metin dosyalarını açma ve kaydetme.
 
 Anahtar kelimeler: 
 * dosya yönetici, dosyayönetici, dosya araştırıcı
 * OI, IO, OpenIntents, Open Intents
 
 Uluslararası versiyonlar: 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, 檔案總管
 
 
-Search strings for Market: 
+Market için arama metinleri: 
 * uses OI About
 * extension for OI Notepad
 

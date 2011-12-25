@@ -1,10 +1,3 @@
-# Application:
-OI File Manager
-
-# Promo text:
-Manage files on the SD card.
-
-# Description:
 OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
 
 This application is ad free and does not require the internet permission. 

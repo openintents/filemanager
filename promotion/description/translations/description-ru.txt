@@ -25,12 +25,12 @@ http://code.google.com/p/openintents
 * Отправить файлы по электронной почте.
 * Acts as an extension to other applications, like GMail, to attach files.
 * Support for many file endings and mime types.
-* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+* Поддерживает PICK_FILE и PICK_DIRECTORY, так что другие приложения могут использовать OI File Manager
 
 Available extensions for "OI File Manager": 
 * Show the license information with "OI About".
 
-Applications that work with "OI File Manager": 
+Приложения работающие с "OI File Manager": 
 * Open and save text files in "OI Notepad".
 
 Ключевые слова: 
@@ -38,7 +38,7 @@ Applications that work with "OI File Manager":
 * Copy text 	 OI, IO, OpenIntents, Open Intents
 
 Переведенные версии: 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, 檔案總管
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, 檔案總管
 
 
 Search strings for Market: 

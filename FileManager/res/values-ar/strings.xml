@@ -20,66 +20,64 @@
 	     *************************** -->
 	
 	<!-- Automatically filled in by Launchpad: -->
-	<string name="about_translators">Launchpad Contributions:
-  Gál László https://launchpad.net/~gal-laszlo
-  OpenIntents devs https://launchpad.net/~openintents-devs</string>
+	<string name="about_translators">translator-credits</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Az SD kártya tartalmának rendszerezése.</string>  
+    <string name="about_comments">Manage files on the SD card.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
-    <string name="app_name">OI Fájlkezelő</string>
+    <string name="app_name">OI File Manager</string>
     
-    <string name="menu_new_folder">Új mappa</string>
+    <string name="menu_new_folder">New Folder</string>
     
     <!-- Multi select option menu -->
-    <string name="menu_multi_select">Többes kijelölés</string>
+    <string name="menu_multi_select">Multi Select</string>
 
-    <string name="menu_delete">Töröl</string>
-    <string name="menu_rename">Átnevez</string>
-    <string name="menu_send">Küld</string>
-    <string name="menu_open">Megnyit</string>
-    <string name="menu_move">Áthelyez</string>
-    <string name="menu_copy">Másol</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_rename">Rename</string>
+    <string name="menu_send">Send</string>
+    <string name="menu_open">Open</string>
+    <string name="menu_move">Move</string>
+    <string name="menu_copy">Copy</string>
     <string name="menu_details">Details</string>
     <string name="menu_more">More</string>
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Include in media scan</string>
-    <string name="menu_exclude_from_media_scan">Kizárás a médiafigyelésből.</string>
+    <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
     <string name="menu_bookmark">Add to bookmarks</string>
     
-    <string name="create_new_folder">Új mappa létrehozása</string>
-    <string name="folder_name">Mappa neve</string>
-    <string name="file_name">Mappa neve</string>
+    <string name="create_new_folder">Create new folder</string>
+    <string name="folder_name">Folder name</string>
+    <string name="file_name">Folder name</string>
     <string name="extension">Extension (with \'.\')</string>
-    <string name="this_folder_is_empty">Üres mappa.</string>
-    <string name="really_delete">Valóban törölni akarod ezt: %s?</string>
-    <string name="file_deleted">A fájl törlése megtörtént.</string>
-    <string name="folder_deleted">A mappa törlése megtörtént.</string>
-    <string name="file_renamed">A fájl átnevezése megtörtént.</string>
-    <string name="folder_renamed">A mappa átnevezése megtörtént.</string>
-    <string name="file_moved">A fájl áthelyezése megtörtént.</string>
-    <string name="folder_moved">A mappa áthelyezése megtörtént.</string>
-    <string name="file_copied">A fájl másolása megtörtént.</string>
-    <string name="move_title">Válassza ki a célmappát!</string>
-    <string name="move_button">Áthelyezés ide</string>
-    <string name="copy_title">Válassza ki a célmappát!</string>
-    <string name="copy_button">Másolás ide</string>
-	<string name="deleting_files">Fájlok törlése...</string>
+    <string name="this_folder_is_empty">This folder is empty.</string>
+    <string name="really_delete">Do you really want to delete %s?</string>
+    <string name="file_deleted">File deleted.</string>
+    <string name="folder_deleted">Folder deleted.</string>
+    <string name="file_renamed">File renamed.</string>
+    <string name="folder_renamed">Folder renamed.</string>
+    <string name="file_moved">File moved.</string>
+    <string name="folder_moved">Folder moved.</string>
+    <string name="file_copied">File copied.</string>
+    <string name="move_title">Select folder to move to</string>
+    <string name="move_button">Move here</string>
+    <string name="copy_title">Select folder to copy to</string>
+    <string name="copy_button">Copy here</string>
+	<string name="deleting_files">Deleting files...</string>
     <string name="title_warning_some_may_not_work">Warning</string>
     <string name="warning_some_may_not_work">Some of the following options may not work.</string>
     <string name="show_warning_again">Show warning again</string>
     
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">Valóban törölni akarod ezt a(z) %d fájlt?</string>
-    <string name="move_button_multiselect">Áthelyez</string>
-    <string name="copy_button_multiselect">Másol</string>
-    <string name="delete_button_multiselect">Töröl</string>
-    <string name="multiselect_title">Több fájl kiválasztása</string>
-    <string name="error_selection">Kérlek, válassz ki egy vagy több fájlt!</string>
+	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+    <string name="move_button_multiselect">Move</string>
+    <string name="copy_button_multiselect">Copy</string>
+    <string name="delete_button_multiselect">Delete</string>
+    <string name="multiselect_title">Select multiple files</string>
+    <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Type</string>
@@ -94,40 +92,40 @@
     <string name="details_no">No</string>
     
     <!-- Construct a unique file name of a file called %s. -->
-    <string name="copied_file_name">%s másolat</string>
+    <string name="copied_file_name">Copy of %s</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
-    <string name="copied_file_name_2">%2$s %1$d másolat</string>
+    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
     
     <string name="media_scan_included">This folder will be included in the next media scan.</string>
     <string name="media_scan_excluded">This folder will be excluded during the next media scan.</string>
     
-    <string name="error_creating_new_folder">Itt nem hozható létre új mappa.</string>
-    <string name="error_deleting_file">A fájlt nem lehet törölni.</string>
-    <string name="error_deleting_folder">A(z) \'%s\' mappa nem törölhető.</string>
-    <string name="error_renaming_file">A fájlt nem lehet átnevezni.</string>
-    <string name="error_renaming_folder">A mappa nem nevezhető át.</string>
-    <string name="error_moving_file">A fájl nem helyezhető át.</string>
-    <string name="error_moving_folder">A mappát nem lehet áthelyezni.</string>
-    <string name="error_copying_file">A fájl nem másolható.</string>
-    <string name="error_file_does_not_exists">Nem létező fájl.</string>
+    <string name="error_creating_new_folder">Could not create new folder.</string>
+    <string name="error_deleting_file">Could not delete file.</string>
+    <string name="error_deleting_folder">Could not delete folder \'%s\'.</string>
+    <string name="error_renaming_file">Could not rename file.</string>
+    <string name="error_renaming_folder">Could not rename folder.</string>
+    <string name="error_moving_file">Could not move file.</string>
+    <string name="error_moving_folder">Could not move folder.</string>
+    <string name="error_copying_file">Could not copy file.</string>
+    <string name="error_file_does_not_exists">File does not exist.</string>
     <string name="error_deleting_child_file">Could not delete child file \'%s\'.</string>
-    <string name="error_generic">Hiba történt:</string>
+    <string name="error_generic">An error occurred: </string>
     <string name="error_media_scan">Could not change media scan settings.</string>
     
-    <string name="send_not_available">A küldéshez nem áll rendelkezésre egyetlen alkalmazás sem.</string>
+    <string name="send_not_available">No application available for sending.</string>
     
-    <string name="application_not_available">Nem áll rendelkezésre alkalmazás.</string>
+    <string name="application_not_available">Application not available</string>
     
 	<!-- ***************************
 	     Preferences
 	     *************************** -->
     <!-- Menu item for Settings -->
-	<string name="settings">Beállítások</string>
+	<string name="settings">Settings</string>
 	
     <!-- Category for preferences. -->
-    <string name="preference_advanced_features">Speciális funkciók</string>
-	<string name="preference_mediascan_title">Kizárás a médiafigyelésből.</string>
+    <string name="preference_advanced_features">Advanced features</string>
+	<string name="preference_mediascan_title">Exclude from media scan</string>
     <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
     <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
     
@@ -162,7 +160,7 @@
    
     <string name="bookmarks">Bookmarks</string>
     <string name="bookmarks_cancel">Cancel</string>
-    <string name="bookmarks_delete">Töröl</string>
+    <string name="bookmarks_delete">Delete</string>
     <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
     <string name="bookmarks_manage">Manage bookmarks</string>
     <string name="bookmark_added">Bookmark added</string>

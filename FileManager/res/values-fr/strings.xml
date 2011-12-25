@@ -21,12 +21,13 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Abdessamad Derraz https://launchpad.net/~derraz
   Anges https://launchpad.net/~az24
   Peli https://launchpad.net/~peli0101
   kawazzzzzz@yahoo.fr https://launchpad.net/~kawazzzzzz</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Manage files on the SD card.</string>  
+    <string name="about_comments">Gérer les fichiers sur la carte SD.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -37,7 +38,7 @@
     <string name="menu_new_folder">Nouveau dossier</string>
     
     <!-- Multi select option menu -->
-    <string name="menu_multi_select">Multi Select</string>
+    <string name="menu_multi_select">Sélectionnez multi</string>
 
     <string name="menu_delete">Supprimer</string>
     <string name="menu_rename">Renommer</string>
@@ -45,17 +46,17 @@
     <string name="menu_open">Ouvrir</string>
     <string name="menu_move">Déplacer</string>
     <string name="menu_copy">Copier</string>
-    <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_filter">Filter</string>
+    <string name="menu_details">Détails</string>
+    <string name="menu_more">Plus</string>
+    <string name="menu_filter">filtre</string>
     <string name="menu_include_in_media_scan">Inclure dans les recherches</string>
     <string name="menu_exclude_from_media_scan">Exclure des recherches</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">Ajouter aux favoris</string>
     
     <string name="create_new_folder">Créer un nouveau dossier</string>
     <string name="folder_name">Nom du dossier</string>
     <string name="file_name">Nom du dossier</string>
-    <string name="extension">Extension (with \'.\')</string>
+    <string name="extension">Extension (avec \'.\')</string>
     <string name="this_folder_is_empty">Ce dossier est vide.</string>
     <string name="really_delete">Voulez-vous vraiment supprimer %s?</string>
     <string name="file_deleted">Fichier supprimé.</string>
@@ -69,52 +70,52 @@
     <string name="move_button">Déplacer ici</string>
     <string name="copy_title">Sélectionner le dossier à copier sur</string>
     <string name="copy_button">Copier ici</string>
-	<string name="deleting_files">Deleting files...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+	<string name="deleting_files">Suppression de fichiers ...</string>
+    <string name="title_warning_some_may_not_work">Attention</string>
+    <string name="warning_some_may_not_work">Certaines des options suivantes ne peuvent pas travailler.</string>
+    <string name="show_warning_again">Afficher une alerte à nouveau</string>
     
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+	<string name="really_delete_multiselect">Voulez-vous vraiment supprimer %d fichiers?</string>
     <string name="move_button_multiselect">Déplacer</string>
     <string name="copy_button_multiselect">Copier</string>
     <string name="delete_button_multiselect">Supprimer</string>
-    <string name="multiselect_title">Select multiple files</string>
-    <string name="error_selection">Please select one or more file(s).</string>
+    <string name="multiselect_title">Sélectionner plusieurs fichiers</string>
+    <string name="error_selection">S\'il vous plaît sélectionner un ou plusieurs fichier(s).</string>
     
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
-    <string name="details_no">No</string>
+    <string name="details_type">Tapez</string>
+    <string name="details_type_folder">dossier</string>
+    <string name="details_type_file">fichier</string>
+    <string name="details_type_other">autres</string>
+    <string name="details_size">Taille</string>
+    <string name="details_permissions">autorisations</string>
+    <string name="details_hidden">Invisible</string>
+    <string name="details_lastmodified">Dernière mise à jour</string>
+    <string name="details_yes">Oui</string>
+    <string name="details_no">Non</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copie de %s</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
-    <string name="copied_file_name_2">Copy %1$d of %2$s</string>
+    <string name="copied_file_name_2">Copie %1$d de %2$s</string>
     
     <string name="media_scan_included">Ce dossier sera inclus dans la prochaine recherche</string>
     <string name="media_scan_excluded">Ce dossier sera exclus de la prochaine recherche</string>
     
     <string name="error_creating_new_folder">Impossible de créer le nouveau dossier.</string>
     <string name="error_deleting_file">Impossible de supprimer le fichier.</string>
-    <string name="error_deleting_folder">Impossible de supprimer le dossier «%s».</string>
+    <string name="error_deleting_folder">Impossible de supprimer le dossier \'%s\'.</string>
     <string name="error_renaming_file">Impossible de renommer le fichier.</string>
     <string name="error_renaming_folder">Impossible de renommer le dossier.</string>
     <string name="error_moving_file">Impossible de déplacer le fichier.</string>
     <string name="error_moving_folder">Impossible de déplacer le dossier.</string>
     <string name="error_copying_file">Impossible de copier le fichier.</string>
     <string name="error_file_does_not_exists">Le fichier n\'existe pas.</string>
-    <string name="error_deleting_child_file">Impossible de supprimer le fichier enfant «%s».</string>
-    <string name="error_generic">An error occurred: </string>
-    <string name="error_media_scan">Could not change media scan settings.</string>
+    <string name="error_deleting_child_file">Impossible de supprimer le fichier enfant \'%s\'.</string>
+    <string name="error_generic">Une erreur s\'est produite:</string>
+    <string name="error_media_scan">Impossible de changer les paramètres de numérisation des médias.</string>
     
     <string name="send_not_available">Pas d\'application disponible pour l\'envoi</string>
     
@@ -124,50 +125,50 @@
 	     Preferences
 	     *************************** -->
     <!-- Menu item for Settings -->
-	<string name="settings">Settings</string>
+	<string name="settings">Réglages</string>
 	
     <!-- Category for preferences. -->
-    <string name="preference_advanced_features">Advanced features</string>
+    <string name="preference_advanced_features">Les fonctionnalités avancées</string>
 	<string name="preference_mediascan_title">Exclure des recherches</string>
-    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
-    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    <string name="preference_mediascan_summary_on">Montrer élément de menu pour exclure des dossiers de balayage des supports.</string>
+    <string name="preference_mediascan_summary_off">Cacher élément de menu pour exclure des dossiers de balayage des supports.</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_title">Voir tous les avertissements</string>
+    <string name="preference_showallwarning_summary_on">Voir tous les messages d\'avertissement</string>
+    <string name="preference_showallwarning_summary_off">Supprimer les messages d\'avertissement</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">Afficher les fichiers cachés</string>
+    <string name="preference_displayhiddenfiles_summary_on">Afficher les fichiers cachés</string>
+    <string name="preference_displayhiddenfiles_summary_off">Masquer les fichiers cachés</string>
     
-    <string name="preference_sort_settings">Sort settings</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sort_settings">Trier Réglages</string>
+    <string name="preference_sortby">Trier par</string>
+    <string name="preference_sortby_ascending">Dans l\'ordre croissant</string>
+    <string name="preference_sortby_ascending_summary_on">Trier dans l\'ordre croissant</string>
+    <string name="preference_sortby_ascending_summary_off">Trier dans l\'ordre décroissant</string>
     <string-array name="preference_sortby_names">
-        <item>Name</item>
-        <item>Size</item>
-        <item>Last modified</item>
+        <item>Nom</item>
+        <item>Taille</item>
+        <item>Dernière modification</item>
     </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">Vous n\'avez pas choisi n\'importe quel fichier.</string>
+    <string name="saveas_error">Une erreur s\'est produite</string>
+    <string name="saveas_file_saved">Fichier sauvegardé avec succès</string>
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Signets</string>
+    <string name="bookmarks_cancel">Annuler</string>
     <string name="bookmarks_delete">Supprimer</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">Sélectionnez les signets de supprimer</string>
+    <string name="bookmarks_manage">Gérer les signets</string>
+    <string name="bookmark_added">Signet ajouté</string>
+    <string name="bookmark_not_found">Destination de signet pas été trouvé.</string>
+    <string name="bookmarks_deleted">Signets sélectionnés supprimés</string>
+    <string name="bookmark_already_exists">Ce fichier est déjà un signet</string>
 </resources>

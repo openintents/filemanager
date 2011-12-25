@@ -2,6 +2,6 @@
 OI Fájlkezelő
 
 # Promo text:
-Manage files on the SD card.
+Az SD kártya tartalmának rendszerezése.
 
 # Description:

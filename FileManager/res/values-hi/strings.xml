@@ -22,7 +22,8 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Abhishek https://launchpad.net/~abhishek9797
-  happy  nawani https://launchpad.net/~nawanihappy</string>
+  OpenIntents devs https://launchpad.net/~openintents-devs
+  happynawani https://launchpad.net/~happynawani</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
     <string name="about_comments">SD कार्ड पर फ़ाइलों को प्रबंधित करें|</string>  

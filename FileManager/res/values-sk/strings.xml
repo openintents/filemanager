@@ -21,7 +21,8 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
-  Lacko545 https://launchpad.net/~lackorauch</string>
+  Lacko545 https://launchpad.net/~lackorauch
+  OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
     <string name="about_comments">Spravovať súbory na SD karte.</string>  

@@ -54,7 +54,7 @@ Launchpad Contributions:
     <string name="menu_filter">Filtre</string>
     <string name="menu_include_in_media_scan">Medya tarama dahil</string>
     <string name="menu_exclude_from_media_scan">Medya tarama hariç</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">Yer imleri ekle</string>
     
     <string name="create_new_folder">Yeni klasör oluştur</string>
     <string name="folder_name">Klasör adı</string>
@@ -144,15 +144,15 @@ Launchpad Contributions:
     <string name="preference_displayhiddenfiles_summary_on">Gizli dosyaları göster</string>
     <string name="preference_displayhiddenfiles_summary_off">Gizli dosyaları gizle</string>
     
-    <string name="preference_sort_settings">Sort settings</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sort_settings">Sıralama ayarları</string>
+    <string name="preference_sortby">Buna göre sırala</string>
+    <string name="preference_sortby_ascending">Artan sırada</string>
+    <string name="preference_sortby_ascending_summary_on">Artan sıraya göre sıralama</string>
+    <string name="preference_sortby_ascending_summary_off">Azalan sıraya göre sıralama</string>
     <string-array name="preference_sortby_names">
-        <item>Name</item>
+        <item>İsim</item>
         <item>Boyut</item>
-        <item>Last modified</item>
+        <item>Son değişiklikler</item>
     </string-array>
 
         
@@ -165,13 +165,13 @@ Launchpad Contributions:
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Yer imleri</string>
+    <string name="bookmarks_cancel">İptal</string>
     <string name="bookmarks_delete">Sil</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">Seçili yer imlerini sil</string>
+    <string name="bookmarks_manage">Yer imleri yöneticisi</string>
+    <string name="bookmark_added">Yer imi eklendi</string>
+    <string name="bookmark_not_found">Yer imi hedefi bulunamadı.</string>
+    <string name="bookmarks_deleted">Seçili yer imleri silindi</string>
+    <string name="bookmark_already_exists">Bu dosya zaten yer imi.</string>
 </resources>

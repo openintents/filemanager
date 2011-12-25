@@ -25,6 +25,7 @@
   OpenIntents devs https://launchpad.net/~openintents-devs
   Peli https://launchpad.net/~peli0101
   Robert https://launchpad.net/~usamird
+  Stelescu Raul https://launchpad.net/~stelescuraul
   iulargsb https://launchpad.net/~iulargsb</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
@@ -52,14 +53,14 @@
     <string name="menu_filter">Filtru</string>
     <string name="menu_include_in_media_scan">Include în scanare media</string>
     <string name="menu_exclude_from_media_scan">Exclude din scanare media</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">Adaugă la favorite</string>
     
     <string name="create_new_folder">Crează un dosar nou</string>
     <string name="folder_name">Numele dosarului</string>
     <string name="file_name">Numele dosarului</string>
-    <string name="extension">Extensie (cu \'.\')</string>
+    <string name="extension">Extensie (cu „ . ”)</string>
     <string name="this_folder_is_empty">Dosarul este gol.</string>
-    <string name="really_delete">Doriți sa ștergeți %s?</string>
+    <string name="really_delete">Sigur doriți să ștergeți %s?</string>
     <string name="file_deleted">Fișier sters.</string>
     <string name="folder_deleted">Dosar șters.</string>
     <string name="file_renamed">Fișier redenumit.</string>
@@ -86,11 +87,11 @@
     
     <!-- Strings for details table -->
     <string name="details_type">Tip</string>
-    <string name="details_type_folder">Document</string>
+    <string name="details_type_folder">Dosar</string>
     <string name="details_type_file">Fișier</string>
     <string name="details_type_other">Alte</string>
     <string name="details_size">Dimensiune</string>
-    <string name="details_permissions">Permisii</string>
+    <string name="details_permissions">Permisiuni</string>
     <string name="details_hidden">Ascuns</string>
     <string name="details_lastmodified">Ultimul Modificat</string>
     <string name="details_yes">Da</string>
@@ -105,16 +106,16 @@
     <string name="media_scan_included">Acest dosar va fi inclus în următoarea scanare media.</string>
     <string name="media_scan_excluded">Acest dosar va fi exclus în timpul următoarei scanări media.</string>
     
-    <string name="error_creating_new_folder">Nu am putut crea un dosar nou.</string>
+    <string name="error_creating_new_folder">Nu s-a putut crea un dosar nou.</string>
     <string name="error_deleting_file">Nu am putut șterge fișierul.</string>
     <string name="error_deleting_folder">Nu s-a putut șterge dosarul \'%s\'.</string>
-    <string name="error_renaming_file">Nu am putut redenumi fișierul.</string>
-    <string name="error_renaming_folder">Nu am putut redenumi dosarul.</string>
-    <string name="error_moving_file">Nu am putut muta fișierul.</string>
-    <string name="error_moving_folder">Nu am putut muta dosarul.</string>
-    <string name="error_copying_file">Nu am putut copia fișierul.</string>
+    <string name="error_renaming_file">Nu s-a putut redenumi fișierul.</string>
+    <string name="error_renaming_folder">Nu s-a putut redenumi dosarul.</string>
+    <string name="error_moving_file">Nu s-a putut muta fișierul.</string>
+    <string name="error_moving_folder">Nu s-a putut muta dosarul.</string>
+    <string name="error_copying_file">Nu s-a putut copia fișierul.</string>
     <string name="error_file_does_not_exists">Fișierul nu există.</string>
-    <string name="error_deleting_child_file">Nu s-a putut șterge fișierul inferior „%s”.</string>
+    <string name="error_deleting_child_file">Nu s-a putut șterge sub-fișierul „%s”.</string>
     <string name="error_generic">A apărut o eroare:</string>
     <string name="error_media_scan">Nu s-au putut schimba configurările scanării media.</string>
     
@@ -126,50 +127,50 @@
 	     Preferences
 	     *************************** -->
     <!-- Menu item for Settings -->
-	<string name="settings">Configurare</string>
+	<string name="settings">Configurări</string>
 	
     <!-- Category for preferences. -->
-    <string name="preference_advanced_features">Funcțiuni avansate</string>
+    <string name="preference_advanced_features">Funcții avansate</string>
 	<string name="preference_mediascan_title">Exclude din scanare media</string>
     <string name="preference_mediascan_summary_on">Afișează elementul meniu pentru a exclude dosare din scanarea media.</string>
     <string name="preference_mediascan_summary_off">Ascunde elementul meniu pentru a exclude dosare din scanarea media.</string>
     
-    <string name="preference_showallwarning_title">Arată toate avertizările</string>
-    <string name="preference_showallwarning_summary_on">Arată toate mesajele avertizărilor</string>
+    <string name="preference_showallwarning_title">Afișează toate avertizările</string>
+    <string name="preference_showallwarning_summary_on">Afișează toate mesajele avertizărilor</string>
     <string name="preference_showallwarning_summary_off">Suprimă mesajele avertizărilor</string>
        
-    <string name="preference_displayhiddenfiles_title">Arată toate fișierele ascuns</string>
-    <string name="preference_displayhiddenfiles_summary_on">Arată toate fișierele ascuns</string>
+    <string name="preference_displayhiddenfiles_title">Arată toate fișierele ascunse</string>
+    <string name="preference_displayhiddenfiles_summary_on">Arată toate fișierele ascunse</string>
     <string name="preference_displayhiddenfiles_summary_off">Ascunde fișierele ascunse</string>
     
-    <string name="preference_sort_settings">Sort settings</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sort_settings">Configurări sortare</string>
+    <string name="preference_sortby">Sortează după</string>
+    <string name="preference_sortby_ascending">În ordine ascendentă</string>
+    <string name="preference_sortby_ascending_summary_on">Sortează în ordine ascendentă</string>
+    <string name="preference_sortby_ascending_summary_off">Sotează în ordine descendentă</string>
     <string-array name="preference_sortby_names">
-        <item>Name</item>
+        <item>Nume</item>
         <item>Dimensiune</item>
-        <item>Last modified</item>
+        <item>Modificat ultima dată</item>
     </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">Nu ați ales nici un fișier.</string>
+    <string name="saveas_no_file_picked">Nu ați ales niciun fișier.</string>
     <string name="saveas_error">A apărut o eroare.</string>
     <string name="saveas_file_saved">Fișierul a fost salvat cu succes!</string>
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Semne de carte</string>
+    <string name="bookmarks_cancel">Anulează</string>
     <string name="bookmarks_delete">Șterge</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">Selectează semnele de carte care să fie șterse</string>
+    <string name="bookmarks_manage">Gestionaţi semnele de carte</string>
+    <string name="bookmark_added">Semn de carte adăugat</string>
+    <string name="bookmark_not_found">Destinația semnului de carte nu a fost găsită.</string>
+    <string name="bookmarks_deleted">Selectează semnele de carte șterse</string>
+    <string name="bookmark_already_exists">Acest fișier este deja semn de carte.</string>
 </resources>

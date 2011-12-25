@@ -1,0 +1,40 @@
+OI File Manedyer ay nagbibigay-daan para ma-basa ang iyong SD card, lumikha ng mga direktoryo, palitan ang pangalan, kopyahin, ilipat, at alisin ang mga file. Ito rin ay gumaganap bilang isang ekstensyon sa iba pang mga applikasyon upang ipakita ang dyalogo na "Buksan" at "Save". 
+
+Ang applikasyon na ito ay walang patalastas at hindi nangangailangan ng pahintulot ng internet. 
+
+Para sa kumpletong listahan ng mga pagbabago at ang listahan ng mga madalas itanong, mangyaring bisitahin ang: 
+http://www.openintents.org
+
+Maaari kang makatulong upang mapabuti ang mga pagsasalin sa iyong wika sa Launchpad: 
+https://translations.launchpad.net/openintents/trunk
+
+Ang pinagmulang kodigo ng mga ito ay libre at bukas na pinagkukunang kodigo ng applikasyon ay magagamit sa: 
+http://code.google.com/p/openintents
+
+Tampok: 
+* Ipakita ang listahan ng mga file na may mga thumbnail para sa mga imahe.
+* Ilipat, kopyahin, palitan ang pangalan, at alisin ang mga file.
+* Lumikha at alisin ang direktoryo (polder).
+* Magpadala ng mga file sa pamamagitan ng email.
+* Gumaganap bilang isang ekstensiyon sa iba pang mga applikasyon, tulad ng GMail, upang magsama ng mga file.
+* Suporta para sa maraming mga endings ng file at uri ng mime.
+* Sinusuportahan ang PILI_FILE at PILI_DIREKTORYA layunin upang ang iba pang mga applikasyon ay makagamit ng OI File Manager.
+
+Magagamit na mga ekstensiyon  para sa "OI File Manedyer": 
+* Ipakita ang mga impormasyon ng lisensiya sa "OI Tungkol".
+
+Applikasyon na gumagana sa "OI File Manager": 
+* Buksan at i-save ang teksto ng mga file sa "OI Talaan".
+
+Keywords: 
+* file manedyer, filemanager, file explorer
+* OI, IO, OpenIntents, Bukas na mga Layunin
+
+Internasyonal na mga bersyon: 
+OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, 檔案總管
+
+
+Search strings para sa Merkado: 
+* uses OI About
+* extension for OI Notepad
+

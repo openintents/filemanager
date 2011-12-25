@@ -22,10 +22,14 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Alfredo Hernández https://launchpad.net/~aldomann
+  DiegoJ https://launchpad.net/~diegojromerolopez
+  Donal Estrada https://launchpad.net/~donalestrada
+  Fitoschido https://launchpad.net/~fitoschido
   Javier Martínez Arrieta https://launchpad.net/~javote87
   OpenIntents devs https://launchpad.net/~openintents-devs
   Paco Molinero https://launchpad.net/~franciscomol
   Peli https://launchpad.net/~peli0101
+  miwie https://launchpad.net/~mw-miwie
   simon https://launchpad.net/~sianhulo</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
@@ -48,53 +52,53 @@
     <string name="menu_open">Abrir</string>
     <string name="menu_move">Mover</string>
     <string name="menu_copy">Copiar</string>
-    <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_filter">Filter</string>
+    <string name="menu_details">Mostrar detalles</string>
+    <string name="menu_more">Más</string>
+    <string name="menu_filter">Filtro</string>
     <string name="menu_include_in_media_scan">Incluir en la exploración de archivos multimedia</string>
     <string name="menu_exclude_from_media_scan">Excluir de la exploración de archivos multimedia</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">Añadir a marcadores</string>
     
     <string name="create_new_folder">Crear nueva carpeta</string>
     <string name="folder_name">Nombre de carpeta</string>
     <string name="file_name">Nombre de carpeta</string>
-    <string name="extension">Extension (with \'.\')</string>
-    <string name="this_folder_is_empty">Esta carpeta es vacia.</string>
+    <string name="extension">Complemento (con \'.\')</string>
+    <string name="this_folder_is_empty">Esta carpeta está vacía.</string>
     <string name="really_delete">Verdaderamente quiere borrar %s?</string>
     <string name="file_deleted">Archivo borrado.</string>
     <string name="folder_deleted">Carpeta borrada.</string>
-    <string name="file_renamed">Fichero cambiado de nombre.</string>
-    <string name="folder_renamed">Carpeta cambiado de nombre.</string>
-    <string name="file_moved">Fichero movido.</string>
-    <string name="folder_moved">Carpeta movido.</string>
+    <string name="file_renamed">Archivo cambiado de nombre.</string>
+    <string name="folder_renamed">Carpeta cambiada de nombre.</string>
+    <string name="file_moved">Archivo movido.</string>
+    <string name="folder_moved">Carpeta movida.</string>
     <string name="file_copied">Archivo copiado.</string>
     <string name="move_title">Seleccionar carpeta de destino</string>
-    <string name="move_button">Mover acá</string>
-    <string name="copy_title">Seleccione carpeta a copiar a</string>
+    <string name="move_button">Mover aquí</string>
+    <string name="copy_title">Seleccione carpeta de destino</string>
     <string name="copy_button">Copiar aquí</string>
-	<string name="deleting_files">Eliminando archivos...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+	<string name="deleting_files">Borrando archivos...</string>
+    <string name="title_warning_some_may_not_work">Advertencia</string>
+    <string name="warning_some_may_not_work">Algunas de las siguientes opciones pueden no funcionar</string>
+    <string name="show_warning_again">Mostrar advertencia de nuevo</string>
     
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">¿Realmente quiere eliminar los archivos %d?</string>
+	<string name="really_delete_multiselect">¿Realmente quiere borrar los archivos %d?</string>
     <string name="move_button_multiselect">Mover</string>
     <string name="copy_button_multiselect">Copiar</string>
     <string name="delete_button_multiselect">Borrar</string>
-    <string name="multiselect_title">Sleccione varios archivos</string>
-    <string name="error_selection">Por favor, selecciona uno o mas archivos</string>
+    <string name="multiselect_title">Seleccione varios archivos</string>
+    <string name="error_selection">Por favor, seleccione uno o mas archivos</string>
     
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
+    <string name="details_type">Tipo</string>
+    <string name="details_type_folder">Carpeta</string>
+    <string name="details_type_file">Archivo</string>
+    <string name="details_type_other">Otro</string>
+    <string name="details_size">Tamaño</string>
+    <string name="details_permissions">Permisos</string>
+    <string name="details_hidden">Oculto</string>
+    <string name="details_lastmodified">Ultima modificación</string>
+    <string name="details_yes">Si</string>
     <string name="details_no">No</string>
     
     <!-- Construct a unique file name of a file called %s. -->
@@ -150,7 +154,7 @@
     <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
     <string-array name="preference_sortby_names">
         <item>Name</item>
-        <item>Size</item>
+        <item>Tamaño</item>
         <item>Last modified</item>
     </string-array>
 

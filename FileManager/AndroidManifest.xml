@@ -35,7 +35,7 @@
 	-->
 	
         <uses-sdk android:minSdkVersion="2"
-            android:targetSdkVersion="14" />
+            android:targetSdkVersion="15" />
         <!-- If targetSdkVersion is increased from 4 to 5 or higher, 
         	the following needs to be adjusted:
              * FileManagerActivity: onKeyDown(): New way how "back" key is handled.

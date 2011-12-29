@@ -37,6 +37,7 @@ date: ?
 - Apk icon support (Google Code-in task by philip9)
 - Bookmarks of folder locations (Google Code-In task by Matěj Konečný)
 - Details dialog shows size of folder contents (Google Code-In task by philip9)
+- Fixed bug with details dialog on API 7 and earlier (Google Code-In task by phlip9)
 
 ---------------------------------------------------------
 release: 1.1.6

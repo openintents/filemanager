@@ -299,7 +299,7 @@ public class DirectoryScanner extends Thread {
 	   		 ApplicationInfo aInfo = pInfo.applicationInfo;
 	   		 
 	   		 // Bug in SDK versions >= 8. See here: http://code.google.com/p/android/issues/detail?id=9151
-	   		 if(Build.VERSION.SDK_INT >= 8){
+	   		 if(FileUtils.SDK_INT >= 8){
 	   			 aInfo.sourceDir = path;
 	   			 aInfo.publicSourceDir = path;
 	   		 }

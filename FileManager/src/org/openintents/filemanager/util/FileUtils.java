@@ -21,10 +21,12 @@ import java.util.Date;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore.Audio;
 import android.provider.MediaStore.Video;
 import android.text.format.DateFormat;
 import android.text.format.Formatter;
+import android.util.Log;
 
 /**
  * @version 2009-07-03
@@ -33,8 +35,39 @@ import android.text.format.Formatter;
  *
  */
 public class FileUtils {
+	
+	public static int SDK_INT = 2;
+	
 	/** TAG for log messages. */
 	static final String TAG = "FileUtils";
+	private static final int X_OK = 1;
+	
+	private static boolean libLoadSuccess;
+	
+	static {
+		try{
+			// Android 1.6 (v4) and higher:
+			// access Build.VERSION.SDK_INT.
+			SDK_INT = android.os.Build.VERSION.class.getField("SDK_INT").getInt(null);
+		} catch(Exception e) {
+			try {
+				// Android 1.5 (v3) and lower:
+               // access Build.VERSION.SDK.
+				SDK_INT = Integer.parseInt((String) android.os.Build.VERSION.class.getField("SDK").get(null));
+			} catch(Exception e2) {
+				// This should never happen:
+				SDK_INT = 2;
+			}
+		}
+		
+		try {
+			System.loadLibrary("access");
+			libLoadSuccess = true;
+		} catch(UnsatisfiedLinkError e) {
+			libLoadSuccess = false;
+			Log.d(TAG, "libaccess.so failed to load.");
+		}
+	}
 
 	/**
 	 * Whether the filename is a video file.
@@ -182,4 +215,20 @@ public class FileUtils {
 	public static String formatDate(Context context, long dateTime) {
 		return DateFormat.getDateFormat(context).format(new Date(dateTime));
 	}
+	
+	/**
+	 * Native helper method, returns whether the current process has execute privilages.
+	 * @param a File
+	 * @return returns TRUE if the current process has execute privilages.
+	 */
+	public static boolean canExecute(File mContextFile) {
+		if(libLoadSuccess){
+			return access(mContextFile.getPath(), X_OK);
+		} else {
+			return false;
+		}
+	}
+	
+	// Native interface to unistd.h's access(*char, int) method.
+	public static native boolean access(String path, int mode);
 }

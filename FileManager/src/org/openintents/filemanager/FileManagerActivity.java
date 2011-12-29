@@ -1487,7 +1487,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	
         	String perms = (mContextFile.canRead() ? "R" : "-") +
         			(mContextFile.canWrite() ? "W" : "-") +
-        			(mContextFile.canExecute() ? "X" : "-");
+        			(FileUtils.canExecute(mContextFile) ? "X" : "-");
         	
         	final TextView permissions = ((TextView)dialog.findViewById(R.id.details_permissions_value));
         	permissions.setText(perms);

@@ -199,12 +199,15 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		        	    	restartBookmarksChecked();
 		        	    }
 		        	}).create();
+			// TODO: need to fix
+			/*	Commenting this out for now.  Need another way to do this or check for SDK > 7.
+			 *  With this in, Android 1.5 crashes upon launch.
 			dialog.setOnShowListener(new DialogInterface.OnShowListener() {
 				@Override
 				public void onShow(DialogInterface dialog) {
 					((AlertDialog)dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
 				}
-			});
+			});*/
 			return dialog;
 		}
 		return super.onCreateDialog(id);

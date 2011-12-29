@@ -50,6 +50,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.XmlResourceParser;
@@ -1552,11 +1553,31 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
 			// Create name list for menu item.
 			final List<CharSequence> items = new ArrayList<CharSequence>();
+			/* Some of the options don't go to the list hence we have to remove them
+			 * to keep the lri correspond with the menu items. In the addition, we have
+			 * to remove them after the first iteration, otherwise the iteration breaks.
+			 */
+			List<ResolveInfo> toRemove = new ArrayList<ResolveInfo>();
 			for (int i = 0; i < N; i++) {
 				final ResolveInfo ri = lri.get(i);
-				items.add(ri.loadLabel(pm));
+				Intent rintent = new Intent(intent);
+				rintent.setComponent(
+						new ComponentName(
+								ri.activityInfo.applicationInfo.packageName,
+								ri.activityInfo.name));
+				ActivityInfo info = rintent.resolveActivityInfo(pm, 0);
+				String permission = info.permission;
+				if(info.exported && (permission == null 
+						|| checkCallingPermission(permission) == PackageManager.PERMISSION_GRANTED))
+					items.add(ri.loadLabel(pm));
+				else
+					toRemove.add(ri);
 			}
-			
+
+			for(ResolveInfo ri : toRemove){
+				lri.remove(ri);
+			}
+
 			new AlertDialog.Builder(this)
 					.setTitle(mContextText)
 					.setIcon(mContextIcon)

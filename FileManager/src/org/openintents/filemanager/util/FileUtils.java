@@ -17,11 +17,11 @@
 package org.openintents.filemanager.util;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.Date;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.MediaStore.Audio;
 import android.provider.MediaStore.Video;
 import android.text.format.DateFormat;
@@ -222,10 +222,18 @@ public class FileUtils {
 	 * @return returns TRUE if the current process has execute privilages.
 	 */
 	public static boolean canExecute(File mContextFile) {
-		if(libLoadSuccess){
-			return access(mContextFile.getPath(), X_OK);
-		} else {
-			return false;
+		try {
+			// File.canExecute() was introduced in API 9.  If it doesn't exist, then
+			// this will throw an exception and the NDK version will be used.
+			Method m = File.class.getMethod("canExecute", new Class[] {} );
+			Boolean result=(Boolean)m.invoke(mContextFile);
+			return result;
+		} catch (Exception e) {
+			if(libLoadSuccess){
+				return access(mContextFile.getPath(), X_OK);
+			} else {
+				return false;
+			}
 		}
 	}
 	

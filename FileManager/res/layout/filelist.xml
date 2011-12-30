@@ -59,26 +59,46 @@
 				    android:layout_height="wrap_content"
 				    android:minWidth="64dip" />
 		</LinearLayout>
-	    <LinearLayout android:id="@+id/action_multiselect"
-		    android:orientation="horizontal"
-		    android:layout_width="fill_parent" 
-		    android:layout_height="wrap_content">
-		    <Button android:id="@+id/button_move"
-					android:text="@string/move_button_multiselect"
-				    android:layout_width="wrap_content" 
-				    android:layout_height="wrap_content"
-				    android:layout_weight="1" />
-		    <Button android:id="@+id/button_copy"
-					android:text="@string/copy_button_multiselect"
-				    android:layout_width="wrap_content" 
-				    android:layout_height="wrap_content"
-				    android:layout_weight="1" />
-		    <Button android:id="@+id/button_delete"
-					android:text="@string/delete_button_multiselect"
-				    android:layout_width="wrap_content" 
-				    android:layout_height="wrap_content"
-				    android:layout_weight="1" />
-		</LinearLayout>
+		<HorizontalScrollView android:id="@+id/multiselect_button_scroll"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:fillViewport="true">
+			<LinearLayout android:id="@+id/action_multiselect"
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+				<Button android:id="@+id/button_move"
+						android:text="@string/move_button_multiselect"
+						android:layout_width="wrap_content" 
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:maxLines="1" />
+				<Button android:id="@+id/button_copy"
+						android:text="@string/copy_button_multiselect"
+						android:layout_width="wrap_content" 
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:maxLines="1" />
+				<Button android:id="@+id/button_delete"
+						android:text="@string/delete_button_multiselect"
+						android:layout_width="wrap_content" 
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:maxLines="1" />
+				<Button android:id="@+id/button_select"
+						android:text="@string/select_button_multiselect"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:maxLines="1" />
+				<Button android:id="@+id/button_deselect"
+						android:text="@string/deselect_button_multiselect"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:maxLines="1" />
+			</LinearLayout>
+		</HorizontalScrollView>
 	</FrameLayout>
     <!-- 
     <LinearLayout

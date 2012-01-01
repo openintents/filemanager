@@ -52,6 +52,8 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 	
 	public static final String PREFS_ASCENDING = "ascending";
 	
+	public static final String PREFS_DEFAULTPICKFILEPATH = "defaultpickfilepath";
+	
 	private static final int DIALOG_DELETE_BOOKMARKS = 1;
 	
 	private Cursor deleteBookmarksCursor;
@@ -119,6 +121,19 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 	static boolean getDisplayHiddenFiles(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(PREFS_DISPLAYHIDDENFILES, true);
+	}
+	
+	static void setDefaultPickFilePath(Context context, String path) {
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString(PREFS_DEFAULTPICKFILEPATH, path);
+		editor.commit();
+	}
+
+
+	static String getDefaultPickFilePath(Context context) {
+		return PreferenceManager.getDefaultSharedPreferences(context)
+				.getString(PREFS_DEFAULTPICKFILEPATH, null);
 	}
 	
 	

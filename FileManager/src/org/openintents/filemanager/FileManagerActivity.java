@@ -434,6 +434,17 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     		  if (!file.isDirectory()) {
     			  mEditFilename.setText(file.getName());
     		  }
+    	  } else{
+    		  if(mState == STATE_PICK_FILE || mState == STATE_PICK_DIRECTORY
+    				  || action.equals(Intent.ACTION_GET_CONTENT)){
+    			  String path = PreferenceActivity.getDefaultPickFilePath(this);
+    			  if(path != null){
+    				  File dir = new File(path);
+    				  if(dir.exists() && dir.isDirectory()){
+		    			  browseto = dir;
+    				  }
+    			  }
+    		  }
     	  }
     	  
     	  String title = intent.getStringExtra(FileManagerIntents.EXTRA_TITLE);
@@ -662,6 +673,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		} else if (mState == STATE_PICK_DIRECTORY) {
 			file = currentDirectory;
 		}
+		
+		PreferenceActivity.setDefaultPickFilePath(this, currentDirectory.getAbsolutePath());
     	 
     	Intent intent = getIntent();
     	intent.setData(FileUtils.getUri(file));
@@ -766,6 +779,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      	 
      	 if (originalIntent != null && originalIntent.getAction() != null && originalIntent.getAction().equals(Intent.ACTION_GET_CONTENT)) {
     		 // In that case, we should probably just return the requested data.
+     		 PreferenceActivity.setDefaultPickFilePath(this,
+     				 FileUtils.getPathWithoutFilename(aFile).getAbsolutePath());
      		 intent.setData(Uri.parse(FileManagerProvider.FILE_PROVIDER_PREFIX + aFile));
      		 setResult(RESULT_OK, intent);
      		 finish();

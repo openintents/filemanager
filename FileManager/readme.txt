@@ -1,4 +1,4 @@
- ****************************************************************************
+﻿ ****************************************************************************
  * Copyright (C) 2008-2011 OpenIntents.org                                  *
  *                                                                          *
  * Licensed under the Apache License, Version 2.0 (the "License");          *
@@ -40,6 +40,7 @@ date: ?
 - Fixed bug with details dialog on API 7 and earlier (Google Code-In task by phlip9)
 - Fixed bug with More option (issue 330, Google Code-In task by Matěj Konečný)
 - Select/Deselect all in multi-select (Google Code-In task by phlip9)
+- remember previous directory when attaching files (Google Code-in task by  Matěj Konečný)
 
 ---------------------------------------------------------
 release: 1.1.6

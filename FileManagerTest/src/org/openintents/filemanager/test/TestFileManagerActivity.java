@@ -101,6 +101,14 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 			throw new IOException("Creation of " + path + " failed");
 	}
 	
+	private void deleteDirectory(String path) {
+		File file = new File(path);
+		if(file.exists())
+			if(file.isDirectory())
+				cleanDirectory(file);
+			file.delete();
+	}
+	
 	private String getAppString(int resId) {
 		return activity.getString(resId);
 	}
@@ -406,6 +414,73 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		solo.clickOnButton(getAppString(android.R.string.ok));
 		
 		solo.goBack();
+	}
+	
+	public void testIntentRememberPickFilePath() throws IOException {
+		String[] actions = new String[]{
+			"org.openintents.action.PICK_FILE",
+			"org.openintents.action.PICK_DIRECTORY",
+			Intent.ACTION_GET_CONTENT
+		};
+		
+		for(int i=0;i<3;i++){
+			createDirectory(sdcardPath + "oi-filemanager-tests");
+			if(i==1){ //Pick directory
+				createDirectory(sdcardPath + "oi-filemanager-tests/oi-dir-to-pick");
+			}
+			else{
+				createFile(sdcardPath + "oi-filemanager-tests/oi-file-to-pick.txt", "bbb");
+			}
+			//Directory because PICK_DIRECTORY doesn't show files
+			createDirectory(sdcardPath + "oi-to-pick-test-folder-deleted");
+			
+
+			// Pick a file first
+			Uri uri = Uri.parse("file:///mnt/sdcard"); //If there was already a remembered pick file path
+			intent = new Intent(actions[i], uri);
+			intent.setClassName("org.openintents.filemanager",
+					"org.openintents.filemanager.FileManagerActivity");
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			
+			activity = getInstrumentation().startActivitySync(intent);
+			
+			solo.clickOnText("oi-filemanager-tests");
+			if(i==1) //Pick directory
+				solo.clickOnText("oi-dir-to-pick");
+			else
+				solo.clickOnText("oi-file-to-pick.txt");
+			
+			if(i != 2) // When ACTION_GET_CONTENT, the file is picked automatically, when clicked
+				solo.clickOnButton(getAppString(android.R.string.ok));
+			
+			// Check, if we are in the oi-filemanager-tests directory
+			intent = new Intent(actions[i]);
+			intent.setClassName("org.openintents.filemanager",
+					"org.openintents.filemanager.FileManagerActivity");
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			activity = getInstrumentation().startActivitySync(intent);
+			
+			solo.goBack();
+			
+			
+			//Delete the oi-filemanager-tests directory
+			deleteDirectory(sdcardPath + "oi-filemanager-tests");
+			
+			//Check, if the current directory is the default (sdcardPath)
+			intent = new Intent(actions[i]);
+			intent.setClassName("org.openintents.filemanager",
+					"org.openintents.filemanager.FileManagerActivity");
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			activity = getInstrumentation().startActivitySync(intent);
+			
+			assertTrue(solo.searchText("oi-to-pick-test-folder-deleted"));
+			
+			//Clean up
+			(new File(sdcardPath + "oi-to-pick-test-folder-deleted")).delete();
+			
+			solo.goBack();
+			solo.goBack();
+		}
 	}
 	
 	// Other possible tests:

@@ -26,6 +26,7 @@ public class IconifiedText implements Comparable<IconifiedText>{
      private Drawable mIcon; 
      private boolean mSelectable = true; 
      private boolean mSelected; 
+     private boolean mCheckBoxVisible;
 
      public IconifiedText(String text, String info, Drawable bullet) { 
           mIcon = bullet; 
@@ -81,5 +82,13 @@ public class IconifiedText implements Comparable<IconifiedText>{
           else 
                throw new IllegalArgumentException(); 
      } 
+     
+     public void setCheckIconVisible(boolean visible) {
+    	 mCheckBoxVisible = visible;
+     }
+     
+     public boolean isCheckIconVisible() {
+    	 return mCheckBoxVisible;
+     }
 } 
 

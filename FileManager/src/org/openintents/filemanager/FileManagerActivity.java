@@ -77,9 +77,11 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -245,10 +247,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      static final public int MESSAGE_SET_PROGRESS = 501;	// Set progress bar, arg1 = current value, arg2 = max value
      static final public int MESSAGE_ICON_CHANGED = 502;	// View needs to be redrawn, obj = IconifiedText
 
-     private Button mButtonSelectAll;
-     private Button mButtonDeselectAll;
-     
-     private HorizontalScrollView mScrollMultiselect;
+     private ImageView mCheckIconSelect;
+     private boolean mSelected = false;
      
      /** Called when the activity is first created. */ 
      @Override 
@@ -285,14 +285,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	      getListView().setTextFilterEnabled(true);
 	      getListView().requestFocus();
 	      getListView().requestFocusFromTouch();
-	      
-	      mScrollMultiselect = (HorizontalScrollView) findViewById(R.id.multiselect_button_scroll);
-	      
-	      // Cupcake handles fillViewport differently than every other version
-	      // for some reason, so we disable it.
-	      if(FileUtils.SDK_INT <= 3){
-	    	  mScrollMultiselect.setFillViewport(false);
-	      }
 	      
           mDirectoryButtons = (LinearLayout) findViewById(R.id.directory_buttons);
           mActionNormal = (LinearLayout) findViewById(R.id.action_normal);
@@ -391,22 +383,21 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	                    }
 	              });
 
-	              mButtonSelectAll = (Button) findViewById(R.id.button_select);
-	              mButtonSelectAll.setOnClickListener(new View.OnClickListener() {
-
+	              mCheckIconSelect = (ImageView) findViewById(R.id.check_icon_select);
+	              mCheckIconSelect.setOnClickListener(new View.OnClickListener() {
+					
 	            	  @Override
-						public void onClick(View v) {
-	            		  toggleSelection(true);
-						}
-	              });
-
-	              mButtonDeselectAll = (Button) findViewById(R.id.button_deselect);
-	              mButtonDeselectAll.setOnClickListener(new View.OnClickListener() {
-
-	            	  	@Override
-						public void onClick(View v) {
-	            	  		toggleSelection(false);
-						}
+	            	  public void onClick(View v) {
+	            		  mSelected = !mSelected;
+	            		  
+	            		  if(mSelected){
+	            			  mCheckIconSelect.setImageDrawable(v.getContext().getResources().getDrawable(R.drawable.ic_button_checked));
+	            		  } else {
+	            			  mCheckIconSelect.setImageDrawable(v.getContext().getResources().getDrawable(R.drawable.ic_button_unchecked));
+	            		  }
+	            		  
+	            		  toggleSelection(mSelected);
+	            	  }
 	              });
 	            
   	    	  } 
@@ -634,6 +625,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
  		} else {
  			setDirectoryButtons();
  		}
+ 		
+ 		toggleCheckBoxVisibility(mState == STATE_MULTI_SELECT);
  	} 
      /*
      @Override
@@ -1692,6 +1685,14 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	   
 	   ((BaseAdapter) getListAdapter()).notifyDataSetChanged();
    }
+
+	private void toggleCheckBoxVisibility(boolean visible) {
+		for(IconifiedText it : mDirectoryEntries){
+			it.setCheckIconVisible(visible);
+		}
+
+		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
+	}
 
    private void promptDestinationAndMoveFile() {
 

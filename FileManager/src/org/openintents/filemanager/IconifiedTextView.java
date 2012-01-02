@@ -26,6 +26,9 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable; 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView; 
 import android.widget.LinearLayout; 
 import android.widget.TextView; 
@@ -35,8 +38,9 @@ public class IconifiedTextView extends LinearLayout {
     private TextView mText; 
     private TextView mInfo; 
      private ImageView mIcon; 
+     private ImageView mCheckIcon;
       
-     public IconifiedTextView(Context context, IconifiedText aIconifiedText) { 
+     public IconifiedTextView(Context context, final IconifiedText aIconifiedText) { 
           super(context); 
 		
 		// inflate rating
@@ -49,6 +53,7 @@ public class IconifiedTextView extends LinearLayout {
 		mIcon = (ImageView) findViewById(R.id.icon);
 		mText = (TextView) findViewById(R.id.text);
 		mInfo = (TextView) findViewById(R.id.info);
+		mCheckIcon = (ImageView) findViewById(R.id.select_icon);
      } 
 
      public void setText(String words) { 
@@ -68,12 +73,12 @@ public class IconifiedTextView extends LinearLayout {
      public void setIcon(Drawable bullet) { 
           mIcon.setImageDrawable(bullet); 
      }
-
-	public void setTextColor(int color) {
-		mText.setTextColor(color); 
-    }
-
-	public void setInfoColor(int color) {
-		mInfo.setTextColor(color); 
-    } 
+	
+	public void setCheckVisible(boolean visible) {
+		mCheckIcon.setVisibility((visible) ? View.VISIBLE : View.GONE);
+	}
+	
+	public void setCheckDrawable(Drawable icon) {
+		mCheckIcon.setImageDrawable(icon);
+	}
 }

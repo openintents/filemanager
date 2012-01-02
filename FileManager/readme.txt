@@ -41,6 +41,7 @@ date: ?
 - Fixed bug with More option (issue 330, Google Code-In task by Matěj Konečný)
 - Select/Deselect all in multi-select (Google Code-In task by phlip9)
 - remember previous directory when attaching files (Google Code-in task by  Matěj Konečný)
+- Better visibility for multi-select selection (issue 460, Google Code-in task by phlip9)
 
 ---------------------------------------------------------
 release: 1.1.6

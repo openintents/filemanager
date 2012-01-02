@@ -78,8 +78,6 @@
     <string name="delete_button_multiselect">Delete</string>
     <string name="multiselect_title">Select multiple files</string>
     <string name="error_selection">Please select one or more file(s).</string>
-    <string name="select_button_multiselect">Select all</string>
-    <string name="deselect_button_multiselect">Deselect all</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Type</string>

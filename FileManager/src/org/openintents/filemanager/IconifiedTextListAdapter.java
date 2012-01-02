@@ -96,8 +96,8 @@ public class IconifiedTextListAdapter extends BaseAdapter implements Filterable 
 
 
      private List<IconifiedText> mItems = new ArrayList<IconifiedText>(); 
-     private List<IconifiedText> mOriginalItems = new ArrayList<IconifiedText>(); 
-
+     private List<IconifiedText> mOriginalItems = new ArrayList<IconifiedText>();
+     
      public IconifiedTextListAdapter(Context context) { 
           mContext = context; 
      } 
@@ -138,24 +138,27 @@ public class IconifiedTextListAdapter extends BaseAdapter implements Filterable 
      /** @param convertView The old view to overwrite, if one is passed 
       * @returns a IconifiedTextView that holds wraps around an IconifiedText */ 
      public View getView(int position, View convertView, ViewGroup parent) { 
+          IconifiedText curItem = mItems.get(position);
           IconifiedTextView btv; 
           if (convertView == null) { 
-               btv = new IconifiedTextView(mContext, mItems.get(position)); 
+               btv = new IconifiedTextView(mContext, curItem); 
           } else { // Reuse/Overwrite the View passed 
                // We are assuming(!) that it is castable! 
                btv = (IconifiedTextView) convertView; 
           } 
-          btv.setText(mItems.get(position).getText()); 
-          btv.setInfo(mItems.get(position).getInfo()); 
-          btv.setIcon(mItems.get(position).getIcon()); 
-          int color;
-      	  if (mItems.get(position).isSelected()) { 
-	       	   color = mContext.getResources().getColor(android.R.color.secondary_text_dark);
+          btv.setText(curItem.getText()); 
+          btv.setInfo(curItem.getInfo()); 
+          btv.setIcon(curItem.getIcon()); 
+          if(curItem.isCheckIconVisible()){
+        	  btv.setCheckVisible(true);
+        	  if(curItem.isSelected()){
+        		  btv.setCheckDrawable(mContext.getResources().getDrawable(R.drawable.ic_button_checked));
+        	  } else {
+        		  btv.setCheckDrawable(mContext.getResources().getDrawable(R.drawable.ic_button_unchecked));
+        	  }
           } else {
-	       	   color = mContext.getResources().getColor(android.R.color.primary_text_dark);
-          } 
-      	  btv.setTextColor(color); 
-  	      btv.setInfoColor(color); 
+        	  btv.setCheckVisible(false);
+          }
           return btv; 
      }
 

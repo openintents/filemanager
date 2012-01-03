@@ -546,6 +546,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	 mProgressBar.setVisibility(View.GONE);
     	 mEmptyText.setVisibility(View.VISIBLE);
     	 
+    	 toggleCheckBoxVisibility(mState == STATE_MULTI_SELECT);
+    	 
     	 mThumbnailLoader = new ThumbnailLoader(currentDirectory, mListFile, currentHandler, this, mMimeTypes);
     	 mThumbnailLoader.start();
      }
@@ -625,8 +627,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
  		} else {
  			setDirectoryButtons();
  		}
- 		
- 		toggleCheckBoxVisibility(mState == STATE_MULTI_SELECT);
  	} 
      /*
      @Override
@@ -1690,7 +1690,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		for(IconifiedText it : mDirectoryEntries){
 			it.setCheckIconVisible(visible);
 		}
-
+		
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 

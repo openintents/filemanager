@@ -1,5 +1,6 @@
 Icons for OI File Manager
 
+ic_launcher_archive: bovi (GCI task 2011/12, issue 445)
 ic_launcher_file: Chickenbellyfinn, Darriel (GCI task 2011/12, issue 410)
 ic_launcher_folder: Peli
 ic_launcher_home: Uthpala Kaushalya (GCI task 2011)

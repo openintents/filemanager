@@ -19,6 +19,7 @@ package org.openintents.filemanager.util;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.zip.ZipFile;
 
 import android.content.Context;
 import android.net.Uri;
@@ -68,6 +69,11 @@ public class FileUtils {
 			Log.d(TAG, "libaccess.so failed to load.");
 		}
 	}
+
+    /**
+     * use it to calculate file count in the directory recursively
+     */
+    private static int fileCount = 0;
 
 	/**
 	 * Whether the filename is a video file.
@@ -215,6 +221,36 @@ public class FileUtils {
 	public static String formatDate(Context context, long dateTime) {
 		return DateFormat.getDateFormat(context).format(new Date(dateTime));
 	}
+
+    public static int getFileCount(File file){
+        fileCount = 0;
+        calculateFileCount(file);
+        return fileCount;
+    }
+
+    /**
+     * @param f  - file which need be checked
+     * @return if is archive - returns true othewise
+     */
+    public static boolean checkIfZipArchive(File f){
+        try {
+            new ZipFile(f);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
+    private static void calculateFileCount(File file){
+        if (!file.isDirectory()){
+            fileCount++;
+            return;
+        }
+        for (String fileName: file.list()){
+            File f = new File(file.getAbsolutePath()+File.separator+fileName);
+            calculateFileCount(f);
+        }
+    }    
 	
 	/**
 	 * Native helper method, returns whether the current process has execute privilages.

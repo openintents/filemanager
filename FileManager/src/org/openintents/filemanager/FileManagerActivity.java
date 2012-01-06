@@ -29,9 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.openintents.distribution.DistributionLibraryListActivity;
-import org.openintents.filemanager.util.FileUtils;
-import org.openintents.filemanager.util.MimeTypeParser;
-import org.openintents.filemanager.util.MimeTypes;
+import org.openintents.filemanager.util.*;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 import org.xmlpull.v1.XmlPullParserException;
@@ -40,8 +38,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -107,6 +103,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     
 	protected static final int REQUEST_CODE_MOVE = 1;
 	protected static final int REQUEST_CODE_COPY = 2;
+    protected static final int REQUEST_CODE_EXTRACT = 4;
 
     /**
      * @since 2011-02-11
@@ -133,6 +130,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final int MENU_DETAILS = Menu.FIRST + 17;
 	private static final int MENU_BOOKMARKS = Menu.FIRST + 18;
 	private static final int MENU_BOOKMARK = Menu.FIRST + 19;
+    private static final int MENU_COMPRESS = Menu.FIRST + 20;
+    private static final int MENU_EXTRACT = Menu.FIRST + 21;
 	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
@@ -147,6 +146,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final int DIALOG_DETAILS = 6;
 	
 	private static final int DIALOG_BOOKMARKS = 7;
+    private static final int DIALOG_COMPRESSING = 8;
+    private static final int DIALOG_WARNING_EXISTS = 9;
 
 	private static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
 
@@ -249,7 +250,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
      private ImageView mCheckIconSelect;
      private boolean mSelected = false;
-     
+
+    /**
+     * use it field to pass params to onCreateDialog method
+     */
+    private String mDialogArgument;
+
      /** Called when the activity is first created. */ 
      @Override 
      public void onCreate(Bundle icicle) { 
@@ -789,7 +795,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
           };
      } 
 
-     private void refreshList() {
+     public void refreshList() {
     	     	 
     	 boolean directoriesOnly = mState == STATE_PICK_DIRECTORY;
     	 
@@ -1177,6 +1183,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 						new ComponentName(this, FileManagerActivity.class), null, intent, 0, null);
 	        }
 		//}
+
+        if (FileUtils.checkIfZipArchive(file)){
+            menu.add(0, MENU_EXTRACT, 0, R.string.menu_extract);
+        } else {
+            menu.add(0, MENU_COMPRESS, 0, R.string.menu_compress);
+        }
 	    menu.add(0, MENU_DETAILS, 0, R.string.menu_details);
 	    menu.add(0, MENU_BOOKMARK, 0, R.string.menu_bookmark);
         menu.add(0, MENU_MORE, 0, R.string.menu_more);
@@ -1228,6 +1240,14 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		case MENU_DETAILS:
 			showDialog(DIALOG_DETAILS);
 			return true;
+
+        case MENU_COMPRESS:
+            showDialog(DIALOG_COMPRESSING);
+            return true;
+
+        case MENU_EXTRACT:
+            promptDestinationAndExtract();            
+            return true;
 			
 		case MENU_BOOKMARK:
 			String path = mContextFile.getAbsolutePath();
@@ -1426,7 +1446,44 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	        	}, BookmarksProvider.NAME);
         	
         	return builder.create();
+
+        case DIALOG_COMPRESSING:
+            inflater = LayoutInflater.from(this);
+            view = inflater.inflate(R.layout.dialog_new_folder, null);
+            final EditText editText = (EditText) view.findViewById(R.id.foldername);
+            return new AlertDialog.Builder(this)
+                    .setTitle(R.string.menu_compress).setView(view).setPositiveButton(
+                            android.R.string.ok, new OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (new File(mContextFile.getParent()+File.separator+editText.getText().toString()).exists()){
+                                mDialogArgument = editText.getText().toString();
+                                showDialog(DIALOG_WARNING_EXISTS);
+                            } else {
+                                new CompressManager(FileManagerActivity.this).compress(mContextFile, editText.getText().toString());
+                            }
+                        }
+                    }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Cancel should not do anything.
+                        }
+                    }).create();
+        
+        case DIALOG_WARNING_EXISTS:
+            return new AlertDialog.Builder(this).setTitle(getString(R.string.warning_overwrite, mDialogArgument))
+                    .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
+                            android.R.string.ok, new OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            new File(mContextFile.getParent()+File.separator+mDialogArgument).delete();
+                            new CompressManager(FileManagerActivity.this).compress(mContextFile, mDialogArgument);
+                        }
+                    }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            showDialog(DIALOG_COMPRESSING);
+                        }
+                    }).create();        
 		}
+
+
 		return super.onCreateDialog(id);
 			
 	}
@@ -1542,7 +1599,20 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	((AlertDialog) dialog).setTitle(mContextText);
 			break;
 
-		}
+        case DIALOG_COMPRESSING:
+            TextView textView = (TextView) dialog.findViewById(R.id.foldernametext);
+            textView.setText(R.string.compress_into_archive);
+            final EditText editText = (EditText) dialog.findViewById(R.id.foldername);
+            String archiveName = "";
+            if (mContextFile.isDirectory()){
+                archiveName = mContextFile.getName()+".zip";
+            } else {
+                String extension = FileUtils.getExtension(mContextFile.getName());
+                archiveName = mContextFile.getName().replaceAll(extension, "")+".zip";
+            }
+            editText.setText(archiveName);
+            editText.setSelection(0, archiveName.length()-4);
+        }
 	}
 	
 	/**
@@ -1697,15 +1767,24 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
    private void promptDestinationAndMoveFile() {
 
 		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
-		
+
 		intent.setData(FileUtils.getUri(currentDirectory));
-		
+
 		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.move_title));
 		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.move_button));
 		intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
-		
+
 		startActivityForResult(intent, REQUEST_CODE_MOVE);
 	}
+
+    private void promptDestinationAndExtract() {
+        Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
+        intent.setData(FileUtils.getUri(currentDirectory));
+        intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.extract_title));
+        intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.extract_button));
+        intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
+        startActivityForResult(intent, REQUEST_CODE_EXTRACT);
+    }
 	
 	private void promptDestinationAndCopyFile() {
 
@@ -2180,6 +2259,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 				
 			}
 			break;
+        
+        case REQUEST_CODE_EXTRACT:
+            if (resultCode == RESULT_OK && data != null) {
+                new ExtractManager(this).extract(mContextFile, data.getData().getPath());
+            }
+            break;
 
 		case REQUEST_CODE_COPY:
 			if (resultCode == RESULT_OK && data != null) {

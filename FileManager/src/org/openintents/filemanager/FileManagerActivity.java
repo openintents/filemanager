@@ -1028,7 +1028,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		
 
 		menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(
-				android.R.drawable.ic_menu_preferences).setShortcut('9', 's');
+				android.R.drawable.ic_menu_preferences).setShortcut('9', 'p');
 		
 		/* We don't want to allow the user to override a filter set
 		 * by an application.

@@ -185,4 +185,6 @@
     <string name="extracting">Extracting...</string>
     <string name="compressing">Compressing...</string>
     <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+
+    <string name="change_file_extension">Do you want to change the file extension?</string>
 </resources>

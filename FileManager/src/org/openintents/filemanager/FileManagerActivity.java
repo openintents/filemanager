@@ -88,6 +88,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final String TAG = "FileManagerActivity";
 
 	private static final String NOMEDIA_FILE = ".nomedia";
+
+    private static final String DIALOG_EXISTS_ACTION_RENAME = "action_rename"; 
 	
 	/**
 	 * @since 2011-03-23
@@ -148,6 +150,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final int DIALOG_BOOKMARKS = 7;
     private static final int DIALOG_COMPRESSING = 8;
     private static final int DIALOG_WARNING_EXISTS = 9;
+    private static final int DIALOG_CHANGE_FILE_EXTENSION = 10;
 
 	private static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
 
@@ -255,6 +258,17 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      * use it field to pass params to onCreateDialog method
      */
     private String mDialogArgument;
+
+    /**
+     * to show warning dialog to user if he want to change file extension
+     */
+    private String mOldFileName;
+    private String mNewFileName;
+
+    /**
+     * use this filed to set behaviour in DIALOG_WARNING_EXISTS
+     */
+    private String mDialogExistsAction;
 
      /** Called when the activity is first created. */ 
      @Override 
@@ -1473,17 +1487,47 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                     .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
                             android.R.string.ok, new OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            new File(mContextFile.getParent()+File.separator+mDialogArgument).delete();
-                            new CompressManager(FileManagerActivity.this).compress(mContextFile, mDialogArgument);
+                            if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
+                                File newFile = FileUtils.getFile(currentDirectory, mNewFileName);
+                                rename(FileUtils.getFile(currentDirectory, mOldFileName), newFile);
+                            } else {
+                                new File(mContextFile.getParent()+File.separator+mDialogArgument).delete();
+                                new CompressManager(FileManagerActivity.this).compress(mContextFile, mDialogArgument);
+                            }
+                            mDialogExistsAction = "";
                         }
                     }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            showDialog(DIALOG_COMPRESSING);
+                            if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
+                                mContextText = mOldFileName;
+                                showDialog(DIALOG_RENAME);
+                            } else {
+                                showDialog(DIALOG_COMPRESSING);
+                            }
+                            mDialogExistsAction = "";
                         }
-                    }).create();        
+                    }).create();
+
+            case DIALOG_CHANGE_FILE_EXTENSION:
+                return new AlertDialog.Builder(this).setTitle(getString(R.string.change_file_extension))
+                        .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
+                                android.R.string.ok, new OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                File newFile = FileUtils.getFile(currentDirectory, mNewFileName);
+                                if (newFile.exists()){
+                                    mDialogExistsAction = DIALOG_EXISTS_ACTION_RENAME;
+                                    showDialog(DIALOG_WARNING_EXISTS);
+                                } else {
+                                    rename(FileUtils.getFile(currentDirectory, mOldFileName), newFile);
+                                }
+                            }
+                        }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                mContextText = mOldFileName;
+                                showDialog(DIALOG_RENAME);
+                            }
+                        }).create();
 		}
-
-
 		return super.onCreateDialog(id);
 			
 	}
@@ -1521,6 +1565,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			} else {
 				tv.setText(R.string.file_name);
 			}
+            et.setSelection(0, mContextText.lastIndexOf(".") == -1 ? mContextText.length() : mContextText.lastIndexOf("."));
 			((AlertDialog) dialog).setIcon(mContextIcon);
 			break;
 
@@ -1612,6 +1657,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
             }
             editText.setText(archiveName);
             editText.setSelection(0, archiveName.length()-4);
+            break;
+
+        case DIALOG_WARNING_EXISTS:
+            dialog.setTitle(getString(R.string.warning_overwrite, mDialogArgument));
         }
 	}
 	
@@ -2004,15 +2053,22 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     }
     
     private void renameFileOrFolder(File file, String newFileName) {
-		
+        mOldFileName = file.getName();
+        mNewFileName = newFileName;
+        mDialogArgument = mNewFileName;
 		if (newFileName != null && newFileName.length() > 0){
-			if (newFileName.lastIndexOf('.') < 0){				
-				newFileName += FileUtils.getExtension(file.getName()); 
+			if (!file.isDirectory() && !FileUtils.getExtension(newFileName).equals(FileUtils.getExtension(file.getName()))){
+                showDialog(DIALOG_CHANGE_FILE_EXTENSION);
+                return;
 			}
 		}
 		File newFile = FileUtils.getFile(currentDirectory, newFileName);
-		
-		rename(file, newFile);
+        if (newFile.exists()){
+            mDialogExistsAction = DIALOG_EXISTS_ACTION_RENAME;
+            showDialog(DIALOG_WARNING_EXISTS);
+        } else {
+            rename(file, newFile);
+        }
 	}
 
 	/**

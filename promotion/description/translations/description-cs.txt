@@ -1,0 +1,47 @@
+# Application:
+OI Správce souborů
+
+# Promo text:
+Spravuje soubory na SD kartě
+
+# Description:
+OI Správce souborů Vám umožňuje procházet Vaši SD kartu, vytvářet složky, přejmenovávat, kopírovat, přesouvat a mazat soubory. Funguje také jako rozšíření do ostatních aplikací zobrazující dialogy "Otevřít" a "Uložit". 
+
+Tato aplikace je bez reklam a nevyžaduje přístup k internetu. 
+
+Pro úplný seznam změn a seznam často kladených dotazů navštivte prosím: 
+http://www.openintents.org
+
+Můžete také pomoci zlepšit překlad do Vašeho jazyka na Launchpadu: 
+https://translations.launchpad.net/openintents/trunk
+
+Zdrojové kód této open source aplikace je dostupný na stránkách: 
+http://code.google.com/p/openintents
+
+Vlastnosti: 
+* Zobrazuje seznam souborů s náhledy pro obrázky
+* Přesouvá, kopíruje, přejmenovává a maže soubory.
+* Vytváří a maže složky.
+* Zasílá soubory emailem.
+* Funguje jako rozšíření do jiných aplikací, jako například do GMailu pro přikládání příloh.
+* Podpora pro mnoho koncovek souborů a mime typů.
+* Podporuje PICK_FILE a PICK_DIRECTORY intenty, a ostatní aplikace tak mohou použít OI Správce souborů.
+
+Dostupná rozšíření pro OI Správce souborů: 
+* Zobrazit licenční infomace s OI Infem.
+
+Aplikace, které pracují s OI Správcem souborů 
+* Otevírat a ukládat textové soubory v OI Poznámkovém bloku.
+
+Klíčová slova: 
+* file manager, filemanager, file explorer, správce souborů
+* OI, IO, OpenIntents, Open Intents
+
+Mezinárodní verze: 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+
+
+Prohledat řetězce pro Market: 
+* uses OI About
+* extension for OI Notepad
+

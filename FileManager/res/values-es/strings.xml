@@ -54,6 +54,8 @@
     <string name="menu_copy">Copiar</string>
     <string name="menu_details">Mostrar detalles</string>
     <string name="menu_more">Más</string>
+    <string name="menu_compress">Compress (ZIP)</string>
+    <string name="menu_extract">Extract (ZIP)</string>
     <string name="menu_filter">Filtro</string>
     <string name="menu_include_in_media_scan">Incluir en la exploración de archivos multimedia</string>
     <string name="menu_exclude_from_media_scan">Excluir de la exploración de archivos multimedia</string>
@@ -139,42 +141,60 @@
     <string name="preference_mediascan_summary_on">Muestra el elemento del menú para excluir carpetas del escaneo del medio</string>
     <string name="preference_mediascan_summary_off">Esconde el elemento del menú para excluir carpetas del escaneo del medio</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_title">Mostrar todos los avisos</string>
+    <string name="preference_showallwarning_summary_on">Mostrar todos los mensajes de aviso</string>
+    <string name="preference_showallwarning_summary_off">Suprimir mensajes de aviso</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">Mostrar archivos ocultos</string>
+    <string name="preference_displayhiddenfiles_summary_on">Mostrar archivos ocultos</string>
+    <string name="preference_displayhiddenfiles_summary_off">Ocultar archivos ocultos</string>
     
-    <string name="preference_sort_settings">Sort settings</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sort_settings">Opciones de ordenado</string>
+    <string name="preference_sortby">Ordenar por</string>
+    <string name="preference_sortby_ascending">Orden ascendente</string>
+    <string name="preference_sortby_ascending_summary_on">Ordenar ascendentemente</string>
+    <string name="preference_sortby_ascending_summary_off">Ordenar descendentemente</string>
     <string-array name="preference_sortby_names">
-        <item>Name</item>
+        <item>Nombre</item>
         <item>Tamaño</item>
-        <item>Last modified</item>
+        <item>Última modificación</item>
     </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">No ha elegido ningún archivo.</string>
+    <string name="saveas_error">Ocurrió un error</string>
+    <string name="saveas_file_saved">El archivo se guardó correctamente.</string>
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Marcadores</string>
+    <string name="bookmarks_cancel">Cancelar</string>
     <string name="bookmarks_delete">Borrar</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">Elija los marcadores a eliminar</string>
+    <string name="bookmarks_manage">Gestionar marcadores</string>
+    <string name="bookmark_added">Marcador añadido</string>
+    <string name="bookmark_not_found">No se encontró el destino del marcador.</string>
+    <string name="bookmarks_deleted">Se eliminaron los marcadores seleccionados</string>
+    <string name="bookmark_already_exists">Este archivo ya está en marcadores</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">Item compressed successfully</string>
+    <string name="compressing_error">Could not compress the item</string>
+    <string name="compress_into_archive">Compress into archive:</string>
+    <string name="extracting_success">Item extracted successfully</string>
+    <string name="extracting_error">Could not extract the item</string>
+    <string name="extract_into_folder">Extract into folder:</string>
+    <string name="extract_title">Select folder to extract into</string>
+    <string name="extract_button">Extract here</string>
+    <string name="extracting">Extracting...</string>
+    <string name="compressing">Compressing...</string>
+    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+
+    <string name="change_file_extension">Do you want to change the file extension?</string>
 </resources>

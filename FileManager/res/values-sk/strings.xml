@@ -22,6 +22,7 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Lacko545 https://launchpad.net/~lackorauch
+  Marek Matejka https://launchpad.net/~marek-matejka
   OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
@@ -46,10 +47,12 @@
     <string name="menu_copy">Kopírovať</string>
     <string name="menu_details">Detaily</string>
     <string name="menu_more">Viac</string>
+    <string name="menu_compress">Compress (ZIP)</string>
+    <string name="menu_extract">Extract (ZIP)</string>
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Zahrnúť v prehľadávaní médií</string>
     <string name="menu_exclude_from_media_scan">Vyňať z prehľadávania médií</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">Pridať do záložiek</string>
     
     <string name="create_new_folder">Vytvoriť nový priečinok</string>
     <string name="folder_name">Názov priečinka</string>
@@ -160,13 +163,31 @@
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Záložky</string>
+    <string name="bookmarks_cancel">Zrušiť</string>
     <string name="bookmarks_delete">Zmazať</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">Vybrať záložky na vymazanie</string>
+    <string name="bookmarks_manage">Spravovať záložky</string>
+    <string name="bookmark_added">Záložka pridaná</string>
+    <string name="bookmark_not_found">Uložená destinácia nebola nájdená.</string>
+    <string name="bookmarks_deleted">Vybrané záložky boli vymazané</string>
+    <string name="bookmark_already_exists">Tento súbor už má záložku</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">Item compressed successfully</string>
+    <string name="compressing_error">Could not compress the item</string>
+    <string name="compress_into_archive">Compress into archive:</string>
+    <string name="extracting_success">Item extracted successfully</string>
+    <string name="extracting_error">Could not extract the item</string>
+    <string name="extract_into_folder">Extract into folder:</string>
+    <string name="extract_title">Select folder to extract into</string>
+    <string name="extract_button">Extract here</string>
+    <string name="extracting">Extracting...</string>
+    <string name="compressing">Compressing...</string>
+    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+
+    <string name="change_file_extension">Do you want to change the file extension?</string>
 </resources>

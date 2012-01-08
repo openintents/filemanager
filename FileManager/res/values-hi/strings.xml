@@ -47,6 +47,8 @@
     <string name="menu_copy">प्रतिलिपि बनाएँ</string>
     <string name="menu_details">विवरण</string>
     <string name="menu_more">अतिरिक्त</string>
+    <string name="menu_compress">Compress (ZIP)</string>
+    <string name="menu_extract">Extract (ZIP)</string>
     <string name="menu_filter">फिल्टर करें</string>
     <string name="menu_include_in_media_scan">मीडिया स्कैन में शामिल करें</string>
     <string name="menu_exclude_from_media_scan">मीडिया स्कैन से अपवर्जित करें</string>
@@ -60,8 +62,8 @@
     <string name="really_delete">क्या आप वास्तव में% s को मिटाना चाहते हैं?</string>
     <string name="file_deleted">फ़ाइल मिट गयी|</string>
     <string name="folder_deleted">फ़ोल्डर मिट गया|</string>
-    <string name="file_renamed">फ़ोल्डर का  नाम  बदल दिया गया है</string>
-    <string name="folder_renamed">फ़ोल्डर का  नाम  बदल दिया गया है</string>
+    <string name="file_renamed">फ़ाइल का नाम बदला गया|</string>
+    <string name="folder_renamed">फोल्डर का नाम बदला गया|</string>
     <string name="file_moved">फाइल स्थानांतरित हो गयी|</string>
     <string name="folder_moved">फोल्डर स्थानांतरित हो गया|</string>
     <string name="file_copied">फाइल की प्रतिलिपि बन गई|</string>
@@ -91,7 +93,7 @@
     <string name="details_permissions">अनुमतियाँ</string>
     <string name="details_hidden">छिपा हुआ</string>
     <string name="details_lastmodified">अंतिम बार संशोधित</string>
-    <string name="details_yes">हाँ</string>
+    <string name="details_yes">हां</string>
     <string name="details_no">नहीं</string>
     
     <!-- Construct a unique file name of a file called %s. -->
@@ -170,4 +172,22 @@
     <string name="bookmark_not_found">Bookmarked destination not found.</string>
     <string name="bookmarks_deleted">Selected bookmarks deleted</string>
     <string name="bookmark_already_exists">This file is already bookmarked</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">Item compressed successfully</string>
+    <string name="compressing_error">Could not compress the item</string>
+    <string name="compress_into_archive">Compress into archive:</string>
+    <string name="extracting_success">Item extracted successfully</string>
+    <string name="extracting_error">Could not extract the item</string>
+    <string name="extract_into_folder">Extract into folder:</string>
+    <string name="extract_title">Select folder to extract into</string>
+    <string name="extract_button">Extract here</string>
+    <string name="extracting">Extracting...</string>
+    <string name="compressing">Compressing...</string>
+    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+
+    <string name="change_file_extension">Do you want to change the file extension?</string>
 </resources>

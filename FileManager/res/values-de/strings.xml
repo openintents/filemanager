@@ -54,6 +54,8 @@
     <string name="menu_copy">Kopieren</string>
     <string name="menu_details">Details</string>
     <string name="menu_more">Mehr</string>
+    <string name="menu_compress">Compress (ZIP)</string>
+    <string name="menu_extract">Extract (ZIP)</string>
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">In Mediensuche einschließen</string>
     <string name="menu_exclude_from_media_scan">Von Mediensuche ausschließen</string>
@@ -177,4 +179,22 @@
     <string name="bookmark_not_found">Adresse des Lesezeichens nicht gefunden</string>
     <string name="bookmarks_deleted">Ausgeählte Lesezeichen wurden gelöscht</string>
     <string name="bookmark_already_exists">Diese Datei hat schon ein Lesezeichen</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">Item compressed successfully</string>
+    <string name="compressing_error">Could not compress the item</string>
+    <string name="compress_into_archive">Compress into archive:</string>
+    <string name="extracting_success">Item extracted successfully</string>
+    <string name="extracting_error">Could not extract the item</string>
+    <string name="extract_into_folder">Extract into folder:</string>
+    <string name="extract_title">Select folder to extract into</string>
+    <string name="extract_button">Extract here</string>
+    <string name="extracting">Extracting...</string>
+    <string name="compressing">Compressing...</string>
+    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+
+    <string name="change_file_extension">Do you want to change the file extension?</string>
 </resources>

@@ -21,7 +21,8 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
-  Neta Oren https://launchpad.net/~netao212</string>
+  Neta Oren https://launchpad.net/~netao212
+  OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application. Max. 80 characters. -->
     <string name="about_comments">נהל קבצים על כרטיס SD</string>  
@@ -45,6 +46,8 @@
     <string name="menu_copy">העתק</string>
     <string name="menu_details">פרטים</string>
     <string name="menu_more">עוד</string>
+    <string name="menu_compress">Compress (ZIP)</string>
+    <string name="menu_extract">Extract (ZIP)</string>
     <string name="menu_filter">סינון</string>
     <string name="menu_include_in_media_scan">תכלול בסריקת המדיה</string>
     <string name="menu_exclude_from_media_scan">אל תכלול בסריקת המדיה</string>
@@ -168,4 +171,22 @@
     <string name="bookmark_not_found">יעד סימניה לא נמצא</string>
     <string name="bookmarks_deleted">סימניות נבחרות נמחקו</string>
     <string name="bookmark_already_exists">הקובץ כבר מסומן</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">Item compressed successfully</string>
+    <string name="compressing_error">Could not compress the item</string>
+    <string name="compress_into_archive">Compress into archive:</string>
+    <string name="extracting_success">Item extracted successfully</string>
+    <string name="extracting_error">Could not extract the item</string>
+    <string name="extract_into_folder">Extract into folder:</string>
+    <string name="extract_title">Select folder to extract into</string>
+    <string name="extract_button">Extract here</string>
+    <string name="extracting">Extracting...</string>
+    <string name="compressing">Compressing...</string>
+    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+
+    <string name="change_file_extension">Do you want to change the file extension?</string>
 </resources>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  happynawani https://launchpad.net/~happynawani</string>
+	
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">SD कार्ड ते फाईल्युन खे प्रबंधित कयो|</string>  
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI फ़ाइल प्रबंधक</string>
+    
+    <string name="menu_new_folder">नयो फ़ोल्डर</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">बहु चयन</string>
+
+    <string name="menu_delete">मिटायो</string>
+    <string name="menu_rename">नाम बदल्यो</string>
+    <string name="menu_send">मोक्ल्योस</string>
+    <string name="menu_open">खोल्यो</string>
+    <string name="menu_move">खिस्कयोस</string>
+    <string name="menu_copy">कापी कयो</string>
+    <string name="menu_details">विवरण</string>
+    <string name="menu_more">वधीक</string>
+    <string name="menu_compress">Compress (ZIP)</string>
+    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_filter">फिल्टर कयो</string>
+    <string name="menu_include_in_media_scan">मीडिया स्कैन में शामिल कयो</string>
+    <string name="menu_exclude_from_media_scan">मीडिया स्कैन माँ अपवर्जित कयो</string>
+    <string name="menu_bookmark">बुकमार्क में जोड़यो</string>
+    
+    <string name="create_new_folder">नयो फ़ोल्डर ठायो</string>
+    <string name="folder_name">फ़ोल्डर यो नाम</string>
+    <string name="file_name">फ़ोल्डर यो नाम</string>
+    <string name="extension">एक्सटेंशन ( \'.\' सां गड़)</string>
+    <string name="this_folder_is_empty">|हे फ़ोल्डर खाली आ</string>
+    <string name="really_delete">शा ताहाँ सहिय्में  में%sखे मितायण ता चाह्यो ?</string>
+    <string name="file_deleted">फाईल मिटी वई</string>
+    <string name="folder_deleted">फोल्डर मिटी वयो</string>
+    <string name="file_renamed">फाईल जो नाम बदल जी वयो</string>
+    <string name="folder_renamed">फ़ोल्डर जो नाम बदल जी वयो</string>
+    <string name="file_moved">फाईल जी जगह बदल जी वई</string>
+    <string name="folder_moved">फोल्डर जी जगह बदल जी वई</string>
+    <string name="file_copied">फाईल कॉपी थी वई</string>
+    <string name="move_title">जगह बदलन लाये फोल्डर खे चुन्द्यो</string>
+    <string name="move_button">हेदे जगह द्योस</string>
+    <string name="copy_title">कॉपी करण लाये  फ़ोल्डर खे चुन्द्यो</string>
+    <string name="copy_button">हेदे कॉपी कयो</string>
+	<string name="deleting_files">फईल्यूं मिटन ती पयूं</string>
+    <string name="title_warning_some_may_not_work">चेतावनी</string>
+    <string name="warning_some_may_not_work">कोई कोई  विकल्प कम न कंदवा</string>
+    <string name="show_warning_again">चेतवानी वारी सां दिखार्यो</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">\?शा  तहां खे  सहिया में %d फईल्यूं  मिटायनी तव</string>
+    <string name="move_button_multiselect">खिस्कयोस</string>
+    <string name="copy_button_multiselect">कापी कयो</string>
+    <string name="delete_button_multiselect">मिटायो</string>
+    <string name="multiselect_title">हिक्क खान वधीक फईलोयूं चुन्द्यो</string>
+    <string name="error_selection">कृपा करे हिक्क या  वधीक फईल्यूं चुन्द्यो</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">प्ररूप</string>
+    <string name="details_type_folder">फोल्डर</string>
+    <string name="details_type_file">फ़ाइल</string>
+    <string name="details_type_other">अन्य</string>
+    <string name="details_size">आकार</string>
+    <string name="details_permissions">अनुमतियाँ</string>
+    <string name="details_hidden">लिक्यल</string>
+    <string name="details_lastmodified">आखरी बार संशोधित थ्यल</string>
+    <string name="details_yes">हा</string>
+    <string name="details_no">न</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">%s जी कॉपी</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">%2$s जे%1$d जी कॉपी</string>
+    
+    <string name="media_scan_included">ईयो फ़ोल्डर अगले मीडिया स्कैन में शामिल थीन्दो|</string>
+    <string name="media_scan_excluded">ईयो फ़ोल्डर अगले मीडिया स्कैन में शामिल न थीन्दो</string>
+    
+    <string name="error_creating_new_folder">नयो फ़ोल्डर न ठाए सग्यास</string>
+    <string name="error_deleting_file">फाईल मिटाए न सग्यास</string>
+    <string name="error_deleting_folder">फ़ोल्डर \'%s\' खे मिटाये न सग्यास</string>
+    <string name="error_renaming_file">फाईल यो  नाम न बदले सग्यास</string>
+    <string name="error_renaming_folder">फोल्डर यो नाम न बदले सग्यास</string>
+    <string name="error_moving_file">फाईल जी जगह न बदले सग्यास</string>
+    <string name="error_moving_folder">फोल्डर जी जगह न बदले सग्यास</string>
+    <string name="error_copying_file">फाईल खे कॉपी न  करे सग्यास</string>
+    <string name="error_file_does_not_exists">फाईल मौजूद काने</string>
+    <string name="error_deleting_child_file">बार फाईल \'%s\' खे न मिटाये सग्यास</string>
+    <string name="error_generic">हिक्क त्रुटी थी</string>
+    <string name="error_media_scan">मीडिया स्कैन सेटिंग्स खे न बदले सग्यास</string>
+    
+    <string name="send_not_available">मोक्लाणा लाये  कोई अनुप्रयोग मौजूद  काने</string>
+    
+    <string name="application_not_available">अनुप्रयोग मौजूद काने</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">सेटिंग्स</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">उन्नत सुविधाएँ</string>
+	<string name="preference_mediascan_title">मीडिया स्कैन माँ अपवर्जित कयो</string>
+    <string name="preference_mediascan_summary_on">मीडिया स्कैन माँ फ़ोल्डर्स खे अपवर्जित करण  लाये मेनू आइटम दिखार्यो|</string>
+    <string name="preference_mediascan_summary_off">मीडिया स्कैन माँ फ़ोल्डर्स खे  अपवर्जित करण लाये  मेनू आइटम लिकायो|</string>
+    
+    <string name="preference_showallwarning_title">सड्यूं चेतावनियूं दिखार्यो</string>
+    <string name="preference_showallwarning_summary_on">सडा चेतावनी सन्देश दिखार्यो</string>
+    <string name="preference_showallwarning_summary_off">चेतावनी सदेशन खे दबायो</string>
+       
+    <string name="preference_displayhiddenfiles_title">लिक्यल फईल्यूं दिखार्यो</string>
+    <string name="preference_displayhiddenfiles_summary_on">लिक्यल फईल्यूं दिखार्यो</string>
+    <string name="preference_displayhiddenfiles_summary_off">लिकयल फईल्युन खे लिकयो</string>
+    
+    <string name="preference_sort_settings">अलग करण ई  सेटिंग्स</string>
+    <string name="preference_sortby">जे द्वारा अलग कयो</string>
+    <string name="preference_sortby_ascending">आरोही  क्रम में</string>
+    <string name="preference_sortby_ascending_summary_on">आरोही क्रम सां अलग कयो</string>
+    <string name="preference_sortby_ascending_summary_off">अवरोही  क्रम सां अलग कयो</string>
+    <string-array name="preference_sortby_names">
+        <item>नाम</item>
+        <item>आकार</item>
+        <item>अंतिम बार संशोधित</item>
+    </string-array>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">तहां कोई भी फाईल न खईं तव</string>
+    <string name="saveas_error">कोई त्रुटि अच्ची वई</string>
+    <string name="saveas_file_saved">!फाईल सफलतापूवक सुरक्षित थी वई</string>
+    
+        
+   
+    <string name="bookmarks">बुकमार्क</string>
+    <string name="bookmarks_cancel">|रद्द क्यो</string>
+    <string name="bookmarks_delete">मिटायो</string>
+    <string name="bookmarks_select_to_delete">बुकमार्क खे चुन्द्यो उन्खे मितायण लाये</string>
+    <string name="bookmarks_manage">बुकमार्क्स खे प्रबंधित कयो</string>
+    <string name="bookmark_added">बुकमार्क जोडयो</string>
+    <string name="bookmark_not_found">बुकमार्क जी जगह न मिली</string>
+    <string name="bookmarks_deleted">चुन्दयल बुकमार्क्स मिट जी वया</string>
+    <string name="bookmark_already_exists">ईया फाईल पहरों सां ही बुकमार्क थ्यल आ</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">Item compressed successfully</string>
+    <string name="compressing_error">Could not compress the item</string>
+    <string name="compress_into_archive">Compress into archive:</string>
+    <string name="extracting_success">Item extracted successfully</string>
+    <string name="extracting_error">Could not extract the item</string>
+    <string name="extract_into_folder">Extract into folder:</string>
+    <string name="extract_title">Select folder to extract into</string>
+    <string name="extract_button">Extract here</string>
+    <string name="extracting">Extracting...</string>
+    <string name="compressing">Compressing...</string>
+    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+
+    <string name="change_file_extension">Do you want to change the file extension?</string>
+</resources>

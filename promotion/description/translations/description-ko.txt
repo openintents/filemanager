@@ -2,7 +2,7 @@
 OI 파일 관리자
 
 # Promo text:
-Manage files on the SD card.
+SD 카드에 있는 파일을 관리합니다.
 
 # Description:
 OI 파일 관리자에서는 SD 카드 탐색, 폴더 만들기, 파일의 이름을 바꾸거나, 복사하기, 옮기기, 삭제를 할 수 있습니다. 또 다른 앱의 확장으로서 "열기"와 "저장" 대화 상자를 표시하는 데 쓰입니다. 
@@ -38,7 +38,7 @@ http://code.google.com/p/openintents
 * OI, IO, OpenIntents, Open Intents
 
 국제 버전들: 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, 檔案總管
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
 
 
 마켓에서 검색하기: 

@@ -5,7 +5,7 @@ OI File Manager
 Управление файлами на SD карте.
 
 # Description:
-OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+OI File Manager позволяет работать с SD-картой, создавать каталоги, переименовывать, копировать, перемещать, и удалять файлы Также выступает в качестве дополнения к другим приложениям для отображения диалогов "Открыть" и "Сохранить" 
 
 Это приложение является бесплатным и не требует постоянного подключения к Интернет. 
 
@@ -23,22 +23,22 @@ http://code.google.com/p/openintents
 * Переместить, копировать, переименовывать и удалять файлы.
 * ￼  Создание и удаление директорий (папок).
 * Отправить файлы по электронной почте.
-* Acts as an extension to other applications, like GMail, to attach files.
-* Support for many file endings and mime types.
+* Выступает в качестве дополнения к другим приложениям, таким как GMail, для прикрепления файлов
+* Поддержка многих файловых расширений и MIME-типов
 * Поддерживает PICK_FILE и PICK_DIRECTORY, так что другие приложения могут использовать OI File Manager
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+Доступные дополнения для "OI File Manager": 
+* Показать информацию о лицензии с помощью "OI About".
 
 Приложения работающие с "OI File Manager": 
-* Open and save text files in "OI Notepad".
+* Открытие и сохранение текстовых файлов в "OI Notepad".
 
 Ключевые слова: 
 * файловый менеджер, файловый менеджер, файловый менеджер
 * Copy text 	 OI, IO, OpenIntents, Open Intents
 
 Переведенные версии: 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, 檔案總管
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
 
 
 Search strings for Market: 

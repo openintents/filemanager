@@ -5,43 +5,43 @@ OI ھۆججەت باشقۇرغۇچ
 SD كارتىدىكى ھۆججەتلەرنى باشقۇرىدۇ.
 
 # Description:
-OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+OI ھۆججەت باشقۇرغۇچ SD كارتا زىيارەت قىلىش، مۇندەرىجە قۇرۇش، ھۆججەت ئاتىنى ئۆزگەرتىش، كۆچۈرۈش، يۆتكەش ۋە ئۆچۈرۈشكە يول قويىدۇ. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
 
-This application is ad free and does not require the internet permission. 
+بۇ ئەپتە ئېلان يوق، ئىنتېرنېت ھوقۇقى تەلەپ قىلمايدۇ. 
 
-For the complete list of changes and a list of frequently asked questions, please visit: 
+ئۆزگىرىشنىڭ تەپسىلىي تىزىمىنى تۆۋەندىكى ئادرېستىن كۆرۈڭ: 
 http://www.openintents.org
 
-You can help to improve the translation into your language at Launchpad: 
+بۇ ئەپنى Launchpad تە ئۆز تىلىڭىزغا تەرجىمە قىلالايسىز: 
 https://translations.launchpad.net/openintents/trunk
 
-The source code of this free and open source application is available at: 
+كودى ئوچۇق بۇ ئەپنىڭ ئەسلى كودى: 
 http://code.google.com/p/openintents
 
-Features: 
-* Show list of files with thumbnails for images.
-* Move, copy, rename, and delete files.
-* Create and delete directories (folders).
-* Send files by email.
-* Acts as an extension to other applications, like GMail, to attach files.
-* Support for many file endings and mime types.
-* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+ئىقتىدارلار: 
+* سۈرەتنىڭ كىچىك سۈرىتىنىڭ ھۆججەت تىزىمىنى كۆرسىتىدۇ.
+* ھۆججەت كۆچۈرۈش، يۆتكەش، ئات ئۆزگەرتىش ۋە ئۆچۈرۈش.
+* مۇندەرىجە (قىسقۇچ) قۇرۇش ۋە ئۆچۈرۈش .
+* ئېلخەتتە ھۆججەت يوللاش.
+* باشقا ئەپ ئىشلىتىشكىمۇ بولىدۇ، مەسىلەن GMail، قوشۇمچە ھۆججەت قوشۇش.
+* نۇرغۇن ھۆججەت ئاخىرلىشىشى ۋە mime تىپىنى قوللايدۇ.
+* PICK_FILE ۋەPICK_DIRECTORY قوللىغانلىقتىن باشقا ئەپلەر OI ھۆججەت باشقۇرغۇچنى ئىشلىتەلەيدۇ.
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+«OI ھۆججەت باشقۇرغۇچ» نىڭ ئىشلەتكىلى بولىدىغان كەڭەيتىلمىلىرى: 
+* «OI ھەققىدە» ئىجازەت ئۇچۇرىنى كۆرسىتىدۇ.
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+«OI ھۆججەت باشقۇرغۇچ» تا ئىشلەيدىغان ئەپلەر: 
+* تېكىست ھۆججەتلەرنى «OI خاتىرە دەپتەر»دە ئېچىپ ۋە ساقلايدۇ.
 
-Keywords: 
-* file manager, filemanager, file explorer
+ھالقىلىق سۆزلەر: 
+* ھۆججەت باشقۇرغۇچ، ھۆججەت باشقۇرغۇچ، ھۆججەت كۆرگۈ
 * OI, IO, OpenIntents, Open Intents
 
-International versions: 
-OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI File Manager, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, 檔案總管
+خەلقئارا نەشرى: 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
 
 
-Search strings for Market: 
+بازاردا ئىزدەش ئۇچۇرى: 
 * uses OI About
 * extension for OI Notepad
 

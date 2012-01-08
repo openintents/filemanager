@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  Matěj Konečný https://launchpad.net/~matejkon</string>
+	
+    <!-- Short explanation of the application. Max. 80 characters. -->
+    <string name="about_comments">Spravuje soubory na SD kartě</string>  
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI Správce souborů</string>
+    
+    <string name="menu_new_folder">Nová složka</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Vícenásobný výběr</string>
+
+    <string name="menu_delete">Odstranit</string>
+    <string name="menu_rename">Přejmenovat</string>
+    <string name="menu_send">Odeslat</string>
+    <string name="menu_open">Otevřít</string>
+    <string name="menu_move">Přesunout</string>
+    <string name="menu_copy">Kopírovat</string>
+    <string name="menu_details">Podrobnosti</string>
+    <string name="menu_more">Další</string>
+    <string name="menu_compress">Compress (ZIP)</string>
+    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_filter">Filtr</string>
+    <string name="menu_include_in_media_scan">Zahrnout do media scanu</string>
+    <string name="menu_exclude_from_media_scan">Vyloučit z media scanu</string>
+    <string name="menu_bookmark">Přidat do záložek</string>
+    
+    <string name="create_new_folder">Vytvořit novou složku</string>
+    <string name="folder_name">Název složky</string>
+    <string name="file_name">Název složky</string>
+    <string name="extension">Přípona (včetně \'.\')</string>
+    <string name="this_folder_is_empty">Tato složka je prázdná.</string>
+    <string name="really_delete">Opravdu chcete odstranit %s?</string>
+    <string name="file_deleted">Soubor odstraněn</string>
+    <string name="folder_deleted">Složka odstraněna</string>
+    <string name="file_renamed">Soubor přejmenován</string>
+    <string name="folder_renamed">Složka přejmenována</string>
+    <string name="file_moved">Soubor přesunut</string>
+    <string name="folder_moved">Složka přesunuta</string>
+    <string name="file_copied">Soubor zkopírován.</string>
+    <string name="move_title">Zvolte cílovou složku</string>
+    <string name="move_button">Přesunout sem</string>
+    <string name="copy_title">Zvolte cílovou složku</string>
+    <string name="copy_button">Kopírovat sem</string>
+	<string name="deleting_files">Odstraňuji soubory...</string>
+    <string name="title_warning_some_may_not_work">Varování</string>
+    <string name="warning_some_may_not_work">Některé z následujících možností nemusí fungovat.</string>
+    <string name="show_warning_again">Zobrazit varování znovu</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Opravdu chcete odstranit %d souborů?</string>
+    <string name="move_button_multiselect">Přesunout</string>
+    <string name="copy_button_multiselect">Kopírovat</string>
+    <string name="delete_button_multiselect">Odstranit</string>
+    <string name="multiselect_title">Vybrat více souborů</string>
+    <string name="error_selection">Vyberte prosím jeden nebo více souborů.</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">Typ</string>
+    <string name="details_type_folder">Složka</string>
+    <string name="details_type_file">Soubor</string>
+    <string name="details_type_other">Jiné</string>
+    <string name="details_size">Velikost</string>
+    <string name="details_permissions">Oprávnění</string>
+    <string name="details_hidden">Skrytý</string>
+    <string name="details_lastmodified">Naposledy upraveno</string>
+    <string name="details_yes">Ano</string>
+    <string name="details_no">Ne</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">Kopie %s</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Kopie %1$d - %2$s</string>
+    
+    <string name="media_scan_included">Tato složka bude zahrnuta v příštím media scanu.</string>
+    <string name="media_scan_excluded">Tato složka bude vyloučena z příštího media scanu.</string>
+    
+    <string name="error_creating_new_folder">Nepodařilo se vytvořit novou složku.</string>
+    <string name="error_deleting_file">Nepodařilo se smazat soubor.</string>
+    <string name="error_deleting_folder">Nepodařilo se smazat složku \'%s\'.</string>
+    <string name="error_renaming_file">Nepodařilo se přejmenovat soubor.</string>
+    <string name="error_renaming_folder">Nepodařilo se přejmenovat složku.</string>
+    <string name="error_moving_file">Nepodařilo se přesunout soubor.</string>
+    <string name="error_moving_folder">Nepodařilo se přesunout složku.</string>
+    <string name="error_copying_file">Nepodařilo se zkopírovat soubor.</string>
+    <string name="error_file_does_not_exists">Soubor neexistuje.</string>
+    <string name="error_deleting_child_file">Nepodařilo se odstranit soubor-potomka \'%s\'.</string>
+    <string name="error_generic">Vyskytla se chyba:</string>
+    <string name="error_media_scan">Nepodařilo se změnit nastavení media scanu</string>
+    
+    <string name="send_not_available">Pro odeslání není k dispozici žádná aplikace</string>
+    
+    <string name="application_not_available">Aplikace nedostupná</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">Nastavení</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">Pokročilé vlastnosti</string>
+	<string name="preference_mediascan_title">Vyloučit z media scanu</string>
+    <string name="preference_mediascan_summary_on">Zobrazit položku v menu pro vyloučení složek z media scanu.</string>
+    <string name="preference_mediascan_summary_off">Skrýt položku v menu pro vyloučení složek z media scanu.</string>
+    
+    <string name="preference_showallwarning_title">Zobarzit všechna varování</string>
+    <string name="preference_showallwarning_summary_on">Zobrazit všechny varovné zprávy</string>
+    <string name="preference_showallwarning_summary_off">Potlačit varovné zprávy</string>
+       
+    <string name="preference_displayhiddenfiles_title">Zobrazit skryté soubory</string>
+    <string name="preference_displayhiddenfiles_summary_on">Zobrazit skryté soubory</string>
+    <string name="preference_displayhiddenfiles_summary_off">Srýt skryté soubory</string>
+    
+    <string name="preference_sort_settings">Nastavení řazené</string>
+    <string name="preference_sortby">Seřadit podle</string>
+    <string name="preference_sortby_ascending">Vzestupně</string>
+    <string name="preference_sortby_ascending_summary_on">Seřadit vzestupně</string>
+    <string name="preference_sortby_ascending_summary_off">Seřadit sestupně</string>
+    <string-array name="preference_sortby_names">
+        <item>Název</item>
+        <item>Velikost</item>
+        <item>Poslední změna</item>
+    </string-array>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">Nevybral/a jste žádný soubor</string>
+    <string name="saveas_error">Vyskytla se chyba.</string>
+    <string name="saveas_file_saved">Soubor úspěšně uložen!</string>
+    
+        
+   
+    <string name="bookmarks">Záložky</string>
+    <string name="bookmarks_cancel">Zrušit</string>
+    <string name="bookmarks_delete">Odstranit</string>
+    <string name="bookmarks_select_to_delete">Zvolte záložky na smazání</string>
+    <string name="bookmarks_manage">Spravovat záložky</string>
+    <string name="bookmark_added">Založka přidána</string>
+    <string name="bookmark_not_found">Cíl záložky nenalezen.</string>
+    <string name="bookmarks_deleted">Zvolené záložky odstraněny</string>
+    <string name="bookmark_already_exists">Tento soubor je již zazáložkován</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">Item compressed successfully</string>
+    <string name="compressing_error">Could not compress the item</string>
+    <string name="compress_into_archive">Compress into archive:</string>
+    <string name="extracting_success">Item extracted successfully</string>
+    <string name="extracting_error">Could not extract the item</string>
+    <string name="extract_into_folder">Extract into folder:</string>
+    <string name="extract_title">Select folder to extract into</string>
+    <string name="extract_button">Extract here</string>
+    <string name="extracting">Extracting...</string>
+    <string name="compressing">Compressing...</string>
+    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+
+    <string name="change_file_extension">Do you want to change the file extension?</string>
+</resources>

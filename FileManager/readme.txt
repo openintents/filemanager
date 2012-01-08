@@ -44,6 +44,7 @@ date: ?
 - Better visibility for multi-select selection (issue 460, Google Code-in task by phlip9)
 - support for ZIP compression (patch by Evgeniy Berlog)
 - warning dialog for file extension changes (issue 397, patch by Evgeniy Berlog)
+- Refresh menu item (Google Code-in task by Aviral Dasgupta)
 
 ---------------------------------------------------------
 release: 1.1.6

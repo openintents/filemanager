@@ -132,8 +132,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final int MENU_DETAILS = Menu.FIRST + 17;
 	private static final int MENU_BOOKMARKS = Menu.FIRST + 18;
 	private static final int MENU_BOOKMARK = Menu.FIRST + 19;
-    private static final int MENU_COMPRESS = Menu.FIRST + 20;
-    private static final int MENU_EXTRACT = Menu.FIRST + 21;
+	private static final int MENU_COMPRESS = Menu.FIRST + 20;
+	private static final int MENU_EXTRACT = Menu.FIRST + 21;
+	private static final int MENU_REFRESH = Menu.FIRST + 22;
 	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
@@ -1051,6 +1052,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			menu.add(0, MENU_FILTER, 0, R.string.menu_filter).setIcon(
 					android.R.drawable.ic_menu_search);
 		}
+		
+		menu.add(0, MENU_REFRESH, 0, R.string.menu_refresh).setIcon(
+				android.R.drawable.ic_menu_rotate);
 
  		mDistribution.onCreateOptionsMenu(menu);
  		
@@ -1123,6 +1127,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		
 		case MENU_BOOKMARKS:
 			showDialog(DIALOG_BOOKMARKS);
+			return true;
+			
+		case MENU_REFRESH:
+			refreshList();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

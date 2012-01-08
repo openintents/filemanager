@@ -2,7 +2,7 @@
 OI Файлов Мениджър
 
 # Promo text:
-Управление на файловете на SD карта
+Manage files on the SD card with OI File Manager.
 
 # Description:
 OI File Manager ви позволява да разглеждате вашата SD карта,да създавате директории,да ги преименувате,копирате,местите

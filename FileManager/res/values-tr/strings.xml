@@ -29,8 +29,8 @@ Launchpad Contributions:
   ariza95 https://launchpad.net/~alirizanazli95
   zeugma https://launchpad.net/~sunder67</string>
 	
-    <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">SD karttaki dosyaları yönet</string>  
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

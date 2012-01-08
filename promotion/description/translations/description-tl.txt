@@ -2,7 +2,7 @@
 OI File Manedyer
 
 # Promo text:
-Pamahalaan ang mga file sa SD card.
+Manage files on the SD card with OI File Manager.
 
 # Description:
 OI File Manedyer ay nagbibigay-daan para ma-basa ang iyong SD card, lumikha ng mga direktoryo, palitan ang pangalan, kopyahin, ilipat, at alisin ang mga file. Ito rin ay gumaganap bilang isang ekstensyon sa iba pang mga applikasyon upang ipakita ang dyalogo na "Buksan" at "Save". 

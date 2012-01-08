@@ -2,7 +2,7 @@
 OI Bestandsbeheer
 
 # Promo text:
-Bestanden op SD kaart beheren.
+Manage files on the SD card with OI File Manager.
 
 # Description:
 OI File Manager biedt de mogelijkheid om de inhoud van de SD kaart te doorzoeken, directory's aan te maken, en bestanden te hernoemen, kopiëren, verplaatsen en te verwijderen. Wordt als extensie gebuikt door andere programma's, om de dialoogboxen "open" en "save" te tonen, 

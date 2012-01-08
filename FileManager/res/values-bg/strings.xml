@@ -28,8 +28,8 @@
   Valentin Kirilov https://launchpad.net/~val-kirilov
   kosyo https://launchpad.net/~kosyokk</string>
 	
-    <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Управление на файловете на SD карта</string>  
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

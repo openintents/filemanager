@@ -21,10 +21,11 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
-  Joan Creus https://launchpad.net/~joan-creus-c</string>
+  Joan Creus https://launchpad.net/~joan-creus-c
+  OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
-    <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Gestiona els fitxers de la targeta SD.</string>  
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

@@ -26,8 +26,8 @@
   Peli https://launchpad.net/~peli0101
   simone.sandri https://launchpad.net/~lexluxsox</string>
 	
-    <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Gestisce file nella scheda SD.</string>  
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

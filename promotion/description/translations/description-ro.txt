@@ -2,7 +2,7 @@
 OI File Manager
 
 # Promo text:
-Gestionează fișierele de pe cardul SD.
+Manage files on the SD card with OI File Manager.
 
 # Description:
 Managerul de fișiere OI vă permite să navigați cardul SD, să creați dosare, să redenumiți, să copiați, să mutați, și să ștergeți fișiere. Funcționează de asemenea și ca o extensie în alte aplicații pentru a afișa dialogurile „Deschide” și „Salvează”. 

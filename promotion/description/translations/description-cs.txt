@@ -2,7 +2,7 @@
 OI Správce souborů
 
 # Promo text:
-Spravuje soubory na SD kartě
+Manage files on the SD card with OI File Manager.
 
 # Description:
 OI Správce souborů Vám umožňuje procházet Vaši SD kartu, vytvářet složky, přejmenovávat, kopírovat, přesouvat a mazat soubory. Funguje také jako rozšíření do ostatních aplikací zobrazující dialogy "Otevřít" a "Uložit". 

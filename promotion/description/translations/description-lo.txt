@@ -2,6 +2,6 @@
 OI ແຟ້ມ ບໍລີຫານ
 
 # Promo text:
-Manage files on the SD card.
+Manage files on the SD card with OI File Manager.
 
 # Description:

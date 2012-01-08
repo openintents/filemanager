@@ -21,10 +21,12 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  OpenIntents devs https://launchpad.net/~openintents-devs
+  Peli https://launchpad.net/~peli0101
   happynawani https://launchpad.net/~happynawani</string>
 	
-    <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">SD कार्ड ते फाईल्युन खे प्रबंधित कयो|</string>  
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -75,7 +77,7 @@
     <string name="show_warning_again">चेतवानी वारी सां दिखार्यो</string>
     
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">\?शा  तहां खे  सहिया में %d फईल्यूं  मिटायनी तव</string>
+	<string name="really_delete_multiselect">\?शा  तहां खे  सहिया में% d फईल्यूं  मिटायनी तव</string>
     <string name="move_button_multiselect">खिस्कयोस</string>
     <string name="copy_button_multiselect">कापी कयो</string>
     <string name="delete_button_multiselect">मिटायो</string>
@@ -95,7 +97,7 @@
     <string name="details_no">न</string>
     
     <!-- Construct a unique file name of a file called %s. -->
-    <string name="copied_file_name">%s जी कॉपी</string>
+    <string name="copied_file_name">s जी कॉपी%</string>
     
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">%2$s जे%1$d जी कॉपी</string>

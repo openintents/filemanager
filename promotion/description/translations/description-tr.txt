@@ -2,7 +2,7 @@
 OI Dosya Yöneticisi
 
 # Promo text:
-SD karttaki dosyaları yönet
+Manage files on the SD card with OI File Manager.
 
 # Description:
 OI Dosya Yöneticisi, yeniden adlandırma, kopyalama, taşıma, dizinler oluşturma ,SD karta göz atma ve dosyaları silmenizi sağlar. O "Aç" ve "Kaydet" diyaloglarını göstermek için diğer uygulamalara bir ek gibi davranır. 

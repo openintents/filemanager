@@ -2,7 +2,7 @@
 Gestor de fitxers d'OI.
 
 # Promo text:
-Gestiona els fitxers de la targeta SD.
+Manage files on the SD card with OI File Manager.
 
 # Description:
 El gestor de fitxers d'OI et permet navegar per la teva targeta SD, crear directoris, reanomenar, moure i esborrar fitxers. També actua com a extensió a altres aplicacions per mostrar diàlegs "Obre" i "Desa". 

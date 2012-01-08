@@ -2,7 +2,7 @@
 מנהל קבצים OI
 
 # Promo text:
-נהל קבצים על כרטיס SD
+Manage files on the SD card with OI File Manager.
 
 # Description:
 מנהל קבצים OI נותן לך לדפדף בכרטיס הדיגיטלי המאובטח שלך,

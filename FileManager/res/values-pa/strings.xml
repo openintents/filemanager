@@ -24,8 +24,8 @@
   Angad Singh  https://launchpad.net/~angad21-02-1996
   OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
-    <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">ਏਸ ਡੀ ਕਾਰਡ ਤੇ ਉਤੇ ਫਾਇਲ ਸਮਭਾਲੋ</string>  
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

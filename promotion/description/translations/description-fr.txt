@@ -2,7 +2,7 @@
 OI File Manager
 
 # Promo text:
-Gérer les fichiers sur la carte SD.
+Manage files on the SD card with OI File Manager.
 
 # Description:
 OI File Manager vous permet de naviguer sur votre carte SD, créer des répertoires, renommer, copier, déplacer et supprimer le gestionnaire de fichiers files.OI vous permet de parcourir votre carte SD, créer des répertoires, renommer, copier, déplacer et supprimer des fichiers. Il agit aussi comme une extension à d'autres applications à afficher  "Ouvrir " et  "Sauvegarder " dialogues. 

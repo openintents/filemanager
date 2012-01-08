@@ -26,8 +26,8 @@
   Luiz Lopes https://launchpad.net/~luizlopes
   Matheus de Araújo https://launchpad.net/~suetamac</string>
 	
-    <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Administrar arquivos no cartão SD.</string>  
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

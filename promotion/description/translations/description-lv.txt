@@ -1,21 +1,14 @@
-# Application:
-OI File Manager
-
-# Promo text:
-Manage files on the SD card with OI File Manager.
-
-# Description:
 OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
 
-This application is ad free and does not require the internet permission. 
+Šī aplikācija ir bezmaksas un tai nevajag interneta atļauju. 
 
-For the complete list of changes and a list of frequently asked questions, please visit: 
+Lai skatītu pilnīgu izmaiņu sarakstu un sarakstu ar biežāk uzdotajiem jautājumiem, lūdzu apmeklējiet: 
 http://www.openintents.org
 
-You can help to improve the translation into your language at Launchpad: 
+Jūs varat palīdzēt uzlabot tulkojumu savā valodā izmantojot Lounchpad: 
 https://translations.launchpad.net/openintents/trunk
 
-The source code of this free and open source application is available at: 
+Pirmkods ir bezmaksas un atvērtā pirmkoda aplikācija ir pieejama: 
 http://code.google.com/p/openintents
 
 Features: 

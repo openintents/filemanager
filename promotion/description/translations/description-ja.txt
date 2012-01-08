@@ -2,10 +2,10 @@
 OI ファイルマネージャー
 
 # Promo text:
-SD カード上のファイルを管理する
+Manage files on the SD card with OI File Manager.
 
 # Description:
-OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+OI ファイルマネージャーでSD カードを閲覧したり、ディレクトリの作成・変更・コピー・移動・削除ができます。 また"開く" と "保存" ダイアログをほかのアプリケーションに表示する拡張機能のようにも動作します。 
 
 このアプリケーションは広告を含まず、インターネット許可を必要としません。 
 
@@ -23,9 +23,9 @@ http://code.google.com/p/openintents
 * ファイルの移動・コピー・削除。
 * ディレクトリ (フォルダー) の作成・削除
 * ファイルをメールで送る
-* Acts as an extension to other applications, like GMail, to attach files.
+* GMail などの他のアプリケーションにファイルを添付する拡張機能のようにも動作します。
 * 様々なファイルエンディングとMIMEタイプ のサポート。
-* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+* 他のアプリケーションが OI ファイルマネージャーを使用できるように PICK_FILE と PICK_DIRECTORY インテントをサポートしています。
 
 "OI ファイルマネージャー" の利用可能な拡張子： 
 * "OI 情報" のライセンス情報を表示する。

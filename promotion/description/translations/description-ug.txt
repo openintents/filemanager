@@ -2,7 +2,7 @@
 OI ھۆججەت باشقۇرغۇچ
 
 # Promo text:
-SD كارتىدىكى ھۆججەتلەرنى باشقۇرىدۇ.
+Manage files on the SD card with OI File Manager.
 
 # Description:
 OI ھۆججەت باشقۇرغۇچ SD كارتا زىيارەت قىلىش، مۇندەرىجە قۇرۇش، ھۆججەت ئاتىنى ئۆزگەرتىش، كۆچۈرۈش، يۆتكەش ۋە ئۆچۈرۈشكە يول قويىدۇ. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 

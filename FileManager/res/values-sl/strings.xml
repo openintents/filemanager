@@ -24,8 +24,8 @@
   OpenIntents devs https://launchpad.net/~openintents-devs
   met https://launchpad.net/~dot-cis</string>
 	
-    <!-- Short explanation of the application. Max. 80 characters. -->
-    <string name="about_comments">Upravljajte z dokumenti na SD kartici.</string>  
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings

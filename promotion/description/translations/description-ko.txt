@@ -2,7 +2,7 @@
 OI 파일 관리자
 
 # Promo text:
-SD 카드에 있는 파일을 관리합니다.
+Manage files on the SD card with OI File Manager.
 
 # Description:
 OI 파일 관리자에서는 SD 카드 탐색, 폴더 만들기, 파일의 이름을 바꾸거나, 복사하기, 옮기기, 삭제를 할 수 있습니다. 또 다른 앱의 확장으로서 "열기"와 "저장" 대화 상자를 표시하는 데 쓰입니다. 

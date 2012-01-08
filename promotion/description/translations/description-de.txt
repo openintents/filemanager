@@ -2,7 +2,7 @@
 OI Dateimanager
 
 # Promo text:
-Verwalten Sie Dateien auf der SD Karte.
+Manage files on the SD card with OI File Manager.
 
 # Description:
 Der OI Dateimanager ermöglicht das Durchstöbern der SD Karte, die Erstellung von Ordnern und das Umbenennen, Kopieren, Verschieben und Löschen von Dateien. Es dient auch als Erweiterung für andere Applikationen zur Darstellung von "Öffnen" und "Speichern" Dialogen. 

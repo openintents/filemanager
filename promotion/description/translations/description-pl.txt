@@ -2,7 +2,7 @@
 OI Menedżer plików
 
 # Promo text:
-Zarządzaj plikami na karcie pamięci.
+Manage files on the SD card with OI File Manager.
 
 # Description:
 OI File Manager pozwala przeglądać karty SD, tworzyć katalogi, kopiować, przenosić i usuwać pliki. Działa również jako rozszerzenie do innych aplikacji do wyświetlenia okien dialogowych otwierania i zapisywania plików. 

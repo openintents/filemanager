@@ -16,6 +16,8 @@ package org.openintents.filemanager;
  * limitations under the License. 
  */ 
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable; 
 
 /** @author Steven Osborn - http://steven.bitsetters.com */ 
@@ -69,10 +71,23 @@ public class IconifiedText implements Comparable<IconifiedText>{
      public void setIcon(Drawable icon) { 
           mIcon = icon; 
      } 
+     
+     public void setIcon(Bitmap bitmap) {
+    	 mIcon = (new BitmapDrawable(bitmap));
+     }
       
      public Drawable getIcon() { 
           return mIcon; 
      } 
+     
+     // Used by the adapter
+     public Object getIconBitmap() {
+		if(mIcon instanceof BitmapDrawable){
+			return ((BitmapDrawable) mIcon).getBitmap();
+		}
+		
+		return mIcon;
+     }
 
      /** Make IconifiedText comparable by its name */ 
      

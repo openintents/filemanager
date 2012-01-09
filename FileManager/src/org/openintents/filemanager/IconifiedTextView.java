@@ -22,6 +22,7 @@ package org.openintents.filemanager;
  */
 
 import android.content.Context; 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable; 
 import android.util.Log;
@@ -56,6 +57,10 @@ public class IconifiedTextView extends LinearLayout {
 		mCheckIcon = (ImageView) findViewById(R.id.select_icon);
      } 
 
+     public ImageView getImageView() {
+    	 return mIcon;
+     }
+     
      public void setText(String words) { 
          mText.setText(words); 
 
@@ -73,6 +78,10 @@ public class IconifiedTextView extends LinearLayout {
      public void setIcon(Drawable bullet) { 
           mIcon.setImageDrawable(bullet); 
      }
+     
+    public void setIcon(Bitmap bitmap) {
+    	mIcon.setImageBitmap(bitmap);
+    }
 	
 	public void setCheckVisible(boolean visible) {
 		mCheckIcon.setVisibility((visible) ? View.VISIBLE : View.GONE);

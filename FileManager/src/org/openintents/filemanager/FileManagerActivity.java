@@ -51,6 +51,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -68,8 +70,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -237,7 +241,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      
      private DirectoryScanner mDirectoryScanner;
      private File mPreviousDirectory;
-     private ThumbnailLoader mThumbnailLoader;
      
      private MenuItem mExcludeMediaScanMenuItem;
      private MenuItem mIncludeMediaScanMenuItem;
@@ -271,6 +274,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      */
     private String mDialogExistsAction;
 
+     private Drawable mIconChecked;
+     private Drawable mIconUnchecked;
+     
+     private ThumbnailLoader mThumbnailLoader;
+     
      /** Called when the activity is first created. */ 
      @Override 
      public void onCreate(Bundle icicle) { 
@@ -404,6 +412,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	                    }
 	              });
 
+	              // Cache the checked and unchecked icons
+	              mIconChecked = getResources().getDrawable(R.drawable.ic_button_checked);
+	              mIconUnchecked = getResources().getDrawable(R.drawable.ic_button_unchecked);
+	              
 	              mCheckIconSelect = (ImageView) findViewById(R.id.check_icon_select);
 	              mCheckIconSelect.setOnClickListener(new View.OnClickListener() {
 					
@@ -412,9 +424,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	            		  mSelected = !mSelected;
 	            		  
 	            		  if(mSelected){
-	            			  mCheckIconSelect.setImageDrawable(v.getContext().getResources().getDrawable(R.drawable.ic_button_checked));
+	            			  mCheckIconSelect.setImageDrawable(mIconChecked);
 	            		  } else {
-	            			  mCheckIconSelect.setImageDrawable(v.getContext().getResources().getDrawable(R.drawable.ic_button_unchecked));
+	            			  mCheckIconSelect.setImageDrawable(mIconUnchecked);
 	            		  }
 	            		  
 	            		  toggleSelection(mSelected);
@@ -482,6 +494,34 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	  mStepsBack = icicle.getInt(BUNDLE_STEPS_BACK);
           }
           
+          getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
+			
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
+				if(adapter != null){
+					switch (scrollState) {
+			        case OnScrollListener.SCROLL_STATE_IDLE:
+			        	adapter.toggleScrolling(false);
+			        	adapter.notifyDataSetChanged();
+			            break;
+			        case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+			        	adapter.toggleScrolling(true);
+			            break;
+			        case OnScrollListener.SCROLL_STATE_FLING:
+			        	adapter.toggleScrolling(true);
+			            break;
+			        }
+				}
+			}
+			
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				// Not used
+			}
+		});
+          
           browseTo(browseto);
      }
      
@@ -500,8 +540,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	 ThumbnailLoader loader = mThumbnailLoader;
     	 
     	 if (loader != null) {
-    		 loader.cancel = true;
+    		 loader.cancel();
     		 mThumbnailLoader = null;
+    	 }
+    	 
+    	 ListView lv;
+    	 if((lv = getListView()) != null){
+    		 lv.setAdapter(null);
     	 }
      }
      
@@ -516,16 +561,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	 case MESSAGE_SET_PROGRESS:
     		 setProgress(message.arg1, message.arg2);
     		 break;
-    		 
-    	 case MESSAGE_ICON_CHANGED:
-    		 notifyIconChanged((IconifiedText) message.obj);
-    		 break;
-    	 }
-     }
-     
-     private void notifyIconChanged(IconifiedText text) {
-    	 if (getListAdapter() != null) {
-    		 ((BaseAdapter) getListAdapter()).notifyDataSetChanged();
     	 }
      }
      
@@ -552,9 +587,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
          mDirectoryEntries = directoryEntries.toArray(new IconifiedText[0]); 
 
          IconifiedTextListAdapter itla = new IconifiedTextListAdapter(this); 
-         itla.setListItems(directoryEntries, getListView().hasTextFilter());          
+         itla.setListItems(directoryEntries, getListView().hasTextFilter(), currentDirectory, mMimeTypes);          
          setListAdapter(itla); 
 	     getListView().setTextFilterEnabled(true);
+	     
+	     ThumbnailLoader mThumbnailLoader = ((IconifiedTextListAdapter) getListAdapter()).getThumbnailLoader();
 	     
 	     if(fileDeleted){
 	    	 getListView().setSelection(positionAtDelete);
@@ -568,9 +605,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	 mEmptyText.setVisibility(View.VISIBLE);
     	 
     	 toggleCheckBoxVisibility(mState == STATE_MULTI_SELECT);
-    	 
-    	 mThumbnailLoader = new ThumbnailLoader(currentDirectory, mListFile, currentHandler, this, mMimeTypes);
-    	 mThumbnailLoader.start();
      }
 
      private void onCreateDirectoryInput() {
@@ -820,11 +854,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	  if (scanner != null) {
     		  scanner.cancel = true;
     	  }
-
+    	  
     	  ThumbnailLoader loader = mThumbnailLoader;
     	  
     	  if (loader != null) {
-    		  loader.cancel = true;
+    		  loader.cancel();
     		  mThumbnailLoader = null;
     	  }
     	  

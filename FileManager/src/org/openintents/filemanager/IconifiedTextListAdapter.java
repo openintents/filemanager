@@ -17,10 +17,17 @@ package org.openintents.filemanager;
  * limitations under the License. 
  */ 
 
+import java.io.File;
 import java.util.ArrayList; 
 import java.util.List; 
 
+import org.openintents.filemanager.util.FileUtils;
+import org.openintents.filemanager.util.MimeTypes;
+
 import android.content.Context; 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.view.View; 
 import android.view.ViewGroup; 
 import android.widget.BaseAdapter; 
@@ -94,19 +101,37 @@ public class IconifiedTextListAdapter extends BaseAdapter implements Filterable 
      
      private IconifiedFilter mFilter = new IconifiedFilter();
 
-
      private List<IconifiedText> mItems = new ArrayList<IconifiedText>(); 
      private List<IconifiedText> mOriginalItems = new ArrayList<IconifiedText>();
      
+     private Drawable mIconChecked;
+     private Drawable mIconUnchecked;
+     
+     public ThumbnailLoader mThumbnailLoader;
+     
+     private File parentFile;
+     
+     private MimeTypes mMimeTypes;
+     
+     private boolean scrolling = false;
+     
      public IconifiedTextListAdapter(Context context) { 
           mContext = context; 
+          
+          mThumbnailLoader = new ThumbnailLoader(context);
+          
+          // Cache the checked and unchecked icons so we're not decoding them everytime getView is called.
+          mIconChecked = context.getResources().getDrawable(R.drawable.ic_button_checked);
+          mIconUnchecked = context.getResources().getDrawable(R.drawable.ic_button_unchecked);
      } 
 
      public void addItem(IconifiedText it) { mItems.add(it); } 
 
-     public void setListItems(List<IconifiedText> lit, boolean filter) {
+     public void setListItems(List<IconifiedText> lit, boolean filter, File parentFile, MimeTypes mimeTypes) {
     	 mOriginalItems = lit;
-
+    	 this.parentFile = parentFile;
+    	 mMimeTypes = mimeTypes;
+    	 
     	 if (filter) {
     		 mItems = mFilter.synchronousFilter(lastFilter);
     	 } else {
@@ -134,7 +159,15 @@ public class IconifiedTextListAdapter extends BaseAdapter implements Filterable 
      public long getItemId(int position) { 
           return position; 
      } 
+     
+     public ThumbnailLoader getThumbnailLoader(){
+    	 return mThumbnailLoader;
+     }
 
+     public void toggleScrolling(boolean isScrolling){
+    	 scrolling = isScrolling;
+     }
+     
      /** @param convertView The old view to overwrite, if one is passed 
       * @returns a IconifiedTextView that holds wraps around an IconifiedText */ 
      public View getView(int position, View convertView, ViewGroup parent) { 
@@ -148,21 +181,38 @@ public class IconifiedTextListAdapter extends BaseAdapter implements Filterable 
           } 
           btv.setText(curItem.getText()); 
           btv.setInfo(curItem.getInfo()); 
-          btv.setIcon(curItem.getIcon()); 
           if(curItem.isCheckIconVisible()){
         	  btv.setCheckVisible(true);
         	  if(curItem.isSelected()){
-        		  btv.setCheckDrawable(mContext.getResources().getDrawable(R.drawable.ic_button_checked));
+        		  btv.setCheckDrawable(mIconChecked);
         	  } else {
-        		  btv.setCheckDrawable(mContext.getResources().getDrawable(R.drawable.ic_button_unchecked));
+        		  btv.setCheckDrawable(mIconUnchecked);
         	  }
           } else {
         	  btv.setCheckVisible(false);
           }
+          
+          Object icon = curItem.getIconBitmap();
+          if(icon instanceof Bitmap){
+        	  btv.setIcon((Bitmap) icon);
+          } else {
+        	  btv.setIcon((Drawable) icon);
+          }
+          
+          if(!scrolling && FileUtils.getFile(parentFile, curItem.getText()).isFile() && !"video/mpeg".equals(mMimeTypes.getMimeType(curItem.getText()))){
+        	  if(mThumbnailLoader != null) {
+        		  mThumbnailLoader.loadImage(parentFile.getPath(), curItem, btv.getImageView());
+        	  }
+          }
+          
           return btv; 
      }
 
 	public Filter getFilter() {
 		return mFilter;
 	} 
+	
+	public void cancelLoader(){
+		mThumbnailLoader.cancel();
+	}
 }

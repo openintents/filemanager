@@ -34,17 +34,18 @@ date: ?
 - Option to sort files (Google Code-In task by Matěj Konečný)
 - Keep list position after delete (Google Code-in task by Chickenbellyfinn)
 - Show correct toast when deleting file (issue 365, Google Code-in task by Chickenbellyfinn)
-- Apk icon support (Google Code-in task by philip9)
+- Apk icon support (Google Code-in task by Philip Hayes)
 - Bookmarks of folder locations (Google Code-In task by Matěj Konečný)
-- Details dialog shows size of folder contents (Google Code-In task by philip9)
-- Fixed bug with details dialog on API 7 and earlier (Google Code-In task by phlip9)
+- Details dialog shows size of folder contents (Google Code-In task by Philip Hayes)
+- Fixed bug with details dialog on API 7 and earlier (Google Code-In task by Philip Hayes)
 - Fixed bug with More option (issue 330, Google Code-In task by Matěj Konečný)
-- Select/Deselect all in multi-select (Google Code-In task by phlip9)
+- Select/Deselect all in multi-select (Google Code-In task by Philip Hayes)
 - remember previous directory when attaching files (Google Code-in task by  Matěj Konečný)
-- Better visibility for multi-select selection (issue 460, Google Code-in task by phlip9)
+- Better visibility for multi-select selection (issue 460, Google Code-in task by Philip Hayes)
 - support for ZIP compression (patch by Evgeniy Berlog)
 - warning dialog for file extension changes (issue 397, patch by Evgeniy Berlog)
 - Refresh menu item (Google Code-in task by Aviral Dasgupta)
+- Lazy loading of thumbnails (issue 271, Google Code-in task by Philip Hayes)
 
 ---------------------------------------------------------
 release: 1.1.6

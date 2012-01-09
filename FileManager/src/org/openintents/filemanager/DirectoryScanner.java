@@ -128,7 +128,7 @@ public class DirectoryScanner extends Thread {
 		boolean noMedia = false;
 
 		// Cache some commonly used icons.
-		Drawable sdIcon = context.getResources().getDrawable(R.drawable.icon_sdcard);
+		Drawable sdIcon = context.getResources().getDrawable(R.drawable.ic_launcher_sdcard);
 		Drawable folderIcon = context.getResources().getDrawable(R.drawable.ic_launcher_folder);
 		Drawable genericFileIcon = context.getResources().getDrawable(R.drawable.icon_file);
 

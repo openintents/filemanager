@@ -908,7 +908,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     		 if (dir.equals(mSdCardPath)) {
     			 // Add SD card button
     			 ib = new ImageButton(this);
-    	    	 ib.setImageResource(R.drawable.icon_sdcard_small);
+    	    	 ib.setImageResource(R.drawable.ic_launcher_sdcard_small);
     			 ib.setLayoutParams(new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
     			 ib.setOnClickListener(new View.OnClickListener() {
     					public void onClick(View view) {

@@ -27,8 +27,8 @@ release: 1.2
 date: ?
 - Limit icon size in file list (issue 319, patch by John Doe)
 - Hide optional commands in context menu (issue 329, patch by John Doe).
-- "Save as" integration for Google Mail (Google Code-in task by Matej Konecny)
-- Option to hide hidden files (Google Code-In task by Matej Konecny)
+- "Save as" integration for Google Mail (Google Code-in task by Matěj Konečný)
+- Option to hide hidden files (Google Code-In task by Matěj Konečný)
 - Filter by file type (issue 166, Google Code-in task by Aviral Dasgupta)
 - Show file details through context menu (Google Code-in task by Aviral Dasgupta)
 - Option to sort files (Google Code-In task by Matěj Konečný)
@@ -40,7 +40,7 @@ date: ?
 - Fixed bug with details dialog on API 7 and earlier (Google Code-In task by Philip Hayes)
 - Fixed bug with More option (issue 330, Google Code-In task by Matěj Konečný)
 - Select/Deselect all in multi-select (Google Code-In task by Philip Hayes)
-- remember previous directory when attaching files (Google Code-in task by  Matěj Konečný)
+- remember previous directory when attaching files (Google Code-in task by Matěj Konečný)
 - Better visibility for multi-select selection (issue 460, Google Code-in task by Philip Hayes)
 - support for ZIP compression (patch by Evgeniy Berlog)
 - warning dialog for file extension changes (issue 397, patch by Evgeniy Berlog)

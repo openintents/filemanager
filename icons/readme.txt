@@ -5,6 +5,7 @@ ic_launcher_archive: bovi (GCI task 2011/12, issue 445)
 ic_launcher_file: Chickenbellyfinn, Darriel (GCI task 2011/12, issue 410)
 ic_launcher_folder: Peli
 ic_launcher_home: Uthpala Kaushalya (GCI task 2011)
+ic_launcher_image: lpd (GCI task 2011/12, issue 442)
 ic_launcher_microsd: bovi (GCI task 2011, issue 416)
 ic_launcher_sdcard: Chickenbellyfinn (GCI task 2011)
 ic_launcher_text_csv: Chickenbellyfinn (GCI task 2011/12, issue 449)

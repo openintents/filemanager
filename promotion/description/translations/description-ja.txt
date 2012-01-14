@@ -2,7 +2,7 @@
 OI ファイルマネージャー
 
 # Promo text:
-Manage files on the SD card with OI File Manager.
+OI ファイルマネージャーで SDカードのファイルを管理します。
 
 # Description:
 OI ファイルマネージャーでSD カードを閲覧したり、ディレクトリの作成・変更・コピー・移動・削除ができます。 また"開く" と "保存" ダイアログをほかのアプリケーションに表示する拡張機能のようにも動作します。 
@@ -38,7 +38,7 @@ http://code.google.com/p/openintents
 * OI, IO, OpenIntents, Open Intents
 
 国際バージョン： 
-Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
 
 
 マーケット用に文字列を検索： 

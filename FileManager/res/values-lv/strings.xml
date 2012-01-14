@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  Tomass https://launchpad.net/~txt1</string>
+	
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Pārvaldiet failus SD kartē ar OI File Manager.</string>  
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI File Manager</string>
+    
+    <string name="menu_new_folder">Jauna mape</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Vairāku objektu atlasīšana</string>
+
+    <string name="menu_delete">Dzēst</string>
+    <string name="menu_rename">Pārdēvēt</string>
+    <string name="menu_send">Sūtīt</string>
+    <string name="menu_open">Atvērt</string>
+    <string name="menu_move">Pārvietot</string>
+    <string name="menu_copy">Kopēt</string>
+    <string name="menu_details">Detaļas</string>
+    <string name="menu_more">Vairāk</string>
+    <string name="menu_compress">Saspiest (ZIP)</string>
+    <string name="menu_extract">Ekstraktēt (ZIP)</string>
+    <string name="menu_filter">Filtrēt</string>
+    <string name="menu_include_in_media_scan">Iekļaut datu nesēju pārbaudi</string>
+    <string name="menu_exclude_from_media_scan">Nepieļaut no datu nesēju pārbaudes</string>
+    <string name="menu_bookmark">Pievienot grāmatzīmēm</string>
+    <string name="menu_refresh">Refresh</string>
+    
+    <string name="create_new_folder">Izveidot jaunu mapi</string>
+    <string name="folder_name">Mapes nosaukums</string>
+    <string name="file_name">Mapes nosaukums</string>
+    <string name="extension">Paplašinājums (ar \'.\')</string>
+    <string name="this_folder_is_empty">Šī mape ir tukša.</string>
+    <string name="really_delete">Vai Jūs tiešām vēlaties izdzēst %s?</string>
+    <string name="file_deleted">Fails izdzēsts.</string>
+    <string name="folder_deleted">Mape izdzēsta.</string>
+    <string name="file_renamed">Fails pārdēvēts.</string>
+    <string name="folder_renamed">Mape pārdēvēta</string>
+    <string name="file_moved">Fails pārvietots.</string>
+    <string name="folder_moved">Mape pārvietota.</string>
+    <string name="file_copied">Fails nokopēts.</string>
+    <string name="move_title">Izvēlieties mapi, uz kuru pārvietot</string>
+    <string name="move_button">Pārvietot šeit</string>
+    <string name="copy_title">Izvēlieties mapi, uz kuru nokopēt</string>
+    <string name="copy_button">Nokopējiet šeit</string>
+	<string name="deleting_files">Notiek failu dzēšana...</string>
+    <string name="title_warning_some_may_not_work">Uzmanību</string>
+    <string name="warning_some_may_not_work">Kāda no sekojošajām iespējām var nestrādāt.</string>
+    <string name="show_warning_again">Parādīt brīdinājumu atkal</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Vai jūs tiešām vēlaties izdzēst %d failus?</string>
+    <string name="move_button_multiselect">Pārvietot</string>
+    <string name="copy_button_multiselect">Kopēt</string>
+    <string name="delete_button_multiselect">Dzēst</string>
+    <string name="multiselect_title">Izvēlēties vairākus failus</string>
+    <string name="error_selection">Lūdzu, izvēlieties vienu vai vairākus failu(s).</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">Veids</string>
+    <string name="details_type_folder">Mape</string>
+    <string name="details_type_file">Fails</string>
+    <string name="details_type_other">Cits</string>
+    <string name="details_size">Izmērs</string>
+    <string name="details_permissions">Atļaujas</string>
+    <string name="details_hidden">Paslēpts</string>
+    <string name="details_lastmodified">Pedējo reizi mainīts</string>
+    <string name="details_yes">Jā</string>
+    <string name="details_no">Nē</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">%s kopija</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">%2$s kopija %1$d</string>
+    
+    <string name="media_scan_included">Šī mape tiks iekļauta nākamajā datu nesēju pārbaudē.</string>
+    <string name="media_scan_excluded">Šī mape tiks izslēgta no nākamās datu nesēju pārbaudes.</string>
+    
+    <string name="error_creating_new_folder">Nevar izveidot jaunu mapi.</string>
+    <string name="error_deleting_file">Nevar izdzēst failu.</string>
+    <string name="error_deleting_folder">Nevar izdzēst mapi \'%s\'.</string>
+    <string name="error_renaming_file">Nevar pārsaukt failu.</string>
+    <string name="error_renaming_folder">Nevar pārsaukt mapi.</string>
+    <string name="error_moving_file">Nevar pārvietot failu.</string>
+    <string name="error_moving_folder">Nevar pārvietot mapi.</string>
+    <string name="error_copying_file">Nevar nokopēt failu.</string>
+    <string name="error_file_does_not_exists">Fails nepastāv.</string>
+    <string name="error_deleting_child_file">Nevar izdzēst bērna failu \'%s\'.</string>
+    <string name="error_generic">Notika kļuda:</string>
+    <string name="error_media_scan">Nevar izmainīt datu nesēju pārbaudes uzstādījumus.</string>
+    
+    <string name="send_not_available">Nav sūtīšanai paredzētas aplikācijas.</string>
+    
+    <string name="application_not_available">Aplikācija nav pieejama</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">Iestatījumi</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">Papildus funkcijas</string>
+	<string name="preference_mediascan_title">Nepieļaut no datu nesēju pārbaudes</string>
+    <string name="preference_mediascan_summary_on">Parādīt izvēlnes vienumu, lai izslēgtu mapes no datu nesēju pārbaudes</string>
+    <string name="preference_mediascan_summary_off">Paslēpt izvēlnes vienumu, lai izslēgtu mapes no datu nesēju pārbaudes.</string>
+    
+    <string name="preference_showallwarning_title">Parādīt visus brīdinājumus</string>
+    <string name="preference_showallwarning_summary_on">Parādīt visus brīdinājuma ziņojumus</string>
+    <string name="preference_showallwarning_summary_off">Apspiest brīdinājuma ziņojumus</string>
+       
+    <string name="preference_displayhiddenfiles_title">Parādīt slēptos failus</string>
+    <string name="preference_displayhiddenfiles_summary_on">Parādīt slēptos failus</string>
+    <string name="preference_displayhiddenfiles_summary_off">Paslēpt slēptos failus</string>
+    
+    <string name="preference_sort_settings">Šķirot uzstādījumus</string>
+    <string name="preference_sortby">Šķirot pēc</string>
+    <string name="preference_sortby_ascending">Augošā secībā</string>
+    <string name="preference_sortby_ascending_summary_on">Šķirot augošā secībā</string>
+    <string name="preference_sortby_ascending_summary_off">Šķirot dilstošā secībā</string>
+    <string-array name="preference_sortby_names">
+        <item>Nosaukums</item>
+        <item>Izmērs</item>
+        <item>Pēdējo reizi mainīts</item>
+    </string-array>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">Jūs neesat izvēlējies nevienu failu.</string>
+    <string name="saveas_error">Notika kļūda</string>
+    <string name="saveas_file_saved">Fails veiksmīgi saglabāts!</string>
+    
+        
+   
+    <string name="bookmarks">Grāmatzīmes</string>
+    <string name="bookmarks_cancel">Atcelt</string>
+    <string name="bookmarks_delete">Dzēst</string>
+    <string name="bookmarks_select_to_delete">Izvēlieties grāmatzīmes, kuras izdzēst</string>
+    <string name="bookmarks_manage">Pārvaldiet grāmatzīmes</string>
+    <string name="bookmark_added">Grāmatzīme pievienota</string>
+    <string name="bookmark_not_found">Grāmatzīmes galamērķis nav atrasts.</string>
+    <string name="bookmarks_deleted">Izvēlētā grāmatzīme izdzēsta</string>
+    <string name="bookmark_already_exists">Fails jau ir grāmatzīme</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">Vienums saspiests veiksmīgi</string>
+    <string name="compressing_error">Nevar saspiest vienumu</string>
+    <string name="compress_into_archive">Saspiest arhīvā:</string>
+    <string name="extracting_success">Item extracted successfully</string>
+    <string name="extracting_error">Could not extract the item</string>
+    <string name="extract_into_folder">Extract into folder:</string>
+    <string name="extract_title">Select folder to extract into</string>
+    <string name="extract_button">Extract here</string>
+    <string name="extracting">Extracting...</string>
+    <string name="compressing">Compressing...</string>
+    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+
+    <string name="change_file_extension">Do you want to change the file extension?</string>
+</resources>

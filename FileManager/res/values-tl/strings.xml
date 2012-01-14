@@ -52,6 +52,7 @@
     <string name="menu_include_in_media_scan">Isama sa media scan</string>
     <string name="menu_exclude_from_media_scan">Huwag isama sa media scan</string>
     <string name="menu_bookmark">Idagdag sa mga palatandaan</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Lumikha ng bagong polder</string>
     <string name="folder_name">Pangalan ng Polder</string>

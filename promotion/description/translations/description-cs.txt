@@ -2,7 +2,7 @@
 OI Správce souborů
 
 # Promo text:
-Manage files on the SD card with OI File Manager.
+Spravovat soubory na SD kartě s OI Správcem souborů
 
 # Description:
 OI Správce souborů Vám umožňuje procházet Vaši SD kartu, vytvářet složky, přejmenovávat, kopírovat, přesouvat a mazat soubory. Funguje také jako rozšíření do ostatních aplikací zobrazující dialogy "Otevřít" a "Uložit". 
@@ -38,7 +38,7 @@ Klíčová slova:
 * OI, IO, OpenIntents, Open Intents
 
 Mezinárodní verze: 
-Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
 
 
 Prohledat řetězce pro Market: 

@@ -52,6 +52,7 @@
     <string name="menu_include_in_media_scan">Include in media scan</string>
     <string name="menu_exclude_from_media_scan">Udeluk fra media scanning</string>
     <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Opret ny mappe</string>
     <string name="folder_name">Mappenavn</string>

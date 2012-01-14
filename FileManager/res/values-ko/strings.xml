@@ -53,6 +53,7 @@
     <string name="menu_include_in_media_scan">미디어 검색에 포함하기</string>
     <string name="menu_exclude_from_media_scan">미디어 검색에서 제외하기</string>
     <string name="menu_bookmark">북마크 추가</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">새 폴더 생성</string>
     <string name="folder_name">폴더 이름</string>

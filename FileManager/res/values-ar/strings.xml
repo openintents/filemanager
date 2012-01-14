@@ -25,7 +25,7 @@
   kenn dhia https://launchpad.net/~kendhia</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">ادارة الملفات على بطاقة SD باستعمال مدير المفات .OI</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -46,12 +46,13 @@
     <string name="menu_copy">نسخ</string>
     <string name="menu_details">تفاصيل</string>
     <string name="menu_more">مزيد</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">ظغط(ZIP)</string>
+    <string name="menu_extract">فك الظغط (ZIP)</string>
     <string name="menu_filter">تصفية</string>
     <string name="menu_include_in_media_scan">ادراج في فحص الميديا</string>
     <string name="menu_exclude_from_media_scan">استبعاد من فحص الميديا</string>
     <string name="menu_bookmark">اضافة الى المفضلات</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">انشاء مجلد جديد</string>
     <string name="folder_name">اسم المجلد</string>
@@ -176,17 +177,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">ظغط العنصر بنجاح</string>
+    <string name="compressing_error">لا يمكن ظغط العنصر</string>
+    <string name="compress_into_archive">ظغط الى أرشيف:</string>
+    <string name="extracting_success">فك ظغط العنصر بنجاح</string>
+    <string name="extracting_error">لا يمكن فط ظغط العنصر</string>
+    <string name="extract_into_folder">فك الظغط الى مجلد:</string>
+    <string name="extract_title">اختر مجلد لفك الظغط فيه</string>
+    <string name="extract_button">فك الظغط هنا</string>
+    <string name="extracting">فك الظغط...</string>
+    <string name="compressing">الظغط...</string>
+    <string name="warning_overwrite">الملف %s موجود.هل تود الكتابة فوقه؟</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">هل تود تغيير ملحق الملف ؟</string>
 </resources>

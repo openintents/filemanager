@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  Alexander Geroimenko https://launchpad.net/~geroimenko</string>
+	
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Кіруйце файламі на SD картцы пры дапамозе OI File Manager.</string>  
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI File Manager</string>
+    
+    <string name="menu_new_folder">Новая папка</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Множны выбар</string>
+
+    <string name="menu_delete">Выдаліць</string>
+    <string name="menu_rename">Перайменаваць</string>
+    <string name="menu_send">Даслаць</string>
+    <string name="menu_open">Адкрыць</string>
+    <string name="menu_move">Перамясціць</string>
+    <string name="menu_copy">Капіяваць</string>
+    <string name="menu_details">Падрабязнасці</string>
+    <string name="menu_more">Падрабязная інфармацыя</string>
+    <string name="menu_compress">Кампрэсаваць (ZIP)</string>
+    <string name="menu_extract">Дэкампрэсаваць (ZIP)</string>
+    <string name="menu_filter">Фільтр</string>
+    <string name="menu_include_in_media_scan">Улучыць у сканаванне</string>
+    <string name="menu_exclude_from_media_scan">Вылучыць з сканавання</string>
+    <string name="menu_bookmark">Дадаць у абранае</string>
+    <string name="menu_refresh">Refresh</string>
+    
+    <string name="create_new_folder">Стварыць новую папку</string>
+    <string name="folder_name">Назва папки</string>
+    <string name="file_name">Назва папки</string>
+    <string name="extension">Пашырэнне (з \'.\')</string>
+    <string name="this_folder_is_empty">Гэта папка пуста.</string>
+    <string name="really_delete">Вы ўпэўнены, што жадаеце выдаліць %s?</string>
+    <string name="file_deleted">Файл выдалены.</string>
+    <string name="folder_deleted">Папка выдалена.</string>
+    <string name="file_renamed">Файл перайменаваны.</string>
+    <string name="folder_renamed">Папка перайменавана.</string>
+    <string name="file_moved">Файл перамешчаны.</string>
+    <string name="folder_moved">Папка перамешчана.</string>
+    <string name="file_copied">Файл скапіраваны.</string>
+    <string name="move_title">Абярыце папку для перамяшчэння</string>
+    <string name="move_button">Перамясціць сюды</string>
+    <string name="copy_title">Абярыце папку для капіравання</string>
+    <string name="copy_button">Капіраваць сюды</string>
+	<string name="deleting_files">Выдаленне файлаў...</string>
+    <string name="title_warning_some_may_not_work">Папярэджанне</string>
+    <string name="warning_some_may_not_work">Некаторыя з наступных настроек могуць не працаваць.</string>
+    <string name="show_warning_again">Паказваць папярэджанне яшчэ раз</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Вы ўпэўнены, што жадаеце выдаліць %d файлаў?</string>
+    <string name="move_button_multiselect">Перамясціць</string>
+    <string name="copy_button_multiselect">Капіяваць</string>
+    <string name="delete_button_multiselect">Выдаліць</string>
+    <string name="multiselect_title">Абярыце некалькі файлаў</string>
+    <string name="error_selection">Калі ласка, абярыце адзін ці больш файлаў.</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">Тып</string>
+    <string name="details_type_folder">Папка</string>
+    <string name="details_type_file">Файл</string>
+    <string name="details_type_other">Іншае</string>
+    <string name="details_size">Памер</string>
+    <string name="details_permissions">Правы</string>
+    <string name="details_hidden">Схавана</string>
+    <string name="details_lastmodified">Апошняе змяненне</string>
+    <string name="details_yes">Так</string>
+    <string name="details_no">Не</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">Копія %s</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Скапіраваць %1$d як %2$s</string>
+    
+    <string name="media_scan_included">Гэтая папка будзе прасканавана пры наступным сканаванні.</string>
+    <string name="media_scan_excluded">Гэтая папка не будзе прасканавана пры наступным сканаванні.</string>
+    
+    <string name="error_creating_new_folder">Немагчыма стварыць папку.</string>
+    <string name="error_deleting_file">Немагчыма выдаліць файл.</string>
+    <string name="error_deleting_folder">Немагчыма выдаліць папку \'%s\'.</string>
+    <string name="error_renaming_file">Немагчыма перайменаваць файл.</string>
+    <string name="error_renaming_folder">Немагчыма перайменаваць папку.</string>
+    <string name="error_moving_file">Немагчыма перамесціць файл.</string>
+    <string name="error_moving_folder">Немагчыма перамесціць папку.</string>
+    <string name="error_copying_file">Немагчыма скапіраваць файл.</string>
+    <string name="error_file_does_not_exists">Файл не існуе.</string>
+    <string name="error_deleting_child_file">Немагчыма выдалиць дачэрни файл \'%s\'.</string>
+    <string name="error_generic">Адбылася памылка:</string>
+    <string name="error_media_scan">Немагчыма змяниць наладки сканавання.</string>
+    
+    <string name="send_not_available">Няма даступнага прыкладання для адпраўкі.</string>
+    
+    <string name="application_not_available">Прыкладанне недаступна</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">Настройкі</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">Дадатковыя настройкі</string>
+	<string name="preference_mediascan_title">Вылучыць з сканавання</string>
+    <string name="preference_mediascan_summary_on">Паказаць меню для вылучэння папак з сканавання.</string>
+    <string name="preference_mediascan_summary_off">Схаваць меню для вылучэння папак з сканавання.</string>
+    
+    <string name="preference_showallwarning_title">Паказаць усе папярэджанні</string>
+    <string name="preference_showallwarning_summary_on">Паказаць усе папярэджанні</string>
+    <string name="preference_showallwarning_summary_off">Падавіць усе папярэджанні</string>
+       
+    <string name="preference_displayhiddenfiles_title">Паказаць скрытыя файлы</string>
+    <string name="preference_displayhiddenfiles_summary_on">Паказаць скрытыя файлы</string>
+    <string name="preference_displayhiddenfiles_summary_off">Схаваць скрытыя файлы</string>
+    
+    <string name="preference_sort_settings">Параметры сартавання</string>
+    <string name="preference_sortby">Сартаваць па</string>
+    <string name="preference_sortby_ascending">Па ўзрастанні</string>
+    <string name="preference_sortby_ascending_summary_on">Сартаваць па ўзрастанні</string>
+    <string name="preference_sortby_ascending_summary_off">Сартаваць па змяншэнні</string>
+    <string-array name="preference_sortby_names">
+        <item>Назва</item>
+        <item>Памер</item>
+        <item>Апошняе змяненне</item>
+    </string-array>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">Вы не абралі файл.</string>
+    <string name="saveas_error">Адбылася памылка.</string>
+    <string name="saveas_file_saved">Файл паспяхова захаваны!</string>
+    
+        
+   
+    <string name="bookmarks">Закладкі</string>
+    <string name="bookmarks_cancel">Адмяніць</string>
+    <string name="bookmarks_delete">Выдаліць</string>
+    <string name="bookmarks_select_to_delete">Абярыце закладкі для выдалення</string>
+    <string name="bookmarks_manage">Кіраванне закладкамі</string>
+    <string name="bookmark_added">Закладка дададзена</string>
+    <string name="bookmark_not_found">Прызначэнне закладкі не знойдзена.</string>
+    <string name="bookmarks_deleted">Абраныя закладкі выдалены</string>
+    <string name="bookmark_already_exists">Гэты файл ужо ў закладках</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">Скампрэсавана паспяхова</string>
+    <string name="compressing_error">Немагчыма скампрэсаваць</string>
+    <string name="compress_into_archive">Скампрэсаваць у архіў:</string>
+    <string name="extracting_success">Дэкампрэсавана паспяхова</string>
+    <string name="extracting_error">Немагчыма дэкампрэсаваць</string>
+    <string name="extract_into_folder">Дэкампрэсаваць у папку:</string>
+    <string name="extract_title">Абярыце папку для дэкампрэсавання</string>
+    <string name="extract_button">Дэкампрэсаваць тут</string>
+    <string name="extracting">Ідзе дэкампрэсаванне...</string>
+    <string name="compressing">Ідзе кампрэсаванне...</string>
+    <string name="warning_overwrite">Файл %s існуе. Перазапісаць яго?</string>
+
+    <string name="change_file_extension">Вы жадаеце змяніць пашырэнне файла?</string>
+</resources>

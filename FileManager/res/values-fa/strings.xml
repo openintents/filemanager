@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  Ben Jordan https://launchpad.net/~ben-jordan86</string>
+	
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">اداره دفتر ساحوي دارالانشاءقانون SD اساسي براندن بورگ در اين پرونده کارت مدير OI ميخواندند.</string>  
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI مدير پرونده‌</string>
+    
+    <string name="menu_new_folder">لفاف‌ جديد</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">انتخاب چند مليتي</string>
+
+    <string name="menu_delete">انداختن‌</string>
+    <string name="menu_rename">محدودة رودهاي</string>
+    <string name="menu_send">فرستادن</string>
+    <string name="menu_open">باز</string>
+    <string name="menu_move">حرکت نکنید</string>
+    <string name="menu_copy">رونوشت‌</string>
+    <string name="menu_details">جزئيات</string>
+    <string name="menu_more">بيشتر</string>
+    <string name="menu_compress">بهم‌ فشردن‌ (زور)</string>
+    <string name="menu_extract">اقتباس‌ كردن‌ (زور)</string>
+    <string name="menu_filter">صاف‌ كردن‌</string>
+    <string name="menu_include_in_media_scan">در رسانه ها شامل یک اسکن بکنیم</string>
+    <string name="menu_exclude_from_media_scan">محروم‌ كردن‌ از رسانه ها با وزن‌ خواندن‌</string>
+    <string name="menu_bookmark">به اضافه بوک مارک ها</string>
+    <string name="menu_refresh">Refresh</string>
+    
+    <string name="create_new_folder">جديد ايجاد تاه‌ كن‌</string>
+    <string name="folder_name">لفاف‌ نام</string>
+    <string name="file_name">لفاف‌ نام</string>
+    <string name="extension">اضافي‌ (با \'. \')</string>
+    <string name="this_folder_is_empty">اين پوشه خالی شده است.</string>
+    <string name="really_delete">آیا شما واقعا می خواهند انداختن‌ %s?</string>
+    <string name="file_deleted">پرونده‌ ها حذف شد.</string>
+    <string name="folder_deleted">لفاف‌ حذف.</string>
+    <string name="file_renamed">تغيير نام فايل.</string>
+    <string name="folder_renamed">لفاف‌ نام نيوهارمني.</string>
+    <string name="file_moved">حركت پرونده.</string>
+    <string name="folder_moved">لفاف‌ تحت تاثير.</string>
+    <string name="file_copied">پرونده‌ تقليد.</string>
+    <string name="move_title">لفاف‌ انتخاب كه به</string>
+    <string name="move_button">اینجا تکان بدهید</string>
+    <string name="copy_title">لفاف‌ نسخه را انتخاب کنند</string>
+    <string name="copy_button">در اينجا نسخه</string>
+	<string name="deleting_files">حذف پرونده...</string>
+    <string name="title_warning_some_may_not_work">اشاره‌</string>
+    <string name="warning_some_may_not_work">برخي از اين کار نه ممکن است به دنبال گزینه های دیگر.</string>
+    <string name="show_warning_again">بار ديگر هشدار نشان</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">آیا شما واقعا می خواهند انداختن‌ %d پرونده?</string>
+    <string name="move_button_multiselect">حرکت نکنید</string>
+    <string name="copy_button_multiselect">رونوشت‌</string>
+    <string name="delete_button_multiselect">انداختن‌</string>
+    <string name="multiselect_title">انتخاب چند پرونده</string>
+    <string name="error_selection">لطفا انتخاب‌ كردن‌ يكي از پرونده‌ يا بيشتر(s).</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">نوعی</string>
+    <string name="details_type_folder">تاه‌ كن‌</string>
+    <string name="details_type_file">پرونده‌</string>
+    <string name="details_type_other">ديگر</string>
+    <string name="details_size">اندازه‌</string>
+    <string name="details_permissions">براى سفرشان</string>
+    <string name="details_hidden">پنهان</string>
+    <string name="details_lastmodified">تعديل گذشته</string>
+    <string name="details_yes">بله</string>
+    <string name="details_no">نخیر</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">نسخه اي از %s</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">رونوشت‌ %1$d از %2$s</string>
+    
+    <string name="media_scan_included">لفاف‌ اين منظور خواهد شد تا رسانه ها با وزن‌ خواندن‌............. .          ..</string>
+    <string name="media_scan_excluded">لفاف‌ محروم خواهد شد این در رسانه های آينده کت اسکن انجام بدهیم.</string>
+    
+    <string name="error_creating_new_folder">لفاف‌ جديد ايجاد نمي كند.</string>
+    <string name="error_deleting_file">حذف نمي تواند پرونده كردند.</string>
+    <string name="error_deleting_folder">لفاف‌ حذف نمي توانست \'%s\'.</string>
+    <string name="error_renaming_file">نمي تواند پرونده محدودة ميان رودهاي.</string>
+    <string name="error_renaming_folder">لفاف‌ محدودة ميان رودهاي نمي توانست.</string>
+    <string name="error_moving_file">نمى توانست پرونده‌....</string>
+    <string name="error_moving_folder">لفاف‌ نمى توانست.</string>
+    <string name="error_copying_file">نمي تواند نسخه اي از پرونده.</string>
+    <string name="error_file_does_not_exists">پرونده وجود ندارد.</string>
+    <string name="error_deleting_child_file">پرونده‌ بچه نمى توانست انداختن‌ \'%s\'.</string>
+    <string name="error_generic">يك اشتباه رخ داد:</string>
+    <string name="error_media_scan">تغيير نمي توانست رسانه های ما بدنبال یک اسکن بکنیم.</string>
+    
+    <string name="send_not_available">نه درخواست برای فرستادن.</string>
+    
+    <string name="application_not_available">پشتكار موجود نه</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">مک کليلن</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">سيماي پیشرفته</string>
+	<string name="preference_mediascan_title">محروم‌ كردن‌ از رسانه ها با وزن‌ خواندن‌</string>
+    <string name="preference_mediascan_summary_on">فهرست‌ انتخاب‌ محروم‌ كردن‌ ردیف نشان مي دهد انقلاب به یک اسکن بکنیم از رسانه ها.</string>
+    <string name="preference_mediascan_summary_off">فهرست‌ انتخاب‌ محروم‌ كردن‌ پوست‌ کلان انقلاب از رسانه ها به یک اسکن بکنیم.</string>
+    
+    <string name="preference_showallwarning_title">نشان دادن همة هشدارها</string>
+    <string name="preference_showallwarning_summary_on">نشان دادن همة پيام تحذير</string>
+    <string name="preference_showallwarning_summary_off">سركوب پيام تحذير</string>
+       
+    <string name="preference_displayhiddenfiles_title">نمايش‌ پرونده پنهان</string>
+    <string name="preference_displayhiddenfiles_summary_on">نمايش‌ پرونده پنهان</string>
+    <string name="preference_displayhiddenfiles_summary_off">پرونده هاي نهفته پنهان</string>
+    
+    <string name="preference_sort_settings">جور مک کليلن</string>
+    <string name="preference_sortby">نوعی با</string>
+    <string name="preference_sortby_ascending">در ترتيب‌ صعودى</string>
+    <string name="preference_sortby_ascending_summary_on">در فرازى تحت نوع</string>
+    <string name="preference_sortby_ascending_summary_off">نوعی در ترتيب‌ نزولي‌</string>
+    <string-array name="preference_sortby_names">
+        <item>نام</item>
+        <item>اندازه‌</item>
+        <item>تعديل گذشته</item>
+    </string-array>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">شما هر برداشت پرونده‌....</string>
+    <string name="saveas_error">بهدخت رشديه خطا.</string>
+    <string name="saveas_file_saved">پرونده‌ نجات داد با موفقيت!</string>
+    
+        
+   
+    <string name="bookmarks">نشانکها</string>
+    <string name="bookmarks_cancel">باطل‌ كردن‌</string>
+    <string name="bookmarks_delete">انداختن‌</string>
+    <string name="bookmarks_select_to_delete">انتخاب نشانکها به برداشتن</string>
+    <string name="bookmarks_manage">اداره‌ كردن‌ نشانکها</string>
+    <string name="bookmark_added">نشانکها وی افزود</string>
+    <string name="bookmark_not_found">نشانه سرنوشت‌ نه يافت.</string>
+    <string name="bookmarks_deleted">برگزيده شدن نشانکها  زيرزمينى</string>
+    <string name="bookmark_already_exists">اين پرونده هم اكنون نشانه</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">تكه‌ فشرده با موفقيت</string>
+    <string name="compressing_error">نمى توانست به یک کمپرس بگذارم ردیف</string>
+    <string name="compress_into_archive">فونت فارسی کمپرس بگذارم:</string>
+    <string name="extracting_success">تكه‌ با موفقيت استخراج</string>
+    <string name="extracting_error">نمى توانست استخراج بخش‌</string>
+    <string name="extract_into_folder">لفاف‌ به استخراج:</string>
+    <string name="extract_title">لفاف‌ انتخاب را به عصاره</string>
+    <string name="extract_button">اقتباس‌ كردن‌ اینجا</string>
+    <string name="extracting">استخراج...</string>
+    <string name="compressing">بارگلولهء توپى...</string>
+    <string name="warning_overwrite">پرونده‌ %s هست.آیا شما می خواهم به آن زياد نوشتن‌?</string>
+
+    <string name="change_file_extension">آیا شما می خواهم برای تغيير در تمديد پرونده‌?</string>
+</resources>

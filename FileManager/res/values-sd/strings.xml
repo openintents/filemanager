@@ -53,6 +53,7 @@
     <string name="menu_include_in_media_scan">मीडिया स्कैन में शामिल कयो</string>
     <string name="menu_exclude_from_media_scan">मीडिया स्कैन माँ अपवर्जित कयो</string>
     <string name="menu_bookmark">बुकमार्क में जोड़यो</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">नयो फ़ोल्डर ठायो</string>
     <string name="folder_name">फ़ोल्डर यो नाम</string>

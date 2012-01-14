@@ -2,10 +2,10 @@
 OI ھۆججەت باشقۇرغۇچ
 
 # Promo text:
-Manage files on the SD card with OI File Manager.
+بۇ SD كارتىدىكى ھۆججەتلەرنى OI ھۆججەت باشقۇرغۇچ بىلەن باشقۇرىدۇ.
 
 # Description:
-OI ھۆججەت باشقۇرغۇچ SD كارتا زىيارەت قىلىش، مۇندەرىجە قۇرۇش، ھۆججەت ئاتىنى ئۆزگەرتىش، كۆچۈرۈش، يۆتكەش ۋە ئۆچۈرۈشكە يول قويىدۇ. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+OI ھۆججەت باشقۇرغۇچ SD كارتا زىيارەت قىلىش، مۇندەرىجە قۇرۇش، ھۆججەت ئاتىنى ئۆزگەرتىش، كۆچۈرۈش، يۆتكەش ۋە ئۆچۈرۈشكە يول قويىدۇ. بىر كېڭەيتىلمە سۈپىتىدە باشقا ئەپلەردە ئىشلىتىپ، «ئاچ» ۋە «ساقلا» سۆزلەشكۈنى كۆرسىتىدۇ. 
 
 بۇ ئەپتە ئېلان يوق، ئىنتېرنېت ھوقۇقى تەلەپ قىلمايدۇ. 
 
@@ -38,7 +38,7 @@ http://code.google.com/p/openintents
 * OI, IO, OpenIntents, Open Intents
 
 خەلقئارا نەشرى: 
-Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
 
 
 بازاردا ئىزدەش ئۇچۇرى: 

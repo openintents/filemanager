@@ -53,6 +53,7 @@
     <string name="menu_include_in_media_scan">包括媒体扫描</string>
     <string name="menu_exclude_from_media_scan">从媒体扫描中排除</string>
     <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">新建文件夹</string>
     <string name="folder_name">文件夹名称</string>

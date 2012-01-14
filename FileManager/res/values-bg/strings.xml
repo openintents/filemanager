@@ -29,7 +29,7 @@
   kosyo https://launchpad.net/~kosyokk</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Управлявайте файловете на SD картата с OI Файл Мениджър.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -50,12 +50,13 @@
     <string name="menu_copy">Копирай</string>
     <string name="menu_details">Подробности</string>
     <string name="menu_more">Повече</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">Компресирай (ZIP)</string>
+    <string name="menu_extract">Извлечи (ZIP)</string>
     <string name="menu_filter">Филтриране</string>
     <string name="menu_include_in_media_scan">Включване в сканирането на медийни приложения</string>
     <string name="menu_exclude_from_media_scan">Изключване от сканирането на медийни приложения</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">Добави в отметки</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Създаване на нова папка</string>
     <string name="folder_name">Име на папка</string>
@@ -166,31 +167,31 @@
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Отметки</string>
+    <string name="bookmarks_cancel">Отказ</string>
     <string name="bookmarks_delete">Изтрий</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">Изберете отметки за изтриване</string>
+    <string name="bookmarks_manage">Управление на отметки</string>
+    <string name="bookmark_added">Отметката е добавена</string>
+    <string name="bookmark_not_found">Дестинацията на отметката не е открита.</string>
+    <string name="bookmarks_deleted">Избраните отметки са изтрити</string>
+    <string name="bookmark_already_exists">Този файл вече е добавен в отметки.</string>
 
 
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">Успешно компресиране на файла</string>
+    <string name="compressing_error">Неуспешно компресиране на файла</string>
+    <string name="compress_into_archive">Компресирай в архив:</string>
+    <string name="extracting_success">Успешно разархивиране на файла</string>
+    <string name="extracting_error">Неуспешно разархивиране на файла</string>
+    <string name="extract_into_folder">Разархивирай във папка:</string>
+    <string name="extract_title">Избери папка за разархивиране</string>
+    <string name="extract_button">Разархивирай тук</string>
+    <string name="extracting">Разархивиране...</string>
+    <string name="compressing">Компресиране...</string>
+    <string name="warning_overwrite">Файлът %s съществува. Желаете ли да го препокриете?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Желаете ли да промените разширението на файла?</string>
 </resources>

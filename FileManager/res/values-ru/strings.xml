@@ -56,6 +56,7 @@
     <string name="menu_include_in_media_scan">Включить в сканирование</string>
     <string name="menu_exclude_from_media_scan">Исключить из сканирования</string>
     <string name="menu_bookmark">Добавить в избранное</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Создать новую папку</string>
     <string name="folder_name">Имя папки</string>

@@ -28,7 +28,7 @@
   tiantian https://launchpad.net/~tsukida-cmkc</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">OI ファイルマネージャーで SDカードのファイルを管理します。</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -49,12 +49,13 @@
     <string name="menu_copy">コピー</string>
     <string name="menu_details">詳細情報</string>
     <string name="menu_more">もっと</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">圧縮 (ZIP)</string>
+    <string name="menu_extract">解凍 (ZIP)</string>
     <string name="menu_filter">フィルター</string>
     <string name="menu_include_in_media_scan">メディアスキャンに含む</string>
     <string name="menu_exclude_from_media_scan">メディアスキャンから除外する</string>
     <string name="menu_bookmark">ブックマークに追加する</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">新規フォルダーを作成</string>
     <string name="folder_name">フォルダ名</string>
@@ -179,17 +180,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">アイテムは問題なく圧縮されました</string>
+    <string name="compressing_error">アイテムを圧縮することができませんでした</string>
+    <string name="compress_into_archive">アーカイブに圧縮する：</string>
+    <string name="extracting_success">アイテムは問題なく解凍されました。</string>
+    <string name="extracting_error">アイテムを解凍することができませんでした。</string>
+    <string name="extract_into_folder">フォルダーに解凍：</string>
+    <string name="extract_title">解凍先のフォルダーを選択してください</string>
+    <string name="extract_button">ここに解凍</string>
+    <string name="extracting">解凍中...</string>
+    <string name="compressing">圧縮中...</string>
+    <string name="warning_overwrite">ファイル %s は既に存在します。上書きしたいですか？</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">ファイル拡張子の変更を保存したいですか？</string>
 </resources>

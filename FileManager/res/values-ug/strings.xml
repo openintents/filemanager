@@ -25,7 +25,7 @@
   Sahran https://launchpad.net/~sahran</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">بۇ SD كارتىدىكى ھۆججەتلەرنى OI ھۆججەت باشقۇرغۇچ بىلەن باشقۇرىدۇ.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -46,12 +46,13 @@
     <string name="menu_copy">كۆچۈر</string>
     <string name="menu_details">تەپسىلاتلار</string>
     <string name="menu_more">تېخىمۇ كۆپ</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">پىرىسلا(ZIP)</string>
+    <string name="menu_extract">يەش(ZIP)</string>
     <string name="menu_filter">سۈزگۈچ</string>
     <string name="menu_include_in_media_scan">ۋاسىتە تەكشۈرۈش ئىچىدە</string>
     <string name="menu_exclude_from_media_scan">ۋاسىتە تەكشۈرۈش سىرتىدا</string>
     <string name="menu_bookmark">خەتكۈشكە قوش</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">يېڭى قىسقۇچ قۇر</string>
     <string name="folder_name">قىسقۇچ ئاتى</string>
@@ -176,17 +177,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">تۈر مۇۋەپپەقىيەتلىك پىرىسلاندى</string>
+    <string name="compressing_error">بۇ تۈرنى پىرىسلىيالمايدۇ</string>
+    <string name="compress_into_archive">ئارخىپقا پىرىسلايدۇ:</string>
+    <string name="extracting_success">تۈر مۇۋەپپەقىيەتلىك يېشىلدى</string>
+    <string name="extracting_error">تۈرنى يېشەلمەيدۇ</string>
+    <string name="extract_into_folder">قىسقۇچقا يەش:</string>
+    <string name="extract_title">ھۆججەتنى يېشىدىغان قىسقۇچنى تاللاڭ</string>
+    <string name="extract_button">بۇ جايغا يەش</string>
+    <string name="extracting">يېشىۋاتىدۇ…</string>
+    <string name="compressing">پىرىسلاۋاتىدۇ…</string>
+    <string name="warning_overwrite">ھۆججەت %s مەۋجۇت. ئۇنى قاپلىۋېتەمسىز؟</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">ھۆججەتنىڭ كېڭەيتىلگەن ئاتىنى ئۆزگەرتەمسىز؟</string>
 </resources>

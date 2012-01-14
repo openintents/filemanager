@@ -52,6 +52,7 @@
     <string name="menu_include_in_media_scan">Inclou a l\'escaneig de dispositius</string>
     <string name="menu_exclude_from_media_scan">Exclou de l\'escaneig de dispositius</string>
     <string name="menu_bookmark">Afegeix a les adreces d\'interès</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Crea una carpeta nova</string>
     <string name="folder_name">Nom de la carpeta</string>

@@ -1,3 +1,10 @@
+# Application:
+OI File Manager
+
+# Promo text:
+Кіруйце файламі на SD картцы пры дапамозе OI File Manager.
+
+# Description:
 OI File Manager дазваляе вам праглядаць вашу SD картку, ствараць дырэкторыі, пераназываць, капіраваць, перамяшчаць і выдаляць файлы. Ён таксама працуе як пашырэнне для другіх прыкладанняў, каб адлюстроўваць дыялогі "Адкрыць" і "Захаваць" 
 
 У прыкладанні няма рэкламы і яно не патрабуе доступу ў інтэрнэт. 
@@ -31,7 +38,7 @@ http://code.google.com/p/openintents
 * OI, IO, OpenIntents, Open Intents
 
 Перекладзеныя версіі: 
-Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
 
 
 Пошук у Market: 

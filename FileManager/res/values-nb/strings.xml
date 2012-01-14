@@ -25,7 +25,7 @@
   OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Administrer filer på SD-kortet med OI Filbehandler.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -46,12 +46,13 @@
     <string name="menu_copy">Kopier</string>
     <string name="menu_details">Detaljer</string>
     <string name="menu_more">Mer</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">Komprimer (ZIP)</string>
+    <string name="menu_extract">Pakk ut (ZIP)</string>
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Inkluder i mediaskanning</string>
     <string name="menu_exclude_from_media_scan">Ekskulder fra mediaskanning</string>
     <string name="menu_bookmark">Legg til bokmerker</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Opprett ny mappe</string>
     <string name="folder_name">Mappenavn</string>
@@ -176,17 +177,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">Punkt vellykket komprimert</string>
+    <string name="compressing_error">Kunne ikke komprimere punkt</string>
+    <string name="compress_into_archive">Komprimer inn i arkiv:</string>
+    <string name="extracting_success">Punkt vellykket pakket ut</string>
+    <string name="extracting_error">Kunne ikke pakke ut punktet</string>
+    <string name="extract_into_folder">Pakk ut til mappe:</string>
+    <string name="extract_title">Velg mappe å pakke ut til</string>
+    <string name="extract_button">Pakk ut her</string>
+    <string name="extracting">Pakker ut...</string>
+    <string name="compressing">Komprimerer...</string>
+    <string name="warning_overwrite">Fil %s finnes. Vil du overskrive den?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Vil du endre filutvidelsen?</string>
 </resources>

@@ -26,6 +26,7 @@
   Donal Estrada https://launchpad.net/~donalestrada
   Fitoschido https://launchpad.net/~fitoschido
   Javier Martínez Arrieta https://launchpad.net/~javote87
+  Martín González https://launchpad.net/~mgonzlezgmz
   OpenIntents devs https://launchpad.net/~openintents-devs
   Paco Molinero https://launchpad.net/~franciscomol
   Peli https://launchpad.net/~peli0101
@@ -33,7 +34,7 @@
   simon https://launchpad.net/~sianhulo</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Administrar archivos en la tarjeta SD con OI File Manager</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -54,12 +55,13 @@
     <string name="menu_copy">Copiar</string>
     <string name="menu_details">Mostrar detalles</string>
     <string name="menu_more">Más</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">Comprimir (ZIP)</string>
+    <string name="menu_extract">Extraer (ZIP)</string>
     <string name="menu_filter">Filtro</string>
     <string name="menu_include_in_media_scan">Incluir en la exploración de archivos multimedia</string>
     <string name="menu_exclude_from_media_scan">Excluir de la exploración de archivos multimedia</string>
     <string name="menu_bookmark">Añadir a marcadores</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Crear nueva carpeta</string>
     <string name="folder_name">Nombre de carpeta</string>
@@ -184,17 +186,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">Archivo comprimido satisfactoriamente</string>
+    <string name="compressing_error">No se puede comprimir el archivo</string>
+    <string name="compress_into_archive">Comprimir en un archivo:</string>
+    <string name="extracting_success">Archivo extraído satisfactoriamente</string>
+    <string name="extracting_error">No se puede extraer el archivo</string>
+    <string name="extract_into_folder">Extraer en una carpeta:</string>
+    <string name="extract_title">Seleccionar carpeta donde extraer</string>
+    <string name="extract_button">Extraer aquí</string>
+    <string name="extracting">Extrayendo...</string>
+    <string name="compressing">Comprimiendo...</string>
+    <string name="warning_overwrite">El archivo %s existe. ¿Le gustaría sobreescribirlo?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">¿Le gustaría cambiar la extensión del archivo?</string>
 </resources>

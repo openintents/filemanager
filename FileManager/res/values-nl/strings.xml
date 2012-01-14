@@ -22,6 +22,7 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Henk van der Velden https://launchpad.net/~henkvandervelden86
+  Mark van Kuijk https://launchpad.net/~markvankuyk
   Menno Vogel https://launchpad.net/~mennovogel90
   OpenIntents devs https://launchpad.net/~openintents-devs
   Peli https://launchpad.net/~peli0101
@@ -30,7 +31,7 @@
   pjv https://launchpad.net/~pjv</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Beheer uw bestanden op een SD kaart met OI File Manager</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -57,6 +58,7 @@
     <string name="menu_include_in_media_scan">Meenemen bij media scan</string>
     <string name="menu_exclude_from_media_scan">Negeren bij media scan</string>
     <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Nieuwe map aanmaken</string>
     <string name="folder_name">Naam van de map</string>
@@ -138,7 +140,7 @@
     <string name="preference_mediascan_summary_on">Toon menu-item om mappen van de media scan uit te sluiten.</string>
     <string name="preference_mediascan_summary_off">Verberg menu-item om mappen van de media scan uit te sluiten.</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
+    <string name="preference_showallwarning_title">Toon alle waarschuwingen</string>
     <string name="preference_showallwarning_summary_on">Show all warning messages</string>
     <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
        
@@ -150,7 +152,7 @@
     <string name="preference_sortby">Sort by</string>
     <string name="preference_sortby_ascending">In ascending order</string>
     <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sortby_ascending_summary_off">Sorteer in aflopende volgorde</string>
     <string-array name="preference_sortby_names">
         <item>Name</item>
         <item>Size</item>
@@ -163,7 +165,7 @@
     	 *************************** -->
     <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
     <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_file_saved">Bestand is succesvol opgeslagen.</string>
     
         
    
@@ -172,7 +174,7 @@
     <string name="bookmarks_delete">Verwijderen</string>
     <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
     <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_added">Bladwijzer toegevoegd</string>
     <string name="bookmark_not_found">Bookmarked destination not found.</string>
     <string name="bookmarks_deleted">Selected bookmarks deleted</string>
     <string name="bookmark_already_exists">This file is already bookmarked</string>

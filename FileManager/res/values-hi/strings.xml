@@ -22,11 +22,12 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Abhishek https://launchpad.net/~abhishek9797
+  Atharva Lath https://launchpad.net/~atharvalath96
   OpenIntents devs https://launchpad.net/~openintents-devs
   happynawani https://launchpad.net/~happynawani</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">फ़ाइल को मनेज करें जो असडी कार्ड पर हैं OI  फ़ाइल मेनेजर के साथ.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -47,12 +48,13 @@
     <string name="menu_copy">प्रतिलिपि बनाएँ</string>
     <string name="menu_details">विवरण</string>
     <string name="menu_more">अतिरिक्त</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">कम्प्रेस (ZIP)</string>
+    <string name="menu_extract">उद्धरण (ZIP)</string>
     <string name="menu_filter">फिल्टर करें</string>
     <string name="menu_include_in_media_scan">मीडिया स्कैन में शामिल करें</string>
     <string name="menu_exclude_from_media_scan">मीडिया स्कैन से अपवर्जित करें</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">बुकमार्क जोड़ें</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">नया फ़ोल्डर बनाएँ</string>
     <string name="folder_name">फ़ोल्डर का नाम</string>
@@ -163,31 +165,31 @@
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">बुकमार्क</string>
+    <string name="bookmarks_cancel">रद्द करें</string>
     <string name="bookmarks_delete">मिटाएँ</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">बुकमार्क को चुने हटाने के लिए</string>
+    <string name="bookmarks_manage">बुकमार्क को मनेज करें</string>
+    <string name="bookmark_added">बुकमार्क को जोड़ें</string>
+    <string name="bookmark_not_found">बुकमार्क जगह नहीं मीली.</string>
+    <string name="bookmarks_deleted">चुने गए बुकमार्क हटा चुके है</string>
+    <string name="bookmark_already_exists">यह फ़ाइल पहले से ही बुकमार्क  हो चुकी है</string>
 
 
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">आइटम सफलतापूर्वक कम्प्रेस हो चुकी है</string>
+    <string name="compressing_error">आइटम को कम्प्रेस नहीं कर सके</string>
+    <string name="compress_into_archive">संग्रह मैं कम्प्रेस करें:</string>
+    <string name="extracting_success">आइटम सफलतापूर्वक एक्स्त्रक्ट हो चुके है</string>
+    <string name="extracting_error">आइटम को एक्स्त्रक्ट नहीं कर सकते</string>
+    <string name="extract_into_folder">फोल्डर मैं एक्स्त्रक्ट करें:</string>
+    <string name="extract_title">फोल्डर को चुने जिसमें एक्स्त्रक्ट करना है</string>
+    <string name="extract_button">इधर एक्स्त्रक्ट करें</string>
+    <string name="extracting">एक्स्त्रक्ट कर रहें है...</string>
+    <string name="compressing">कम्प्रेस कर रहें है...</string>
+    <string name="warning_overwrite">फ़ाइल %s मोजूद है. क्या आप को ओवरराइट करना है?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">क्या आप को फ़ाइल एक्सटेंशन को बदलना चाहतें है?</string>
 </resources>

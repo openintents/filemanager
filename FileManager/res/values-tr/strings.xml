@@ -57,6 +57,7 @@ Launchpad Contributions:
     <string name="menu_include_in_media_scan">Medya tarama dahil</string>
     <string name="menu_exclude_from_media_scan">Medya tarama hariç</string>
     <string name="menu_bookmark">Yer imleri ekle</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Yeni klasör oluştur</string>
     <string name="folder_name">Klasör adı</string>

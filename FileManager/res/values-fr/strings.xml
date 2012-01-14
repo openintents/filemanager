@@ -54,6 +54,7 @@
     <string name="menu_include_in_media_scan">Inclure dans les recherches</string>
     <string name="menu_exclude_from_media_scan">Exclure des recherches</string>
     <string name="menu_bookmark">Ajouter aux favoris</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Créer un nouveau dossier</string>
     <string name="folder_name">Nom du dossier</string>

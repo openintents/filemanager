@@ -23,8 +23,7 @@
 	<string name="about_translators">Launchpad Contributions:
   André Gondim https://launchpad.net/~andregondim
   DanielElias https://launchpad.net/~danielelias
-  Luiz Lopes https://launchpad.net/~luizlopes
-  Matheus de Araújo https://launchpad.net/~suetamac</string>
+  Luiz Lopes https://launchpad.net/~luizlopes</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
     <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
@@ -54,6 +53,7 @@
     <string name="menu_include_in_media_scan">Incluir no scanner de mídia.</string>
     <string name="menu_exclude_from_media_scan">Remover do scanner de mídia.</string>
     <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Criar nova pasta</string>
     <string name="folder_name">Nome da Pasta</string>

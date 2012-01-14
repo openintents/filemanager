@@ -2,7 +2,7 @@
 OI फ़ाइल प्रबंधक
 
 # Promo text:
-Manage files on the SD card with OI File Manager.
+फ़ाइल को मनेज करें जो असडी कार्ड पर हैं OI  फ़ाइल मेनेजर के साथ.
 
 # Description:
 OI फाईल प्रबंधक आपको अपने एसडी कार्ड ब्राउज़ करने,निर्देशिका बनाने,नाम बदलने,प्रतिलिपि बनाने,फाइल और कहीं भेजने और फाईल  मिटने की अनुमति देता है | यह अन्य अनुप्रयोगों के लिए एक एक्सटेंशन के रूप में कार्य करता है "Open" और "Save"  संवाद  प्रदर्शित करने के लिए| 
@@ -38,7 +38,7 @@ http://code.google.com/p/openintents
 * OI, IO, OpenIntents, Open Intents
 
 अंतर्राष्ट्रीय संस्करण: 
-Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
 
 
 बाजार के लिए स्ट्रिंग्स को  खोजें : 

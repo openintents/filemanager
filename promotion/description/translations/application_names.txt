@@ -11,6 +11,7 @@ OI Menedżer plików
 OI Správca Súborov
 OI Správce souborů
 OI Файлов Мениджър
+OI مدير پرونده‌
 OI ھۆججەت باشقۇرغۇچ
 OI फ़ाइल प्रबंधक
 OI ਫਾਇਲ ਮੈਨਿਜਰ

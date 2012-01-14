@@ -21,11 +21,12 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Marek Dobransky https://launchpad.net/~marekdobr
   Matěj Konečný https://launchpad.net/~matejkon
   OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Spravovat soubory na SD kartě s OI Správcem souborů</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -46,12 +47,13 @@
     <string name="menu_copy">Kopírovat</string>
     <string name="menu_details">Podrobnosti</string>
     <string name="menu_more">Další</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">Komprimovat (ZIP)</string>
+    <string name="menu_extract">Rozbalit (ZIP)</string>
     <string name="menu_filter">Filtr</string>
     <string name="menu_include_in_media_scan">Zahrnout do media scanu</string>
     <string name="menu_exclude_from_media_scan">Vyloučit z media scanu</string>
     <string name="menu_bookmark">Přidat do záložek</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Vytvořit novou složku</string>
     <string name="folder_name">Název složky</string>
@@ -176,17 +178,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">Položka byla úspěšně komprimovaná</string>
+    <string name="compressing_error">Nelze komprimovat položku</string>
+    <string name="compress_into_archive">Komprimovat do archívu:</string>
+    <string name="extracting_success">Položka úspěšne rozbalená</string>
+    <string name="extracting_error">Nelze rozbalit položku</string>
+    <string name="extract_into_folder">Rozbalit do složky:</string>
+    <string name="extract_title">Vyberte složku pro rozbalení</string>
+    <string name="extract_button">Rozbalit zde</string>
+    <string name="extracting">Rozbaluji...</string>
+    <string name="compressing">Probíhá komprimace...</string>
+    <string name="warning_overwrite">Soubor %s existuje. Chcete jej přepsat?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Chcete změnit příponu souboru?</string>
 </resources>

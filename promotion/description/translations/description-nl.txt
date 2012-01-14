@@ -2,7 +2,7 @@
 OI Bestandsbeheer
 
 # Promo text:
-Manage files on the SD card with OI File Manager.
+Beheer uw bestanden op een SD kaart met OI File Manager
 
 # Description:
 OI File Manager biedt de mogelijkheid om de inhoud van de SD kaart te doorzoeken, directory's aan te maken, en bestanden te hernoemen, kopiëren, verplaatsen en te verwijderen. Wordt als extensie gebuikt door andere programma's, om de dialoogboxen "open" en "save" te tonen, 
@@ -27,18 +27,18 @@ Eigenschappen:
 * Ondersteunt vele bestandsformaten en mime types.
 * Ondersteunt PICK_FILE en PICK_DIRECTORY intents, waardoor andere programma's OI File Manager ook kunnen gebruiken.
 
-Available extensions for "OI File Manager": 
+Beschikbare extensies voor "OI File Manager" 
 * Show the license information with "OI About".
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+Applicaties die werken met "OI File Manager" 
+* Open en bewaar tekstbestanden in "OI Notepad"
 
 Sleutelwoorden: 
 * Copy text 	 file manager, filemanager, file explorer
 * OI, IO, OpenIntents, Open Intents
 
 Internationale versies 
-Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
 
 
 Search strings for Market: 

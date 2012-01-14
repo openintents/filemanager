@@ -52,6 +52,7 @@
     <string name="menu_include_in_media_scan">Azzunghe a sa scansione</string>
     <string name="menu_exclude_from_media_scan">Esclude da sa scansione</string>
     <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Crea un\'attera cartelledda</string>
     <string name="folder_name">Numene</string>

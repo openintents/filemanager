@@ -21,13 +21,14 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Edoardo Maria Elidoro https://launchpad.net/~edoardoelidoro
   Martino Barbon https://launchpad.net/~martins999
   OpenIntents devs https://launchpad.net/~openintents-devs
   Peli https://launchpad.net/~peli0101
   simone.sandri https://launchpad.net/~lexluxsox</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Gestisci i file sulla scheda SD con il gestore di file OI</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -46,14 +47,15 @@
     <string name="menu_open">Apri</string>
     <string name="menu_move">Sposta</string>
     <string name="menu_copy">Copia</string>
-    <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_details">Dettagli</string>
+    <string name="menu_more">Altro</string>
+    <string name="menu_compress">Comprimi (ZIP)</string>
+    <string name="menu_extract">Estrai (ZIP)</string>
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Includi nella scansione dei media</string>
     <string name="menu_exclude_from_media_scan">Escludi dalla scansione dei media.</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">Aggiungi ai preferiti</string>
+    <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Crea nuova cartella</string>
     <string name="folder_name">Nome cartella</string>
@@ -73,8 +75,8 @@
     <string name="copy_title">Seleziona la cartella dove copiare</string>
     <string name="copy_button">Copia qui</string>
 	<string name="deleting_files">Eliminazione dei file in corso...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
+    <string name="title_warning_some_may_not_work">Attenzione</string>
+    <string name="warning_some_may_not_work">Alcune tra le seguenti opzioni potrebbero non funzionare.</string>
     <string name="show_warning_again">Show warning again</string>
     
     <!-- Strings for a multi select feature -->

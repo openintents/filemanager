@@ -11,4 +11,5 @@
     <string name="pick_directory_button">Use this folder</string>
     <string name="get_content_title">Open using GET_CONTENT</string>
     <string name="get_content_info">Display name: %1$s, File size: %2$s</string>
+    <string name="open_uri_button">Open URI</string>
 </resources>

@@ -397,6 +397,23 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		solo.goBack();
 		solo.goBack();
 	}
+	
+	public void testIntentUri() throws IOException {
+		createDirectory(sdcardPath + "oi-filemanager-tests");
+		createFile(sdcardPath + "oi-filemanager-tests/oi-to-open.txt", "bbb");		
+		
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse("file://" + sdcardPath + "oi-filemanager-tests/oi-to-open.txt"));
+		intent.setPackage("org.openintents.filemanager");
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		
+		activity = getInstrumentation().startActivitySync(intent);
+		
+		assertTrue(solo.searchText("oi-to-open.txt"));
+		solo.goBack();
+		solo.goBack();	
+	}
+	
 	public void testIntentPickFile() throws IOException {
 		// startActivityForResult is, I think, impossible to test on Robotinium
 		createDirectory(sdcardPath + "oi-filemanager-tests");

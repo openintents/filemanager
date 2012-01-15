@@ -67,6 +67,10 @@ public class Demo extends Activity {
 		getContent();
 	}
 	
+	public void onClickOpenUri(View view){
+		openFileUri();
+	}
+	
     /**
      * Opens the file manager to select a file to open.
      */
@@ -158,6 +162,28 @@ public class Demo extends Activity {
 			// No compatible file manager was found.
 			Toast.makeText(this, R.string.no_filemanager_installed, 
 					Toast.LENGTH_SHORT).show();
+		}
+    }
+    
+    /**
+     * Use URI to get a file
+     */
+    public void openFileUri(){
+    	String filePath = mEditText.getText().toString();
+    	Uri uri = Uri.parse("file://" + filePath);
+
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(uri);
+		
+		// optionally:
+		//intent.setPackage("org.openintents.filemanager");
+		
+		try {
+			startActivity(intent);
+		} catch (ActivityNotFoundException e) {
+			// No compatible file manager was found.
+			Toast.makeText(this, R.string.no_filemanager_installed, 
+				Toast.LENGTH_SHORT).show();
 		}
     }
 

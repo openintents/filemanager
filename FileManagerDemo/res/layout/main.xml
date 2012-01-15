@@ -57,4 +57,10 @@
 		android:text="@string/get_content_title"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
+		
+	<Button android:id="@+id/open_uri"
+		android:onClick="onClickOpenUri"
+		android:text="@string/open_uri_button"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
 </LinearLayout>

@@ -29,7 +29,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.openintents.distribution.DistributionLibraryListActivity;
-import org.openintents.filemanager.util.*;
+import org.openintents.filemanager.util.CompressManager;
+import org.openintents.filemanager.util.ExtractManager;
+import org.openintents.filemanager.util.FileUtils;
+import org.openintents.filemanager.util.MimeTypeParser;
+import org.openintents.filemanager.util.MimeTypes;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 import org.xmlpull.v1.XmlPullParserException;
@@ -52,13 +56,12 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -70,17 +73,17 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -167,6 +170,18 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final String BUNDLE_CONTEXT_TEXT = "context_text";
 	private static final String BUNDLE_SHOW_DIRECTORY_INPUT = "show_directory_input";
 	private static final String BUNDLE_STEPS_BACK = "steps_back";
+	
+	private static boolean mSoftKeyboardAvailable;
+	
+	static {
+		try {
+			org.openintents.filemanager.compatibility.SoftKeyboard.checkAvailable();
+			mSoftKeyboardAvailable = true;
+		} catch (Throwable t) {
+			mSoftKeyboardAvailable = false;
+		}
+	}
+	
 	
 	/** Contains directories and files together */
      private ArrayList<IconifiedText> directoryEntries = new ArrayList<IconifiedText>();
@@ -612,6 +627,21 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	 mDirectoryInput = (LinearLayout) findViewById(R.id.directory_input);
          mEditDirectory = (EditText) findViewById(R.id.directory_text);
 
+
+		 mEditDirectory.setOnKeyListener(new OnKeyListener() {
+			 public boolean onKey(View v, int keyCode, KeyEvent event) {
+				 // If the event is a key-down event on the "enter" button
+				 if ((event.getAction() == KeyEvent.ACTION_DOWN)
+						&& (keyCode == KeyEvent.KEYCODE_ENTER)){
+					 
+					 goToDirectoryInEditText();
+					 
+					 return true;
+				 }
+				 return false;
+			 }
+		 });
+
          mButtonDirectoryPick = (ImageButton) findViewById(R.id.button_directory_pick);
          
          mButtonDirectoryPick.setOnClickListener(new View.OnClickListener() {
@@ -625,23 +655,47 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      //private boolean mHaveShownErrorMessage;
      private File mHaveShownErrorMessageForFile = null;
      
+     private void hideKeyboard(IBinder windowToken, int flags){
+    	 if(mSoftKeyboardAvailable){
+    		 (new org.openintents.filemanager.compatibility.SoftKeyboard(this))
+    		 	.hideSoftInputFromWindow(windowToken, flags);
+    	 }
+     }
+     
      private void goToDirectoryInEditText() {
     	 File browseto = new File(mEditDirectory.getText().toString());
     	 
+		 /*
+		  *  After calling showDirectoryInput(false); the keyboard stays displayed.
+		  *  Hide it by calling hideKeyboard(windowToken, 0);
+		  *  Might be a bit problematic - it hides the keyboard even if id didn't
+		  *  appear after focusing the editText (user had it displayed before).
+		  *  But I think letting it displayed when user doesn't want to
+		  *  is much worse (and much more common) than hiding it although
+		  *  the user wants it displayed
+		  */
+
+    	 IBinder windowToken = mEditDirectory.getWindowToken();
+    	 
     	 if (browseto.equals(currentDirectory)) {
     		 showDirectoryInput(false);
+    		 hideKeyboard(windowToken, 0);
     	 } else {
     		 if (mHaveShownErrorMessageForFile != null 
     				 && mHaveShownErrorMessageForFile.equals(browseto)) {
     			 // Don't let user get stuck in wrong directory.
     			 mHaveShownErrorMessageForFile = null;
         		 showDirectoryInput(false);
+        		 hideKeyboard(windowToken, 0);
     		 } else {
 	    		 if (!browseto.exists()) {
 	    			 // browseTo() below will show an error message,
 	    			 // because file does not exist.
 	    			 // It is ok to show this the first time.
 	    			 mHaveShownErrorMessageForFile = browseto;
+	    		 }else{
+	        		 showDirectoryInput(false);
+	        		 hideKeyboard(windowToken, 0);
 	    		 }
 				 browseTo(browseto);
     		 }
@@ -1097,7 +1151,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 				android.R.drawable.ic_menu_rotate);
 
  		mDistribution.onCreateOptionsMenu(menu);
- 		
  		return true;
  	}
 

@@ -47,6 +47,7 @@ date: ?
 - Refresh menu item (Google Code-in task by Aviral Dasgupta)
 - Lazy loading of thumbnails (issue 271, Google Code-in task by Philip Hayes)
 - Use custom icons for certain file types (issue 333, Google Code-in task by Matěj Konečný)
+- Accept return key for entering a path (issue 461, Google Code-in task by Matěj Konečný)
 
 ---------------------------------------------------------
 release: 1.1.6

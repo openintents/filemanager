@@ -482,6 +482,30 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 			solo.goBack();
 		}
 	}
+
+	public void testBrowseToOnPressEnter() throws IOException {
+		String dirPath = "oi-filemanager-tests";
+		String filename = "oi-test-is-in-right-directory";
+		createDirectory(sdcardPath + dirPath);
+		createFile(sdcardPath + dirPath + "/" + filename, "");
+		
+		/*
+		 *  We start at the SD card. Home ImageButton has index 0. Then there's a mnt classic button.
+		 *  And finally SD card ImageButton with index 1. (Android 1.x and 2.x)
+		 *  
+		 *  Remark: On Android 3.x(?) and 4.x, the index may have to be set to 2?
+		 */
+		solo.clickOnImageButton(1);
+		
+		solo.clickOnEditText(0); // Let the editText has focus to be able to send the enter key.
+		solo.enterText(0, "/"+dirPath);
+		solo.sendKey(Solo.ENTER);
+
+		assertTrue(solo.searchText(filename));
+		
+		solo.goBack();
+		solo.goBack();
+	}
 	
 	// Other possible tests:
 	// 		testSend

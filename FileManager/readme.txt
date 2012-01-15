@@ -46,6 +46,7 @@ date: ?
 - warning dialog for file extension changes (issue 397, patch by Evgeniy Berlog)
 - Refresh menu item (Google Code-in task by Aviral Dasgupta)
 - Lazy loading of thumbnails (issue 271, Google Code-in task by Philip Hayes)
+- Use custom icons for certain file types (issue 333, Google Code-in task by Matěj Konečný)
 
 ---------------------------------------------------------
 release: 1.1.6

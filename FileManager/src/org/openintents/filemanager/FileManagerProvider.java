@@ -10,6 +10,8 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -32,7 +34,13 @@ public class FileManagerProvider extends ContentProvider {
 	}
 
 	private void getMimeTypes() {
-		MimeTypeParser mtp = new MimeTypeParser();
+		Context ctx = getContext();
+		MimeTypeParser mtp = null;
+		try {
+			mtp = new MimeTypeParser(ctx, ctx.getPackageName());
+		} catch (NameNotFoundException e) {
+			//Should never get here
+		}
 		XmlResourceParser in = 
 			getContext().getResources().getXml(R.xml.mimetypes);
 

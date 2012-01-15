@@ -17,13 +17,13 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -306,6 +306,19 @@ public class DirectoryScanner extends Thread {
 	   		 
 	   		 return aInfo.loadIcon(pm);
    		 }
+   	 }
+   	 
+   	 int iconResource = mMimeTypes.getIcon(mimetype);
+   	 Drawable ret = null;
+   	 if(iconResource > 0){
+   		 try {
+   			 ret = pm.getResourcesForApplication(context.getPackageName()).getDrawable(iconResource);
+   		 }catch(NotFoundException e){}
+   		 catch(NameNotFoundException e){}
+   	 }
+   	 
+   	 if(ret != null){
+   		 return ret;
    	 }
    	 
    	 Uri data = FileUtils.getUri(file);

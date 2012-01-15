@@ -48,6 +48,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
@@ -734,7 +735,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	 * 
 	 */
      private void getMimeTypes() {
-    	 MimeTypeParser mtp = new MimeTypeParser();
+    	 MimeTypeParser mtp = null;
+		try {
+			mtp = new MimeTypeParser(this, this.getPackageName());
+		} catch (NameNotFoundException e) {
+			//Should never happen
+		}
 
     	 XmlResourceParser in = getResources().getXml(R.xml.mimetypes);
 

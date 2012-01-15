@@ -19,15 +19,14 @@ package org.openintents.filemanager.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import android.content.Context;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 
 public class MimeTypeParser {
@@ -39,11 +38,16 @@ public class MimeTypeParser {
 	
 	public static final String ATTR_EXTENSION = "extension";
 	public static final String ATTR_MIMETYPE = "mimetype";
+	public static final String ATTR_ICON = "icon";
 	
 	private XmlPullParser mXpp;
 	private MimeTypes mMimeTypes;
+	private Resources resources;
+	private String packagename;
     
-	public MimeTypeParser() {
+	public MimeTypeParser(Context ctx, String packagename) throws NameNotFoundException{
+		this.packagename = packagename;
+		resources = ctx.getPackageManager().getResourcesForApplication(packagename);
 	}
 	
 	public MimeTypes fromXml(InputStream in)
@@ -94,6 +98,15 @@ public class MimeTypeParser {
 	private void addMimeTypeStart() {
 		String extension = mXpp.getAttributeValue(null, ATTR_EXTENSION);
 		String mimetype = mXpp.getAttributeValue(null, ATTR_MIMETYPE);
+		String icon = mXpp.getAttributeValue(null, ATTR_ICON);
+		
+		if(icon != null){
+			int id = resources.getIdentifier(icon.substring(1) /* to cut the @ */, null, packagename);
+			if(id > 0){
+				mMimeTypes.put(extension, mimetype, id);
+				return;
+			}
+		}
 		
 		mMimeTypes.put(extension, mimetype);
 	}

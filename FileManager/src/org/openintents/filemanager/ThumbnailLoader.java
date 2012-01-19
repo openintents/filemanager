@@ -9,11 +9,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.openintents.filemanager.util.FileUtils;
+import org.openintents.filemanager.util.ImageUtils;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
@@ -240,7 +245,9 @@ public class ThumbnailLoader {
 						}
 						options.inSampleSize = widthFactor;
 						options.inJustDecodeBounds = false;
-						Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
+						Bitmap bitmap = ImageUtils.resizeBitmap(
+								BitmapFactory.decodeFile(filePath, options),
+								72, 72);
 						if (bitmap != null) {
 							return bitmap;
 						}

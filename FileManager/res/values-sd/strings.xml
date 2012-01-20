@@ -23,10 +23,11 @@
 	<string name="about_translators">Launchpad Contributions:
   OpenIntents devs https://launchpad.net/~openintents-devs
   Peli https://launchpad.net/~peli0101
-  happynawani https://launchpad.net/~happynawani</string>
+  happynawani https://launchpad.net/~happynawani
+  vishal panjwani https://launchpad.net/~vishal-panjwani15</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">फ़ाइल खे मनेज कयो जो असडी कार्ड में आहिन OI फ़ाइल मेनेजर सां गद्द</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -47,13 +48,13 @@
     <string name="menu_copy">कापी कयो</string>
     <string name="menu_details">विवरण</string>
     <string name="menu_more">वधीक</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">संपीड़ित कयो (ZIP)</string>
+    <string name="menu_extract">काढ्यो (ZIP)</string>
     <string name="menu_filter">फिल्टर कयो</string>
     <string name="menu_include_in_media_scan">मीडिया स्कैन में शामिल कयो</string>
     <string name="menu_exclude_from_media_scan">मीडिया स्कैन माँ अपवर्जित कयो</string>
     <string name="menu_bookmark">बुकमार्क में जोड़यो</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">ताजो कयो</string>
     
     <string name="create_new_folder">नयो फ़ोल्डर ठायो</string>
     <string name="folder_name">फ़ोल्डर यो नाम</string>
@@ -178,17 +179,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">आइटम सफलतापूर्वक कम्प्रेस थी वयो</string>
+    <string name="compressing_error">आइटम खे कम्प्रेस न करे सग्यास</string>
+    <string name="compress_into_archive">संग्रह मैं कम्प्रेस कयो:</string>
+    <string name="extracting_success">आइटम सफलतापूर्वक एक्स्त्रक्ट थी वयो</string>
+    <string name="extracting_error">आइटम खे एक्स्त्रक्ट न करे सग्यास</string>
+    <string name="extract_into_folder">फोल्डर में एक्स्त्रक्ट कयो:</string>
+    <string name="extract_title">एक्स्त्रक्ट करण लाये फोल्डर  चयनित कयो</string>
+    <string name="extract_button">हित्ते एक्स्त्रक्ट कयो</string>
+    <string name="extracting">एक्स्त्रक्ट थे तो पयो...</string>
+    <string name="compressing">कम्प्रेस थे तो पयो...</string>
+    <string name="warning_overwrite">फाईल %s पहरों खान ही आहे| शा तहां अधिलेखित करण ता चाह्यो ?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">शा तहां फाईल विस्तार खे बदलन चाह्यो ता ?</string>
 </resources>

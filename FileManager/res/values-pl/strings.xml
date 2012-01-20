@@ -25,6 +25,7 @@
   Damian Skrodzki https://launchpad.net/~damienix
   Iskast https://launchpad.net/~iskast-deactivatedaccount1
   OpenIntents devs https://launchpad.net/~openintents-devs
+  Piotr Łazarczyk https://launchpad.net/~quazarxd
   Tomasz Zieliński https://launchpad.net/~tomek0517
   usul https://launchpad.net/~usultis
   zielmicha https://launchpad.net/~michal-zielinscy</string>
@@ -57,7 +58,7 @@
     <string name="menu_include_in_media_scan">Załącz do skanowanych mediów</string>
     <string name="menu_exclude_from_media_scan">Ignoruj podczas skanowania mediów</string>
     <string name="menu_bookmark">Dodaj do zakładek</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">Odśwież</string>
     
     <string name="create_new_folder">Utwórz nowy katalog</string>
     <string name="folder_name">Nazwa katalogu</string>
@@ -65,12 +66,12 @@
     <string name="extension">Rozszerzenie (z ".")</string>
     <string name="this_folder_is_empty">Ten katalog jest pusty.</string>
     <string name="really_delete">Na na pewno chcesz usunąć %s?</string>
-    <string name="file_deleted">Plik usunięty</string>
+    <string name="file_deleted">Plik usunięty.</string>
     <string name="folder_deleted">Katalog usunięty.</string>
     <string name="file_renamed">Nazwa pliku zmieniona.</string>
     <string name="folder_renamed">Naza katalogu zmieniona.</string>
     <string name="file_moved">Plik przeniesiony.</string>
-    <string name="folder_moved">Katalog przesunięty.</string>
+    <string name="folder_moved">Katalog przeniesiony.</string>
     <string name="file_copied">Plik skopiowany.</string>
     <string name="move_title">Wybierz katalog docelowy</string>
     <string name="move_button">Przenieś tutaj</string>
@@ -118,7 +119,7 @@
     <string name="error_moving_file">Nie udało się przenieść pliku.</string>
     <string name="error_moving_folder">Nie udało się przenieść katalogu.</string>
     <string name="error_copying_file">Nie udało się skopiować pliku.</string>
-    <string name="error_file_does_not_exists">Plik nie istnieje</string>
+    <string name="error_file_does_not_exists">Plik nie istnieje.</string>
     <string name="error_deleting_child_file">Nie udało się usunąć pliku potomnego \'%s\'.</string>
     <string name="error_generic">Wystąpił błąd:</string>
     <string name="error_media_scan">Nie można zmienić ustawień skanowania mediów.</string>
@@ -182,11 +183,11 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Spakowano.</string>
-    <string name="compressing_error">Pakowanie nie powiodło się.</string>
+    <string name="compressing_success">Spakowano</string>
+    <string name="compressing_error">Pakowanie nie powiodło się</string>
     <string name="compress_into_archive">Spakuj do archiwum:</string>
-    <string name="extracting_success">Wypakowano.</string>
-    <string name="extracting_error">Wypakowanie nie powiodło się.</string>
+    <string name="extracting_success">Wypakowano</string>
+    <string name="extracting_error">Wypakowanie nie powiodło się</string>
     <string name="extract_into_folder">Wypakuj do folderu:</string>
     <string name="extract_title">Wybierz folder do którego zostanie rozpakowane archiwum</string>
     <string name="extract_button">Rozpakuj tutaj</string>

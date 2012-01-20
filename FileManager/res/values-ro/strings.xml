@@ -29,7 +29,7 @@
   iulargsb https://launchpad.net/~iulargsb</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Gestionează fișierele de pe cardul SD cu Gestionar de fișiere OI.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -50,13 +50,13 @@
     <string name="menu_copy">Copiază</string>
     <string name="menu_details">Detalii</string>
     <string name="menu_more">Mai mult</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">Comprimă (ZIP)</string>
+    <string name="menu_extract">Extrage (ZIP)</string>
     <string name="menu_filter">Filtru</string>
     <string name="menu_include_in_media_scan">Include în scanare media</string>
     <string name="menu_exclude_from_media_scan">Exclude din scanare media</string>
     <string name="menu_bookmark">Adaugă la favorite</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">Actualizează</string>
     
     <string name="create_new_folder">Crează un dosar nou</string>
     <string name="folder_name">Numele dosarului</string>
@@ -110,7 +110,7 @@
     <string name="media_scan_excluded">Acest dosar va fi exclus în timpul următoarei scanări media.</string>
     
     <string name="error_creating_new_folder">Nu s-a putut crea un dosar nou.</string>
-    <string name="error_deleting_file">Nu am putut șterge fișierul.</string>
+    <string name="error_deleting_file">Nu s-a putut șterge fișierul.</string>
     <string name="error_deleting_folder">Nu s-a putut șterge dosarul \'%s\'.</string>
     <string name="error_renaming_file">Nu s-a putut redenumi fișierul.</string>
     <string name="error_renaming_folder">Nu s-a putut redenumi dosarul.</string>
@@ -181,17 +181,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">Element comprimat cu succes</string>
+    <string name="compressing_error">Nu s-a putut comprima elementul</string>
+    <string name="compress_into_archive">Comprimă într-o arhivă</string>
+    <string name="extracting_success">Element extras cu succes</string>
+    <string name="extracting_error">Nu s-a putut extrage elementul</string>
+    <string name="extract_into_folder">Extrage în dosarul:</string>
+    <string name="extract_title">Selectează dosarul în care se extrage</string>
+    <string name="extract_button">Extrage aici</string>
+    <string name="extracting">Se extrage...</string>
+    <string name="compressing">Se comprimă...</string>
+    <string name="warning_overwrite">Fișierul %s există. Doriți să îl suprascrieți?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Doriți să modificați extensia fișierului?</string>
 </resources>

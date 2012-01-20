@@ -21,16 +21,17 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
-  Alexander Geroimenko https://launchpad.net/~geroimenko</string>
+  Alexander Geroimenko https://launchpad.net/~geroimenko
+  OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Кіруйце файламі на SD картцы пры дапамозе OI File Manager.</string>  
+    <string name="about_comments">Кіруйце файламі на SD картцы пры дапамозе OI Файл-мэнэджар.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
-    <string name="app_name">OI File Manager</string>
+    <string name="app_name">OI Файл-мэнэджар</string>
     
     <string name="menu_new_folder">Новая папка</string>
     
@@ -51,7 +52,7 @@
     <string name="menu_include_in_media_scan">Улучыць у сканаванне</string>
     <string name="menu_exclude_from_media_scan">Вылучыць з сканавання</string>
     <string name="menu_bookmark">Дадаць у абранае</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">Абнавіць</string>
     
     <string name="create_new_folder">Стварыць новую папку</string>
     <string name="folder_name">Назва папки</string>
@@ -178,7 +179,7 @@
           *************************** -->
     <string name="compressing_success">Скампрэсавана паспяхова</string>
     <string name="compressing_error">Немагчыма скампрэсаваць</string>
-    <string name="compress_into_archive">Скампрэсаваць у архіў:</string>
+    <string name="compress_into_archive">Кампрэсаваць у архіў:</string>
     <string name="extracting_success">Дэкампрэсавана паспяхова</string>
     <string name="extracting_error">Немагчыма дэкампрэсаваць</string>
     <string name="extract_into_folder">Дэкампрэсаваць у папку:</string>

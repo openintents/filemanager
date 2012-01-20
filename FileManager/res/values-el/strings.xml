@@ -25,13 +25,13 @@
   OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Διαχείριση αρχείων στην κάρτα SD με το OI Διαχειριστής Αρχείων.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
-    <string name="app_name">OI File Manager</string>
+    <string name="app_name">OI Διαχειριστής Αρχείων</string>
     
     <string name="menu_new_folder">Νέος Φάκελος</string>
     
@@ -46,13 +46,13 @@
     <string name="menu_copy">Αντιγραφή</string>
     <string name="menu_details">Λεπτομέρεις</string>
     <string name="menu_more">Περισσότερα</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">Συμπίεση (ZIP)</string>
+    <string name="menu_extract">Αποσυμπίεση (ZIP)</string>
     <string name="menu_filter">Φίλτρο</string>
     <string name="menu_include_in_media_scan">Συμπερίληψη στη σάρωση μέσων</string>
     <string name="menu_exclude_from_media_scan">Εξαίρεση από τη σάρωση μέσων</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_bookmark">Προσθήκη στους σελιδοδείκτες</string>
+    <string name="menu_refresh">Ανανέωση</string>
     
     <string name="create_new_folder">Δημιουργία νέου φακέλου</string>
     <string name="folder_name">Όνομα φακέλου</string>
@@ -163,31 +163,31 @@
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Σελιδοδείκτες</string>
+    <string name="bookmarks_cancel">Ακύρωση</string>
     <string name="bookmarks_delete">Διαγραφή</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">Επιλογή σελιδοδεικτών προς διαγραφή</string>
+    <string name="bookmarks_manage">Διαχείριση σελιδοδεικτών</string>
+    <string name="bookmark_added">Προστέθηκε ο σελιδοδείκτης</string>
+    <string name="bookmark_not_found">Ο προορισμός  του σελιδοδείκτη δε βρέθηκε.</string>
+    <string name="bookmarks_deleted">Οι επιλεγμένοι σελιδοδείκτες διαγράφτηκαν.</string>
+    <string name="bookmark_already_exists">Αυτό το αρχείο έχει ήδη προστεθεί στους σελιδοδείκτες</string>
 
 
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">Το αντικείμενο συμπιέστηκε με επιτυχία</string>
+    <string name="compressing_error">Αδυναμία συμπίεσης του αντικειμένου</string>
+    <string name="compress_into_archive">Συμπίεση σε αρχείο:</string>
+    <string name="extracting_success">Το αντικείμενο αποσυμπιέστηκε με επιτυχία</string>
+    <string name="extracting_error">Αδυναμία αποσυμπίεσης του αντικειμένου</string>
+    <string name="extract_into_folder">Αποσυμπίεση σε φάκελο:</string>
+    <string name="extract_title">Επιλέξτε φάκελο για να γίνει η απουμπίεση</string>
+    <string name="extract_button">Αποσυμπίεση εδώ</string>
+    <string name="extracting">Γίνεται αποσυμπίεση...</string>
+    <string name="compressing">Γίνεται συμπίεση...</string>
+    <string name="warning_overwrite">Το αρχείο %s υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Θέλετε να αλλάξτε την επέκταση του αρχείου;</string>
 </resources>

@@ -21,16 +21,17 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  OpenIntents devs https://launchpad.net/~openintents-devs
   Tomass https://launchpad.net/~txt1</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Pārvaldiet failus SD kartē ar OI File Manager.</string>  
+    <string name="about_comments">Pārvaldiet failus SD kartē ar OI Failu pārvaldnieku.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
-    <string name="app_name">OI File Manager</string>
+    <string name="app_name">OI Failu pārvaldnieks</string>
     
     <string name="menu_new_folder">Jauna mape</string>
     

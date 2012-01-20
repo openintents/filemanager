@@ -2,23 +2,23 @@
 OI फ़ाइल प्रबंधक
 
 # Promo text:
-Manage files on the SD card with OI File Manager.
+फ़ाइल खे मनेज कयो जो असडी कार्ड में आहिन OI फ़ाइल मेनेजर सां गद्द
 
 # Description:
 OI फाईल प्रबंधक तहां खे पंजो SD कार्ड ब्राउज़ करण,निर्देशिका ठायण,नाम बदलन,प्रतिलिपि ठायण ,फाइल अऊँ कीड़े मोक्लन अऊँ फाईल मितायण जी  अनुमति दीन्दो आ ईयो अन्य अनुप्रयोगन जे लाये हिक्क एक्सटेंशन जे रूप में कम कन्दो आ "खोल्यो " अऊँ  "सुरक्षित कयो " संवाद प्रदर्शित करण लाये 
 
 ईयो अनुप्रयोग विज्ञापन मुक्त आहे अऊँ इनखे इंटरनेट जी अनुमति जी आवश्यकता काने 
 
-परिवर्तन अऊँ अक्सर पुष्यन वनण वारा प्रश्नन जी पूरी सूची लाये, कृपया हेड़े वन्नो: 
+:परिवर्तन अऊँ अक्सर पुष्यन वनण वारा प्रश्नन जी पूरी सूची लाये, कृपया हेड़े वन्नो 
 http://www.openintents.org
 
-तहां Launchpad ते पेंजी भाषा जे अनुवाद खे बेहतर ठायण में मदद करे ता सगो : 
+:तहां Launchpad ते पेंजी भाषा जे अनुवाद खे बेहतर ठायण में मदद करे ता सगो 
 https://translations.launchpad.net/openintents/trunk
 
-इन्ह स्वतंत्र अऊँ खुले स्रोत अनुप्रयोग जो स्रोत कोड हित्ते उपलब्ध आहे : 
+:इन्ह स्वतंत्र अऊँ खुले स्रोत अनुप्रयोग जो स्रोत कोड हित्ते उपलब्ध आहे 
 http://code.google.com/p/openintents
 
-सुविधाऊँ: 
+:सुविधाऊँ 
 * छवियन जे लाये थंबनेल सां गड्ड फ़ाइलन जी सूची दिखर्यो
 * मोक्ल्यो,कॉपी कयो,नाम बदल्यो अऊँ फाईल मिटायो
 * निर्देशिका (फ़ोल्डर्स) ठायो अऊँ मिटायो |
@@ -38,7 +38,7 @@ http://code.google.com/p/openintents
 * OI, IO, OpenIntents, Open Intents
 
 अंतर्राष्ट्रीय संस्करण: 
-Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+Gestor de fitxers d'OI., OI 파일 관리자, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fájlkezelő, OI Filbehandler, OI File Manager, OI File Manedyer, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI ھۆججەت باشقۇرغۇچ, OI مدير پرونده‌, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI文件管理器, مدير الملفات OI, מנהל קבצים OI, 檔案總管
 
 
 बाजार जे लाये स्ट्रिंग्स खोजयो  : 

@@ -15,12 +15,12 @@ http://www.openintents.org
 Możesz poprawić tłumaczenie na Twój język: 
 https://translations.launchpad.net/openintents/trunk
 
-Kod źródłowy tej darmowej i open-source-owej aplikacji jest dostępny pod adresem: 
+Kod źródłowy tej darmowej i open-source'owej aplikacji jest dostępny pod adresem: 
 http://code.google.com/p/openintents
 
 Cechy: 
 * Pokaż listę plików z miniaturami obrazów.
-* Przenosić, kopiować, zmieniać nazwy i usuwać pliki.
+* Przenoszenie, kopiowanie, zmiana nazwy i usuwanie plików.
 * Tworzenie i usuwanie katalogów (folderów).
 * Wysyłanie plików e-mailem.
 * Działa jako rozszerzenie do innych aplikacji, takich jak GMail, aby dołącząć pliki.
@@ -28,20 +28,20 @@ Cechy:
 * Obsługuje PICK_FILE i PICK_DIRECTORY, tak aby inne aplikacje mogły korzystać z OI File Manager.
 
 Dostępne rozszerzenia dla "Ol File Manager": 
-* Pokaż informacje licencyjne z "O Ol".
+* Pokaż informacje licencyjne za pomocą "OI About".
 
-Aplikacje, który pracują z "Ol File Manager": 
-* Otwórz i zapisz pliki tekstowe używając "Ol Notepad".
+Aplikacje działające z "OI Menedżer plików": 
+* Otwórz i zapisz pliki tekstowe używając "OI Notepad".
 
 Słowa kluczowe: 
-* menedżer plików, menedżer plików, eksplorator plików
+* menedżer plików, menadżer plików, eksplorator plików
 * OI, IO, OpenIntents, Open Intents
 
 Wersje międzynarodowe: 
-Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+Gestor de fitxers d'OI., OI 파일 관리자, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fájlkezelő, OI Filbehandler, OI File Manager, OI File Manedyer, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI ھۆججەت باشقۇرغۇچ, OI مدير پرونده‌, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI文件管理器, مدير الملفات OI, מנהל קבצים OI, 檔案總管
 
 
-Wyszukane ciągi znakó w Markecie: 
+Szukaj ciągów znaków w Markecie: 
 * uses OI About
 * extension for OI Notepad
 

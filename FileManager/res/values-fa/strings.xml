@@ -21,7 +21,8 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
-  Ben Jordan https://launchpad.net/~ben-jordan86</string>
+  Ben Jordan https://launchpad.net/~ben-jordan86
+  OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
     <string name="about_comments">اداره دفتر ساحوي دارالانشاءقانون SD اساسي براندن بورگ در اين پرونده کارت مدير OI ميخواندند.</string>  

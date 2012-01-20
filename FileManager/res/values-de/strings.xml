@@ -24,6 +24,8 @@
   Alexander Sapronov https://launchpad.net/~warmonger
   Daniel Winzen https://launchpad.net/~q-d
   Flosen https://launchpad.net/~flose
+  Giannis Konstantinidis https://launchpad.net/~giankonstantinidis
+  Hans https://launchpad.net/~hans-wuerstchen42
   OpenIntents devs https://launchpad.net/~openintents-devs
   Patrick Eigensatz https://launchpad.net/~p.eigensatz
   Schrotti https://launchpad.net/~schrott-micha
@@ -32,7 +34,7 @@
   marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Mit den OI Dateimanager können Sie Ihre Daten auf der SD-Karte verwalten.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -53,13 +55,13 @@
     <string name="menu_copy">Kopieren</string>
     <string name="menu_details">Details</string>
     <string name="menu_more">Mehr</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">Komprimiere (ZIP)</string>
+    <string name="menu_extract">Entpacke (ZIP)</string>
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">In Mediensuche einschließen</string>
     <string name="menu_exclude_from_media_scan">Von Mediensuche ausschließen</string>
     <string name="menu_bookmark">Als Lesezeichnen hinzufügen</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">Aktualisieren</string>
     
     <string name="create_new_folder">Neuen Ordner erstellen</string>
     <string name="folder_name">Name des Ordners</string>
@@ -184,17 +186,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">Die Datei wurde erfolgreich komprimiert</string>
+    <string name="compressing_error">Die Datei konnte nicht komprimiert werden</string>
+    <string name="compress_into_archive">In ein Archiv komprimieren</string>
+    <string name="extracting_success">Die Datei wurde erfolgreich entpackt</string>
+    <string name="extracting_error">Die Datei konnte nicht entpackt werden</string>
+    <string name="extract_into_folder">In Ordner entpacken</string>
+    <string name="extract_title">Wählen Sie einen Ordner zum Entpacken aus</string>
+    <string name="extract_button">Hierher entpacken</string>
+    <string name="extracting">Entpacke...</string>
+    <string name="compressing">Komprimiere...</string>
+    <string name="warning_overwrite">Die Datei %s existiert schon. Wollen Sie die Datei überschreiben?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Wollen Sie die Dateiendung ändern?</string>
 </resources>

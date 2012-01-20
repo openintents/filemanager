@@ -53,7 +53,7 @@
     <string name="menu_include_in_media_scan">Zahrnout do media scanu</string>
     <string name="menu_exclude_from_media_scan">Vyloučit z media scanu</string>
     <string name="menu_bookmark">Přidat do záložek</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">Obnovit</string>
     
     <string name="create_new_folder">Vytvořit novou složku</string>
     <string name="folder_name">Název složky</string>

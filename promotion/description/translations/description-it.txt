@@ -5,43 +5,43 @@ OI Gestore File
 Gestisci i file sulla scheda SD con il gestore di file OI
 
 # Description:
-OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+Il Manager dei documenti OI vi permette di navigare la scheda SD, creare cartelle, rinominare, copiare, spostare, e cancellare i file. Funziona anche come un'estensione per le altre applicazioni per visualizzare "Apri" e "Salva" dialoghi. 
 
-This application is ad free and does not require the internet permission. 
+Questa applicazione non contiene la pubblicità e non richiede la permissione di internet. 
 
-For the complete list of changes and a list of frequently asked questions, please visit: 
+Per la lista completa con le modifiche e una lista con le domande frequenti, prego visitare: 
 http://www.openintents.org
 
-You can help to improve the translation into your language at Launchpad: 
+Potete aiutare a migliorare la traduzione nella vostra lingua a Launchpad: 
 https://translations.launchpad.net/openintents/trunk
 
-The source code of this free and open source application is available at: 
+Il codice sorgente dell' applicazione gratuita e con la sorgente aperta è disponibile a: 
 http://code.google.com/p/openintents
 
-Features: 
-* Show list of files with thumbnails for images.
-* Move, copy, rename, and delete files.
-* Create and delete directories (folders).
-* Send files by email.
-* Acts as an extension to other applications, like GMail, to attach files.
-* Support for many file endings and mime types.
-* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+Caratteristiche: 
+* Mostra la lista dei file con miniature per le immagini.
+* Sposta, copia, rinomina, e cancella i documenti.
+* Crea e cancella direttori (cartelle).
+* Invia i documenti attraverso email.
+* Funziona come un'estensione per le altre applicazioni,  per esempio GMail, per aggiungere i documenti.
+* Supporto per molte terminazioni dei file e tipi mime.
+* Supporta intents PICK_FILE e PICK_DIRECTORY così le altre applicazioni possono usare OI File Manager.
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+Estensioni disponibili per "OI File Manager": 
+* Mostra le informazioni della licenza con "OI About".
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+Le applicazioni che funzionano con "OI File Manager": 
+* Apri e salva i documenti testi in "OI Notepad":
 
-Keywords: 
+Le parole chiave: 
 * file manager, filemanager, file explorer
 * OI, IO, OpenIntents, Open Intents
 
-International versions: 
-Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+Versioni internazionali: 
+Gestor de fitxers d'OI., OI 파일 관리자, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fájlkezelő, OI Filbehandler, OI File Manager, OI File Manedyer, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI ھۆججەت باشقۇرغۇچ, OI مدير پرونده‌, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI文件管理器, مدير الملفات OI, מנהל קבצים OI, 檔案總管
 
 
-Search strings for Market: 
+Cerca le stringhe per Market: 
 * uses OI About
 * extension for OI Notepad
 

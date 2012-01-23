@@ -19,15 +19,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources.NotFoundException;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.v2.os.Build;
 import android.util.Log;
 
 public class DirectoryScanner extends Thread {
@@ -300,7 +297,7 @@ public class DirectoryScanner extends Thread {
 	   		 ApplicationInfo aInfo = pInfo.applicationInfo;
 	   		 
 	   		 // Bug in SDK versions >= 8. See here: http://code.google.com/p/android/issues/detail?id=9151
-	   		 if(FileUtils.SDK_INT >= 8){
+	   		 if(Build.VERSION.SDK_INT >= 8){
 	   			 aInfo.sourceDir = path;
 	   			 aInfo.publicSourceDir = path;
 	   		 }

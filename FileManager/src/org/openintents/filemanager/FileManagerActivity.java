@@ -64,6 +64,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.v2.os.Build;
+import android.support.v2.view.MenuCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -75,7 +77,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnKeyListener;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
@@ -1133,8 +1134,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
  	public boolean onCreateOptionsMenu(Menu menu) {
  		super.onCreateOptionsMenu(menu);
 
- 		menu.add(0, MENU_NEW_FOLDER, 0, R.string.menu_new_folder).setIcon(
- 				android.R.drawable.ic_menu_add).setShortcut('0', 'f');
+ 		int icon = android.R.drawable.ic_menu_add;
+ 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+ 			icon = R.drawable.ic_menu_add_folder;
+ 		}
+ 		MenuItem item = menu.add(0, MENU_NEW_FOLDER, 0, R.string.menu_new_folder).setIcon(
+ 				icon).setShortcut('0', 'f');
+ 		MenuCompat.setShowAsAction(item, MenuItem.SHOW_AS_ACTION_IF_ROOM);
  
  		if (mState == STATE_BROWSE) {
  		// Multi select option menu.

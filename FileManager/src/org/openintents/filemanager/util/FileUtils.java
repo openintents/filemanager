@@ -37,8 +37,6 @@ import android.util.Log;
  */
 public class FileUtils {
 	
-	public static int SDK_INT = 2;
-	
 	/** TAG for log messages. */
 	static final String TAG = "FileUtils";
 	private static final int X_OK = 1;
@@ -46,21 +44,6 @@ public class FileUtils {
 	private static boolean libLoadSuccess;
 	
 	static {
-		try{
-			// Android 1.6 (v4) and higher:
-			// access Build.VERSION.SDK_INT.
-			SDK_INT = android.os.Build.VERSION.class.getField("SDK_INT").getInt(null);
-		} catch(Exception e) {
-			try {
-				// Android 1.5 (v3) and lower:
-               // access Build.VERSION.SDK.
-				SDK_INT = Integer.parseInt((String) android.os.Build.VERSION.class.getField("SDK").get(null));
-			} catch(Exception e2) {
-				// This should never happen:
-				SDK_INT = 2;
-			}
-		}
-		
 		try {
 			System.loadLibrary("access");
 			libLoadSuccess = true;

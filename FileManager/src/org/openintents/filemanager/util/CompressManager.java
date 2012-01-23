@@ -1,13 +1,17 @@
 package org.openintents.filemanager.util;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
+import org.openintents.intents.FileManagerIntents;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -28,9 +32,22 @@ public class CompressManager {
     }
 
     public void compress(File f, String out) {
-        this.fileOut = f.getParent()+File.separator+out;
-        fileCount = FileUtils.getFileCount(f);
-        new CompressTask().execute(f);
+        List <File>list = new ArrayList<File>();
+        list.add(f);
+        compress(list, out);
+    }    
+
+    public void compress(List<File> list, String out) {
+        if (list.isEmpty()){
+            Log.v(TAG, "couldn't compress empty file list");
+            return;
+        }
+        this.fileOut = list.get(0).getParent()+File.separator+out;
+        fileCount=0;
+        for (File f: list){
+            fileCount += FileUtils.getFileCount(f);
+        }
+        new CompressTask().execute(list);
     }
 
     private class CompressTask extends AsyncTask<Object, Void, Integer> {
@@ -57,6 +74,9 @@ public class CompressManager {
                     zos.write(buf, 0, len);
                 }
                 in.close();
+                return;
+            }
+            if (file.list() == null){
                 return;
             }
             for (String fileName: file.list()){
@@ -88,12 +108,14 @@ public class CompressManager {
             if (zos == null){
                 return error;
             }
-            File file = (File) params[0];
-            try {
-                compressFile(file, "");
-            } catch (IOException e) {
-                Log.e(TAG, "Error while compressing", e);
-                return error;
+            List<File> list = (List<File>) params[0]; 
+            for (File file:list){
+                try {
+                    compressFile(file, "");
+                } catch (IOException e) {
+                    Log.e(TAG, "Error while compressing", e);
+                    return error;
+                }
             }
             return success;
         }
@@ -112,7 +134,14 @@ public class CompressManager {
             } else if (result == success){
                 Toast.makeText(activity, R.string.compressing_success, Toast.LENGTH_SHORT).show();
             }
-            activity.refreshList();
+
+            if (activity.getIntent().getAction().equals(FileManagerIntents.ACTION_MULTI_SELECT)){
+                Intent intent = activity.getIntent();
+                activity.setResult(activity.RESULT_OK, intent);
+                activity.finish();
+            } else {
+                activity.refreshList();
+            }
         }
     }
 }

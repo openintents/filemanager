@@ -25,6 +25,10 @@ To obtain the current release, visit
 ---------------------------------------------------------
 release: 1.2
 date: ?
+
+Thanks to Google Code-in for many of the following patches:
+(see http://www.google-melange.com/gci/homepage/google/gci2011 )
+
 - Limit icon size in file list (issue 319, patch by John Doe)
 - Hide optional commands in context menu (issue 329, patch by John Doe).
 - "Save as" integration for Google Mail (Google Code-in task by Matěj Konečný)
@@ -49,6 +53,9 @@ date: ?
 - Use custom icons for certain file types (issue 333, Google Code-in task by Matěj Konečný)
 - Accept return key for entering a path (issue 461, Google Code-in task by Matěj Konečný)
 - Support View Intent to open the filemanager (issue 396, Google Code-in task by Chickenbellyfinn)
+- support for multi-select ZIP compression (patch by Evgeniy Berlog)
+
+- new icons and translations by Google Code-in students
 
 ---------------------------------------------------------
 release: 1.1.6

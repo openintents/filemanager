@@ -97,9 +97,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
 	private static final String NOMEDIA_FILE = ".nomedia";
 
-    private static final String DIALOG_EXISTS_ACTION_RENAME = "action_rename"; 
-	
-	/**
+    private static final String DIALOG_EXISTS_ACTION_RENAME = "action_rename";
+    private static final String DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP = "action_multi_compress_zip";
+
+    /**
 	 * @since 2011-03-23
 	 */
 	private static final Character FILE_EXTENSION_SEPARATOR = '.';
@@ -160,6 +161,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     private static final int DIALOG_COMPRESSING = 8;
     private static final int DIALOG_WARNING_EXISTS = 9;
     private static final int DIALOG_CHANGE_FILE_EXTENSION = 10;
+    private static final int DIALOG_MULTI_COMPRESS_ZIP = 11;
 
 	private static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
 
@@ -233,6 +235,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
       * @since 2011-02-11
       */
      private Button mButtonDelete;
+
+    private Button mButtonCompress;
      
      private boolean fileDeleted = false;
      private int positionAtDelete;
@@ -288,7 +292,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     /**
      * use this filed to set behaviour in DIALOG_WARNING_EXISTS
      */
-    private String mDialogExistsAction;
+    private String mDialogExistsAction = "";
 
      private Drawable mIconChecked;
      private Drawable mIconUnchecked;
@@ -427,6 +431,17 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                             }
 	                    }
 	              });
+
+                  // Multi select action: delete
+                  mButtonCompress = (Button) findViewById(R.id.button_compress_zip);
+                  mButtonCompress.setOnClickListener(new View.OnClickListener() {
+
+                      public void onClick(View arg0) {
+                          if (checkSelection()) {
+                              showDialog(DIALOG_MULTI_COMPRESS_ZIP);
+                          }
+                      }
+                  });
 
 	              // Cache the checked and unchecked icons
 	              mIconChecked = getResources().getDrawable(R.drawable.ic_button_checked);
@@ -1500,7 +1515,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                         }
                     
                     }).create();
-            
+
         case DIALOG_FILTER:
 			inflater = LayoutInflater.from(this);
 			view = inflater.inflate(R.layout.dialog_new_folder, null);
@@ -1582,13 +1597,37 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                             // Cancel should not do anything.
                         }
                     }).create();
+
+        case DIALOG_MULTI_COMPRESS_ZIP:
+            inflater = LayoutInflater.from(this);
+            view = inflater.inflate(R.layout.dialog_new_folder, null);
+            final EditText editText1 = (EditText) view.findViewById(R.id.foldername);
+            return new AlertDialog.Builder(this)
+                    .setTitle(R.string.menu_compress).setView(view).setPositiveButton(
+                            android.R.string.ok, new OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (new File(currentDirectory+File.separator+editText1.getText().toString()).exists()){
+                                mDialogArgument = editText1.getText().toString();
+                                mDialogExistsAction = DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP;
+                                showDialog(DIALOG_WARNING_EXISTS);
+                            } else {
+                                compressMultiFile(editText1.getText().toString());
+                            }
+                        }
+                    }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Cancel should not do anything.
+                        }
+                    }).create();
         
         case DIALOG_WARNING_EXISTS:
             return new AlertDialog.Builder(this).setTitle(getString(R.string.warning_overwrite, mDialogArgument))
                     .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
                             android.R.string.ok, new OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
+                            if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP)){
+                                compressMultiFile(mDialogArgument);
+                            } else if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
                                 File newFile = FileUtils.getFile(currentDirectory, mNewFileName);
                                 rename(FileUtils.getFile(currentDirectory, mOldFileName), newFile);
                             } else {
@@ -1602,6 +1641,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                             if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
                                 mContextText = mOldFileName;
                                 showDialog(DIALOG_RENAME);
+                            } else if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP)){
+                                showDialog(DIALOG_MULTI_COMPRESS_ZIP);
                             } else {
                                 showDialog(DIALOG_COMPRESSING);
                             }
@@ -1758,6 +1799,15 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
             }
             editText.setText(archiveName);
             editText.setSelection(0, archiveName.length()-4);
+            break;
+
+        case DIALOG_MULTI_COMPRESS_ZIP:
+            textView = (TextView) dialog.findViewById(R.id.foldernametext);
+            textView.setText(R.string.compress_into_archive);
+            final EditText editText1 = (EditText) dialog.findViewById(R.id.foldername);
+            archiveName = currentDirectory.getName()+".zip";
+            editText1.setText(archiveName);
+            editText1.setSelection(0, archiveName.length()-4);
             break;
 
         case DIALOG_WARNING_EXISTS:
@@ -1975,6 +2025,19 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			}
 		}
 	}
+
+    private void compressMultiFile(String out) {
+        List<File> files = new ArrayList<File>();
+        for (IconifiedText it : mDirectoryEntries) {
+            if (!it.isSelected()) {
+                continue;
+            }
+
+            File file = FileUtils.getFile(currentDirectory, it.getText());
+            files.add(file);
+        }
+        new CompressManager(FileManagerActivity.this).compress(files, out);
+    }
 
 	/*! Recursively delete a directory and all of its children.
 	 *  @params toastOnError If set to true, this function will toast if an error occurs.

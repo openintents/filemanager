@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 
- * Copyright (C) 2007-2008 OpenIntents.org
+ * Copyright (C) 2007-2012 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 	<!-- ***************************
 	     About information
 	     *************************** -->
-	<string name="about_copyright">Copyright © 2008-2011 OpenIntents</string> 
+	<string name="about_copyright">Copyright © 2008-2012 OpenIntents</string> 
 	<string name="about_website_url">http://www.openintents.org/en/filemanager</string>
 	<string name="about_email">support@openintents.org</string>
 	

@@ -22,7 +22,7 @@ To obtain the current release, visit
   http://www.openintents.org
 
 
----------------------------------------------------------
+----------------
 release: 1.2
 date: ?
 
@@ -57,12 +57,12 @@ Thanks to Google Code-in for many of the following patches:
 
 - new icons and translations by Google Code-in students
 
----------------------------------------------------------
+----------------
 release: 1.1.6
 date: 2011-06-02
 - fix bug that prevented sending attachments through menu "Send" (patch by Alex)
 
----------------------------------------------------------
+----------------
 release: 1.1.5
 date: 2011-05-28
 - new menu item for multiselect: copy, move or delete multiple files at once (patch by John Doe).
@@ -71,7 +71,7 @@ date: 2011-05-28
 - drop "mimetype" from provider path.
 - delete files and folders in background (issue 294, patch by Damienix).
 
----------------------------------------------------------
+----------------
 release: 1.1.4
 date: 2011-02-05
 - new application icon for Android 2.0 or higher.
@@ -82,24 +82,24 @@ date: 2011-02-05
 - translations into various languages.
 - bug fixes (issue 308, 318).
 
----------------------------------------------------------
+----------------
 release: 1.1.3
 date: 2010-05-29
 - backward compatibility with Android 1.5.
 
----------------------------------------------------------
+----------------
 release: 1.1.2
 date: 2010-05-29
 - fix thumbnail size on high-density devices.
 - translations: Occitan (post 1500), Polish, Russian
 
----------------------------------------------------------
+----------------
 release: 1.1.1
 date: 2009-12-26
 - recursive delete
 - translations: Dutch, Faroese, Korean, Lao, Romanian
 
----------------------------------------------------------
+----------------
 release: 1.1.0
 date: 2009-10-30
 - display file size.
@@ -116,7 +116,7 @@ date: 2009-10-30
 - encode file URIs properly
 - translations: Chinese, French, German, Japanese, Spanish
 
----------------------------------------------------------
+----------------
 release: 1.0.0
 date: 2008-12-10
 

@@ -24,7 +24,7 @@ To obtain the current release, visit
 
 ----------------
 release: 1.2
-date: ?
+date: 2012-01-26
 
 Thanks to Google Code-in for many of the following patches:
 (see http://www.google-melange.com/gci/homepage/google/gci2011 )

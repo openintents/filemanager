@@ -17,10 +17,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.openintents.filemanager"
     android:installLocation="auto"
-	android:versionName="1.1.6"
-	android:versionCode="17">
+	android:versionName="1.2-rc1"
+	android:versionCode="18">
 	<!-- History: 
 	 * * * UPDATE ATRACKDOG METADATA BELOW FOR RELEASE CANDIDATES * * *
+	[18] 1.2: 2012-01-26
 	[17] 1.1.6: 2011-06-02
 	[16] 1.1.5: 2011-05-28
 	[15] 1.1.5-rc1: 2011-05-01
@@ -49,7 +50,7 @@
     
         <!-- aTrackDog metadata -->
         <meta-data android:name="com.a0soft.gphone.aTrackDog.testVersion"
-           android:value="15" />
+           android:value="18" />
            
 		<meta-data android:name="org.openintents.about"
                    android:resource="@xml/about" />

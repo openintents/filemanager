@@ -85,6 +85,7 @@
     <string name="move_button_multiselect">Переместить</string>
     <string name="copy_button_multiselect">Копировать</string>
     <string name="delete_button_multiselect">Удалить</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">Выберите несколько файлов</string>
     <string name="error_selection">Пожалуйства выберите один или больше файлов.</string>
     

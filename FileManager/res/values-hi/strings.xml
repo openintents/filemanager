@@ -83,6 +83,7 @@
     <string name="move_button_multiselect">स्थानांतरित करें</string>
     <string name="copy_button_multiselect">प्रतिलिपि बनाएँ</string>
     <string name="delete_button_multiselect">मिटाएँ</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">एकाधिक फ़ाइलों का चयन करें</string>
     <string name="error_selection">एक या एक से अधिक फ़ाइल (ओं) का चयन करें|</string>
     

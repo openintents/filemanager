@@ -82,6 +82,7 @@
     <string name="move_button_multiselect">이동</string>
     <string name="copy_button_multiselect">복사</string>
     <string name="delete_button_multiselect">삭제</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">여러 파일 선택</string>
     <string name="error_selection">최소 한 개의 파일을 선택해 주세요</string>
     

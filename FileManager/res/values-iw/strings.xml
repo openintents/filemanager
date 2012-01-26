@@ -81,6 +81,7 @@
     <string name="move_button_multiselect">העבר</string>
     <string name="copy_button_multiselect">העתק</string>
     <string name="delete_button_multiselect">מחק</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">בחר כמה קבצים</string>
     <string name="error_selection">אנא בחר קובץ אחד או יותר</string>
     

@@ -81,6 +81,7 @@
     <string name="move_button_multiselect">Pārvietot</string>
     <string name="copy_button_multiselect">Kopēt</string>
     <string name="delete_button_multiselect">Dzēst</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">Izvēlēties vairākus failus</string>
     <string name="error_selection">Lūdzu, izvēlieties vienu vai vairākus failu(s).</string>
     

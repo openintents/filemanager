@@ -81,6 +81,7 @@
     <string name="move_button_multiselect">Flyt</string>
     <string name="copy_button_multiselect">Kopier</string>
     <string name="delete_button_multiselect">Slet</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">Select multiple files</string>
     <string name="error_selection">Please select one or more file(s).</string>
     

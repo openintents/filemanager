@@ -81,6 +81,7 @@
     <string name="move_button_multiselect">Mou</string>
     <string name="copy_button_multiselect">Copia</string>
     <string name="delete_button_multiselect">Suprimeix</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">Seleccioneu múltiples fitxers</string>
     <string name="error_selection">Si us plau seleccioneu un o més fitxer(s)</string>
     

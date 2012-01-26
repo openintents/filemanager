@@ -87,6 +87,7 @@
     <string name="move_button_multiselect">Verplaatsen</string>
     <string name="copy_button_multiselect">Kopieer</string>
     <string name="delete_button_multiselect">Verwijderen</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">Selecteer meerdere bestanden</string>
     <string name="error_selection">Selecteer een of meer bestanden.</string>
     

@@ -85,6 +85,7 @@
     <string name="move_button_multiselect">Mută</string>
     <string name="copy_button_multiselect">Copiază</string>
     <string name="delete_button_multiselect">Șterge</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">Selectează fișiere multiple</string>
     <string name="error_selection">Selectați unul sau mai multe fișiere.</string>
     

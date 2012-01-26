@@ -86,6 +86,7 @@ Launchpad Contributions:
     <string name="move_button_multiselect">Taşı</string>
     <string name="copy_button_multiselect">Kopyala</string>
     <string name="delete_button_multiselect">Sil</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">Dosyaları çoklu seçin</string>
     <string name="error_selection">Lütfen bir veya daha çok dosya seçin.</string>
     

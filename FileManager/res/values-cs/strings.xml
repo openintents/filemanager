@@ -82,6 +82,7 @@
     <string name="move_button_multiselect">Přesunout</string>
     <string name="copy_button_multiselect">Kopírovat</string>
     <string name="delete_button_multiselect">Odstranit</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">Vybrat více souborů</string>
     <string name="error_selection">Vyberte prosím jeden nebo více souborů.</string>
     

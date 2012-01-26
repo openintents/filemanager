@@ -52,7 +52,7 @@
     <string name="menu_include_in_media_scan">Inkluder i mediaskanning</string>
     <string name="menu_exclude_from_media_scan">Ekskulder fra mediaskanning</string>
     <string name="menu_bookmark">Legg til bokmerker</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">Last på nytt</string>
     
     <string name="create_new_folder">Opprett ny mappe</string>
     <string name="folder_name">Mappenavn</string>
@@ -81,6 +81,7 @@
     <string name="move_button_multiselect">Flytt</string>
     <string name="copy_button_multiselect">Kopier</string>
     <string name="delete_button_multiselect">Slett</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">Velg flere filer</string>
     <string name="error_selection">Vennligst velg en eller flere fil(er).</string>
     

@@ -81,6 +81,7 @@
     <string name="move_button_multiselect">Ilipat</string>
     <string name="copy_button_multiselect">Kopyahin</string>
     <string name="delete_button_multiselect">Alisin</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">Pumili ng mga file</string>
     <string name="error_selection">Paki-pili ng isa o madaming mga file.</string>
     

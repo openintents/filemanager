@@ -81,6 +81,7 @@
     <string name="move_button_multiselect">حرکت نکنید</string>
     <string name="copy_button_multiselect">رونوشت‌</string>
     <string name="delete_button_multiselect">انداختن‌</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">انتخاب چند پرونده</string>
     <string name="error_selection">لطفا انتخاب‌ كردن‌ يكي از پرونده‌ يا بيشتر(s).</string>
     

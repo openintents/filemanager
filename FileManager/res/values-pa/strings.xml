@@ -81,6 +81,7 @@
     <string name="move_button_multiselect">ਹਿਲਾਓ</string>
     <string name="copy_button_multiselect">ਕਾਪੀ</string>
     <string name="delete_button_multiselect">ਹਟਾਉ</string>
+    <string name="compress_zip_button_multiselect">ZIP</string>
     <string name="multiselect_title">ਕਇ ਫਾਇਲ ਚੁਨੇ</string>
     <string name="error_selection">1 ਯਾ ਜਯਾਦਾ ਫਾਇਲ ਚੁਨੇ</string>
     

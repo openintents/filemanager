@@ -21,6 +21,7 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Gabriel Shier https://launchpad.net/~gabrielshier
   Neta Oren https://launchpad.net/~netao212
   OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
@@ -36,30 +37,30 @@
     <string name="menu_new_folder">תיקייה חדשה</string>
     
     <!-- Multi select option menu -->
-    <string name="menu_multi_select">רב- בחירה</string>
+    <string name="menu_multi_select">בחירה מרובה</string>
 
-    <string name="menu_delete">מחק</string>
-    <string name="menu_rename">שנה שם</string>
-    <string name="menu_send">שלח</string>
-    <string name="menu_open">פתח</string>
-    <string name="menu_move">העבר</string>
-    <string name="menu_copy">העתק</string>
+    <string name="menu_delete">מחיקה</string>
+    <string name="menu_rename">שינוי שם</string>
+    <string name="menu_send">שליחה</string>
+    <string name="menu_open">פתיחה</string>
+    <string name="menu_move">העברה</string>
+    <string name="menu_copy">העתקה</string>
     <string name="menu_details">פרטים</string>
     <string name="menu_more">עוד</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
-    <string name="menu_filter">סינון</string>
-    <string name="menu_include_in_media_scan">תכלול בסריקת המדיה</string>
+    <string name="menu_compress">דחיסה (פורמט ZIP)</string>
+    <string name="menu_extract">חילוץ (פורמט ZIP)</string>
+    <string name="menu_filter">מסנן</string>
+    <string name="menu_include_in_media_scan">כלול בסריקת מדיה</string>
     <string name="menu_exclude_from_media_scan">אל תכלול בסריקת המדיה</string>
     <string name="menu_bookmark">הסוף לסימניות</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">רענון</string>
     
-    <string name="create_new_folder">צור תיקייה חדשה</string>
+    <string name="create_new_folder">יצירת תיק חדש</string>
     <string name="folder_name">שם התיקייה</string>
     <string name="file_name">שם התיקייה</string>
     <string name="extension">הרחבה ( עם \'.\')</string>
     <string name="this_folder_is_empty">תיקייה זו ריקה.</string>
-    <string name="really_delete">אתה בטוח שאתה רוצה למחוק את %s</string>
+    <string name="really_delete">האם ברצונך למחוק את %s?</string>
     <string name="file_deleted">קובץ נמחק</string>
     <string name="folder_deleted">תיקייה נמחקה</string>
     <string name="file_renamed">שונה שם הקובץ</string>
@@ -68,7 +69,7 @@
     <string name="folder_moved">תיקייה הועברה</string>
     <string name="file_copied">קובץ הועתק</string>
     <string name="move_title">בחר תיקייה להעביר אליה</string>
-    <string name="move_button">הבא לכאן</string>
+    <string name="move_button">העבר לכאן</string>
     <string name="copy_title">בחר תיקייה להעתיק אליה</string>
     <string name="copy_button">העתק לכאן</string>
 	<string name="deleting_files">מוחק קבצים...</string>
@@ -78,12 +79,12 @@
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">האם אתה רוצה למחוק קבצי %d</string>
-    <string name="move_button_multiselect">העבר</string>
-    <string name="copy_button_multiselect">העתק</string>
-    <string name="delete_button_multiselect">מחק</string>
+    <string name="move_button_multiselect">העברה</string>
+    <string name="copy_button_multiselect">העתקה</string>
+    <string name="delete_button_multiselect">מחיקה</string>
     <string name="compress_zip_button_multiselect">ZIP</string>
-    <string name="multiselect_title">בחר כמה קבצים</string>
-    <string name="error_selection">אנא בחר קובץ אחד או יותר</string>
+    <string name="multiselect_title">בחירת קבצים מרובה</string>
+    <string name="error_selection">יש לבחור קובץ אחד או יותר</string>
     
     <!-- Strings for details table -->
     <string name="details_type">סוג</string>
@@ -115,11 +116,11 @@
     <string name="error_moving_folder">לא ניתן להעביר תיקייה</string>
     <string name="error_copying_file">לא ניתן להעתיק קובץ.</string>
     <string name="error_file_does_not_exists">הקובץ לא קיים.</string>
-    <string name="error_deleting_child_file">לא ניתן למחוק קובץ צאצא \'%s\'.</string>
+    <string name="error_deleting_child_file">לא ניתן למחוק קובץ בן של \'%s\'.</string>
     <string name="error_generic">חלה שגיאה:</string>
     <string name="error_media_scan">לא ניתן לשנות הגדרות סריקת מדיה.</string>
     
-    <string name="send_not_available">אין יישום שזמין לשליחה.</string>
+    <string name="send_not_available">אין יישום זמין לשליחה.</string>
     
     <string name="application_not_available">יישום לא זמין</string>
     
@@ -135,12 +136,12 @@
     <string name="preference_mediascan_summary_on">הראה פריט תפריט כדי לא לכלול תיקיות מסריקת מדיה.</string>
     <string name="preference_mediascan_summary_off">החבא פריט תפריט כדי לא לכלול תיקיות בסריקת מדיה.</string>
     
-    <string name="preference_showallwarning_title">הראה את כל האזהרות</string>
+    <string name="preference_showallwarning_title">הצג את כל האזהרות</string>
     <string name="preference_showallwarning_summary_on">הראה את כל הודעות האזהרה</string>
     <string name="preference_showallwarning_summary_off">התעלם מהודעת אזהרה</string>
        
-    <string name="preference_displayhiddenfiles_title">הצג קבצים מוחבאים</string>
-    <string name="preference_displayhiddenfiles_summary_on">הצג קבצים מוחבאים</string>
+    <string name="preference_displayhiddenfiles_title">הצג קבצים מוסתרים</string>
+    <string name="preference_displayhiddenfiles_summary_on">הצג קבצים מוסתרים</string>
     <string name="preference_displayhiddenfiles_summary_off">החבא קבצים נסתרים</string>
     
     <string name="preference_sort_settings">סדר הגדרות</string>
@@ -166,7 +167,7 @@
    
     <string name="bookmarks">סימניות</string>
     <string name="bookmarks_cancel">ביטול</string>
-    <string name="bookmarks_delete">מחק</string>
+    <string name="bookmarks_delete">מחיקה</string>
     <string name="bookmarks_select_to_delete">בחר סימניות למחוק</string>
     <string name="bookmarks_manage">נהל סימניות</string>
     <string name="bookmark_added">הוספה סימניה</string>

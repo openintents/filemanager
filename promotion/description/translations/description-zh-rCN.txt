@@ -7,15 +7,15 @@ Manage files on the SD card with OI File Manager.
 # Description:
 文件管理器允许你浏览SD卡，创建目录，重命名，复制，移动和删除文件。 作为一个扩展到其他应用程序，显示“打开”和“保存”对话框。 
 
-应用程序的广告是免费的，不需要网络权限。 
+本程序不含广告，也不需要网络权限 
 
-完整列表的更改，请访问： 
+你可以在这里获得完整的改变列表和常见问题回答 
 http://www.openintents.org
 
 可以翻译成您的语言： 
 https://translations.launchpad.net/openintents/trunk
 
-开放源码应用程序的源代码是： 
+本程序是开源免费的，它的源代码能在这里获得 
 http://code.google.com/p/openintents
 
 功能 

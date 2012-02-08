@@ -5,7 +5,7 @@ OI File Manager
 Gestão de ficheiros no cartão SD com o gestor de ficheiros OI.
 
 # Description:
-OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+O gestor de ficheiros OI permite-lhe explorar o cartão SD, criar diretórios, mover, copiar, eliminar e mudar o nome dos ficheiros. Também atua como uma extensão de outras aplicações para exibir as caixas de diálogo "Abrir" e "Gravar". 
 
 Esta aplicação é livre e não requer permissões de Internet. 
 
@@ -19,22 +19,22 @@ O código fonte desta aplicação está disponível em:
 http://code.google.com/p/openintents
 
 Características: 
-* Show list of files with thumbnails for images.
-* Move, copy, rename, and delete files.
-* Create and delete directories (folders).
-* Send files by email.
-* Acts as an extension to other applications, like GMail, to attach files.
+* Mostrar lista de ficheiros com miniaturas.
+* Mover, copiar, eliminar e mudar o nome dos ficheiros
+* Criar e eliminar diretórios (pastas)
+* Enviar ficheiros por correio eletrónico.
+* Atua como uma extensão de outras aplicações, como GMail, para anexar ficheiros.
 * Support for many file endings and mime types.
-* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+* Com suporte a PICK_FILE e PICK_DIRECTORY, para que as outras aplicações possam utilizar o OI File Manager.
 
-Available extensions for "OI File Manager": 
-* Show the license information with "OI About".
+Extras para o "OI File Manager": 
+* Mostrar a licença com o OI About.
 
-Applications that work with "OI File Manager": 
-* Open and save text files in "OI Notepad".
+Aplicações que funcionam com o OI File Manager. 
+* Abrir e gravar ficheiros de texto com o OI Notepad.
 
 Palavras-chave: 
-* file manager, filemanager, file explorer
+* gestor de ficheiros, gestordeficheiros, explorador de ficheiros
 * OI, IO, OpenIntents, Open Intents
 
 Versões internacionais: 

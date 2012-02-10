@@ -2,7 +2,7 @@
 OI文件管理器
 
 # Promo text:
-Manage files on the SD card with OI File Manager.
+OI文件管理器用来管理SD卡上的文件。
 
 # Description:
 文件管理器允许你浏览SD卡，创建目录，重命名，复制，移动和删除文件。 作为一个扩展到其他应用程序，显示“打开”和“保存”对话框。 

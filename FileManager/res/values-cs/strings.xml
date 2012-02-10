@@ -23,7 +23,8 @@
 	<string name="about_translators">Launchpad Contributions:
   Marek Dobransky https://launchpad.net/~marekdobr
   Matěj Konečný https://launchpad.net/~matejkon
-  OpenIntents devs https://launchpad.net/~openintents-devs</string>
+  OpenIntents devs https://launchpad.net/~openintents-devs
+  clever_fox https://launchpad.net/~clever-fox</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
     <string name="about_comments">Spravovat soubory na SD kartě s OI Správcem souborů</string>  
@@ -82,7 +83,7 @@
     <string name="move_button_multiselect">Přesunout</string>
     <string name="copy_button_multiselect">Kopírovat</string>
     <string name="delete_button_multiselect">Odstranit</string>
-    <string name="compress_zip_button_multiselect">ZIP</string>
+    <string name="compress_zip_button_multiselect">PSČ</string>
     <string name="multiselect_title">Vybrat více souborů</string>
     <string name="error_selection">Vyberte prosím jeden nebo více souborů.</string>
     

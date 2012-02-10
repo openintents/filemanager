@@ -201,5 +201,5 @@
     <string name="compressing">Komprimiere...</string>
     <string name="warning_overwrite">Die Datei %s existiert schon. Möchten Sie die Datei überschreiben?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Möchten Sie die Dateiendung ändern?</string>
 </resources>

@@ -17,10 +17,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.openintents.filemanager"
     android:installLocation="auto"
-	android:versionName="1.2-rc2"
-	android:versionCode="19">
+	android:versionName="1.2"
+	android:versionCode="20">
 	<!-- History: 
 	 * * * UPDATE ATRACKDOG METADATA BELOW FOR RELEASE CANDIDATES * * *
+	[20] 1.2: 2012-02-18
 	[19] 1.2-rc2: 2012-02-04
 	[18] 1.2-rc1: 2012-01-26
 	[17] 1.1.6: 2011-06-02

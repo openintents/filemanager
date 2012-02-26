@@ -3,12 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="Robotium-Solo3.0/robotium-solo-3.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/NotePadTest/Robotium-Solo3.0/robotium-solo-3.0-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/OI File Manager"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry kind="lib" path="libs/robotium-solo-3.1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

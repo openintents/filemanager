@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.test.InstrumentationTestCase;
+import android.test.suitebuilder.annotation.Smoke;
 
 import com.jayway.android.robotium.solo.Solo;
 
@@ -61,14 +62,43 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 
 	protected void tearDown() throws Exception {
 		try {
-			this.solo.finalize();
+			this.solo.finishOpenedActivities();
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 		super.tearDown();
 		cleanDirectory(new File(sdcardPath + "oi-filemanager-tests"));
 	}
-	
+
+	private String getAppString(int resId) {
+		return activity.getString(resId);
+	}
+
+	@Smoke
+	public void test000Eula() {
+		String accept = getAppString(org.openintents.distribution.R.string.oi_distribution_eula_accept);
+		String cancel = getAppString(org.openintents.distribution.R.string.oi_distribution_eula_refuse);
+		boolean existsAccept = solo.searchButton(accept);
+		boolean existsCancel = solo.searchButton(cancel);
+		
+		if (existsAccept && existsCancel) {
+			solo.clickOnButton(accept);
+		}
+	}
+
+	@Smoke
+	public void test001RecentChanges() {
+		String recentChanges = getAppString(org.openintents.distribution.R.string.oi_distribution_newversion_recent_changes);
+		String cont = getAppString(org.openintents.distribution.R.string.oi_distribution_newversion_continue);
+		while(solo.scrollUp());
+		boolean existsRecentChanges = solo.searchText(recentChanges);
+		boolean existsCont = solo.searchButton(cont);
+		
+		if (existsRecentChanges && existsCont) {
+			solo.clickOnButton(cont);
+		}
+	}
+
 	private void cleanDirectory(File file) {
 		if(!file.exists()) return;
 		for(String name:file.list()) {
@@ -108,11 +138,7 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 				cleanDirectory(file);
 			file.delete();
 	}
-	
-	private String getAppString(int resId) {
-		return activity.getString(resId);
-	}
-	
+
 	public void testNavigation() throws IOException {
 //		if(solo.searchText("Accept")) {
 //			solo.clickOnButton("Accept");

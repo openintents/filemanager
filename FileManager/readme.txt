@@ -21,6 +21,11 @@ seamlessly cooperates with other applications.
 To obtain the current release, visit
   http://www.openintents.org
 
+----------------
+release: 1.3
+date: ?
+
+- Accept "return" when creating new folder (issue 505, patch by Darriel Kremov)
 
 ----------------
 release: 1.2

@@ -70,6 +70,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.inputmethod.EditorInfo;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -1428,6 +1429,21 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			final EditText et = (EditText) view
 					.findViewById(R.id.foldername);
 			et.setText("");
+			//accept "return" key
+			TextView.OnEditorActionListener returnListener = new TextView.OnEditorActionListener(){
+				public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
+					   if (actionId == EditorInfo.IME_NULL  
+					      && event.getAction() == KeyEvent.ACTION_DOWN) { 
+						   createNewFolder(et.getText().toString()); //match this behavior to your OK button
+						   dismissDialog(DIALOG_NEW_FOLDER);
+					   }
+					   return true;
+					}
+
+			};
+			et.setOnEditorActionListener(returnListener);
+			//end of code regarding "return key"
+
 			return new AlertDialog.Builder(this)
             	.setIcon(android.R.drawable.ic_dialog_alert)
             	.setTitle(R.string.create_new_folder).setView(view).setPositiveButton(
@@ -1468,6 +1484,20 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			view = inflater.inflate(R.layout.dialog_new_folder, null);
 			final EditText et2 = (EditText) view
 				.findViewById(R.id.foldername);
+			//accept "return" key
+			TextView.OnEditorActionListener returnListener2 = new TextView.OnEditorActionListener(){
+				public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
+					   if (actionId == EditorInfo.IME_NULL  
+					      && event.getAction() == KeyEvent.ACTION_DOWN) { 
+						   renameFileOrFolder(mContextFile, et2.getText().toString()); //match this behavior to your OK button
+						   dismissDialog(DIALOG_RENAME);
+					   }
+					   return true;
+					}
+
+			};
+			et2.setOnEditorActionListener(returnListener2);
+			//end of code regarding "return key"
 			return new AlertDialog.Builder(this)
             	.setTitle(R.string.menu_rename).setView(view).setPositiveButton(
 					android.R.string.ok, new OnClickListener() {
@@ -1587,6 +1617,25 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
             inflater = LayoutInflater.from(this);
             view = inflater.inflate(R.layout.dialog_new_folder, null);
             final EditText editText = (EditText) view.findViewById(R.id.foldername);
+          //accept "return" key
+			TextView.OnEditorActionListener returnListener3 = new TextView.OnEditorActionListener(){
+				public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
+					   if (actionId == EditorInfo.IME_NULL  
+					      && event.getAction() == KeyEvent.ACTION_DOWN) { 
+						   if (new File(mContextFile.getParent()+File.separator+editText.getText().toString()).exists()){
+                               mDialogArgument = editText.getText().toString();
+                               showDialog(DIALOG_WARNING_EXISTS);
+                           } else {
+                               new CompressManager(FileManagerActivity.this).compress(mContextFile, editText.getText().toString());
+                           } //match this behavior to your OK button
+						   dismissDialog(DIALOG_COMPRESSING);
+					   }
+					   return true;
+					}
+
+			};
+			editText.setOnEditorActionListener(returnListener3);
+			//end of code regarding "return key"
             return new AlertDialog.Builder(this)
                     .setTitle(R.string.menu_compress).setView(view).setPositiveButton(
                             android.R.string.ok, new OnClickListener() {
@@ -1608,6 +1657,26 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
             inflater = LayoutInflater.from(this);
             view = inflater.inflate(R.layout.dialog_new_folder, null);
             final EditText editText1 = (EditText) view.findViewById(R.id.foldername);
+          //accept "return" key
+			TextView.OnEditorActionListener returnListener4 = new TextView.OnEditorActionListener(){
+				public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
+					   if (actionId == EditorInfo.IME_NULL  
+					      && event.getAction() == KeyEvent.ACTION_DOWN) { 
+						   if (new File(currentDirectory+File.separator+editText1.getText().toString()).exists()){
+                               mDialogArgument = editText1.getText().toString();
+                               mDialogExistsAction = DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP;
+                               showDialog(DIALOG_WARNING_EXISTS);
+                           } else {
+                               compressMultiFile(editText1.getText().toString());
+                           } //match this behavior to your OK button
+						   dismissDialog(DIALOG_MULTI_COMPRESS_ZIP);
+					   }
+					   return true;
+					}
+
+			};
+			editText1.setOnEditorActionListener(returnListener4);
+			//end of code regarding "return key"
             return new AlertDialog.Builder(this)
                     .setTitle(R.string.menu_compress).setView(view).setPositiveButton(
                             android.R.string.ok, new OnClickListener() {

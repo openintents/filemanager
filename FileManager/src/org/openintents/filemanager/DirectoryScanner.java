@@ -201,7 +201,7 @@ public class DirectoryScanner extends Thread {
 		
 		for(File f : listDirFile){
 			listDir.add(new IconifiedText( 
-					f.getName(), "", folderIcon));
+					f.getName(), FileUtils.formatDate(context, f.lastModified()), folderIcon));
 		}
 		
 		for(File currentFile : listFileFile){

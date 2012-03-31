@@ -154,7 +154,9 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		assertTrue(solo.searchText("oi-test.txt"));
 		solo.clickOnText("oi-test-dir");
 		assertTrue(solo.searchText("oi-fff.txt"));
-		
+
+		solo.goBack();
+		solo.goBack();
 		solo.clickOnText("oi-filemanager-tests");
 		assertTrue(solo.searchText("oi-test.txt"));
 		
@@ -173,7 +175,11 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		solo.clickOnText(getAppString(org.openintents.filemanager.R.string.menu_delete)); // Delete
 		solo.clickOnText(getAppString(android.R.string.ok));
 		
-		solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.menu_new_folder)); // New Folder
+		//when actionbar is present, this test case should find the first ImageButton
+		if(android.os.Build.VERSION.SDK_INT < 11)
+			solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.menu_new_folder)); // New Folder
+		else
+			solo.clickOnImageButton(0);
 		solo.enterText(0, "oi-created-folder");
 		solo.clickOnText(getAppString(android.R.string.ok));
 		
@@ -538,7 +544,10 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		 *  
 		 *  Remark: On Android 3.x(?) and 4.x, the index may have to be set to 2?
 		 */
-		solo.clickOnImageButton(1);
+		if(android.os.Build.VERSION.SDK_INT < 11)
+			solo.clickOnImageButton(1);
+		else
+			solo.clickOnImageButton(2);
 		
 		solo.clickOnEditText(0); // Let the editText has focus to be able to send the enter key.
 		solo.enterText(0, "/"+dirPath);

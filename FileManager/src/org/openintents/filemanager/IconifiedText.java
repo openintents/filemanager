@@ -19,9 +19,12 @@ package org.openintents.filemanager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable; 
+import android.os.Parcel;
+import android.os.Parcelable;
 
-/** @author Steven Osborn - http://steven.bitsetters.com */ 
-public class IconifiedText implements Comparable<IconifiedText>{ 
+/** @author Steven Osborn - http://steven.bitsetters.com 
+ *  @author George Venios - implemented Parcelable */ 
+public class IconifiedText implements Comparable<IconifiedText>, Parcelable{ 
     
      private String mText = ""; 
      private String mInfo = "";
@@ -30,11 +33,29 @@ public class IconifiedText implements Comparable<IconifiedText>{
      private boolean mSelected; 
      private boolean mCheckBoxVisible;
 
+     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+         public IconifiedText createFromParcel(Parcel in) {
+             return new IconifiedText(in);
+         }
+  
+         public IconifiedText[] newArray(int size) {
+             return new IconifiedText[size];
+         }
+     };
+     
      public IconifiedText(String text, String info, Drawable bullet) { 
           mIcon = bullet; 
           mText = text; 
           mInfo = info;
-     } 
+     }      
+     
+     public IconifiedText(Parcel in){
+    	 mText = in.readString();
+    	 mInfo = in.readString();
+    	 mSelectable = in.readInt()==1?true:false;
+    	 mSelected = in.readInt()==1?true:false;
+    	 mCheckBoxVisible = in.readInt()==1?true:false;
+     }
       
      public boolean isSelected() {
      	return mSelected;
@@ -105,5 +126,20 @@ public class IconifiedText implements Comparable<IconifiedText>{
      public boolean isCheckIconVisible() {
     	 return mCheckBoxVisible;
      }
+
+	@Override
+	public int describeContents() {
+		// Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(mText);
+		dest.writeString(mInfo);
+		dest.writeInt(mSelectable?1:0);
+		dest.writeInt(mSelected?1:0);
+		dest.writeInt(mCheckBoxVisible?1:0);
+	}
 } 
 

@@ -27,6 +27,7 @@ date: ?
 
 - Accept "return" when creating new folder (issue 505, patch by Darriel Kremov)
 - Added last modified to directories (issue 453, patch by George Venios)
+- Fix crash in multi-select confirmation dialog (issue 459, patch by George Venios)
 
 ----------------
 release: 1.2

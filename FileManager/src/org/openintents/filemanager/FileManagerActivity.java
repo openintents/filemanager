@@ -63,6 +63,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v2.os.Build;
 import android.support.v2.view.MenuCompat;
@@ -174,8 +175,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final String BUNDLE_CONTEXT_TEXT = "context_text";
 	private static final String BUNDLE_SHOW_DIRECTORY_INPUT = "show_directory_input";
 	private static final String BUNDLE_STEPS_BACK = "steps_back";
+	private static final String BUNDLE_DIRECTORY_ENTRIES = "directory_entries";
 	
 	private static boolean mSoftKeyboardAvailable;
+	/** Shows whether activity state has been restored (e.g. from a rotation). */
+	private static boolean mRestored = false;
 	
 	static {
 		try {
@@ -516,6 +520,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	  
           mStepsBack = 0;
           
+          // Reset mRestored flag.
+          mRestored = false;
           if (icicle != null) {
         	  browseto = new File(icicle.getString(BUNDLE_CURRENT_DIRECTORY));
         	  mContextFile = new File(icicle.getString(BUNDLE_CONTEXT_FILE));
@@ -525,6 +531,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	  showDirectoryInput(show);
         	  
         	  mStepsBack = icicle.getInt(BUNDLE_STEPS_BACK);
+        	  // had to bypass direct casting as it was causing a rather unexplainable crash
+        	  Parcelable tmpDirectoryEntries[] = icicle.getParcelableArray(BUNDLE_DIRECTORY_ENTRIES);
+        	  mDirectoryEntries = new IconifiedText[tmpDirectoryEntries.length];
+        	  for(int i=0; i<tmpDirectoryEntries.length; i++){
+        		  mDirectoryEntries[i] = (IconifiedText) tmpDirectoryEntries[i];
+        	  }
+        	  mRestored = true;
           }
           
           getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -610,14 +623,26 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	 mListDir = contents.listDir;
     	 mListFile = contents.listFile;
     	 mNoMedia = contents.noMedia;
-    	 
-    	 directoryEntries.ensureCapacity(mListSdCard.size() + mListDir.size() + mListFile.size());
-    	 
-         addAllElements(directoryEntries, mListSdCard);
-         addAllElements(directoryEntries, mListDir);
-         addAllElements(directoryEntries, mListFile);
-          
-         mDirectoryEntries = directoryEntries.toArray(new IconifiedText[0]); 
+
+    	 if(!mRestored){
+        	 directoryEntries.ensureCapacity(mListSdCard.size() + mListDir.size() + mListFile.size());
+
+	         addAllElements(directoryEntries, mListSdCard);
+	         addAllElements(directoryEntries, mListDir);
+	         addAllElements(directoryEntries, mListFile);
+
+    		 mDirectoryEntries = directoryEntries.toArray(new IconifiedText[0]);
+    	 }
+    	 else {
+    		 directoryEntries.clear();
+    		 directoryEntries.ensureCapacity(mDirectoryEntries.length);
+    		 for(int i = 0; i < mDirectoryEntries.length; i++){
+    			 directoryEntries.add(mDirectoryEntries[i]);
+    		 }
+    		 
+    		 // Once mRestore flag has been used, we should toggle it so that further refreshes don't take it into account
+    		 mRestored = false;
+    	 }
 
          IconifiedTextListAdapter itla = new IconifiedTextListAdapter(this); 
          itla.setListItems(directoryEntries, getListView().hasTextFilter(), currentDirectory, mMimeTypes);          
@@ -776,6 +801,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
  		boolean show = isDirectoryInputVisible();
  		outState.putBoolean(BUNDLE_SHOW_DIRECTORY_INPUT, show);
  		outState.putInt(BUNDLE_STEPS_BACK, mStepsBack);
+ 		outState.putParcelableArray(BUNDLE_DIRECTORY_ENTRIES, mDirectoryEntries);
  	}
 
 	/**

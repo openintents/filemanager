@@ -25,3 +25,4 @@ To obtain the current release, visit
 release: 1.0
 date: ?
 - First version: GCI task by Michał Zieliński.
+- Fix tests that fail on Android 4.0.3: patch by George Venios.

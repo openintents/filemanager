@@ -22,6 +22,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.Smoke;
@@ -36,7 +37,7 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 	private Activity activity;
 	private Random random = new Random();
 	private Intent intent;
-	private String sdcardPath = "/mnt/sdcard/";
+	private String sdcardPath;
 	
 	public TestFileManagerActivity() {
 		super();
@@ -44,6 +45,8 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
+		
+		sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath()+'/';
 		
 		// need to do this before creating activity
 		cleanDirectory(new File(sdcardPath + "oi-filemanager-tests"));
@@ -544,10 +547,12 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		 *  
 		 *  Remark: On Android 3.x(?) and 4.x, the index may have to be set to 2?
 		 */
+		int imageButtonIndex = 0;
 		if(android.os.Build.VERSION.SDK_INT < 11)
-			solo.clickOnImageButton(1);
+			imageButtonIndex = 1;
 		else
-			solo.clickOnImageButton(2);
+			imageButtonIndex = 2;
+		solo.clickOnImageButton(imageButtonIndex);
 		
 		solo.clickOnEditText(0); // Let the editText has focus to be able to send the enter key.
 		solo.enterText(0, "/"+dirPath);

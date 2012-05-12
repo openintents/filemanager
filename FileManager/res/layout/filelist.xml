@@ -18,30 +18,12 @@
     android:orientation="vertical"
     android:layout_width="fill_parent" 
     android:layout_height="fill_parent">
-    <FrameLayout
+    
+    <org.openintents.filemanager.view.PathBar
+        android:id="@+id/pathbar"
         android:layout_width="fill_parent" 
-        android:layout_height="wrap_content">
-	    <LinearLayout android:id="@+id/directory_buttons"
-		    android:orientation="horizontal"
-		    android:layout_width="wrap_content" 
-		    android:layout_height="wrap_content">
-		    <!-- Buttons added here dynamically -->
-		</LinearLayout>
-		<LinearLayout android:id="@+id/directory_input"
-		    android:orientation="horizontal"
-		    android:layout_width="fill_parent" 
-		    android:layout_height="wrap_content"
-		    android:visibility="gone">
-		    <EditText android:id="@+id/directory_text"
-				    android:layout_width="0dip"
-				    android:layout_weight="1" 
-				    android:layout_height="wrap_content" />
-			<ImageButton android:id="@+id/button_directory_pick"
-					android:src="@drawable/ic_menu_forward_small"
-				    android:layout_width="wrap_content" 
-				    android:layout_height="wrap_content" />
-		</LinearLayout>
-	</FrameLayout>
+        android:layout_height="@dimen/pathBar_height">
+	</org.openintents.filemanager.view.PathBar>
     <FrameLayout
         android:layout_width="fill_parent" 
         android:layout_height="wrap_content">

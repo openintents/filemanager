@@ -1,0 +1,4 @@
+
+    <resources>
+        <dimen name="pathBar_height">50dp</dimen>
+    </resources>

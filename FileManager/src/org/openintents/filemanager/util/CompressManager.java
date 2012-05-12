@@ -140,7 +140,7 @@ public class CompressManager {
                 activity.setResult(activity.RESULT_OK, intent);
                 activity.finish();
             } else {
-                activity.refreshList();
+                activity.showDirectoryChildren(null);
             }
         }
     }

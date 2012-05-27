@@ -28,7 +28,7 @@ Eigenschappen:
 * Ondersteunt PICK_FILE en PICK_DIRECTORY intents, waardoor andere programma's OI File Manager ook kunnen gebruiken.
 
 Beschikbare extensies voor "OI File Manager" 
-* Show the license information with "OI About".
+* Toon licentie-informatie met OI About
 
 Applicaties die werken met "OI File Manager" 
 * Open en bewaar tekstbestanden in "OI Notepad"
@@ -38,10 +38,10 @@ Sleutelwoorden:
 * OI, IO, OpenIntents, Open Intents
 
 Internationale versies 
-Gestor de fitxers d'OI., OI 파일 관리자, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fájlkezelő, OI Filbehandler, OI File Manager, OI File Manedyer, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI ھۆججەت باشقۇرغۇچ, OI مدير پرونده‌, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI文件管理器, مدير الملفات OI, מנהל קבצים OI, 檔案總管
+Gestor de fitxers d'OI., OI 파일 관리자, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fájlkezelő, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI ھۆججەت باشقۇرغۇچ, OI مدير پرونده‌, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI文件管理器, مدير الملفات OI, מנהל קבצים OI, 檔案總管
 
 
-Search strings for Market: 
+Zoektekst voor Market: 
 * uses OI About
 * extension for OI Notepad
 

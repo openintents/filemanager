@@ -82,7 +82,10 @@
     <string name="move_button_multiselect">Mover</string>
     <string name="copy_button_multiselect">Copiar</string>
     <string name="delete_button_multiselect">Apagar</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Selecione varios arquivos</string>
     <string name="error_selection">Favor selecionar um ou mais arquivos</string>
     

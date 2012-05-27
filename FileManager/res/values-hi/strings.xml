@@ -24,6 +24,7 @@
   Abhishek https://launchpad.net/~abhishek9797
   Atharva Lath https://launchpad.net/~atharvalath96
   OpenIntents devs https://launchpad.net/~openintents-devs
+  Prateek Arora https://launchpad.net/~prateekandroid
   happynawani https://launchpad.net/~happynawani</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
@@ -54,7 +55,7 @@
     <string name="menu_include_in_media_scan">मीडिया स्कैन में शामिल करें</string>
     <string name="menu_exclude_from_media_scan">मीडिया स्कैन से अपवर्जित करें</string>
     <string name="menu_bookmark">बुकमार्क जोड़ें</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">नवीकरण</string>
     
     <string name="create_new_folder">नया फ़ोल्डर बनाएँ</string>
     <string name="folder_name">फ़ोल्डर का नाम</string>
@@ -83,7 +84,10 @@
     <string name="move_button_multiselect">स्थानांतरित करें</string>
     <string name="copy_button_multiselect">प्रतिलिपि बनाएँ</string>
     <string name="delete_button_multiselect">मिटाएँ</string>
-    <string name="compress_zip_button_multiselect">ZIP</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
+    <string name="compress_zip_button_multiselect">सिकोड़िए</string>
+
     <string name="multiselect_title">एकाधिक फ़ाइलों का चयन करें</string>
     <string name="error_selection">एक या एक से अधिक फ़ाइल (ओं) का चयन करें|</string>
     

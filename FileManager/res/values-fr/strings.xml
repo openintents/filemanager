@@ -23,11 +23,12 @@
 	<string name="about_translators">Launchpad Contributions:
   Abdessamad Derraz https://launchpad.net/~derraz
   Anges https://launchpad.net/~az24
+  Arnaud https://launchpad.net/~arnaud-champollion
   Peli https://launchpad.net/~peli0101
   kawazzzzzz@yahoo.fr https://launchpad.net/~kawazzzzzz</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Gérer les fichiers sur la carte SD avec OI File Manager</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -48,13 +49,13 @@
     <string name="menu_copy">Copier</string>
     <string name="menu_details">Détails</string>
     <string name="menu_more">Plus</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">Compresser (ZIP)</string>
+    <string name="menu_extract">Extraire</string>
     <string name="menu_filter">filtre</string>
     <string name="menu_include_in_media_scan">Inclure dans les recherches</string>
     <string name="menu_exclude_from_media_scan">Exclure des recherches</string>
     <string name="menu_bookmark">Ajouter aux favoris</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">Rafraîchir</string>
     
     <string name="create_new_folder">Créer un nouveau dossier</string>
     <string name="folder_name">Nom du dossier</string>
@@ -83,7 +84,10 @@
     <string name="move_button_multiselect">Déplacer</string>
     <string name="copy_button_multiselect">Copier</string>
     <string name="delete_button_multiselect">Supprimer</string>
-    <string name="compress_zip_button_multiselect">ZIP</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
+    <string name="compress_zip_button_multiselect">Code postal</string>
+
     <string name="multiselect_title">Sélectionner plusieurs fichiers</string>
     <string name="error_selection">S\'il vous plaît sélectionner un ou plusieurs fichier(s).</string>
     
@@ -180,17 +184,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">Fichier compressé avec succès</string>
+    <string name="compressing_error">Impossible de compresser ce fichier</string>
+    <string name="compress_into_archive">Compresser dans l\'archive :</string>
+    <string name="extracting_success">Fichier extrait avec succès</string>
+    <string name="extracting_error">Impossible d\'extraire le fichier</string>
+    <string name="extract_into_folder">Extraire vers le dossier :</string>
+    <string name="extract_title">Sélectionnez le dossier de destination</string>
+    <string name="extract_button">Extraire ici</string>
+    <string name="extracting">Extraction en cours ...</string>
+    <string name="compressing">Compression en cours ...</string>
+    <string name="warning_overwrite">Le fichier %s existe déjà. Voulez-vous l\'écraser ?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Voulez-vous modifier l\'extension du fichier ?</string>
 </resources>

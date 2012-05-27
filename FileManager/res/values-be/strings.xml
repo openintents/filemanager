@@ -22,6 +22,7 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Alexander Geroimenko https://launchpad.net/~geroimenko
+  Mikhail_SaTuRn https://launchpad.net/~mikhailsaturn
   OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
@@ -81,7 +82,10 @@
     <string name="move_button_multiselect">Перамясціць</string>
     <string name="copy_button_multiselect">Капіяваць</string>
     <string name="delete_button_multiselect">Выдаліць</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Абярыце некалькі файлаў</string>
     <string name="error_selection">Калі ласка, абярыце адзін ці больш файлаў.</string>
     

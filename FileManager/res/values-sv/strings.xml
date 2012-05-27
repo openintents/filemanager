@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  Carl Fredrik Sima https://launchpad.net/~cf-sima</string>
+	
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Hantera filer på SD-kort med OI File Manager.</string>  
+	
+	<!-- ***************************
+	     Applicatio-specific strings
+	     *************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI File Manager</string>
+    
+    <string name="menu_new_folder">Ny Mapp</string>
+    
+    <!-- Multi select option menu -->
+    <string name="menu_multi_select">Välj Flera</string>
+
+    <string name="menu_delete">Ta Bort</string>
+    <string name="menu_rename">Byt Namn</string>
+    <string name="menu_send">Skicka</string>
+    <string name="menu_open">Öppna</string>
+    <string name="menu_move">Flytta</string>
+    <string name="menu_copy">Kopiera</string>
+    <string name="menu_details">Detaljer</string>
+    <string name="menu_more">Mera</string>
+    <string name="menu_compress">Komprimera (ZIP)</string>
+    <string name="menu_extract">Extrahera (ZIP)</string>
+    <string name="menu_filter">Filtrera</string>
+    <string name="menu_include_in_media_scan">Inkludera i mediasökning</string>
+    <string name="menu_exclude_from_media_scan">Exkludera i mediasökning</string>
+    <string name="menu_bookmark">Lägg till bokmärken</string>
+    <string name="menu_refresh">Uppdatera</string>
+    
+    <string name="create_new_folder">Skapa ny mapp</string>
+    <string name="folder_name">Mappnamn</string>
+    <string name="file_name">Mappnamn</string>
+    <string name="extension">Filändelse (med \'.\')</string>
+    <string name="this_folder_is_empty">Den här mappen är tom.</string>
+    <string name="really_delete">Vill du verkligen ta bort %s?</string>
+    <string name="file_deleted">Fil borttagen.</string>
+    <string name="folder_deleted">Mapp borttagen.</string>
+    <string name="file_renamed">Filnamn ändrat.</string>
+    <string name="folder_renamed">Mappnamn ändrat.</string>
+    <string name="file_moved">Fil flyttad</string>
+    <string name="folder_moved">Mapp flyttad.</string>
+    <string name="file_copied">Fil kopierad.</string>
+    <string name="move_title">Välj mapp att flytta till</string>
+    <string name="move_button">Flytta hit</string>
+    <string name="copy_title">Välj mapp att kopiera till</string>
+    <string name="copy_button">Kopiera hit</string>
+	<string name="deleting_files">Tar bort filer...</string>
+    <string name="title_warning_some_may_not_work">Varning</string>
+    <string name="warning_some_may_not_work">Några av följande alternativ kanske inte fungerar.</string>
+    <string name="show_warning_again">Visa varning igen</string>
+    
+    <!-- Strings for a multi select feature -->
+	<string name="really_delete_multiselect">Vill du verkligen ta bort %d filer?</string>
+    <string name="move_button_multiselect">Flytta</string>
+    <string name="copy_button_multiselect">Kopiera</string>
+    <string name="delete_button_multiselect">Ta Bort</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
+    <string name="compress_zip_button_multiselect">ZIP</string>
+
+    <string name="multiselect_title">Välj flera filer</string>
+    <string name="error_selection">Var god välj en eller fler filer.</string>
+    
+    <!-- Strings for details table -->
+    <string name="details_type">Typ</string>
+    <string name="details_type_folder">Mapp</string>
+    <string name="details_type_file">Fil</string>
+    <string name="details_type_other">Annat</string>
+    <string name="details_size">Storlek</string>
+    <string name="details_permissions">Behörigheter</string>
+    <string name="details_hidden">Dold</string>
+    <string name="details_lastmodified">Senast modifierad</string>
+    <string name="details_yes">Ja</string>
+    <string name="details_no">Nej</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">Kopiering av %s</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Kopierar %1$d av %2$s</string>
+    
+    <string name="media_scan_included">Den här mappen blir inkluderad i nästa multimedia scanning.</string>
+    <string name="media_scan_excluded">Den här mappen blir exkluderad i nästa multimedia scanning.</string>
+    
+    <string name="error_creating_new_folder">Kunde inte skapa ny mapp.</string>
+    <string name="error_deleting_file">Kunde inte ta bort fil.</string>
+    <string name="error_deleting_folder">Kunde inte ta bort mappen \'%s\'.</string>
+    <string name="error_renaming_file">Kunde inte döpa om fil.</string>
+    <string name="error_renaming_folder">Kunde inte döpa om mapp.</string>
+    <string name="error_moving_file">Kunde inte flytta fil.</string>
+    <string name="error_moving_folder">Kunde inte flytta mapp.</string>
+    <string name="error_copying_file">Kunde inte kopiera fil.</string>
+    <string name="error_file_does_not_exists">Filen existerar inte.</string>
+    <string name="error_deleting_child_file">Kunde inte ta bort dotterfilen \'%s\'.</string>
+    <string name="error_generic">Ett fel uppstod:</string>
+    <string name="error_media_scan">Kunde inte ändra media scanningsinställningar.</string>
+    
+    <string name="send_not_available">Ingen applikation tillgänglig för sändning.</string>
+    
+    <string name="application_not_available">Applikationen ej tillgänglig</string>
+    
+	<!-- ***************************
+	     Preferences
+	     *************************** -->
+    <!-- Menu item for Settings -->
+	<string name="settings">Inställningar</string>
+	
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">Avancerade funktioner</string>
+	<string name="preference_mediascan_title">Exkludera i mediasökning</string>
+    <string name="preference_mediascan_summary_on">Visa menyknapp för att exkludera mappar från media scanning.</string>
+    <string name="preference_mediascan_summary_off">Dölj menyknapp för att exkludera mappar från media scanning.</string>
+    
+    <string name="preference_showallwarning_title">Visa alla varningar</string>
+    <string name="preference_showallwarning_summary_on">Visa alla varningsmeddelanden</string>
+    <string name="preference_showallwarning_summary_off">Visa ej varningsmeddelanden</string>
+       
+    <string name="preference_displayhiddenfiles_title">Visa dolda filer</string>
+    <string name="preference_displayhiddenfiles_summary_on">Visa dolda filer</string>
+    <string name="preference_displayhiddenfiles_summary_off">Dölj dolda filer</string>
+    
+    <string name="preference_sort_settings">Sorteringsinställningar</string>
+    <string name="preference_sortby">Sortera i</string>
+    <string name="preference_sortby_ascending">Stigande ordning</string>
+    <string name="preference_sortby_ascending_summary_on">Sortera i stigande följd</string>
+    <string name="preference_sortby_ascending_summary_off">Sortera i nedstigande följd</string>
+    <string-array name="preference_sortby_names">
+        <item>Namn</item>
+        <item>Storlek</item>
+        <item>Senast modifierad</item>
+    </string-array>
+
+        
+    <!-- ***************************
+   		 Strings for the \'Save as\' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">Du har inte valt någon fil.</string>
+    <string name="saveas_error">Ett fel uppstod.</string>
+    <string name="saveas_file_saved">Fil sparad!</string>
+    
+        
+   
+    <string name="bookmarks">Bokmärken</string>
+    <string name="bookmarks_cancel">Avbryt</string>
+    <string name="bookmarks_delete">Ta Bort</string>
+    <string name="bookmarks_select_to_delete">Välj bokmärken att ta bort</string>
+    <string name="bookmarks_manage">Hantera bokmärken</string>
+    <string name="bookmark_added">Bokmärke tillagt</string>
+    <string name="bookmark_not_found">Bokmärkets destination kunde ej hittas.</string>
+    <string name="bookmarks_deleted">Valda bokmärken borttagna</string>
+    <string name="bookmark_already_exists">Den här filen är redan sparat som ett bokmärke</string>
+
+
+    <!-- ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          *************************** -->
+    <string name="compressing_success">Komprimering sluförd</string>
+    <string name="compressing_error">Kunde ej komprimera</string>
+    <string name="compress_into_archive">Komprimera till filarkiv</string>
+    <string name="extracting_success">Extrahering slutförd</string>
+    <string name="extracting_error">Kunde ej extrahera</string>
+    <string name="extract_into_folder">Extrahera till mappen:</string>
+    <string name="extract_title">Välj mapp att extrahera till</string>
+    <string name="extract_button">Extrahera hit</string>
+    <string name="extracting">Extraherar...</string>
+    <string name="compressing">Komprimerar...</string>
+    <string name="warning_overwrite">Filen %s existerar redan. Vill du skriva över den?</string>
+
+    <string name="change_file_extension">Vill du ändra filtillägget?</string>
+</resources>

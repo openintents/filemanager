@@ -22,6 +22,7 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Henk van der Velden https://launchpad.net/~henkvandervelden86
+  Maarten de Vries https://launchpad.net/~maarten-k-de-vries
   Mark van Kuijk https://launchpad.net/~markvankuyk
   Menno Vogel https://launchpad.net/~mennovogel90
   OpenIntents devs https://launchpad.net/~openintents-devs
@@ -51,19 +52,19 @@
     <string name="menu_move">Verplaatsen</string>
     <string name="menu_copy">Kopieer</string>
     <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
-    <string name="menu_filter">Filter</string>
+    <string name="menu_more">Meer</string>
+    <string name="menu_compress">Comprimeren (ZIP)</string>
+    <string name="menu_extract">Uitpakken (ZIP)</string>
+    <string name="menu_filter">Filteren</string>
     <string name="menu_include_in_media_scan">Meenemen bij media scan</string>
     <string name="menu_exclude_from_media_scan">Negeren bij media scan</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_bookmark">Toevoegen aan favorieten</string>
+    <string name="menu_refresh">Verversen</string>
     
     <string name="create_new_folder">Nieuwe map aanmaken</string>
     <string name="folder_name">Naam van de map</string>
     <string name="file_name">Naam van de map</string>
-    <string name="extension">Extension (with \'.\')</string>
+    <string name="extension">Extensie ( met \'.\')</string>
     <string name="this_folder_is_empty">Deze map is leeg.</string>
     <string name="really_delete">Wil je echt %s verwijderen?</string>
     <string name="file_deleted">Bestand verwijderd.</string>
@@ -78,30 +79,33 @@
     <string name="copy_title">Kies map om naartoe te kopiëren</string>
     <string name="copy_button">Kopieer hier</string>
 	<string name="deleting_files">Bestanden aan het verwijderen...</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+    <string name="title_warning_some_may_not_work">Waarschuwing</string>
+    <string name="warning_some_may_not_work">Mogelijk werkt een aantal van deze opties niet</string>
+    <string name="show_warning_again">Waarschuwing opnieuw tonen</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Wilt u echt %d bestanden verwijderen?</string>
     <string name="move_button_multiselect">Verplaatsen</string>
     <string name="copy_button_multiselect">Kopieer</string>
     <string name="delete_button_multiselect">Verwijderen</string>
-    <string name="compress_zip_button_multiselect">ZIP</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
+    <string name="compress_zip_button_multiselect">Postcode</string>
+
     <string name="multiselect_title">Selecteer meerdere bestanden</string>
     <string name="error_selection">Selecteer een of meer bestanden.</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
-    <string name="details_no">No</string>
+    <string name="details_type_folder">Map</string>
+    <string name="details_type_file">Bestand</string>
+    <string name="details_type_other">Overig</string>
+    <string name="details_size">Grootte</string>
+    <string name="details_permissions">Rechten</string>
+    <string name="details_hidden">Verborgen</string>
+    <string name="details_lastmodified">Laatst gewijzigd</string>
+    <string name="details_yes">Ja</string>
+    <string name="details_no">Nee</string>
     
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Kopie van %s</string>
@@ -142,59 +146,59 @@
     <string name="preference_mediascan_summary_off">Verberg menu-item om mappen van de media scan uit te sluiten.</string>
     
     <string name="preference_showallwarning_title">Toon alle waarschuwingen</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_summary_on">Alle waarschuwingen tonen</string>
+    <string name="preference_showallwarning_summary_off">Waarschuwingen verbergen</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">Verborgen bestanden tonen</string>
+    <string name="preference_displayhiddenfiles_summary_on">Verborgen bestanden tonen</string>
+    <string name="preference_displayhiddenfiles_summary_off">Verborgen bestanden niet tonen</string>
     
-    <string name="preference_sort_settings">Sort settings</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
+    <string name="preference_sort_settings">Sorteeropties</string>
+    <string name="preference_sortby">Sorteren op</string>
+    <string name="preference_sortby_ascending">Oplopend</string>
+    <string name="preference_sortby_ascending_summary_on">Sorteer in oplopende volgorde</string>
     <string name="preference_sortby_ascending_summary_off">Sorteer in aflopende volgorde</string>
     <string-array name="preference_sortby_names">
-        <item>Name</item>
-        <item>Size</item>
-        <item>Last modified</item>
+        <item>Naam</item>
+        <item>Grootte</item>
+        <item>Laatst gewijzigd</item>
     </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
+    <string name="saveas_no_file_picked">U heeft geen bestand geselecteerd</string>
+    <string name="saveas_error">Er is een fout opgetreden.</string>
     <string name="saveas_file_saved">Bestand is succesvol opgeslagen.</string>
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Favorieten</string>
+    <string name="bookmarks_cancel">Annuleren</string>
     <string name="bookmarks_delete">Verwijderen</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
+    <string name="bookmarks_select_to_delete">Selecteer de bladwijzers om te verwijderen</string>
+    <string name="bookmarks_manage">Favorieten beheren</string>
     <string name="bookmark_added">Bladwijzer toegevoegd</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmark_not_found">Doel van favoriet niet gevonden</string>
+    <string name="bookmarks_deleted">Geselecteerde favorieten verwijderd</string>
+    <string name="bookmark_already_exists">Dit bestand is al een favoriet</string>
 
 
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">Bestand gecomprimeerd</string>
+    <string name="compressing_error">Kon bestand niet comprimeren</string>
+    <string name="compress_into_archive">Comprimeer naar archief:</string>
+    <string name="extracting_success">Bestand succesvol uitgepakt</string>
+    <string name="extracting_error">Kon bestand niet uitpakken</string>
+    <string name="extract_into_folder">Uitpakken in map</string>
+    <string name="extract_title">Selecteer de map waar u wilt uitpakken</string>
+    <string name="extract_button">Hier uitpakken</string>
+    <string name="extracting">Bezig met uitpakken...</string>
+    <string name="compressing">Bezig met comprimeren...</string>
+    <string name="warning_overwrite">Het bestand %s bestaat al. Wilt u het vervangen?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Wilt u de bestandsextensie wijzigen?</string>
 </resources>

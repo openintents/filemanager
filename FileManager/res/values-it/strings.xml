@@ -21,6 +21,7 @@
 	
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Diego Pierotto https://launchpad.net/~gringo
   Edoardo Maria Elidoro https://launchpad.net/~edoardoelidoro
   Martino Barbon https://launchpad.net/~martins999
   OpenIntents devs https://launchpad.net/~openintents-devs
@@ -51,16 +52,16 @@
     <string name="menu_more">Altro</string>
     <string name="menu_compress">Comprimi (ZIP)</string>
     <string name="menu_extract">Estrai (ZIP)</string>
-    <string name="menu_filter">Filter</string>
+    <string name="menu_filter">Filtro</string>
     <string name="menu_include_in_media_scan">Includi nella scansione dei media</string>
     <string name="menu_exclude_from_media_scan">Escludi dalla scansione dei media.</string>
     <string name="menu_bookmark">Aggiungi ai preferiti</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">Aggiorna</string>
     
     <string name="create_new_folder">Crea nuova cartella</string>
     <string name="folder_name">Nome cartella</string>
     <string name="file_name">Nome cartella</string>
-    <string name="extension">Extension (with \'.\')</string>
+    <string name="extension">Estensione (con \'.\')</string>
     <string name="this_folder_is_empty">Questa cartella è vuota.</string>
     <string name="really_delete">Sei sicuro di eliminare %s?</string>
     <string name="file_deleted">Il file è stato eliminato.</string>
@@ -77,27 +78,30 @@
 	<string name="deleting_files">Eliminazione dei file in corso...</string>
     <string name="title_warning_some_may_not_work">Attenzione</string>
     <string name="warning_some_may_not_work">Alcune tra le seguenti opzioni potrebbero non funzionare.</string>
-    <string name="show_warning_again">Show warning again</string>
+    <string name="show_warning_again">Mostra avviso ancora</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Vuoi veramente eliminare %d documenti?</string>
     <string name="move_button_multiselect">Sposta</string>
     <string name="copy_button_multiselect">Copia</string>
     <string name="delete_button_multiselect">Elimina</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Selezione file multipli</string>
     <string name="error_selection">Seleziona uno o più file</string>
     
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
+    <string name="details_type">Tipo</string>
+    <string name="details_type_folder">Cartella</string>
     <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
-    <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
+    <string name="details_type_other">Altro</string>
+    <string name="details_size">Dimensione</string>
+    <string name="details_permissions">Permessi</string>
+    <string name="details_hidden">Nascosto</string>
+    <string name="details_lastmodified">Ultima modifica</string>
+    <string name="details_yes">Sì</string>
     <string name="details_no">No</string>
     
     <!-- Construct a unique file name of a file called %s. -->
@@ -135,63 +139,63 @@
     <!-- Category for preferences. -->
     <string name="preference_advanced_features">Opzioni avanzate</string>
 	<string name="preference_mediascan_title">Escludi dalla scansione dei media.</string>
-    <string name="preference_mediascan_summary_on">Show menu item to exclude folders from media scan.</string>
-    <string name="preference_mediascan_summary_off">Hide menu item to exclude folders from media scan.</string>
+    <string name="preference_mediascan_summary_on">Mostra voce menu per escludere cartelle dalla scansione.</string>
+    <string name="preference_mediascan_summary_off">Nascondi voce menu per escludere cartelle dalla scansione.</string>
     
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
+    <string name="preference_showallwarning_title">Mostra tutti gli avvisi</string>
+    <string name="preference_showallwarning_summary_on">Mostra tutti i messaggi di avviso</string>
+    <string name="preference_showallwarning_summary_off">Rimuovi messaggi di avviso</string>
        
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_displayhiddenfiles_title">Mostra files nascosti</string>
+    <string name="preference_displayhiddenfiles_summary_on">Mostra files nascosti</string>
+    <string name="preference_displayhiddenfiles_summary_off">Nascondi files nascosti</string>
     
-    <string name="preference_sort_settings">Sort settings</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sort_settings">Impostazioni ordinamento</string>
+    <string name="preference_sortby">Ordina per</string>
+    <string name="preference_sortby_ascending">In ordine crescente</string>
+    <string name="preference_sortby_ascending_summary_on">Ordina in modo crescente</string>
+    <string name="preference_sortby_ascending_summary_off">Ordina in modo decrescente</string>
     <string-array name="preference_sortby_names">
-        <item>Name</item>
-        <item>Size</item>
-        <item>Last modified</item>
+        <item>Nome</item>
+        <item>Dimensione</item>
+        <item>Ultima modifica</item>
     </string-array>
 
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
     	 *************************** -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">Nessun file è stato selezionato.</string>
+    <string name="saveas_error">Si è verificato un errore.</string>
+    <string name="saveas_file_saved">File salvato con successo!</string>
     
         
    
-    <string name="bookmarks">Bookmarks</string>
-    <string name="bookmarks_cancel">Cancel</string>
+    <string name="bookmarks">Segnalibri</string>
+    <string name="bookmarks_cancel">Annulla</string>
     <string name="bookmarks_delete">Elimina</string>
-    <string name="bookmarks_select_to_delete">Select bookmarks to delete</string>
-    <string name="bookmarks_manage">Manage bookmarks</string>
-    <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_not_found">Bookmarked destination not found.</string>
-    <string name="bookmarks_deleted">Selected bookmarks deleted</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks_select_to_delete">Seleziona segnalibri da cancellare</string>
+    <string name="bookmarks_manage">Gestione segnalibri</string>
+    <string name="bookmark_added">Segnalibro aggiunto</string>
+    <string name="bookmark_not_found">Destinazione segnalibri non trovata.</string>
+    <string name="bookmarks_deleted">Segnalibri selezionati cancellati</string>
+    <string name="bookmark_already_exists">Questo file è già presente nei segnalibri</string>
 
 
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">File compresso con successo</string>
+    <string name="compressing_error">Impossibile comprimere il file</string>
+    <string name="compress_into_archive">Comprimi nell\'archivio</string>
+    <string name="extracting_success">File estratto con successo</string>
+    <string name="extracting_error">Impossibile estrarre il file</string>
+    <string name="extract_into_folder">Estrai nella cartella:</string>
+    <string name="extract_title">Seleziona cartella dove estrarre</string>
+    <string name="extract_button">Estrai qui</string>
+    <string name="extracting">Estrazione...</string>
+    <string name="compressing">Compressione...</string>
+    <string name="warning_overwrite">File %s già presente. Vuoi sovrascriverlo?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Vuoi modificare l\'estensione del file?</string>
 </resources>

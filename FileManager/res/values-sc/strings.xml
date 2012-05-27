@@ -81,7 +81,10 @@
     <string name="move_button_multiselect">Moghe</string>
     <string name="copy_button_multiselect">Cópia</string>
     <string name="delete_button_multiselect">Doga</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Select multiple files</string>
     <string name="error_selection">Please select one or more file(s).</string>
     

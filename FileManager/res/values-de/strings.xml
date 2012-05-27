@@ -23,6 +23,7 @@
 	<string name="about_translators">Launchpad Contributions:
   Alexander Sapronov https://launchpad.net/~warmonger
   Daniel Winzen https://launchpad.net/~q-d
+  Dennis Baudys https://launchpad.net/~thecondordb
   Flosen https://launchpad.net/~flose
   Giannis Konstantinidis https://launchpad.net/~giankonstantinidis
   Hans https://launchpad.net/~hans-wuerstchen42
@@ -92,7 +93,10 @@
     <string name="move_button_multiselect">Verschieben</string>
     <string name="copy_button_multiselect">Kopieren</string>
     <string name="delete_button_multiselect">Löschen</string>
-    <string name="compress_zip_button_multiselect">PLZ</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
+    <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Wählen Sie mehrere Dateien aus</string>
     <string name="error_selection">Bitte wählen Sie eine oder mehrere Datei(en) aus.</string>
     
@@ -150,9 +154,9 @@
     <string name="preference_showallwarning_summary_on">Zeige alle Warnmeldungen</string>
     <string name="preference_showallwarning_summary_off">Unterdrücke Warnmeldungen</string>
        
-    <string name="preference_displayhiddenfiles_title">Zeige versteckte Dateien</string>
-    <string name="preference_displayhiddenfiles_summary_on">Zeige versteckte Dateien</string>
-    <string name="preference_displayhiddenfiles_summary_off">Verberge versteckte Dateien</string>
+    <string name="preference_displayhiddenfiles_title">Versteckte Dateien anzeigen</string>
+    <string name="preference_displayhiddenfiles_summary_on">Versteckte Dateien anzeigen</string>
+    <string name="preference_displayhiddenfiles_summary_off">Versteckte Dateien verbergen</string>
     
     <string name="preference_sort_settings">Sortiereinstellungen</string>
     <string name="preference_sortby">Sortieren nach</string>

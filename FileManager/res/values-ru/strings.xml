@@ -29,7 +29,7 @@
   Peli https://launchpad.net/~peli0101</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>  
+    <string name="about_comments">Управляйте файлами на SD карте с помощью OI File Manager.</string>  
 	
 	<!-- ***************************
 	     Applicatio-specific strings
@@ -50,13 +50,13 @@
     <string name="menu_copy">Копировать</string>
     <string name="menu_details">Подробная информация</string>
     <string name="menu_more">Подробнее</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_compress">Сжать (ZIP)</string>
+    <string name="menu_extract">Извлечь (ZIP)</string>
     <string name="menu_filter">Фильтр</string>
     <string name="menu_include_in_media_scan">Включить в сканирование</string>
     <string name="menu_exclude_from_media_scan">Исключить из сканирования</string>
     <string name="menu_bookmark">Добавить в избранное</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">Обновить</string>
     
     <string name="create_new_folder">Создать новую папку</string>
     <string name="folder_name">Имя папки</string>
@@ -85,7 +85,10 @@
     <string name="move_button_multiselect">Переместить</string>
     <string name="copy_button_multiselect">Копировать</string>
     <string name="delete_button_multiselect">Удалить</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Выберите несколько файлов</string>
     <string name="error_selection">Пожалуйства выберите один или больше файлов.</string>
     
@@ -182,17 +185,17 @@
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
-    <string name="extracting_success">Item extracted successfully</string>
-    <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
+    <string name="compressing_success">Элемент успешно сжат</string>
+    <string name="compressing_error">Не удалось сжать элемент</string>
+    <string name="compress_into_archive">Сжать в архив:</string>
+    <string name="extracting_success">Элемент успешно распакован</string>
+    <string name="extracting_error">Не удалось распаковать элемент</string>
+    <string name="extract_into_folder">Распаковать в папку:</string>
+    <string name="extract_title">Выберите папку для извлечения</string>
+    <string name="extract_button">Распаковать здесь</string>
+    <string name="extracting">Распаковка...</string>
+    <string name="compressing">Сжатие...</string>
+    <string name="warning_overwrite">Файл %s уже существует. Вы хотите перезаписать его?</string>
 
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="change_file_extension">Вы хотите изменить расширение файла?</string>
 </resources>

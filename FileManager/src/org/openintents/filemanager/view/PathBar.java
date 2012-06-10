@@ -5,7 +5,6 @@ import java.io.File;
 import org.openintents.filemanager.R;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Environment;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -86,7 +85,8 @@ public class PathBar extends ViewFlipper {
 		mCurrentDirectory = Environment.getExternalStorageDirectory();
 		mInitialDirectory = Environment.getExternalStorageDirectory();
 
-		this.setBackgroundResource(R.drawable.navbar_background);
+		this.setBackgroundColor(getResources().getColor(
+				R.color.navbar_background));
 		this.setInAnimation(getContext(), R.anim.fade_in);
 		this.setOutAnimation(getContext(), R.anim.fade_out);
 
@@ -103,7 +103,9 @@ public class PathBar extends ViewFlipper {
 		// ImageButton -- GONE. Kept this code in case we need to use an right-aligned button in the future.
 		mSwitchToManualModeButton = new ImageButton(getContext());
 		{
-			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+			// Keep this view from taking up too much unecessary space.
+			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(
+					(int) getResources().getDimension(R.dimen.pathBar_height), LayoutParams.MATCH_PARENT);
 			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
 			mSwitchToManualModeButton.setLayoutParams(layoutParams);
@@ -111,7 +113,7 @@ public class PathBar extends ViewFlipper {
 			mSwitchToManualModeButton
 					.setImageResource(R.drawable.ic_navbar_edit);
 			mSwitchToManualModeButton
-					.setBackgroundResource(R.drawable.bg_navbar_btn_right);
+					.setBackgroundResource(R.drawable.bg_navbar_btn_edit);
 			mSwitchToManualModeButton
 					.setVisibility(View.GONE);
 
@@ -191,12 +193,13 @@ public class PathBar extends ViewFlipper {
 		// ImageButton
 		mGoButton = new ImageButton(getContext());
 		{
-			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(
+					LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
 			mGoButton.setLayoutParams(layoutParams);
 			mGoButton.setId(20);
-			mGoButton.setBackgroundResource(R.drawable.bg_navbar_btn_right);
+			mGoButton.setBackgroundResource(R.drawable.bg_navbar_btn_standard);
 			mGoButton.setImageResource(R.drawable.ic_navbar_accept);
 			mGoButton.setScaleType(ScaleType.CENTER_INSIDE);
 			mGoButton.setOnClickListener(new View.OnClickListener() {
@@ -220,7 +223,8 @@ public class PathBar extends ViewFlipper {
 
 			mPathEditText.setLayoutParams(layoutParams);
 			mPathEditText.setBackgroundResource(R.drawable.bg_navbar_textfield);
-			mPathEditText.setTextColor(Color.BLACK);
+			mPathEditText.setTextColor(getResources().getColor(
+					R.color.navbar_details));
 			mPathEditText.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 			mPathEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
 			mPathEditText

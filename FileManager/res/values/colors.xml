@@ -1,4 +1,5 @@
 
     <resources>
-        <color name="navbar_details">#CCFFFFFF</color>
+        <color name="navbar_background">#E4D59B</color>
+        <color name="navbar_details">#99333333</color>
     </resources>

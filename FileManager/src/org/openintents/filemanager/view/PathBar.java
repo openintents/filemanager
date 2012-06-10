@@ -100,7 +100,7 @@ public class PathBar extends ViewFlipper {
 			this.addView(standardModeLayout);
 		}
 
-		// ImageButton
+		// ImageButton -- GONE. Kept this code in case we need to use an right-aligned button in the future.
 		mSwitchToManualModeButton = new ImageButton(getContext());
 		{
 			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
@@ -113,12 +113,7 @@ public class PathBar extends ViewFlipper {
 			mSwitchToManualModeButton
 					.setBackgroundResource(R.drawable.bg_navbar_btn_right);
 			mSwitchToManualModeButton
-					.setOnClickListener(new View.OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							switchToManualInput();
-						}
-					});
+					.setVisibility(View.GONE);
 
 			standardModeLayout.addView(mSwitchToManualModeButton);
 		}
@@ -464,4 +459,9 @@ public class PathBar extends ViewFlipper {
 		public void directoryChanged(File newCurrentDir);
 	}
 
+	public PathButtonLayout getPathButtonLayout() {
+		return mPathButtons;
+	}
+	
+	
 }

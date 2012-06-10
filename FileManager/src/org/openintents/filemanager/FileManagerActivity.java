@@ -34,6 +34,7 @@ import org.openintents.filemanager.util.ExtractManager;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.MimeTypeParser;
 import org.openintents.filemanager.util.MimeTypes;
+import org.openintents.filemanager.view.LegacyActionContainer;
 import org.openintents.filemanager.view.PathBar;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
@@ -61,6 +62,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
@@ -86,7 +88,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -206,24 +207,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
           
      private EditText mEditFilename;
      private Button mButtonPick;
-     
-     /**
-      * @since 2011-02-11
-      */
-     private Button mButtonMove;
-
-     /**
-      * @since 2011-02-11
-      */
-     private Button mButtonCopy;
-
-     /**
-      * @since 2011-02-11
-      */
-     private Button mButtonDelete;
-
-    private Button mButtonCompress;
-     
+          
      private boolean fileDeleted = false;
      private int positionAtDelete;
      private boolean deletedFileIsDirectory = false;
@@ -234,11 +218,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
       * @since 2011-02-11
       */
      private LinearLayout mActionNormal;
-
-     /**
-      * @since 2011-02-11
-      */
-     private LinearLayout mActionMultiselect;
+     private LegacyActionContainer mLegacyActionContainer;
 
      private TextView mEmptyText;
      private ProgressBar mProgressBar;
@@ -258,7 +238,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      static final public int MESSAGE_SET_PROGRESS = 501;	// Set progress bar, arg1 = current value, arg2 = max value
      static final public int MESSAGE_ICON_CHANGED = 502;	// View needs to be redrawn, obj = IconifiedText
 
-     private ImageView mCheckIconSelect;
      private boolean mSelected = false;
 
     /**
@@ -320,7 +299,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
 		mPathBar = (PathBar) findViewById(R.id.pathbar);
 		mActionNormal = (LinearLayout) findViewById(R.id.action_normal);
-		mActionMultiselect = (LinearLayout) findViewById(R.id.action_multiselect);
+		mLegacyActionContainer =  (LegacyActionContainer) findViewById(R.id.action_multiselect);
 		mEditFilename = (EditText) findViewById(R.id.filename);
 
 		mButtonPick = (Button) findViewById(R.id.button_pick);
@@ -337,6 +316,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 				showDirectoryChildren(newCurrentDir);
 			}
 		});
+		mLegacyActionContainer.setFileManagerActivity(this);
 
 		// Create map of extensions:
 		getMimeTypes();
@@ -382,73 +362,77 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 				// Remove buttons
 				mPathBar.setVisibility(View.GONE);
 				mActionNormal.setVisibility(View.GONE);
-
-				// Multi select action: move
-				mButtonMove = (Button) findViewById(R.id.button_move);
-				mButtonMove.setOnClickListener(new View.OnClickListener() {
-
-					public void onClick(View arg0) {
-						if (checkSelection()) {
-							promptDestinationAndMoveFile();
-						}
-					}
-				});
-
-				// Multi select action: copy
-				mButtonCopy = (Button) findViewById(R.id.button_copy);
-				mButtonCopy.setOnClickListener(new View.OnClickListener() {
-
-					public void onClick(View arg0) {
-						if (checkSelection()) {
-							promptDestinationAndCopyFile();
-						}
-					}
-				});
-
-				// Multi select action: delete
-				mButtonDelete = (Button) findViewById(R.id.button_delete);
-				mButtonDelete.setOnClickListener(new View.OnClickListener() {
-
-					public void onClick(View arg0) {
-						if (checkSelection()) {
-							showDialog(DIALOG_MULTI_DELETE);
-						}
-					}
-				});
-
-				// Multi select action: delete
-				mButtonCompress = (Button) findViewById(R.id.button_compress_zip);
-				mButtonCompress.setOnClickListener(new View.OnClickListener() {
-
-					public void onClick(View arg0) {
-						if (checkSelection()) {
-							showDialog(DIALOG_MULTI_COMPRESS_ZIP);
-						}
-					}
-				});
-
-				// Cache the checked and unchecked icons
-				mIconChecked = getResources().getDrawable(
-						R.drawable.ic_button_checked);
-				mIconUnchecked = getResources().getDrawable(
-						R.drawable.ic_button_unchecked);
-
-				mCheckIconSelect = (ImageView) findViewById(R.id.check_icon_select);
-				mCheckIconSelect.setOnClickListener(new View.OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						mSelected = !mSelected;
-
-						if (mSelected) {
-							mCheckIconSelect.setImageDrawable(mIconChecked);
-						} else {
-							mCheckIconSelect.setImageDrawable(mIconUnchecked);
-						}
-
-						toggleSelection(mSelected);
-					}
-				});
+				mLegacyActionContainer.setVisibility(View.VISIBLE);
+				
+				mLegacyActionContainer.setMenuResource(R.menu.multiselect);
+				
+//
+//				// Multi select action: move
+//				mButtonMove = (Button) findViewById(R.id.button_move);
+//				mButtonMove.setOnClickListener(new View.OnClickListener() {
+//
+//					public void onClick(View arg0) {
+//						if (checkSelection()) {
+//							promptDestinationAndMoveFile();
+//						}
+//					}
+//				});
+//
+//				// Multi select action: copy
+//				mButtonCopy = (Button) findViewById(R.id.button_copy);
+//				mButtonCopy.setOnClickListener(new View.OnClickListener() {
+//
+//					public void onClick(View arg0) {
+//						if (checkSelection()) {
+//							promptDestinationAndCopyFile();
+//						}
+//					}
+//				});
+//
+//				// Multi select action: delete
+//				mButtonDelete = (Button) findViewById(R.id.button_delete);
+//				mButtonDelete.setOnClickListener(new View.OnClickListener() {
+//
+//					public void onClick(View arg0) {
+//						if (checkSelection()) {
+//							showDialog(DIALOG_MULTI_DELETE);
+//						}
+//					}
+//				});
+//
+//				// Multi select action: delete
+//				mButtonCompress = (Button) findViewById(R.id.button_compress_zip);
+//				mButtonCompress.setOnClickListener(new View.OnClickListener() {
+//
+//					public void onClick(View arg0) {
+//						if (checkSelection()) {
+//							showDialog(DIALOG_MULTI_COMPRESS_ZIP);
+//						}
+//					}
+//				});
+//
+//				// Cache the checked and unchecked icons
+//				mIconChecked = getResources().getDrawable(
+//						R.drawable.ic_button_checked);
+//				mIconUnchecked = getResources().getDrawable(
+//						R.drawable.ic_button_unchecked);
+//
+//				mCheckIconSelect = (ImageView) findViewById(R.id.check_icon_select);
+//				mCheckIconSelect.setOnClickListener(new View.OnClickListener() {
+//
+//					@Override
+//					public void onClick(View v) {
+//						mSelected = !mSelected;
+//
+//						if (mSelected) {
+//							mCheckIconSelect.setImageDrawable(mIconChecked);
+//						} else {
+//							mCheckIconSelect.setImageDrawable(mIconUnchecked);
+//						}
+//
+//						toggleSelection(mSelected);
+//					}
+//				});
 
 			}
 
@@ -462,7 +446,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
 		if (mState != STATE_MULTI_SELECT) {
 			// Remove multiselect action buttons
-			mActionMultiselect.setVisibility(View.GONE);
+			mLegacyActionContainer.setVisibility(View.GONE);
 		}
 
 		// Set current directory and file based on intent data.
@@ -1397,7 +1381,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                                mDialogExistsAction = DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP;
                                showDialog(DIALOG_WARNING_EXISTS);
                            } else {
-                               compressMultiFile(editText1.getText().toString());
+                               compressMultiFile(editText1.getText().toString(), null);
                            } //match this behavior to your OK button
 						   dismissDialog(DIALOG_MULTI_COMPRESS_ZIP);
 					   }
@@ -1416,7 +1400,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                                 mDialogExistsAction = DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP;
                                 showDialog(DIALOG_WARNING_EXISTS);
                             } else {
-                                compressMultiFile(editText1.getText().toString());
+                                compressMultiFile(editText1.getText().toString(), null);
                             }
                         }
                     }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
@@ -1431,7 +1415,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                             android.R.string.ok, new OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP)){
-                                compressMultiFile(mDialogArgument);
+                                compressMultiFile(mDialogArgument, null);
                             } else if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
                                 File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), mNewFileName);
                                 rename(FileUtils.getFile(mPathBar.getCurrentDirectory(), mOldFileName), newFile);
@@ -1752,7 +1736,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
         return false;
    }
-	
+
    private void toggleSelection(boolean selected) {
 	   for(IconifiedText it : mDirectoryEntries){
 		   it.setSelected(selected);
@@ -1792,7 +1776,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     }
 	
 	private void promptDestinationAndCopyFile() {
-
 		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
 		
 		intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
@@ -1831,7 +1814,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		}
 	}
 
-    private void compressMultiFile(String out) {
+    /**
+     * 
+     * @param out The name of the produced file.
+     * @param listener A listener to be notified on compression completion.
+     */
+    private void compressMultiFile(String out, CompressManager.OnCompressFinishedListener listener) {
         List<File> files = new ArrayList<File>();
         for (IconifiedText it : mDirectoryEntries) {
             if (!it.isSelected()) {
@@ -1841,7 +1829,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
             File file = FileUtils.getFile(mPathBar.getCurrentDirectory(), it.getText());
             files.add(file);
         }
-        new CompressManager(FileManagerActivity.this).compress(files, out);
+        new CompressManager(FileManagerActivity.this).setOnCompressFinishedListener(listener).compress(files, out);
     }
 
 	/*! Recursively delete a directory and all of its children.
@@ -2343,5 +2331,54 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	    }
 	}
 
+	/**
+	 * Performs copying if this activity was launched as multiselection instance.
+	 */
+	public void actionCopy(){
+        if (checkSelection()) {
+            promptDestinationAndCopyFile();
+        }
+	}
 
+	/**
+	 * Performs moving if this activity was launched as multiselection instance.
+	 */
+	public void actionMove(){
+        if (checkSelection()) {
+            promptDestinationAndMoveFile();
+        }
+	}
+	
+	/**
+	 * Performs deletion if this activity was launched as multiselection instance.
+	 */
+	public void actionDelete(){
+	    if (checkSelection()) {
+	        showDialog(DIALOG_MULTI_DELETE);
+	    }
+	}
+
+	/**
+	 * Performs compression if this activity was launched as multiselection instance.
+	 */
+	public void actionCompress(){
+		compressMultiFile(mPathBar.getCurrentDirectory().getName()+".zip", null);
+	}
+
+	/**
+	 * Performs send if this activity was launched as multiselection instance.
+	 */
+	public void actionSend(){
+		final String sendFileName = mPathBar.getCurrentDirectory().getName()+"-attachment.zip";
+		compressMultiFile(sendFileName, new CompressManager.OnCompressFinishedListener(){
+			@Override
+			public void compressFinished() {
+				Intent i = new Intent();
+				i.setAction(Intent.ACTION_SEND);
+				i.setType("application/zip");
+				i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(mPathBar.getCurrentDirectory().getAbsolutePath() + "/" + sendFileName)));
+				startActivity(Intent.createChooser(i, getString(R.string.send_chooser_title)));
+			}
+        });
+	}
 }

@@ -1,0 +1,9 @@
+<!-- inflate this menu along with context.xml when the file is an archive -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_extract"
+        android:title="@string/menu_extract">
+    </item>
+
+</menu>

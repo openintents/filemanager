@@ -1,0 +1,9 @@
+<!-- inflate this menu along with context.xml when the details fragment is not visible -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_details"
+        android:title="@string/menu_details">
+    </item>
+
+</menu>

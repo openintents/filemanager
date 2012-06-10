@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_bookmarks"
+        android:title="@string/menu_bookmarks">
+    </item>
+    <item
+        android:id="@+id/menu_search"
+        android:title="@string/menu_search">
+    </item>
+    <item
+        android:id="@+id/menu_create_folder"
+        android:title="@string/menu_create_folder">
+    </item>
+    <item
+        android:id="@+id/menu_about"
+        android:title="@string/menu_about">
+    </item>
+
+</menu>

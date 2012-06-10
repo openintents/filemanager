@@ -11,7 +11,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnLongClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -20,8 +19,8 @@ import android.widget.LinearLayout;
  * This class handles the displaying of children in {@link Mode.STANDARD_INPUT}, including choosing which children to display, how, and where. It automatically uses the {@link PathBar#mCurrentDirectory} field. <b>Note: </b> Never use this with
  * a width of WRAP_CONTENT.
  */
-class PathButtonLayout extends LinearLayout implements OnLongClickListener {
-	private PathBar mPathBar = null;
+class PathButtonLayout extends LinearLayout {
+	private PathBar mNavigationBar = null;
 	/** <absolute path, R.drawable id of image to use> */
 	public static HashMap<String, Integer> mPathDrawables = new HashMap<String, Integer>();
 
@@ -37,7 +36,6 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 
 	private void init() {
 		this.setOrientation(LinearLayout.HORIZONTAL);
-		this.setOnLongClickListener(this);
 
 		mPathDrawables.put("/sdcard", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard", R.drawable.ic_navbar_sdcard);
@@ -46,8 +44,8 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 		mPathDrawables.put("/", R.drawable.ic_navbar_home);
 	}
 
-	public void setNavigationBar(PathBar pathbar) {
-		mPathBar = pathbar;
+	public void setNavigationBar(PathBar navbar) {
+		mNavigationBar = navbar;
 	}
 
 	/**
@@ -77,7 +75,7 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 			if ((cChar == '/' || i == path.length() - 1)) { // if folder name ended, or path string ended but not if we 're on root
 				// add a button
 				this.addView(PathButtonFactory.newButton(cPath.toString(),
-						mPathBar));
+						mNavigationBar));
 			}
 		}
 	}
@@ -251,7 +249,6 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 					navbar.cd((File) v.getTag());
 				}
 			});
-			btn.setOnLongClickListener(navbar.getPathButtonLayout());
 			btn.setBackgroundResource(R.drawable.bg_navbar_btn_standard);
 
 			return btn;
@@ -263,11 +260,5 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 		private static View newButton(String path, PathBar navbar) {
 			return newButton(new File(path), navbar);
 		}
-	}
-
-	@Override
-	public boolean onLongClick(View v) {
-		mPathBar.switchToManualInput();
-		return true;
 	}
 }

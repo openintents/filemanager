@@ -192,23 +192,4 @@
     <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
 
     <string name="change_file_extension">Do you want to change the file extension?</string>
-    
-    
-    <!-- new menu strings -->
-    <string name="menu_bookmarks">Bookmarks</string>
-    <string name="menu_search">Search</string>
-    <string name="menu_create_folder">Create folder</string>
-    <string name="menu_multiselect">Multiselect</string>
-    <string name="menu_about">About</string>
-    
-    <string name="menu_compress_send">Compress and send</string>
-    <string name="menu_delete">Delete</string>
-    <string name="menu_move">Move</string>
-    <string name="menu_copy">Copy</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">Rename</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Details</string>
-    <string name="send_chooser_title">Send using:</string>
 </resources>

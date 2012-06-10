@@ -100,7 +100,7 @@ public class PathBar extends ViewFlipper {
 			this.addView(standardModeLayout);
 		}
 
-		// ImageButton -- GONE. Kept this code in case we need to use an right-aligned button in the future.
+		// ImageButton
 		mSwitchToManualModeButton = new ImageButton(getContext());
 		{
 			// Keep this view from taking up too much unecessary space.
@@ -115,7 +115,12 @@ public class PathBar extends ViewFlipper {
 			mSwitchToManualModeButton
 					.setBackgroundResource(R.drawable.bg_navbar_btn_edit);
 			mSwitchToManualModeButton
-					.setVisibility(View.GONE);
+					.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							switchToManualInput();
+						}
+					});
 
 			standardModeLayout.addView(mSwitchToManualModeButton);
 		}
@@ -463,9 +468,4 @@ public class PathBar extends ViewFlipper {
 		public void directoryChanged(File newCurrentDir);
 	}
 
-	public PathButtonLayout getPathButtonLayout() {
-		return mPathButtons;
-	}
-	
-	
 }

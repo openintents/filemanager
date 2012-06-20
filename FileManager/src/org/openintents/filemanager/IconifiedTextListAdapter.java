@@ -21,6 +21,7 @@ import java.io.File;
 import java.util.ArrayList; 
 import java.util.List; 
 
+import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.MimeTypes;
 
@@ -159,7 +160,15 @@ public class IconifiedTextListAdapter extends BaseAdapter implements Filterable 
      public long getItemId(int position) { 
           return position; 
      } 
-     
+
+	/**
+      * Return true for the {@link FileMultiChoiceModeHelper} to actually work.
+      */
+	@Override
+	public boolean hasStableIds() {
+		return true;
+	}
+
      public ThumbnailLoader getThumbnailLoader(){
     	 return mThumbnailLoader;
      }

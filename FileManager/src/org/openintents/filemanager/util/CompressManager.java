@@ -1,19 +1,25 @@
 package org.openintents.filemanager.util;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import org.openintents.filemanager.FileManagerActivity;
+import org.openintents.filemanager.R;
+import org.openintents.intents.FileManagerIntents;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
-import org.openintents.filemanager.FileManagerActivity;
-import org.openintents.filemanager.R;
-import org.openintents.intents.FileManagerIntents;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 public class CompressManager {
     /**
@@ -26,6 +32,7 @@ public class CompressManager {
     private ProgressDialog progressDialog;
     private int fileCount;
     private String fileOut;
+	private OnCompressFinishedListener onCompressFinishedListener = null;
 
     public CompressManager(FileManagerActivity activity) {
         this.activity = activity;
@@ -43,7 +50,7 @@ public class CompressManager {
             return;
         }
         this.fileOut = list.get(0).getParent()+File.separator+out;
-        fileCount=0;
+        fileCount = 0;
         for (File f: list){
             fileCount += FileUtils.getFileCount(f);
         }
@@ -69,7 +76,10 @@ public class CompressManager {
                 byte[] buf = new byte[BUFFER_SIZE];
                 int len;
                 FileInputStream in = new FileInputStream(file);
-                zos.putNextEntry(new ZipEntry(path + "/" + file.getName()));
+                if(path.length() > 0)
+                	zos.putNextEntry(new ZipEntry(path + "/" + file.getName()));
+                else
+                	zos.putNextEntry(new ZipEntry(file.getName()));
                 while ((len = in.read(buf)) > 0) {
                     zos.write(buf, 0, len);
                 }
@@ -140,8 +150,20 @@ public class CompressManager {
                 activity.setResult(activity.RESULT_OK, intent);
                 activity.finish();
             } else {
-                activity.showDirectoryChildren(null);
+                activity.showDirectory(null);
             }
+            
+            if(onCompressFinishedListener != null)
+            	onCompressFinishedListener.compressFinished();
         }
     }
+    
+    public interface OnCompressFinishedListener{
+    	public abstract void compressFinished();
+    }
+
+	public CompressManager setOnCompressFinishedListener(OnCompressFinishedListener listener) {
+		this.onCompressFinishedListener = listener;
+		return this;
+	}
 }

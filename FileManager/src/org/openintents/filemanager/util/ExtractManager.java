@@ -120,7 +120,7 @@ public class ExtractManager {
             } else if (result == success){
                 Toast.makeText(activity, R.string.extracting_success, Toast.LENGTH_SHORT).show();
             }
-            activity.showDirectoryChildren(null);
+            activity.showDirectory(null);
         }
     }
 }

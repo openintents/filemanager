@@ -22,7 +22,7 @@
     <org.openintents.filemanager.view.PathBar
         android:id="@+id/pathbar"
         android:layout_width="fill_parent" 
-        android:layout_height="@dimen/pathBar_height">
+        android:layout_height="@dimen/topBar_height">
 	</org.openintents.filemanager.view.PathBar>
     <FrameLayout
         android:layout_width="fill_parent" 
@@ -41,42 +41,13 @@
 				    android:layout_height="wrap_content"
 				    android:minWidth="64dip" />
 		</LinearLayout>
-		<LinearLayout android:id="@+id/action_multiselect"
+		<org.openintents.filemanager.view.LegacyActionContainer
+		    android:id="@+id/action_multiselect"
 			android:orientation="horizontal"
+			android:background="@drawable/bg_top_bar"
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content">
-			<Button android:id="@+id/button_move"
-					android:text="@string/move_button_multiselect"
-					android:layout_width="fill_parent" 
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:maxLines="1" />
-			<Button android:id="@+id/button_copy"
-					android:text="@string/copy_button_multiselect"
-					android:layout_width="fill_parent" 
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:maxLines="1" />
-			<Button android:id="@+id/button_delete"
-					android:text="@string/delete_button_multiselect"
-					android:layout_width="fill_parent" 
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:maxLines="1" />
-            <Button android:id="@+id/button_compress_zip"
-                    android:text="@string/compress_zip_button_multiselect"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:maxLines="1" />
-			<ImageView android:id="@+id/check_icon_select"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:minWidth="23dp"
-					android:layout_marginRight="4dp"
-					android:layout_gravity="right|center_vertical"
-					android:src="@drawable/ic_button_unchecked" />
-		</LinearLayout>
+        	android:layout_height="@dimen/topBar_height" android:visibility="gone" >
+		</org.openintents.filemanager.view.LegacyActionContainer>
 	</FrameLayout>
     <!-- 
     <LinearLayout
@@ -106,7 +77,8 @@
             android:layout_width="fill_parent" 
             android:layout_height="fill_parent"
             android:fastScrollEnabled="true"
-            android:drawSelectorOnTop="false"/>
+            android:drawSelectorOnTop="false"
+            android:requiresFadingEdge="vertical"/>
         
         <!-- Here is the view to show if the list is empty -->
         

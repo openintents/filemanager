@@ -256,7 +256,7 @@ public class DirectoryScanner extends Thread {
 
 		clearData();
 	}
-	
+		
 	private void updateProgress(int progress, int maxProgress) {
 		// Only update the progress bar every n steps...
 		if ((progress % PROGRESS_STEPS) == 0) {

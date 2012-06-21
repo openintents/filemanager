@@ -438,7 +438,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	                    }
 	              });
 
-                  // Multi select action: delete
+                  // Multi select action: zip
                   mButtonCompress = (Button) findViewById(R.id.button_compress_zip);
                   mButtonCompress.setOnClickListener(new View.OnClickListener() {
 

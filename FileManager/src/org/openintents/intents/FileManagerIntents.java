@@ -79,4 +79,6 @@ public final class FileManagerIntents {
 	 */
 	public static final String EXTRA_WRITEABLE_ONLY = "org.openintents.extra.WRITEABLE_ONLY";
 
+	public static final String EXTRA_SHORTCUT_TARGET = "org.openintents.extra.SHORTCUT_TARGET";
+
 }

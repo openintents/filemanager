@@ -295,8 +295,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		// Create map of extensions:
 		getMimeTypes();
 
-		mState = STATE_BROWSE;
-
 		Intent intent = getIntent();
 		String action = intent.getAction();
 
@@ -311,7 +309,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		mWritableOnly = false;
 
 		if (action != null) {
-
 			if (action.equals(FileManagerIntents.ACTION_PICK_FILE)) {
 				mState = STATE_PICK_FILE;
 				mFilterFiletype = intent.getStringExtra("FILE_EXTENSION");
@@ -339,7 +336,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 				mLegacyActionContainer.setVisibility(View.VISIBLE);
 				mLegacyActionContainer.setMenuResource(R.menu.multiselect);
 			}
-
 		}
 
 		// Set current directory and file based on intent data.
@@ -363,6 +359,18 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 					}
 				}
 			}
+		}
+		
+		// If we've gotten here through the shortcut, override everything
+		if(intent.getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET) != null) {
+			file = new File(intent.getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET));
+			if (!file.isDirectory()) {
+				mEditFilename.setText(file.getName());
+				browseTo(file);
+				finish();
+			}
+			else
+				mPathBar.setInitialDirectory(file);
 		}
 		
 		String title = intent.getStringExtra(FileManagerIntents.EXTRA_TITLE);
@@ -640,6 +648,26 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	  Toast.makeText(this, R.string.application_not_available, Toast.LENGTH_SHORT).show();
           };
      } 
+ 	
+     /**
+      * Creates a home screen shortcut.
+      * @param file The file to create the shortcut to.
+      */
+     private void createShortcut(File file) {
+ 		Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
+ 		shortcutintent.putExtra("duplicate", false);
+ 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, file.getName());
+ 		Parcelable icon = Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.ic_launcher_shortcut);
+ 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
+ 		shortcutintent.putExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET, file.getAbsolutePath());
+
+ 		// Intent to load
+ 		Intent itl = new Intent(getApplicationContext(), FileManagerActivity.class);
+ 		itl.putExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET, file.getAbsolutePath());
+ 		
+ 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, itl);
+ 		sendBroadcast(shortcutintent);
+     }
 
      /**
       * Changes the list's contents to show the children of the passed directory.
@@ -2112,11 +2140,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		
 		// Remember current selection
         IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
-        
         if (adapter == null) {
       	  return false;
         }
-        
         IconifiedText ic = (IconifiedText) adapter.getItem(position);
 		mContextText = ic.getText();
 		mContextIcon = ic.getIcon();
@@ -2125,6 +2151,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		switch (item.getItemId()) {
 		case R.id.menu_open:
             openFile(mContextFile); 
+			return true;
+			
+		case R.id.menu_create_shortcut:
+            createShortcut(mContextFile);
 			return true;
 			
 		case R.id.menu_move:
@@ -2191,7 +2221,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
 		return false;
 	}
-	
+
 	public boolean handleMultipleSelectionAction(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_send:

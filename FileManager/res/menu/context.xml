@@ -15,6 +15,11 @@
         android:title="@string/menu_send">
     </item>
     <item
+        android:id="@+id/menu_create_shortcut"
+        android:title="@string/menu_create_shortcut"
+        android:icon="@drawable/ic_action_create_shortcut">
+    </item>
+    <item
         android:id="@+id/menu_move"
         android:icon="@drawable/ic_action_cut"
         android:title="@string/menu_move">

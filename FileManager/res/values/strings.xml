@@ -193,7 +193,6 @@
 
     <string name="change_file_extension">Do you want to change the file extension?</string>
     
-    
     <!-- new menu strings -->
     <string name="menu_bookmarks">Bookmarks</string>
     <string name="menu_search">Search</string>
@@ -215,4 +214,6 @@
     
     <!-- Multi selection action strings -->
     <string name="selected">selected</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
 </resources>

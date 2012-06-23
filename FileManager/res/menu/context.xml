@@ -6,43 +6,43 @@
     </item>
     <item
         android:id="@+id/menu_delete"
-        android:title="@string/menu_delete"
-        android:icon="@drawable/ic_action_delete">
+        android:icon="@drawable/ic_action_delete"
+        android:title="@string/menu_delete">
     </item>
     <item
         android:id="@+id/menu_send"
-        android:title="@string/menu_send"
-        android:icon="@drawable/ic_action_send">
+        android:icon="@drawable/ic_action_send"
+        android:title="@string/menu_send">
     </item>
     <item
         android:id="@+id/menu_move"
-        android:title="@string/menu_move"
-        android:icon="@drawable/ic_action_cut">
+        android:icon="@drawable/ic_action_cut"
+        android:title="@string/menu_move">
     </item>
     <item
         android:id="@+id/menu_copy"
-        android:title="@string/menu_copy"
-        android:icon="@drawable/ic_action_copy">
+        android:icon="@drawable/ic_action_copy"
+        android:title="@string/menu_copy">
     </item>
     <item
         android:id="@+id/menu_rename"
-        android:title="@string/menu_rename"
-        android:icon="@drawable/ic_action_rename">
+        android:icon="@drawable/ic_action_rename"
+        android:title="@string/menu_rename">
     </item>
     <item
         android:id="@+id/menu_compress"
-        android:title="@string/menu_compress"
-        android:icon="@drawable/ic_action_compress">
+        android:icon="@drawable/ic_action_compress"
+        android:title="@string/menu_compress">
     </item>
     <item
         android:id="@+id/menu_extract"
-        android:title="@string/menu_extract"
-        android:icon="@drawable/ic_action_compress">
+        android:icon="@drawable/ic_action_compress"
+        android:title="@string/menu_extract">
     </item>
     <item
         android:id="@+id/menu_bookmark"
-        android:title="@string/menu_bookmark"
-        android:icon="@drawable/ic_action_bookmarks">
+        android:icon="@drawable/ic_action_bookmarks"
+        android:title="@string/menu_bookmark">
     </item>
     <item
         android:id="@+id/menu_more"
@@ -50,8 +50,8 @@
     </item>
     <item
         android:id="@+id/menu_details"
-        android:title="@string/menu_details"
-        android:icon="@drawable/ic_action_details">
+        android:icon="@drawable/ic_action_details"
+        android:title="@string/menu_details">
     </item>
 
 </menu>

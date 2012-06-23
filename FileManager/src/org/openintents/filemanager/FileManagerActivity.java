@@ -28,7 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openintents.distribution.DistributionLibraryListActivity;
+import org.openintents.filemanager.bookmarks.BookmarkListActivity;
+import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
+import org.openintents.filemanager.compatibility.ListViewMethodHelper;
 import org.openintents.filemanager.util.CompressManager;
 import org.openintents.filemanager.util.ExtractManager;
 import org.openintents.filemanager.util.FileUtils;
@@ -118,6 +121,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	protected static final int REQUEST_CODE_MOVE = 1;
 	protected static final int REQUEST_CODE_COPY = 2;
     protected static final int REQUEST_CODE_EXTRACT = 4;
+    protected static final int REQUEST_CODE_BOOKMARKS = 5;
 
     /**
      * @since 2011-02-11
@@ -825,7 +829,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			return true;
 		
 		case R.id.menu_bookmarks:
-			showDialog(DIALOG_BOOKMARKS);
+			startActivityForResult(new Intent(FileManagerActivity.this, BookmarkListActivity.class), REQUEST_CODE_BOOKMARKS);
 			return true;
 			
 		case android.R.id.home:
@@ -1968,6 +1972,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
             	showDirectory(null);
             }
             break;
+        case REQUEST_CODE_BOOKMARKS:
+            if (resultCode == RESULT_OK && data != null) {
+            	browseTo(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)));
+            }
+            break;
         }
 		
 	}
@@ -2230,7 +2239,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			}
 			return res;
 		} else
-			return getListView().getCheckedItemCount();
+			return ListViewMethodHelper.listView_getCheckedItemCount(getListView());
 	}
 
 	/**
@@ -2255,24 +2264,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	    // Else we use the CAB and list.
 		} else {
 			// This is actually the array of positions. Check the adapter's implementation for more info.
-			long[] ids = getListView().getCheckedItemIds();
+			long[] ids = ListViewMethodHelper.listView_getCheckedItemIds(getListView());
 			
 			for (int i = 0; i < ids.length; i++) {
 				files.add(FileUtils.getFile(mPathBar.getCurrentDirectory(),
 						mDirectoryEntries[(int) ids[i]].getText()));
-			}
-		}
-		return files;
-	}
-
-	private ArrayList<File> getSelectedItemsFiles(Integer[] pos) {
-		ArrayList<File> files = new ArrayList<File>();
-
-		for (int i = 0; i < pos.length; i++) {
-			if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB) {
-				File file = FileUtils.getFile(mPathBar.getCurrentDirectory(),
-						mDirectoryEntries[pos[i]].getText());
-				files.add(file);
 			}
 		}
 		return files;

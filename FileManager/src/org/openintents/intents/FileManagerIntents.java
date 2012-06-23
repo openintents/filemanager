@@ -16,7 +16,6 @@
 
 package org.openintents.intents;
 
-import android.content.Intent;
 
 // Version Dec 9, 2008
 

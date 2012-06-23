@@ -216,11 +216,11 @@ public class FileUtils {
      */
     public static boolean checkIfZipArchive(File f){
     	int l = f.getName().length();
-    	if(f.getName().substring(l-4, l).equals(".zip"))
+    	if(f.isFile() && f.getName().substring(l-4, l).equals(".zip"))
     		return true;
     	return false;
     	
-    	// Old way. REALLY slow. 
+    	// Old way. REALLY slow. Too slow for realtime action loading.
 //        try {
 //            new ZipFile(f);
 //            return true;

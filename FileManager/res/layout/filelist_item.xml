@@ -18,7 +18,7 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-	android:padding="8dip"
+    android:padding="8dp"
 	android:minHeight="?android:attr/listPreferredItemHeight"
 	style="@style/listItemBackground" >
 	 

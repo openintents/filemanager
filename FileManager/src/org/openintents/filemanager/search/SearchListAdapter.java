@@ -1,5 +1,7 @@
 package org.openintents.filemanager.search;
 
+import java.io.File;
+
 import org.openintents.filemanager.R;
 
 import android.content.Context;
@@ -12,10 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Uses deprecated requery methods as the other ones are available on 11 and up, plus the actual queries are too cheap to block the thread for too long.
- * 
+ * Simple adapter for displaying search results.
  * @author George Venios
- * 
+ *
  */
 public class SearchListAdapter extends CursorAdapter {
 
@@ -27,8 +28,11 @@ public class SearchListAdapter extends CursorAdapter {
 	public void bindView(View view, Context context, Cursor cursor) {
 		ViewHolder h = (ViewHolder) view.getTag();
 		
+		File f = new File(cursor.getString(cursor.getColumnIndex(SearchResultsProvider.COLUMN_PATH)));
+		
 		h.filename.setText(cursor.getString(cursor.getColumnIndex(SearchResultsProvider.COLUMN_NAME)));
-		h.path.setText(cursor.getString(cursor.getColumnIndex(SearchResultsProvider.COLUMN_PATH)));
+		h.path.setText(f.getAbsolutePath());
+		h.icon.setImageResource(f.isDirectory()? R.drawable.ic_launcher_folder : R.drawable.ic_launcher_file);
 	}
 
 	@Override

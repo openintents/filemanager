@@ -1,5 +1,6 @@
 package org.openintents.filemanager.search;
 
+import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.intents.FileManagerIntents;
@@ -11,15 +12,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.database.CursorWrapper;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.ListView;
 
 /**
- * The activity that handles queries and shows search results.
+ * The activity that handles queries and shows search results. 
+ * Also handles search-suggestion triggered intents.
  * 
  * @author George Venios
  * 
@@ -102,7 +108,11 @@ public class SearchableActivity extends ListActivity {
 			in.putExtra(FileManagerIntents.EXTRA_SEARCH_INIT_PATH, path);
 			in.putExtra(FileManagerIntents.EXTRA_SEARCH_QUERY, query);
 			startService(in);
-		} else
+		} // We're here because of a clicked suggestion
+		else if(Intent.ACTION_VIEW.equals(intent.getAction())){
+			browse(intent.getData());
+		}
+		else
 			// Intent contents error.
 			setTitle(R.string.query_error);
 	}
@@ -126,5 +136,23 @@ public class SearchableActivity extends ListActivity {
 
 	private Cursor getSearchResults() {
 		return getContentResolver().query(SearchResultsProvider.CONTENT_URI, null, null, null, SearchResultsProvider.COLUMN_ID + " ASC");
+	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Cursor c = new CursorWrapper(searchResults);
+		c.moveToPosition(position);
+		String path = c.getString(c.getColumnIndex(SearchResultsProvider.COLUMN_PATH));
+		
+		browse(Uri.parse(path));
+	}
+
+	private void browse(Uri path) {
+		Intent intent = new Intent(this, FileManagerActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.setData(path);
+		
+		startActivity(intent);
+		finish();
 	}
 }

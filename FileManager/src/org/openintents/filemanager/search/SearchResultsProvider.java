@@ -11,6 +11,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
+/**
+ * Used by the standard search Service, in order to provide results asynchronously to the SearchableActivity.
+ * @author George Venios
+ *
+ */
 public class SearchResultsProvider extends ContentProvider {
 	private static final int DATABASE_VERSION = 1;
 	private static final String DATABASE_NAME = "filemanager_search.db";
@@ -38,6 +43,7 @@ public class SearchResultsProvider extends ContentProvider {
 	public boolean onCreate() {
 		dbHelper = new DatabaseHelper(getContext());
 		db = dbHelper.getWritableDatabase();
+		
 		return (dbHelper == null) ? false : true;
 	}
 
@@ -70,7 +76,7 @@ public class SearchResultsProvider extends ContentProvider {
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
-		// We only write and delete the db. Not implemented for now.
+		// We only write, read and delete the db. Not implemented for now.
 		return 0;
 	}
 
@@ -86,15 +92,6 @@ public class SearchResultsProvider extends ContentProvider {
 		return SEARCH_MIMETYPE;
 	}
 
-	/**
-	 * Clears previous results.
-	 */
-	public void dropPreviousResults() {
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-		db.execSQL(DATABASE_CREATE);
-	}
-
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 
 		DatabaseHelper(Context context) {
@@ -106,7 +103,6 @@ public class SearchResultsProvider extends ContentProvider {
 			db.execSQL(DATABASE_CREATE);
 		}
 
-		/* !!! When changing database version, you MUST change this method. Currently, it would delete all users' bookmarks */
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);

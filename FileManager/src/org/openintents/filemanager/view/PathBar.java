@@ -85,7 +85,7 @@ public class PathBar extends ViewFlipper {
 		mCurrentDirectory = Environment.getExternalStorageDirectory();
 		mInitialDirectory = Environment.getExternalStorageDirectory();
 
-		this.setBackgroundResource(R.drawable.pathbar_background);
+		this.setBackgroundResource(R.drawable.bg_pathbar);
 		this.setInAnimation(getContext(), R.anim.fade_in);
 		this.setOutAnimation(getContext(), R.anim.fade_out);
 

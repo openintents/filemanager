@@ -31,6 +31,7 @@ import org.openintents.distribution.DistributionLibraryListActivity;
 import org.openintents.filemanager.bookmarks.BookmarkListActivity;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
+import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.compatibility.ListViewMethodHelper;
 import org.openintents.filemanager.util.CompressManager;
 import org.openintents.filemanager.util.ExtractManager;
@@ -43,6 +44,7 @@ import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -98,6 +100,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("NewApi")
 public class FileManagerActivity extends DistributionLibraryListActivity implements OnSharedPreferenceChangeListener { 
 	private static final String TAG = "FileManagerActivity";
 
@@ -230,12 +233,24 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     private String mNewFileName;
 
     /**
-     * use this filed to set behaviour in DIALOG_WARNING_EXISTS
+     * use this field to set behaviour in DIALOG_WARNING_EXISTS
      */
     private String mDialogExistsAction = "";
 
 	private ThumbnailLoader mThumbnailLoader;
 
+	@Override
+	protected void onNewIntent(Intent intent) { 
+		File file = FileUtils.getFile(intent.getData());
+		if(file != null)
+			if (!file.isDirectory()) {
+				mEditFilename.setText(file.getName());
+				browseTo(file);
+			}
+			else
+				mPathBar.cd(file);
+	}
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -259,6 +274,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.filelist);
 
+		// Enable home button.
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+			HomeIconHelper.activity_actionbar_setHomeButtonEnabled(this);
+		
+		// Search every time user types.
+		setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
+		
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(this);
@@ -440,7 +462,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			mButtonPick.setVisibility(View.GONE);
 			
 			// Handle multiselection.
-			if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB){
+			if(VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB){
 				registerForContextMenu(getListView());
 			}
 			else{
@@ -787,7 +809,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
  		MenuInflater inflater = new MenuInflater(this);
  		inflater.inflate(R.menu.main, menu);
 
- 		if (mState != STATE_BROWSE || android.os.Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
+ 		if (mState != STATE_BROWSE || Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
  			menu.removeItem(R.id.menu_multiselect);
         }
  		
@@ -802,13 +824,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		
  		// We only know about ".nomedia" once we have the results list back.
 		boolean showMediaScanMenuItem = PreferenceActivity.getMediaScanFromPreference(this);
- 		if (showMediaScanMenuItem && mListDir != null) {
-			if (mNoMedia) {
-				menu.findItem(R.id.menu_media_scan_include).setVisible(true);
-			} else {
-				menu.findItem(R.id.menu_media_scan_exclude).setVisible(true);
- 			}
- 		}
+		if (showMediaScanMenuItem && mListDir != null) {
+			menu.findItem(R.id.menu_media_scan_include).setVisible(mNoMedia);
+			menu.findItem(R.id.menu_media_scan_exclude).setVisible(!mNoMedia);
+		}
 
 		// Generate any additional actions that can be performed on the
 		// overall list. This allows other applications to extend
@@ -1451,11 +1470,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		File file = FileUtils.getFile(mPathBar.getCurrentDirectory(), NOMEDIA_FILE);
 		if (file.delete()) {
 			Toast.makeText(this, getString(R.string.media_scan_included), Toast.LENGTH_LONG).show();
+			
 			mNoMedia = false;
 		} else {
 			// That didn't work.
 			Toast.makeText(this, getString(R.string.error_generic), Toast.LENGTH_LONG).show();
 		}
+		showDirectory(null);
 	}
 
 	private void excludeFromMediaScan() {
@@ -1472,6 +1493,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			// That didn't work.
 			Toast.makeText(this, getString(R.string.error_generic) + e.getMessage(), Toast.LENGTH_LONG).show();
 		}
+		showDirectory(null);
 	}
 
    private void toggleSelection(boolean selected) {
@@ -1856,10 +1878,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		}
 	}
 	
-	// The following functions should properly handle back button presses on every API Level.
+	// The following methods should properly handle back button presses on every API Level.
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.DONUT) {
+		if (VERSION.SDK_INT > VERSION_CODES.DONUT) {
 			if (keyCode == KeyEvent.KEYCODE_BACK && mPathBar.pressBack())
 				return true;
 		}
@@ -1869,7 +1891,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.DONUT) {
+		if (VERSION.SDK_INT <= VERSION_CODES.DONUT) {
 			if (keyCode == KeyEvent.KEYCODE_BACK && mPathBar.pressBack())
 				return true;
 		}
@@ -2302,5 +2324,17 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			}
 		}
 		return files;
+	}
+	
+	/**
+	 * We override this, so that we get informed about the opening of the search dialog and start scanning silently.
+	 */
+	@Override
+	public boolean onSearchRequested() {
+		Bundle appData = new Bundle();
+		appData.putString(FileManagerIntents.EXTRA_SEARCH_INIT_PATH, mPathBar.getCurrentDirectory().getAbsolutePath());
+		startSearch(null, false, appData, false);
+		
+		return true;
 	}
 }

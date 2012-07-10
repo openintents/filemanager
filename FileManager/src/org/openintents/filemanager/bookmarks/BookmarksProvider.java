@@ -26,7 +26,6 @@ public class BookmarksProvider extends ContentProvider implements BaseColumns{
     		"vnd.android.cursor.item/vnd.openintents.bookmark";
     public static final String BOOKMARKS_MIMETYPE =
     		"vnd.android.cursor.dir/vnd.openintents.bookmark";
-    
 
     private static final int BOOKMARKS = 1;
     private static final int BOOKMARK_ID = 2;
@@ -39,7 +38,6 @@ public class BookmarksProvider extends ContentProvider implements BaseColumns{
 
     private DatabaseHelper dbHelper;
     private SQLiteDatabase db;
-
 
     private static final String DATABASE_CREATE =
         String.format("CREATE TABLE %s (%s integer primary key autoincrement, "

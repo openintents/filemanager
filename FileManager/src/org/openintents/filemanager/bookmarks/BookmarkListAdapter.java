@@ -7,7 +7,6 @@ import org.openintents.filemanager.R;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

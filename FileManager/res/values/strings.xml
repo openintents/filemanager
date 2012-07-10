@@ -217,4 +217,13 @@
     <string name="selected">selected</string>
     
     <string name="bookmark_empty">No bookmarks added.</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
 </resources>

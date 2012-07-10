@@ -16,12 +16,18 @@
 
 package org.openintents.filemanager;
 
+import org.openintents.filemanager.search.SearchableActivity;
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 public class PreferenceActivity extends android.preference.PreferenceActivity
                                 implements OnSharedPreferenceChangeListener {
@@ -52,6 +58,27 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 		/* Set the onSharedPreferenceChanged listener summary to its initial value */
 		changeListPreferenceSummaryToCurrentValue((ListPreference)findPreference("sortby"));
+		
+		// Initialize search history reset confirmation dialog.
+		findPreference("clear_search_button").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				new AlertDialog.Builder(PreferenceActivity.this)
+				.setTitle(R.string.preference_search_title)
+				.setMessage(R.string.preference_search_dialog_message)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+				    public void onClick(DialogInterface dialog, int whichButton) {
+				    	SearchableActivity.clearSearchRecents(PreferenceActivity.this);
+				    	Toast.makeText(PreferenceActivity.this, R.string.search_history_cleared, Toast.LENGTH_SHORT).show();
+				    }})
+				 .setNegativeButton(android.R.string.cancel, null).show();
+				
+				return true;
+			}
+		});
+		
+	
 	}
 
 	@Override

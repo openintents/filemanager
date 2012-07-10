@@ -22,7 +22,7 @@ public class SearchSuggestionsProvider extends ContentProvider {
 	public static final String PROVIDER_NAME = "org.openintents.filemanager.search.suggest";
 	public static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER_NAME);
 
-	private static final int MAX_SUGGESTIONS = 10;
+	private static final int MAX_SUGGESTIONS = 5;
 
 	private ArrayList<ContentValues> mSuggestions = new ArrayList<ContentValues>();
 	private SearchCore searcher;

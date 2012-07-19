@@ -16,7 +16,6 @@
 
 package org.openintents.intents;
 
-import android.content.Intent;
 
 // Version Dec 9, 2008
 
@@ -55,6 +54,10 @@ public final class FileManagerIntents {
 	 */
 	public static final String ACTION_MULTI_SELECT = "org.openintents.action.MULTI_SELECT";
 
+	public static final String ACTION_SEARCH_STARTED = "org.openintents.action.SEARCH_STARTED";
+	
+	public static final String ACTION_SEARCH_FINISHED = "org.openintens.action.SEARCH_FINISHED";
+	
 	/**
 	 * The title to display.
 	 * 
@@ -80,4 +83,19 @@ public final class FileManagerIntents {
 	 */
 	public static final String EXTRA_WRITEABLE_ONLY = "org.openintents.extra.WRITEABLE_ONLY";
 
+	public static final String EXTRA_SHORTCUT_TARGET = "org.openintents.extra.SHORTCUT_TARGET";
+
+	/**
+	 * The path to prioritize in search. Usually denotes the path the user was on when the search was initiated.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.SEARCH_INIT_PATH"</p>
+	 */
+	public static final String EXTRA_SEARCH_INIT_PATH = "org.openintents.extra.SEARCH_INIT_PATH";
+
+	/**
+	 * The search query as sent to SearchService.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.SEARCH_QUERY"</p>
+	 */
+	public static final String EXTRA_SEARCH_QUERY = "org.openintents.extra.SEARCH_QUERY";
 }

@@ -1,0 +1,6 @@
+
+    <resources>
+        <style name="listItemBackground">
+            <item name="android:background">@null</item>
+        </style>
+    </resources>

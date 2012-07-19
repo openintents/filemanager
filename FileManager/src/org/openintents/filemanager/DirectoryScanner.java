@@ -21,10 +21,10 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.support.v2.os.Build;
 import android.util.Log;
 
 public class DirectoryScanner extends Thread {
@@ -168,12 +168,8 @@ public class DirectoryScanner extends Thread {
 					String fileName = currentFile.getName(); 
 					
 					// Is this the ".nomedia" file?
-					if (!noMedia) {
-						if (fileName.equalsIgnoreCase(".nomedia")) {
-							// It is!
-							noMedia = true;
-						}
-					}
+					if(fileName.equalsIgnoreCase(".nomedia"))
+						noMedia = true;
 
 					String mimetype = mMimeTypes.getMimeType(fileName);
 
@@ -256,7 +252,7 @@ public class DirectoryScanner extends Thread {
 
 		clearData();
 	}
-	
+		
 	private void updateProgress(int progress, int maxProgress) {
 		// Only update the progress bar every n steps...
 		if ((progress % PROGRESS_STEPS) == 0) {

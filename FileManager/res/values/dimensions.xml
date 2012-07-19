@@ -1,0 +1,4 @@
+
+    <resources>
+        <dimen name="topBar_height">50dp</dimen>
+    </resources>

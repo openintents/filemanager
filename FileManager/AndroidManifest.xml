@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
  * Copyright (C) 2007-2012 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,14 +12,15 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
- -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.openintents.filemanager"
+ * limitations under the License.
+-->
+<manifest package="org.openintents.filemanager"
     android:installLocation="auto"
-	android:versionName="1.2"
-	android:versionCode="20">
-	<!-- History: 
+    android:versionCode="20"
+    android:versionName="1.2" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+    History: 
 	 * * * UPDATE ATRACKDOG METADATA BELOW FOR RELEASE CANDIDATES * * *
 	[20] 1.2: 2012-02-18
 	[19] 1.2-rc2: 2012-02-04
@@ -33,118 +34,192 @@
 	[5] 1.1.0: 2009-10-30
 	[3] 1.0.2: 2009-10-15
 	[2] 1.0.1: 2009-01-16 
-	[1] 1.0.0: 2008-12-10
-	-->
-	
-        <uses-sdk android:minSdkVersion="2"
-            android:targetSdkVersion="15" />
-        <!-- If targetSdkVersion is increased from 4 to 5 or higher, 
+	[1] 1.0.0: 2008-12-10
+    -->
+
+    <uses-sdk
+        android:minSdkVersion="4"
+        android:targetSdkVersion="15" />
+    <!--
+             If targetSdkVersion is increased from 4 to 5 or higher, 
         	the following needs to be adjusted:
              * FileManagerActivity: onKeyDown(): New way how "back" key is handled.
-            NOTE: Tested on target=9, and it works both on Android 2.3 and Android 1.6. -->
-     
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	    
-    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
-    
-    <application android:icon="@drawable/ic_launcher_folder" android:label="@string/app_name">
-    
+            NOTE: Tested on target=9, and it works both on Android 2.3 and Android 1.6.
+    -->
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+
+    <application
+        android:icon="@drawable/ic_launcher_folder"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Light.DarkTitle" >
+
         <!-- aTrackDog metadata -->
-        <meta-data android:name="com.a0soft.gphone.aTrackDog.testVersion"
-           android:value="19" />
-           
-		<meta-data android:name="org.openintents.about"
-                   android:resource="@xml/about" />
-                       
-        <activity android:name=".FileManagerActivity" android:label="@string/app_name"
-                       android:configChanges="orientation" >
+        <meta-data
+            android:name="com.a0soft.gphone.aTrackDog.testVersion"
+            android:value="19" />
+        <meta-data
+            android:name="org.openintents.about"
+            android:resource="@xml/about" />
+
+        <activity
+            android:name=".FileManagerActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-			<intent-filter>
-  			  <action android:name="android.intent.action.VIEW" />
- 			  <category android:name="android.intent.category.DEFAULT" />
- 			  <data android:scheme="file" />
-			</intent-filter>
             <intent-filter>
-                <action android:name="org.openintents.action.PICK_FILE"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.openintents.action.PICK_FILE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="file" />
                 <data android:mimeType="*/*" />
             </intent-filter>
             <intent-filter>
-                <action android:name="org.openintents.action.PICK_FILE"/>
+                <action android:name="org.openintents.action.PICK_FILE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="file" />
             </intent-filter>
             <intent-filter>
-                <action android:name="org.openintents.action.PICK_FILE"/>
+                <action android:name="org.openintents.action.PICK_FILE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="org.openintents.action.PICK_DIRECTORY"/>
+                <action android:name="org.openintents.action.PICK_DIRECTORY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="file" />
             </intent-filter>
             <intent-filter>
-                <action android:name="org.openintents.action.PICK_DIRECTORY"/>
+                <action android:name="org.openintents.action.PICK_DIRECTORY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-				<action android:name="android.intent.action.GET_CONTENT" />
-				<data android:mimeType="*/*" />
+                <action android:name="android.intent.action.GET_CONTENT" />
+
+                <data android:mimeType="*/*" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.OPENABLE" />
             </intent-filter>
 
-		    <!-- Filter for a multi select feature -->
-   			<intent-filter>
-                <action android:name="org.openintents.action.MULTI_SELECT"/>
+            <!-- Filter for a multi select feature -->
+            <intent-filter>
+                <action android:name="org.openintents.action.MULTI_SELECT" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="file" />
             </intent-filter>
+            <meta-data android:name="android.app.default_searchable"
+                   android:value=".search.SearchableActivity" />
         </activity>
-        
-        <activity android:name=".PreferenceActivity" android:label="@string/settings" />
-        
+        <activity android:name=".bookmarks.BookmarkListActivity" >
+        </activity>
+        <activity
+            android:name=".PreferenceActivity"
+            android:label="@string/settings" />
+
         <!-- Filters for the Save as feature -->
-        <activity android:name=".SaveAsActivity" android:label="Save as">
+        <activity
+            android:name=".SaveAsActivity"
+            android:label="Save as" >
+
             <!-- Save as a file: scheme (e.g. After downloading attachment in GMail -->
-            <!-- ** DEACTIVATED FOR NOW, because it interferes with many commands **
+            <!--
+            ** DEACTIVATED FOR NOW, because it interferes with many commands **
             <intent-filter>
 		        <action android:name="android.intent.action.VIEW" />
 		        <category android:name="android.intent.category.DEFAULT" />
 		        <category android:name="android.intent.category.BROWSABLE" />
 		        <data android:scheme="file" android:host="*" android:mimeType="*/*"/>
-       		</intent-filter>
-       		 -->
+       		</intent-filter>
+            -->
             <!-- Save as a content: scheme with CATHEGORY_OPENABLE - the right way -->
             <intent-filter>
-		        <action android:name="android.intent.action.VIEW" />
-		        <category android:name="android.intent.category.OPENABLE" />
-		        <data android:scheme="content" android:mimeType="*/*"/>
-       		</intent-filter>
-            <!-- Special intent for GMail attachments. GMail doesn't use CATEGORY_OPENABLE,
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.OPENABLE" />
+
+                <data
+                    android:mimeType="*/*"
+                    android:scheme="content" />
+            </intent-filter>
+            <!--
+                 Special intent for GMail attachments. GMail doesn't use CATEGORY_OPENABLE,
             	 although it's possible to use ContentResolver.openFileReader().
             	 For further applications like GMail, just copy following five lines and change "gmail-ls"
-            	 to something else. You will also have to do some changes in SaveAsActivity.java -->
-            <!-- ** DEACTIVATED FOR NOW, because it interferes with many commands **
+            	 to something else. You will also have to do some changes in SaveAsActivity.java
+            -->
+            <!--
+            ** DEACTIVATED FOR NOW, because it interferes with many commands **
             <intent-filter>
 		        <action android:name="android.intent.action.VIEW" />
 		        <category android:name="android.intent.category.DEFAULT" />
 		        <data android:scheme="content" android:mimeType="*/*" android:host="gmail-ls"/>
-       		</intent-filter>
-       		 -->
- 		</activity>
-		<provider
-		    android:name=".BookmarksProvider"
-		    android:authorities="org.openintents.filemanager.bookmarks"></provider>
-		
-    <provider android:name=".FileManagerProvider" android:authorities="org.openintents.filemanager"></provider>
-    
-		<!-- Activities from OI Distribution Library -->
-        <activity android:name="org.openintents.distribution.EulaActivity" />
-        <activity android:name="org.openintents.distribution.NewVersionActivity" />
-</application>
-</manifest> 
+       		</intent-filter>
+            -->
+        </activity>
+
+        <provider
+            android:name=".bookmarks.BookmarksProvider"
+            android:authorities="org.openintents.filemanager.bookmarks" >
+        </provider>
+        <provider
+            android:name=".search.SearchResultsProvider"
+            android:authorities="org.openintents.filemanager.search" >
+        </provider>
+        <provider
+            android:name=".search.SearchSuggestionsProvider"
+            android:authorities="org.openintents.filemanager.search.suggest" >
+        </provider>
+        <provider
+            android:name=".FileManagerProvider"
+            android:authorities="org.openintents.filemanager" >
+        </provider>
+
+        <!-- Activities from OI Distribution Library -->
+        <activity
+            android:name="org.openintents.distribution.EulaActivity"
+            android:theme="@android:style/Theme.DeviceDefault" />
+        
+        <activity
+            android:name="org.openintents.distribution.NewVersionActivity"
+            android:theme="@android:style/Theme.DeviceDefault" />
+        
+        <activity android:name=".search.SearchableActivity"
+                    android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <provider android:name=".search.RecentsSuggestionsProvider" android:authorities="org.openintents.filemanager.search.SuggestionProvider"></provider>
+        <service android:name=".search.SearchService"></service>
+    </application>
+
+</manifest>

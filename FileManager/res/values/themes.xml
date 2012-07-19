@@ -1,0 +1,22 @@
+<resources>
+	<!-- We use this theme to be consistent across OEM themes. -->
+    <style name="Theme.Light.DarkTitle" parent="@android:style/Theme.Light">
+        <item name="android:windowTitleBackgroundStyle">@style/TitleBackgroundStyle</item>
+        <item name="android:windowTitleStyle">@style/WindowTitleStyle</item>
+        <item name="android:windowTitleSize">30dp</item>
+    </style>
+    
+    <style name="TitleBackgroundStyle">
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:background">@drawable/ab_solid_dark_holo</item>
+    </style>
+    
+    <style name="WindowTitleStyle">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.WindowTitle</item>
+        <item name="android:shadowColor">#BB000000</item>
+        <item name="android:shadowRadius">2.75</item>
+    </style>
+</resources>

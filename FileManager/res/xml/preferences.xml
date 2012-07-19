@@ -59,10 +59,11 @@
                 android:defaultValue="true"
                 android:summaryOff="@string/preference_displayhiddenfiles_summary_off"
                 android:summaryOn="@string/preference_displayhiddenfiles_summary_on" />
-
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/bookmarks">
-        <Preference android:key="editbookmarks" android:title="@string/bookmarks_manage"/>
+    
+    <PreferenceCategory
+            android:title="@string/preference_search_category">
+    	<Preference android:key="clear_search_button" android:title="@string/preference_search_title"/>
     </PreferenceCategory>
 </PreferenceScreen>
     

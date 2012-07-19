@@ -49,7 +49,7 @@
     <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Include in media scan</string>
     <string name="menu_exclude_from_media_scan">Exclude from media scan</string>
-    <string name="menu_bookmark">Add to bookmarks</string>
+    <string name="menu_bookmark">Bookmark</string>
     <string name="menu_refresh">Refresh</string>
     
     <string name="create_new_folder">Create new folder</string>
@@ -192,4 +192,38 @@
     <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
 
     <string name="change_file_extension">Do you want to change the file extension?</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Bookmarks</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About</string>
+    
+    <string name="menu_compress_send">Compress and send</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_move">Move</string>
+    <string name="menu_copy">Copy</string>
+    <string name="menu_compress">Compress</string>
+    <string name="menu_rename">Rename</string>
+    
+    <string name="menu_extract">Extract</string>
+    <string name="menu_details">Details</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="send_chooser_title">Send using:</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">selected</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
 </resources>

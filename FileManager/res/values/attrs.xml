@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- This is needed for correct menu inflation of menu resources by the LegacyActionContainer class. -->
+    <declare-styleable name="MenuAttributes">
+        <attr name="android:id" />
+        <attr name="android:icon" />
+        <attr name="android:title" />
+    </declare-styleable>
+
+</resources>

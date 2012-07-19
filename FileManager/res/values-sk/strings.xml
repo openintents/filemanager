@@ -82,7 +82,10 @@
     <string name="move_button_multiselect">Presunúť</string>
     <string name="copy_button_multiselect">Kopírovať</string>
     <string name="delete_button_multiselect">Zmazať</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Označiť viacero súborov</string>
     <string name="error_selection">Prosím označte jeden alebo viac súborov.</string>
     

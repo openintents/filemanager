@@ -61,7 +61,7 @@
     <string name="menu_include_in_media_scan">Incluir en la exploración de archivos multimedia</string>
     <string name="menu_exclude_from_media_scan">Excluir de la exploración de archivos multimedia</string>
     <string name="menu_bookmark">Añadir a marcadores</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_refresh">Actualizar</string>
     
     <string name="create_new_folder">Crear nueva carpeta</string>
     <string name="folder_name">Nombre de carpeta</string>
@@ -90,7 +90,10 @@
     <string name="move_button_multiselect">Mover</string>
     <string name="copy_button_multiselect">Copiar</string>
     <string name="delete_button_multiselect">Borrar</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Seleccione varios archivos</string>
     <string name="error_selection">Por favor, seleccione uno o mas archivos</string>
     

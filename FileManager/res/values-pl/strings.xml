@@ -87,7 +87,10 @@
     <string name="move_button_multiselect">Przenieś</string>
     <string name="copy_button_multiselect">Kopiuj</string>
     <string name="delete_button_multiselect">Usuń</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">Kod pocztowy</string>
+
     <string name="multiselect_title">Zaznacz wiele plików</string>
     <string name="error_selection">Proszę wybrać plik(i).</string>
     

@@ -2,7 +2,7 @@
 OI File Manager
 
 # Promo text:
-Manage files on the SD card with OI File Manager.
+Gérer les fichiers sur la carte SD avec OI File Manager
 
 # Description:
 OI File Manager vous permet de naviguer sur votre carte SD, créer des répertoires, renommer, copier, déplacer et supprimer le gestionnaire de fichiers files.OI vous permet de parcourir votre carte SD, créer des répertoires, renommer, copier, déplacer et supprimer des fichiers. Il agit aussi comme une extension à d'autres applications à afficher  "Ouvrir " et  "Sauvegarder " dialogues. 
@@ -38,7 +38,7 @@ Mots-clés:
 * OI, IO, OpenIntents, Open Intents
 
 Les versions internationales: 
-Gestor de fitxers d'OI., OI 파일 관리자, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fájlkezelő, OI Filbehandler, OI File Manager, OI File Manedyer, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI ھۆججەت باشقۇرغۇچ, OI مدير پرونده‌, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI文件管理器, مدير الملفات OI, מנהל קבצים OI, 檔案總管
+Gestor de fitxers d'OI., OI 파일 관리자, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fájlkezelő, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI ھۆججەت باشقۇرغۇچ, OI مدير پرونده‌, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI文件管理器, مدير الملفات OI, מנהל קבצים OI, 檔案總管
 
 
 Les chaînes de recherche pour le marché: 

@@ -22,7 +22,8 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Arne Tobias Malkenes Ødegaard https://launchpad.net/~arne-tobias
-  OpenIntents devs https://launchpad.net/~openintents-devs</string>
+  OpenIntents devs https://launchpad.net/~openintents-devs
+  Simen https://launchpad.net/~simen-burud</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
     <string name="about_comments">Administrer filer på SD-kortet med OI Filbehandler.</string>  
@@ -81,7 +82,10 @@
     <string name="move_button_multiselect">Flytt</string>
     <string name="copy_button_multiselect">Kopier</string>
     <string name="delete_button_multiselect">Slett</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Velg flere filer</string>
     <string name="error_selection">Vennligst velg en eller flere fil(er).</string>
     

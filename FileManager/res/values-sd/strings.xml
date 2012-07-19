@@ -83,7 +83,10 @@
     <string name="move_button_multiselect">खिस्कयोस</string>
     <string name="copy_button_multiselect">कापी कयो</string>
     <string name="delete_button_multiselect">मिटायो</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">हिक्क खान वधीक फईलोयूं चुन्द्यो</string>
     <string name="error_selection">कृपा करे हिक्क या  वधीक फईल्यूं चुन्द्यो</string>
     

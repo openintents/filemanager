@@ -81,7 +81,10 @@
     <string name="move_button_multiselect">Prestavi</string>
     <string name="copy_button_multiselect">Kopiraj</string>
     <string name="delete_button_multiselect">Izbriši</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Izberi več datotek</string>
     <string name="error_selection">Prosim izberi eno ali več datotek.</string>
     

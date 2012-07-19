@@ -84,7 +84,10 @@
     <string name="move_button_multiselect">移動</string>
     <string name="copy_button_multiselect">コピー</string>
     <string name="delete_button_multiselect">削除</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">複数のファイルを選択する</string>
     <string name="error_selection">一つ以上のふぃあるを選択してください。</string>
     

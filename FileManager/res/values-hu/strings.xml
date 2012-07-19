@@ -81,7 +81,10 @@
     <string name="move_button_multiselect">Áthelyez</string>
     <string name="copy_button_multiselect">Másol</string>
     <string name="delete_button_multiselect">Töröl</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">Több fájl kiválasztása</string>
     <string name="error_selection">Kérlek, válassz ki egy vagy több fájlt!</string>
     

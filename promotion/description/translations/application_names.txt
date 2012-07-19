@@ -7,6 +7,7 @@ OI Dateimanager
 OI Dosya Yöneticisi
 OI Failu pārvaldnieks
 OI Fájlkezelő
+OI Fajl Meneger
 OI Filbehandler
 OI File Manager
 OI File Manedyer

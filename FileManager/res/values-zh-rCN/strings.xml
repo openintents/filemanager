@@ -83,7 +83,10 @@
     <string name="move_button_multiselect">移动</string>
     <string name="copy_button_multiselect">复制</string>
     <string name="delete_button_multiselect">删除</string>
+
+    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
     <string name="compress_zip_button_multiselect">ZIP</string>
+
     <string name="multiselect_title">选择多个文件</string>
     <string name="error_selection">请选择一个或多个文件。</string>
     

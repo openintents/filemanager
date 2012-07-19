@@ -19,7 +19,6 @@ package org.openintents.filemanager.util;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Date;
-import java.util.zip.ZipFile;
 
 import android.content.Context;
 import android.net.Uri;
@@ -216,12 +215,18 @@ public class FileUtils {
      * @return if is archive - returns true othewise
      */
     public static boolean checkIfZipArchive(File f){
-        try {
-            new ZipFile(f);
-            return true;
-        } catch (Exception e){
-            return false;
-        }
+    	int l = f.getName().length();
+    	if(f.isFile() && f.getName().substring(l-4, l).equals(".zip"))
+    		return true;
+    	return false;
+    	
+    	// Old way. REALLY slow. Too slow for realtime action loading.
+//        try {
+//            new ZipFile(f);
+//            return true;
+//        } catch (Exception e){
+//            return false;
+//        }
     }
 
     private static void calculateFileCount(File file){

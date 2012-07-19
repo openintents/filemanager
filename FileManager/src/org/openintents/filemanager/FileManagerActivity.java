@@ -25,19 +25,26 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.openintents.distribution.DistributionLibraryListActivity;
+import org.openintents.filemanager.bookmarks.BookmarkListActivity;
+import org.openintents.filemanager.bookmarks.BookmarksProvider;
+import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
+import org.openintents.filemanager.compatibility.HomeIconHelper;
+import org.openintents.filemanager.compatibility.ListViewMethodHelper;
 import org.openintents.filemanager.util.CompressManager;
 import org.openintents.filemanager.util.ExtractManager;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.MimeTypeParser;
 import org.openintents.filemanager.util.MimeTypes;
+import org.openintents.filemanager.view.LegacyActionContainer;
+import org.openintents.filemanager.view.PathBar;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -59,26 +66,26 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Message;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
-import android.support.v2.os.Build;
-import android.support.v2.view.MenuCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.inputmethod.EditorInfo;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
@@ -87,14 +94,13 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("NewApi")
 public class FileManagerActivity extends DistributionLibraryListActivity implements OnSharedPreferenceChangeListener { 
 	private static final String TAG = "FileManagerActivity";
 
@@ -118,35 +124,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	protected static final int REQUEST_CODE_MOVE = 1;
 	protected static final int REQUEST_CODE_COPY = 2;
     protected static final int REQUEST_CODE_EXTRACT = 4;
+    protected static final int REQUEST_CODE_BOOKMARKS = 5;
 
     /**
      * @since 2011-02-11
      */
     private static final int REQUEST_CODE_MULTI_SELECT = 3;
 
-	private static final int MENU_PREFERENCES = Menu.FIRST + 3;
-	private static final int MENU_NEW_FOLDER = Menu.FIRST + 4;
-	private static final int MENU_DELETE = Menu.FIRST + 5;
-	private static final int MENU_RENAME = Menu.FIRST + 6;
-	private static final int MENU_SEND = Menu.FIRST + 7;
-	private static final int MENU_OPEN = Menu.FIRST + 8;
-	private static final int MENU_MOVE = Menu.FIRST + 9;
-	private static final int MENU_COPY = Menu.FIRST + 10;
-	/**
-     * @since 2011-09-29
-     */
-    private static final int MENU_MORE = Menu.FIRST + 11;
-	private static final int MENU_INCLUDE_IN_MEDIA_SCAN = Menu.FIRST + 12;
-	private static final int MENU_EXCLUDE_FROM_MEDIA_SCAN = Menu.FIRST + 13;
-	private static final int MENU_SETTINGS = Menu.FIRST + 14;
-	private static final int MENU_MULTI_SELECT = Menu.FIRST + 15;
-	private static final int MENU_FILTER = Menu.FIRST + 16;
-	private static final int MENU_DETAILS = Menu.FIRST + 17;
-	private static final int MENU_BOOKMARKS = Menu.FIRST + 18;
-	private static final int MENU_BOOKMARK = Menu.FIRST + 19;
-	private static final int MENU_COMPRESS = Menu.FIRST + 20;
-	private static final int MENU_EXTRACT = Menu.FIRST + 21;
-	private static final int MENU_REFRESH = Menu.FIRST + 22;
 	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
@@ -174,22 +158,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static final String BUNDLE_CONTEXT_FILE = "context_file";
 	private static final String BUNDLE_CONTEXT_TEXT = "context_text";
 	private static final String BUNDLE_SHOW_DIRECTORY_INPUT = "show_directory_input";
-	private static final String BUNDLE_STEPS_BACK = "steps_back";
 	private static final String BUNDLE_DIRECTORY_ENTRIES = "directory_entries";
 	
-	private static boolean mSoftKeyboardAvailable;
 	/** Shows whether activity state has been restored (e.g. from a rotation). */
 	private static boolean mRestored = false;
-	
-	static {
-		try {
-			org.openintents.filemanager.compatibility.SoftKeyboard.checkAvailable();
-			mSoftKeyboardAvailable = true;
-		} catch (Throwable t) {
-			mSoftKeyboardAvailable = false;
-		}
-	}
-	
 	
 	/** Contains directories and files together */
      private ArrayList<IconifiedText> directoryEntries = new ArrayList<IconifiedText>();
@@ -206,8 +178,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      // There's a ".nomedia" file here
      private boolean mNoMedia;
      
-     private File currentDirectory = new File(""); 
-     
      private String mSdCardPath = "";
      
      private MimeTypes mMimeTypes;
@@ -219,57 +189,27 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      private String mContextText;
      private File mContextFile = new File("");
      private Drawable mContextIcon;
-     
-     /** How many steps one can make back using the back key. */
-     private int mStepsBack;
-     
+          
      private EditText mEditFilename;
      private Button mButtonPick;
-     private LinearLayout mDirectoryButtons;
-     
-     /**
-      * @since 2011-02-11
-      */
-     private Button mButtonMove;
-
-     /**
-      * @since 2011-02-11
-      */
-     private Button mButtonCopy;
-
-     /**
-      * @since 2011-02-11
-      */
-     private Button mButtonDelete;
-
-    private Button mButtonCompress;
-     
+          
      private boolean fileDeleted = false;
      private int positionAtDelete;
      private boolean deletedFileIsDirectory = false;
 
-     private LinearLayout mDirectoryInput;
-     private EditText mEditDirectory;
-     private ImageButton mButtonDirectoryPick;
+     private PathBar mPathBar;
+     private FileMultiChoiceModeHelper multiChoiceModeHelper;
      
      /**
       * @since 2011-02-11
       */
      private LinearLayout mActionNormal;
-
-     /**
-      * @since 2011-02-11
-      */
-     private LinearLayout mActionMultiselect;
+     private LegacyActionContainer mLegacyActionContainer;
 
      private TextView mEmptyText;
      private ProgressBar mProgressBar;
      
      private DirectoryScanner mDirectoryScanner;
-     private File mPreviousDirectory;
-     
-     private MenuItem mExcludeMediaScanMenuItem;
-     private MenuItem mIncludeMediaScanMenuItem;
      
      private Handler currentHandler;
 
@@ -280,9 +220,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
  	 static final public int MESSAGE_SHOW_DIRECTORY_CONTENTS = 500;	// List of contents is ready, obj = DirectoryContents
      static final public int MESSAGE_SET_PROGRESS = 501;	// Set progress bar, arg1 = current value, arg2 = max value
      static final public int MESSAGE_ICON_CHANGED = 502;	// View needs to be redrawn, obj = IconifiedText
-
-     private ImageView mCheckIconSelect;
-     private boolean mSelected = false;
 
     /**
      * use it field to pass params to onCreateDialog method
@@ -296,280 +233,247 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     private String mNewFileName;
 
     /**
-     * use this filed to set behaviour in DIALOG_WARNING_EXISTS
+     * use this field to set behaviour in DIALOG_WARNING_EXISTS
      */
     private String mDialogExistsAction = "";
 
-     private Drawable mIconChecked;
-     private Drawable mIconUnchecked;
-     
-     private ThumbnailLoader mThumbnailLoader;
-     
-     /** Called when the activity is first created. */ 
-     @Override 
-     public void onCreate(Bundle icicle) { 
-          super.onCreate(icicle); 
+	private ThumbnailLoader mThumbnailLoader;
 
-          mDistribution.setFirst(MENU_DISTRIBUTION_START, DIALOG_DISTRIBUTION_START);
-          
-          // Check whether EULA has been accepted
-          // or information about new version can be presented.
-          if (mDistribution.showEulaOrNewVersion()) {
-              return;
-          }
+	@Override
+	protected void onNewIntent(Intent intent) { 
+		File file = FileUtils.getFile(intent.getData());
+		if(file != null)
+			if (!file.isDirectory()) {
+				mEditFilename.setText(file.getName());
+				browseTo(file);
+			}
+			else
+				mPathBar.cd(file);
+	}
+	
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle icicle) {
+		super.onCreate(icicle);
 
-          currentHandler = new Handler() {
+		mDistribution.setFirst(MENU_DISTRIBUTION_START,
+				DIALOG_DISTRIBUTION_START);
+
+		// Check whether EULA has been accepted
+		// or information about new version can be presented.
+		if (mDistribution.showEulaOrNewVersion()) {
+			return;
+		}
+
+		currentHandler = new Handler() {
 			public void handleMessage(Message msg) {
 				FileManagerActivity.this.handleMessage(msg);
 			}
 		};
 
-		  requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-          setContentView(R.layout.filelist);
-          
-          
-          SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-          prefs.registerOnSharedPreferenceChangeListener(this);
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		setContentView(R.layout.filelist);
 
-          
-          mEmptyText = (TextView) findViewById(R.id.empty_text);
-          mProgressBar = (ProgressBar) findViewById(R.id.scan_progress);
+		// Enable home button.
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+			HomeIconHelper.activity_actionbar_setHomeButtonEnabled(this);
+		
+		// Search every time user types.
+		setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
+		
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		prefs.registerOnSharedPreferenceChangeListener(this);
 
-		  getListView().setOnCreateContextMenuListener(this);
-		  getListView().setEmptyView(findViewById(R.id.empty));
-	      getListView().setTextFilterEnabled(true);
-	      getListView().requestFocus();
-	      getListView().requestFocusFromTouch();
-	      
-          mDirectoryButtons = (LinearLayout) findViewById(R.id.directory_buttons);
-          mActionNormal = (LinearLayout) findViewById(R.id.action_normal);
-          mActionMultiselect = (LinearLayout) findViewById(R.id.action_multiselect);
-          mEditFilename = (EditText) findViewById(R.id.filename);
-          
+		mEmptyText = (TextView) findViewById(R.id.empty_text);
+		mProgressBar = (ProgressBar) findViewById(R.id.scan_progress);
 
-          mButtonPick = (Button) findViewById(R.id.button_pick);
-          
-          mButtonPick.setOnClickListener(new View.OnClickListener() {
-				
-				public void onClick(View arg0) {
-					pickFileOrDirectory();
+		getListView().setEmptyView(findViewById(R.id.empty));
+		getListView().setTextFilterEnabled(true);
+		getListView().requestFocus();
+		getListView().requestFocusFromTouch();
+
+		mPathBar = (PathBar) findViewById(R.id.pathbar);
+		mActionNormal = (LinearLayout) findViewById(R.id.action_normal);
+		mLegacyActionContainer =  (LegacyActionContainer) findViewById(R.id.action_multiselect);
+		mEditFilename = (EditText) findViewById(R.id.filename);
+
+		mButtonPick = (Button) findViewById(R.id.button_pick);
+		mButtonPick.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View arg0) {
+				pickFileOrDirectory();
+			}
+		});
+		mPathBar.setOnDirectoryChangedListener(new PathBar.OnDirectoryChangedListener() {
+
+			@Override
+			public void directoryChanged(File newCurrentDir) {
+				showDirectory(newCurrentDir);
+			}
+		});
+		mLegacyActionContainer.setFileManagerActivity(this);
+
+		// Create map of extensions:
+		getMimeTypes();
+
+		Intent intent = getIntent();
+		String action = intent.getAction();
+
+		resetSdCardPath();
+		if (!TextUtils.isEmpty(mSdCardPath))
+			mPathBar.setInitialDirectory(mSdCardPath);
+		else
+			mPathBar.setInitialDirectory("/");
+
+		// Default state
+		mState = STATE_BROWSE;
+		mWritableOnly = false;
+
+		if (action != null) {
+			if (action.equals(FileManagerIntents.ACTION_PICK_FILE)) {
+				mState = STATE_PICK_FILE;
+				mFilterFiletype = intent.getStringExtra("FILE_EXTENSION");
+				if (mFilterFiletype == null)
+					mFilterFiletype = "";
+				mFilterMimetype = intent.getType();
+				if (mFilterMimetype == null)
+					mFilterMimetype = "";
+			} else if (action.equals(FileManagerIntents.ACTION_PICK_DIRECTORY)) {
+				mState = STATE_PICK_DIRECTORY;
+				mWritableOnly = intent.getBooleanExtra(
+						FileManagerIntents.EXTRA_WRITEABLE_ONLY, false);
+
+				// Remove edit text and make button fill whole line
+				mEditFilename.setVisibility(View.GONE);
+				mButtonPick.setLayoutParams(new LinearLayout.LayoutParams(
+						LinearLayout.LayoutParams.MATCH_PARENT,
+						LinearLayout.LayoutParams.WRAP_CONTENT));
+			} else if (action.equals(FileManagerIntents.ACTION_MULTI_SELECT)) {
+				mState = STATE_MULTI_SELECT;
+
+				// Remove buttons
+				mPathBar.setVisibility(View.GONE);
+				mActionNormal.setVisibility(View.GONE);
+				mLegacyActionContainer.setVisibility(View.VISIBLE);
+				mLegacyActionContainer.setMenuResource(R.menu.multiselect);
+			}
+		}
+
+		// Set current directory and file based on intent data.
+		File file = FileUtils.getFile(intent.getData());
+		if (file != null) {
+			File dir = FileUtils.getPathWithoutFilename(file);
+			if (dir.isDirectory()) {
+				mPathBar.setInitialDirectory(dir);
+			}
+			if (!file.isDirectory()) {
+				mEditFilename.setText(file.getName());
+			}
+		} else {
+			if (mState == STATE_PICK_FILE || mState == STATE_PICK_DIRECTORY
+					|| action.equals(Intent.ACTION_GET_CONTENT)) {
+				String path = PreferenceActivity.getDefaultPickFilePath(this);
+				if (path != null) {
+					File dir = new File(path);
+					if (dir.exists() && dir.isDirectory()) {
+						mPathBar.setInitialDirectory(dir);
+					}
 				}
-          });
-          
-          // Initialize only when necessary:
-          mDirectoryInput = null;
-          
-          // Create map of extensions:
-          getMimeTypes();
-          
-          getSdCardPath();
-          
-          mState = STATE_BROWSE;
-          
-          Intent intent = getIntent();
-          String action = intent.getAction();
-          
-          File browseto = new File("/");
-          
-          if (!TextUtils.isEmpty(mSdCardPath)) {
-        	  browseto = new File(mSdCardPath);
-          }
-          
-          // Default state
-          mState = STATE_BROWSE;
-          mWritableOnly = false;
-          
-          if (action != null) {
-        	  
-        	  if (action.equals(FileManagerIntents.ACTION_PICK_FILE)) {
-        		  mState = STATE_PICK_FILE;        		
-        		  mFilterFiletype = intent.getStringExtra("FILE_EXTENSION");
-        		  if(mFilterFiletype == null)
-        			  mFilterFiletype = "";
-        		  mFilterMimetype = intent.getType();
-        		  if(mFilterMimetype == null)
-        			  mFilterMimetype = "";
-          	  } else if (action.equals(FileManagerIntents.ACTION_PICK_DIRECTORY)) {
-        		  mState = STATE_PICK_DIRECTORY;        		          		          
-        		  mWritableOnly = intent.getBooleanExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, false);
-        		  
-        		  // Remove edit text and make button fill whole line
-        		  mEditFilename.setVisibility(View.GONE);
-        		  mButtonPick.setLayoutParams(new LinearLayout.LayoutParams(
-        				  LinearLayout.LayoutParams.FILL_PARENT,
-        				  LinearLayout.LayoutParams.WRAP_CONTENT));
-        	  } else if (action.equals(FileManagerIntents.ACTION_MULTI_SELECT)) {
-	    		  mState = STATE_MULTI_SELECT;        		          		          
-	    		  
-	    		  // Remove buttons
-                  mDirectoryButtons.setVisibility(View.GONE);
-                  mActionNormal.setVisibility(View.GONE);
+			}
+		}
+		
+		// If we've gotten here through the shortcut, override everything
+		if(intent.getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET) != null) {
+			file = new File(intent.getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET));
+			if (!file.isDirectory()) {
+				mEditFilename.setText(file.getName());
+				browseTo(file);
+				finish();
+			}
+			else
+				mPathBar.setInitialDirectory(file);
+		}
+		
+		String title = intent.getStringExtra(FileManagerIntents.EXTRA_TITLE);
+		if (title != null) {
+			setTitle(title);
+		}
 
-                  // Multi select action: move
-	              mButtonMove = (Button) findViewById(R.id.button_move);
-	              mButtonMove.setOnClickListener(new View.OnClickListener() {
-	                    
-	                    public void onClick(View arg0) {
-	                        if (checkSelection()) {
-	                            promptDestinationAndMoveFile();
-	                        }
-	                    }
-	              });
-	              
-	              // Multi select action: copy
-	              mButtonCopy = (Button) findViewById(R.id.button_copy);
-	              mButtonCopy.setOnClickListener(new View.OnClickListener() {
-	                    
-	                    public void onClick(View arg0) {
-                            if (checkSelection()) {
-                                promptDestinationAndCopyFile();
-                            }
-	                    }
-	              });
-	            
-	              // Multi select action: delete
-	              mButtonDelete = (Button) findViewById(R.id.button_delete);
-	              mButtonDelete.setOnClickListener(new View.OnClickListener() {
-	                    
-	                    public void onClick(View arg0) {
-                            if (checkSelection()) {
-                                showDialog(DIALOG_MULTI_DELETE);
-                            }
-	                    }
-	              });
+		String buttontext = intent
+				.getStringExtra(FileManagerIntents.EXTRA_BUTTON_TEXT);
+		if (buttontext != null) {
+			mButtonPick.setText(buttontext);
+		}
 
-                  // Multi select action: delete
-                  mButtonCompress = (Button) findViewById(R.id.button_compress_zip);
-                  mButtonCompress.setOnClickListener(new View.OnClickListener() {
+		// Reset mRestored flag.
+		mRestored = false;
+		if (icicle != null) {
+			mPathBar.setInitialDirectory(icicle.getString(BUNDLE_CURRENT_DIRECTORY));
+			mContextFile = new File(icicle.getString(BUNDLE_CONTEXT_FILE));
+			mContextText = icicle.getString(BUNDLE_CONTEXT_TEXT);
 
-                      public void onClick(View arg0) {
-                          if (checkSelection()) {
-                              showDialog(DIALOG_MULTI_COMPRESS_ZIP);
-                          }
-                      }
-                  });
+			if (icicle.getBoolean(BUNDLE_SHOW_DIRECTORY_INPUT))
+				mPathBar.switchToManualInput();
+			else
+				mPathBar.switchToStandardInput();
 
-	              // Cache the checked and unchecked icons
-	              mIconChecked = getResources().getDrawable(R.drawable.ic_button_checked);
-	              mIconUnchecked = getResources().getDrawable(R.drawable.ic_button_unchecked);
-	              
-	              mCheckIconSelect = (ImageView) findViewById(R.id.check_icon_select);
-	              mCheckIconSelect.setOnClickListener(new View.OnClickListener() {
-					
-	            	  @Override
-	            	  public void onClick(View v) {
-	            		  mSelected = !mSelected;
-	            		  
-	            		  if(mSelected){
-	            			  mCheckIconSelect.setImageDrawable(mIconChecked);
-	            		  } else {
-	            			  mCheckIconSelect.setImageDrawable(mIconUnchecked);
-	            		  }
-	            		  
-	            		  toggleSelection(mSelected);
-	            	  }
-	              });
-	            
-  	    	  } 
-    	  
-          } 
-          
-          if (mState == STATE_BROWSE) {
-        	  // Remove edit text and button.
-        	  mEditFilename.setVisibility(View.GONE);
-        	  mButtonPick.setVisibility(View.GONE);
-          }
+			// had to bypass direct casting as it was causing a rather unexplainable crash
+			Parcelable tmpDirectoryEntries[] = icicle
+					.getParcelableArray(BUNDLE_DIRECTORY_ENTRIES);
+			mDirectoryEntries = new IconifiedText[tmpDirectoryEntries.length];
+			for (int i = 0; i < tmpDirectoryEntries.length; i++) {
+				mDirectoryEntries[i] = (IconifiedText) tmpDirectoryEntries[i];
+			}
+			mRestored = true;
+		}
 
-          if (mState != STATE_MULTI_SELECT) {
-    		  // Remove multiselect action buttons
-    		  mActionMultiselect.setVisibility(View.GONE);
-          }
+		getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
 
-          // Set current directory and file based on intent data.
-    	  File file = FileUtils.getFile(intent.getData());
-    	  if (file != null) {
-    		  File dir = FileUtils.getPathWithoutFilename(file);
-    		  if (dir.isDirectory()) {
-    			  browseto = dir;
-    		  }
-    		  if (!file.isDirectory()) {
-    			  mEditFilename.setText(file.getName());
-    		  }
-    	  } else{
-    		  if(mState == STATE_PICK_FILE || mState == STATE_PICK_DIRECTORY
-    				  || action.equals(Intent.ACTION_GET_CONTENT)){
-    			  String path = PreferenceActivity.getDefaultPickFilePath(this);
-    			  if(path != null){
-    				  File dir = new File(path);
-    				  if(dir.exists() && dir.isDirectory()){
-		    			  browseto = dir;
-    				  }
-    			  }
-    		  }
-    	  }
-    	  
-    	  String title = intent.getStringExtra(FileManagerIntents.EXTRA_TITLE);
-    	  if (title != null) {
-    		  setTitle(title);
-    	  }
-
-    	  String buttontext = intent.getStringExtra(FileManagerIntents.EXTRA_BUTTON_TEXT);
-    	  if (buttontext != null) {
-    		  mButtonPick.setText(buttontext);
-    	  }
-    	  
-          mStepsBack = 0;
-          
-          // Reset mRestored flag.
-          mRestored = false;
-          if (icicle != null) {
-        	  browseto = new File(icicle.getString(BUNDLE_CURRENT_DIRECTORY));
-        	  mContextFile = new File(icicle.getString(BUNDLE_CONTEXT_FILE));
-        	  mContextText = icicle.getString(BUNDLE_CONTEXT_TEXT);
-        	  
-        	  boolean show = icicle.getBoolean(BUNDLE_SHOW_DIRECTORY_INPUT);
-        	  showDirectoryInput(show);
-        	  
-        	  mStepsBack = icicle.getInt(BUNDLE_STEPS_BACK);
-        	  // had to bypass direct casting as it was causing a rather unexplainable crash
-        	  Parcelable tmpDirectoryEntries[] = icicle.getParcelableArray(BUNDLE_DIRECTORY_ENTRIES);
-        	  mDirectoryEntries = new IconifiedText[tmpDirectoryEntries.length];
-        	  for(int i=0; i<tmpDirectoryEntries.length; i++){
-        		  mDirectoryEntries[i] = (IconifiedText) tmpDirectoryEntries[i];
-        	  }
-        	  mRestored = true;
-          }
-          
-          getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
-			
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
-				if(adapter != null){
+				if (adapter != null) {
 					switch (scrollState) {
-			        case OnScrollListener.SCROLL_STATE_IDLE:
-			        	adapter.toggleScrolling(false);
-			        	adapter.notifyDataSetChanged();
-			            break;
-			        case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
-			        	adapter.toggleScrolling(true);
-			            break;
-			        case OnScrollListener.SCROLL_STATE_FLING:
-			        	adapter.toggleScrolling(true);
-			            break;
-			        }
+					case OnScrollListener.SCROLL_STATE_IDLE:
+						adapter.toggleScrolling(false);
+						adapter.notifyDataSetChanged();
+						break;
+					case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+						adapter.toggleScrolling(true);
+						break;
+					case OnScrollListener.SCROLL_STATE_FLING:
+						adapter.toggleScrolling(true);
+						break;
+					}
 				}
 			}
-			
+
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem,
 					int visibleItemCount, int totalItemCount) {
 				// Not used
 			}
 		});
-          
-          browseTo(browseto);
-     }
+		
+		if (mState == STATE_BROWSE) {
+			// Remove edit text and button.
+			mEditFilename.setVisibility(View.GONE);
+			mButtonPick.setVisibility(View.GONE);
+			
+			// Handle multiselection.
+			if(VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB){
+				registerForContextMenu(getListView());
+			}
+			else{
+				multiChoiceModeHelper = new FileMultiChoiceModeHelper();
+				multiChoiceModeHelper.setListView(getListView());
+				multiChoiceModeHelper.setPathBar(mPathBar);
+				multiChoiceModeHelper.setContext(this);
+				getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+			}
+		}
+	}
      
      public void onDestroy() {
     	 super.onDestroy();
@@ -589,18 +493,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     		 loader.cancel();
     		 mThumbnailLoader = null;
     	 }
-    	 
-    	 ListView lv;
-    	 if((lv = getListView()) != null){
-    		 lv.setAdapter(null);
-    	 }
      }
      
      private void handleMessage(Message message) {
-//    	 Log.v(TAG, "Received message " + message.what);
-    	 
     	 switch (message.what) {
     	 case MESSAGE_SHOW_DIRECTORY_CONTENTS:
+    		 // TODO This call makes us lose selection state on the items. 
+    		 // We need to rethink the refresh and MESSAGE_SHOW_DIRECTORY_CONTENTS part.
     		 showDirectoryContents((DirectoryContents) message.obj);
     		 break;
     		 
@@ -645,18 +544,14 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	 }
 
          IconifiedTextListAdapter itla = new IconifiedTextListAdapter(this); 
-         itla.setListItems(directoryEntries, getListView().hasTextFilter(), currentDirectory, mMimeTypes);          
+         itla.setListItems(directoryEntries, getListView().hasTextFilter(), mPathBar.getCurrentDirectory(), mMimeTypes);          
          setListAdapter(itla); 
 	     getListView().setTextFilterEnabled(true);
-	     
-	     ThumbnailLoader mThumbnailLoader = ((IconifiedTextListAdapter) getListAdapter()).getThumbnailLoader();
 	     
 	     if(fileDeleted){
 	    	 getListView().setSelection(positionAtDelete);
 	     }
 
-         selectInList(mPreviousDirectory);
-         refreshDirectoryPanel();
          setProgressBarIndeterminateVisibility(false);
 
     	 mProgressBar.setVisibility(View.GONE);
@@ -665,162 +560,28 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	 toggleCheckBoxVisibility(mState == STATE_MULTI_SELECT);
      }
 
-     private void onCreateDirectoryInput() {
-    	 mDirectoryInput = (LinearLayout) findViewById(R.id.directory_input);
-         mEditDirectory = (EditText) findViewById(R.id.directory_text);
-
-
-		 mEditDirectory.setOnKeyListener(new OnKeyListener() {
-			 public boolean onKey(View v, int keyCode, KeyEvent event) {
-				 // If the event is a key-down event on the "enter" button
-				 if ((event.getAction() == KeyEvent.ACTION_DOWN)
-						&& (keyCode == KeyEvent.KEYCODE_ENTER)){
-					 
-					 goToDirectoryInEditText();
-					 
-					 return true;
-				 }
-				 return false;
-			 }
-		 });
-
-         mButtonDirectoryPick = (ImageButton) findViewById(R.id.button_directory_pick);
-         
-         mButtonDirectoryPick.setOnClickListener(new View.OnClickListener() {
-				
-				public void onClick(View arg0) {
-					goToDirectoryInEditText();
-				}
-         });
-     }
-     
-     //private boolean mHaveShownErrorMessage;
-     private File mHaveShownErrorMessageForFile = null;
-     
-     private void hideKeyboard(IBinder windowToken, int flags){
-    	 if(mSoftKeyboardAvailable){
-    		 (new org.openintents.filemanager.compatibility.SoftKeyboard(this))
-    		 	.hideSoftInputFromWindow(windowToken, flags);
-    	 }
-     }
-     
-     private void goToDirectoryInEditText() {
-    	 File browseto = new File(mEditDirectory.getText().toString());
-    	 
-		 /*
-		  *  After calling showDirectoryInput(false); the keyboard stays displayed.
-		  *  Hide it by calling hideKeyboard(windowToken, 0);
-		  *  Might be a bit problematic - it hides the keyboard even if id didn't
-		  *  appear after focusing the editText (user had it displayed before).
-		  *  But I think letting it displayed when user doesn't want to
-		  *  is much worse (and much more common) than hiding it although
-		  *  the user wants it displayed
-		  */
-
-    	 IBinder windowToken = mEditDirectory.getWindowToken();
-    	 
-    	 if (browseto.equals(currentDirectory)) {
-    		 showDirectoryInput(false);
-    		 hideKeyboard(windowToken, 0);
-    	 } else {
-    		 if (mHaveShownErrorMessageForFile != null 
-    				 && mHaveShownErrorMessageForFile.equals(browseto)) {
-    			 // Don't let user get stuck in wrong directory.
-    			 mHaveShownErrorMessageForFile = null;
-        		 showDirectoryInput(false);
-        		 hideKeyboard(windowToken, 0);
-    		 } else {
-	    		 if (!browseto.exists()) {
-	    			 // browseTo() below will show an error message,
-	    			 // because file does not exist.
-	    			 // It is ok to show this the first time.
-	    			 mHaveShownErrorMessageForFile = browseto;
-	    		 }else{
-	        		 showDirectoryInput(false);
-	        		 hideKeyboard(windowToken, 0);
-	    		 }
-				 browseTo(browseto);
-    		 }
-    	 }
-     }
-     
-     /**
-      * Show the directory line as input box instead of button row.
-      * If Directory input does not exist yet, it is created.
-      * Since the default is show == false, nothing is created if
-      * it is not necessary (like after icicle).
-      * @param show
-      */
-     private void showDirectoryInput(boolean show) {
-    	 if (show) {
-    		 if (mDirectoryInput == null) {
-        		 onCreateDirectoryInput();
-        	 }
-    	 }
-    	 if (mDirectoryInput != null) {
-	    	 mDirectoryInput.setVisibility(show ? View.VISIBLE : View.GONE);
-	    	 mDirectoryButtons.setVisibility(show ? View.GONE : View.VISIBLE);
-    	 }
-    	 
-    	 refreshDirectoryPanel();
-     }
-
- 	/**
- 	 * 
- 	 */
- 	private void refreshDirectoryPanel() {
- 		if (isDirectoryInputVisible()) {
- 			// Set directory path
- 			String path = currentDirectory.getAbsolutePath();
- 			mEditDirectory.setText(path);
- 			
- 			// Set selection to last position so user can continue to type:
- 			mEditDirectory.setSelection(path.length());
- 		} else {
- 			setDirectoryButtons();
- 		}
- 	} 
-     /*
-     @Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
-*/
-     
-
  	@Override
  	protected void onSaveInstanceState(Bundle outState) {
- 		// TODO Auto-generated method stub
  		super.onSaveInstanceState(outState);
  		
  		// remember file name
- 		outState.putString(BUNDLE_CURRENT_DIRECTORY, currentDirectory.getAbsolutePath());
+ 		outState.putString(BUNDLE_CURRENT_DIRECTORY, mPathBar.getCurrentDirectory().getAbsolutePath());
  		outState.putString(BUNDLE_CONTEXT_FILE, mContextFile.getAbsolutePath());
  		outState.putString(BUNDLE_CONTEXT_TEXT, mContextText);
- 		boolean show = isDirectoryInputVisible();
- 		outState.putBoolean(BUNDLE_SHOW_DIRECTORY_INPUT, show);
- 		outState.putInt(BUNDLE_STEPS_BACK, mStepsBack);
+ 		outState.putBoolean(BUNDLE_SHOW_DIRECTORY_INPUT, mPathBar.getMode()==PathBar.Mode.MANUAL_INPUT);
  		outState.putParcelableArray(BUNDLE_DIRECTORY_ENTRIES, mDirectoryEntries);
  	}
-
-	/**
-	 * @return
-	 */
-	private boolean isDirectoryInputVisible() {
-		return ((mDirectoryInput != null) && (mDirectoryInput.getVisibility() == View.VISIBLE));
-	}
 
 	private void pickFileOrDirectory() {
 		File file = null;
 		if (mState == STATE_PICK_FILE) {
 			String filename = mEditFilename.getText().toString();
-			file = FileUtils.getFile(currentDirectory.getAbsolutePath(), filename);
+			file = FileUtils.getFile(mPathBar.getCurrentDirectory().getAbsolutePath(), filename);
 		} else if (mState == STATE_PICK_DIRECTORY) {
-			file = currentDirectory;
+			file = mPathBar.getCurrentDirectory();
 		}
 		
-		PreferenceActivity.setDefaultPickFilePath(this, currentDirectory.getAbsolutePath());
+		PreferenceActivity.setDefaultPickFilePath(this, mPathBar.getCurrentDirectory().getAbsolutePath());
     	 
     	Intent intent = getIntent();
     	intent.setData(FileUtils.getUri(file));
@@ -858,61 +619,24 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	 }
      } 
       
-     /** 
-      * This function browses up one level 
-      * according to the field: currentDirectory 
-      */ 
-     private void upOneLevel(){
-    	 if (mStepsBack > 0) {
-    		 mStepsBack--;
-    	 }
-         if(currentDirectory.getParent() != null) 
-               browseTo(currentDirectory.getParentFile()); 
-     } 
-      
-     /**
-      * Jump to some location by clicking on a 
-      * directory button.
-      * 
-      * This resets the counter for "back" actions.
-      * 
-      * @param aDirectory
-      */
-     private void jumpTo(final File aDirectory) {
-    	 mStepsBack = 0;
-    	 browseTo(aDirectory);
-     }
-     
-     /**
-      * Browse to some location by clicking on a list item.
-      * @param aDirectory
-      */
-     private void browseTo(final File aDirectory){ 
-          // setTitle(aDirectory.getAbsolutePath());
-          
-          if (aDirectory.isDirectory()){
-        	  if (aDirectory.equals(currentDirectory)) {
-        		  // Switch from button to directory input
-        		  showDirectoryInput(true);
-        	  } else {
-        		   mPreviousDirectory = currentDirectory;
-	               currentDirectory = aDirectory;
-	               refreshList();
-//	               selectInList(previousDirectory);
-	//               refreshDirectoryPanel();
-        	  }
-          }else{ 
-        	  if (mState == STATE_BROWSE || mState == STATE_PICK_DIRECTORY) {
-	              // Lets start an intent to View the file, that was clicked... 
-	        	  openFile(aDirectory); 
-        	  } else if (mState == STATE_PICK_FILE) {
-        		  // Pick the file
-        		  mEditFilename.setText(aDirectory.getName());
-        	  }
-          } 
-     }
+	/**
+	 * Browse to some location by clicking on a list item.
+	 * 
+	 * @param aDirectory
+	 */
+	private void browseTo(final File aDirectory) {
+		// If we can safely browse to aDirectory cd(aDirectory) will do it, its listener will refresh the list, and we'll quickly exit this method.
+		if (!mPathBar.cd(aDirectory)) {
+			if (mState == STATE_BROWSE || mState == STATE_PICK_DIRECTORY) {
+				// Lets start an intent to View the file that was clicked...
+				openFile(aDirectory);
+			} else if (mState == STATE_PICK_FILE) {
+				// Pick the file
+				mEditFilename.setText(aDirectory.getName());
+			}
+		}
+	}
 
-      
      private void openFile(File aFile) { 
     	 if (!aFile.exists()) {
     		 Toast.makeText(this, R.string.error_file_does_not_exists, Toast.LENGTH_SHORT).show();
@@ -946,9 +670,35 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	  Toast.makeText(this, R.string.application_not_available, Toast.LENGTH_SHORT).show();
           };
      } 
+ 	
+     /**
+      * Creates a home screen shortcut.
+      * @param file The file to create the shortcut to.
+      */
+     private void createShortcut(File file) {
+ 		Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
+ 		shortcutintent.putExtra("duplicate", false);
+ 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, file.getName());
+ 		Parcelable icon = Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.ic_launcher_shortcut);
+ 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
+ 		shortcutintent.putExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET, file.getAbsolutePath());
 
-     public void refreshList() {
-    	     	 
+ 		// Intent to load
+ 		Intent itl = new Intent(getApplicationContext(), FileManagerActivity.class);
+ 		itl.putExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET, file.getAbsolutePath());
+ 		
+ 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, itl);
+ 		sendBroadcast(shortcutintent);
+     }
+
+     /**
+      * Changes the list's contents to show the children of the passed directory.
+      * @param dir The directory that will be displayed. Pass null to refresh the currently displayed dir.
+      */
+     public void showDirectory(File dir) {
+    	 if(dir==null)
+    		 dir = mPathBar.getCurrentDirectory();
+    	  	 
     	 boolean directoriesOnly = mState == STATE_PICK_DIRECTORY;
     	 
     	  // Cancel an existing scanner, if applicable.
@@ -980,7 +730,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
           mProgressBar.setVisibility(View.GONE);
           setListAdapter(null); 
           
-		  mDirectoryScanner = new DirectoryScanner(currentDirectory, this, currentHandler, mMimeTypes, mFilterFiletype, mFilterMimetype, mSdCardPath, mWritableOnly, directoriesOnly);
+		  mDirectoryScanner = new DirectoryScanner(dir, this, currentHandler, mMimeTypes, mFilterFiletype, mFilterMimetype, mSdCardPath, mWritableOnly, directoriesOnly);
 		  mDirectoryScanner.start();
 		  
 		  
@@ -998,117 +748,23 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
           */
      } 
      
-     private void selectInList(File selectFile) {
-    	 String filename = selectFile.getName();
-    	 IconifiedTextListAdapter la = (IconifiedTextListAdapter) getListAdapter();
-    	 int count = la.getCount();
-    	 for (int i = 0; i < count; i++) {
-    		 IconifiedText it = (IconifiedText) la.getItem(i);
-    		 if (it.getText().equals(filename)) {
-    			 getListView().setSelection(i);
-    			 break;
-    		 }
-    	 }
-     }
+//     private void selectInList(File selectFile) {
+//    	 String filename = selectFile.getName();
+//    	 IconifiedTextListAdapter la = (IconifiedTextListAdapter) getListAdapter();
+//    	 int count = la.getCount();
+//    	 for (int i = 0; i < count; i++) {
+//    		 IconifiedText it = (IconifiedText) la.getItem(i);
+//    		 if (it.getText().equals(filename)) {
+//    			 getListView().setSelection(i);
+//    			 break;
+//    		 }
+//    	 }
+//     }
      
      private void addAllElements(List<IconifiedText> addTo, List<IconifiedText> addFrom) {
     	 int size = addFrom.size();
     	 for (int i = 0; i < size; i++) {
     		 addTo.add(addFrom.get(i));
-    	 }
-     }
-     
-     private void setDirectoryButtons() {
-    	 String[] parts = currentDirectory.getAbsolutePath().split("/");
-    	 
-    	 mDirectoryButtons.removeAllViews();
-    	 
-    	 int WRAP_CONTENT = LinearLayout.LayoutParams.WRAP_CONTENT;
-    	 
-    	 // Add home button separately
-    	 ImageButton ib = new ImageButton(this);
-    	 ib.setImageResource(R.drawable.ic_launcher_home_small);
-		 ib.setLayoutParams(new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
-		 ib.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				jumpTo(new File("/"));
-			}
-		 });
-		 mDirectoryButtons.addView(ib);
-		 
-    	 // Add other buttons
-    	 
-    	 String dir = "";
-    	 
-    	 for (int i = 1; i < parts.length; i++) {
-    		 dir += "/" + parts[i];
-    		 if (dir.equals(mSdCardPath)) {
-    			 // Add SD card button
-    			 ib = new ImageButton(this);
-    	    	 ib.setImageResource(R.drawable.ic_launcher_sdcard_small);
-    			 ib.setLayoutParams(new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
-    			 ib.setOnClickListener(new View.OnClickListener() {
-    					public void onClick(View view) {
-    						jumpTo(new File(mSdCardPath));
-    					}
-    			 });
-    			 mDirectoryButtons.addView(ib);
-    		 } else {
-	    		 Button b = new Button(this);
-	    		 b.setLayoutParams(new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
-	    		 b.setText(parts[i]);
-	    		 b.setTag(dir);
-	    		 b.setOnClickListener(new View.OnClickListener() {
-	 				public void onClick(View view) {
-	 					String dir = (String) view.getTag();
-	 					jumpTo(new File(dir));
-	 				}
-	    		 });
-    			 mDirectoryButtons.addView(b);
-    		 }
-    	 }
-    	 
-    	 checkButtonLayout();
-     }
-
-     private void checkButtonLayout() {
-    	 
-    	 // Let's measure how much space we need:
-    	 int spec = View.MeasureSpec.UNSPECIFIED;
-    	 mDirectoryButtons.measure(spec, spec);
-    	 int count = mDirectoryButtons.getChildCount();
-    	 
-    	 int requiredwidth = mDirectoryButtons.getMeasuredWidth();
-    	 int width = getWindowManager().getDefaultDisplay().getWidth();
-    	 
-    	 if (requiredwidth > width) {
-        	 int WRAP_CONTENT = LinearLayout.LayoutParams.WRAP_CONTENT;
-        	 
-        	 // Create a new button that shows that there is more to the left:
-        	 ImageButton ib = new ImageButton(this);
-        	 ib.setImageResource(R.drawable.ic_menu_back_small);
-    		 ib.setLayoutParams(new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
-    		 // 
-    		 ib.setOnClickListener(new View.OnClickListener() {
-    				public void onClick(View view) {
-    					// Up one directory.
-    					upOneLevel();
-    				}
-    		 });
-    		 mDirectoryButtons.addView(ib, 0);
-    		 
-    		 // New button needs even more space
-    		 ib.measure(spec, spec);
-    		 requiredwidth += ib.getMeasuredWidth();
-
-    		 // Need to take away some buttons
-    		 // but leave at least "back" button and one directory button.
-    		 while (requiredwidth > width && mDirectoryButtons.getChildCount() > 2) {
-    			 View view = mDirectoryButtons.getChildAt(1);
-    			 requiredwidth -= view.getMeasuredWidth();
-    			 
-	    		 mDirectoryButtons.removeViewAt(1);
-    		 }
     	 }
      }
      
@@ -1129,29 +785,20 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	  adapter.notifyDataSetChanged();
         	  return;
           }
-			
-          String file = text.getText(); 
-          /*
-          if (selectedFileString.equals(getString(R.string.up_one_level))) { 
-               upOneLevel(); 
-          } else { 
-          */
-        	  String curdir = currentDirectory 
-              .getAbsolutePath() ;
-        	  File clickedFile = FileUtils.getFile(curdir, file);
-               if (clickedFile != null) {
-            	   if (clickedFile.isDirectory()) {
-            		   // If we click on folders, we can return later by the "back" key.
-            		   mStepsBack++;
-            	   }
-                    browseTo(clickedFile);
-               }
-          /*
-          } 
-          */
-     }
 
-     private void getSdCardPath() {
+		String file = text.getText();
+		String curdir = mPathBar.getCurrentDirectory().getAbsolutePath();
+		File clickedFile = FileUtils.getFile(curdir, file);
+		if (clickedFile != null) {
+			browseTo(clickedFile);
+		}
+	}
+
+     
+     /**
+      * Renews the value of {@link #mSdCardPath}.
+      */
+     private void resetSdCardPath() {
     	 mSdCardPath = android.os.Environment
 			.getExternalStorageDirectory().getAbsolutePath();
      }
@@ -1159,45 +806,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
  	@Override
  	public boolean onCreateOptionsMenu(Menu menu) {
- 		super.onCreateOptionsMenu(menu);
+ 		MenuInflater inflater = new MenuInflater(this);
+ 		inflater.inflate(R.menu.main, menu);
 
- 		int icon = android.R.drawable.ic_menu_add;
- 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
- 			icon = R.drawable.ic_menu_add_folder;
- 		}
- 		MenuItem item = menu.add(0, MENU_NEW_FOLDER, 0, R.string.menu_new_folder).setIcon(
- 				icon).setShortcut('0', 'f');
- 		MenuCompat.setShowAsAction(item, MenuItem.SHOW_AS_ACTION_IF_ROOM);
- 
- 		if (mState == STATE_BROWSE) {
- 		// Multi select option menu.
- 	        menu.add(0, MENU_MULTI_SELECT, 0, R.string.menu_multi_select).setIcon(
- 	                R.drawable.ic_menu_multiselect).setShortcut('1', 'm');
+ 		if (mState != STATE_BROWSE || Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
+ 			menu.removeItem(R.id.menu_multiselect);
         }
-			
-		mIncludeMediaScanMenuItem = menu.add(0, MENU_INCLUDE_IN_MEDIA_SCAN, 0, R.string.menu_include_in_media_scan).setShortcut('2', 's')
-				.setIcon(android.R.drawable.ic_menu_gallery);
-		mExcludeMediaScanMenuItem = menu.add(0, MENU_EXCLUDE_FROM_MEDIA_SCAN, 0, R.string.menu_exclude_from_media_scan).setShortcut('2', 's')
-				.setIcon(android.R.drawable.ic_menu_gallery);
-		
-		menu.add(0, MENU_BOOKMARKS, 0, R.string.bookmarks).setIcon(
-				R.drawable.ic_menu_star);
-		
-
-		menu.add(0, MENU_SETTINGS, 0, R.string.settings).setIcon(
-				android.R.drawable.ic_menu_preferences).setShortcut('9', 'p');
-		
-		/* We don't want to allow the user to override a filter set
-		 * by an application.
-		 */
-		if(mState != STATE_PICK_FILE) {
-			menu.add(0, MENU_FILTER, 0, R.string.menu_filter).setIcon(
-					android.R.drawable.ic_menu_search);
-		}
-		
-		menu.add(0, MENU_REFRESH, 0, R.string.menu_refresh).setIcon(
-				android.R.drawable.ic_menu_rotate);
-
+ 		
  		mDistribution.onCreateOptionsMenu(menu);
  		return true;
  	}
@@ -1206,20 +821,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
-
-		mIncludeMediaScanMenuItem.setVisible(false);
-		mExcludeMediaScanMenuItem.setVisible(false);
-		
-		boolean showMediaScanMenuItem = PreferenceActivity.getMediaScanFromPreference(this);
 		
  		// We only know about ".nomedia" once we have the results list back.
- 		if (showMediaScanMenuItem && mListDir != null) {
-			if (mNoMedia) {
-				mIncludeMediaScanMenuItem.setVisible(true);
-			} else {
-				mExcludeMediaScanMenuItem.setVisible(true);
- 			}
- 		}
+		boolean showMediaScanMenuItem = PreferenceActivity.getMediaScanFromPreference(this);
+		if (showMediaScanMenuItem && mListDir != null) {
+			menu.findItem(R.id.menu_media_scan_include).setVisible(mNoMedia);
+			menu.findItem(R.id.menu_media_scan_exclude).setVisible(!mNoMedia);
+		}
 
 		// Generate any additional actions that can be performed on the
 		// overall list. This allows other applications to extend
@@ -1242,50 +850,49 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case MENU_NEW_FOLDER:
+		case R.id.menu_create_folder:
 			showDialog(DIALOG_NEW_FOLDER);
 			return true;
 			
-		case MENU_MULTI_SELECT:
+		case R.id.menu_search:
+			onSearchRequested();
+			return true;
+			
+		case R.id.menu_multiselect:
             promptMultiSelect();
 			return true;
 			
-		case MENU_INCLUDE_IN_MEDIA_SCAN:
+		case R.id.menu_media_scan_include:
 			includeInMediaScan();
 			return true;
 
-		case MENU_EXCLUDE_FROM_MEDIA_SCAN:
+		case R.id.menu_media_scan_exclude:
 			excludeFromMediaScan();
 			return true;
 			
-		case MENU_SETTINGS:
-			showSettings();
-			return true;
-			
-		case MENU_FILTER:
-			showDialog(DIALOG_FILTER);
+		case R.id.menu_settings:
+			Intent intent = new Intent(this, PreferenceActivity.class);
+			startActivity(intent);
 			return true;
 		
-		case MENU_BOOKMARKS:
-			showDialog(DIALOG_BOOKMARKS);
+		case R.id.menu_bookmarks:
+			startActivityForResult(new Intent(FileManagerActivity.this, BookmarkListActivity.class), REQUEST_CODE_BOOKMARKS);
 			return true;
 			
-		case MENU_REFRESH:
-			refreshList();
+		case android.R.id.home:
+			mPathBar.cd(mPathBar.getInitialDirectory());
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 
 	}
-
-    private void showSettings() {
-		Intent intent = new Intent(this, PreferenceActivity.class);
-		startActivity(intent);
-	}
 	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View view,
 			ContextMenuInfo menuInfo) {
+		MenuInflater inflater = new MenuInflater(this);
+		
+		// Obtain context menu info
 		AdapterView.AdapterContextMenuInfo info;
 		try {
 			info = (AdapterView.AdapterContextMenuInfo) menuInfo;
@@ -1293,158 +900,24 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			Log.e(TAG, "bad menuInfo", e);
 			return;
 		}
-/*
-		Cursor cursor = (Cursor) getListAdapter().getItem(info.position);
-		if (cursor == null) {
-			// For some reason the requested item isn't available, do nothing
-			return;
-		}
-*/
-        IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
-        
-        if (adapter == null) {
-      	  return;
-        }
-        
-        IconifiedText it = (IconifiedText) adapter.getItem(info.position);
-		menu.setHeaderTitle(it.getText());
-		menu.setHeaderIcon(it.getIcon());
-		File file = FileUtils.getFile(currentDirectory, it.getText());
-
 		
-		if (!file.isDirectory()) {
-			if (mState == STATE_PICK_FILE) {
-				// Show "open" menu
-				menu.add(0, MENU_OPEN, 0, R.string.menu_open);
-			}
-			menu.add(0, MENU_SEND, 0, R.string.menu_send);
-		}
-		menu.add(0, MENU_MOVE, 0, R.string.menu_move);
-		
-		if (!file.isDirectory()) {
-			menu.add(0, MENU_COPY, 0, R.string.menu_copy);
-		}
-		
-		menu.add(0, MENU_RENAME, 0, R.string.menu_rename);
-		menu.add(0, MENU_DELETE, 0, R.string.menu_delete);
-
-		//if (!file.isDirectory()) {
-	        Uri data = Uri.fromFile(file);
-	        Intent intent = new Intent(null, data);
-	        String type = mMimeTypes.getMimeType(file.getName());
-	
-	        intent.setDataAndType(data, type);
-	        intent.addCategory(Intent.CATEGORY_SELECTED_ALTERNATIVE);
-	        //intent.addCategory(Intent.CATEGORY_ALTERNATIVE);
-	
-	        Log.v(TAG, "Data=" + data);
-	        Log.v(TAG, "Type=" + type);
-			
-	        if (type != null) {
-	        	// Add additional options for the MIME type of the selected file.
-				menu.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0,
-						new ComponentName(this, FileManagerActivity.class), null, intent, 0, null);
-	        }
-		//}
-
-        if (FileUtils.checkIfZipArchive(file)){
-            menu.add(0, MENU_EXTRACT, 0, R.string.menu_extract);
-        } else {
-            menu.add(0, MENU_COMPRESS, 0, R.string.menu_compress);
-        }
-	    menu.add(0, MENU_DETAILS, 0, R.string.menu_details);
-	    menu.add(0, MENU_BOOKMARK, 0, R.string.menu_bookmark);
-        menu.add(0, MENU_MORE, 0, R.string.menu_more);
+		fillContextMenu(getListView(), menu, inflater, info.position);
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		super.onContextItemSelected(item);
-		AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo) item
-				.getMenuInfo();
-		
-		// Remember current selection
-        IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
-        
-        if (adapter == null) {
-      	  return false;
-        }
-        
-        IconifiedText ic = (IconifiedText) adapter.getItem(menuInfo.position);
-		mContextText = ic.getText();
-		mContextIcon = ic.getIcon();
-		mContextFile = FileUtils.getFile(currentDirectory, ic.getText());
-		
-		switch (item.getItemId()) {
-		case MENU_OPEN:
-            openFile(mContextFile); 
-			return true;
-			
-		case MENU_MOVE:
-			promptDestinationAndMoveFile();
-			return true;
-			
-		case MENU_COPY:
-			promptDestinationAndCopyFile();
-			return true;
-			
-		case MENU_DELETE:
-			showDialog(DIALOG_DELETE);
-			return true;
-
-		case MENU_RENAME:
-			showDialog(DIALOG_RENAME);
-			return true;
-			
-		case MENU_SEND:
-			sendFile(mContextFile);
-			return true;
-		
-		case MENU_DETAILS:
-			showDialog(DIALOG_DETAILS);
-			return true;
-
-        case MENU_COMPRESS:
-            showDialog(DIALOG_COMPRESSING);
-            return true;
-
-        case MENU_EXTRACT:
-            promptDestinationAndExtract();            
-            return true;
-			
-		case MENU_BOOKMARK:
-			String path = mContextFile.getAbsolutePath();
-			Cursor query = managedQuery(BookmarksProvider.CONTENT_URI,
-										new String[]{BookmarksProvider._ID},
-										BookmarksProvider.PATH + "=?",
-										new String[]{path},
-										null);
-			if(!query.moveToFirst()){
-				ContentValues values = new ContentValues();
-				values.put(BookmarksProvider.NAME, mContextFile.getName());
-				values.put(BookmarksProvider.PATH, path);
-				getContentResolver().insert(BookmarksProvider.CONTENT_URI, values);
-				Toast.makeText(this, R.string.bookmark_added, Toast.LENGTH_SHORT).show();
-			}
-			else{
-				Toast.makeText(this, R.string.bookmark_already_exists, Toast.LENGTH_SHORT).show();
-			}
-			return true;
-
-		case MENU_MORE:
-			if (!PreferenceActivity.getShowAllWarning(FileManagerActivity.this)) {
-				showMoreCommandsDialog();
-				return true;
-			}
-
-			showWarningDialog();
-
-			return true;
-		}
-
-		return false;
+		return handleSingleSelectionAction(item, -1);
 	}
-	
+
+	private Cursor getBookmarks(){
+		return managedQuery(BookmarksProvider.CONTENT_URI,
+					new String[] {
+						BookmarksProvider._ID,
+						BookmarksProvider.NAME,
+						BookmarksProvider.PATH,
+					}, null, null, null);
+	}
+
 	@Override
 	protected Dialog onCreateDialog(int id) {
 
@@ -1541,42 +1014,27 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 						
 					}).create();
 
-        case DIALOG_MULTI_DELETE:
-            String contentText = null;
-            int count = 0;
-            for (IconifiedText it : mDirectoryEntries) {
-                if (!it.isSelected()) {
-                    continue;
-                }
+		case DIALOG_MULTI_DELETE:
+			int count = getSelectedItemCount();
 
-                contentText = it.getText();
-                count++;
-            }
-            String string;
-            if (count == 1) {
-                 string = getString(R.string.really_delete, contentText);
-            } else {
-                string = getString(R.string.really_delete_multiselect, count);
-            }
-            return new AlertDialog.Builder(this).setTitle(string)
-                .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
-                    android.R.string.ok, new OnClickListener() {
-                        
-                        public void onClick(DialogInterface dialog, int which) {
-                            deleteMultiFile();
-    
-                            Intent intent = getIntent();
-                            setResult(RESULT_OK, intent);
-                            finish();
-                        }
-                        
-                    }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-                        
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Cancel should not do anything.
-                        }
-                    
-                    }).create();
+			return new AlertDialog.Builder(this)
+					.setTitle(
+							getString(R.string.really_delete_multiselect, count))
+					.setIcon(android.R.drawable.ic_dialog_alert)
+					.setPositiveButton(android.R.string.ok,
+							new OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+								}
+							})
+					.setNegativeButton(android.R.string.cancel,
+							new OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// Cancel should not do anything.
+								}
+
+							}).create();
 
         case DIALOG_FILTER:
 			inflater = LayoutInflater.from(this);
@@ -1592,7 +1050,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 						
 						public void onClick(DialogInterface dialog, int which) {
 							mFilterFiletype = et3.getText().toString().trim();
-							refreshList();
+							showDirectory(null);
 						}
 						
 					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
@@ -1625,9 +1083,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		        	    			bookmarksCursor.getColumnIndex(BookmarksProvider.PATH));
 		        	    	File file = new File(path);
 		        	    	if (file != null) {
-			        	    	if (file.isDirectory()) {
-				        	    	mStepsBack++;
-			        	    	}
 			        	    	browseTo(file);
 		        	    	}
 	        	    	} else{
@@ -1688,12 +1143,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 				public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
 					   if (actionId == EditorInfo.IME_NULL  
 					      && event.getAction() == KeyEvent.ACTION_DOWN) { 
-						   if (new File(currentDirectory+File.separator+editText1.getText().toString()).exists()){
+						   if (new File(mPathBar.getCurrentDirectory()+File.separator+editText1.getText().toString()).exists()){
                                mDialogArgument = editText1.getText().toString();
                                mDialogExistsAction = DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP;
                                showDialog(DIALOG_WARNING_EXISTS);
                            } else {
-                               compressMultiFile(editText1.getText().toString());
+                               compressMultiFile(editText1.getText().toString(), null);
                            } //match this behavior to your OK button
 						   dismissDialog(DIALOG_MULTI_COMPRESS_ZIP);
 					   }
@@ -1707,12 +1162,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                     .setTitle(R.string.menu_compress).setView(view).setPositiveButton(
                             android.R.string.ok, new OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            if (new File(currentDirectory+File.separator+editText1.getText().toString()).exists()){
+                            if (new File(mPathBar.getCurrentDirectory()+File.separator+editText1.getText().toString()).exists()){
                                 mDialogArgument = editText1.getText().toString();
                                 mDialogExistsAction = DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP;
                                 showDialog(DIALOG_WARNING_EXISTS);
                             } else {
-                                compressMultiFile(editText1.getText().toString());
+                                compressMultiFile(editText1.getText().toString(), null);
                             }
                         }
                     }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
@@ -1727,10 +1182,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                             android.R.string.ok, new OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP)){
-                                compressMultiFile(mDialogArgument);
+                                compressMultiFile(mDialogArgument, null);
                             } else if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
-                                File newFile = FileUtils.getFile(currentDirectory, mNewFileName);
-                                rename(FileUtils.getFile(currentDirectory, mOldFileName), newFile);
+                                File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), mNewFileName);
+                                rename(FileUtils.getFile(mPathBar.getCurrentDirectory(), mOldFileName), newFile);
                             } else {
                                 new File(mContextFile.getParent()+File.separator+mDialogArgument).delete();
                                 new CompressManager(FileManagerActivity.this).compress(mContextFile, mDialogArgument);
@@ -1756,12 +1211,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                         .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
                                 android.R.string.ok, new OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                File newFile = FileUtils.getFile(currentDirectory, mNewFileName);
+                                File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), mNewFileName);
                                 if (newFile.exists()){
                                     mDialogExistsAction = DIALOG_EXISTS_ACTION_RENAME;
                                     showDialog(DIALOG_WARNING_EXISTS);
                                 } else {
-                                    rename(FileUtils.getFile(currentDirectory, mOldFileName), newFile);
+                                    rename(FileUtils.getFile(mPathBar.getCurrentDirectory(), mOldFileName), newFile);
                                 }
                             }
                         }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
@@ -1774,19 +1229,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		return super.onCreateDialog(id);
 			
 	}
-	
-	private Cursor getBookmarks(){
-		return managedQuery(BookmarksProvider.CONTENT_URI,
-					new String[] {
-						BookmarksProvider._ID,
-						BookmarksProvider.NAME,
-						BookmarksProvider.PATH,
-					}, null, null, null);
-	}
-
 
 	@Override
-	protected void onPrepareDialog(int id, Dialog dialog) {
+	protected void onPrepareDialog(int id, final Dialog dialog) {
 		super.onPrepareDialog(id, dialog);
 		
 		switch (id) {
@@ -1813,6 +1258,19 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			break;
 
 		case DIALOG_MULTI_DELETE:
+	        final ArrayList<File> files = getSelectedItemsFiles();
+
+			dialog.findViewById(android.R.id.button1).setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					deleteMultiFile(files);
+					
+					Intent intent = getIntent();
+					setResult(RESULT_OK, intent);
+					dialog.dismiss();
+				}
+			});
+			
             break;
             
 		case DIALOG_DETAILS:
@@ -1827,7 +1285,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         	// Creates a background thread that obtains the size of a directory and updates
         	// the TextView accordingly.
         	if(mContextFile.isDirectory()){
-        		final AsyncTask folderSizeTask = new AsyncTask<File, Long, Long>(){
+        		final AsyncTask<File, Long, Long> folderSizeTask = new AsyncTask<File, Long, Long>(){
         			
         			protected long totalSize = 0L;
         			
@@ -1906,7 +1364,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
             textView = (TextView) dialog.findViewById(R.id.foldernametext);
             textView.setText(R.string.compress_into_archive);
             final EditText editText1 = (EditText) dialog.findViewById(R.id.foldername);
-            archiveName = currentDirectory.getName()+".zip";
+            archiveName = mPathBar.getCurrentDirectory().getName()+".zip";
             editText1.setText(archiveName);
             editText1.setSelection(0, archiveName.length()-4);
             break;
@@ -2009,19 +1467,21 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
 	private void includeInMediaScan() {
 		// Delete the .nomedia file.
-		File file = FileUtils.getFile(currentDirectory, NOMEDIA_FILE);
+		File file = FileUtils.getFile(mPathBar.getCurrentDirectory(), NOMEDIA_FILE);
 		if (file.delete()) {
 			Toast.makeText(this, getString(R.string.media_scan_included), Toast.LENGTH_LONG).show();
+			
 			mNoMedia = false;
 		} else {
 			// That didn't work.
 			Toast.makeText(this, getString(R.string.error_generic), Toast.LENGTH_LONG).show();
 		}
+		showDirectory(null);
 	}
 
 	private void excludeFromMediaScan() {
 		// Create the .nomedia file.
-		File file = FileUtils.getFile(currentDirectory, NOMEDIA_FILE);
+		File file = FileUtils.getFile(mPathBar.getCurrentDirectory(), NOMEDIA_FILE);
 		try {
 			if (file.createNewFile()) {
 				mNoMedia = true;
@@ -2033,22 +1493,9 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			// That didn't work.
 			Toast.makeText(this, getString(R.string.error_generic) + e.getMessage(), Toast.LENGTH_LONG).show();
 		}
+		showDirectory(null);
 	}
-	
-	private boolean checkSelection() {
-        for (IconifiedText it : mDirectoryEntries) {
-            if (!it.isSelected()) {
-                continue;
-            }
 
-            return true;
-        }
-
-        Toast.makeText(this, R.string.error_selection, Toast.LENGTH_SHORT).show();
-
-        return false;
-   }
-	
    private void toggleSelection(boolean selected) {
 	   for(IconifiedText it : mDirectoryEntries){
 		   it.setSelected(selected);
@@ -2066,21 +1513,21 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	}
 
    private void promptDestinationAndMoveFile() {
-
 		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
-
-		intent.setData(FileUtils.getUri(currentDirectory));
+		
+		intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
 
 		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.move_title));
 		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.move_button));
 		intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
+		intent.putExtra("checked_files", getSelectedItemsFiles());
 
 		startActivityForResult(intent, REQUEST_CODE_MOVE);
 	}
 
     private void promptDestinationAndExtract() {
         Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
-        intent.setData(FileUtils.getUri(currentDirectory));
+        intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
         intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.extract_title));
         intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.extract_button));
         intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
@@ -2088,14 +1535,14 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     }
 	
 	private void promptDestinationAndCopyFile() {
-
 		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
 		
-		intent.setData(FileUtils.getUri(currentDirectory));
+		intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
 		
 		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.copy_title));
 		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.copy_button));
 		intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
+		intent.putExtra("checked_files", getSelectedItemsFiles());
 		
 		startActivityForResult(intent, REQUEST_CODE_COPY);
 	}
@@ -2106,7 +1553,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private void promptMultiSelect() {
         Intent intent = new Intent(FileManagerIntents.ACTION_MULTI_SELECT);
         
-        intent.setData(FileUtils.getUri(currentDirectory));
+        intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
         
         intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.multiselect_title));
         //intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.move_button));
@@ -2116,7 +1563,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
     private void createNewFolder(String foldername) {
 		if (!TextUtils.isEmpty(foldername)) {
-			File file = FileUtils.getFile(currentDirectory, foldername);
+			File file = FileUtils.getFile(mPathBar.getCurrentDirectory(), foldername);
 			if (file.mkdirs()) {
 				
 				// Change into new directory:
@@ -2127,53 +1574,49 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		}
 	}
 
-    private void compressMultiFile(String out) {
-        List<File> files = new ArrayList<File>();
-        for (IconifiedText it : mDirectoryEntries) {
-            if (!it.isSelected()) {
-                continue;
-            }
-
-            File file = FileUtils.getFile(currentDirectory, it.getText());
-            files.add(file);
-        }
-        new CompressManager(FileManagerActivity.this).compress(files, out);
+    /**
+     * 
+     * @param out The name of the produced file.
+     * @param listener A listener to be notified on compression completion.
+     */
+    private void compressMultiFile(String out, CompressManager.OnCompressFinishedListener listener) {
+        new CompressManager(FileManagerActivity.this).setOnCompressFinishedListener(listener).compress(getSelectedItemsFiles(), out);
     }
 
 	/*! Recursively delete a directory and all of its children.
 	 *  @params toastOnError If set to true, this function will toast if an error occurs.
 	 *  @returns true if successful, false otherwise.
 	 */
-	private boolean recursiveDelete(File file, boolean toastOnError) {
-		// Recursively delete all contents.
-		File[] files = file.listFiles();
-		
-		if (files == null) {
-			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG);
-			return false;
-		}
-		
-		for (int x=0; x<files.length; x++) {
-			File childFile = files[x];
-			if (childFile.isDirectory()) {
-				if (!recursiveDelete(childFile, toastOnError)) {
-					return false;
-				}
-			} else {
-				if (!childFile.delete()) {
-					Toast.makeText(this, getString(R.string.error_deleting_child_file, childFile.getAbsolutePath()), Toast.LENGTH_LONG);
-					return false;
-				}
-			}
-		}
-		
-		if (!file.delete()) {
-			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG);
-			return false;
-		}
-		
-		return true;
-	}
+//	private boolean recursiveDelete(File file, boolean toastOnError) {
+//		// Recursively delete all contents.
+//		File[] files = file.listFiles();
+//		
+//		if (files == null) {
+//			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG);
+//			return false;
+//		}
+//		
+//		for (int x=0; x<files.length; x++) {
+//			File childFile = files[x];
+//			if (childFile.isDirectory()) {
+//				if (!recursiveDelete(childFile, toastOnError)) {
+//					return false;
+//				}
+//			} else {
+//				if (!childFile.delete()) {
+//					Toast.makeText(this, getString(R.string.error_deleting_child_file, childFile.getAbsolutePath()), Toast.LENGTH_LONG);
+//					return false;
+//				}
+//			}
+//		}
+//		
+//		if (!file.delete()) {
+//			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG);
+//			return false;
+//		}
+//		
+//		return true;
+//	}
 	
 	private class RecursiveDeleteTask extends AsyncTask<Object, Void, Integer> {
 
@@ -2239,7 +1682,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		protected void onPostExecute(Integer result) {
 			switch (result) {
 			case success:
-				activity.refreshList();
+				activity.showDirectory(null);
 				if(deletedFileIsDirectory){
 					Toast.makeText(activity, R.string.folder_deleted,Toast.LENGTH_SHORT).show();
 				} else {
@@ -2284,40 +1727,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 //		}
 	}
 	
-    private void deleteMultiFile() {
-//        int toast = 0;
-        LinkedList<File> files = new LinkedList<File>();
-        for (IconifiedText it : mDirectoryEntries) {
-            if (!it.isSelected()) {
-                continue;
-            }
-
-            File file = FileUtils.getFile(currentDirectory, it.getText());
-            files.add(file);
-//            if (file.isDirectory()) {
-//                if (!recursiveDelete(file, true)) {
-//                    break;
-//                }
-//            } else {
-//                if (!file.delete()) {
-//                    toast = R.string.error_deleting_file;
-//                    break;
-//                }
-//            }
-        }
-
+    private void deleteMultiFile(ArrayList<File> files) {
         new RecursiveDeleteTask().execute(files);
-        
-//        if (toast == 0) {
-//            // Delete was successful.
-//            refreshList();
-//            toast = R.string.file_deleted;
-//        }
-//
-//        Toast.makeText(FileManagerActivity.this, toast, Toast.LENGTH_SHORT).show();
     }
-    
-    private void renameFileOrFolder(File file, String newFileName) {
+
+	private void renameFileOrFolder(File file, String newFileName) {
         mOldFileName = file.getName();
         mNewFileName = newFileName;
         mDialogArgument = mNewFileName;
@@ -2327,7 +1741,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                 return;
 			}
 		}
-		File newFile = FileUtils.getFile(currentDirectory, newFileName);
+		File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), newFileName);
         if (newFile.exists()){
             mDialogExistsAction = DIALOG_EXISTS_ACTION_RENAME;
             showDialog(DIALOG_WARNING_EXISTS);
@@ -2344,7 +1758,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		int toast = 0;
 		if (oldFile.renameTo(newFile)) {
 			// Rename was successful.
-			refreshList();
+			showDirectory(null);
 			if (newFile.isDirectory()) {
 				toast = R.string.folder_renamed;
 			} else {
@@ -2463,50 +1877,27 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			Log.e(TAG, "Email client not installed");
 		}
 	}
+	
+	// The following methods should properly handle back button presses on every API Level.
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		if (VERSION.SDK_INT > VERSION_CODES.DONUT) {
+			if (keyCode == KeyEvent.KEYCODE_BACK && mPathBar.pressBack())
+				return true;
+		}
 
-	// This code seems to work for SDK 2.3 (target="9")
+		return super.onKeyUp(keyCode, event);
+	}
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (mStepsBack > 0) {
-				upOneLevel();
+		if (VERSION.SDK_INT <= VERSION_CODES.DONUT) {
+			if (keyCode == KeyEvent.KEYCODE_BACK && mPathBar.pressBack())
 				return true;
-			}
 		}
-		
+
 		return super.onKeyDown(keyCode, event);
 	}
-	
-	// For targetSdkVersion="5" or higher, one needs to use the following code instead of the one above:
-	// (See http://android-developers.blogspot.com/2009/12/back-and-other-hard-keys-three-stories.html )
-	
-	/*
-	//@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event)  {
-	    if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
-	            && keyCode == KeyEvent.KEYCODE_BACK
-	            && event.getRepeatCount() == 0) {
-	        // Take care of calling this method on earlier versions of
-	        // the platform where it doesn't exist.
-	        onBackPressed();
-	    }
-
-	    return super.onKeyDown(keyCode, event);
-	}
-
-	//@Override
-	public void onBackPressed() {
-	    // This will be called either automatically for you on 2.0
-	    // or later, or by the code above on earlier versions of the
-	    // platform.
-		if (mStepsBack > 0) {
-			upOneLevel();
-		} else {
-			finish();
-		}
-	}
-	*/
 
     /**
      * This is called after the file manager finished.
@@ -2522,13 +1913,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 				File movefrom = mContextFile;
 				File moveto = FileUtils.getFile(data.getData());
 				if (moveto != null) {
-					if (mState != STATE_MULTI_SELECT) {
+					if (getSelectedItemCount() == 1) {
 					    // Move single file.
                         moveto = FileUtils.getFile(moveto, movefrom.getName());
 						int toast = 0;
 						if (movefrom.renameTo(moveto)) {
 							// Move was successful.
-						    refreshList();
+							showDirectory(null);
 				            if (moveto.isDirectory()) {
 								toast = R.string.folder_moved;
 							} else {
@@ -2543,37 +1934,28 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 						}
 						Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
 					} else {
-    					// Move multi file.
-                        int toast = 0;
-                        for (IconifiedText it : mDirectoryEntries) {
-                            if (!it.isSelected()) {
-                                continue;
-                            }
-
-                            movefrom = FileUtils.getFile(currentDirectory, it.getText());
-					        File newPath = FileUtils.getFile(moveto, movefrom.getName());
-                            if (!movefrom.renameTo(newPath)) {
-                                refreshList();
-                                if (moveto.isDirectory()) {
-                                    toast = R.string.error_moving_folder;
-                                } else {
-                                    toast = R.string.error_moving_file;
-                                }
+    					// Move multiple files.
+                        int toastMessage = 0;
+						ArrayList<File> files = (ArrayList<File>) data.getSerializableExtra("checked_files");
+                        for (File f: files) {
+					        File newPath = FileUtils.getFile(moveto, f.getName());
+                            if (!f.renameTo(newPath)) {
+                            	showDirectory(null);
+                                toastMessage = moveto.isDirectory()?R.string.error_moving_folder : R.string.error_moving_file;
                                 break;
                             }
 					    }
 
-                        if (toast == 0) {
+                        if (toastMessage == 0) {
                             // Move was successful.
-                            refreshList();
-                            toast = R.string.file_moved;
+                        	showDirectory(null);
+                            toastMessage = R.string.file_moved;
                         }
 
-                        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
 
                         Intent intent = getIntent();
                         setResult(RESULT_OK, intent);
-                        finish();
                     }
 						
 				}				
@@ -2593,7 +1975,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 				File copyfrom = mContextFile;
 				File copyto = FileUtils.getFile(data.getData());
 				if (copyto != null) {
-                    if (mState != STATE_MULTI_SELECT) {
+                    if (getSelectedItemCount() == 1) {
                         // Copy single file.
                         copyto = createUniqueCopyName(this, copyto, copyfrom.getName());
                         
@@ -2601,41 +1983,35 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
                             int toast = 0;
                             if (copy(copyfrom, copyto)) {
                                 toast = R.string.file_copied;
-                                refreshList();
+                                showDirectory(null);
                             } else {
                                 toast = R.string.error_copying_file;
                             }
                             Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        // Copy multi file.
-                        int toast = 0;
-                        for (IconifiedText it : mDirectoryEntries) {
-                            if (!it.isSelected()) {
-                                continue;
-                            }
+                        // Copy multiple files.
+						ArrayList<File> files = (ArrayList<File>) data.getSerializableExtra("checked_files");
+                        int toastMessage = 0;
 
-                            copyfrom = FileUtils.getFile(currentDirectory, it.getText());
-                            File newPath = createUniqueCopyName(this, copyto, copyfrom.getName());
-                            if (copyto != null) {
-                                if (!copy(copyfrom, newPath)) {
-                                    toast = R.string.error_copying_file;
-                                    break;
-                                }
+                        for (File f: files) {
+                            File newPath = createUniqueCopyName(this, copyto, f.getName());
+                            if (!copy(f, newPath)) {
+                                toastMessage = R.string.error_copying_file;
+                                break;
                             }
                         }
 
-                        if (toast == 0) {
+                        if (toastMessage == 0) {
                             // Copy was successful.
-                            toast = R.string.file_copied;
-                            refreshList();
+                            toastMessage = R.string.file_copied;
+                            showDirectory(null);
                         }
 
-                        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
 
                         Intent intent = getIntent();
                         setResult(RESULT_OK, intent);
-                        finish();
                     }
 				}				
 			}
@@ -2643,13 +2019,18 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
         case REQUEST_CODE_MULTI_SELECT:
             if (resultCode == RESULT_OK && data != null) {
-                refreshList();
+            	showDirectory(null);
+            }
+            break;
+        case REQUEST_CODE_BOOKMARKS:
+            if (resultCode == RESULT_OK && data != null) {
+            	browseTo(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)));
             }
             break;
         }
 		
 	}
-	
+
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
 	    if (//When the user chooses to show/hide hidden files, update the list
     		//to correspond with the user's choice
@@ -2658,9 +2039,302 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     		|| PreferenceActivity.PREFS_SORTBY.equals(key)
     		|| PreferenceActivity.PREFS_ASCENDING.equals(key)){
 	    	
-        	refreshList();
+	    	showDirectory(null);
 	    }
 	}
 
+	/**
+	 * Performs copying if this activity was launched as multiselection instance.
+	 */
+	public void actionMultiCopy(){
+        if (hasSelectedItems()) {
+            promptDestinationAndCopyFile();
+        }
+	}
 
+	/**
+	 * Performs moving if this activity was launched as multiselection instance.
+	 */
+	public void actionMultiMove(){
+        if (hasSelectedItems()) {
+            promptDestinationAndMoveFile();
+        }
+	}
+	
+	/**
+	 * Performs deletion if this activity was launched as multiselection instance.
+	 */
+	public void actionMultiDelete(){
+	    if (hasSelectedItems()) {
+	        showDialog(DIALOG_MULTI_DELETE);
+	    }
+	}
+
+	/**
+	 * Performs compression if this activity was launched as multiselection instance.
+	 */
+	public void actionMultiCompress(){
+		compressMultiFile(mPathBar.getCurrentDirectory().getName()+".zip", null);
+	}
+
+	/**
+	 * Performs the "Compress and send" action.
+	 */
+	public void actionMultiSend(){
+		final String sendFileName = mPathBar.getCurrentDirectory().getName()+"-attachment.zip";
+		compressMultiFile(sendFileName, new CompressManager.OnCompressFinishedListener(){
+			@Override
+			public void compressFinished() {
+				Intent i = new Intent();
+				i.setAction(Intent.ACTION_SEND);
+				i.setType("application/zip");
+				i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(mPathBar.getCurrentDirectory().getAbsolutePath() + "/" + sendFileName)));
+				startActivity(Intent.createChooser(i, getString(R.string.send_chooser_title)));
+			}
+        });
+	}
+	
+	/**
+	 * Fill the passed Menu attribute with the proper single selection actions, taking the selected item into account.
+	 * @param l The {@link ListView} containing the selected item.
+	 * @param m The {@link Menu} to fill.
+	 * @param mi The {@link MenuInflater} to use. This is a parameter since the ActionMode provides a context-based inflater and we could possibly lose functionality with a common MenuInflater.
+	 * @param position The position of the selected item in the list.
+	 */
+	public void fillContextMenu(ListView l, Menu m, MenuInflater mi, int position){
+		// Inflate all actions
+		mi.inflate(R.menu.context, m);
+		
+		// Get the selected file
+        IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
+        if (adapter == null)
+        	return;
+        IconifiedText it = (IconifiedText) adapter.getItem(position);
+        if(m instanceof ContextMenu){
+			((ContextMenu) m).setHeaderTitle(it.getText());
+			((ContextMenu) m).setHeaderIcon(it.getIcon());
+        }
+		File file = FileUtils.getFile(mPathBar.getCurrentDirectory(), it.getText());
+
+		// If selected item is a directory
+		if (file.isDirectory()) {
+			if (mState != STATE_PICK_FILE) {
+				m.removeItem(R.id.menu_open);
+			}
+			m.removeItem(R.id.menu_send);
+			m.removeItem(R.id.menu_copy);
+		}
+
+		// If selected item is a zip archive
+        if (!FileUtils.checkIfZipArchive(file)){
+        	m.removeItem(R.id.menu_extract);
+        } else {
+        	m.removeItem(R.id.menu_compress);
+        }
+        
+        // If we are not showing a ContextMenu dialog, remove the open action, as it's overkill.
+        if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
+        	m.removeItem(R.id.menu_open);
+		
+		// Add CATEGORY_SELECTED_ALTERNATIVE intent options
+        Uri data = Uri.fromFile(file);
+        Intent intent = new Intent(null, data);
+        String type = mMimeTypes.getMimeType(file.getName());
+
+        intent.setDataAndType(data, type);
+        intent.addCategory(Intent.CATEGORY_SELECTED_ALTERNATIVE);
+
+        if (type != null) {
+        	// Add additional options for the MIME type of the selected file.
+			m.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0,
+					new ComponentName(this, FileManagerActivity.class), null, intent, 0, null);
+        }
+	}
+	
+	/**
+	 * Central point where we handle actions for single selection, for every API level.
+	 * @param position The position of the selected item. IGNORED if the {@link MenuItem} passed is an instance of {@link AdapterContextMenuInfo}.
+	 */
+	public boolean handleSingleSelectionAction(MenuItem item, int position){
+		// If the we got the event by the regular ContextMenu, ignore the passed position.
+		if(item.getMenuInfo() instanceof AdapterContextMenuInfo)
+			position = ((AdapterContextMenuInfo) item.getMenuInfo()).position;
+		
+		// Remember current selection
+        IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
+        if (adapter == null) {
+      	  return false;
+        }
+        IconifiedText ic = (IconifiedText) adapter.getItem(position);
+		mContextText = ic.getText();
+		mContextIcon = ic.getIcon();
+		mContextFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), ic.getText());
+		
+		switch (item.getItemId()) {
+		case R.id.menu_open:
+            openFile(mContextFile); 
+			return true;
+			
+		case R.id.menu_create_shortcut:
+            createShortcut(mContextFile);
+			return true;
+			
+		case R.id.menu_move:
+			promptDestinationAndMoveFile();
+			return true;
+			
+		case R.id.menu_copy:
+			promptDestinationAndCopyFile();
+			return true;
+			
+		case R.id.menu_delete:
+			showDialog(DIALOG_DELETE);
+			return true;
+
+		case R.id.menu_rename:
+			showDialog(DIALOG_RENAME);
+			return true;
+			
+		case R.id.menu_send:
+			sendFile(mContextFile);
+			return true;
+		
+		case R.id.menu_details:
+			showDialog(DIALOG_DETAILS);
+			return true;
+
+        case R.id.menu_compress:
+            showDialog(DIALOG_COMPRESSING);
+            return true;
+
+        case R.id.menu_extract:
+            promptDestinationAndExtract();            
+            return true;
+			
+		case R.id.menu_bookmark:
+			String path = mContextFile.getAbsolutePath();
+			Cursor query = managedQuery(BookmarksProvider.CONTENT_URI,
+										new String[]{BookmarksProvider._ID},
+										BookmarksProvider.PATH + "=?",
+										new String[]{path},
+										null);
+			if(!query.moveToFirst()){
+				ContentValues values = new ContentValues();
+				values.put(BookmarksProvider.NAME, mContextFile.getName());
+				values.put(BookmarksProvider.PATH, path);
+				getContentResolver().insert(BookmarksProvider.CONTENT_URI, values);
+				Toast.makeText(this, R.string.bookmark_added, Toast.LENGTH_SHORT).show();
+			}
+			else{
+				Toast.makeText(this, R.string.bookmark_already_exists, Toast.LENGTH_SHORT).show();
+			}
+			return true;
+
+		case R.id.menu_more:
+			if (!PreferenceActivity.getShowAllWarning(FileManagerActivity.this)) {
+				showMoreCommandsDialog();
+				return true;
+			}
+
+			showWarningDialog();
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean handleMultipleSelectionAction(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_send:
+			actionMultiSend();
+			break;
+		case R.id.menu_delete:
+			actionMultiDelete();
+			break;
+		case R.id.menu_move:
+			actionMultiMove();
+			break;
+		case R.id.menu_copy:
+			actionMultiCopy();
+			break;
+		case R.id.menu_compress:
+			actionMultiCompress();
+			break;
+		default:
+			return false;
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * API level agnostic way of checking if there are selected items.
+	 * @return True if at least one item is selected, false otherwise.
+	 */
+	private boolean hasSelectedItems() {
+		return getSelectedItemCount() > 0;
+	}
+	
+	/**
+	 * API level agnostic way of getting the selected item count.
+	 * @return Count of selected items.
+	 */
+	private int getSelectedItemCount() {
+		int res = 0;
+		if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB) {
+			for (IconifiedText it : mDirectoryEntries) {
+				if (!it.isSelected()) {
+					continue;
+				}
+				res++;
+			}
+			return res;
+		} else
+			return ListViewMethodHelper.listView_getCheckedItemCount(getListView());
+	}
+
+	/**
+	 * API level agnostic way of getting a list of the selected {@link File}s.
+	 * 
+	 * @return A list of {@link File}s, representing the selected items.
+	 */
+	private ArrayList<File> getSelectedItemsFiles() {
+		ArrayList<File> files = new ArrayList<File>();
+
+        // If we use the old scheme.
+		if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB) {
+			for (IconifiedText it : mDirectoryEntries) {
+				if (!it.isSelected()) {
+					continue;
+				}
+
+				File file = FileUtils.getFile(mPathBar.getCurrentDirectory(),
+						it.getText());
+				files.add(file);
+			}
+	    // Else we use the CAB and list.
+		} else {
+			// This is actually the array of positions. Check the adapter's implementation for more info.
+			long[] ids = ListViewMethodHelper.listView_getCheckedItemIds(getListView());
+			
+			for (int i = 0; i < ids.length; i++) {
+				files.add(FileUtils.getFile(mPathBar.getCurrentDirectory(),
+						mDirectoryEntries[(int) ids[i]].getText()));
+			}
+		}
+		return files;
+	}
+	
+	/**
+	 * We override this, so that we get informed about the opening of the search dialog and start scanning silently.
+	 */
+	@Override
+	public boolean onSearchRequested() {
+		Bundle appData = new Bundle();
+		appData.putString(FileManagerIntents.EXTRA_SEARCH_INIT_PATH, mPathBar.getCurrentDirectory().getAbsolutePath());
+		startSearch(null, false, appData, false);
+		
+		return true;
+	}
 }

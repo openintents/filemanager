@@ -22,11 +22,14 @@ public class SearchCore {
 	private Uri mContentURI;
 	private Context mContext;
 	/** See {@link #setRoot(File)} */
-	private File root;
+	private File root = Environment.getExternalStorageDirectory();
 
 	private int mResultCount = 0;
 	private int mMaxResults = -1;
-
+	
+	private long mMaxNanos = -1;
+	private long mStart;
+	
 	public SearchCore(Context context) {
 		mContext = context;
 	}
@@ -75,6 +78,15 @@ public class SearchCore {
 	public void setMaxResults(int i) {
 		mMaxResults = i;
 	}
+	
+	/**
+	 * Call this to start the search stopwatch. First call of this should be right before the call to {@link #search(File)}.
+	 * @param maxNanos The search duration in nanos.
+	 */
+	public void startClock(long maxNanos){
+		mMaxNanos = maxNanos;
+		mStart = System.nanoTime();
+	}
 
 	private void insertResult(File f) {
 		mResultCount++;
@@ -117,7 +129,9 @@ public class SearchCore {
 		// Results in root pass
 		for (File f : dir.listFiles(filter)) {
 			insertResult(f);
-			if (mMaxResults > 0 && mResultCount >= mMaxResults) {
+			
+			// Break search on result count and search time conditions.
+			if ((mMaxResults > 0 && mResultCount >= mMaxResults) || (mMaxNanos > 0 && System.nanoTime()-mStart > mMaxNanos)) {
 				return;
 			}
 		}

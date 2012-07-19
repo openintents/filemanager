@@ -22,7 +22,8 @@ public class SearchSuggestionsProvider extends ContentProvider {
 	public static final String PROVIDER_NAME = "org.openintents.filemanager.search.suggest";
 	public static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER_NAME);
 
-	private static final int MAX_SUGGESTIONS = 5;
+	private static final long MAX_NANOS = 2000000;
+	private static final int MAX_SUGGESTIONS = 7;
 
 	private ArrayList<ContentValues> mSuggestions = new ArrayList<ContentValues>();
 	private SearchCore searcher;
@@ -74,7 +75,10 @@ public class SearchSuggestionsProvider extends ContentProvider {
 		
 		searcher.dropPreviousResults();
 		
+		System.out.println("SEARCH STARTED");
+		searcher.startClock(MAX_NANOS);
 		searcher.search(Environment.getExternalStorageDirectory());
+		System.out.println("SEARCH ended");
 		
 		MatrixCursor cursor = new MatrixCursor(new String[] {
 				SearchManager.SUGGEST_COLUMN_ICON_1,

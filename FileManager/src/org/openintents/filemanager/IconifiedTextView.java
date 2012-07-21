@@ -21,18 +21,14 @@ package org.openintents.filemanager;
  * Dec 7, 2008: Peli: Use inflated layout.
  */
 
-import android.content.Context; 
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable; 
-import android.util.Log;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView; 
-import android.widget.LinearLayout; 
-import android.widget.TextView; 
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class IconifiedTextView extends LinearLayout { 
       
@@ -42,7 +38,7 @@ public class IconifiedTextView extends LinearLayout {
      private ImageView mCheckIcon;
       
      public IconifiedTextView(Context context, final IconifiedText aIconifiedText) { 
-          super(context); 
+    	 super(context); 
 		
 		// inflate rating
 		LayoutInflater inflater = (LayoutInflater) context
@@ -53,8 +49,7 @@ public class IconifiedTextView extends LinearLayout {
 		
 		mIcon = (ImageView) findViewById(R.id.icon);
 		mText = (TextView) findViewById(R.id.text);
-		mInfo = (TextView) findViewById(R.id.info);
-		mCheckIcon = (ImageView) findViewById(R.id.select_icon);
+		mInfo = (TextView) findViewById(R.id.secondary_info);
      } 
 
      public ImageView getImageView() {

@@ -119,7 +119,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 	}
 
 
-	static boolean getDisplayHiddenFiles(Context context) {
+	public static boolean getDisplayHiddenFiles(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(PREFS_DISPLAYHIDDENFILES, true);
 	}
@@ -150,13 +150,13 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 	}
 	
 
-	static int getSortBy(Context context) {
+	public static int getSortBy(Context context) {
 		/* entryValues must be a string-array while we need integers */
 		return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
 								 .getString(PREFS_SORTBY, "1"));
 	}
 	
-	static boolean getAscending(Context context) {
+	public static boolean getAscending(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(PREFS_ASCENDING, true);
 	}

@@ -1,4 +1,4 @@
-package org.openintents.filemanager;
+package org.openintents.filemanager.files;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.openintents.filemanager.FileManagerActivity;
+import org.openintents.filemanager.PreferenceActivity;
+import org.openintents.filemanager.R;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.ImageUtils;
 import org.openintents.filemanager.util.MimeTypes;
@@ -32,7 +35,7 @@ public class DirectoryScanner extends Thread {
 	private static final String TAG = "OIFM_DirScanner";
 	
 	private File currentDirectory;
-	boolean cancel;
+	boolean cancelled;
 
 	private String mSdCardPath;
 	private Context context;
@@ -61,7 +64,7 @@ public class DirectoryScanner extends Thread {
     
 
 
-	DirectoryScanner(File directory, Context context, Handler handler, MimeTypes mimeTypes, String filterFiletype, String filterMimetype, String sdCardPath, boolean writeableOnly, boolean directoriesOnly) {
+	public DirectoryScanner(File directory, Context context, Handler handler, MimeTypes mimeTypes, String filterFiletype, String filterMimetype, String sdCardPath, boolean writeableOnly, boolean directoriesOnly) {
 		super("Directory Scanner");
 		currentDirectory = directory;
 		this.context = context;
@@ -91,7 +94,7 @@ public class DirectoryScanner extends Thread {
 		int sdCount = 0;
 		int totalCount = 0;
 		
-		if (cancel) {
+		if (cancelled) {
 			Log.v(TAG, "Scan aborted");
 			clearData();
 			return;
@@ -111,17 +114,17 @@ public class DirectoryScanner extends Thread {
 		int progress = 0;
 		
 		/** Dir separate for return after sorting*/
- 		List<IconifiedText> listDir = new ArrayList<IconifiedText>(totalCount);
+ 		List<FileHolder> listDir = new ArrayList<FileHolder>(totalCount);
 		/** Dir separate for sorting */
 		List<File> listDirFile = new ArrayList<File>(totalCount);
 
 		/** Files separate for return after sorting*/
- 		List<IconifiedText> listFile = new ArrayList<IconifiedText>(totalCount);
+ 		List<FileHolder> listFile = new ArrayList<FileHolder>(totalCount);
 		/** Files separate for sorting */
 		List<File> listFileFile = new ArrayList<File>(totalCount);
 
 		/** SD card separate for sorting - actually not sorted, so we don't need an ArrayList<File>*/
-		List<IconifiedText> listSdCard = new ArrayList<IconifiedText>(3);
+		List<FileHolder> listSdCard = new ArrayList<FileHolder>(3);
 		
 		boolean noMedia = false;
 
@@ -136,7 +139,7 @@ public class DirectoryScanner extends Thread {
 		
 		if (files != null) {
 			for (File currentFile : files){ 
-				if (cancel) {
+				if (cancelled) {
 					// Abort!
 					Log.v(TAG, "Scan aborted while checking files");
 					clearData();
@@ -157,8 +160,7 @@ public class DirectoryScanner extends Thread {
 					if (currentFile.getAbsolutePath().equals(mSdCardPath)) {
 						currentIcon = sdIcon;
 
-						listSdCard.add(new IconifiedText( 
-								currentFile.getName(), "", currentIcon)); 
+						listSdCard.add(new FileHolder(currentFile, currentIcon)); 
 					} else {
 						if (!mWriteableOnly || currentFile.canWrite()){
 							listDirFile.add(currentFile);
@@ -196,8 +198,7 @@ public class DirectoryScanner extends Thread {
 		Collections.sort(listFileFile, Comparators.getForFile(sortBy, ascending)); 
 		
 		for(File f : listDirFile){
-			listDir.add(new IconifiedText( 
-					f.getName(), FileUtils.formatDate(context, f.lastModified()), folderIcon));
+			listDir.add(new FileHolder(f, folderIcon));
 		}
 		
 		for(File currentFile : listFileFile){
@@ -230,12 +231,10 @@ public class DirectoryScanner extends Thread {
 				// enough.
 			}
 			
-			listFile.add(new IconifiedText( 
-					currentFile.getName(), size + " , " + FileUtils.formatDate(
-							context, currentFile.lastModified()), currentIcon));
+			listFile.add(new FileHolder(currentFile, currentIcon));
 		}
 
-		if (!cancel) {
+		if (!cancelled) {
 			Log.v(TAG, "Sending data back to main thread");
 			
 			DirectoryContents contents = new DirectoryContents();
@@ -352,6 +351,10 @@ public class DirectoryScanner extends Thread {
        	 return;
         }
     }
+	
+	public void cancel(){
+		cancelled = true;
+	}
 }
 
 /**

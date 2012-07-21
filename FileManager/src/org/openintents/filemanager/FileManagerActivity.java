@@ -33,6 +33,9 @@ import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.compatibility.ListViewMethodHelper;
+import org.openintents.filemanager.files.DirectoryContents;
+import org.openintents.filemanager.files.DirectoryScanner;
+import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.CompressManager;
 import org.openintents.filemanager.util.ExtractManager;
 import org.openintents.filemanager.util.FileUtils;
@@ -95,6 +98,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -164,16 +168,16 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private static boolean mRestored = false;
 	
 	/** Contains directories and files together */
-     private ArrayList<IconifiedText> directoryEntries = new ArrayList<IconifiedText>();
+     private ArrayList<FileHolder> directoryEntries = new ArrayList<FileHolder>();
 
      /** Dir separate for sorting */
-     List<IconifiedText> mListDir = new ArrayList<IconifiedText>();
+     List<FileHolder> mListDir = new ArrayList<FileHolder>();
      
      /** Files separate for sorting */
-     List<IconifiedText> mListFile = new ArrayList<IconifiedText>();
+     List<FileHolder> mListFile = new ArrayList<FileHolder>();
      
      /** SD card separate for sorting */
-     List<IconifiedText> mListSdCard = new ArrayList<IconifiedText>();
+     List<FileHolder> mListSdCard = new ArrayList<FileHolder>();
      
      // There's a ".nomedia" file here
      private boolean mNoMedia;
@@ -215,7 +219,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
 	private boolean mWritableOnly;
 
-    private IconifiedText[] mDirectoryEntries;
+    private FileHolder[] mDirectoryEntries;
 
  	 static final public int MESSAGE_SHOW_DIRECTORY_CONTENTS = 500;	// List of contents is ready, obj = DirectoryContents
      static final public int MESSAGE_SET_PROGRESS = 501;	// Set progress bar, arg1 = current value, arg2 = max value
@@ -421,40 +425,40 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			// had to bypass direct casting as it was causing a rather unexplainable crash
 			Parcelable tmpDirectoryEntries[] = icicle
 					.getParcelableArray(BUNDLE_DIRECTORY_ENTRIES);
-			mDirectoryEntries = new IconifiedText[tmpDirectoryEntries.length];
+			mDirectoryEntries = new FileHolder[tmpDirectoryEntries.length];
 			for (int i = 0; i < tmpDirectoryEntries.length; i++) {
-				mDirectoryEntries[i] = (IconifiedText) tmpDirectoryEntries[i];
+				mDirectoryEntries[i] = (FileHolder) tmpDirectoryEntries[i];
 			}
 			mRestored = true;
 		}
-
-		getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
-
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
-				if (adapter != null) {
-					switch (scrollState) {
-					case OnScrollListener.SCROLL_STATE_IDLE:
-						adapter.toggleScrolling(false);
-						adapter.notifyDataSetChanged();
-						break;
-					case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
-						adapter.toggleScrolling(true);
-						break;
-					case OnScrollListener.SCROLL_STATE_FLING:
-						adapter.toggleScrolling(true);
-						break;
-					}
-				}
-			}
-
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-				// Not used
-			}
-		});
+// TODO think about removal.
+//		getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
+//
+//			@Override
+//			public void onScrollStateChanged(AbsListView view, int scrollState) {
+//				IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
+//				if (adapter != null) {
+//					switch (scrollState) {
+//					case OnScrollListener.SCROLL_STATE_IDLE:
+//						adapter.toggleScrolling(false);
+//						adapter.notifyDataSetChanged();
+//						break;
+//					case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+//						adapter.toggleScrolling(true);
+//						break;
+//					case OnScrollListener.SCROLL_STATE_FLING:
+//						adapter.toggleScrolling(true);
+//						break;
+//					}
+//				}
+//			}
+//
+//			@Override
+//			public void onScroll(AbsListView view, int firstVisibleItem,
+//					int visibleItemCount, int totalItemCount) {
+//				// Not used
+//			}
+//		});
 		
 		if (mState == STATE_BROWSE) {
 			// Remove edit text and button.
@@ -482,7 +486,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	 DirectoryScanner scanner = mDirectoryScanner;
     	 
     	 if (scanner != null) {
-    		 scanner.cancel = true;
+    		 scanner.cancel();
     	 }
     	 
     	 mDirectoryScanner = null;
@@ -530,7 +534,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	         addAllElements(directoryEntries, mListDir);
 	         addAllElements(directoryEntries, mListFile);
 
-    		 mDirectoryEntries = directoryEntries.toArray(new IconifiedText[0]);
+    		 mDirectoryEntries = directoryEntries.toArray(new FileHolder[0]);
     	 }
     	 else {
     		 directoryEntries.clear();
@@ -543,9 +547,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     		 mRestored = false;
     	 }
 
-         IconifiedTextListAdapter itla = new IconifiedTextListAdapter(this); 
-         itla.setListItems(directoryEntries, getListView().hasTextFilter(), mPathBar.getCurrentDirectory(), mMimeTypes);          
-         setListAdapter(itla); 
+    	 FileHolderListAdapter adapter = new FileHolderListAdapter(directoryEntries, this);
+// TODO remove completely
+//			IconifiedTextListAdapter itla = new IconifiedTextListAdapter(this); 
+//         itla.setListItems(directoryEntries, getListView().hasTextFilter(), mPathBar.getCurrentDirectory(), mMimeTypes);          
+         setListAdapter(adapter); 
 	     getListView().setTextFilterEnabled(true);
 	     
 	     if(fileDeleted){
@@ -705,7 +711,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	  DirectoryScanner scanner = mDirectoryScanner;
     	  
     	  if (scanner != null) {
-    		  scanner.cancel = true;
+    		  scanner.cancel();
     	  }
     	  
     	  ThumbnailLoader loader = mThumbnailLoader;
@@ -761,7 +767,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 //    	 }
 //     }
      
-     private void addAllElements(List<IconifiedText> addTo, List<IconifiedText> addFrom) {
+     private <T>  void addAllElements(List<T> addTo, List<T> addFrom) {
     	 int size = addFrom.size();
     	 for (int i = 0; i < size; i++) {
     		 addTo.add(addFrom.get(i));
@@ -772,26 +778,15 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      protected void onListItemClick(ListView l, View v, int position, long id) { 
           super.onListItemClick(l, v, position, id); 
           
-          IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
+          FileHolder item = (FileHolder) l.getAdapter().getItem(position);
           
-          if (adapter == null) {
-        	  return;
-          }
-          
-          IconifiedText text = (IconifiedText) adapter.getItem(position);
-
-          if (mState == STATE_MULTI_SELECT) {
-        	  text.setSelected(!text.isSelected());
-        	  adapter.notifyDataSetChanged();
-        	  return;
-          }
-
-		String file = text.getText();
-		String curdir = mPathBar.getCurrentDirectory().getAbsolutePath();
-		File clickedFile = FileUtils.getFile(curdir, file);
-		if (clickedFile != null) {
-			browseTo(clickedFile);
-		}
+// TODO resolve multiselect.
+//          if (mState == STATE_MULTI_SELECT) {
+//        	  text.setSelected(!text.isSelected());
+//        	  adapter.notifyDataSetChanged();
+//        	  return;
+//          }
+          browseTo(item.getFile());
 	}
 
      
@@ -1496,17 +1491,10 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		showDirectory(null);
 	}
 
-   private void toggleSelection(boolean selected) {
-	   for(IconifiedText it : mDirectoryEntries){
-		   it.setSelected(selected);
-	   }
-	   
-	   ((BaseAdapter) getListAdapter()).notifyDataSetChanged();
-   }
-
 	private void toggleCheckBoxVisibility(boolean visible) {
-		for(IconifiedText it : mDirectoryEntries){
-			it.setCheckIconVisible(visible);
+		for(FileHolder holder : mDirectoryEntries){
+// TODO this and next comment. do multiple selection for FileHolder lists.
+//			holder.setCheckIconVisible(visible);
 		}
 		
 		((BaseAdapter) getListAdapter()).notifyDataSetChanged();
@@ -2106,15 +2094,12 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		mi.inflate(R.menu.context, m);
 		
 		// Get the selected file
-        IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
-        if (adapter == null)
-        	return;
-        IconifiedText it = (IconifiedText) adapter.getItem(position);
+        FileHolder item = (FileHolder) l.getAdapter().getItem(position);
         if(m instanceof ContextMenu){
-			((ContextMenu) m).setHeaderTitle(it.getText());
-			((ContextMenu) m).setHeaderIcon(it.getIcon());
+			((ContextMenu) m).setHeaderTitle(item.getName());
+			((ContextMenu) m).setHeaderIcon(item.getIcon(getResources()));
         }
-		File file = FileUtils.getFile(mPathBar.getCurrentDirectory(), it.getText());
+		File file = item.getFile();
 
 		// If selected item is a directory
 		if (file.isDirectory()) {
@@ -2161,14 +2146,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			position = ((AdapterContextMenuInfo) item.getMenuInfo()).position;
 		
 		// Remember current selection
-        IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
-        if (adapter == null) {
-      	  return false;
-        }
-        IconifiedText ic = (IconifiedText) adapter.getItem(position);
-		mContextText = ic.getText();
-		mContextIcon = ic.getIcon();
-		mContextFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), ic.getText());
+        ListAdapter adapter = getListAdapter();
+        FileHolder holder = (FileHolder) adapter.getItem(position);
+		mContextText = holder.getName();
+		mContextIcon = holder.getIcon(getResources());
+		mContextFile = holder.getFile();
 		
 		switch (item.getItemId()) {
 		case R.id.menu_open:
@@ -2283,10 +2265,11 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 	private int getSelectedItemCount() {
 		int res = 0;
 		if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB) {
-			for (IconifiedText it : mDirectoryEntries) {
-				if (!it.isSelected()) {
-					continue;
-				}
+			for (FileHolder holder : mDirectoryEntries) {
+				// TODO resolve
+//				if (!holder.isSelected()) {
+//					continue;
+//				}
 				res++;
 			}
 			return res;
@@ -2304,14 +2287,13 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 
         // If we use the old scheme.
 		if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB) {
-			for (IconifiedText it : mDirectoryEntries) {
-				if (!it.isSelected()) {
-					continue;
-				}
+			for (FileHolder holder : mDirectoryEntries) {
+// TODO resolve multiselection!
+//				if (!holder.isSelected()) {
+//					continue;
+//				}
 
-				File file = FileUtils.getFile(mPathBar.getCurrentDirectory(),
-						it.getText());
-				files.add(file);
+				files.add(holder.getFile());
 			}
 	    // Else we use the CAB and list.
 		} else {
@@ -2319,8 +2301,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			long[] ids = ListViewMethodHelper.listView_getCheckedItemIds(getListView());
 			
 			for (int i = 0; i < ids.length; i++) {
-				files.add(FileUtils.getFile(mPathBar.getCurrentDirectory(),
-						mDirectoryEntries[(int) ids[i]].getText()));
+				files.add(mDirectoryEntries[(int) ids[i]].getFile());
 			}
 		}
 		return files;

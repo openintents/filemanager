@@ -226,4 +226,7 @@
     <string name="preference_search_category">Search</string>
     <string name="preference_search_dialog_message">Clear search history?</string>
     <string name="search_history_cleared">Search history cleared</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Item icon</string>
 </resources>

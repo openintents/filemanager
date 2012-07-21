@@ -41,13 +41,14 @@ public class SearchListAdapter extends CursorAdapter {
 		ViewGroup v = (ViewGroup) ((LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
 				R.layout.filelist_item, null);
-		v.findViewById(R.id.select_icon).setVisibility(View.GONE);
 
 		// Set the viewholder optimization.
 		ViewHolder holder = new ViewHolder();
 		holder.icon = (ImageView) v.findViewById(R.id.icon);
-		holder.filename = (TextView) v.findViewById(R.id.text);
-		holder.path = (TextView) v.findViewById(R.id.info);
+		holder.filename = (TextView) v.findViewById(R.id.primary_info);
+		holder.path = (TextView) v.findViewById(R.id.secondary_info);
+		
+		v.findViewById(R.id.tertiary_info).setVisibility(View.GONE);
 		v.setTag(holder);
 		
 		return v;

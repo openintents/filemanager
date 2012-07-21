@@ -6,13 +6,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.util.FileUtils;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.format.Formatter;
 
 public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	private File mFile;
@@ -55,10 +58,21 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 		return mFile.getName();
 	}
 	
-	public String getFormatedModificationDate(){
+	public String getFormattedModificationDate(){
 		return SimpleDateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date(mFile.lastModified()));
 	}
+	
+	public String getFormattedSize(Context c){
+		return Formatter.formatFileSize(c, getSizeInBytes());
+	}
 
+	private long getSizeInBytes(){
+		if (mFile.isDirectory())
+			return FileUtils.folderSize(mFile);
+		else
+			return mFile.length();
+	}
+	
 	@Override
 	public int describeContents() {
 		return 0;

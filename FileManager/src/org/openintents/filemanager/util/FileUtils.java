@@ -199,6 +199,19 @@ public class FileUtils {
 	public static String formatSize(Context context, long sizeInBytes) {
 		return Formatter.formatFileSize(context, sizeInBytes);
 	}
+
+	public static long folderSize(File directory) {
+		long length = 0;
+		File[] files = directory.listFiles();
+		if(files != null)
+			for (File file : files) {
+				if (file.isFile())
+					length += file.length();
+				else
+					length += folderSize(file);
+			}
+		return length;
+	}
 	
 	public static String formatDate(Context context, long dateTime) {
 		return DateFormat.getDateFormat(context).format(new Date(dateTime));

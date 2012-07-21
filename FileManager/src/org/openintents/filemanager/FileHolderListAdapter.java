@@ -17,11 +17,13 @@ public class FileHolderListAdapter extends BaseAdapter {
 	private List<FileHolder> mItems;
 	private LayoutInflater mInflater;
 	private Resources mResources;
+	private Context mContext;
 	
 	public FileHolderListAdapter(List<FileHolder> files, Context c){
 		mItems = files;
 		mInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mResources = c.getResources();
+		mContext = c;
 	}
 	
 	@Override
@@ -67,8 +69,8 @@ public class FileHolderListAdapter extends BaseAdapter {
 		
 		holder.icon.setImageDrawable(item.getIcon(mResources));
 		holder.name.setText(item.getName());
-		holder.modified.setText(item.getFormatedModificationDate());
-		// TODO size info
+		holder.modified.setText(item.getFormattedModificationDate());
+		holder.size.setText(item.getFormattedSize(mContext));
 		
 		return convertView;
 	}

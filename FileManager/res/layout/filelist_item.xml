@@ -48,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?android:attr/textColorTertiary"
         android:layout_below="@+id/primary_info"
         android:layout_alignLeft="@+id/primary_info" />
     
@@ -57,6 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?android:attr/textColorTertiary"
         android:layout_alignBottom="@+id/secondary_info"
         android:layout_alignParentRight="true" />
 

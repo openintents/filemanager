@@ -67,7 +67,8 @@ public class FileHolderListAdapter extends BaseAdapter {
 		
 		holder.icon.setImageDrawable(item.getIcon(mResources));
 		holder.name.setText(item.getName());
-		// TODO add date and size info
+		holder.modified.setText(item.getFormatedModificationDate());
+		// TODO size info
 		
 		return convertView;
 	}

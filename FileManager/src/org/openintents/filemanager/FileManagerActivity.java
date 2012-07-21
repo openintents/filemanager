@@ -73,6 +73,7 @@ import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
@@ -181,8 +182,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
      
      // There's a ".nomedia" file here
      private boolean mNoMedia;
-     
-     private String mSdCardPath = "";
      
      private MimeTypes mMimeTypes;
      /** Files shown are filtered using this extension */
@@ -324,11 +323,8 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		Intent intent = getIntent();
 		String action = intent.getAction();
 
-		resetSdCardPath();
-		if (!TextUtils.isEmpty(mSdCardPath))
-			mPathBar.setInitialDirectory(mSdCardPath);
-		else
-			mPathBar.setInitialDirectory("/");
+		mPathBar.setInitialDirectory(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment
+				.getExternalStorageDirectory().getAbsolutePath() : "/");
 
 		// Default state
 		mState = STATE_BROWSE;
@@ -431,34 +427,28 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 			}
 			mRestored = true;
 		}
-// TODO think about removal.
-//		getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
-//
-//			@Override
-//			public void onScrollStateChanged(AbsListView view, int scrollState) {
-//				IconifiedTextListAdapter adapter = (IconifiedTextListAdapter) getListAdapter();
-//				if (adapter != null) {
-//					switch (scrollState) {
-//					case OnScrollListener.SCROLL_STATE_IDLE:
-//						adapter.toggleScrolling(false);
-//						adapter.notifyDataSetChanged();
-//						break;
-//					case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
-//						adapter.toggleScrolling(true);
-//						break;
-//					case OnScrollListener.SCROLL_STATE_FLING:
-//						adapter.toggleScrolling(true);
-//						break;
-//					}
-//				}
-//			}
-//
-//			@Override
-//			public void onScroll(AbsListView view, int firstVisibleItem,
-//					int visibleItemCount, int totalItemCount) {
-//				// Not used
-//			}
-//		});
+		
+		getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				FileHolderListAdapter adapter = (FileHolderListAdapter) getListAdapter();
+				if (adapter != null) {
+					if(scrollState == OnScrollListener.SCROLL_STATE_IDLE){
+						adapter.setScrolling(false);
+						adapter.notifyDataSetChanged();
+					}
+					else
+						adapter.setScrolling(true);
+				}
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				// Not used
+			}
+		});
 		
 		if (mState == STATE_BROWSE) {
 			// Remove edit text and button.
@@ -736,7 +726,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
           mProgressBar.setVisibility(View.GONE);
           setListAdapter(null); 
           
-		  mDirectoryScanner = new DirectoryScanner(dir, this, currentHandler, mMimeTypes, mFilterFiletype, mFilterMimetype, mSdCardPath, mWritableOnly, directoriesOnly);
+		  mDirectoryScanner = new DirectoryScanner(dir, this, currentHandler, mMimeTypes, mFilterFiletype, mFilterMimetype, mWritableOnly, directoriesOnly);
 		  mDirectoryScanner.start();
 		  
 		  
@@ -788,16 +778,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 //          }
           browseTo(item.getFile());
 	}
-
-     
-     /**
-      * Renews the value of {@link #mSdCardPath}.
-      */
-     private void resetSdCardPath() {
-    	 mSdCardPath = android.os.Environment
-			.getExternalStorageDirectory().getAbsolutePath();
-     }
-     
 
  	@Override
  	public boolean onCreateOptionsMenu(Menu menu) {
@@ -2097,7 +2077,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         FileHolder item = (FileHolder) l.getAdapter().getItem(position);
         if(m instanceof ContextMenu){
 			((ContextMenu) m).setHeaderTitle(item.getName());
-			((ContextMenu) m).setHeaderIcon(item.getIcon(getResources()));
+			((ContextMenu) m).setHeaderIcon(item.getIcon(this));
         }
 		File file = item.getFile();
 
@@ -2149,7 +2129,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         ListAdapter adapter = getListAdapter();
         FileHolder holder = (FileHolder) adapter.getItem(position);
 		mContextText = holder.getName();
-		mContextIcon = holder.getIcon(getResources());
+		mContextIcon = holder.getIcon(this);
 		mContextFile = holder.getFile();
 		
 		switch (item.getItemId()) {

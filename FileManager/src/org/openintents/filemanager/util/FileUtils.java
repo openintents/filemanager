@@ -204,12 +204,11 @@ public class FileUtils {
 		long length = 0;
 		File[] files = directory.listFiles();
 		if(files != null)
-			for (File file : files) {
+			for (File file : files)
 				if (file.isFile())
 					length += file.length();
 				else
 					length += folderSize(file);
-			}
 		return length;
 	}
 	
@@ -229,7 +228,8 @@ public class FileUtils {
      */
     public static boolean checkIfZipArchive(File f){
     	int l = f.getName().length();
-    	if(f.isFile() && f.getName().substring(l-4, l).equals(".zip"))
+    	// TODO test
+    	if(f.isFile() && FileUtils.getExtension(f.getAbsolutePath()).equals(".zip"))
     		return true;
     	return false;
     	

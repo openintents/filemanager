@@ -1,7 +1,6 @@
 package org.openintents.filemanager.files;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,20 +10,11 @@ import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.util.FileUtils;
-import org.openintents.filemanager.util.ImageUtils;
 import org.openintents.filemanager.util.MimeTypes;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ResolveInfo;
-import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -41,7 +31,6 @@ public class DirectoryScanner extends Thread {
 	private Context context;
     private MimeTypes mMimeTypes;
 	private Handler handler;
-	private long operationStartTime;
 	private String mFilterFiletype;
 	private String mFilterMimetype;
 
@@ -51,20 +40,17 @@ public class DirectoryScanner extends Thread {
 	
 	// Update progress bar every n files
 	static final private int PROGRESS_STEPS = 50;
-
-	// APK MIME type
-	private static final String MIME_APK = "application/vnd.android.package-archive";
 	
-	// Cupcake-specific methods
-    static Method formatter_formatFileSize;
+	// Scan related variables.
+	private int totalCount, progress;
+	private long operationStartTime;
+	private boolean noMedia, displayHidden;
+	private Drawable sdIcon, folderIcon, fileIcon;
+	private File[] files;
+	/** We keep all these three instead of one, so that sorting is done separately on each. */
+	private List<FileHolder> listDir, listFile, listSdCard;
 
-    static {
-    	initializeCupcakeInterface();
-    }
-    
-
-
-	public DirectoryScanner(File directory, Context context, Handler handler, MimeTypes mimeTypes, String filterFiletype, String filterMimetype, String sdCardPath, boolean writeableOnly, boolean directoriesOnly) {
+	public DirectoryScanner(File directory, Context context, Handler handler, MimeTypes mimeTypes, String filterFiletype, String filterMimetype, boolean writeableOnly, boolean directoriesOnly) {
 		super("Directory Scanner");
 		currentDirectory = directory;
 		this.context = context;
@@ -72,11 +58,14 @@ public class DirectoryScanner extends Thread {
 		this.mMimeTypes = mimeTypes;
 		this.mFilterFiletype = filterFiletype;
 		this.mFilterMimetype = filterMimetype;
-		this.mSdCardPath = sdCardPath;
+		this.mSdCardPath = Environment.getExternalStorageDirectory().getAbsolutePath();
 		this.mWriteableOnly = writeableOnly;
 		this.mDirectoriesOnly = directoriesOnly;
 	}
 	
+	/**
+	 * Remove all references so we don't delay the garbage collection.
+	 */
 	private void clearData() {
 		// Remove all references so we don't delay the garbage collection.
 		context = null;
@@ -84,15 +73,8 @@ public class DirectoryScanner extends Thread {
 		handler = null;
 	}
 
-	public void run() {
+	private void init(){
 		Log.v(TAG, "Scanning directory " + currentDirectory);
-		
-		File[] files = currentDirectory.listFiles();
-
-		int fileCount = 0;
-		int dirCount = 0;
-		int sdCount = 0;
-		int totalCount = 0;
 		
 		if (cancelled) {
 			Log.v(TAG, "Scan aborted");
@@ -100,139 +82,95 @@ public class DirectoryScanner extends Thread {
 			return;
 		}
 		
-		if (files == null) {
-			Log.v(TAG, "Returned null - inaccessible directory?");
-			totalCount = 0;
-		} else {
-			totalCount = files.length;
-		}
+		totalCount = 0;
+		progress = 0;
+		files = currentDirectory.listFiles();
+		noMedia = false;
+		displayHidden = PreferenceActivity.getDisplayHiddenFiles(context);
+		sdIcon = context.getResources().getDrawable(R.drawable.ic_launcher_sdcard);
+		folderIcon = context.getResources().getDrawable(R.drawable.ic_launcher_folder);
+		fileIcon = context.getResources().getDrawable(R.drawable.icon_file);
 		
 		operationStartTime = SystemClock.uptimeMillis();
 		
-		Log.v(TAG, "Counting files... (total count=" + totalCount + ")");
-
-		int progress = 0;
+		if (files == null) {
+			Log.v(TAG, "Returned null - inaccessible directory?");
+		} else {
+			totalCount = files.length;
+		}
+		Log.v(TAG, "Total count=" + totalCount + ")");
 		
-		/** Dir separate for return after sorting*/
- 		List<FileHolder> listDir = new ArrayList<FileHolder>(totalCount);
-		/** Dir separate for sorting */
-		List<File> listDirFile = new ArrayList<File>(totalCount);
-
-		/** Files separate for return after sorting*/
- 		List<FileHolder> listFile = new ArrayList<FileHolder>(totalCount);
-		/** Files separate for sorting */
-		List<File> listFileFile = new ArrayList<File>(totalCount);
-
-		/** SD card separate for sorting - actually not sorted, so we don't need an ArrayList<File>*/
-		List<FileHolder> listSdCard = new ArrayList<FileHolder>(3);
-		
-		boolean noMedia = false;
-
-		// Cache some commonly used icons.
-		Drawable sdIcon = context.getResources().getDrawable(R.drawable.ic_launcher_sdcard);
-		Drawable folderIcon = context.getResources().getDrawable(R.drawable.ic_launcher_folder);
-		Drawable genericFileIcon = context.getResources().getDrawable(R.drawable.icon_file);
-
-		Drawable currentIcon = null; 
-		
-		boolean displayHiddenFiles = PreferenceActivity.getDisplayHiddenFiles(context);
+		/** Directory container */
+ 		listDir = new ArrayList<FileHolder>(totalCount);
+		/** File container */
+ 		listFile = new ArrayList<FileHolder>(totalCount);
+		/** External storage container*/
+		listSdCard = new ArrayList<FileHolder>(3);
+	}
+	
+	public void run() {
+		init();
 		
 		if (files != null) {
+			Drawable currentIcon;
+			
 			for (File currentFile : files){ 
 				if (cancelled) {
-					// Abort!
 					Log.v(TAG, "Scan aborted while checking files");
 					clearData();
 					return;
 				}
-
+				
 				progress++;
 				updateProgress(progress, totalCount);
-
-				//If the user doesn't want to display hidden files and the file is hidden,
-				//skip displaying the file
-				if (!displayHiddenFiles && currentFile.isHidden()){
+				
+				//If the user doesn't want to display hidden files and the file is hidden, ignore this file.
+				if (!displayHidden && currentFile.isHidden()){
 					continue;
 				}
-				 			
 				
+				// It's a directory. Handle it.
 				if (currentFile.isDirectory()) { 
+					// It's the sd card.
 					if (currentFile.getAbsolutePath().equals(mSdCardPath)) {
-						currentIcon = sdIcon;
-
-						listSdCard.add(new FileHolder(currentFile, currentIcon)); 
-					} else {
-						if (!mWriteableOnly || currentFile.canWrite()){
-							listDirFile.add(currentFile);
-						}
+						listSdCard.add(new FileHolder(currentFile, sdIcon));
 					}
-				}else{ 
+					// It's a normal directory.
+					else {
+						if (!mWriteableOnly || currentFile.canWrite())
+							listDir.add(new FileHolder(currentFile, folderIcon));
+					} 
+				// It's a file. Handle it too :P
+				} else { 
 					String fileName = currentFile.getName(); 
 					
-					// Is this the ".nomedia" file?
+					// It's the noMedia file. Raise the flag.
 					if(fileName.equalsIgnoreCase(".nomedia"))
 						noMedia = true;
 
+					// Get the file's mimetype.
 					String mimetype = mMimeTypes.getMimeType(fileName);
-
 					String filetype = FileUtils.getExtension(fileName);
+					
 					boolean ext_allow = filetype.equalsIgnoreCase(mFilterFiletype) || mFilterFiletype == "";
 					boolean mime_allow = mFilterMimetype != null && 
 							(mimetype.contentEquals(mFilterMimetype) || mFilterMimetype.contentEquals("*/*") ||
 									mFilterFiletype == null);
 					if (!mDirectoriesOnly && (ext_allow || mime_allow)) {
-						listFileFile.add(currentFile);
+						// Take advantage of the already parsed mimeType to set a specific icon. 
+						listFile.add(new FileHolder(currentFile,  mimetype, context));
 					}
 				} 
 			}
 		}
 		
 		Log.v(TAG, "Sorting results...");
-		
 		//Collections.sort(mListSdCard); 
 		int sortBy = PreferenceActivity.getSortBy(context);
 		boolean ascending = PreferenceActivity.getAscending(context);
 		
-		
-		Collections.sort(listDirFile, Comparators.getForDirectory(sortBy, ascending)); 
-		Collections.sort(listFileFile, Comparators.getForFile(sortBy, ascending)); 
-		
-		for(File f : listDirFile){
-			listDir.add(new FileHolder(f, folderIcon));
-		}
-		
-		for(File currentFile : listFileFile){
-			String mimetype = mMimeTypes.getMimeType(currentFile.getName());
-			currentIcon = getDrawableForMimetype(currentFile, mimetype);
-			if (currentIcon == null) {
-				currentIcon = genericFileIcon;
-			} else {
-				int width = genericFileIcon.getIntrinsicWidth();
-				int height = genericFileIcon.getIntrinsicHeight();
-				// Resizing image.
-				currentIcon = ImageUtils.resizeDrawable(currentIcon, width, height);
-
-			}
-
-			String size = "";
-
-			try {
-				size = (String) formatter_formatFileSize.invoke(null, context, currentFile.length());
-			} catch (Exception e) {
-				// The file size method is probably null (this is most
-				// likely not a Cupcake phone), or something else went wrong.
-				// Let's fall back to something primitive, like just the number
-				// of KB.
-				size = Long.toString(currentFile.length() / 1024);
-				size +=" KB";
-
-				// Technically "KB" should come from a string resource,
-				// but this is just a Cupcake 1.1 callback, and KB is universal
-				// enough.
-			}
-			
-			listFile.add(new FileHolder(currentFile, currentIcon));
-		}
+		Collections.sort(listDir, Comparators.getForDirectory(sortBy, ascending)); 
+		Collections.sort(listFile, Comparators.getForFile(sortBy, ascending)); 
 
 		if (!cancelled) {
 			Log.v(TAG, "Sending data back to main thread");
@@ -270,88 +208,6 @@ public class DirectoryScanner extends Thread {
 		}
 	}
 
-	/**
-     * Return the Drawable that is associated with a specific mime type
-     * for the VIEW action.
-     * 
-     * @param mimetype
-     * @return
-     */
-    Drawable getDrawableForMimetype(File file, String mimetype) {
-     if (mimetype == null) {
-    	 return null;
-     }
-     
-   	 PackageManager pm = context.getPackageManager();
-   	 
-   	 // Returns the icon packaged in files with the .apk MIME type.
-   	 if(mimetype.equals(MIME_APK)){
-   		 String path = file.getPath();
-   		 PackageInfo pInfo = pm.getPackageArchiveInfo(path, PackageManager.GET_ACTIVITIES);
-   		 if (pInfo!=null) {
-	   		 ApplicationInfo aInfo = pInfo.applicationInfo;
-	   		 
-	   		 // Bug in SDK versions >= 8. See here: http://code.google.com/p/android/issues/detail?id=9151
-	   		 if(Build.VERSION.SDK_INT >= 8){
-	   			 aInfo.sourceDir = path;
-	   			 aInfo.publicSourceDir = path;
-	   		 }
-	   		 
-	   		 return aInfo.loadIcon(pm);
-   		 }
-   	 }
-   	 
-   	 int iconResource = mMimeTypes.getIcon(mimetype);
-   	 Drawable ret = null;
-   	 if(iconResource > 0){
-   		 try {
-   			 ret = pm.getResourcesForApplication(context.getPackageName()).getDrawable(iconResource);
-   		 }catch(NotFoundException e){}
-   		 catch(NameNotFoundException e){}
-   	 }
-   	 
-   	 if(ret != null){
-   		 return ret;
-   	 }
-   	 
-   	 Uri data = FileUtils.getUri(file);
-   	
-   	 Intent intent = new Intent(Intent.ACTION_VIEW);
-   	 //intent.setType(mimetype);
-   	 
-   	 // Let's probe the intent exactly in the same way as the VIEW action
-   	 // is performed in FileManagerActivity.openFile(..)
-     intent.setDataAndType(data, mimetype);
-     
-   	 final List<ResolveInfo> lri = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-   	 
-   	 if (lri != null && lri.size() > 0) {
-   		 //Log.i(TAG, "lri.size()" + lri.size());
-   		 
-   		 // return first element
-   		 int index = 0;
-   		 
-   		 // Actually first element should be "best match",
-   		 // but it seems that more recently installed applications
-   		 // could be even better match.
-   		 index = lri.size()-1;
-   		 
-   		 final ResolveInfo ri = lri.get(index);
-   		 return ri.loadIcon(pm);
-   	 }
-   	 
-   	 return null;
-    }
-
-    private static void initializeCupcakeInterface() {
-        try {
-            formatter_formatFileSize = Class.forName("android.text.format.Formatter").getMethod("formatFileSize", Context.class, long.class);
-        } catch (Exception ex) {
-       	 // This is not cupcake.
-       	 return;
-        }
-    }
-	
 	public void cancel(){
 		cancelled = true;
 	}
@@ -366,7 +222,7 @@ class Comparators{
 	public static final int LAST_MODIFIED = 3;
 	
 	
-	public static Comparator<File> getForFile(int comparator, boolean ascending){
+	public static Comparator<FileHolder> getForFile(int comparator, boolean ascending){
 		switch(comparator){
 		case NAME: return new NameComparator(ascending);
 		case SIZE: return new SizeComparator(ascending);
@@ -374,7 +230,7 @@ class Comparators{
 		default: return null;
 		}
 	}
-	public static Comparator<File> getForDirectory(int comparator, boolean ascending){
+	public static Comparator<FileHolder> getForDirectory(int comparator, boolean ascending){
 		switch(comparator){
 		case NAME: return new NameComparator(ascending);
 		case SIZE: return new NameComparator(ascending); //Not a bug! Getting directory's size is verry slow
@@ -385,62 +241,53 @@ class Comparators{
 }
 
 
-abstract class FileComparator implements Comparator<File>{
+abstract class FileHolderComparator implements Comparator<FileHolder>{
 	protected boolean ascending = true;
 	
-	public FileComparator(boolean asc){
+	public FileHolderComparator(boolean asc){
 		ascending = asc;
 	}
 	
-	public FileComparator(){
+	public FileHolderComparator(){
 		this(true);
 	}
 	
-	public int compare(File f1, File f2){
+	public int compare(FileHolder f1, FileHolder f2){
 		return comp((ascending ? f1 : f2), (ascending ? f2 : f1));
 	}
 	
-	protected abstract int comp(File f1, File f2);
+	protected abstract int comp(FileHolder f1, FileHolder f2);
 }
 
-class NameComparator extends FileComparator{
+class NameComparator extends FileHolderComparator{
 	public NameComparator(boolean asc){
 		super(asc);
 	}
 	
-	protected int comp(File f1, File f2) {
+	@Override
+	protected int comp(FileHolder f1, FileHolder f2) {
 	    return f1.getName().toLowerCase().compareTo(f2.getName().toLowerCase());
 	}
 }
 
-class SizeComparator extends FileComparator{
+class SizeComparator extends FileHolderComparator{
 	public SizeComparator(boolean asc){
 		super(asc);
 	}
-	
-	protected int comp(File f1, File f2) {
-	    return ((Long)f1.length()).compareTo(f2.length());
+
+	@Override
+	protected int comp(FileHolder f1, FileHolder f2) {
+	    return ((Long)f1.getFile().length()).compareTo(f2.getFile().length());
 	}
-	
-	/*//Very inefficient
-	private long getFileSize(File f){
-    	if(f.isFile())
-    		return f.length();
-    	int ret = 0;
-    	for(File file : f.listFiles())
-    		ret += getFileSize(file);
-    	
-    	return ret;
-    }
-    */
 }
 
-class LastModifiedComparator extends FileComparator{
+class LastModifiedComparator extends FileHolderComparator{
 	public LastModifiedComparator(boolean asc){
 		super(asc);
 	}
-	
-	protected int comp(File f1, File f2) {
-	    return ((Long)f1.lastModified()).compareTo(f2.lastModified());
+
+	@Override
+	protected int comp(FileHolder f1, FileHolder f2) {
+	    return ((Long)f1.getFile().lastModified()).compareTo(f2.getFile().lastModified());
 	}
 }

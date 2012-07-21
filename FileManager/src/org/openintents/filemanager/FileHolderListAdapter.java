@@ -5,7 +5,6 @@ import java.util.List;
 import org.openintents.filemanager.files.FileHolder;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +15,23 @@ import android.widget.TextView;
 public class FileHolderListAdapter extends BaseAdapter {
 	private List<FileHolder> mItems;
 	private LayoutInflater mInflater;
-	private Resources mResources;
 	private Context mContext;
+	
+	// Thumbnail specific
+    public ThumbnailLoader mThumbnailLoader;
+    private boolean scrolling = false;
 	
 	public FileHolderListAdapter(List<FileHolder> files, Context c){
 		mItems = files;
 		mInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		mResources = c.getResources();
 		mContext = c;
+		
+		mThumbnailLoader = new ThumbnailLoader(c);
+	}
+	
+	@Override
+	public boolean hasStableIds() {
+		return true;
 	}
 	
 	@Override
@@ -67,11 +75,17 @@ public class FileHolderListAdapter extends BaseAdapter {
 		
 		ViewHolder holder = (ViewHolder) convertView.getTag();
 		
-		holder.icon.setImageDrawable(item.getIcon(mResources));
+		holder.icon.setImageDrawable(item.getIcon(mContext));
 		holder.name.setText(item.getName());
 		holder.modified.setText(item.getFormattedModificationDate());
 		holder.size.setText(item.getFormattedSize(mContext));
-		
+        
+        if(!scrolling && item.getFile().isFile() && !item.getMimeType().equals("video/mpeg")){
+      	  if(mThumbnailLoader != null) {
+      		  mThumbnailLoader.loadImage(item.getFile().getParent(), item, holder.icon);
+      	  }
+        }
+        
 		return convertView;
 	}
 	
@@ -80,5 +94,13 @@ public class FileHolderListAdapter extends BaseAdapter {
 		TextView name;
 		TextView modified;
 		TextView size;
+	}
+	
+	/**
+	 * Inform this adapter about scrolling state of list so that lists don't lag due to cache ops.
+	 * @param isScrolling True if the ListView is still scrolling.
+	 */
+	public void setScrolling(boolean isScrolling){
+		scrolling = isScrolling;
 	}
 }

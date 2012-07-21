@@ -1,5 +1,6 @@
 package org.openintents.filemanager;
 
+import java.io.File;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -8,13 +9,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.openintents.filemanager.util.FileUtils;
+import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.ImageUtils;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
@@ -97,23 +99,23 @@ public class ThumbnailLoader {
 	/**
 	 * 
 	 * @param parentFile The current directory.
-	 * @param text The IconifiedText container.
+	 * @param holder The IconifiedText container.
 	 * @param imageView The ImageView from the IconifiedTextView.
 	 */
-	public void loadImage(String parentFile, IconifiedText text, ImageView imageView) {
-		if(!cancel && !mBlacklist.contains(text.getText())){
+	public void loadImage(String parentFile, FileHolder holder, ImageView imageView) {
+		if(!cancel && !mBlacklist.contains(holder.getName())){
 			// We reset the caches after every 30 or so seconds of inactivity for memory efficiency.
 			resetPurgeTimer();
 			
-			Bitmap bitmap = getBitmapFromCache(text.getText());
+			Bitmap bitmap = getBitmapFromCache(holder.getName());
 			if(bitmap != null){
 				// We're still in the UI thread so we just update the icons from here.
 				imageView.setImageBitmap(bitmap);
-				text.setIcon(bitmap);
+				holder.setIcon(new BitmapDrawable(bitmap));
 			} else {
 				if (!cancel) {
 					// Submit the file for decoding.
-					Thumbnail thumbnail = new Thumbnail(parentFile, imageView, text);
+					Thumbnail thumbnail = new Thumbnail(imageView, holder);
 					WeakReference<ThumbnailRunner> runner = new WeakReference<ThumbnailRunner>(new ThumbnailRunner(thumbnail));
 					mExecutor.submit(runner.get());
 				}
@@ -202,11 +204,10 @@ public class ThumbnailLoader {
 	}
 	
 	/**
-	 * @param parentFile The parentFile, so we can obtain the full path of the bitmap
-	 * @param fileName The name of the file, also the text in the list item.
+	 * The file to decode.
 	 * @return The resized and resampled bitmap, if can not be decoded it returns null.
 	 */
-	private Bitmap decodeFile(String parentFile, String fileName) {
+	private Bitmap decodeFile(File file) {
 		if(!cancel){
 			try {
 				BitmapFactory.Options options = new BitmapFactory.Options();
@@ -216,8 +217,7 @@ public class ThumbnailLoader {
 				options.outHeight = 0;
 				options.inSampleSize = 1;
 				
-				String filePath = FileUtils.getFile(parentFile, fileName).getPath();
-		
+				String filePath = file.getAbsolutePath();
 				BitmapFactory.decodeFile(filePath, options);
 				
 				if(options.outWidth > 0 && options.outHeight > 0){
@@ -250,8 +250,8 @@ public class ThumbnailLoader {
 					}
 				} else {
 					// Must not be a bitmap, so we add it to the blacklist.
-					if(!mBlacklist.contains(fileName)){
-						mBlacklist.add(fileName);
+					if(!mBlacklist.contains(file.getName())){
+						mBlacklist.add(filePath);
 					}
 				}
 			} catch(Exception e) { }
@@ -260,17 +260,15 @@ public class ThumbnailLoader {
 	}
 	
 	/**
-	 * Holder object for thumbnail information.
+	 * Holder object for thumbnail information. 
 	 */
 	private class Thumbnail {
-		public String parentFile;
 		public ImageView imageView;
-		public IconifiedText text;
+		public FileHolder holder;
 		
-		public Thumbnail(String parentFile, ImageView imageView, IconifiedText text) {
-			this.parentFile = parentFile;
+		public Thumbnail(ImageView imageView, FileHolder text) {
 			this.imageView = imageView;
-			this.text = text;
+			this.holder = text;
 		}
 	}
 	
@@ -289,10 +287,10 @@ public class ThumbnailLoader {
 		@Override
 		public void run() {
 			if(!cancel){
-				Bitmap bitmap = decodeFile(thumb.parentFile, thumb.text.getText());
+				Bitmap bitmap = decodeFile(thumb.holder.getFile());
 				if(bitmap != null && !cancel){
 					// Bitmap was successfully decoded so we place it in the hard cache.
-					mHardBitmapCache.put(thumb.text.getText(), bitmap);
+					mHardBitmapCache.put(thumb.holder.getName(), bitmap);
 					Activity activity = ((Activity) mContext);
 					activity.runOnUiThread(new ThumbnailUpdater(bitmap, thumb));
 					thumb = null;
@@ -318,7 +316,7 @@ public class ThumbnailLoader {
 		public void run() {
 			if(bitmap != null && mContext != null && !cancel){
 				thumb.imageView.setImageBitmap(bitmap);
-				thumb.text.setIcon(bitmap);
+				thumb.holder.setIcon(new BitmapDrawable(bitmap));
 			}
 		}
 	}

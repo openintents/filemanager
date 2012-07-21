@@ -104,7 +104,7 @@ public class FileMultiChoiceModeHelper {
 	};
 
 	/**
-	 * This is error free since IconifiedTextListAdapter uses stableIds and getItemId(int) returns the int passed (the position of the item).
+	 * This is error free since FileHolderListAdapter uses stableIds and getItemId(int) returns the int passed (the position of the item).
 	 * @return 
 	 */
 	private int getSelectedPosition() {

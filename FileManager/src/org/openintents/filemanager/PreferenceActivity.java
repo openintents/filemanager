@@ -16,6 +16,7 @@
 
 package org.openintents.filemanager;
 
+import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.search.SearchableActivity;
 
 import android.app.AlertDialog;
@@ -23,10 +24,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 public class PreferenceActivity extends android.preference.PreferenceActivity
@@ -49,8 +52,10 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		
 	@Override
 	protected void onCreate(Bundle icicle) {
-		
 		super.onCreate(icicle);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
+		}
 
 		addPreferencesFromResource(R.xml.preferences);
 		
@@ -77,10 +82,18 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 				return true;
 			}
 		});
-		
-	
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			HomeIconHelper.showHome(this);
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
 	@Override
 	protected void onResume() {
 		super.onResume();

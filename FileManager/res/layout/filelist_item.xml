@@ -38,7 +38,9 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
 		android:maxLines="1"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_toRightOf="@id/icon"
+        android:layout_marginLeft="12dp" />
 
     <TextView
         android:id="@+id/secondary_info"

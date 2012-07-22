@@ -37,10 +37,12 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	private File mFile;
 	private Drawable mIcon;
 	private String mMimeType = "";
+	private Context mContext;
 	
-	public FileHolder(File f){
+	public FileHolder(File f, Context c){
 		mFile = f;
-		mMimeType = new MimeTypes().getMimeType(f.getName());
+		mMimeType = MimeTypes.newInstance(c).getMimeType(f.getName());
+		mContext = c;
 	}
 	
 	/**
@@ -48,10 +50,11 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	 * @param f The file this object will hold.
 	 * @param i The icon representing this file.
 	 */
-	public FileHolder(File f, Drawable i){
+	public FileHolder(File f, Drawable i, Context c){
 		mFile = f;
 		mIcon = i;
-		mMimeType = new MimeTypes().getMimeType(f.getName());
+		mMimeType = MimeTypes.newInstance(c).getMimeType(f.getName());
+		mContext = c;
 	}
 	
 	/**
@@ -60,7 +63,8 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	public FileHolder(File f, String m, Context c) {
 		mFile = f;
 		mMimeType = m;
-		getIcon(c);
+		mContext = c;
+		getIcon();
 	}
 	
 	public FileHolder(Parcel in){
@@ -74,18 +78,17 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	
 	/**
 	 * Gets the icon representation of this file. Creates it if it's not already stored. -- In case of loss through parcel-unparcel.
-	 * @param res Used in case of missing bitmap.
 	 * @return The icon.
 	 */
-	public Drawable getIcon(Context c){
-		Resources res = c.getResources();
+	public Drawable getIcon(){
+		Resources res = mContext.getResources();
 		if(mIcon == null){
 			if(mFile.isDirectory())
 				mIcon = new BitmapDrawable(res, BitmapFactory.decodeResource(res, R.drawable.ic_launcher_folder));
 			else if (mFile.getAbsolutePath().equals(Environment.getExternalStorageDirectory().getAbsolutePath()))
 				mIcon = new BitmapDrawable(res, BitmapFactory.decodeResource(res, R.drawable.ic_launcher_sdcard));
 			else {
-				mIcon = getScaledDrawableForMimetype(c);
+				mIcon = getScaledDrawableForMimetype(mContext);
 			}
 		}
 		return mIcon;
@@ -181,7 +184,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 			}
 		}
 
-		int iconResource = new MimeTypes().getIcon(mMimeType);
+		int iconResource = MimeTypes.newInstance(context).getIcon(mMimeType);
 		Drawable ret = null;
 		if (iconResource > 0) {
 			try {

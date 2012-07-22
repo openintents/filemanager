@@ -39,13 +39,11 @@ import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.CompressManager;
 import org.openintents.filemanager.util.ExtractManager;
 import org.openintents.filemanager.util.FileUtils;
-import org.openintents.filemanager.util.MimeTypeParser;
 import org.openintents.filemanager.util.MimeTypes;
 import org.openintents.filemanager.view.LegacyActionContainer;
 import org.openintents.filemanager.view.PathBar;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
-import org.xmlpull.v1.XmlPullParserException;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -62,9 +60,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
-import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -317,8 +313,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		});
 		mLegacyActionContainer.setFileManagerActivity(this);
 
-		// Create map of extensions:
-		getMimeTypes();
+		mMimeTypes = MimeTypes.newInstance(this);
 
 		Intent intent = getIntent();
 		String action = intent.getAction();
@@ -333,7 +328,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
 		if (action != null) {
 			if (action.equals(FileManagerIntents.ACTION_PICK_FILE)) {
 				mState = STATE_PICK_FILE;
-				mFilterFiletype = intent.getStringExtra("FILE_EXTENSION");
+				mFilterFiletype = intent.getStringExtra(FileManagerIntents.EXTRA_FILTER_FILETYPE);
 				if (mFilterFiletype == null)
 					mFilterFiletype = "";
 				mFilterMimetype = intent.getType();
@@ -584,36 +579,6 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
     	setResult(RESULT_OK, intent);
     	finish();
      }
-     
-	/**
-	 * 
-	 */
-     private void getMimeTypes() {
-    	 MimeTypeParser mtp = null;
-		try {
-			mtp = new MimeTypeParser(this, this.getPackageName());
-		} catch (NameNotFoundException e) {
-			//Should never happen
-		}
-
-    	 XmlResourceParser in = getResources().getXml(R.xml.mimetypes);
-
-    	 try {
-    		 mMimeTypes = mtp.fromXmlResource(in);
-    	 } catch (XmlPullParserException e) {
-    		 Log
-    		 .e(
-    				 TAG,
-    				 "PreselectedChannelsActivity: XmlPullParserException",
-    				 e);
-    		 throw new RuntimeException(
-    		 "PreselectedChannelsActivity: XmlPullParserException");
-    	 } catch (IOException e) {
-    		 Log.e(TAG, "PreselectedChannelsActivity: IOException", e);
-    		 throw new RuntimeException(
-    		 "PreselectedChannelsActivity: IOException");
-    	 }
-     } 
       
 	/**
 	 * Browse to some location by clicking on a list item.
@@ -2077,7 +2042,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         FileHolder item = (FileHolder) l.getAdapter().getItem(position);
         if(m instanceof ContextMenu){
 			((ContextMenu) m).setHeaderTitle(item.getName());
-			((ContextMenu) m).setHeaderIcon(item.getIcon(this));
+			((ContextMenu) m).setHeaderIcon(item.getIcon());
         }
 		File file = item.getFile();
 
@@ -2129,7 +2094,7 @@ public class FileManagerActivity extends DistributionLibraryListActivity impleme
         ListAdapter adapter = getListAdapter();
         FileHolder holder = (FileHolder) adapter.getItem(position);
 		mContextText = holder.getName();
-		mContextIcon = holder.getIcon(this);
+		mContextIcon = holder.getIcon();
 		mContextFile = holder.getFile();
 		
 		switch (item.getItemId()) {

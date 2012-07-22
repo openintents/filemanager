@@ -19,7 +19,7 @@ public class FileHolderListAdapter extends BaseAdapter {
 	private Context mContext;
 	
 	// Thumbnail specific
-    public ThumbnailLoader mThumbnailLoader;
+    private ThumbnailLoader mThumbnailLoader;
     private boolean scrolling = false;
 	
 	public FileHolderListAdapter(List<FileHolder> files, Context c){
@@ -76,7 +76,7 @@ public class FileHolderListAdapter extends BaseAdapter {
 		
 		ViewHolder holder = (ViewHolder) convertView.getTag();
 		
-		holder.icon.setImageDrawable(item.getIcon(mContext));
+		holder.icon.setImageDrawable(item.getIcon());
 		holder.primaryInfo.setText(item.getName());
 		holder.secondaryInfo.setText(item.getFormattedModificationDate());
 		holder.tertiaryInfo.setText(item.getFormattedSize(mContext));

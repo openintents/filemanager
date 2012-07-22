@@ -133,12 +133,12 @@ public class DirectoryScanner extends Thread {
 				if (currentFile.isDirectory()) { 
 					// It's the sd card.
 					if (currentFile.getAbsolutePath().equals(mSdCardPath)) {
-						listSdCard.add(new FileHolder(currentFile, sdIcon));
+						listSdCard.add(new FileHolder(currentFile, sdIcon, context));
 					}
 					// It's a normal directory.
 					else {
 						if (!mWriteableOnly || currentFile.canWrite())
-							listDir.add(new FileHolder(currentFile, folderIcon));
+							listDir.add(new FileHolder(currentFile, folderIcon, context));
 					} 
 				// It's a file. Handle it too :P
 				} else { 

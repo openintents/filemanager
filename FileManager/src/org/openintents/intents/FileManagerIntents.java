@@ -98,4 +98,30 @@ public final class FileManagerIntents {
      * <p>Constant Value: "org.openintents.extra.SEARCH_QUERY"</p>
 	 */
 	public static final String EXTRA_SEARCH_QUERY = "org.openintents.extra.SEARCH_QUERY";
+
+	/**
+     * <p>Constant Value: "org.openintents.extra.DIR_PATH"</p>
+	 */
+	public static final String EXTRA_DIR_PATH = "org.openintents.extra.DIR_PATH";
+
+	/**
+	 * Extension by which to filter.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.FILTER_FILETYPE"</p>
+	 */
+	public static final String EXTRA_FILTER_FILETYPE = "org.openintents.extra.FILTER_FILETYPE";
+	
+	/**
+	 * Mimetype by which to filter.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.FILTER_MIMETYPE"</p>
+	 */
+	public static final String EXTRA_FILTER_MIMETYPE = "org.openintents.extra.FILTER_MIMETYPE";
+	
+	/**
+	 * Only show directories.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.DIRECTORIES_ONLY"</p>
+	 */
+	public static final String EXTRA_DIRECTORIES_ONLY = "org.openintents.extra.DIRECTORIES_ONLY";
 }

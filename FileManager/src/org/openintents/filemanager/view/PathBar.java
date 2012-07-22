@@ -404,7 +404,6 @@ public class PathBar extends ViewFlipper {
 	/**
 	 * Returns the current {@link PathBar.Mode}.
 	 * 
-	 * @return
 	 */
 	public Mode getMode() {
 		return mCurrentMode;
@@ -412,36 +411,28 @@ public class PathBar extends ViewFlipper {
 
 	/**
 	 * 
-	 * @param dirPath
-	 *            The current directory's absolute path.
+	 * @param dirPath The current directory's absolute path.
 	 * @return
 	 */
 	private boolean backWillExit(String dirPath) {
 		// Count tree depths
-		int dirTreeDepth = 0;
-		for (int i = 0; i < dirPath.length(); i++) {
-			if (dirPath.charAt(i) == '/')
-				dirTreeDepth++;
-		}
+		String[] dir = dirPath.split("/");
+		int dirTreeDepth = dir.length;
 
-		int initTreeDepth = 0;
-		String initPath = mInitialDirectory.getAbsolutePath();
-		for (int i = 0; i < initPath.length(); i++) {
-			if (initPath.charAt(i) == '/')
-				initTreeDepth++;
-		}
+		String[] init = mInitialDirectory.getAbsolutePath().split("/");
+		int initTreeDepth = init.length;
 
 		// analyze and return
 		if (dirTreeDepth > initTreeDepth) {
 			return false;
-		} else if (dirTreeDepth == initTreeDepth) {
+		} else if (dirTreeDepth < initTreeDepth) {
+			return true;
+		} else {
 			if (dirPath.equals(mInitialDirectory.getAbsolutePath())) {
 				return true;
 			} else {
 				return false;
 			}
-		} else {
-			return true;
 		}
 	}
 

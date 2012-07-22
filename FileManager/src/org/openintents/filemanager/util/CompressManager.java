@@ -150,7 +150,7 @@ public class CompressManager {
                 activity.setResult(activity.RESULT_OK, intent);
                 activity.finish();
             } else {
-                activity.showDirectory(null);
+// TODO refreshed the activity.                activity.showDirectory(null);
             }
             
             if(onCompressFinishedListener != null)

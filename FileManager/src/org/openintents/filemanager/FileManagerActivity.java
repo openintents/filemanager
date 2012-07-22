@@ -30,9 +30,8 @@ import java.util.List;
 import org.openintents.filemanager.bookmarks.BookmarkListActivity;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
-import org.openintents.filemanager.files.DirectoryContents;
-import org.openintents.filemanager.files.DirectoryScanner;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.filemanager.util.CompressManager;
 import org.openintents.filemanager.util.ExtractManager;
 import org.openintents.filemanager.util.FileUtils;
@@ -67,8 +66,6 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -83,7 +80,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -105,9 +101,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 	 * @since 2011-03-23
 	 */
 	private static final Character FILE_EXTENSION_SEPARATOR = '.';
-	
-	private int mState;
-	
+		
 	private static final int STATE_BROWSE = 1;
 	private static final int STATE_PICK_FILE = 2;
 	private static final int STATE_PICK_DIRECTORY = 3;
@@ -115,26 +109,17 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
     
 	protected static final int REQUEST_CODE_MOVE = 1;
 	protected static final int REQUEST_CODE_COPY = 2;
+    private static final int REQUEST_CODE_MULTI_SELECT = 3;
     protected static final int REQUEST_CODE_EXTRACT = 4;
     protected static final int REQUEST_CODE_BOOKMARKS = 5;
-
-    /**
-     * @since 2011-02-11
-     */
-    private static final int REQUEST_CODE_MULTI_SELECT = 3;
 
 	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
 	private static final int DIALOG_NEW_FOLDER = 1;
 	private static final int DIALOG_RENAME = 3;
-
-	/**
-     * @since 2011-02-12
-     */
 	private static final int DIALOG_MULTI_DELETE = 4;
 	private static final int DIALOG_FILTER = 5;
 	private static final int DIALOG_DETAILS = 6;
-	
     private static final int DIALOG_COMPRESSING = 8;
     private static final int DIALOG_WARNING_EXISTS = 9;
     private static final int DIALOG_CHANGE_FILE_EXTENSION = 10;
@@ -149,9 +134,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 	private static final String BUNDLE_CONTEXT_TEXT = "context_text";
 	private static final String BUNDLE_SHOW_DIRECTORY_INPUT = "show_directory_input";
 	private static final String BUNDLE_DIRECTORY_ENTRIES = "directory_entries";
-	
-	/** Shows whether activity state has been restored (e.g. from a rotation). */
-	private static boolean mRestored = false;
 	
 	/** Contains directories and files together */
      private ArrayList<FileHolder> directoryEntries = new ArrayList<FileHolder>();
@@ -183,10 +165,8 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
      /**
       * @since 2011-02-11
       */
-     private LinearLayout mActionNormal;
      private LegacyActionContainer mLegacyActionContainer;
 
-     private ProgressBar mProgressBar;
 
     private FileHolder[] mDirectoryEntries;
 
@@ -239,141 +219,128 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 			HomeIconHelper.activity_actionbar_setHomeButtonEnabled(this);
 		
-		// Search every time user types.
+		// Search when the user types.
 		setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
 		
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
-		mProgressBar = (ProgressBar) findViewById(R.id.scan_progress);
-
+		// Init members
+		mMimeTypes = MimeTypes.newInstance(this);
 		mPathBar = (PathBar) findViewById(R.id.pathbar);
 		mLegacyActionContainer =  (LegacyActionContainer) findViewById(R.id.action_multiselect);
-		mPathBar.setOnDirectoryChangedListener(new PathBar.OnDirectoryChangedListener() {
 
-			@Override
-			public void directoryChanged(File newCurrentDir) {
-				showDirectory(newCurrentDir);
-			}
-		});
 		mLegacyActionContainer.setFileManagerActivity(this);
-
-		mMimeTypes = MimeTypes.newInstance(this);
-
-		Intent intent = getIntent();
-		String action = intent.getAction();
-
 		mPathBar.setInitialDirectory(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment
 				.getExternalStorageDirectory().getAbsolutePath() : "/");
-
-		// Default state
-		mState = STATE_BROWSE;
-
-		if (action != null) {
-			if (action.equals(FileManagerIntents.ACTION_PICK_FILE)) {
-				mState = STATE_PICK_FILE;
-				mFilterFiletype = intent.getStringExtra(FileManagerIntents.EXTRA_FILTER_FILETYPE);
-				if (mFilterFiletype == null)
-					mFilterFiletype = "";
-				mFilterMimetype = intent.getType();
-				if (mFilterMimetype == null)
-					mFilterMimetype = "";
-			} else if (action.equals(FileManagerIntents.ACTION_PICK_DIRECTORY)) {
-				mState = STATE_PICK_DIRECTORY;
-// TODO send this to the fragment!				intent.getBooleanExtra(
-//						FileManagerIntents.EXTRA_WRITEABLE_ONLY, false);
-			} else if (action.equals(FileManagerIntents.ACTION_MULTI_SELECT)) {
-				mState = STATE_MULTI_SELECT;
-
-				// Remove buttons
-				mPathBar.setVisibility(View.GONE);
-				mActionNormal.setVisibility(View.GONE);
-				mLegacyActionContainer.setVisibility(View.VISIBLE);
-				mLegacyActionContainer.setMenuResource(R.menu.multiselect);
-			}
-		}
+		
+		SimpleFileListFragment frag = new SimpleFileListFragment();
+		Bundle args = new Bundle();
+		args.putString(FileManagerIntents.EXTRA_DIR_PATH, mPathBar.getInitialDirectory().getAbsolutePath());
+		frag.setArguments(args);
+		frag.setPathBar(mPathBar);
+		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, frag).commit();
+		
+//		// Default state
+//		mState = STATE_BROWSE;
+//
+//		Intent intent = getIntent();
+//		String action = intent.getAction();
+//
+//		if (action != null) {
+//			if (action.equals(FileManagerIntents.ACTION_PICK_FILE)) {
+//				mState = STATE_PICK_FILE;
+//				mFilterFiletype = intent.getStringExtra(FileManagerIntents.EXTRA_FILTER_FILETYPE);
+//				if (mFilterFiletype == null)
+//					mFilterFiletype = "";
+//				mFilterMimetype = intent.getType();
+//				if (mFilterMimetype == null)
+//					mFilterMimetype = "";
+//			} else if (action.equals(FileManagerIntents.ACTION_PICK_DIRECTORY)) {
+//				mState = STATE_PICK_DIRECTORY;
+//// TODO send this to the fragment!				intent.getBooleanExtra(
+////						FileManagerIntents.EXTRA_WRITEABLE_ONLY, false);
+//			} else if (action.equals(FileManagerIntents.ACTION_MULTI_SELECT)) {
+//				mState = STATE_MULTI_SELECT;
+//
+//				// Remove buttons
+//				mPathBar.setVisibility(View.GONE);
+//				mActionNormal.setVisibility(View.GONE);
+//				mLegacyActionContainer.setVisibility(View.VISIBLE);
+//				mLegacyActionContainer.setMenuResource(R.menu.multiselect);
+//			}
+//		}
 
 		// Set current directory and file based on intent data.
-		File file = FileUtils.getFile(intent.getData());
-		if (file != null) {
-			File dir = FileUtils.getPathWithoutFilename(file);
-			if (dir.isDirectory()) {
-				mPathBar.setInitialDirectory(dir);
-			}
-			if (!file.isDirectory()) {
-				mEditFilename.setText(file.getName());
-			}
-		} else {
-			if (mState == STATE_PICK_FILE || mState == STATE_PICK_DIRECTORY
-					|| action.equals(Intent.ACTION_GET_CONTENT)) {
-				String path = PreferenceActivity.getDefaultPickFilePath(this);
-				if (path != null) {
-					File dir = new File(path);
-					if (dir.exists() && dir.isDirectory()) {
-						mPathBar.setInitialDirectory(dir);
-					}
-				}
-			}
-		}
+// TODO logic
+//		File file = new File(intent.getData().getPath());
+//		if (file != null) {
+//			File dir = FileUtils.getPathWithoutFilename(file);
+//			if (dir.isDirectory()) {
+//				mPathBar.setInitialDirectory(dir);
+//			}
+//			if (!file.isDirectory()) {
+//				mEditFilename.setText(file.getName());
+//			}
+//		} else {
+//			if (mState == STATE_PICK_FILE || mState == STATE_PICK_DIRECTORY
+//					|| action.equals(Intent.ACTION_GET_CONTENT)) {
+//				String path = PreferenceActivity.getDefaultPickFilePath(this);
+//				if (path != null) {
+//					File dir = new File(path);
+//					if (dir.exists() && dir.isDirectory()) {
+//						mPathBar.setInitialDirectory(dir);
+//					}
+//				}
+//			}
+//		}
+//		
+//		// If we've gotten here through the shortcut, override everything
+//		if(intent.getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET) != null) {
+//			file = new File(intent.getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET));
+//			if (!file.isDirectory()) {
+//				mEditFilename.setText(file.getName());
+//				browseTo(file);
+//				finish();
+//			}
+//			else
+//				mPathBar.setInitialDirectory(file);
+//		}
 		
-		// If we've gotten here through the shortcut, override everything
-		if(intent.getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET) != null) {
-			file = new File(intent.getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET));
-			if (!file.isDirectory()) {
-				mEditFilename.setText(file.getName());
-				browseTo(file);
-				finish();
-			}
-			else
-				mPathBar.setInitialDirectory(file);
-		}
-		
-		String title = intent.getStringExtra(FileManagerIntents.EXTRA_TITLE);
-		if (title != null) {
-			setTitle(title);
-		}
+//		FAIL TODO deleteeee
+//		String title = intent.getStringExtra(FileManagerIntents.EXTRA_TITLE);
+//		if (title != null) {
+//			setTitle(title);
+//		}
+// TODO pick
+//		String buttontext = intent
+//				.getStringExtra(FileManagerIntents.EXTRA_BUTTON_TEXT);
+//		if (buttontext != null) {
+//			mButtonPick.setText(buttontext);
+//		}
 
-		String buttontext = intent
-				.getStringExtra(FileManagerIntents.EXTRA_BUTTON_TEXT);
-		if (buttontext != null) {
-			mButtonPick.setText(buttontext);
-		}
-
-		// Reset mRestored flag.
-		mRestored = false;
-		if (icicle != null) {
-			mPathBar.setInitialDirectory(icicle.getString(BUNDLE_CURRENT_DIRECTORY));
-			mContextFile = new File(icicle.getString(BUNDLE_CONTEXT_FILE));
-			mContextText = icicle.getString(BUNDLE_CONTEXT_TEXT);
-
-			if (icicle.getBoolean(BUNDLE_SHOW_DIRECTORY_INPUT))
-				mPathBar.switchToManualInput();
-			else
-				mPathBar.switchToStandardInput();
-
-			// had to bypass direct casting as it was causing a rather unexplainable crash
-			Parcelable tmpDirectoryEntries[] = icicle
-					.getParcelableArray(BUNDLE_DIRECTORY_ENTRIES);
-			mDirectoryEntries = new FileHolder[tmpDirectoryEntries.length];
-			for (int i = 0; i < tmpDirectoryEntries.length; i++) {
-				mDirectoryEntries[i] = (FileHolder) tmpDirectoryEntries[i];
-			}
-			mRestored = true;
-		}
-		
-		if (mState == STATE_BROWSE) {
-			// Remove edit text and button.
-			mEditFilename.setVisibility(View.GONE);
-			mButtonPick.setVisibility(View.GONE);
-		}
+// TODO restore-related 
+//		// Reset mRestored flag.
+//		if (icicle != null) {
+//			mPathBar.setInitialDirectory(icicle.getString(BUNDLE_CURRENT_DIRECTORY));
+//			mContextFile = new File(icicle.getString(BUNDLE_CONTEXT_FILE));
+//			mContextText = icicle.getString(BUNDLE_CONTEXT_TEXT);
+//
+//			if (icicle.getBoolean(BUNDLE_SHOW_DIRECTORY_INPUT))
+//				mPathBar.switchToManualInput();
+//			else
+//				mPathBar.switchToStandardInput();
+//
+//			// had to bypass direct casting as it was causing a rather unexplainable crash
+//			Parcelable tmpDirectoryEntries[] = icicle
+//					.getParcelableArray(BUNDLE_DIRECTORY_ENTRIES);
+//			mDirectoryEntries = new FileHolder[tmpDirectoryEntries.length];
+//			for (int i = 0; i < tmpDirectoryEntries.length; i++) {
+//				mDirectoryEntries[i] = (FileHolder) tmpDirectoryEntries[i];
+//			}
+//		}
 	}
-     
-     public void setProgress(int progress, int maxProgress) {
-    	 mProgressBar.setMax(maxProgress);
-    	 mProgressBar.setProgress(progress);
-    	 mProgressBar.setVisibility(View.VISIBLE);
-     }
 
  	@Override
  	protected void onSaveInstanceState(Bundle outState) {
@@ -392,16 +359,18 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 	 * 
 	 * @param aDirectory
 	 */
-	public void browseTo(final File aDirectory) {
+	private void browseTo(final File aDirectory) {
 		// If we can safely browse to aDirectory cd(aDirectory) will do it, its listener will refresh the list, and we'll quickly exit this method.
 		if (!mPathBar.cd(aDirectory)) {
-			if (mState == STATE_BROWSE || mState == STATE_PICK_DIRECTORY) {
+// TODO move to frag			if (mState == STATE_BROWSE || mState == STATE_PICK_DIRECTORY) {
 				// Lets start an intent to View the file that was clicked...
 				openFile(aDirectory);
-			} else if (mState == STATE_PICK_FILE) {
-				// Pick the file
-				mEditFilename.setText(aDirectory.getName());
-			}
+//			}
+// TODO no, really what the heck?
+//			else if (mState == STATE_PICK_FILE) {
+//				// Pick the file
+//				mEditFilename.setText(aDirectory.getName());
+//			}
 		}
 	}
 
@@ -429,9 +398,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
      		 finish();
     		 return;
     	 }
-    	 
 
-          
           try {
         	  startActivity(intent); 
           } catch (ActivityNotFoundException e) {
@@ -459,30 +426,19 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
  		sendBroadcast(shortcutintent);
      }
 
-     /**
-      * Changes the list's contents to show the children of the passed directory.
-      * @param dir The directory that will be displayed. Pass null to refresh the currently displayed dir.
-      */
-     public void showDirectory(File dir) {
-    	 if(dir==null)
-    		 dir = mPathBar.getCurrentDirectory();
-    	  	 
-    	 boolean directoriesOnly = mState == STATE_PICK_DIRECTORY;
-    	 
-    	  // Cancel an existing scanner, if applicable.
-    	  DirectoryScanner scanner = mDirectoryScanner;
-    	  
-    	  if (scanner != null) {
-    		  scanner.cancel();
-    	  }
-    	  
-    	  directoryEntries.clear(); 
-          mListDir.clear();
-          mListFile.clear();
-          mListSdCard.clear();
-          
-          setProgressBarIndeterminateVisibility(true);
-     } 
+// moved to SimpleListFragment    /**
+//      * Changes the list's contents to show the children of the passed directory.
+//      * @param dir The directory that will be displayed. Pass null to refresh the currently displayed dir.
+//      */
+//     public void showDirectory(File dir) {
+//    	 if(dir==null)
+//    		 dir = mPathBar.getCurrentDirectory();
+//    	 
+//    	 
+//    	 getFragmentManager().beginTransaction().replace(R, arg1);
+//    	 
+////    	 setProgressBarIndeterminateVisibility(true);
+//     } 
      
 //     private void selectInList(File selectFile) {
 //    	 String filename = selectFile.getName();
@@ -502,7 +458,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
  		MenuInflater inflater = new MenuInflater(this);
  		inflater.inflate(R.menu.main, menu);
 
- 		if (mState != STATE_BROWSE || Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
+ 		if (Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
  			menu.removeItem(R.id.menu_multiselect);
         }
  		
@@ -697,30 +653,30 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 
 							}).create();
 
-        case DIALOG_FILTER:
-			inflater = LayoutInflater.from(this);
-			view = inflater.inflate(R.layout.dialog_new_folder, null);
-			((TextView)view.findViewById(R.id.foldernametext)).setText(R.string.extension);
-			final EditText et3 = (EditText) view
-					.findViewById(R.id.foldername);
-			et3.setText("");
-			return new AlertDialog.Builder(this)
-            	.setIcon(android.R.drawable.ic_dialog_alert)
-            	.setTitle(R.string.menu_filter).setView(view).setPositiveButton(
-					android.R.string.ok, new OnClickListener() {
-						
-						public void onClick(DialogInterface dialog, int which) {
-							mFilterFiletype = et3.getText().toString().trim();
-							showDirectory(null);
-						}
-						
-					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-						
-						public void onClick(DialogInterface dialog, int which) {
-							// Cancel should not do anything.
-						}
-						
-					}).create();
+// TODO        case DIALOG_FILTER:
+//			inflater = LayoutInflater.from(this);
+//			view = inflater.inflate(R.layout.dialog_new_folder, null);
+//			((TextView)view.findViewById(R.id.foldernametext)).setText(R.string.extension);
+//			final EditText et3 = (EditText) view
+//					.findViewById(R.id.foldername);
+//			et3.setText("");
+//			return new AlertDialog.Builder(this)
+//            	.setIcon(android.R.drawable.ic_dialog_alert)
+//            	.setTitle(R.string.menu_filter).setView(view).setPositiveButton(
+//					android.R.string.ok, new OnClickListener() {
+//						
+//						public void onClick(DialogInterface dialog, int which) {
+//							mFilterFiletype = et3.getText().toString().trim();
+//							showDirectory(null);
+//						}
+//						
+//					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
+//						
+//						public void onClick(DialogInterface dialog, int which) {
+//							// Cancel should not do anything.
+//						}
+//						
+//					}).create();
 			
 
         case DIALOG_DETAILS:
@@ -1112,7 +1068,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 			// That didn't work.
 			Toast.makeText(this, getString(R.string.error_generic), Toast.LENGTH_LONG).show();
 		}
-		showDirectory(null);
+// TODO used to refresh the list.		showDirectory(null);
 	}
 
 	private void excludeFromMediaScan() {
@@ -1129,7 +1085,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 			// That didn't work.
 			Toast.makeText(this, getString(R.string.error_generic) + e.getMessage(), Toast.LENGTH_LONG).show();
 		}
-		showDirectory(null);
+// TODO used to refresh the list.		showDirectory(null);
 	}
 
    private void promptDestinationAndMoveFile() {
@@ -1360,7 +1316,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 		int toast = 0;
 		if (oldFile.renameTo(newFile)) {
 			// Rename was successful.
-			showDirectory(null);
+// TODO used to refresh the list			showDirectory(null);
 			if (newFile.isDirectory()) {
 				toast = R.string.folder_renamed;
 			} else {
@@ -1621,7 +1577,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 
         case REQUEST_CODE_MULTI_SELECT:
             if (resultCode == RESULT_OK && data != null) {
-            	showDirectory(null);
+// TODO used to refresh the list			showDirectory(null);
             }
             break;
         case REQUEST_CODE_BOOKMARKS:
@@ -1641,7 +1597,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
     		|| PreferenceActivity.PREFS_SORTBY.equals(key)
     		|| PreferenceActivity.PREFS_ASCENDING.equals(key)){
 	    	
-	    	showDirectory(null);
+// TODO used to refresh the list			showDirectory(null);
 	    }
 	}
 
@@ -1666,9 +1622,9 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 
 		// If selected item is a directory
 		if (file.isDirectory()) {
-			if (mState != STATE_PICK_FILE) {
-				m.removeItem(R.id.menu_open);
-			}
+// TODO pick fragment			if (mState != STATE_PICK_FILE) {
+//				m.removeItem(R.id.menu_open);
+//			}
 			m.removeItem(R.id.menu_send);
 			m.removeItem(R.id.menu_copy);
 		}

@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 import org.openintents.filemanager.FileHolderListAdapter;
-import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.files.DirectoryContents;
 import org.openintents.filemanager.files.DirectoryScanner;
 import org.openintents.filemanager.files.FileHolder;
@@ -18,15 +17,14 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.ListView;
 
 /**
- * A {@link ListFragment} that displays the contents of a directory. Clicks inform activity for now.
+ * A {@link ListFragment} that displays the contents of a directory. Clicks do nothing.
  * @author George Venios
  */
-public class FileListFragment extends ListFragment {
+public abstract class FileListFragment extends ListFragment {
 	protected FileHolderListAdapter mAdapter;
-	private DirectoryScanner mScanner;
+	protected DirectoryScanner mScanner;
 	protected ArrayList<FileHolder> mFiles = new ArrayList<FileHolder>();
 	protected String mPath;
 	
@@ -80,12 +78,6 @@ public class FileListFragment extends ListFragment {
 		mScanner.cancel();
 		super.onDestroy();
 	}
-	
-    @Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-         FileHolder item = (FileHolder) mAdapter.getItem(position);
-         ((FileManagerActivity) getActivity()).browseTo(item.getFile());
-	}
 
 	protected class FileListMessageHandler extends Handler {
 		@Override
@@ -94,6 +86,7 @@ public class FileListFragment extends ListFragment {
 			switch (msg.what) {
 				case DirectoryScanner.MESSAGE_SHOW_DIRECTORY_CONTENTS:
 					DirectoryContents c = (DirectoryContents) msg.obj;
+					mFiles.clear();
 					mFiles.addAll(c.listSdCard);
 					mFiles.addAll(c.listDir);
 					mFiles.addAll(c.listFile);
@@ -101,7 +94,7 @@ public class FileListFragment extends ListFragment {
 					mAdapter.notifyDataSetChanged();
 					break;
 				case DirectoryScanner.MESSAGE_SET_PROGRESS:
-					((FileManagerActivity) getActivity()).setProgress(msg.arg1, msg.arg2);
+// TODO, idk					((FileManagerActivity) getActivity()).setProgress(msg.arg1, msg.arg2);
 					break;
 			}
 		}

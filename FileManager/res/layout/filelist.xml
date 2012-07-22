@@ -67,47 +67,45 @@
     <!-- The frame layout is here since we will be showing either
     the empty view or the list view.  -->
     <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="fill_parent" 
         android:layout_height="0dip"
         android:layout_weight="1" >
         <!-- Here is the list. Since we are using a ListActivity, we
              have to call it "@android:id/list" so ListActivity will
              find it -->
-        <ListView android:id="@android:id/list"
-            android:layout_width="fill_parent" 
-            android:layout_height="fill_parent"
-            android:fastScrollEnabled="true"
-            android:drawSelectorOnTop="false"
-            android:requiresFadingEdge="vertical"/>
+<!--         <ListView android:id="@android:id/list" -->
+<!--             android:layout_width="fill_parent"  -->
+<!--             android:layout_height="fill_parent" -->
+<!--             android:fastScrollEnabled="true" -->
+<!--             android:drawSelectorOnTop="false" -->
+<!--             android:requiresFadingEdge="vertical"/> -->
         
         <!-- Here is the view to show if the list is empty -->
-        
-        <LinearLayout android:id="@+id/empty"
-            android:layout_width="fill_parent" 
-            android:layout_height="fill_parent">
+<!--         <LinearLayout android:id="@+id/empty" -->
+<!--             android:layout_width="fill_parent"  -->
+<!--             android:layout_height="fill_parent"> -->
 
-		<!--  If the list is empty because there are no files... -->
-        
-        <TextView android:id="@+id/empty_text"
-            android:layout_width="fill_parent" 
-            android:layout_height="fill_parent"
-            android:text="@string/this_folder_is_empty"
-        	android:textAppearance="?android:attr/textAppearanceMedium"
-        	android:gravity="center" />
-        	
-        <!--  If the list is empty because we're still scanning... -->
-
-		<ProgressBar android:id="@+id/scan_progress" 
-			android:layout_height="wrap_content"
-			style="?android:attr/progressBarStyleHorizontal"
-			android:layout_width="fill_parent"
-			android:progress="0"
-			android:max="10"
-			android:secondaryProgress="0"
-			android:layout_gravity="center"
-			android:visibility="gone"/>
-        	
-        </LinearLayout>
+			<!--  If the list is empty because there are no files... -->
+<!-- 	        <TextView android:id="@+id/empty_text" -->
+<!-- 	            android:layout_width="fill_parent"  -->
+<!-- 	            android:layout_height="fill_parent" -->
+<!-- 	            android:text="@string/this_folder_is_empty" -->
+<!-- 	        	android:textAppearance="?android:attr/textAppearanceMedium" -->
+<!-- 	        	android:gravity="center" /> -->
+	        	
+	        <!--  If the list is empty because we're still scanning... -->
+<!-- 			<ProgressBar android:id="@+id/scan_progress"  -->
+<!-- 				android:layout_height="wrap_content" -->
+<!-- 				style="?android:attr/progressBarStyleHorizontal" -->
+<!-- 				android:layout_width="fill_parent" -->
+<!-- 				android:progress="0" -->
+<!-- 				android:max="10" -->
+<!-- 				android:secondaryProgress="0" -->
+<!-- 				android:layout_gravity="center" -->
+<!-- 				android:visibility="gone"/> -->
+	        	
+<!--         </LinearLayout> -->
             
     </FrameLayout>
 </LinearLayout>

@@ -64,23 +64,12 @@ public class DirectoryScanner extends Thread {
 		this.mWriteableOnly = writeableOnly;
 		this.mDirectoriesOnly = directoriesOnly;
 	}
-	
-	/**
-	 * Remove all references so we don't delay the garbage collection.
-	 */
-	private void clearData() {
-		// Remove all references so we don't delay the garbage collection.
-		context = null;
-		mMimeTypes = null;
-		handler = null;
-	}
 
 	private void init(){
 		Log.v(TAG, "Scanning directory " + currentDirectory);
 		
 		if (cancelled) {
 			Log.v(TAG, "Scan aborted");
-			clearData();
 			return;
 		}
 		
@@ -116,7 +105,6 @@ public class DirectoryScanner extends Thread {
 			for (File currentFile : files){ 
 				if (cancelled) {
 					Log.v(TAG, "Scan aborted while checking files");
-					clearData();
 					return;
 				}
 				
@@ -186,7 +174,6 @@ public class DirectoryScanner extends Thread {
 			msg.sendToTarget();
 		}
 
-		clearData();
 	}
 		
 	private void updateProgress(int progress, int maxProgress) {
@@ -209,6 +196,17 @@ public class DirectoryScanner extends Thread {
 
 	public void cancel(){
 		cancelled = true;
+	}
+	
+	/**
+	 * Cancel and then start the thread.
+	 */
+	public void restart(){
+		run();
+	}
+	
+	public void setCurrentDirectory(File path){
+		currentDirectory = path;
 	}
 }
 

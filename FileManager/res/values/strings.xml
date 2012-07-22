@@ -75,7 +75,7 @@
     <string name="show_warning_again">Show warning again</string>
     
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
+	<string name="really_delete_multiselect">Do you really want to delete these files?</string>
     <string name="move_button_multiselect">Move</string>
     <string name="copy_button_multiselect">Copy</string>
     <string name="delete_button_multiselect">Delete</string>

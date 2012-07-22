@@ -82,7 +82,7 @@ public class LegacyActionContainer extends LinearLayout {
 			itemView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					activity.handleMultipleSelectionAction((MenuItem) v.getTag());
+// TODO					activity.handleMultipleSelectionAction((MenuItem) v.getTag());
 				}
 			});
 			addView(itemView);

@@ -2,6 +2,7 @@ package org.openintents.filemanager.compatibility;
 
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.view.PathBar;
 
 import android.view.Menu;
@@ -79,11 +80,11 @@ public class FileMultiChoiceModeHelper {
 			// Single selection
 			case 1:
 				res = activity.handleSingleSelectionAction(item,
-					getSelectedPosition());
+						(FileHolder) list.getAdapter().getItem(getSelectedPosition()));
 				break;
 			// Multiple selection
 			default:
-				res = activity.handleMultipleSelectionAction(item);
+// TODO				res = activity.handleMultipleSelectionAction(item);
 				break;
 				
 			}

@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.util.FileUtils;
@@ -21,8 +20,11 @@ import android.os.SystemClock;
 import android.util.Log;
 
 public class DirectoryScanner extends Thread {
-
-	private static final String TAG = "OIFM_DirScanner";
+	/** List of contents is ready. */
+	public static final int MESSAGE_SHOW_DIRECTORY_CONTENTS = 500;	// List of contents is ready, obj = DirectoryContents
+	public static final int MESSAGE_SET_PROGRESS = 501;	// Set progress bar, arg1 = current value, arg2 = max value
+	
+    private static final String TAG = "OIFM_DirScanner";
 	
 	private File currentDirectory;
 	boolean cancelled;
@@ -45,7 +47,7 @@ public class DirectoryScanner extends Thread {
 	private int totalCount, progress;
 	private long operationStartTime;
 	private boolean noMedia, displayHidden;
-	private Drawable sdIcon, folderIcon, fileIcon;
+	private Drawable sdIcon, folderIcon;
 	private File[] files;
 	/** We keep all these three instead of one, so that sorting is done separately on each. */
 	private List<FileHolder> listDir, listFile, listSdCard;
@@ -89,7 +91,6 @@ public class DirectoryScanner extends Thread {
 		displayHidden = PreferenceActivity.getDisplayHiddenFiles(context);
 		sdIcon = context.getResources().getDrawable(R.drawable.ic_launcher_sdcard);
 		folderIcon = context.getResources().getDrawable(R.drawable.ic_launcher_folder);
-		fileIcon = context.getResources().getDrawable(R.drawable.icon_file);
 		
 		operationStartTime = SystemClock.uptimeMillis();
 		
@@ -112,8 +113,6 @@ public class DirectoryScanner extends Thread {
 		init();
 		
 		if (files != null) {
-			Drawable currentIcon;
-			
 			for (File currentFile : files){ 
 				if (cancelled) {
 					Log.v(TAG, "Scan aborted while checking files");
@@ -165,10 +164,10 @@ public class DirectoryScanner extends Thread {
 		}
 		
 		Log.v(TAG, "Sorting results...");
-		//Collections.sort(mListSdCard); 
 		int sortBy = PreferenceActivity.getSortBy(context);
 		boolean ascending = PreferenceActivity.getAscending(context);
-		
+
+		Collections.sort(listSdCard); 
 		Collections.sort(listDir, Comparators.getForDirectory(sortBy, ascending)); 
 		Collections.sort(listFile, Comparators.getForFile(sortBy, ascending)); 
 
@@ -182,7 +181,7 @@ public class DirectoryScanner extends Thread {
 			contents.listSdCard = listSdCard;
 			contents.noMedia = noMedia;
 
-			Message msg = handler.obtainMessage(FileManagerActivity.MESSAGE_SHOW_DIRECTORY_CONTENTS);
+			Message msg = handler.obtainMessage(MESSAGE_SHOW_DIRECTORY_CONTENTS);
 			msg.obj = contents;
 			msg.sendToTarget();
 		}
@@ -201,7 +200,7 @@ public class DirectoryScanner extends Thread {
 			}
 			
 			// Okay, send an update.
-			Message msg = handler.obtainMessage(FileManagerActivity.MESSAGE_SET_PROGRESS);
+			Message msg = handler.obtainMessage(MESSAGE_SET_PROGRESS);
 			msg.arg1 = progress;
 			msg.arg2 = maxProgress;
 			msg.sendToTarget();

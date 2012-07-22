@@ -112,6 +112,12 @@ public abstract class FileListFragment extends ListFragment {
 	 * Reloads {@link #mPath}'s contents.
 	 */
 	protected void refresh() {
+		// Cancel and GC previous scanner so that it doesn't load on top of the new list. 
+		// Race condition seen if a long list is requested, and a short list is requested before the long one loads.
+		mScanner.cancel();
+		mScanner = null;
+		
+		// Indicate loading and start scanning.
 		setLoading(true);
 		renewScanner().start();
 	}

@@ -67,8 +67,7 @@ public class SimpleFileListFragment extends FileListFragment {
 			FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper();
 			multiChoiceModeHelper.setListView(getListView());
 			multiChoiceModeHelper.setPathBar(mPathBar);
-			multiChoiceModeHelper
-					.setContext((FileManagerActivity) getActivity());
+			multiChoiceModeHelper.setContext((FileManagerActivity) getActivity());
 			getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 		}
 		setHasOptionsMenu(true);
@@ -113,13 +112,11 @@ public class SimpleFileListFragment extends FileListFragment {
 	/**
 	 * Point this Fragment to show the contents of the passed file.
 	 * 
-	 * @param f
-	 *            If same as current, does nothing.
+	 * @param f If same as current, does nothing.
 	 */
 	public void open(FileHolder f) {
 		// Avoid unnecessary attempts to load.
-		if (!f.getFile().exists()
-				|| f.getFile().getAbsolutePath().equals(mPath))
+		if (!f.getFile().exists() || f.getFile().getAbsolutePath().equals(mPath))
 			return;
 
 		if (f.getFile().isDirectory()) {
@@ -148,8 +145,7 @@ public class SimpleFileListFragment extends FileListFragment {
 		try {
 			startActivity(intent);
 		} catch (ActivityNotFoundException e) {
-			Toast.makeText(getActivity(), R.string.application_not_available,
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), R.string.application_not_available, Toast.LENGTH_SHORT).show();
 		}
 	}
 

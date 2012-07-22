@@ -3,6 +3,7 @@ package org.openintents.filemanager;
 import java.util.List;
 
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.view.ViewHolder;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -58,9 +59,9 @@ public class FileHolderListAdapter extends BaseAdapter {
 		
 		ViewHolder holder = new ViewHolder();
 		holder.icon = (ImageView) view.findViewById(R.id.icon);
-		holder.name = (TextView) view.findViewById(R.id.primary_info);
-		holder.modified = (TextView) view.findViewById(R.id.secondary_info);
-		holder.size = (TextView) view.findViewById(R.id.tertiary_info);
+		holder.primaryInfo = (TextView) view.findViewById(R.id.primary_info);
+		holder.secondaryInfo = (TextView) view.findViewById(R.id.secondary_info);
+		holder.tertiaryInfo = (TextView) view.findViewById(R.id.tertiary_info);
 		
 		view.setTag(holder);
 		return view;
@@ -76,9 +77,9 @@ public class FileHolderListAdapter extends BaseAdapter {
 		ViewHolder holder = (ViewHolder) convertView.getTag();
 		
 		holder.icon.setImageDrawable(item.getIcon(mContext));
-		holder.name.setText(item.getName());
-		holder.modified.setText(item.getFormattedModificationDate());
-		holder.size.setText(item.getFormattedSize(mContext));
+		holder.primaryInfo.setText(item.getName());
+		holder.secondaryInfo.setText(item.getFormattedModificationDate());
+		holder.tertiaryInfo.setText(item.getFormattedSize(mContext));
         
         if(!scrolling && item.getFile().isFile() && !item.getMimeType().equals("video/mpeg")){
       	  if(mThumbnailLoader != null) {
@@ -87,13 +88,6 @@ public class FileHolderListAdapter extends BaseAdapter {
         }
         
 		return convertView;
-	}
-	
-	private class ViewHolder {
-		ImageView icon;
-		TextView name;
-		TextView modified;
-		TextView size;
 	}
 	
 	/**

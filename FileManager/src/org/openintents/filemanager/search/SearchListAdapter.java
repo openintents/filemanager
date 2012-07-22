@@ -1,8 +1,11 @@
 package org.openintents.filemanager.search;
 
 import java.io.File;
+import java.util.HashMap;
 
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.view.ViewHolder;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -19,6 +22,7 @@ import android.widget.TextView;
  *
  */
 public class SearchListAdapter extends CursorAdapter {
+	private HashMap<String, FileHolder> itemCache = new HashMap<String, FileHolder>();
 
 	public SearchListAdapter(Context context, Cursor c) {
 		super(context, c, true);
@@ -26,13 +30,17 @@ public class SearchListAdapter extends CursorAdapter {
 
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
+		String path = cursor.getString(cursor.getColumnIndex(SearchResultsProvider.COLUMN_PATH));
+		FileHolder fHolder;
+		if((fHolder = itemCache.get(path)) == null){
+			fHolder = new FileHolder(new File(path));
+			itemCache.put(path, fHolder);
+		}
+
 		ViewHolder h = (ViewHolder) view.getTag();
-		
-		File f = new File(cursor.getString(cursor.getColumnIndex(SearchResultsProvider.COLUMN_PATH)));
-		
-		h.filename.setText(cursor.getString(cursor.getColumnIndex(SearchResultsProvider.COLUMN_NAME)));
-		h.path.setText(f.getAbsolutePath());
-		h.icon.setImageResource(f.isDirectory()? R.drawable.ic_launcher_folder : R.drawable.ic_launcher_file);
+		h.primaryInfo.setText(fHolder.getName());
+		h.secondaryInfo.setText(path);
+		h.icon.setImageDrawable(fHolder.getIcon(context));
 	}
 
 	@Override
@@ -45,19 +53,12 @@ public class SearchListAdapter extends CursorAdapter {
 		// Set the viewholder optimization.
 		ViewHolder holder = new ViewHolder();
 		holder.icon = (ImageView) v.findViewById(R.id.icon);
-		holder.filename = (TextView) v.findViewById(R.id.primary_info);
-		holder.path = (TextView) v.findViewById(R.id.secondary_info);
-		
+		holder.primaryInfo = (TextView) v.findViewById(R.id.primary_info);
+		holder.secondaryInfo = (TextView) v.findViewById(R.id.secondary_info);
 		v.findViewById(R.id.tertiary_info).setVisibility(View.GONE);
+		
 		v.setTag(holder);
 		
 		return v;
 	}
-
-	private class ViewHolder {
-		ImageView icon;
-		TextView filename;
-		TextView path;
-	}
-
 }

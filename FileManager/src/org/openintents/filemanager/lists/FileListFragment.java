@@ -121,6 +121,7 @@ public abstract class FileListFragment extends ListFragment {
 	 */
 	private void setLoading(boolean show){
 		mFlipper.setDisplayedChild(show ? 0 : 1);
+		onLoadingChanged(show);
 	}
 
 	/**
@@ -163,4 +164,10 @@ public abstract class FileListFragment extends ListFragment {
 			}
 		}
 	}
+	
+	/**
+	 * Used to inform subclasses about loading state changing. Can be used to make the ui indicate the loading state of the fragment.
+	 * @param loading If the list started or stopped loading.
+	 */
+	protected void onLoadingChanged(boolean loading){}
 }

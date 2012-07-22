@@ -1043,19 +1043,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
         startActivityForResult(intent, REQUEST_CODE_MULTI_SELECT);
     }
 
-    private void createNewFolder(String foldername) {
-		if (!TextUtils.isEmpty(foldername)) {
-			File file = FileUtils.getFile(mPathBar.getCurrentDirectory(), foldername);
-			if (file.mkdirs()) {
-				
-				// Change into new directory:
-				browseTo(file);
-			} else {
-				Toast.makeText(this, R.string.error_creating_new_folder, Toast.LENGTH_SHORT).show();
-			}
-		}
-	}
-
     /**
      * 
      * @param out The name of the produced file.
@@ -1074,7 +1061,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		File[] files = file.listFiles();
 		
 		if (files == null) {
-			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG);
+			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG).show();
 			return false;
 		}
 		
@@ -1086,14 +1073,14 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 				}
 			} else {
 				if (!childFile.delete()) {
-					Toast.makeText(this, getString(R.string.error_deleting_child_file, childFile.getAbsolutePath()), Toast.LENGTH_LONG);
+					Toast.makeText(this, getString(R.string.error_deleting_child_file, childFile.getAbsolutePath()), Toast.LENGTH_LONG).show();
 					return false;
 				}
 			}
 		}
 		
 		if (!file.delete()) {
-			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG);
+			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG).show();
 			return false;
 		}
 		

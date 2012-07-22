@@ -209,6 +209,7 @@ public class PathBar extends ViewFlipper {
 			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(
 					LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+			layoutParams.alignWithParent = true;
 			layoutParams.addRule(RelativeLayout.LEFT_OF, mGoButton.getId());
 
 			mPathEditText.setLayoutParams(layoutParams);
@@ -434,6 +435,18 @@ public class PathBar extends ViewFlipper {
 				return false;
 			}
 		}
+	}
+	
+	@Override
+	public void setEnabled(boolean enabled) {
+		if(enabled)
+			switchToStandardInput();
+		else
+			switchToManualInput();
+		mPathEditText.setEnabled(enabled);
+		mGoButton.setVisibility(enabled ? View.VISIBLE : View.GONE);
+		
+		super.setEnabled(enabled);
 	}
 
 	/**

@@ -8,7 +8,6 @@ import org.openintents.filemanager.view.PathBar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.ListView;
 
@@ -62,13 +61,13 @@ public class FileMultiChoiceModeHelper {
 
 		@Override
 		public void onDestroyActionMode(android.view.ActionMode mode) {
-			pathbar.setVisibility(View.VISIBLE);
+			pathbar.setEnabled(true);
 		}
 
 		@Override
 		public boolean onCreateActionMode(android.view.ActionMode mode,
 				Menu menu) {
-			pathbar.setVisibility(View.GONE);
+			pathbar.setEnabled(false);
 			return true;
 		}
 

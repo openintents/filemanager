@@ -11,9 +11,12 @@ import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.MimeTypes;
 import org.openintents.intents.FileManagerIntents;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +26,27 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.ViewFlipper;
 
 /**
- * A {@link ListFragment} that displays the contents of a directory. Clicks do nothing.
+ * A {@link ListFragment} that displays the contents of a directory. 
+ * <p> Clicks do nothing. </p>
+ * <p> Refreshes OnSharedPreferenceChange </p>
  * @author George Venios
  */
 public abstract class FileListFragment extends ListFragment {
+	// Not an anonymous inner class because of: http://stackoverflow.com/questions/2542938/sharedpreferences-onsharedpreferencechangelistener-not-being-called-consistently
+	private OnSharedPreferenceChangeListener preferenceListener = new OnSharedPreferenceChangeListener() {
+		@Override
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+			// We only care for list-altering preferences. This could be dangerous though, 
+			// as later contributors might not see this, and have their settings not work realtime.
+			// Therefore commented out, since it's not likely the refresh is THAT heavy.
+			// *****************
+			// if (PreferenceActivity.PREFS_DISPLAYHIDDENFILES.equals(key)
+			// || PreferenceActivity.PREFS_SORTBY.equals(key)
+			// || PreferenceActivity.PREFS_ASCENDING.equals(key))
+				refresh();
+		}
+	};
+	
 	protected FileHolderListAdapter mAdapter;
 	protected DirectoryScanner mScanner;
 	protected ArrayList<FileHolder> mFiles = new ArrayList<FileHolder>();
@@ -45,6 +65,10 @@ public abstract class FileListFragment extends ListFragment {
 		
 		setListAdapter(mAdapter);
 		mScanner.start();
+		
+		// Set auto refresh on preference change.
+		PreferenceManager.getDefaultSharedPreferences(getActivity()).
+		registerOnSharedPreferenceChangeListener(preferenceListener);
 	}
 	
 	@Override
@@ -85,25 +109,22 @@ public abstract class FileListFragment extends ListFragment {
 	}
 
 	/**
-	 * Reloads the current directory's contents.
+	 * Reloads {@link #mPath}'s contents.
 	 */
 	protected void refresh() {
-		showLoadingIndicator(true);
-		mFiles.clear();
-		mAdapter.notifyDataSetChanged();
-		
+		setLoading(true);
 		renewScanner().start();
 	}
 	
 	/**
-	 * Whether to show the loading indicator or not.
+	 * Make the UI indicate loading.
 	 */
-	private void showLoadingIndicator(boolean show){
+	private void setLoading(boolean show){
 		mFlipper.setDisplayedChild(show ? 0 : 1);
 	}
 
 	/**
-	 * Recreates the {@link #mScanner} using the previously set arguments.
+	 * Recreates the {@link #mScanner} using the previously set arguments and {@link #mPath}.
 	 * @return {@link #mScanner} for convenience.
 	 */
 	protected DirectoryScanner renewScanner() {
@@ -134,10 +155,10 @@ public abstract class FileListFragment extends ListFragment {
 					mFiles.addAll(c.listFile);
 					
 					mAdapter.notifyDataSetChanged();
-					showLoadingIndicator(false);
+					setLoading(false);
 					break;
 				case DirectoryScanner.MESSAGE_SET_PROGRESS:
-// TODO, idk					((FileManagerActivity) getActivity()).setProgress(msg.arg1, msg.arg2);
+					// Irrelevant.
 					break;
 			}
 		}

@@ -23,7 +23,6 @@ package org.openintents.filemanager;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,8 +51,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -67,7 +64,6 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -77,7 +73,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CheckBox;
@@ -87,10 +82,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
-public class FileManagerActivity extends DistributionLibraryFragmentActivity implements OnSharedPreferenceChangeListener { 
+public class FileManagerActivity extends DistributionLibraryFragmentActivity { 
 	private static final String TAG = "FileManagerActivity";
-
-	private static final String NOMEDIA_FILE = ".nomedia";
+	private static final String FRAGMENT_TAG = "list_frag";
 
     private static final String DIALOG_EXISTS_ACTION_RENAME = "action_rename";
     private static final String DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP = "action_multi_compress_zip";
@@ -111,7 +105,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 
 	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
-	private static final int DIALOG_NEW_FOLDER = 1;
+// TODO remove	private static final int DIALOG_NEW_FOLDER = 1;
 	private static final int DIALOG_RENAME = 3;
 	private static final int DIALOG_MULTI_DELETE = 4;
 	private static final int DIALOG_FILTER = 5;
@@ -207,25 +201,23 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 		// Search when the user types.
 		setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
 		
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		prefs.registerOnSharedPreferenceChangeListener(this);
-
 		// Init members
 		mMimeTypes = MimeTypes.newInstance(this);
 		mPathBar = (PathBar) findViewById(R.id.pathbar);
 		mLegacyActionContainer =  (LegacyActionContainer) findViewById(R.id.action_multiselect);
-
 		mLegacyActionContainer.setFileManagerActivity(this);
 		mPathBar.setInitialDirectory(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment
 				.getExternalStorageDirectory().getAbsolutePath() : "/");
 		
-		SimpleFileListFragment frag = new SimpleFileListFragment();
-		Bundle args = new Bundle();
-		args.putString(FileManagerIntents.EXTRA_DIR_PATH, mPathBar.getInitialDirectory().getAbsolutePath());
-		frag.setArguments(args);
-		frag.setPathBar(mPathBar);
-		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, frag).commit();
+		// Add fragment only if it hasn't already been added.
+		if(getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG) == null){
+			SimpleFileListFragment frag = new SimpleFileListFragment();
+			Bundle args = new Bundle();
+			args.putString(FileManagerIntents.EXTRA_DIR_PATH, mPathBar.getInitialDirectory().getAbsolutePath());
+			frag.setArguments(args);
+			frag.setPathBar(mPathBar);
+			getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, frag, FRAGMENT_TAG).commit();
+		}
 		
 //		// Default state
 //		mState = STATE_BROWSE;
@@ -474,9 +466,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.menu_create_folder:
-			showDialog(DIALOG_NEW_FOLDER);
-			return true;
 			
 		case R.id.menu_search:
 			onSearchRequested();
@@ -506,44 +495,33 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 	@Override
 	protected Dialog onCreateDialog(int id) {
 
+		LayoutInflater inflater;
+		View view;
 		switch (id) {
-		case DIALOG_NEW_FOLDER:
-			LayoutInflater inflater = LayoutInflater.from(this);
-			View view = inflater.inflate(R.layout.dialog_new_folder, null);
-			final EditText et = (EditText) view
-					.findViewById(R.id.foldername);
-			et.setText("");
-			//accept "return" key
-			TextView.OnEditorActionListener returnListener = new TextView.OnEditorActionListener(){
-				public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
-					   if (actionId == EditorInfo.IME_NULL  
-					      && event.getAction() == KeyEvent.ACTION_DOWN) { 
-						   createNewFolder(et.getText().toString()); //match this behavior to your OK button
-						   dismissDialog(DIALOG_NEW_FOLDER);
-					   }
-					   return true;
-					}
-
-			};
-			et.setOnEditorActionListener(returnListener);
-			//end of code regarding "return key"
-
-			return new AlertDialog.Builder(this)
-            	.setIcon(android.R.drawable.ic_dialog_alert)
-            	.setTitle(R.string.create_new_folder).setView(view).setPositiveButton(
-					android.R.string.ok, new OnClickListener() {
-						
-						public void onClick(DialogInterface dialog, int which) {
-							createNewFolder(et.getText().toString());
-						}
-						
-					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-						
-						public void onClick(DialogInterface dialog, int which) {
-							// Cancel should not do anything.
-						}
-						
-					}).create();
+//		case DIALOG_NEW_FOLDER:
+//			LayoutInflater inflater = LayoutInflater.from(this);
+//			View view = inflater.inflate(R.layout.dialog_new_folder, null);
+//			final EditText et = (EditText) view
+//					.findViewById(R.id.foldername);
+//			et.setText("");
+//
+//
+//			return new AlertDialog.Builder(this)
+//            	.setIcon(android.R.drawable.ic_dialog_alert)
+//            	.setTitle(R.string.create_new_folder).setView(view).setPositiveButton(
+//					android.R.string.ok, new OnClickListener() {
+//						
+//						public void onClick(DialogInterface dialog, int which) {
+//							createNewFolder(et.getText().toString());
+//						}
+//						
+//					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
+//						
+//						public void onClick(DialogInterface dialog, int which) {
+//							// Cancel should not do anything.
+//						}
+//						
+//					}).create();
 		
 // TODO
 //		case DIALOG_DELETE:
@@ -794,27 +772,19 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 		super.onPrepareDialog(id, dialog);
 		
 		switch (id) {
-		case DIALOG_NEW_FOLDER:
-			EditText et = (EditText) dialog.findViewById(R.id.foldername);
-			et.setText("");
-			break;
-// TODO create DeleteDialogFragment
-//		case DIALOG_DELETE:
-//			((AlertDialog) dialog).setTitle(getString(R.string.really_delete, mContextText));
-//			break;
-			
+
 		case DIALOG_RENAME:
-			et = (EditText) dialog.findViewById(R.id.foldername);
-			et.setText(mContextText);
-			TextView tv = (TextView) dialog.findViewById(R.id.foldernametext);
-			if (mContextFile.isDirectory()) {
-				tv.setText(R.string.file_name);
-			} else {
-				tv.setText(R.string.file_name);
-			}
-            et.setSelection(0, mContextText.lastIndexOf(".") == -1 ? mContextText.length() : mContextText.lastIndexOf("."));
-			((AlertDialog) dialog).setIcon(mContextIcon);
-			break;
+//	TODO		et = (EditText) dialog.findViewById(R.id.foldername);
+//			et.setText(mContextText);
+//			TextView tv = (TextView) dialog.findViewById(R.id.foldernametext);
+//			if (mContextFile.isDirectory()) {
+//				tv.setText(R.string.file_name);
+//			} else {
+//				tv.setText(R.string.file_name);
+//			}
+//            et.setSelection(0, mContextText.lastIndexOf(".") == -1 ? mContextText.length() : mContextText.lastIndexOf("."));
+//			((AlertDialog) dialog).setIcon(mContextIcon);
+//			break;
 
 		case DIALOG_MULTI_DELETE:
 //	TODO        final ArrayList<File> files = getSelectedItemsFiles();
@@ -905,28 +875,28 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 			break;
 
         case DIALOG_COMPRESSING:
-            TextView textView = (TextView) dialog.findViewById(R.id.foldernametext);
-            textView.setText(R.string.compress_into_archive);
-            final EditText editText = (EditText) dialog.findViewById(R.id.foldername);
-            String archiveName = "";
-            if (mContextFile.isDirectory()){
-                archiveName = mContextFile.getName()+".zip";
-            } else {
-                String extension = FileUtils.getExtension(mContextFile.getName());
-                archiveName = mContextFile.getName().replaceAll(extension, "")+".zip";
-            }
-            editText.setText(archiveName);
-            editText.setSelection(0, archiveName.length()-4);
-            break;
+// TODO           TextView textView = (TextView) dialog.findViewById(R.id.foldernametext);
+//            textView.setText(R.string.compress_into_archive);
+//            final EditText editText = (EditText) dialog.findViewById(R.id.foldername);
+//            String archiveName = "";
+//            if (mContextFile.isDirectory()){
+//                archiveName = mContextFile.getName()+".zip";
+//            } else {
+//                String extension = FileUtils.getExtension(mContextFile.getName());
+//                archiveName = mContextFile.getName().replaceAll(extension, "")+".zip";
+//            }
+//            editText.setText(archiveName);
+//            editText.setSelection(0, archiveName.length()-4);
+//            break;
 
         case DIALOG_MULTI_COMPRESS_ZIP:
-            textView = (TextView) dialog.findViewById(R.id.foldernametext);
-            textView.setText(R.string.compress_into_archive);
-            final EditText editText1 = (EditText) dialog.findViewById(R.id.foldername);
-            archiveName = mPathBar.getCurrentDirectory().getName()+".zip";
-            editText1.setText(archiveName);
-            editText1.setSelection(0, archiveName.length()-4);
-            break;
+//  TODO          textView = (TextView) dialog.findViewById(R.id.foldernametext);
+//            textView.setText(R.string.compress_into_archive);
+//            final EditText editText1 = (EditText) dialog.findViewById(R.id.foldername);
+//            archiveName = mPathBar.getCurrentDirectory().getName()+".zip";
+//            editText1.setText(archiveName);
+//            editText1.setSelection(0, archiveName.length()-4);
+//            break;
 
         case DIALOG_WARNING_EXISTS:
             dialog.setTitle(getString(R.string.warning_overwrite, mDialogArgument));
@@ -1523,18 +1493,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
             break;
         }
 		
-	}
-
-	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-	    if (//When the user chooses to show/hide hidden files, update the list
-    		//to correspond with the user's choice
-    		PreferenceActivity.PREFS_DISPLAYHIDDENFILES.equals(key)
-    		//When the user changes the sortBy settings, update the list
-    		|| PreferenceActivity.PREFS_SORTBY.equals(key)
-    		|| PreferenceActivity.PREFS_ASCENDING.equals(key)){
-	    	
-// TODO used to refresh the list			showDirectory(null);
-	    }
 	}
 
 	/**

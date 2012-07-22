@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
  * Copyright (C) 2007-2008 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,32 +13,17 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+-->
+<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/foldername"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:minHeight="60dp"
+    android:hint="@string/folder_name"
+    android:imeOptions="actionGo"
+    android:inputType="textUri"
+    android:maxLines="1" >
 
-    <TextView 
-        android:id="@+id/foldernametext"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
-        android:text="@string/folder_name"
-        android:gravity="left"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-            
-    <EditText
-        android:id="@+id/foldername"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
-        android:scrollHorizontally="true"
-        android:autoText="false"
-        android:capitalize="none"
-        android:gravity="fill_horizontal"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <requestFocus />
 
-</LinearLayout>
+</EditText>

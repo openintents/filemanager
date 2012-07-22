@@ -7,6 +7,7 @@ import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
+import org.openintents.filemanager.dialogs.CreateDirectoryDialog;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.view.PathBar;
@@ -65,8 +66,7 @@ public class SimpleFileListFragment extends FileListFragment {
 		} else {
 			FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper();
 			multiChoiceModeHelper.setListView(getListView());
-			// TODO multiChoiceModeHelper.setPathBar(mPathBar);
-			// TODO decouple.
+			multiChoiceModeHelper.setPathBar(mPathBar);
 			multiChoiceModeHelper
 					.setContext((FileManagerActivity) getActivity());
 			getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
@@ -160,19 +160,29 @@ public class SimpleFileListFragment extends FileListFragment {
 
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
-		super.onPrepareOptionsMenu(menu);
-
 		// We only know about ".nomedia" once scanning is finished.
 		boolean showMediaScanMenuItem = PreferenceActivity.getMediaScanFromPreference(getActivity());
-		if (showMediaScanMenuItem && !mScanner.isRunning()) {
+		if (!mScanner.isRunning() && showMediaScanMenuItem) {
 			menu.findItem(R.id.menu_media_scan_include).setVisible(mScanner.getNoMedia());
 			menu.findItem(R.id.menu_media_scan_exclude).setVisible(!mScanner.getNoMedia());
+		} else {
+			menu.findItem(R.id.menu_media_scan_include).setVisible(false);
+			menu.findItem(R.id.menu_media_scan_exclude).setVisible(false);
 		}
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		case R.id.menu_create_folder:
+			new CreateDirectoryDialog(new File(mPath), new CreateDirectoryDialog.OnDirectoryCreatedListener() {
+				@Override
+				public void directoryCreated() {
+					refresh();
+				}
+			}).show(getActivity().getSupportFragmentManager(), CreateDirectoryDialog.class.getName());
+			return true;
+			
 		case R.id.menu_media_scan_include:
 			includeInMediaScan();
 			return true;

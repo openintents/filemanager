@@ -229,4 +229,7 @@
     
     <!-- icon content description -->
     <string name="item_icon">Item icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning..</string>
 </resources>

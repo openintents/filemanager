@@ -39,6 +39,7 @@ public class FileUtils {
 	/** TAG for log messages. */
 	static final String TAG = "FileUtils";
 	private static final int X_OK = 1;
+	public static final String NOMEDIA_FILE_NAME = ".nomedia";
 	
 	private static boolean libLoadSuccess;
 	

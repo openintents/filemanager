@@ -1,6 +1,6 @@
 package org.openintents.filemanager.lists;
 
-public class PickFileListFragment  extends FileListFragment{
+public class PickFileListFragment extends FileListFragment{
 //	private void pickFileOrDirectory() {
 //		File file = null;
 //		if (mState == STATE_PICK_FILE) {

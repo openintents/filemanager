@@ -82,9 +82,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,15 +95,13 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
     private static final String DIALOG_EXISTS_ACTION_RENAME = "action_rename";
     private static final String DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP = "action_multi_compress_zip";
 
-    /**
-	 * @since 2011-03-23
-	 */
 	private static final Character FILE_EXTENSION_SEPARATOR = '.';
-		
-	private static final int STATE_BROWSE = 1;
-	private static final int STATE_PICK_FILE = 2;
-	private static final int STATE_PICK_DIRECTORY = 3;
-	private static final int STATE_MULTI_SELECT = 4;
+	
+//	TODO kept as a reference for the fragments to be made
+//	private static final int STATE_BROWSE = 1;
+//	private static final int STATE_PICK_FILE = 2;
+//	private static final int STATE_PICK_DIRECTORY = 3;
+//	private static final int STATE_MULTI_SELECT = 4;
     
 	protected static final int REQUEST_CODE_MOVE = 1;
 	protected static final int REQUEST_CODE_COPY = 2;
@@ -135,26 +131,17 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 	private static final String BUNDLE_SHOW_DIRECTORY_INPUT = "show_directory_input";
 	private static final String BUNDLE_DIRECTORY_ENTRIES = "directory_entries";
 	
-	/** Contains directories and files together */
-     private ArrayList<FileHolder> directoryEntries = new ArrayList<FileHolder>();
-
-     /** Dir separate for sorting */
-     List<FileHolder> mListDir = new ArrayList<FileHolder>();
-     
-     /** Files separate for sorting */
-     List<FileHolder> mListFile = new ArrayList<FileHolder>();
-     
-     /** SD card separate for sorting */
-     List<FileHolder> mListSdCard = new ArrayList<FileHolder>();
-     
-     // There's a ".nomedia" file here
-     private boolean mNoMedia;
+//
+//     /** Dir separate for sorting */
+//     List<FileHolder> mListDir = new ArrayList<FileHolder>();
+//     
+//     /** Files separate for sorting */
+//     List<FileHolder> mListFile = new ArrayList<FileHolder>();
+//     
+//     /** SD card separate for sorting */
+//     List<FileHolder> mListSdCard = new ArrayList<FileHolder>();
      
      private MimeTypes mMimeTypes;
-     /** Files shown are filtered using this extension */
-     private String mFilterFiletype = "";
-     /** Files shown are filtered using this mimetype */
-     private String mFilterMimetype = null;
 
      private String mContextText;
      private File mContextFile = new File("");
@@ -211,9 +198,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 		if (mDistribution.showEulaOrNewVersion()) {
 			return;
 		}
-
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		setContentView(R.layout.filelist);
+		setContentView(R.layout.browse);
 
 		// Enable home button.
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -457,7 +442,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
  	public boolean onCreateOptionsMenu(Menu menu) {
  		MenuInflater inflater = new MenuInflater(this);
  		inflater.inflate(R.menu.main, menu);
-
+ 		
  		if (Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
  			menu.removeItem(R.id.menu_multiselect);
         }
@@ -466,18 +451,8 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
  		return true;
  	}
 
-
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		super.onPrepareOptionsMenu(menu);
-		
- 		// We only know about ".nomedia" once we have the results list back.
-		boolean showMediaScanMenuItem = PreferenceActivity.getMediaScanFromPreference(this);
-		if (showMediaScanMenuItem && mListDir != null) {
-			menu.findItem(R.id.menu_media_scan_include).setVisible(mNoMedia);
-			menu.findItem(R.id.menu_media_scan_exclude).setVisible(!mNoMedia);
-		}
-
 		// Generate any additional actions that can be performed on the
 		// overall list. This allows other applications to extend
 		// our menu with their own actions.
@@ -490,8 +465,8 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 		MenuIntentOptionsWithIcons menu2 = new MenuIntentOptionsWithIcons(this,
 				menu);
 		menu2.addIntentOptions(Menu.CATEGORY_ALTERNATIVE, 0, 0,
-				new ComponentName(this, FileManagerActivity.class), null, intent,
-				0, null);
+				new ComponentName(this, FileManagerActivity.class), null,
+				intent, 0, null);
 
 		return true;
 	}
@@ -509,14 +484,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 			
 		case R.id.menu_multiselect:
             promptMultiSelect();
-			return true;
-			
-		case R.id.menu_media_scan_include:
-			includeInMediaScan();
-			return true;
-
-		case R.id.menu_media_scan_exclude:
-			excludeFromMediaScan();
 			return true;
 			
 		case R.id.menu_settings:
@@ -1055,37 +1022,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity imp
 							}).create()
 						.show();
 		}
-	}
-
-	private void includeInMediaScan() {
-		// Delete the .nomedia file.
-		File file = FileUtils.getFile(mPathBar.getCurrentDirectory(), NOMEDIA_FILE);
-		if (file.delete()) {
-			Toast.makeText(this, getString(R.string.media_scan_included), Toast.LENGTH_LONG).show();
-			
-			mNoMedia = false;
-		} else {
-			// That didn't work.
-			Toast.makeText(this, getString(R.string.error_generic), Toast.LENGTH_LONG).show();
-		}
-// TODO used to refresh the list.		showDirectory(null);
-	}
-
-	private void excludeFromMediaScan() {
-		// Create the .nomedia file.
-		File file = FileUtils.getFile(mPathBar.getCurrentDirectory(), NOMEDIA_FILE);
-		try {
-			if (file.createNewFile()) {
-				mNoMedia = true;
-				Toast.makeText(this, getString(R.string.media_scan_excluded), Toast.LENGTH_LONG).show();
-			} else {
-				Toast.makeText(this, getString(R.string.error_media_scan), Toast.LENGTH_LONG).show();
-			}
-		} catch (IOException e) {
-			// That didn't work.
-			Toast.makeText(this, getString(R.string.error_generic) + e.getMessage(), Toast.LENGTH_LONG).show();
-		}
-// TODO used to refresh the list.		showDirectory(null);
 	}
 
    private void promptDestinationAndMoveFile() {

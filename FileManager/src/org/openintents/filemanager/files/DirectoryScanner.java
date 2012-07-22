@@ -27,6 +27,8 @@ public class DirectoryScanner extends Thread {
     private static final String TAG = "OIFM_DirScanner";
 	
 	private File currentDirectory;
+	
+	private boolean running = false;
 	boolean cancelled;
 
 	private String mSdCardPath;
@@ -37,7 +39,6 @@ public class DirectoryScanner extends Thread {
 	private String mFilterMimetype;
 
 	private boolean mWriteableOnly;
-
 	private boolean mDirectoriesOnly;
 	
 	// Update progress bar every n files
@@ -99,6 +100,7 @@ public class DirectoryScanner extends Thread {
 	}
 	
 	public void run() {
+		running = true;
 		init();
 		
 		if (files != null) {
@@ -132,7 +134,7 @@ public class DirectoryScanner extends Thread {
 					String fileName = currentFile.getName(); 
 					
 					// It's the noMedia file. Raise the flag.
-					if(fileName.equalsIgnoreCase(".nomedia"))
+					if(fileName.equalsIgnoreCase(FileUtils.NOMEDIA_FILE_NAME))
 						noMedia = true;
 
 					// Get the file's mimetype.
@@ -173,7 +175,8 @@ public class DirectoryScanner extends Thread {
 			msg.obj = contents;
 			msg.sendToTarget();
 		}
-
+		
+		running = false;
 	}
 		
 	private void updateProgress(int progress, int maxProgress) {
@@ -197,16 +200,13 @@ public class DirectoryScanner extends Thread {
 	public void cancel(){
 		cancelled = true;
 	}
-	
-	/**
-	 * Cancel and then start the thread.
-	 */
-	public void restart(){
-		run();
+
+	public boolean getNoMedia() {
+		return noMedia;
 	}
 	
-	public void setCurrentDirectory(File path){
-		currentDirectory = path;
+	public boolean isRunning(){
+		return running;
 	}
 }
 

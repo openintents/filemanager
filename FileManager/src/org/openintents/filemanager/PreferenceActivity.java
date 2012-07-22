@@ -99,7 +99,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		super.onResume();
 	}
 
-	static boolean getMediaScanFromPreference(Context context) {
+	public static boolean getMediaScanFromPreference(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 					.getBoolean(PREFS_MEDIASCAN, false);
 	}

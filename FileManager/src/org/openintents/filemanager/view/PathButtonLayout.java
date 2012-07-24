@@ -42,6 +42,8 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 		mPathDrawables.put("/sdcard", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard-ext", R.drawable.ic_navbar_sdcard);
+		mPathDrawables.put("/mnt/sdcard0", R.drawable.ic_navbar_sdcard);
+		mPathDrawables.put("/mnt/sdcard1", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard2", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/", R.drawable.ic_navbar_home);
 	}

@@ -231,5 +231,10 @@
     <string name="item_icon">Item icon</string>
     
     <!-- list layout -->
-    <string name="scanning">Scanning..</string>
+    <string name="scanning">Scanning&#8230;</string>
+    
+    <!-- Delete dialog -->
+    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_failure">Some files not deleted</string>
+    <string name="deleting">Deleting&#8230;</string>
 </resources>

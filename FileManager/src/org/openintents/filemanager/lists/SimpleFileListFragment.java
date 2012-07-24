@@ -68,7 +68,7 @@ public class SimpleFileListFragment extends FileListFragment {
 			FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper();
 			multiChoiceModeHelper.setListView(getListView());
 			multiChoiceModeHelper.setPathBar(mPathBar);
-			multiChoiceModeHelper.setContext((FileManagerActivity) getActivity());
+			multiChoiceModeHelper.setContext(this);
 			getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 		}
 		setHasOptionsMenu(true);
@@ -95,8 +95,7 @@ public class SimpleFileListFragment extends FileListFragment {
 	public boolean onContextItemSelected(MenuItem item) {
 		FileHolder fh = (FileHolder) mAdapter
 				.getItem(((AdapterContextMenuInfo) item.getMenuInfo()).position);
-		return ((FileManagerActivity) getActivity())
-				.handleSingleSelectionAction(item, fh);
+		return MenuUtils.handleSingleSelectionAction(this, item, fh, getActivity());
 	}
 
 	@Override

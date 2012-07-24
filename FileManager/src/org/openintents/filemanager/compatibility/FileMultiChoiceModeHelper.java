@@ -3,6 +3,7 @@ package org.openintents.filemanager.compatibility;
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.PathBar;
 
@@ -22,7 +23,7 @@ import android.widget.ListView;
 public class FileMultiChoiceModeHelper {
 	private ListView list;
 	private PathBar pathbar;
-	private FileManagerActivity activity;
+	private SimpleFileListFragment fragment;
 
 	public void setListView(ListView list) {
 		this.list = list;
@@ -33,8 +34,8 @@ public class FileMultiChoiceModeHelper {
 		pathbar = p;
 	}
 
-	public void setContext(FileManagerActivity a) {
-		activity = a;
+	public void setContext(SimpleFileListFragment f) {
+		fragment = f;
 	}
 
 	public MultiChoiceModeListener listener = new MultiChoiceModeListener() {
@@ -77,8 +78,8 @@ public class FileMultiChoiceModeHelper {
 			switch (list.getCheckedItemCount()) {
 			// Single selection
 			case 1:
-				res = activity.handleSingleSelectionAction(item,
-						(FileHolder) list.getAdapter().getItem(getSelectedPosition()));
+				res = MenuUtils.handleSingleSelectionAction(fragment, item,
+						(FileHolder) list.getAdapter().getItem(getSelectedPosition()), fragment.getActivity());
 				break;
 			// Multiple selection
 			default:
@@ -95,7 +96,7 @@ public class FileMultiChoiceModeHelper {
 		public void onItemCheckedStateChanged(android.view.ActionMode mode,
 				int position, long id, boolean checked) {
 			mode.setTitle(list.getCheckedItemCount() + " "
-					+ activity.getResources().getString(R.string.selected));
+					+ fragment.getActivity().getResources().getString(R.string.selected));
 
 			// Force actions' refresh
 			mode.invalidate();

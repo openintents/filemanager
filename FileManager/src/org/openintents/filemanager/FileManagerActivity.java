@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openintents.filemanager.bookmarks.BookmarkListActivity;
-import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
@@ -45,7 +44,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -54,7 +52,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -63,9 +60,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Parcelable;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -73,10 +68,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -381,26 +374,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
         	  Toast.makeText(this, R.string.application_not_available, Toast.LENGTH_SHORT).show();
           };
      } 
- 	
-     /**
-      * Creates a home screen shortcut.
-      * @param file The file to create the shortcut to.
-      */
-     private void createShortcut(File file) {
- 		Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
- 		shortcutintent.putExtra("duplicate", false);
- 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, file.getName());
- 		Parcelable icon = Intent.ShortcutIconResource.fromContext(getApplicationContext(), R.drawable.ic_launcher_shortcut);
- 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
- 		shortcutintent.putExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET, file.getAbsolutePath());
-
- 		// Intent to load
- 		Intent itl = new Intent(getApplicationContext(), FileManagerActivity.class);
- 		itl.putExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET, file.getAbsolutePath());
- 		
- 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, itl);
- 		sendBroadcast(shortcutintent);
-     }
 
 // moved to SimpleListFragment    /**
 //      * Changes the list's contents to show the children of the passed directory.
@@ -512,24 +485,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 //						
 //						public void onClick(DialogInterface dialog, int which) {
 //							createNewFolder(et.getText().toString());
-//						}
-//						
-//					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-//						
-//						public void onClick(DialogInterface dialog, int which) {
-//							// Cancel should not do anything.
-//						}
-//						
-//					}).create();
-		
-// TODO
-//		case DIALOG_DELETE:
-//			return new AlertDialog.Builder(this).setTitle(getString(R.string.really_delete, mContextText))
-//            	.setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
-//					android.R.string.ok, new OnClickListener() {
-//						
-//						public void onClick(DialogInterface dialog, int which) {
-//							deleteFileOrFolder(mContextFile);
 //						}
 //						
 //					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
@@ -993,40 +948,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		}
 	}
 
-   private void promptDestinationAndMoveFile() {
-		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
-		
-		intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
-
-		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.move_title));
-		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.move_button));
-		intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
-// TODO		intent.putExtra("checked_files", getSelectedItemsFiles());
-
-		startActivityForResult(intent, REQUEST_CODE_MOVE);
-	}
-
-    private void promptDestinationAndExtract() {
-        Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
-        intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
-        intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.extract_title));
-        intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.extract_button));
-        intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
-        startActivityForResult(intent, REQUEST_CODE_EXTRACT);
-    }
-	
-	private void promptDestinationAndCopyFile() {
-		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
-		
-		intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
-		
-		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.copy_title));
-		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.copy_button));
-		intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
-// TODO		intent.putExtra("checked_files", getSelectedItemsFiles());
-		
-		startActivityForResult(intent, REQUEST_CODE_COPY);
-	}
 	
 	/**
 	 * Starts activity for multi select.
@@ -1085,94 +1006,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		
 		return true;
 	}
-	
-//	private class RecursiveDeleteTask extends AsyncTask<Object, Void, Integer> {
-//
-//		private FileManagerActivity activity = FileManagerActivity.this;
-//		private static final int success = 0;
-//		private static final int err_deleting_folder = 1;
-//		private static final int err_deleting_child_file = 2;
-//		private static final int err_deleting_file = 3;
-//
-//		private File errorFile;
-//
-//		/**
-//		 * Recursively delete a file or directory and all of its children.
-//		 * 
-//		 * @returns 0 if successful, error value otherwise.
-//		 */
-//		private int recursiveDelete(File file) {
-//			if (file.isDirectory() && file.listFiles() != null)
-//				for (File childFile : file.listFiles()) {
-//					if (childFile.isDirectory()) {
-//						int result = recursiveDelete(childFile);
-//						if (result > 0) {
-//							return result;
-//						}
-//					} else {
-//						if (!childFile.delete()) {
-//							errorFile = childFile;
-//							return err_deleting_child_file;
-//						}
-//					}
-//				}
-//
-//			if (!file.delete()) {
-//				errorFile = file;
-//				return file.isFile() ? err_deleting_file : err_deleting_folder;
-//			}
-//
-//			return success;
-//		}
-//
-//		@Override
-//		protected void onPreExecute() {
-//			Toast.makeText(activity, R.string.deleting_files, Toast.LENGTH_SHORT).show();
-//		}
-//		
-//		@SuppressWarnings("unchecked")
-//		@Override
-//		protected Integer doInBackground(Object... params) {
-//			Object files = params[0];
-//			
-//			if (files instanceof List<?>) {
-//				for (File file: (List<File>)files) {
-//					int result = recursiveDelete(file);
-//					if (result != success) return result;
-//				}
-//				return success;
-//			} else
-//				return recursiveDelete((File)files);
-//
-//		}
-//
-//		@Override
-//		protected void onPostExecute(Integer result) {
-//			switch (result) {
-//			case success:
-//				activity.showDirectory(null);
-//				if(deletedFileIsDirectory){
-//					Toast.makeText(activity, R.string.folder_deleted,Toast.LENGTH_SHORT).show();
-//				} else {
-//					Toast.makeText(activity, R.string.file_deleted,Toast.LENGTH_SHORT).show();
-//				}
-//				break;
-//			case err_deleting_folder:
-//				Toast.makeText(activity,getString(R.string.error_deleting_folder,
-//						errorFile.getAbsolutePath()), Toast.LENGTH_LONG).show();
-//				break;
-//			case err_deleting_child_file:
-//				Toast.makeText(activity,getString(R.string.error_deleting_child_file,
-//						errorFile.getAbsolutePath()),Toast.LENGTH_SHORT).show();
-//				break;
-//			case err_deleting_file:
-//				Toast.makeText(activity,getString(R.string.error_deleting_file,
-//						errorFile.getAbsolutePath()), Toast.LENGTH_LONG).show();
-//				break;
-//			}
-//		}
-//	}
-//
+
 //	private void deleteFileOrFolder(File file) {
 //		new RecursiveDeleteTask().execute(file);
 //	}
@@ -1481,90 +1315,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		
 	}
 
-	/**
-	 * Central point where we handle actions for single selection, for every API level.
-	 * @param position The position of the selected item. IGNORED if the {@link MenuItem} passed is an instance of {@link AdapterContextMenuInfo}.
-	 */
-	public boolean handleSingleSelectionAction(MenuItem mItem, FileHolder fItem){
-		// Remember current selection
-		mContextText = fItem.getName();
-		mContextIcon = fItem.getIcon();
-		mContextFile = fItem.getFile();
-		
-		switch (mItem.getItemId()) {
-		case R.id.menu_open:
-            openFile(mContextFile); 
-			return true;
-			
-		case R.id.menu_create_shortcut:
-            createShortcut(mContextFile);
-			return true;
-			
-		case R.id.menu_move:
-			promptDestinationAndMoveFile();
-			return true;
-			
-		case R.id.menu_copy:
-			promptDestinationAndCopyFile();
-			return true;
-			
-		case R.id.menu_delete:
-//			showDialog(DIALOG_DELETE);
-// TODO delete
-			return true;
-
-		case R.id.menu_rename:
-			showDialog(DIALOG_RENAME);
-			return true;
-			
-		case R.id.menu_send:
-			sendFile(mContextFile);
-			return true;
-		
-		case R.id.menu_details:
-			showDialog(DIALOG_DETAILS);
-			return true;
-
-        case R.id.menu_compress:
-            showDialog(DIALOG_COMPRESSING);
-            return true;
-
-        case R.id.menu_extract:
-            promptDestinationAndExtract();            
-            return true;
-			
-		case R.id.menu_bookmark:
-			String path = mContextFile.getAbsolutePath();
-			Cursor query = managedQuery(BookmarksProvider.CONTENT_URI,
-										new String[]{BookmarksProvider._ID},
-										BookmarksProvider.PATH + "=?",
-										new String[]{path},
-										null);
-			if(!query.moveToFirst()){
-				ContentValues values = new ContentValues();
-				values.put(BookmarksProvider.NAME, mContextFile.getName());
-				values.put(BookmarksProvider.PATH, path);
-				getContentResolver().insert(BookmarksProvider.CONTENT_URI, values);
-				Toast.makeText(this, R.string.bookmark_added, Toast.LENGTH_SHORT).show();
-			}
-			else{
-				Toast.makeText(this, R.string.bookmark_already_exists, Toast.LENGTH_SHORT).show();
-			}
-			return true;
-
-		case R.id.menu_more:
-			if (!PreferenceActivity.getShowAllWarning(FileManagerActivity.this)) {
-				showMoreCommandsDialog();
-				return true;
-			}
-
-			showWarningDialog();
-
-			return true;
-		}
-
-		return false;
-	}
 	
 //	
 //	/**

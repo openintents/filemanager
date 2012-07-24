@@ -3,6 +3,7 @@ package org.openintents.filemanager.compatibility;
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.PathBar;
 
 import android.view.Menu;
@@ -13,8 +14,7 @@ import android.widget.ListView;
 
 /**
  * This class helps wrap some of the platform specific logic of MultiChoiceMode of Honeycomb and up, 
- * while keeping the FileManagerActivity compliant with API levels that do not ignore {@link VerifyError}s 
- * and crash the app.
+ * while keeping the app compliant with API levels that do not ignore {@link VerifyError}s  and crash the app.
  * 
  * @author George Venios
  * 
@@ -48,8 +48,7 @@ public class FileMultiChoiceModeHelper {
 			switch (list.getCheckedItemCount()) {
 			// Single selection
 			case 1:
-				activity.fillContextMenu(list, menu, mode.getMenuInflater(),
-						getSelectedPosition());
+				MenuUtils.fillContextMenu((FileHolder) list.getAdapter().getItem(getSelectedPosition()), menu, mode.getMenuInflater(), list.getContext());
 				break;
 			// Multiple selection
 			default:

@@ -10,6 +10,7 @@ import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
 import org.openintents.filemanager.dialogs.CreateDirectoryDialog;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.FileUtils;
+import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.PathBar;
 import org.openintents.filemanager.view.PathBar.OnDirectoryChangedListener;
 
@@ -87,8 +88,7 @@ public class SimpleFileListFragment extends FileListFragment {
 			return;
 		}
 
-		((FileManagerActivity) getActivity()).fillContextMenu(getListView(),
-				menu, inflater, info.position);
+		MenuUtils.fillContextMenu((FileHolder) mAdapter.getItem(info.position), menu, inflater, getActivity());
 	}
 
 	@Override

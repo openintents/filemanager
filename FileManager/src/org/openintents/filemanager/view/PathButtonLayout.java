@@ -7,6 +7,7 @@ import org.openintents.filemanager.R;
 import org.openintents.filemanager.view.PathBar.Mode;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -39,12 +40,16 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 		this.setOrientation(LinearLayout.HORIZONTAL);
 		this.setOnLongClickListener(this);
 
+		mPathDrawables.put(Environment.getExternalStorageDirectory().getAbsolutePath(), R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/sdcard", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard-ext", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard0", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard1", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard2", R.drawable.ic_navbar_sdcard);
+		mPathDrawables.put("/storage/sdcard0", R.drawable.ic_navbar_sdcard);
+		mPathDrawables.put("/storage/sdcard1", R.drawable.ic_navbar_sdcard);
+		mPathDrawables.put("/storage/sdcard2", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/", R.drawable.ic_navbar_home);
 	}
 

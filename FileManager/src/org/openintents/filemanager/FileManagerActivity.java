@@ -495,42 +495,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 //						
 //					}).create();
 
-		case DIALOG_RENAME:
-			inflater = LayoutInflater.from(this);
-			view = inflater.inflate(R.layout.dialog_new_folder, null);
-			final EditText et2 = (EditText) view
-				.findViewById(R.id.foldername);
-			//accept "return" key
-			TextView.OnEditorActionListener returnListener2 = new TextView.OnEditorActionListener(){
-				public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
-					   if (actionId == EditorInfo.IME_NULL  
-					      && event.getAction() == KeyEvent.ACTION_DOWN) { 
-						   renameFileOrFolder(mContextFile, et2.getText().toString()); //match this behavior to your OK button
-						   dismissDialog(DIALOG_RENAME);
-					   }
-					   return true;
-					}
-
-			};
-			et2.setOnEditorActionListener(returnListener2);
-			//end of code regarding "return key"
-			return new AlertDialog.Builder(this)
-            	.setTitle(R.string.menu_rename).setView(view).setPositiveButton(
-					android.R.string.ok, new OnClickListener() {
-						
-						public void onClick(DialogInterface dialog, int which) {
-							
-							renameFileOrFolder(mContextFile, et2.getText().toString());
-						}
-						
-					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-						
-						public void onClick(DialogInterface dialog, int which) {
-							// Cancel should not do anything.
-						}
-						
-					}).create();
-
 		case DIALOG_MULTI_DELETE:
 
 			return new AlertDialog.Builder(this)
@@ -587,7 +551,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 
         case DIALOG_COMPRESSING:
             inflater = LayoutInflater.from(this);
-            view = inflater.inflate(R.layout.dialog_new_folder, null);
+            view = inflater.inflate(R.layout.dialog_text_input, null);
             final EditText editText = (EditText) view.findViewById(R.id.foldername);
           //accept "return" key
 			TextView.OnEditorActionListener returnListener3 = new TextView.OnEditorActionListener(){
@@ -627,7 +591,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 
         case DIALOG_MULTI_COMPRESS_ZIP:
             inflater = LayoutInflater.from(this);
-            view = inflater.inflate(R.layout.dialog_new_folder, null);
+            view = inflater.inflate(R.layout.dialog_text_input, null);
             final EditText editText1 = (EditText) view.findViewById(R.id.foldername);
           //accept "return" key
 			TextView.OnEditorActionListener returnListener4 = new TextView.OnEditorActionListener(){
@@ -666,56 +630,56 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
                             // Cancel should not do anything.
                         }
                     }).create();
-        
-        case DIALOG_WARNING_EXISTS:
-            return new AlertDialog.Builder(this).setTitle(getString(R.string.warning_overwrite, mDialogArgument))
-                    .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
-                            android.R.string.ok, new OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP)){
-                                compressMultiFile(mDialogArgument, null);
-                            } else if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
-                                File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), mNewFileName);
-                                rename(FileUtils.getFile(mPathBar.getCurrentDirectory(), mOldFileName), newFile);
-                            } else {
-                                new File(mContextFile.getParent()+File.separator+mDialogArgument).delete();
-                                new CompressManager(FileManagerActivity.this).compress(mContextFile, mDialogArgument);
-                            }
-                            mDialogExistsAction = "";
-                        }
-                    }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
-                                mContextText = mOldFileName;
-                                showDialog(DIALOG_RENAME);
-                            } else if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP)){
-                                showDialog(DIALOG_MULTI_COMPRESS_ZIP);
-                            } else {
-                                showDialog(DIALOG_COMPRESSING);
-                            }
-                            mDialogExistsAction = "";
-                        }
-                    }).create();
-
-            case DIALOG_CHANGE_FILE_EXTENSION:
-                return new AlertDialog.Builder(this).setTitle(getString(R.string.change_file_extension))
-                        .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
-                                android.R.string.ok, new OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), mNewFileName);
-                                if (newFile.exists()){
-                                    mDialogExistsAction = DIALOG_EXISTS_ACTION_RENAME;
-                                    showDialog(DIALOG_WARNING_EXISTS);
-                                } else {
-                                    rename(FileUtils.getFile(mPathBar.getCurrentDirectory(), mOldFileName), newFile);
-                                }
-                            }
-                        }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                mContextText = mOldFileName;
-                                showDialog(DIALOG_RENAME);
-                            }
-                        }).create();
+// deprecated spaghetti. I'll pass.
+//        case DIALOG_WARNING_EXISTS:
+//            return new AlertDialog.Builder(this).setTitle(getString(R.string.warning_overwrite, mDialogArgument))
+//                    .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
+//                            android.R.string.ok, new OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP)){
+//                                compressMultiFile(mDialogArgument, null);
+//                            } else if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
+//                                File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), mNewFileName);
+//                                rename(FileUtils.getFile(mPathBar.getCurrentDirectory(), mOldFileName), newFile);
+//                            } else {
+//                                new File(mContextFile.getParent()+File.separator+mDialogArgument).delete();
+//                                new CompressManager(FileManagerActivity.this).compress(mContextFile, mDialogArgument);
+//                            }
+//                            mDialogExistsAction = "";
+//                        }
+//                    }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
+//                                mContextText = mOldFileName;
+//                                showDialog(DIALOG_RENAME);
+//                            } else if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP)){
+//                                showDialog(DIALOG_MULTI_COMPRESS_ZIP);
+//                            } else {
+//                                showDialog(DIALOG_COMPRESSING);
+//                            }
+//                            mDialogExistsAction = "";
+//                        }
+//                    }).create();
+//
+//            case DIALOG_CHANGE_FILE_EXTENSION:
+//                return new AlertDialog.Builder(this).setTitle(getString(R.string.change_file_extension))
+//                        .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
+//                                android.R.string.ok, new OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), mNewFileName);
+//                                if (newFile.exists()){
+//                                    mDialogExistsAction = DIALOG_EXISTS_ACTION_RENAME;
+//                                    showDialog(DIALOG_WARNING_EXISTS);
+//                                } else {
+//                                    rename(FileUtils.getFile(mPathBar.getCurrentDirectory(), mOldFileName), newFile);
+//                                }
+//                            }
+//                        }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                mContextText = mOldFileName;
+//                                showDialog(DIALOG_RENAME);
+//                            }
+//                        }).create();
 		}
 		return super.onCreateDialog(id);
 			
@@ -726,19 +690,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		super.onPrepareDialog(id, dialog);
 		
 		switch (id) {
-
-		case DIALOG_RENAME:
-//	TODO		et = (EditText) dialog.findViewById(R.id.foldername);
-//			et.setText(mContextText);
-//			TextView tv = (TextView) dialog.findViewById(R.id.foldernametext);
-//			if (mContextFile.isDirectory()) {
-//				tv.setText(R.string.file_name);
-//			} else {
-//				tv.setText(R.string.file_name);
-//			}
-//            et.setSelection(0, mContextText.lastIndexOf(".") == -1 ? mContextText.length() : mContextText.lastIndexOf("."));
-//			((AlertDialog) dialog).setIcon(mContextIcon);
-//			break;
 
 		case DIALOG_MULTI_DELETE:
 //	TODO        final ArrayList<File> files = getSelectedItemsFiles();
@@ -1005,57 +956,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		}
 		
 		return true;
-	}
-
-//	private void deleteFileOrFolder(File file) {
-//		new RecursiveDeleteTask().execute(file);
-//	}
-//	
-//    private void deleteMultiFile(ArrayList<File> files) {
-//        new RecursiveDeleteTask().execute(files);
-//    }
-
-	private void renameFileOrFolder(File file, String newFileName) {
-        mOldFileName = file.getName();
-        mNewFileName = newFileName;
-        mDialogArgument = mNewFileName;
-		if (newFileName != null && newFileName.length() > 0){
-			if (!file.isDirectory() && !FileUtils.getExtension(newFileName).equals(FileUtils.getExtension(file.getName()))){
-                showDialog(DIALOG_CHANGE_FILE_EXTENSION);
-                return;
-			}
-		}
-		File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), newFileName);
-        if (newFile.exists()){
-            mDialogExistsAction = DIALOG_EXISTS_ACTION_RENAME;
-            showDialog(DIALOG_WARNING_EXISTS);
-        } else {
-            rename(file, newFile);
-        }
-	}
-
-	/**
-	 * @param oldFile
-	 * @param newFile
-	 */
-	private void rename(File oldFile, File newFile) {
-		int toast = 0;
-		if (oldFile.renameTo(newFile)) {
-			// Rename was successful.
-// TODO used to refresh the list			showDirectory(null);
-			if (newFile.isDirectory()) {
-				toast = R.string.folder_renamed;
-			} else {
-				toast = R.string.file_renamed;
-			}
-		} else {
-			if (newFile.isDirectory()) {
-				toast = R.string.error_renaming_folder;
-			} else {
-				toast = R.string.error_renaming_file;
-			}
-		}
-		Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
 	}
 
 	/*@ RETURNS: A file name that is guaranteed to not exist yet.

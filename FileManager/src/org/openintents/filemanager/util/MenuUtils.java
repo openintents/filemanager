@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.dialogs.RenameDialog;
 import org.openintents.filemanager.dialogs.SingleDeleteDialog;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
@@ -105,10 +106,16 @@ public abstract class MenuUtils {
 			}).show(navigator.getFragmentManager(), "SingleDeleteDialog");
 			return true;
 
-//		case R.id.menu_rename:
-//			showDialog(DIALOG_RENAME);
-//			return true;
-//			
+		case R.id.menu_rename:
+			new RenameDialog(fItem, new RenameDialog.OnRenamedListener() {
+				
+				@Override
+				public void renamed() {
+					navigator.refresh();
+				}
+			}).show(navigator.getFragmentManager(), "RenameDialog");
+			return true;
+
 //		case R.id.menu_send:
 //			sendFile(mContextFile);
 //			return true;

@@ -187,8 +187,8 @@
     <string name="extract_into_folder">Extract into folder:</string>
     <string name="extract_title">Select folder to extract into</string>
     <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
+    <string name="extracting">Extracting&#8230;</string>
+    <string name="compressing">Compressing&#8230;</string>
     <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
 
     <string name="change_file_extension">Do you want to change the file extension?</string>
@@ -233,8 +233,10 @@
     <!-- list layout -->
     <string name="scanning">Scanning&#8230;</string>
     
-    <!-- Delete dialog -->
+    <!-- Dialogs -->
     <string name="delete_success">Successfully deleted</string>
     <string name="delete_failure">Some files not deleted</string>
     <string name="deleting">Deleting&#8230;</string>
+    <string name="rename_success">Successfully renamed</string>
+    <string name="rename_failure">Couldn\'t rename.</string>
 </resources>

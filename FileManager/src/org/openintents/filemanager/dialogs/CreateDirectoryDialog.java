@@ -35,9 +35,9 @@ public class CreateDirectoryDialog extends DialogFragment {
 		v.setHint(R.string.folder_name);
 		
 		v.setOnEditorActionListener(new TextView.OnEditorActionListener(){
-			public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
+			public boolean onEditorAction(TextView text, int actionId, KeyEvent event) {
 				   if (actionId == EditorInfo.IME_ACTION_GO)
-					   createFolder(exampleView.getText());
+					   createFolder(text.getText());
 				   return true;
 				}
 		});

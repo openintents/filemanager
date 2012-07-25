@@ -31,7 +31,8 @@ public class CreateDirectoryDialog extends DialogFragment {
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
-		final EditText v = (EditText) inflater.inflate(R.layout.dialog_new_folder, null);
+		final EditText v = (EditText) inflater.inflate(R.layout.dialog_text_input, null);
+		v.setHint(R.string.folder_name);
 		
 		v.setOnEditorActionListener(new TextView.OnEditorActionListener(){
 			public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {

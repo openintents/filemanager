@@ -5,6 +5,7 @@ import java.io.File;
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.dialogs.DetailsDialog;
 import org.openintents.filemanager.dialogs.RenameDialog;
 import org.openintents.filemanager.dialogs.SingleDeleteDialog;
@@ -14,8 +15,10 @@ import org.openintents.intents.FileManagerIntents;
 
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -135,26 +138,26 @@ public abstract class MenuUtils {
 //        case R.id.menu_extract:
 //            pickDestinationAndExtract();            
 //            return true;
-//			
-//		case R.id.menu_bookmark:
-//			String path = fItem.getFile().getAbsolutePath();
-//			Cursor query = managedQuery(BookmarksProvider.CONTENT_URI,
-//										new String[]{BookmarksProvider._ID},
-//										BookmarksProvider.PATH + "=?",
-//										new String[]{path},
-//										null);
-//			if(!query.moveToFirst()){
-//				ContentValues values = new ContentValues();
-//				values.put(BookmarksProvider.NAME, fItem.getName());
-//				values.put(BookmarksProvider.PATH, path);
-//				context.getContentResolver().insert(BookmarksProvider.CONTENT_URI, values);
-//				Toast.makeText(context, R.string.bookmark_added, Toast.LENGTH_SHORT).show();
-//			}
-//			else{
-//				Toast.makeText(context, R.string.bookmark_already_exists, Toast.LENGTH_SHORT).show();
-//			}
-//			return true;
-//
+			
+		case R.id.menu_bookmark:
+			String path = fItem.getFile().getAbsolutePath();
+			Cursor query = navigator.getActivity().managedQuery(BookmarksProvider.CONTENT_URI,
+										new String[]{BookmarksProvider._ID},
+										BookmarksProvider.PATH + "=?",
+										new String[]{path},
+										null);
+			if(!query.moveToFirst()){
+				ContentValues values = new ContentValues();
+				values.put(BookmarksProvider.NAME, fItem.getName());
+				values.put(BookmarksProvider.PATH, path);
+				context.getContentResolver().insert(BookmarksProvider.CONTENT_URI, values);
+				Toast.makeText(context, R.string.bookmark_added, Toast.LENGTH_SHORT).show();
+			}
+			else{
+				Toast.makeText(context, R.string.bookmark_already_exists, Toast.LENGTH_SHORT).show();
+			}
+			return true;
+
 //		case R.id.menu_more:
 //			if (!PreferenceActivity.getShowAllWarning(FileManagerActivity.this)) {
 //				showMoreCommandsDialog();

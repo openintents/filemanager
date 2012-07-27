@@ -117,15 +117,17 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 		return SimpleDateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date(mFile.lastModified()));
 	}
 	
-	public String getFormattedSize(Context c){
-		return Formatter.formatFileSize(c, getSizeInBytes());
+	/**
+	 * @param recursive Whether to return size of the whole tree below this file (Directories only).
+	 */
+	public String getFormattedSize(Context c, boolean recursive){
+		return Formatter.formatFileSize(c, getSizeInBytes(recursive));
 	}
 	
-	private long getSizeInBytes(){
-// FIXME Temporarily removed as it made the List hang. It is bad for too deep trees.
-//		if (mFile.isDirectory())
-//			return FileUtils.folderSize(mFile);
-//		else
+	private long getSizeInBytes(boolean recursive){
+		if (recursive && mFile.isDirectory())
+			return FileUtils.folderSize(mFile);
+		else
 			return mFile.length();
 	}
 	

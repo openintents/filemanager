@@ -1,6 +1,5 @@
 package org.openintents.filemanager.compatibility;
 
-import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;

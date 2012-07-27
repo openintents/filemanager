@@ -80,7 +80,7 @@ public class FileHolderListAdapter extends BaseAdapter {
 		holder.primaryInfo.setText(item.getName());
 		holder.secondaryInfo.setText(item.getFormattedModificationDate());
 		// Hide directories' size as it's irrelevant if we can't recursively find it.
-		holder.tertiaryInfo.setText(item.getFile().isDirectory()? "" : item.getFormattedSize(mContext));
+		holder.tertiaryInfo.setText(item.getFile().isDirectory()? "" : item.getFormattedSize(mContext, false));
         
         if(!scrolling && item.getFile().isFile() && !item.getMimeType().equals("video/mpeg")){
       	  if(mThumbnailLoader != null) {

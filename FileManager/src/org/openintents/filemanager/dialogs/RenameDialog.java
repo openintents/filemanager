@@ -3,7 +3,6 @@ package org.openintents.filemanager.dialogs;
 import java.io.File;
 
 import org.openintents.filemanager.R;
-import org.openintents.filemanager.dialogs.CreateDirectoryDialog.OnDirectoryCreatedListener;
 import org.openintents.filemanager.files.FileHolder;
 
 import android.app.AlertDialog;
@@ -47,6 +46,7 @@ public class RenameDialog extends DialogFragment {
 		});
 		
 		return new AlertDialog.Builder(getActivity())
+				.setInverseBackgroundForced(true)
 				.setTitle(R.string.menu_rename)
 				.setIcon(mFileHolder.getIcon())
 				.setView(v)

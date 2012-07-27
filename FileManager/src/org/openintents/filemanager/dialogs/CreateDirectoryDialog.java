@@ -43,6 +43,7 @@ public class CreateDirectoryDialog extends DialogFragment {
 		});
 		
 		return new AlertDialog.Builder(getActivity())
+				.setInverseBackgroundForced(true)
 				.setTitle(R.string.create_new_folder)
 				.setIcon(android.R.drawable.ic_dialog_alert).setView(v)
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {

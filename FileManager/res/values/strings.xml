@@ -239,4 +239,5 @@
     <string name="deleting">Deleting&#8230;</string>
     <string name="rename_success">Successfully renamed</string>
     <string name="rename_failure">Couldn\'t rename.</string>
+    <string name="loading">Loading&#8230;</string>
 </resources>

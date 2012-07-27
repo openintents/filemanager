@@ -1,136 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/TableLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" android:padding="16dip">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
 
-
-    <TextView
-        android:id="@+id/textView3"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/menu_details"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" >
 
-    <TableRow
-        android:id="@+id/TableRow02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-
-
-        <TextView
-            android:id="@+id/details_type_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/details_type" />
-
-
-        <TextView
-            android:id="@+id/details_type_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
-
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-
-
+        <!-- Size -->
         <TextView
             android:id="@+id/details_size_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/dialogDetailsPrimaryText"
             android:text="@string/details_size" />
-
-
 
         <TextView
             android:id="@+id/details_size_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
+            style="@style/dialogDetailsSecondaryText" />
 
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/TableRow01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-
+        <!-- Type -->
+        <TextView
+            android:id="@+id/details_type_text"
+            style="@style/dialogDetailsPrimaryText"
+            android:text="@string/details_type" />
 
         <TextView
-            android:id="@+id/details_permissions_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/details_permissions" />
+            android:id="@+id/details_type_value"
+            style="@style/dialogDetailsSecondaryText" />
 
-
-        <TextView
-            android:id="@+id/details_permissions_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
-
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/TableRow03"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-
-
-        <TextView
-            android:id="@+id/details_hidden_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/details_hidden" />
-
-
-        <TextView
-            android:id="@+id/details_hidden_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
-
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/TableRow04"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-
-
+        <!-- Modification date -->
         <TextView
             android:id="@+id/details_lastmodified_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/dialogDetailsPrimaryText"
             android:text="@string/details_lastmodified" />
-
 
         <TextView
             android:id="@+id/details_lastmodified_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
+            style="@style/dialogDetailsSecondaryText" />
 
-    </TableRow>
+        <!-- Visibility -->
+        <TextView
+            android:id="@+id/details_hidden_text"
+            style="@style/dialogDetailsPrimaryText"
+            android:text="@string/details_hidden" />
 
-</TableLayout>
+        <TextView
+            android:id="@+id/details_hidden_value"
+            style="@style/dialogDetailsSecondaryText" />
+
+        <!-- Permissions -->
+        <TextView
+            android:id="@+id/details_permissions_text"
+            style="@style/dialogDetailsPrimaryText"
+            android:text="@string/details_permissions" />
+
+        <TextView
+            android:id="@+id/details_permissions_value"
+            style="@style/dialogDetailsSecondaryText" />
+    </LinearLayout>
+
+</ScrollView>

@@ -3,13 +3,16 @@ package org.openintents.filemanager.util;
 import java.io.File;
 
 import org.openintents.filemanager.FileManagerActivity;
+import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.dialogs.DetailsDialog;
 import org.openintents.filemanager.dialogs.RenameDialog;
 import org.openintents.filemanager.dialogs.SingleDeleteDialog;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.intents.FileManagerIntents;
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +24,7 @@ import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public abstract class MenuUtils {
 
@@ -116,14 +120,14 @@ public abstract class MenuUtils {
 			}).show(navigator.getFragmentManager(), "RenameDialog");
 			return true;
 
-//		case R.id.menu_send:
-//			sendFile(mContextFile);
-//			return true;
-//		
-//		case R.id.menu_details:
-//			showDialog(DIALOG_DETAILS);
-//			return true;
-//
+		case R.id.menu_send:
+			sendFile(fItem, context);
+			return true;
+		
+		case R.id.menu_details:
+			new DetailsDialog(fItem).show(navigator.getFragmentManager(), "DetailsDialog");
+			return true;
+
 //        case R.id.menu_compress:
 //            showDialog(DIALOG_COMPRESSING);
 //            return true;
@@ -221,5 +225,24 @@ public abstract class MenuUtils {
 //// TODO		intent.putExtra("checked_files", getSelectedItemsFiles());
 //		
 //		startActivityForResult(intent, REQUEST_CODE_COPY);
+	}
+	
+	private static void sendFile(FileHolder fHolder, Context context) {
+		String filename = fHolder.getName();
+		
+		Intent i = new Intent();
+		i.setAction(Intent.ACTION_SEND);
+		i.setType(fHolder.getMimeType());
+		i.putExtra(Intent.EXTRA_SUBJECT, filename);
+		i.putExtra(Intent.EXTRA_STREAM, FileUtils.getUri(fHolder.getFile()));
+		i.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://" + FileManagerProvider.AUTHORITY + fHolder.getFile().getAbsolutePath()));
+
+		i = Intent.createChooser(i, context.getString(R.string.menu_send));
+		
+		try {
+			context.startActivity(i);
+		} catch (ActivityNotFoundException e) {
+			Toast.makeText(context, R.string.send_not_available, Toast.LENGTH_SHORT).show();
+		}
 	}
 }

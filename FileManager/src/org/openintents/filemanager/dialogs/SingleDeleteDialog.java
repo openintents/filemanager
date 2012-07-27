@@ -26,6 +26,7 @@ public class SingleDeleteDialog extends DialogFragment {
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		return new AlertDialog.Builder(getActivity())
+				.setInverseBackgroundForced(true)
 				.setTitle(getString(R.string.really_delete, mFileHolder.getName()))
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					@Override

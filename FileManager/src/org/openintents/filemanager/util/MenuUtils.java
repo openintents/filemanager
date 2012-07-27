@@ -1,9 +1,12 @@
 package org.openintents.filemanager.util;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.FileManagerProvider;
+import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.dialogs.DetailsDialog;
@@ -13,20 +16,29 @@ import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.intents.FileManagerIntents;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Parcelable;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 public abstract class MenuUtils {
@@ -134,10 +146,10 @@ public abstract class MenuUtils {
 //        case R.id.menu_compress:
 //            showDialog(DIALOG_COMPRESSING);
 //            return true;
-//
-//        case R.id.menu_extract:
-//            pickDestinationAndExtract();            
-//            return true;
+
+        case R.id.menu_extract:
+            pickDestinationAndExtract();            
+            return true;
 			
 		case R.id.menu_bookmark:
 			String path = fItem.getFile().getAbsolutePath();
@@ -158,15 +170,14 @@ public abstract class MenuUtils {
 			}
 			return true;
 
-//		case R.id.menu_more:
-//			if (!PreferenceActivity.getShowAllWarning(FileManagerActivity.this)) {
-//				showMoreCommandsDialog();
-//				return true;
-//			}
-//
-//			showWarningDialog();
-//
-//			return true;
+		case R.id.menu_more:
+			if (!PreferenceActivity.getShowAllWarning(context)){
+				showMoreCommandsDialog(fItem, context);
+				return true;
+			}
+			showWarningDialog(fItem, context);
+
+			return true;
 		}
 
 		return false;
@@ -174,7 +185,7 @@ public abstract class MenuUtils {
  	
     /**
      * Creates a home screen shortcut.
-     * @param file The file to create the shortcut to.
+     * @param file The {@link File} to create the shortcut to.
      */
     static private void createShortcut(File file, Context context) {
 		Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
@@ -192,7 +203,7 @@ public abstract class MenuUtils {
 		context.sendBroadcast(shortcutintent);
     }
     
-    static private void pickDestinationAndMove() {
+    private static void pickDestinationAndMove() {
 // TODO implement once pick directory fragment is done.
 // 		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
 // 		
@@ -206,7 +217,7 @@ public abstract class MenuUtils {
 // 		startActivityForResult(intent, REQUEST_CODE_MOVE);
  	}
 
-    static private void pickDestinationAndExtract() {
+    private static void pickDestinationAndExtract() {
 // TODO implement once pick directory fragment is done.
 //        Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
 //        intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
@@ -216,7 +227,7 @@ public abstract class MenuUtils {
 //        startActivityForResult(intent, REQUEST_CODE_EXTRACT);
     }
     
-	static private void pickDestinationAndCopy() {
+	private static void pickDestinationAndCopy() {
 // TODO implement once pick directory fragment is done.
 //		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
 //		
@@ -230,6 +241,11 @@ public abstract class MenuUtils {
 //		startActivityForResult(intent, REQUEST_CODE_COPY);
 	}
 	
+	/**
+	 * Creates an activity picker to send a file.
+	 * @param fHolder A {@link FileHolder} containing the {@link File} to send.
+	 * @param context {@link Context} in which to create the picker.
+	 */
 	private static void sendFile(FileHolder fHolder, Context context) {
 		String filename = fHolder.getName();
 		
@@ -246,6 +262,94 @@ public abstract class MenuUtils {
 			context.startActivity(i);
 		} catch (ActivityNotFoundException e) {
 			Toast.makeText(context, R.string.send_not_available, Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	/**
+	 * Call this to show the dialog that informs the user about possibly broken options in the "More" dialog.
+	 * @param context The context that will be used for this dialog.
+	 * @param holder A {@link FileHolder} containing the file to act upon.
+	 */
+	private static void showWarningDialog(final FileHolder holder, final Context context) {
+		LayoutInflater li = LayoutInflater.from(context);
+		View warningView = li.inflate(R.layout.dialog_warning, null);
+		final CheckBox showWarningAgain = (CheckBox)warningView.findViewById(R.id.showagaincheckbox);
+		
+		showWarningAgain.setChecked(PreferenceActivity.getShowAllWarning(context));
+		
+		new AlertDialog.Builder(context).setView(warningView).setTitle(context.getString(R.string.title_warning_some_may_not_work))
+				.setMessage(context.getString(R.string.warning_some_may_not_work))
+		    	.setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
+					android.R.string.ok, new OnClickListener() {
+						
+						public void onClick(DialogInterface dialog, int which) {
+							PreferenceActivity.setShowAllWarning(context, showWarningAgain.isChecked());
+
+							showMoreCommandsDialog(holder, context);
+						}
+						
+					}).create()
+				.show();
+	}
+
+	/**
+	 * Call this to show the "More" dialog for the passed {@link FileHolder}.
+	 * @param context Always useful, isn't it?
+	 */
+	private static void showMoreCommandsDialog(FileHolder holder, final Context context) {
+		final Uri data = Uri.fromFile(holder.getFile());
+		final Intent intent = new Intent();
+		intent.setDataAndType(data, holder.getMimeType());
+
+		if (holder.getMimeType() != null) {
+			// Add additional options for the MIME type of the selected file.
+			PackageManager pm = context.getPackageManager();
+			final List<ResolveInfo> lri = pm.queryIntentActivityOptions(
+					new ComponentName(context, FileManagerActivity.class),
+					null, intent, 0);
+			final int N = lri != null ? lri.size() : 0;
+
+			// Create name list for menu item.
+			final List<CharSequence> items = new ArrayList<CharSequence>();
+			/* Some of the options don't go to the list hence we have to remove them
+			 * to keep the lri correspond with the menu items. In the addition, we have
+			 * to remove them after the first iteration, otherwise the iteration breaks.
+			 */
+			List<ResolveInfo> toRemove = new ArrayList<ResolveInfo>();
+			for (int i = 0; i < N; i++) {
+				final ResolveInfo ri = lri.get(i);
+				Intent rintent = new Intent(intent);
+				rintent.setComponent(
+						new ComponentName(
+								ri.activityInfo.applicationInfo.packageName,
+								ri.activityInfo.name));
+				ActivityInfo info = rintent.resolveActivityInfo(pm, 0);
+				String permission = info.permission;
+				if(info.exported && (permission == null || context.checkCallingPermission(permission) == PackageManager.PERMISSION_GRANTED))
+					items.add(ri.loadLabel(pm));
+				else
+					toRemove.add(ri);
+			}
+
+			for(ResolveInfo ri : toRemove){
+				lri.remove(ri);
+			}
+
+			new AlertDialog.Builder(context)
+					.setTitle(holder.getName())
+					.setIcon(holder.getIcon())
+					.setItems(items.toArray(new CharSequence[0]),
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int item) {
+									final ResolveInfo ri = lri.get(item);
+									Intent rintent = new Intent(intent)
+											.setComponent(new ComponentName(
+													ri.activityInfo.applicationInfo.packageName,
+													ri.activityInfo.name));
+									context.startActivity(rintent);
+								}
+							}).create()
+						.show();
 		}
 	}
 }

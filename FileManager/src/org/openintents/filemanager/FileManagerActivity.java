@@ -36,6 +36,7 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -68,7 +69,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 
 	private LegacyActionContainer mLegacyActionContainer;
 
-	private FileHolder[] mDirectoryEntries;
+//	private FileHolder[] mDirectoryEntries;
 
 // TODO
 //	@Override
@@ -229,9 +230,22 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
  		// remember file name
  		outState.putString(BUNDLE_CURRENT_DIRECTORY, mPathBar.getCurrentDirectory().getAbsolutePath());
  		outState.putBoolean(BUNDLE_SHOW_DIRECTORY_INPUT, mPathBar.getMode()==PathBar.Mode.MANUAL_INPUT);
- 		outState.putParcelableArray(BUNDLE_DIRECTORY_ENTRIES, mDirectoryEntries);
  	}
 
+ 	
+ 	@Override
+ 	protected void onRestoreInstanceState(Bundle inState) {
+ 		super.onRestoreInstanceState(inState);
+ 		
+ 		((SimpleFileListFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG)).setPathBar(mPathBar);
+ 		mPathBar.cd(inState.getString(BUNDLE_CURRENT_DIRECTORY));
+ 		if(inState.getBoolean(BUNDLE_SHOW_DIRECTORY_INPUT))
+ 			mPathBar.switchToManualInput();
+ 		else
+ 			mPathBar.switchToStandardInput();
+ 		
+ 	}
+ 	
 //     private void selectInList(File selectFile) {
 //    	 String filename = selectFile.getName();
 //    	 IconifiedTextListAdapter la = (IconifiedTextListAdapter) getListAdapter();

@@ -297,42 +297,52 @@ public class PathBar extends ViewFlipper {
 	}
 
 	/**
-	 * {@code cd} to the passed file. If the file is legal input, sets it as the currently active Directory. Otherwise does nothing.
+	 * {@code cd} to the passed file. If the file is legal input, sets it as the currently active Directory. Otherwise calls the listener to handle it, if any.
 	 * 
-	 * @param file
-	 *            The file to {@code cd} to.
+	 * @param file The file to {@code cd} to.
 	 * @return Whether the path entered exists and can be navigated to.
 	 */
 	public boolean cd(File file) {
+		boolean res = false;
+		
 		// Check file state.
 		boolean isFileOK = true;
 		isFileOK &= file.exists();
-		isFileOK &= file.isDirectory();
-		if (!isFileOK)
+		// add more filters here..
+		
+		if(!isFileOK)
 			return false;
-
-		// Set proper current directory.
-		mCurrentDirectory = file;
-
-		// Refresh button layout.
-		mPathButtons.refresh(mCurrentDirectory);
-
-		// Reset scrolling position. http://stackoverflow.com/questions/3263259/scrollview-scrollto-not-working-saving-scrollview-position-on-rotation
-		mPathButtonsContainer.post(new Runnable() {
-			@Override
-			public void run() {
-				mPathButtonsContainer.scrollTo(
-						mPathButtonsContainer.getMaxScrollAmount(),
-						(int) mPathButtonsContainer.getTop());
-			}
-		});
-
-		// Refresh manual input field.
-		mPathEditText.setText(file.getAbsolutePath());
+		
+		if(!file.isDirectory()){
+			file = file.getParentFile();
+		}
+		
+		if (file !=null) {
+			// Set proper current directory.
+			mCurrentDirectory = file;
+	
+			// Refresh button layout.
+			mPathButtons.refresh(mCurrentDirectory);
+	
+			// Reset scrolling position. http://stackoverflow.com/questions/3263259/scrollview-scrollto-not-working-saving-scrollview-position-on-rotation
+			mPathButtonsContainer.post(new Runnable() {
+				@Override
+				public void run() {
+					mPathButtonsContainer.scrollTo(
+							mPathButtonsContainer.getMaxScrollAmount(),
+							(int) mPathButtonsContainer.getTop());
+				}
+			});
+	
+			// Refresh manual input field.
+			mPathEditText.setText(file.getAbsolutePath());
+			
+			res = true;
+		}	
 
 		mDirectoryChangedListener.directoryChanged(file);
 
-		return true;
+		return res;
 	}
 
 	/**

@@ -17,14 +17,11 @@
 package org.openintents.filemanager;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 
 import org.openintents.filemanager.bookmarks.BookmarkListActivity;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
-import org.openintents.filemanager.util.CompressManager;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.view.LegacyActionContainer;
 import org.openintents.filemanager.view.PathBar;
@@ -32,12 +29,7 @@ import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.ComponentName;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION;
@@ -45,25 +37,14 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	private static final String TAG = "FileManagerActivity";
 	private static final String FRAGMENT_TAG = "ListFragment";
-
-    private static final String DIALOG_EXISTS_ACTION_RENAME = "action_rename";
-    private static final String DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP = "action_multi_compress_zip";
-
-	private static final Character FILE_EXTENSION_SEPARATOR = '.';
 	
 //	TODO kept as a reference for the fragments to be made
 //	private static final int STATE_BROWSE = 1;
@@ -76,59 +57,19 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
     private static final int REQUEST_CODE_MULTI_SELECT = 3;
     protected static final int REQUEST_CODE_EXTRACT = 4;
     protected static final int REQUEST_CODE_BOOKMARKS = 5;
-
-	private static final int MENU_DISTRIBUTION_START = Menu.FIRST + 100; // MUST BE LAST
 	
-// TODO remove	private static final int DIALOG_NEW_FOLDER = 1;
-	private static final int DIALOG_MULTI_DELETE = 4;
-	private static final int DIALOG_FILTER = 5;
-    private static final int DIALOG_COMPRESSING = 8;
-    private static final int DIALOG_WARNING_EXISTS = 9;
-    private static final int DIALOG_CHANGE_FILE_EXTENSION = 10;
-    private static final int DIALOG_MULTI_COMPRESS_ZIP = 11;
-
-	private static final int DIALOG_DISTRIBUTION_START = 100; // MUST BE LAST
-
 	private static final int COPY_BUFFER_SIZE = 32 * 1024;
 	
 	private static final String BUNDLE_CURRENT_DIRECTORY = "current_directory";
-	private static final String BUNDLE_CONTEXT_FILE = "context_file";
-	private static final String BUNDLE_CONTEXT_TEXT = "context_text";
 	private static final String BUNDLE_SHOW_DIRECTORY_INPUT = "show_directory_input";
 	private static final String BUNDLE_DIRECTORY_ENTRIES = "directory_entries";
-	
-//
-//     /** Dir separate for sorting */
-//     List<FileHolder> mListDir = new ArrayList<FileHolder>();
-//     
-//     /** Files separate for sorting */
-//     List<FileHolder> mListFile = new ArrayList<FileHolder>();
-//     
-//     /** SD card separate for sorting */
-//     List<FileHolder> mListSdCard = new ArrayList<FileHolder>();
 
-     private PathBar mPathBar;
-     
-     private LegacyActionContainer mLegacyActionContainer;
+	private PathBar mPathBar;
 
+	private LegacyActionContainer mLegacyActionContainer;
 
-    private FileHolder[] mDirectoryEntries;
+	private FileHolder[] mDirectoryEntries;
 
-    /**
-     * use it field to pass params to onCreateDialog method
-     */
-    private String mDialogArgument;
-
-    /**
-     * to show warning dialog to user if he want to change file extension
-     */
-    private String mOldFileName;
-    private String mNewFileName;
-
-    /**
-     * use this field to set behaviour in DIALOG_WARNING_EXISTS
-     */
-    private String mDialogExistsAction = "";
 // TODO
 //	@Override
 //	protected void onNewIntent(Intent intent) { 
@@ -365,170 +306,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		return super.onOptionsItemSelected(item);
 
 	}
-
-	@Override
-	protected Dialog onCreateDialog(int id) {
-
-		LayoutInflater inflater;
-		View view;
-		switch (id) {
-
-// TODO        case DIALOG_FILTER:
-//			inflater = LayoutInflater.from(this);
-//			view = inflater.inflate(R.layout.dialog_new_folder, null);
-//			((TextView)view.findViewById(R.id.foldernametext)).setText(R.string.extension);
-//			final EditText et3 = (EditText) view
-//					.findViewById(R.id.foldername);
-//			et3.setText("");
-//			return new AlertDialog.Builder(this)
-//            	.setIcon(android.R.drawable.ic_dialog_alert)
-//            	.setTitle(R.string.menu_filter).setView(view).setPositiveButton(
-//					android.R.string.ok, new OnClickListener() {
-//						
-//						public void onClick(DialogInterface dialog, int which) {
-//							mFilterFiletype = et3.getText().toString().trim();
-//							showDirectory(null);
-//						}
-//						
-//					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-//						
-//						public void onClick(DialogInterface dialog, int which) {
-//							// Cancel should not do anything.
-//						}
-//						
-//					}).create();
-
-        case DIALOG_MULTI_COMPRESS_ZIP:
-            inflater = LayoutInflater.from(this);
-            view = inflater.inflate(R.layout.dialog_text_input, null);
-            final EditText editText1 = (EditText) view.findViewById(R.id.foldername);
-          //accept "return" key
-			TextView.OnEditorActionListener returnListener4 = new TextView.OnEditorActionListener(){
-				public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
-					   if (actionId == EditorInfo.IME_NULL  
-					      && event.getAction() == KeyEvent.ACTION_DOWN) { 
-						   if (new File(mPathBar.getCurrentDirectory()+File.separator+editText1.getText().toString()).exists()){
-                               mDialogArgument = editText1.getText().toString();
-                               mDialogExistsAction = DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP;
-                               showDialog(DIALOG_WARNING_EXISTS);
-                           } else {
-                               compressMultiFile(editText1.getText().toString(), null);
-                           } //match this behavior to your OK button
-						   dismissDialog(DIALOG_MULTI_COMPRESS_ZIP);
-					   }
-					   return true;
-					}
-
-			};
-			editText1.setOnEditorActionListener(returnListener4);
-			//end of code regarding "return key"
-            return new AlertDialog.Builder(this)
-                    .setTitle(R.string.menu_compress).setView(view).setPositiveButton(
-                            android.R.string.ok, new OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (new File(mPathBar.getCurrentDirectory()+File.separator+editText1.getText().toString()).exists()){
-                                mDialogArgument = editText1.getText().toString();
-                                mDialogExistsAction = DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP;
-                                showDialog(DIALOG_WARNING_EXISTS);
-                            } else {
-                                compressMultiFile(editText1.getText().toString(), null);
-                            }
-                        }
-                    }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Cancel should not do anything.
-                        }
-                    }).create();
-// deprecated spaghetti. I'll pass.
-//        case DIALOG_WARNING_EXISTS:
-//            return new AlertDialog.Builder(this).setTitle(getString(R.string.warning_overwrite, mDialogArgument))
-//                    .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
-//                            android.R.string.ok, new OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP)){
-//                                compressMultiFile(mDialogArgument, null);
-//                            } else if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
-//                                File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), mNewFileName);
-//                                rename(FileUtils.getFile(mPathBar.getCurrentDirectory(), mOldFileName), newFile);
-//                            } else {
-//                                new File(mContextFile.getParent()+File.separator+mDialogArgument).delete();
-//                                new CompressManager(FileManagerActivity.this).compress(mContextFile, mDialogArgument);
-//                            }
-//                            mDialogExistsAction = "";
-//                        }
-//                    }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_RENAME)){
-//                                mContextText = mOldFileName;
-//                                showDialog(DIALOG_RENAME);
-//                            } else if (mDialogExistsAction.equals(DIALOG_EXISTS_ACTION_MULTI_COMPRESS_ZIP)){
-//                                showDialog(DIALOG_MULTI_COMPRESS_ZIP);
-//                            } else {
-//                                showDialog(DIALOG_COMPRESSING);
-//                            }
-//                            mDialogExistsAction = "";
-//                        }
-//                    }).create();
-//
-//            case DIALOG_CHANGE_FILE_EXTENSION:
-//                return new AlertDialog.Builder(this).setTitle(getString(R.string.change_file_extension))
-//                        .setIcon(android.R.drawable.ic_dialog_alert).setPositiveButton(
-//                                android.R.string.ok, new OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                File newFile = FileUtils.getFile(mPathBar.getCurrentDirectory(), mNewFileName);
-//                                if (newFile.exists()){
-//                                    mDialogExistsAction = DIALOG_EXISTS_ACTION_RENAME;
-//                                    showDialog(DIALOG_WARNING_EXISTS);
-//                                } else {
-//                                    rename(FileUtils.getFile(mPathBar.getCurrentDirectory(), mOldFileName), newFile);
-//                                }
-//                            }
-//                        }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                mContextText = mOldFileName;
-//                                showDialog(DIALOG_RENAME);
-//                            }
-//                        }).create();
-		}
-		return super.onCreateDialog(id);
-			
-	}
-
-	@Override
-	protected void onPrepareDialog(int id, final Dialog dialog) {
-		super.onPrepareDialog(id, dialog);
-		
-		switch (id) {
-            
-        case DIALOG_COMPRESSING:
-// TODO           TextView textView = (TextView) dialog.findViewById(R.id.foldernametext);
-//            textView.setText(R.string.compress_into_archive);
-//            final EditText editText = (EditText) dialog.findViewById(R.id.foldername);
-//            String archiveName = "";
-//            if (mContextFile.isDirectory()){
-//                archiveName = mContextFile.getName()+".zip";
-//            } else {
-//                String extension = FileUtils.getExtension(mContextFile.getName());
-//                archiveName = mContextFile.getName().replaceAll(extension, "")+".zip";
-//            }
-//            editText.setText(archiveName);
-//            editText.setSelection(0, archiveName.length()-4);
-//            break;
-
-        case DIALOG_MULTI_COMPRESS_ZIP:
-//  TODO          textView = (TextView) dialog.findViewById(R.id.foldernametext);
-//            textView.setText(R.string.compress_into_archive);
-//            final EditText editText1 = (EditText) dialog.findViewById(R.id.foldername);
-//            archiveName = mPathBar.getCurrentDirectory().getName()+".zip";
-//            editText1.setText(archiveName);
-//            editText1.setSelection(0, archiveName.length()-4);
-//            break;
-
-        case DIALOG_WARNING_EXISTS:
-            dialog.setTitle(getString(R.string.warning_overwrite, mDialogArgument));
-        }
-	}
-
 	
 	/**
 	 * Starts activity for multi select.
@@ -543,128 +320,34 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 
         startActivityForResult(intent, REQUEST_CODE_MULTI_SELECT);
     }
-
-    /**
-     * 
-     * @param out The name of the produced file.
-     * @param listener A listener to be notified on compression completion.
-     */
-    private void compressMultiFile(String out, CompressManager.OnCompressFinishedListener listener) {
-//  TODO       new CompressManager(FileManagerActivity.this).setOnCompressFinishedListener(listener).compress(getSelectedItemsFiles(), out);
-    }
-
-	/*! Recursively delete a directory and all of its children.
-	 *  @params toastOnError If set to true, this function will toast if an error occurs.
-	 *  @returns true if successful, false otherwise.
-	 */
-	private boolean recursiveDelete(File file, boolean toastOnError) {
-		// Recursively delete all contents.
-		File[] files = file.listFiles();
-		
-		if (files == null) {
-			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG).show();
-			return false;
-		}
-		
-		for (int x=0; x<files.length; x++) {
-			File childFile = files[x];
-			if (childFile.isDirectory()) {
-				if (!recursiveDelete(childFile, toastOnError)) {
-					return false;
-				}
-			} else {
-				if (!childFile.delete()) {
-					Toast.makeText(this, getString(R.string.error_deleting_child_file, childFile.getAbsolutePath()), Toast.LENGTH_LONG).show();
-					return false;
-				}
-			}
-		}
-		
-		if (!file.delete()) {
-			Toast.makeText(this, getString(R.string.error_deleting_folder, file.getAbsolutePath()), Toast.LENGTH_LONG).show();
-			return false;
-		}
-		
-		return true;
-	}
-
-	/*@ RETURNS: A file name that is guaranteed to not exist yet.
-	 * 
-	 * PARAMS:
-	 *   context - Application context.
-	 *   path - The path that the file is supposed to be in.
-	 *   fileName - Desired file name. This name will be modified to
-	 *     create a unique file if necessary.
-	 * 
-	 */
-	private File createUniqueCopyName(Context context, File path, String fileName) {
-		// Does that file exist?
-		File file = FileUtils.getFile(path, fileName);
-		
-		if (!file.exists()) {
-			// Nope - we can take that.
-			return file;
-		}
-		
-		// Split file's name and extension to fix internationalization issue #307
-		int fromIndex = fileName.lastIndexOf(FILE_EXTENSION_SEPARATOR);
-		String extension = "";
-		if (fromIndex > 0) {
-			extension = fileName.substring(fromIndex);
-			fileName = fileName.substring(0, fromIndex);
-		}
-		
-		// Try a simple "copy of".
-		file = FileUtils.getFile(path, context.getString(R.string.copied_file_name, fileName).concat(extension));
-		
-		if (!file.exists()) {
-			// Nope - we can take that.
-			return file;
-		}
-		
-		int copyIndex = 2;
-		
-		// Well, we gotta find a unique name at some point.
-		while (copyIndex < 500) {
-			file = FileUtils.getFile(path, context.getString(R.string.copied_file_name_2, copyIndex, fileName).concat(extension));
-			
-			if (!file.exists()) {
-				// Nope - we can take that.
-				return file;
-			}
-
-			copyIndex++;
-		}
 	
-		// I GIVE UP.
-		return null;
-	}
 	
-	private boolean copy(File oldFile, File newFile) {
-		try {
-			FileInputStream input = new FileInputStream(oldFile);
-			FileOutputStream output = new FileOutputStream(newFile);
-		
-			byte[] buffer = new byte[COPY_BUFFER_SIZE];
-			
-			while (true) {
-				int bytes = input.read(buffer);
-				
-				if (bytes <= 0) {
-					break;
-				}
-				
-				output.write(buffer, 0, bytes);
-			}
-			
-			output.close();
-			input.close();
-			
-		} catch (Exception e) {
-		    return false;
-		}
-		return true;
-	}
+//	TODO
+//	private boolean copy(File oldFile, File newFile) {
+//		try {
+//			FileInputStream input = new FileInputStream(oldFile);
+//			FileOutputStream output = new FileOutputStream(newFile);
+//		
+//			byte[] buffer = new byte[COPY_BUFFER_SIZE];
+//			
+//			while (true) {
+//				int bytes = input.read(buffer);
+//				
+//				if (bytes <= 0) {
+//					break;
+//				}
+//				
+//				output.write(buffer, 0, bytes);
+//			}
+//			
+//			output.close();
+//			input.close();
+//			
+//		} catch (Exception e) {
+//		    return false;
+//		}
+//		return true;
+//	}
 	
 	// The following methods should properly handle back button presses on every API Level.
 	@Override
@@ -812,71 +495,12 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
             break;
         case REQUEST_CODE_BOOKMARKS:
             if (resultCode == RESULT_OK && data != null) {
-// TODO            	browseTo(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)));
+            	mPathBar.cd(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)));
             }
             break;
         }
 		
 	}
-
-	
-//	
-//	/**
-//	 * API level agnostic way of checking if there are selected items.
-//	 * @return True if at least one item is selected, false otherwise.
-//	 */
-//	private boolean hasSelectedItems() {
-//		return getSelectedItemCount() > 0;
-//	}
-//	
-//	/**
-//	 * API level agnostic way of getting the selected item count.
-//	 * @return Count of selected items.
-//	 */
-//	private int getSelectedItemCount() {
-//		int res = 0;
-//		if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB) {
-//			for (FileHolder holder : mDirectoryEntries) {
-//				// TODO resolve
-////				if (!holder.isSelected()) {
-////					continue;
-////				}
-//				res++;
-//			}
-//			return res;
-//		} else
-//			return ListViewMethodHelper.listView_getCheckedItemCount(getListView());
-//	}
-
-//	/**
-//	 * API level agnostic way of getting a list of the selected {@link File}s.
-//	 * 
-//	 * @return A list of {@link File}s, representing the selected items.
-//	 */
-//	private ArrayList<File> getSelectedItemsFiles() {
-//		ArrayList<File> files = new ArrayList<File>();
-//
-//        // If we use the old scheme.
-//		if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB) {
-//			for (FileHolder holder : mDirectoryEntries) {
-//// TODO resolve multiselection!
-////				if (!holder.isSelected()) {
-////					continue;
-////				}
-//
-//				files.add(holder.getFile());
-//			}
-//	    // Else we use the CAB and list.
-//		} else {
-//			// This is actually the array of positions. Check the adapter's implementation for more info.
-//			long[] ids = ListViewMethodHelper.listView_getCheckedItemIds(getListView());
-//			
-//			for (int i = 0; i < ids.length; i++) {
-//				files.add(mDirectoryEntries[(int) ids[i]].getFile());
-//			}
-//		}
-//		return files;
-//	}
 	
 	/**
 	 * We override this, so that we get informed about the opening of the search dialog and start scanning silently.

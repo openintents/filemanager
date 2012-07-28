@@ -243,4 +243,6 @@
     <string name="create_dir_success">Successfully created directory</string>
     <string name="create_dir_failure">Couldn\'t create directory</string>
     <string name="compressed_file_name">Zip file name</string>
+    <string name="file_exists">File exists</string>
+    <string name="overwrite_question">Overwrite old file?</string>
 </resources>

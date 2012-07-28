@@ -23,17 +23,13 @@ package org.openintents.filemanager;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.openintents.filemanager.bookmarks.BookmarkListActivity;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.filemanager.util.CompressManager;
-import org.openintents.filemanager.util.ExtractManager;
 import org.openintents.filemanager.util.FileUtils;
-import org.openintents.filemanager.util.MimeTypes;
 import org.openintents.filemanager.view.LegacyActionContainer;
 import org.openintents.filemanager.view.PathBar;
 import org.openintents.intents.FileManagerIntents;
@@ -42,25 +38,16 @@ import org.openintents.util.MenuIntentOptionsWithIcons;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -68,13 +55,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
-public class FileManagerActivity extends DistributionLibraryFragmentActivity { 
+public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	private static final String TAG = "FileManagerActivity";
 	private static final String FRAGMENT_TAG = "ListFragment";
 
@@ -124,18 +110,9 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 //     
 //     /** SD card separate for sorting */
 //     List<FileHolder> mListSdCard = new ArrayList<FileHolder>();
-     
-     private MimeTypes mMimeTypes;
-
-     private String mContextText;
-     private File mContextFile = new File("");
-     private Drawable mContextIcon;
 
      private PathBar mPathBar;
      
-     /**
-      * @since 2011-02-11
-      */
      private LegacyActionContainer mLegacyActionContainer;
 
 
@@ -192,7 +169,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
 		
 		// Init members
-		mMimeTypes = MimeTypes.newInstance(this);
 		mPathBar = (PathBar) findViewById(R.id.pathbar);
 		mLegacyActionContainer =  (LegacyActionContainer) findViewById(R.id.action_multiselect);
 		mLegacyActionContainer.setFileManagerActivity(this);
@@ -315,78 +291,10 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
  		
  		// remember file name
  		outState.putString(BUNDLE_CURRENT_DIRECTORY, mPathBar.getCurrentDirectory().getAbsolutePath());
- 		outState.putString(BUNDLE_CONTEXT_FILE, mContextFile.getAbsolutePath());
- 		outState.putString(BUNDLE_CONTEXT_TEXT, mContextText);
  		outState.putBoolean(BUNDLE_SHOW_DIRECTORY_INPUT, mPathBar.getMode()==PathBar.Mode.MANUAL_INPUT);
  		outState.putParcelableArray(BUNDLE_DIRECTORY_ENTRIES, mDirectoryEntries);
  	}
-      
-	/**
-	 * Browse to some location by clicking on a list item.
-	 * 
-	 * @param aDirectory
-	 */
-	private void browseTo(final File aDirectory) {
-		// If we can safely browse to aDirectory cd(aDirectory) will do it, its listener will refresh the list, and we'll quickly exit this method.
-		if (!mPathBar.cd(aDirectory)) {
-// TODO move to frag			if (mState == STATE_BROWSE || mState == STATE_PICK_DIRECTORY) {
-				// Lets start an intent to View the file that was clicked...
-				openFile(aDirectory);
-//			}
-// TODO no, really what the heck?
-//			else if (mState == STATE_PICK_FILE) {
-//				// Pick the file
-//				mEditFilename.setText(aDirectory.getName());
-//			}
-		}
-	}
 
-     private void openFile(File aFile) { 
-    	 if (!aFile.exists()) {
-    		 Toast.makeText(this, R.string.error_file_does_not_exists, Toast.LENGTH_SHORT).show();
-    		 return;
-    	 }
-    	 
-          Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-
-          Uri data = FileUtils.getUri(aFile);
-          String type = mMimeTypes.getMimeType(aFile.getName());
-          intent.setDataAndType(data, type);
-
-     	 // Were we in GET_CONTENT mode?
-     	 Intent originalIntent = getIntent();
-     	 
-     	 if (originalIntent != null && originalIntent.getAction() != null && originalIntent.getAction().equals(Intent.ACTION_GET_CONTENT)) {
-    		 // In that case, we should probably just return the requested data.
-     		 PreferenceActivity.setDefaultPickFilePath(this,
-     				 FileUtils.getPathWithoutFilename(aFile).getAbsolutePath());
-     		 intent.setData(Uri.parse(FileManagerProvider.FILE_PROVIDER_PREFIX + aFile));
-     		 setResult(RESULT_OK, intent);
-     		 finish();
-    		 return;
-    	 }
-
-          try {
-        	  startActivity(intent); 
-          } catch (ActivityNotFoundException e) {
-        	  Toast.makeText(this, R.string.application_not_available, Toast.LENGTH_SHORT).show();
-          };
-     } 
-
-// moved to SimpleListFragment    /**
-//      * Changes the list's contents to show the children of the passed directory.
-//      * @param dir The directory that will be displayed. Pass null to refresh the currently displayed dir.
-//      */
-//     public void showDirectory(File dir) {
-//    	 if(dir==null)
-//    		 dir = mPathBar.getCurrentDirectory();
-//    	 
-//    	 
-//    	 getFragmentManager().beginTransaction().replace(R, arg1);
-//    	 
-////    	 setProgressBarIndeterminateVisibility(true);
-//     } 
-     
 //     private void selectInList(File selectFile) {
 //    	 String filename = selectFile.getName();
 //    	 IconifiedTextListAdapter la = (IconifiedTextListAdapter) getListAdapter();
@@ -828,11 +736,11 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 
 		switch (requestCode) {
 		case REQUEST_CODE_MOVE:
-			if (resultCode == RESULT_OK && data != null) {
-				// obtain the filename
-				File movefrom = mContextFile;
-				File moveto = FileUtils.getFile(data.getData());
-				if (moveto != null) {
+//			if (resultCode == RESULT_OK && data != null) {
+//				// obtain the filename
+//				File movefrom = mContextFile;
+//				File moveto = FileUtils.getFile(data.getData());
+//				if (moveto != null) {
 // TODO					if (getSelectedItemCount() == 1) {
 //					    // Move single file.
 //                        moveto = FileUtils.getFile(moveto, movefrom.getName());
@@ -877,24 +785,24 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 //                        Intent intent = getIntent();
 //                        setResult(RESULT_OK, intent);
 //                    }
-						
-				}				
-				
-			}
+//						
+//				}				
+//				
+//			}
 			break;
         
         case REQUEST_CODE_EXTRACT:
-            if (resultCode == RESULT_OK && data != null) {
-                new ExtractManager(this).extract(mContextFile, data.getData().getPath());
-            }
+//            if (resultCode == RESULT_OK && data != null) {
+//                new ExtractManager(this).extract(mContextFile, data.getData().getPath());
+//            }
             break;
 
 		case REQUEST_CODE_COPY:
-			if (resultCode == RESULT_OK && data != null) {
-				// obtain the filename
-				File copyfrom = mContextFile;
-				File copyto = FileUtils.getFile(data.getData());
-				if (copyto != null) {
+//			if (resultCode == RESULT_OK && data != null) {
+//				// obtain the filename
+//				File copyfrom = mContextFile;
+//				File copyto = FileUtils.getFile(data.getData());
+//				if (copyto != null) {
 // TODO                    if (getSelectedItemCount() == 1) {
 //                        // Copy single file.
 //                        copyto = createUniqueCopyName(this, copyto, copyfrom.getName());
@@ -933,8 +841,8 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 //                        Intent intent = getIntent();
 //                        setResult(RESULT_OK, intent);
 //                    }
-				}				
-			}
+//				}				
+//			}
 			break;
 
         case REQUEST_CODE_MULTI_SELECT:
@@ -944,7 +852,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
             break;
         case REQUEST_CODE_BOOKMARKS:
             if (resultCode == RESULT_OK && data != null) {
-            	browseTo(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)));
+// TODO            	browseTo(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)));
             }
             break;
         }

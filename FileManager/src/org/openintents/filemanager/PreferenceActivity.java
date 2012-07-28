@@ -93,11 +93,6 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	@Override
-	protected void onResume() {
-		super.onResume();
-	}
 
 	public static boolean getMediaScanFromPreference(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
@@ -121,8 +116,6 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(PREFS_SHOWALLWARNING, true);
 	}
-	
-
 	
 	static void setDisplayHiddenFiles(Context context, boolean enabled) {
 		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);

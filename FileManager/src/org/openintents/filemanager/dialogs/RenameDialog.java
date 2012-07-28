@@ -66,8 +66,10 @@ public class RenameDialog extends DialogFragment {
 		boolean res = false;
 		if(to.length() > 0){
 			File dest = new File(mFileHolder.getFile().getParent() + File.separator + to);
-			res = mFileHolder.getFile().renameTo(dest);
-			mListener.renamed();
+			if(!dest.exists()){
+				res = mFileHolder.getFile().renameTo(dest);
+				mListener.renamed();
+			}
 		}
 		
 		Toast.makeText(getActivity(), res ? R.string.rename_success : R.string.rename_failure, Toast.LENGTH_SHORT).show();

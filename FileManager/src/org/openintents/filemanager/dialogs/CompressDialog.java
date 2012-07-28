@@ -48,6 +48,7 @@ public class CompressDialog extends DialogFragment {
 			public boolean onEditorAction(TextView text, int actionId, KeyEvent event) {
 				   if (actionId == EditorInfo.IME_ACTION_GO)
 					   compress(v.getText().toString());
+				   dismiss();
 				   return true;
 				}
 		});
@@ -58,16 +59,24 @@ public class CompressDialog extends DialogFragment {
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						compress(v.getText().toString());
+						
 					}
 				}).setNegativeButton(android.R.string.cancel, null).create();
 	}
 	
-	private void compress(String zipname){
-		if (new File(mFileHolder.getFile().getParent() + File.separator + zipname).exists()) {
-// TODO			mDialogArgument = zipname;
-//			showDialog(DIALOG_WARNING_EXISTS);
+	private void compress(final String zipname){
+		final File tbcreated = new File(mFileHolder.getFile().getParent() + File.separator + zipname + ".zip");
+		if (tbcreated.exists()) {
+			new OverwriteFileDialog(new OverwriteFileDialog.OnOverwriteActionListener() {
+				
+				@Override
+				public void overwrite() {
+					tbcreated.delete();
+					compress(zipname);
+				}
+			}).show(getFragmentManager(), "OverwriteFileDialog");
 		} else {
-			mCompressManager.compress(mFileHolder.getFile(), zipname+".zip");
+			mCompressManager.compress(mFileHolder.getFile(), tbcreated.getName());
 		}
 	}
 }

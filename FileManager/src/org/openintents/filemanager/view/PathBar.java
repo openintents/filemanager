@@ -313,11 +313,7 @@ public class PathBar extends ViewFlipper {
 		if(!isFileOK)
 			return false;
 		
-		if(!file.isDirectory()){
-			file = file.getParentFile();
-		}
-		
-		if (file !=null) {
+		if (file.isDirectory()) {
 			// Set proper current directory.
 			mCurrentDirectory = file;
 	

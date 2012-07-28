@@ -123,7 +123,6 @@ public abstract class MenuUtils {
 				intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 				
 				context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_chooser_title)));
-				
 				break;
 			case R.id.menu_delete:
 				new MultiDeleteDialog(fItems, new MultiDeleteDialog.OnDeleteListener() {
@@ -135,8 +134,10 @@ public abstract class MenuUtils {
 				}).show(navigator.getFragmentManager(), "MultiDeleteDialog");
 				break;
 			case R.id.menu_move:
+				// TODO PICK fragment first.
 				break;
 			case R.id.menu_copy:
+				// TODO PICK fragment first.
 				break;
 			case R.id.menu_compress:
 				break;

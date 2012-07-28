@@ -372,26 +372,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		LayoutInflater inflater;
 		View view;
 		switch (id) {
-		case DIALOG_MULTI_DELETE:
-
-			return new AlertDialog.Builder(this)
-					.setTitle(
-							getString(R.string.really_delete_multiselect))
-					.setIcon(android.R.drawable.ic_dialog_alert)
-					.setPositiveButton(android.R.string.ok,
-							new OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-								}
-							})
-					.setNegativeButton(android.R.string.cancel,
-							new OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									// Cancel should not do anything.
-								}
-
-							}).create();
 
 // TODO        case DIALOG_FILTER:
 //			inflater = LayoutInflater.from(this);
@@ -519,22 +499,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		super.onPrepareDialog(id, dialog);
 		
 		switch (id) {
-
-		case DIALOG_MULTI_DELETE:
-//	TODO        final ArrayList<File> files = getSelectedItemsFiles();
-//
-//			dialog.findViewById(android.R.id.button1).setOnClickListener(new View.OnClickListener() {
-//				@Override
-//				public void onClick(View v) {
-//					deleteMultiFile(files);
-//					
-//					Intent intent = getIntent();
-//					setResult(RESULT_OK, intent);
-//					dialog.dismiss();
-//				}
-//			});
-			
-            break;
             
         case DIALOG_COMPRESSING:
 // TODO           TextView textView = (TextView) dialog.findViewById(R.id.foldernametext);

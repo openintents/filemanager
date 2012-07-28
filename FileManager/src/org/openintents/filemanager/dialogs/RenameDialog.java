@@ -65,7 +65,7 @@ public class RenameDialog extends DialogFragment {
 	private void renameTo(String to){
 		boolean res = false;
 		if(to.length() > 0){
-			File dest = new File(mFileHolder.getFile().getParent() + "/" + to);
+			File dest = new File(mFileHolder.getFile().getParent() + File.separator + to);
 			res = mFileHolder.getFile().renameTo(dest);
 			mListener.renamed();
 		}

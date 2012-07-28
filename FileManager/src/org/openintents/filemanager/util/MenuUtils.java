@@ -9,6 +9,7 @@ import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
+import org.openintents.filemanager.dialogs.CompressDialog;
 import org.openintents.filemanager.dialogs.DetailsDialog;
 import org.openintents.filemanager.dialogs.RenameDialog;
 import org.openintents.filemanager.dialogs.SingleDeleteDialog;
@@ -61,9 +62,6 @@ public abstract class MenuUtils {
 
 		// If selected item is a directory
 		if (file.isDirectory()) {
-// TODO pick fragment			if (mState != STATE_PICK_FILE) {
-//				m.removeItem(R.id.menu_open);
-//			}
 			m.removeItem(R.id.menu_send);
 			m.removeItem(R.id.menu_copy);
 		}
@@ -118,6 +116,7 @@ public abstract class MenuUtils {
 			
 		case R.id.menu_delete:
 			new SingleDeleteDialog(fItem, new SingleDeleteDialog.OnDeleteListener() {
+				
 				@Override
 				public void deleted() {
 					navigator.refresh();
@@ -143,9 +142,15 @@ public abstract class MenuUtils {
 			new DetailsDialog(fItem).show(navigator.getFragmentManager(), "DetailsDialog");
 			return true;
 
-//        case R.id.menu_compress:
-//            showDialog(DIALOG_COMPRESSING);
-//            return true;
+        case R.id.menu_compress:
+            new CompressDialog(fItem, new CompressManager.OnCompressFinishedListener() {
+            	
+				@Override
+				public void compressFinished() {
+					navigator.refresh();
+				}
+			}).show(navigator.getFragmentManager(), "CompressDialog");
+            return true;
 
         case R.id.menu_extract:
             pickDestinationAndExtract();            
@@ -153,7 +158,7 @@ public abstract class MenuUtils {
 			
 		case R.id.menu_bookmark:
 			String path = fItem.getFile().getAbsolutePath();
-			Cursor query = navigator.getActivity().managedQuery(BookmarksProvider.CONTENT_URI,
+			Cursor query = context.getContentResolver().query(BookmarksProvider.CONTENT_URI,
 										new String[]{BookmarksProvider._ID},
 										BookmarksProvider.PATH + "=?",
 										new String[]{path},
@@ -168,6 +173,7 @@ public abstract class MenuUtils {
 			else{
 				Toast.makeText(context, R.string.bookmark_already_exists, Toast.LENGTH_SHORT).show();
 			}
+			query.close();
 			return true;
 
 		case R.id.menu_more:

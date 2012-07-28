@@ -238,6 +238,9 @@
     <string name="delete_failure">Some files not deleted</string>
     <string name="deleting">Deleting&#8230;</string>
     <string name="rename_success">Successfully renamed</string>
-    <string name="rename_failure">Couldn\'t rename.</string>
+    <string name="rename_failure">Couldn\'t rename</string>
     <string name="loading">Loading&#8230;</string>
+    <string name="create_dir_success">Successfully created directory</string>
+    <string name="create_dir_failure">Couldn\'t create directory</string>
+    <string name="compressed_file_name">Zip file name</string>
 </resources>

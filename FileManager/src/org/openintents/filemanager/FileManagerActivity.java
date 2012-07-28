@@ -468,31 +468,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		LayoutInflater inflater;
 		View view;
 		switch (id) {
-//		case DIALOG_NEW_FOLDER:
-//			LayoutInflater inflater = LayoutInflater.from(this);
-//			View view = inflater.inflate(R.layout.dialog_new_folder, null);
-//			final EditText et = (EditText) view
-//					.findViewById(R.id.foldername);
-//			et.setText("");
-//
-//
-//			return new AlertDialog.Builder(this)
-//            	.setIcon(android.R.drawable.ic_dialog_alert)
-//            	.setTitle(R.string.create_new_folder).setView(view).setPositiveButton(
-//					android.R.string.ok, new OnClickListener() {
-//						
-//						public void onClick(DialogInterface dialog, int which) {
-//							createNewFolder(et.getText().toString());
-//						}
-//						
-//					}).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-//						
-//						public void onClick(DialogInterface dialog, int which) {
-//							// Cancel should not do anything.
-//						}
-//						
-//					}).create();
-
 		case DIALOG_MULTI_DELETE:
 
 			return new AlertDialog.Builder(this)
@@ -538,46 +513,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 //						}
 //						
 //					}).create();
-
-        case DIALOG_COMPRESSING:
-            inflater = LayoutInflater.from(this);
-            view = inflater.inflate(R.layout.dialog_text_input, null);
-            final EditText editText = (EditText) view.findViewById(R.id.foldername);
-          //accept "return" key
-			TextView.OnEditorActionListener returnListener3 = new TextView.OnEditorActionListener(){
-				public boolean onEditorAction(TextView exampleView, int actionId, KeyEvent event) {
-					   if (actionId == EditorInfo.IME_NULL  
-					      && event.getAction() == KeyEvent.ACTION_DOWN) { 
-						   if (new File(mContextFile.getParent()+File.separator+editText.getText().toString()).exists()){
-                               mDialogArgument = editText.getText().toString();
-                               showDialog(DIALOG_WARNING_EXISTS);
-                           } else {
-                               new CompressManager(FileManagerActivity.this).compress(mContextFile, editText.getText().toString());
-                           } //match this behavior to your OK button
-						   dismissDialog(DIALOG_COMPRESSING);
-					   }
-					   return true;
-					}
-
-			};
-			editText.setOnEditorActionListener(returnListener3);
-			//end of code regarding "return key"
-            return new AlertDialog.Builder(this)
-                    .setTitle(R.string.menu_compress).setView(view).setPositiveButton(
-                            android.R.string.ok, new OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (new File(mContextFile.getParent()+File.separator+editText.getText().toString()).exists()){
-                                mDialogArgument = editText.getText().toString();
-                                showDialog(DIALOG_WARNING_EXISTS);
-                            } else {
-                                new CompressManager(FileManagerActivity.this).compress(mContextFile, editText.getText().toString());
-                            }
-                        }
-                    }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Cancel should not do anything.
-                        }
-                    }).create();
 
         case DIALOG_MULTI_COMPRESS_ZIP:
             inflater = LayoutInflater.from(this);

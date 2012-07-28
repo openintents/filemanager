@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CreateDirectoryDialog extends DialogFragment {
 	private File mIn;
@@ -59,7 +60,10 @@ public class CreateDirectoryDialog extends DialogFragment {
 
 	private void createFolder(CharSequence text) {
 		if(text.length() != 0){
-			new File(mIn, text.toString()).mkdirs();
+			if(new File(mIn, text.toString()).mkdirs())
+				Toast.makeText(getActivity(), R.string.create_dir_success, Toast.LENGTH_SHORT).show();
+			else
+				Toast.makeText(getActivity(), R.string.create_dir_failure, Toast.LENGTH_SHORT).show();
 			if(mListener!=null)
 				mListener.directoryCreated();
 			dismiss();

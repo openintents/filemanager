@@ -11,12 +11,10 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
-import org.openintents.intents.FileManagerIntents;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -28,18 +26,18 @@ public class CompressManager {
     static final String TAG = "CompressManager";
 
     private static final int BUFFER_SIZE = 1024;
-    private FileManagerActivity activity;
+    private Context mContext;
     private ProgressDialog progressDialog;
     private int fileCount;
     private String fileOut;
 	private OnCompressFinishedListener onCompressFinishedListener = null;
 
-    public CompressManager(FileManagerActivity activity) {
-        this.activity = activity;
+    public CompressManager(Context context) {
+        mContext = context;
     }
 
     public void compress(File f, String out) {
-        List <File>list = new ArrayList<File>();
+        List<File> list = new ArrayList<File>(1);
         list.add(f);
         compress(list, out);
     }    
@@ -49,7 +47,7 @@ public class CompressManager {
             Log.v(TAG, "couldn't compress empty file list");
             return;
         }
-        this.fileOut = list.get(0).getParent()+File.separator+out;
+        this.fileOut = list.get(0).getParent() + File.separator + out;
         fileCount = 0;
         for (File f: list){
             fileCount += FileUtils.getFileCount(f);
@@ -100,9 +98,9 @@ public class CompressManager {
         @Override
         protected void onPreExecute() {
             FileOutputStream out = null;
-            progressDialog = new ProgressDialog(activity);
+            progressDialog = new ProgressDialog(mContext);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progressDialog.setMessage(activity.getResources().getString(R.string.compressing));
+            progressDialog.setMessage(mContext.getString(R.string.compressing));
             progressDialog.show();
             progressDialog.setProgress(0);
             try {
@@ -140,17 +138,9 @@ public class CompressManager {
             }
             progressDialog.cancel();
             if (result == error){
-                Toast.makeText(activity, R.string.compressing_error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, R.string.compressing_error, Toast.LENGTH_SHORT).show();
             } else if (result == success){
-                Toast.makeText(activity, R.string.compressing_success, Toast.LENGTH_SHORT).show();
-            }
-
-            if (activity.getIntent().getAction().equals(FileManagerIntents.ACTION_MULTI_SELECT)){
-                Intent intent = activity.getIntent();
-                activity.setResult(activity.RESULT_OK, intent);
-                activity.finish();
-            } else {
-// TODO refreshed the activity.                activity.showDirectory(null);
+                Toast.makeText(mContext, R.string.compressing_success, Toast.LENGTH_SHORT).show();
             }
             
             if(onCompressFinishedListener != null)

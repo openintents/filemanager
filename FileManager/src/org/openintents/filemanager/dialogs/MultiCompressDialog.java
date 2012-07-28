@@ -1,6 +1,7 @@
 package org.openintents.filemanager.dialogs;
 
 import java.io.File;
+import java.util.List;
 
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
@@ -17,16 +18,16 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class CompressDialog extends DialogFragment {
-	private FileHolder mFileHolder;
+public class MultiCompressDialog extends DialogFragment {
+	private List<FileHolder> mFileHolders;
 	private CompressManager.OnCompressFinishedListener mListener;
 	private CompressManager mCompressManager;
 	
 	/**
 	 * @param listener Can be null. A listener that will be informed on compression finish.
 	 */
-	public CompressDialog(FileHolder fileHolder, CompressManager.OnCompressFinishedListener listener) {
-		mFileHolder = fileHolder;
+	public MultiCompressDialog(List<FileHolder> fileHolders, CompressManager.OnCompressFinishedListener listener) {
+		mFileHolders = fileHolders;
 		mListener = listener;
 	}
 	
@@ -59,13 +60,12 @@ public class CompressDialog extends DialogFragment {
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						compress(v.getText().toString());
-						
 					}
 				}).setNegativeButton(android.R.string.cancel, null).create();
 	}
 	
 	private void compress(final String zipname){
-		final File tbcreated = new File(mFileHolder.getFile().getParent() + File.separator + zipname + ".zip");
+		final File tbcreated = new File(mFileHolders.get(0).getFile().getParent() + File.separator + zipname + ".zip");
 		if (tbcreated.exists()) {
 			new OverwriteFileDialog(new OverwriteFileDialog.OnOverwriteActionListener() {
 				
@@ -76,7 +76,7 @@ public class CompressDialog extends DialogFragment {
 				}
 			}).show(getFragmentManager(), "OverwriteFileDialog");
 		} else {
-			mCompressManager.compress(mFileHolder.getFile(), tbcreated.getName());
+			mCompressManager.compress(mFileHolders, tbcreated.getName());
 		}
 	}
 }

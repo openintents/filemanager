@@ -243,6 +243,10 @@ public class FileUtils {
 //        }
     }
 
+    /**
+     * Recursively count all files in the <code>file</code>'s subtree.
+     * @param file The root of the tree to count.
+     */
     private static void calculateFileCount(File file){
         if (!file.isDirectory()){
             fileCount++;
@@ -255,7 +259,7 @@ public class FileUtils {
             File f = new File(file.getAbsolutePath()+File.separator+fileName);
             calculateFileCount(f);
         }
-    }    
+    }
 	
 	/**
 	 * Native helper method, returns whether the current process has execute privilages.

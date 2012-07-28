@@ -12,6 +12,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.files.FileHolder;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -36,26 +37,26 @@ public class CompressManager {
         mContext = context;
     }
 
-    public void compress(File f, String out) {
-        List<File> list = new ArrayList<File>(1);
+    public void compress(FileHolder f, String out) {
+        List<FileHolder> list = new ArrayList<FileHolder>(1);
         list.add(f);
         compress(list, out);
     }    
 
-    public void compress(List<File> list, String out) {
+    public void compress(List<FileHolder> list, String out) {
         if (list.isEmpty()){
             Log.v(TAG, "couldn't compress empty file list");
             return;
         }
-        this.fileOut = list.get(0).getParent() + File.separator + out;
+        this.fileOut = list.get(0).getFile().getParent() + File.separator + out;
         fileCount = 0;
-        for (File f: list){
-            fileCount += FileUtils.getFileCount(f);
+        for (FileHolder f: list){
+            fileCount += FileUtils.getFileCount(f.getFile());
         }
         new CompressTask().execute(list);
     }
 
-    private class CompressTask extends AsyncTask<Object, Void, Integer> {
+    private class CompressTask extends AsyncTask<List<FileHolder>, Void, Integer> {
         private static final int success = 0;
         private static final int error = 1;
         private ZipOutputStream zos;
@@ -112,14 +113,14 @@ public class CompressManager {
         }
 
         @Override
-        protected Integer doInBackground(Object... params) {
+        protected Integer doInBackground(List<FileHolder>... params) {
             if (zos == null){
                 return error;
             }
-            List<File> list = (List<File>) params[0]; 
-            for (File file:list){
+            List<FileHolder> list = params[0]; 
+            for (FileHolder file : list){
                 try {
-                    compressFile(file, "");
+                    compressFile(file.getFile(), "");
                 } catch (IOException e) {
                     Log.e(TAG, "Error while compressing", e);
                     return error;

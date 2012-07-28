@@ -9,7 +9,8 @@ import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
-import org.openintents.filemanager.dialogs.CompressDialog;
+import org.openintents.filemanager.dialogs.MultiCompressDialog;
+import org.openintents.filemanager.dialogs.SingleCompressDialog;
 import org.openintents.filemanager.dialogs.DetailsDialog;
 import org.openintents.filemanager.dialogs.MultiDeleteDialog;
 import org.openintents.filemanager.dialogs.RenameDialog;
@@ -140,6 +141,13 @@ public abstract class MenuUtils {
 				// TODO PICK fragment first.
 				break;
 			case R.id.menu_compress:
+	            new MultiCompressDialog(fItems, new CompressManager.OnCompressFinishedListener() {
+	            	
+					@Override
+					public void compressFinished() {
+						navigator.refresh();
+					}
+				}).show(navigator.getFragmentManager(), "MultiCompressDialog");
 				break;
 			default:
 				return false;
@@ -200,13 +208,13 @@ public abstract class MenuUtils {
 			return true;
 
         case R.id.menu_compress:
-            new CompressDialog(fItem, new CompressManager.OnCompressFinishedListener() {
+            new SingleCompressDialog(fItem, new CompressManager.OnCompressFinishedListener() {
             	
 				@Override
 				public void compressFinished() {
 					navigator.refresh();
 				}
-			}).show(navigator.getFragmentManager(), "CompressDialog");
+			}).show(navigator.getFragmentManager(), "SingleCompressDialog");
             return true;
 
         case R.id.menu_extract:

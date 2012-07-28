@@ -8,7 +8,7 @@
     <item
         android:id="@+id/menu_send"
         android:icon="@drawable/ic_action_send"
-        android:title="@string/menu_compress_send">
+        android:title="@string/menu_send">
     </item>
     <item
         android:id="@+id/menu_move"

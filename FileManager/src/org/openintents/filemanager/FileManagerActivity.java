@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-/*
- * Based on AndDev.org's file browser V 2.0.
- */
-
 package org.openintents.filemanager;
 
 import java.io.File;

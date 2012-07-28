@@ -11,6 +11,7 @@ import org.openintents.filemanager.R;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.dialogs.CompressDialog;
 import org.openintents.filemanager.dialogs.DetailsDialog;
+import org.openintents.filemanager.dialogs.MultiDeleteDialog;
 import org.openintents.filemanager.dialogs.RenameDialog;
 import org.openintents.filemanager.dialogs.SingleDeleteDialog;
 import org.openintents.filemanager.files.FileHolder;
@@ -42,8 +43,21 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+/**
+ * Utility class that helps centralize multiple and single selection actions for all API levels.
+ * @author George Venios
+ */
 public abstract class MenuUtils {
-
+	
+	/**
+	 * Fill <code>m</code> with multiselection actions, using <code>mi</code>.
+	 * @param m The {@link Menu} to fill.
+	 * @param mi The {@link MenuInflater} to use. This is a parameter since the ActionMode provides a context-based inflater and we could possibly lose functionality with a common MenuInflater.
+	 */
+	static public void fillMultiselectionMenu(Menu m, MenuInflater mi) {
+		mi.inflate(R.menu.multiselect, m);
+	}
+	
 	/**
 	 * Fill the passed Menu attribute with the proper single selection actions for the passed {@link FileHolder} object.
 	 * @param m The {@link Menu} to fill.
@@ -91,6 +105,48 @@ public abstract class MenuUtils {
         }
 	}
 
+	/**
+	 * Central point where we handle actions for multiple selection, for every API level.
+	 * @param mItem The selected menu option/action.
+	 * @param fItems The data to act upon.
+	 */
+	public static boolean handleMultipleSelectionAction(final SimpleFileListFragment navigator, MenuItem mItem, List<FileHolder> fItems, Context context) {
+		switch (mItem.getItemId()) {
+			case R.id.menu_send:
+				Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+				ArrayList<Uri> uris = new ArrayList<Uri>();
+				intent.setType("text/plain");
+				
+				for(FileHolder fh : fItems)
+					uris.add(FileUtils.getUri(fh.getFile()));
+				
+				intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+				
+				context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_chooser_title)));
+				
+				break;
+			case R.id.menu_delete:
+				new MultiDeleteDialog(fItems, new MultiDeleteDialog.OnDeleteListener() {
+					
+					@Override
+					public void deleted() {
+						navigator.refresh();
+					}
+				}).show(navigator.getFragmentManager(), "MultiDeleteDialog");
+				break;
+			case R.id.menu_move:
+				break;
+			case R.id.menu_copy:
+				break;
+			case R.id.menu_compress:
+				break;
+			default:
+				return false;
+		}
+	
+		return true;
+	}
+	
 	/**
 	 * Central point where we handle actions for single selection, for every API level.
 	 * @param mItem The selected menu option/action.

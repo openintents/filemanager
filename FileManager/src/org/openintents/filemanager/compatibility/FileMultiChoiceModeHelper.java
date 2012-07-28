@@ -1,5 +1,7 @@
 package org.openintents.filemanager.compatibility;
 
+import java.util.ArrayList;
+
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
@@ -52,7 +54,7 @@ public class FileMultiChoiceModeHelper {
 				break;
 			// Multiple selection
 			default:
-				inflater.inflate(R.menu.multiselect, menu);
+				MenuUtils.fillMultiselectionMenu(menu, mode.getMenuInflater());
 				break;
 			}
 			return true;
@@ -82,9 +84,8 @@ public class FileMultiChoiceModeHelper {
 				break;
 			// Multiple selection
 			default:
-// TODO				res = activity.handleMultipleSelectionAction(item);
+				res = MenuUtils.handleMultipleSelectionAction(fragment, item, getCheckedItems(), fragment.getActivity());
 				break;
-				
 			}
 			mode.finish();
 
@@ -103,14 +104,23 @@ public class FileMultiChoiceModeHelper {
 	};
 
 	/**
-	 * This is error free since FileHolderListAdapter uses stableIds and getItemId(int) returns the int passed (the position of the item).
+	 * This is error free only when FileHolderListAdapter uses stableIds and getItemId(int) returns the int passed (the position of the item).
 	 * @return 
 	 */
 	private int getSelectedPosition() {
 		return (int) list.getCheckedItemIds()[0];
 	}
-
-	public void finish() {
-//		list.setc
+	
+	/**
+	 * @return A {@link FileHolder} list with the currently selected items.
+	 */
+	private ArrayList<FileHolder> getCheckedItems(){
+		ArrayList<FileHolder> items = new ArrayList<FileHolder>();
+		
+		for(long pos : list.getCheckedItemIds()) {
+			items.add((FileHolder) list.getAdapter().getItem((int) pos));
+		}
+		
+		return items;
 	}
 }

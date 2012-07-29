@@ -22,9 +22,7 @@ import org.openintents.filemanager.bookmarks.BookmarkListActivity;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
-import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.view.LegacyActionContainer;
-import org.openintents.filemanager.view.PathBar;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 
@@ -36,7 +34,6 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -61,13 +58,12 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	
 	private static final int COPY_BUFFER_SIZE = 32 * 1024;
 	
-	private static final String BUNDLE_CURRENT_DIRECTORY = "current_directory";
-	private static final String BUNDLE_SHOW_DIRECTORY_INPUT = "show_directory_input";
-	private static final String BUNDLE_DIRECTORY_ENTRIES = "directory_entries";
-
-	private PathBar mPathBar;
+//	private static final String BUNDLE_CURRENT_DIRECTORY = "current_directory";
+//	private static final String BUNDLE_SHOW_DIRECTORY_INPUT = "show_directory_input";
+//	private static final String BUNDLE_DIRECTORY_ENTRIES = "directory_entries";
 
 	private LegacyActionContainer mLegacyActionContainer;
+	private SimpleFileListFragment mFragment;
 
 //	private FileHolder[] mDirectoryEntries;
 
@@ -107,21 +103,19 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
 		
 		// Init members
-		mPathBar = (PathBar) findViewById(R.id.pathbar);
 		mLegacyActionContainer =  (LegacyActionContainer) findViewById(R.id.action_multiselect);
 		mLegacyActionContainer.setFileManagerActivity(this);
-		mPathBar.setInitialDirectory(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment
-				.getExternalStorageDirectory().getAbsolutePath() : "/");
 		
 		// Add fragment only if it hasn't already been added.
-		if(getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG) == null){
-			SimpleFileListFragment frag = new SimpleFileListFragment();
+		mFragment = (SimpleFileListFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+		if(mFragment == null){
+			mFragment = new SimpleFileListFragment();
 			Bundle args = new Bundle();
-			args.putString(FileManagerIntents.EXTRA_DIR_PATH, mPathBar.getInitialDirectory().getAbsolutePath());
-			frag.setArguments(args);
-			frag.setPathBar(mPathBar);
-			getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, frag, FRAGMENT_TAG).commit();
+			args.putString(FileManagerIntents.EXTRA_DIR_PATH, Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/");
+			mFragment.setArguments(args);
+			getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mFragment, FRAGMENT_TAG).commit();
 		}
+			
 		
 //		// Default state
 //		mState = STATE_BROWSE;
@@ -200,51 +194,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 //		if (buttontext != null) {
 //			mButtonPick.setText(buttontext);
 //		}
-
-// TODO restore-related 
-//		// Reset mRestored flag.
-//		if (icicle != null) {
-//			mPathBar.setInitialDirectory(icicle.getString(BUNDLE_CURRENT_DIRECTORY));
-//			mContextFile = new File(icicle.getString(BUNDLE_CONTEXT_FILE));
-//			mContextText = icicle.getString(BUNDLE_CONTEXT_TEXT);
-//
-//			if (icicle.getBoolean(BUNDLE_SHOW_DIRECTORY_INPUT))
-//				mPathBar.switchToManualInput();
-//			else
-//				mPathBar.switchToStandardInput();
-//
-//			// had to bypass direct casting as it was causing a rather unexplainable crash
-//			Parcelable tmpDirectoryEntries[] = icicle
-//					.getParcelableArray(BUNDLE_DIRECTORY_ENTRIES);
-//			mDirectoryEntries = new FileHolder[tmpDirectoryEntries.length];
-//			for (int i = 0; i < tmpDirectoryEntries.length; i++) {
-//				mDirectoryEntries[i] = (FileHolder) tmpDirectoryEntries[i];
-//			}
-//		}
 	}
-
- 	@Override
- 	protected void onSaveInstanceState(Bundle outState) {
- 		super.onSaveInstanceState(outState);
- 		
- 		// remember file name
- 		outState.putString(BUNDLE_CURRENT_DIRECTORY, mPathBar.getCurrentDirectory().getAbsolutePath());
- 		outState.putBoolean(BUNDLE_SHOW_DIRECTORY_INPUT, mPathBar.getMode()==PathBar.Mode.MANUAL_INPUT);
- 	}
-
- 	
- 	@Override
- 	protected void onRestoreInstanceState(Bundle inState) {
- 		super.onRestoreInstanceState(inState);
- 		
- 		((SimpleFileListFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG)).setPathBar(mPathBar);
- 		mPathBar.cd(inState.getString(BUNDLE_CURRENT_DIRECTORY));
- 		if(inState.getBoolean(BUNDLE_SHOW_DIRECTORY_INPUT))
- 			mPathBar.switchToManualInput();
- 		else
- 			mPathBar.switchToStandardInput();
- 		
- 	}
  	
 //     private void selectInList(File selectFile) {
 //    	 String filename = selectFile.getName();
@@ -314,7 +264,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 			return true;
 			
 		case android.R.id.home:
-			mPathBar.cd(mPathBar.getInitialDirectory());
+			mFragment.browseToHome();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -327,7 +277,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	private void promptMultiSelect() {
         Intent intent = new Intent(FileManagerIntents.ACTION_MULTI_SELECT);
         
-        intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
+//        intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
         
         intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.multiselect_title));
         //intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.move_button));
@@ -367,7 +317,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if (VERSION.SDK_INT > VERSION_CODES.DONUT) {
-			if (keyCode == KeyEvent.KEYCODE_BACK && mPathBar.pressBack())
+			if (keyCode == KeyEvent.KEYCODE_BACK && mFragment.pressBack())
 				return true;
 		}
 
@@ -377,13 +327,13 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (VERSION.SDK_INT <= VERSION_CODES.DONUT) {
-			if (keyCode == KeyEvent.KEYCODE_BACK && mPathBar.pressBack())
+			if (keyCode == KeyEvent.KEYCODE_BACK && mFragment.pressBack())
 				return true;
 		}
 
 		return super.onKeyDown(keyCode, event);
 	}
-
+	
     /**
      * This is called after the file manager finished.
      */
@@ -509,7 +459,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
             break;
         case REQUEST_CODE_BOOKMARKS:
             if (resultCode == RESULT_OK && data != null) {
-            	mPathBar.cd(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)));
+            	mFragment.open(new FileHolder(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)), this));
             }
             break;
         }
@@ -522,7 +472,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	@Override
 	public boolean onSearchRequested() {
 		Bundle appData = new Bundle();
-		appData.putString(FileManagerIntents.EXTRA_SEARCH_INIT_PATH, mPathBar.getCurrentDirectory().getAbsolutePath());
+// TODO		appData.putString(FileManagerIntents.EXTRA_SEARCH_INIT_PATH, mPathBar.getCurrentDirectory().getAbsolutePath());
 		startSearch(null, false, appData, false);
 		
 		return true;

@@ -9,7 +9,6 @@ import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.PathBar;
 
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.ListView;
@@ -45,7 +44,6 @@ public class FileMultiChoiceModeHelper {
 		public boolean onPrepareActionMode(android.view.ActionMode mode,
 				Menu menu) {
 			menu.clear();
-			MenuInflater inflater = mode.getMenuInflater();
 
 			switch (list.getCheckedItemCount()) {
 			// Single selection

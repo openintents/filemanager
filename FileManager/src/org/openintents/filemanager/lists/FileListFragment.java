@@ -16,8 +16,10 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,13 +34,17 @@ import android.widget.ViewFlipper;
  * @author George Venios
  */
 public abstract class FileListFragment extends ListFragment {
+	private static final String INSTANCE_STATE_LIST_HIERARCHY = "list_hierarchy";
+	private static final String INSTANCE_STATE_PATH = "path";
+	private static final String INSTANCE_STATE_FILES = "files";
+	
 	// Not an anonymous inner class because of: http://stackoverflow.com/questions/2542938/sharedpreferences-onsharedpreferencechangelistener-not-being-called-consistently
 	private OnSharedPreferenceChangeListener preferenceListener = new OnSharedPreferenceChangeListener() {
 		@Override
 		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 			// We only care for list-altering preferences. This could be dangerous though, 
-			// as later contributors might not see this, and have their settings not work realtime.
-			// Therefore commented out, since it's not likely the refresh is THAT heavy.
+			// as later contributors might not see this, and have their settings not work in realtime.
+			// Therefore this is commented out, since it's not likely the refresh is THAT heavy.
 			// *****************
 			// if (PreferenceActivity.PREFS_DISPLAYHIDDENFILES.equals(key)
 			// || PreferenceActivity.PREFS_SORTBY.equals(key)
@@ -59,7 +65,13 @@ public abstract class FileListFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 		
 		// Get arguments
-		mPath = getArguments().getString(FileManagerIntents.EXTRA_DIR_PATH);
+		if(savedInstanceState == null){
+			mPath = getArguments().getString(FileManagerIntents.EXTRA_DIR_PATH);
+		}
+		else{
+			mPath = savedInstanceState.getString(INSTANCE_STATE_PATH);
+			mFiles = savedInstanceState.getParcelableArrayList(INSTANCE_STATE_FILES);
+		}
 		renewScanner();
 		mAdapter = new FileHolderListAdapter(mFiles, getActivity());
 		
@@ -72,6 +84,18 @@ public abstract class FileListFragment extends ListFragment {
 	}
 	
 	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		
+		SparseArray<Parcelable> container = new SparseArray<Parcelable>();
+		getListView().saveHierarchyState(container);
+		outState.putSparseParcelableArray(INSTANCE_STATE_LIST_HIERARCHY, container);
+
+		outState.putString(INSTANCE_STATE_PATH, mPath);
+		outState.putParcelableArrayList(INSTANCE_STATE_FILES, mFiles);
+	}
+	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.filelist, null);
@@ -79,6 +103,11 @@ public abstract class FileListFragment extends ListFragment {
 	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
+		if(savedInstanceState != null){
+			SparseArray<Parcelable> container = savedInstanceState.getSparseParcelableArray(INSTANCE_STATE_LIST_HIERARCHY);
+			getListView().restoreHierarchyState(container);
+		}
+		
 		// Set list properties
 		getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override

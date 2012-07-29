@@ -3,6 +3,9 @@ package org.openintents.filemanager.dialogs;
 import java.io.File;
 
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.dialogs.OverwriteFileDialog.Overwritable;
+import org.openintents.filemanager.lists.FileListFragment;
+import org.openintents.intents.FileManagerIntents;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -17,20 +20,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CreateDirectoryDialog extends DialogFragment {
+public class CreateDirectoryDialog extends DialogFragment implements Overwritable {
 	private File mIn;
-	private OnDirectoryCreatedListener mListener;
-
-	/**
-	 * @param currentDir
-	 *            The directory which to create the file into.
-	 * @param listener
-	 *            A listener to inform the caller about successful directory creation. Can be null.
-	 */
-	public CreateDirectoryDialog(File currentDir,
-			OnDirectoryCreatedListener listener) {
-		mIn = currentDir;
-		mListener = listener;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		mIn = new File(getArguments().getString(FileManagerIntents.EXTRA_DIR_PATH));
 	}
 
 	@Override
@@ -66,36 +63,34 @@ public class CreateDirectoryDialog extends DialogFragment {
 				.create();
 	}
 
-	private void createFolder(final CharSequence text, final Context context) {
+	private void createFolder(final CharSequence text, Context c) {
 		if (text.length() != 0) {
-			final File tbcreated = new File(mIn + File.separator
-					+ text.toString());
+			tbcreated = new File(mIn + File.separator + text.toString());
 			if (tbcreated.exists()) {
-				new OverwriteFileDialog(
-						new OverwriteFileDialog.OnOverwriteActionListener() {
-
-							@Override
-							public void overwrite() {
-								tbcreated.delete();
-								createFolder(text, context);
-							}
-						}).show(getFragmentManager(), "OverwriteFileDialog");
+				this.text = text;
+				this.c = c;
+				OverwriteFileDialog dialog = new OverwriteFileDialog();
+				dialog.setTargetFragment(this, 0);
+				dialog.show(getFragmentManager(), "OverwriteFileDialog");
 			} else {
 				if (tbcreated.mkdirs())
-					Toast.makeText(context, R.string.create_dir_success,
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(c, R.string.create_dir_success, Toast.LENGTH_SHORT).show();
 				else
-					Toast.makeText(context, R.string.create_dir_failure,
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(c, R.string.create_dir_failure, Toast.LENGTH_SHORT).show();
 
-				if (mListener != null)
-					mListener.directoryCreated();
+				((FileListFragment) getTargetFragment()).refresh();
 				dismiss();
 			}
 		}
 	}
-
-	public interface OnDirectoryCreatedListener {
-		public void directoryCreated();
+	
+	private File tbcreated;
+	private CharSequence text;
+	private Context c;
+	
+	@Override
+	public void overwrite() {
+		tbcreated.delete();
+		createFolder(text, c);
 	}
 }

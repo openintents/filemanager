@@ -5,6 +5,7 @@ import java.io.File;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.FileUtils;
+import org.openintents.intents.FileManagerIntents;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -19,12 +20,12 @@ import android.widget.TextView;
 public class DetailsDialog extends DialogFragment {
 	private FileHolder mFileHolder;
 	private TextView mSizeView;
-	
-	/**
-	 * @param fHolder The holder that keeps the file of which the details to show.
-	 */
-	public DetailsDialog(FileHolder fHolder) {
-		mFileHolder = fHolder;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		mFileHolder = getArguments().getParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER);
 	}
 
 	@Override

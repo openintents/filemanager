@@ -9,11 +9,11 @@ import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
-import org.openintents.filemanager.dialogs.MultiCompressDialog;
-import org.openintents.filemanager.dialogs.SingleCompressDialog;
 import org.openintents.filemanager.dialogs.DetailsDialog;
+import org.openintents.filemanager.dialogs.MultiCompressDialog;
 import org.openintents.filemanager.dialogs.MultiDeleteDialog;
 import org.openintents.filemanager.dialogs.RenameDialog;
+import org.openintents.filemanager.dialogs.SingleCompressDialog;
 import org.openintents.filemanager.dialogs.SingleDeleteDialog;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
@@ -34,7 +34,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.DialogFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -112,6 +114,9 @@ public abstract class MenuUtils {
 	 * @param fItems The data to act upon.
 	 */
 	public static boolean handleMultipleSelectionAction(final SimpleFileListFragment navigator, MenuItem mItem, List<FileHolder> fItems, Context context) {
+		DialogFragment dialog;
+		Bundle args;
+		
 		switch (mItem.getItemId()) {
 			case R.id.menu_send:
 				Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
@@ -126,13 +131,12 @@ public abstract class MenuUtils {
 				context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_chooser_title)));
 				break;
 			case R.id.menu_delete:
-				new MultiDeleteDialog(fItems, new MultiDeleteDialog.OnDeleteListener() {
-					
-					@Override
-					public void deleted() {
-						navigator.refresh();
-					}
-				}).show(navigator.getFragmentManager(), "MultiDeleteDialog");
+				dialog = new MultiDeleteDialog();
+				dialog.setTargetFragment(navigator, 0);
+				args = new Bundle();
+				args.putParcelableArrayList(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, new ArrayList<Parcelable>(fItems));
+				dialog.setArguments(args);
+				dialog.show(navigator.getFragmentManager(), MultiDeleteDialog.class.getName());
 				break;
 			case R.id.menu_move:
 				// TODO PICK fragment first.
@@ -141,13 +145,12 @@ public abstract class MenuUtils {
 				// TODO PICK fragment first.
 				break;
 			case R.id.menu_compress:
-	            new MultiCompressDialog(fItems, new CompressManager.OnCompressFinishedListener() {
-	            	
-					@Override
-					public void compressFinished() {
-						navigator.refresh();
-					}
-				}).show(navigator.getFragmentManager(), "MultiCompressDialog");
+				dialog = new MultiCompressDialog();
+				dialog.setTargetFragment(navigator, 0);
+				args = new Bundle();
+				args.putParcelableArrayList(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, new ArrayList<Parcelable>(fItems));
+				dialog.setArguments(args);
+				dialog.show(navigator.getFragmentManager(), MultiCompressDialog.class.getName());
 				break;
 			default:
 				return false;
@@ -162,6 +165,9 @@ public abstract class MenuUtils {
 	 * @param fItem The data to act upon.
 	 */
 	public static boolean handleSingleSelectionAction(final SimpleFileListFragment navigator, MenuItem mItem, FileHolder fItem, Context context){
+		DialogFragment dialog;
+		Bundle args;
+		
 		switch (mItem.getItemId()) {
 		case R.id.menu_open:
 			navigator.open(fItem);
@@ -180,23 +186,21 @@ public abstract class MenuUtils {
 			return true;
 			
 		case R.id.menu_delete:
-			new SingleDeleteDialog(fItem, new SingleDeleteDialog.OnDeleteListener() {
-				
-				@Override
-				public void deleted() {
-					navigator.refresh();
-				}
-			}).show(navigator.getFragmentManager(), "SingleDeleteDialog");
+			dialog = new SingleDeleteDialog();
+			dialog.setTargetFragment(navigator, 0);
+			args = new Bundle();
+			args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
+			dialog.setArguments(args);
+			dialog.show(navigator.getFragmentManager(), SingleDeleteDialog.class.getName());
 			return true;
 
 		case R.id.menu_rename:
-			new RenameDialog(fItem, new RenameDialog.OnRenamedListener() {
-				
-				@Override
-				public void renamed() {
-					navigator.refresh();
-				}
-			}).show(navigator.getFragmentManager(), "RenameDialog");
+			dialog = new RenameDialog();
+			dialog.setTargetFragment(navigator, 0);
+			args = new Bundle();
+			args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
+			dialog.setArguments(args);
+			dialog.show(navigator.getFragmentManager(), RenameDialog.class.getName());
 			return true;
 
 		case R.id.menu_send:
@@ -204,17 +208,21 @@ public abstract class MenuUtils {
 			return true;
 		
 		case R.id.menu_details:
-			new DetailsDialog(fItem).show(navigator.getFragmentManager(), "DetailsDialog");
+			dialog = new DetailsDialog();
+			dialog.setTargetFragment(navigator, 0);
+			args = new Bundle();
+			args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
+			dialog.setArguments(args);
+			dialog.show(navigator.getFragmentManager(), DetailsDialog.class.getName());
 			return true;
 
         case R.id.menu_compress:
-            new SingleCompressDialog(fItem, new CompressManager.OnCompressFinishedListener() {
-            	
-				@Override
-				public void compressFinished() {
-					navigator.refresh();
-				}
-			}).show(navigator.getFragmentManager(), "SingleCompressDialog");
+			dialog = new SingleCompressDialog();
+			dialog.setTargetFragment(navigator, 0);
+			args = new Bundle();
+			args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
+			dialog.setArguments(args);
+			dialog.show(navigator.getFragmentManager(), SingleCompressDialog.class.getName());
             return true;
 
         case R.id.menu_extract:

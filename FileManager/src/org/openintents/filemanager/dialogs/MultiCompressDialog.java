@@ -4,8 +4,11 @@ import java.io.File;
 import java.util.List;
 
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.dialogs.OverwriteFileDialog.Overwritable;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.lists.FileListFragment;
 import org.openintents.filemanager.util.CompressManager;
+import org.openintents.intents.FileManagerIntents;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -18,25 +21,24 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MultiCompressDialog extends DialogFragment {
+public class MultiCompressDialog extends DialogFragment implements Overwritable {
 	private List<FileHolder> mFileHolders;
-	private CompressManager.OnCompressFinishedListener mListener;
 	private CompressManager mCompressManager;
-	
-	/**
-	 * @param listener Can be null. A listener that will be informed on compression finish.
-	 */
-	public MultiCompressDialog(List<FileHolder> fileHolders, CompressManager.OnCompressFinishedListener listener) {
-		mFileHolders = fileHolders;
-		mListener = listener;
-	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		mFileHolders = getArguments().getParcelableArrayList(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER);
+		
 		mCompressManager = new CompressManager(getActivity());
-		mCompressManager.setOnCompressFinishedListener(mListener);
+		mCompressManager.setOnCompressFinishedListener(new CompressManager.OnCompressFinishedListener() {
+			
+			@Override
+			public void compressFinished() {
+				((FileListFragment) getTargetFragment()).refresh();
+			}
+		});
 	}
 	
 	@Override
@@ -65,18 +67,24 @@ public class MultiCompressDialog extends DialogFragment {
 	}
 	
 	private void compress(final String zipname){
-		final File tbcreated = new File(mFileHolders.get(0).getFile().getParent() + File.separator + zipname + ".zip");
+		this.zipname = zipname;
+		tbcreated = new File(mFileHolders.get(0).getFile().getParent() + File.separator + zipname + ".zip");
 		if (tbcreated.exists()) {
-			new OverwriteFileDialog(new OverwriteFileDialog.OnOverwriteActionListener() {
-				
-				@Override
-				public void overwrite() {
-					tbcreated.delete();
-					compress(zipname);
-				}
-			}).show(getFragmentManager(), "OverwriteFileDialog");
+			this.zipname = zipname;
+			OverwriteFileDialog dialog = new OverwriteFileDialog();
+			dialog.setTargetFragment(this, 0);
+			dialog.show(getFragmentManager(), "OverwriteFileDialog");
 		} else {
 			mCompressManager.compress(mFileHolders, tbcreated.getName());
 		}
+	}
+
+	private File tbcreated;
+	private String zipname;
+	
+	@Override
+	public void overwrite() {
+		tbcreated.delete();
+		compress(zipname);
 	}
 }

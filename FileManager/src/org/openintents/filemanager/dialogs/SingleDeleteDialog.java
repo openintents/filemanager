@@ -4,6 +4,8 @@ import java.io.File;
 
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.lists.FileListFragment;
+import org.openintents.intents.FileManagerIntents;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -16,11 +18,12 @@ import android.widget.Toast;
 
 public class SingleDeleteDialog extends DialogFragment {
 	private FileHolder mFileHolder;
-	private OnDeleteListener mListener;
 	
-	public SingleDeleteDialog(FileHolder fileHolder, OnDeleteListener listener){
-		mFileHolder = fileHolder;
-		mListener = listener;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		mFileHolder = getArguments().getParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER);
 	}
 	
 	@Override
@@ -83,9 +86,8 @@ public class SingleDeleteDialog extends DialogFragment {
 		@Override
 		protected void onPostExecute(Void result) {
 			Toast.makeText(dialog.getContext(), mResult == 0 ? R.string.delete_failure : R.string.delete_success, Toast.LENGTH_LONG).show();
+			((FileListFragment) getTargetFragment()).refresh();
 			dialog.dismiss();
-			if(mListener != null)
-				mListener.deleted();
 		}
 	}
 

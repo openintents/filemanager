@@ -4,6 +4,8 @@ import java.io.File;
 
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.lists.FileListFragment;
+import org.openintents.intents.FileManagerIntents;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -19,14 +21,12 @@ import android.widget.Toast;
 
 public class RenameDialog extends DialogFragment {
 	private FileHolder mFileHolder;
-	private OnRenamedListener mListener;
 	
-	/**
-	 * @param fHolder The holder that keeps the file to rename.
-	 */
-	public RenameDialog(FileHolder fHolder, OnRenamedListener listener) {
-		mFileHolder = fHolder;
-		mListener = listener;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		mFileHolder = getArguments().getParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER);
 	}
 
 	@Override
@@ -68,14 +68,10 @@ public class RenameDialog extends DialogFragment {
 			File dest = new File(mFileHolder.getFile().getParent() + File.separator + to);
 			if(!dest.exists()){
 				res = mFileHolder.getFile().renameTo(dest);
-				mListener.renamed();
+				((FileListFragment) getTargetFragment()).refresh();
 			}
 		}
 		
 		Toast.makeText(getActivity(), res ? R.string.rename_success : R.string.rename_failure, Toast.LENGTH_SHORT).show();
-	}
-
-	public interface OnRenamedListener {
-		public void renamed();
 	}
 }

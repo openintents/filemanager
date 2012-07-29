@@ -124,4 +124,6 @@ public final class FileManagerIntents {
      * <p>Constant Value: "org.openintents.extra.DIRECTORIES_ONLY"</p>
 	 */
 	public static final String EXTRA_DIRECTORIES_ONLY = "org.openintents.extra.DIRECTORIES_ONLY";
+
+	public static final String EXTRA_DIALOG_FILE_HOLDER = "org.openintents.extra.DIALOG_FILE";
 }

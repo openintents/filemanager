@@ -12,6 +12,7 @@ import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.PathBar;
 import org.openintents.filemanager.view.PathBar.OnDirectoryChangedListener;
+import org.openintents.intents.FileManagerIntents;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -188,12 +189,12 @@ public class SimpleFileListFragment extends FileListFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_create_folder:
-			new CreateDirectoryDialog(new File(mPath), new CreateDirectoryDialog.OnDirectoryCreatedListener() {
-				@Override
-				public void directoryCreated() {
-					refresh();
-				}
-			}).show(getActivity().getSupportFragmentManager(), CreateDirectoryDialog.class.getName());
+			CreateDirectoryDialog dialog = new CreateDirectoryDialog();
+			dialog.setTargetFragment(this, 0);
+			Bundle args = new Bundle();
+			args.putString(FileManagerIntents.EXTRA_DIR_PATH, mPath);
+			dialog.setArguments(args);
+			dialog.show(getActivity().getSupportFragmentManager(), CreateDirectoryDialog.class.getName());
 			return true;
 			
 		case R.id.menu_media_scan_include:

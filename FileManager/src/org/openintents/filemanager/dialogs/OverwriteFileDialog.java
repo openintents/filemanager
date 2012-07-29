@@ -9,11 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
 public class OverwriteFileDialog extends DialogFragment {
-	private OnOverwriteActionListener mListener;
-	
-	public OverwriteFileDialog(OnOverwriteActionListener listener) {
-		mListener = listener;
-	}
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -25,13 +20,13 @@ public class OverwriteFileDialog extends DialogFragment {
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
-								mListener.overwrite();
+								((Overwritable) getTargetFragment()).overwrite();
 							}
 						}).setNegativeButton(android.R.string.cancel, null)
 				.create();
 	}
 	
-	public interface OnOverwriteActionListener {
+	public interface Overwritable {
 		public void overwrite();
 	}
 }

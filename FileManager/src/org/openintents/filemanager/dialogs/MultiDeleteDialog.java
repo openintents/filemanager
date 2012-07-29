@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.lists.FileListFragment;
+import org.openintents.intents.FileManagerIntents;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -17,11 +19,12 @@ import android.widget.Toast;
 
 public class MultiDeleteDialog extends DialogFragment {
 	private List<FileHolder> mFileHolders;
-	private OnDeleteListener mListener;
 	
-	public MultiDeleteDialog(List<FileHolder> holders, OnDeleteListener listener){
-		mFileHolders = holders;
-		mListener = listener;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		mFileHolders = getArguments().getParcelableArrayList(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER);
 	}
 	
 	@Override
@@ -85,13 +88,8 @@ public class MultiDeleteDialog extends DialogFragment {
 		@Override
 		protected void onPostExecute(Void result) {
 			Toast.makeText(dialog.getContext(), mResult == 0 ? R.string.delete_failure : R.string.delete_success, Toast.LENGTH_LONG).show();
+			((FileListFragment) getTargetFragment()).refresh();
 			dialog.dismiss();
-			if(mListener != null)
-				mListener.deleted();
 		}
-	}
-
-	public interface OnDeleteListener{
-		public void deleted();
 	}
 }

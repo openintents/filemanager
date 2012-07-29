@@ -57,15 +57,9 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
     protected static final int REQUEST_CODE_BOOKMARKS = 5;
 	
 	private static final int COPY_BUFFER_SIZE = 32 * 1024;
-	
-//	private static final String BUNDLE_CURRENT_DIRECTORY = "current_directory";
-//	private static final String BUNDLE_SHOW_DIRECTORY_INPUT = "show_directory_input";
-//	private static final String BUNDLE_DIRECTORY_ENTRIES = "directory_entries";
 
 	private LegacyActionContainer mLegacyActionContainer;
 	private SimpleFileListFragment mFragment;
-
-//	private FileHolder[] mDirectoryEntries;
 
 // TODO
 //	@Override

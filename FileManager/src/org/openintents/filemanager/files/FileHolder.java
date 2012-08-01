@@ -58,13 +58,23 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	}
 	
 	/**
-	 * Slow constructor. Use to cache the mIcon on creation time.
+	 * Slow constructor. Creates the mIcon on construction time.
 	 */
 	public FileHolder(File f, String m, Context c) {
 		mFile = f;
 		mMimeType = m;
 		mContext = c;
 		getIcon();
+	}
+	
+	/**
+	 * Fastest constructor as it takes everything ready.
+	 */
+	public FileHolder(File f, String m, Drawable i, Context c){
+		mFile = f;
+		mIcon = i;
+		mMimeType = m;
+		mContext = c;
 	}
 	
 	public FileHolder(Parcel in){

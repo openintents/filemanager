@@ -213,8 +213,12 @@
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     
+    <string name="menu_check_all">Check all</string>
+    <string name="menu_uncheck_all">Uncheck all</string>
+    
     <!-- Multi selection action strings -->
     <string name="selected">selected</string>
+    <string name="no_selection">No items checked</string>
     
     <string name="bookmark_empty">No bookmarks added.</string>
     

@@ -16,13 +16,20 @@ public class IntentFilterActivity extends FragmentActivity {
 		super.onCreate(arg0);
 		Intent intent = getIntent();
 		
+		// Multiselect intent
 		if(intent.getAction().equals(FileManagerIntents.ACTION_MULTI_SELECT)){
-			mFragment = new MultiselectListFragment();
-			mFragment.setArguments(intent.getExtras());
+			String tag = "Multi_select_fragment";
+			mFragment = (MultiselectListFragment) getSupportFragmentManager().findFragmentByTag(tag);
 			
-			setTitle(R.string.multiselect_title);
+			// Only add if it doesn't exist
+			if(mFragment == null){
+				mFragment = new MultiselectListFragment();
+				mFragment.setArguments(intent.getExtras());
+				
+				setTitle(R.string.multiselect_title);
+				
+				getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, tag).commit();
+			}
 		}
-		
-		getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment).commit();
 	}
 }

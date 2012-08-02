@@ -3,13 +3,16 @@ package org.openintents.filemanager;
 import java.util.List;
 
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.view.CheckableFileListItem;
+import org.openintents.filemanager.view.ViewHolder;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
- * Same as {@link FileHolderListAdapter}, but keeps checkable state of items.
+ * Extension of {@link FileHolderListAdapter} that displays checkable items.
  * @author George Venios.
  */
 public class MultiselectFileHolderListAdapter extends FileHolderListAdapter{
@@ -18,12 +21,16 @@ public class MultiselectFileHolderListAdapter extends FileHolderListAdapter{
 	}
 	
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		return super.getView(position, convertView, parent);
-	}
-	
-	// TODO implement
-	public boolean hasCheckedItems(){
-		return false;
+	protected View newView() {
+		View view = new CheckableFileListItem(getContext());
+
+		ViewHolder holder = new ViewHolder();
+		holder.icon = (ImageView) view.findViewById(R.id.icon);
+		holder.primaryInfo = (TextView) view.findViewById(R.id.primary_info);
+		holder.secondaryInfo = (TextView) view.findViewById(R.id.secondary_info);
+		holder.tertiaryInfo = (TextView) view.findViewById(R.id.tertiary_info);
+
+		view.setTag(holder);
+		return view;
 	}
 }

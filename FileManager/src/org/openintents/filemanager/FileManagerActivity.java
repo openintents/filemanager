@@ -22,6 +22,7 @@ import org.openintents.filemanager.bookmarks.BookmarkListActivity;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
+import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.view.LegacyActionContainer;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
@@ -57,8 +58,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
     protected static final int REQUEST_CODE_BOOKMARKS = 5;
 	
 	private static final int COPY_BUFFER_SIZE = 32 * 1024;
-
-	private LegacyActionContainer mLegacyActionContainer;
+	
 	private SimpleFileListFragment mFragment;
 
 // TODO
@@ -95,10 +95,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		
 		// Search when the user types.
 		setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
-		
-		// Init members
-		mLegacyActionContainer =  (LegacyActionContainer) findViewById(R.id.action_multiselect);
-		mLegacyActionContainer.setFileManagerActivity(this);
 		
 		// Add fragment only if it hasn't already been added.
 		mFragment = (SimpleFileListFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
@@ -270,13 +266,8 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	 */
 	private void promptMultiSelect() {
         Intent intent = new Intent(FileManagerIntents.ACTION_MULTI_SELECT);
-        
-//        intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
-        
-        intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.multiselect_title));
-        //intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.move_button));
-
-        startActivityForResult(intent, REQUEST_CODE_MULTI_SELECT);
+        intent.putExtra(FileManagerIntents.EXTRA_DIR_PATH, mFragment.getPath());
+        startActivity(intent);
     }
 	
 	

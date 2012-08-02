@@ -48,7 +48,7 @@ public class SearchListAdapter extends CursorAdapter {
 		// Inflate the view
 		ViewGroup v = (ViewGroup) ((LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
-				R.layout.filelist_item, null);
+				R.layout.item_filelist, null);
 
 		// Set the viewholder optimization.
 		ViewHolder holder = new ViewHolder();

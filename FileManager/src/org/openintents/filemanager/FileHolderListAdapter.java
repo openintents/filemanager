@@ -17,6 +17,7 @@ public class FileHolderListAdapter extends BaseAdapter {
 	private List<FileHolder> mItems;
 	private LayoutInflater mInflater;
 	private Context mContext;
+	private int mItemLayoutId = R.layout.item_filelist;
 	
 	// Thumbnail specific
     private ThumbnailLoader mThumbnailLoader;
@@ -28,6 +29,10 @@ public class FileHolderListAdapter extends BaseAdapter {
 		mContext = c;
 		
 		mThumbnailLoader = new ThumbnailLoader(c);
+	}
+	
+	public Context getContext(){
+		return mContext;
 	}
 	
 	@Override
@@ -51,11 +56,22 @@ public class FileHolderListAdapter extends BaseAdapter {
 	}
 	
 	/**
+	 * Set the layout to be used for item drawing. 
+	 * @param resId The item layout id. 0 to reset.
+	 */
+	public void setItemLayout(int resId){
+		if(resId > 0)
+			mItemLayoutId = resId;
+		else
+			mItemLayoutId = R.layout.item_filelist;
+	}
+	
+	/**
 	 * Creates a new list item view, along with it's ViewHolder set as a tag.
 	 * @return The new view.
 	 */
-	private View newView(){
-		View view = mInflater.inflate(R.layout.filelist_item, null);
+	protected View newView(){
+		View view = mInflater.inflate(mItemLayoutId, null);
 		
 		ViewHolder holder = new ViewHolder();
 		holder.icon = (ImageView) view.findViewById(R.id.icon);

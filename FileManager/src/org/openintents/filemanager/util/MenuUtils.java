@@ -16,6 +16,7 @@ import org.openintents.filemanager.dialogs.RenameDialog;
 import org.openintents.filemanager.dialogs.SingleCompressDialog;
 import org.openintents.filemanager.dialogs.SingleDeleteDialog;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.lists.FileListFragment;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.intents.FileManagerIntents;
 
@@ -113,7 +114,7 @@ public abstract class MenuUtils {
 	 * @param mItem The selected menu option/action.
 	 * @param fItems The data to act upon.
 	 */
-	public static boolean handleMultipleSelectionAction(final SimpleFileListFragment navigator, MenuItem mItem, List<FileHolder> fItems, Context context) {
+	public static boolean handleMultipleSelectionAction(final FileListFragment navigator, MenuItem mItem, List<FileHolder> fItems, Context context) {
 		DialogFragment dialog;
 		Bundle args;
 		

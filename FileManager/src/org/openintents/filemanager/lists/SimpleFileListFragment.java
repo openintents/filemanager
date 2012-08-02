@@ -44,12 +44,7 @@ public class SimpleFileListFragment extends FileListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.filelist_pathbar, null);
-	}
-	
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
+		return inflater.inflate(R.layout.filelist_browse, null);
 	}
 	
 	@Override

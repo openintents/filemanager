@@ -84,55 +84,6 @@
 
                 <data android:scheme="file" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="org.openintents.action.PICK_FILE" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="file" />
-                <data android:mimeType="*/*" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="org.openintents.action.PICK_FILE" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="file" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="org.openintents.action.PICK_FILE" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="org.openintents.action.PICK_DIRECTORY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="file" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="org.openintents.action.PICK_DIRECTORY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.GET_CONTENT" />
-
-                <data android:mimeType="*/*" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.OPENABLE" />
-            </intent-filter>
-
-            <!-- Filter for a multi select feature -->
-            <intent-filter>
-                <action android:name="org.openintents.action.MULTI_SELECT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="file" />
-            </intent-filter>
             <meta-data android:name="android.app.default_searchable"
                    android:value=".search.SearchableActivity" />
         </activity>
@@ -220,6 +171,57 @@
         </activity>
         <provider android:name=".search.RecentsSuggestionsProvider" android:authorities="org.openintents.filemanager.search.SuggestionProvider"></provider>
         <service android:name=".search.SearchService"></service>
+        <activity android:name="IntentFilterActivity" >
+            <intent-filter>
+                <action android:name="org.openintents.action.PICK_FILE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.openintents.action.PICK_FILE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.openintents.action.PICK_FILE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.openintents.action.PICK_DIRECTORY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.openintents.action.PICK_DIRECTORY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+
+                <data android:mimeType="*/*" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
+            </intent-filter>
+
+            <!-- Filter for a multi select feature -->
+            <intent-filter>
+                <action android:name="org.openintents.action.MULTI_SELECT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

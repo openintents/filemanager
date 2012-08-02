@@ -16,10 +16,8 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +32,6 @@ import android.widget.ViewFlipper;
  * @author George Venios
  */
 public abstract class FileListFragment extends ListFragment {
-	private static final String INSTANCE_STATE_LIST_HIERARCHY = "list_hierarchy";
 	private static final String INSTANCE_STATE_PATH = "path";
 	private static final String INSTANCE_STATE_FILES = "files";
 	
@@ -86,10 +83,6 @@ public abstract class FileListFragment extends ListFragment {
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		
-		SparseArray<Parcelable> container = new SparseArray<Parcelable>();
-		getListView().saveHierarchyState(container);
-		outState.putSparseParcelableArray(INSTANCE_STATE_LIST_HIERARCHY, container);
 
 		outState.putString(INSTANCE_STATE_PATH, mPath);
 		outState.putParcelableArrayList(INSTANCE_STATE_FILES, mFiles);
@@ -103,11 +96,6 @@ public abstract class FileListFragment extends ListFragment {
 	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-		if(savedInstanceState != null){
-			SparseArray<Parcelable> container = savedInstanceState.getSparseParcelableArray(INSTANCE_STATE_LIST_HIERARCHY);
-			getListView().restoreHierarchyState(container);
-		}
-		
 		// Set list properties
 		getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
@@ -205,4 +193,11 @@ public abstract class FileListFragment extends ListFragment {
 	 * @param loading If the list started or stopped loading.
 	 */
 	protected void onLoadingChanged(boolean loading){}
+	
+	/**
+	 * @return The currently displayed directory's absolute path.
+	 */
+	public final String getPath(){
+		return mPath;
+	}
 }

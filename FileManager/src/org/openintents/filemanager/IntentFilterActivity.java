@@ -6,8 +6,11 @@ import org.openintents.filemanager.lists.PickFileListFragment;
 import org.openintents.intents.FileManagerIntents;
 
 import android.content.Intent;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
 
 public class IntentFilterActivity extends FragmentActivity {
 	private FileListFragment mFragment;
@@ -62,5 +65,30 @@ public class IntentFilterActivity extends FragmentActivity {
 				getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, tag).commit();
 			}
 		}
+	}
+	
+	// The following methods should properly handle back button presses on every API Level.
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		// Only check fragment back-ability if we're on the filepicker fragment.
+		if(mFragment instanceof PickFileListFragment)
+			if (VERSION.SDK_INT > VERSION_CODES.DONUT) {
+				if (keyCode == KeyEvent.KEYCODE_BACK && ((PickFileListFragment) mFragment).pressBack())
+					return true;
+			}
+
+		return super.onKeyUp(keyCode, event);
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// Only check fragment back-ability if we're on the filepicker fragment.
+		if(mFragment instanceof PickFileListFragment)
+			if (VERSION.SDK_INT <= VERSION_CODES.DONUT) {
+				if (keyCode == KeyEvent.KEYCODE_BACK && ((PickFileListFragment) mFragment).pressBack())
+					return true;
+			}
+
+		return super.onKeyDown(keyCode, event);
 	}
 }

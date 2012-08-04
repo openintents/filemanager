@@ -16,6 +16,8 @@
 
 package org.openintents.intents;
 
+import org.openintents.filemanager.lists.SimpleFileListFragment;
+
 
 // Version Dec 9, 2008
 
@@ -124,4 +126,11 @@ public final class FileManagerIntents {
 	public static final String EXTRA_DIRECTORIES_ONLY = "org.openintents.extra.DIRECTORIES_ONLY";
 
 	public static final String EXTRA_DIALOG_FILE_HOLDER = "org.openintents.extra.DIALOG_FILE";
+	
+	/**
+	 * Enable or disable actions (both option and selection) for the launched {@link SimpleFileListFragment}
+	 * 
+     * <p>Constant Value: "org.openintents.extra.ENABLE_ACTIONS"</p>
+	 */
+	public static final String EXTRA_ENABLE_ACTIONS = "org.openintents.extra.ENABLE_ACTIONS";
 }

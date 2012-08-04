@@ -45,6 +45,6 @@
 
     <include
         android:layout_above="@id/buttonBar"
-        layout="@layout/filelist" />
+        layout="@layout/filelist_browse" />
 
 </RelativeLayout>

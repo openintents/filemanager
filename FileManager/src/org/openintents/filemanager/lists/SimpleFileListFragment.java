@@ -37,6 +37,7 @@ import android.widget.Toast;
  */
 public class SimpleFileListFragment extends FileListFragment {
 	private PathBar mPathBar;
+	private boolean mActionsEnabled = true;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,17 +63,19 @@ public class SimpleFileListFragment extends FileListFragment {
 				openDir(new FileHolder(newCurrentDir, getActivity()));
 			}
 		});
-
-		if (VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-			registerForContextMenu(getListView());
-		} else {
-			FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper();
-			multiChoiceModeHelper.setListView(getListView());
-			multiChoiceModeHelper.setPathBar(mPathBar);
-			multiChoiceModeHelper.setContext(this);
-			getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+		
+		if(mActionsEnabled){
+			if (VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+				registerForContextMenu(getListView());
+			} else {
+				FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper();
+				multiChoiceModeHelper.setListView(getListView());
+				multiChoiceModeHelper.setPathBar(mPathBar);
+				multiChoiceModeHelper.setContext(this);
+				getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+			}
+			setHasOptionsMenu(true);
 		}
-		setHasOptionsMenu(true);
 	}
 
 	@Override
@@ -123,16 +126,24 @@ public class SimpleFileListFragment extends FileListFragment {
 				// Directly cd
 				openDir(f);
 		} else if (f.getFile().isFile()) {
-			FileUtils.openFile(f, getActivity());
+			openFile(f);
 		}	
 	}
 	
 	/**
-	 * Attempts to open a directory for browsing.
+	 * Override this to handle file click behavior.
+	 */
+	protected void openFile(FileHolder fileholder){
+		FileUtils.openFile(fileholder, getActivity());
+	}
+	
+	/**
+	 * Attempts to open a directory for browsing. 
+	 * Override this to handle folder click behavior.
 	 * 
 	 * @param fileholder The holder of the directory to open.
 	 */
-	private void openDir(FileHolder fileholder){
+	protected void openDir(FileHolder fileholder){
 		// Avoid unnecessary attempts to load.
 		if(fileholder.getFile().getAbsolutePath().equals(mPath))
 			return;
@@ -228,5 +239,13 @@ public class SimpleFileListFragment extends FileListFragment {
 
 	public boolean pressBack() {
 		return mPathBar.pressBack();
+	}
+	
+	/**
+	 * Set whether to show menu and selection actions. Must be set before OnViewCreated is called.
+	 * @param enabled
+	 */
+	public void setActionsEnabled(boolean enabled){
+		mActionsEnabled = enabled;
 	}
 }

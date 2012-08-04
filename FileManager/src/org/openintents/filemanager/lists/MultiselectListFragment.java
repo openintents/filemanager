@@ -25,13 +25,7 @@ public class MultiselectListFragment extends FileListFragment {
 	private static final String INSTANCE_STATE_LIST_SELECTION = "list_selection";
 	
 	private LegacyActionContainer mLegacyActionContainer;
-//
-//	@Override
-//	public void onSaveInstanceState(Bundle outState) {
-//		super.onSaveInstanceState(outState);
-//		outState.putLongArray(INSTANCE_STATE_LIST_SELECTION, getListView().getCheckItemIds());
-//	}
-//	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.filelist_legacy_multiselect, null);
@@ -71,21 +65,6 @@ public class MultiselectListFragment extends FileListFragment {
 				MenuUtils.handleMultipleSelectionAction(MultiselectListFragment.this, item, fItems, getActivity());
 			}
 		});
-	}
-	
-	@Deprecated
-	private void restoreSelection(Bundle state){
-		if(state == null)
-			return;
-		
-		long[] positions = state.getLongArray(INSTANCE_STATE_LIST_SELECTION);
-		ListView list = getListView();
-		
-		for(long i : positions){
-			list.setItemChecked((int) i, true);
-		}
-		
-		list.invalidate();
 	}
 	
 	@Override

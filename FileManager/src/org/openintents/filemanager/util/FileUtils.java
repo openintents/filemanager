@@ -21,14 +21,18 @@ import java.lang.reflect.Method;
 import java.util.Date;
 
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.files.FileHolder;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
 import android.provider.MediaStore.Video;
 import android.text.format.DateFormat;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * @version 2009-07-03
@@ -333,5 +337,24 @@ public class FileUtils {
 	
 		// I GIVE UP.
 		return null;
+	}	
+	
+	/**
+	 * Attempts to open a file for viewing.
+	 * 
+	 * @param fileholder The holder of the file to open.
+	 */
+	public static void openFile(FileHolder fileholder, Context c) {
+		Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+
+		Uri data = FileUtils.getUri(fileholder.getFile());
+		String type = fileholder.getMimeType();
+		intent.setDataAndType(data, type);
+
+		try {
+			c.startActivity(intent);
+		} catch (ActivityNotFoundException e) {
+			Toast.makeText(c, R.string.application_not_available, Toast.LENGTH_SHORT).show();
+		}
 	}
 }

@@ -52,7 +52,6 @@ import android.widget.Toast;
  * @author George Venios
  */
 public abstract class MenuUtils {
-	
 	/**
 	 * Fill <code>m</code> with multiselection actions, using <code>mi</code>.
 	 * @param m The {@link Menu} to fill.
@@ -175,7 +174,7 @@ public abstract class MenuUtils {
 			return true;
 			
 		case R.id.menu_create_shortcut:
-            createShortcut(fItem.getFile(), context);
+            createShortcut(fItem, context);
 			return true;
 			
 		case R.id.menu_move:
@@ -265,19 +264,22 @@ public abstract class MenuUtils {
  	
     /**
      * Creates a home screen shortcut.
-     * @param file The {@link File} to create the shortcut to.
+     * @param fileholder The {@link File} to create the shortcut to.
      */
-    static private void createShortcut(File file, Context context) {
+    static private void createShortcut(FileHolder fileholder, Context context) {
 		Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
 		shortcutintent.putExtra("duplicate", false);
-		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, file.getName());
+		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, fileholder.getName());
 		Parcelable icon = Intent.ShortcutIconResource.fromContext(context.getApplicationContext(), R.drawable.ic_launcher_shortcut);
 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
-		shortcutintent.putExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET, file.getAbsolutePath());
 
 		// Intent to load
-		Intent itl = new Intent(context.getApplicationContext(), FileManagerActivity.class);
-		itl.putExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET, file.getAbsolutePath());
+		Intent itl = new Intent(Intent.ACTION_VIEW);
+		if(fileholder.getFile().isDirectory())
+			itl.setData(Uri.fromFile(fileholder.getFile()));
+		else
+			itl.setDataAndType(Uri.fromFile(fileholder.getFile()), fileholder.getMimeType());
+		itl.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		
 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, itl);
 		context.sendBroadcast(shortcutintent);

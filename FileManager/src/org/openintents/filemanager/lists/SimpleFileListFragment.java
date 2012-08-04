@@ -14,9 +14,6 @@ import org.openintents.filemanager.view.PathBar;
 import org.openintents.filemanager.view.PathBar.OnDirectoryChangedListener;
 import org.openintents.intents.FileManagerIntents;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
@@ -126,7 +123,7 @@ public class SimpleFileListFragment extends FileListFragment {
 				// Directly cd
 				openDir(f);
 		} else if (f.getFile().isFile()) {
-			openFile(f);
+			FileUtils.openFile(f, getActivity());
 		}	
 	}
 	
@@ -141,25 +138,6 @@ public class SimpleFileListFragment extends FileListFragment {
 			return;
 		mPath = fileholder.getFile().getAbsolutePath();
 		refresh();
-	}
-	
-	/**
-	 * Attempts to open a file for viewing.
-	 * 
-	 * @param fileholder The holder of the file to open.
-	 */
-	private void openFile(FileHolder fileholder) {
-		Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-
-		Uri data = FileUtils.getUri(fileholder.getFile());
-		String type = fileholder.getMimeType();
-		intent.setDataAndType(data, type);
-
-		try {
-			startActivity(intent);
-		} catch (ActivityNotFoundException e) {
-			Toast.makeText(getActivity(), R.string.application_not_available, Toast.LENGTH_SHORT).show();
-		}
 	}
 
 	@Override

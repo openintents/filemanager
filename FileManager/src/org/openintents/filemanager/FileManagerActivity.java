@@ -23,7 +23,6 @@ import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.filemanager.util.FileUtils;
-import org.openintents.filemanager.view.LegacyActionContainer;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 
@@ -42,14 +41,7 @@ import android.view.MenuItem;
 
 @SuppressLint("NewApi")
 public class FileManagerActivity extends DistributionLibraryFragmentActivity {
-	private static final String TAG = "FileManagerActivity";
 	private static final String FRAGMENT_TAG = "ListFragment";
-	
-//	TODO kept as a reference for the fragments to be made
-//	private static final int STATE_BROWSE = 1;
-//	private static final int STATE_PICK_FILE = 2;
-//	private static final int STATE_PICK_DIRECTORY = 3;
-//	private static final int STATE_MULTI_SELECT = 4;
     
 	protected static final int REQUEST_CODE_MOVE = 1;
 	protected static final int REQUEST_CODE_COPY = 2;
@@ -60,19 +52,29 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	private static final int COPY_BUFFER_SIZE = 32 * 1024;
 	
 	private SimpleFileListFragment mFragment;
-
-// TODO
-//	@Override
-//	protected void onNewIntent(Intent intent) { 
-//		File file = FileUtils.getFile(intent.getData());
-//		if(file != null)
-//			if (!file.isDirectory()) {
-//				mEditFilename.setText(file.getName());
-//				browseTo(file);
-//			}
-//			else
-//				mPathBar.cd(file);
-//	}
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		mFragment.open(new FileHolder(FileUtils.getFile(intent.getData()), this));
+	}
+	
+	/**
+	 * Either open the file and finish, or navigate to the designated directory. This gives FileManagerActivity the flexibility to actually handle file scheme data of any type.
+	 * @return The folder to navigate to, if applicable. Null otherwise.
+	 */
+	private File resolveIntentData(){
+		File data = FileUtils.getFile(getIntent().getData());
+		if(data == null)
+			return null;
+		
+		if(data.isFile()){
+			FileUtils.openFile(new FileHolder(data, this), this);
+			finish();
+			return null;
+		}
+		else
+			return FileUtils.getFile(getIntent().getData());
+	}
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -87,7 +89,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		if (mDistribution.showEulaOrNewVersion()) {
 			return;
 		}
-		setContentView(R.layout.browse);
 
 		// Enable home button.
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -96,49 +97,28 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		// Search when the user types.
 		setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
 		
+		// If not called by name, open on the requested location.
+		File data = resolveIntentData();
+
 		// Add fragment only if it hasn't already been added.
 		mFragment = (SimpleFileListFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
 		if(mFragment == null){
 			mFragment = new SimpleFileListFragment();
 			Bundle args = new Bundle();
-			args.putString(FileManagerIntents.EXTRA_DIR_PATH, Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/");
+			if(data == null)
+				args.putString(FileManagerIntents.EXTRA_DIR_PATH, Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/");
+			else
+				args.putString(FileManagerIntents.EXTRA_DIR_PATH, data.toString());
 			mFragment.setArguments(args);
-			getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mFragment, FRAGMENT_TAG).commit();
+			getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, FRAGMENT_TAG).commit();
 		}
-			
 		
-//		// Default state
-//		mState = STATE_BROWSE;
-//
-//		Intent intent = getIntent();
-//		String action = intent.getAction();
-//
-//		if (action != null) {
-//			if (action.equals(FileManagerIntents.ACTION_PICK_FILE)) {
-//				mState = STATE_PICK_FILE;
-//				mFilterFiletype = intent.getStringExtra(FileManagerIntents.EXTRA_FILTER_FILETYPE);
-//				if (mFilterFiletype == null)
-//					mFilterFiletype = "";
-//				mFilterMimetype = intent.getType();
-//				if (mFilterMimetype == null)
-//					mFilterMimetype = "";
-//			} else if (action.equals(FileManagerIntents.ACTION_PICK_DIRECTORY)) {
-//				mState = STATE_PICK_DIRECTORY;
-//// TODO send this to the fragment!				intent.getBooleanExtra(
-////						FileManagerIntents.EXTRA_WRITEABLE_ONLY, false);
-//			} else if (action.equals(FileManagerIntents.ACTION_MULTI_SELECT)) {
-//				mState = STATE_MULTI_SELECT;
-//
-//				// Remove buttons
-//				mPathBar.setVisibility(View.GONE);
-//				mActionNormal.setVisibility(View.GONE);
-//				mLegacyActionContainer.setVisibility(View.VISIBLE);
-//				mLegacyActionContainer.setMenuResource(R.menu.multiselect);
-//			}
-//		}
+		
+		// Shortcut?
+//		if(getIntent().getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET) != null)
+//			mFragment.open(new FileHolder(new File(getIntent().getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET)), this));
 
 		// Set current directory and file based on intent data.
-// TODO logic
 //		File file = new File(intent.getData().getPath());
 //		if (file != null) {
 //			File dir = FileUtils.getPathWithoutFilename(file);
@@ -159,30 +139,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 //					}
 //				}
 //			}
-//		}
-//		
-//		// If we've gotten here through the shortcut, override everything
-//		if(intent.getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET) != null) {
-//			file = new File(intent.getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET));
-//			if (!file.isDirectory()) {
-//				mEditFilename.setText(file.getName());
-//				browseTo(file);
-//				finish();
-//			}
-//			else
-//				mPathBar.setInitialDirectory(file);
-//		}
-		
-//		FAIL TODO deleteeee
-//		String title = intent.getStringExtra(FileManagerIntents.EXTRA_TITLE);
-//		if (title != null) {
-//			setTitle(title);
-//		}
-// TODO pick
-//		String buttontext = intent
-//				.getStringExtra(FileManagerIntents.EXTRA_BUTTON_TEXT);
-//		if (buttontext != null) {
-//			mButtonPick.setText(buttontext);
 //		}
 	}
  	

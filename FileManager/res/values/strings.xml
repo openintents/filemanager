@@ -84,6 +84,7 @@
     <string name="compress_zip_button_multiselect">ZIP</string>
 
     <string name="multiselect_title">Select multiple files</string>
+    <string name="pick_title">File picker</string>
     <string name="error_selection">Please select one or more file(s).</string>
     
     <!-- Strings for details table -->
@@ -249,4 +250,6 @@
     <string name="compressed_file_name">Zip file name</string>
     <string name="file_exists">File exists</string>
     <string name="overwrite_question">Overwrite old file?</string>
+    
+    <string name="directory_pick">Select current directory</string>
 </resources>

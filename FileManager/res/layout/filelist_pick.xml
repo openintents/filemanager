@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- We only show this programmatically if we need to pick a directory. Other than that, we let the list item click indicate selection. -->
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/buttonBar"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:measureWithLargestChild="true"
+        android:orientation="horizontal"
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:paddingTop="4dip"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/leftSpacer"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:orientation="horizontal"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/button"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:text="@string/about_copyright" />
+
+        <LinearLayout
+            android:id="@+id/rightSpacer"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:orientation="horizontal"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <include
+        android:layout_above="@id/buttonBar"
+        layout="@layout/filelist" />
+
+</RelativeLayout>

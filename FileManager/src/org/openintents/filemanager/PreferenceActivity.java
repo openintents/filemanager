@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -140,7 +141,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 
 	static String getDefaultPickFilePath(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
-				.getString(PREFS_DEFAULTPICKFILEPATH, null);
+				.getString(PREFS_DEFAULTPICKFILEPATH, Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/");
 	}
 	
 	

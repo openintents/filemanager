@@ -9,6 +9,11 @@ import android.widget.CheckBox;
 import android.widget.Checkable;
 import android.widget.RelativeLayout;
 
+/**
+ * An extension to the item_filelist layout that implements the checkable interface and displays a {@link CheckBox} to the right of the standard layout.
+ * @author George Venios
+ *
+ */
 public class CheckableFileListItem extends RelativeLayout implements Checkable{
 	private CheckBox mCheckbox;
 	

@@ -3,6 +3,7 @@ package org.openintents.filemanager.lists;
 import java.io.File;
 import java.io.IOException;
 
+import org.openintents.filemanager.FileManagerApplication;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
@@ -167,11 +168,13 @@ public class SimpleFileListFragment extends FileListFragment {
 			menu.findItem(R.id.menu_media_scan_include).setVisible(false);
 			menu.findItem(R.id.menu_media_scan_exclude).setVisible(false);
 		}
+		menu.findItem(R.id.menu_paste).setVisible(((FileManagerApplication) getActivity().getApplication()).getCopyHelper().canPaste());
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		
 		case R.id.menu_create_folder:
 			CreateDirectoryDialog dialog = new CreateDirectoryDialog();
 			dialog.setTargetFragment(this, 0);
@@ -188,7 +191,11 @@ public class SimpleFileListFragment extends FileListFragment {
 		case R.id.menu_media_scan_exclude:
 			excludeFromMediaScan();
 			return true;
-
+			
+		case R.id.menu_paste:
+			((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(mPath));
+			return true;
+			
 		default:
 			return false;
 		}

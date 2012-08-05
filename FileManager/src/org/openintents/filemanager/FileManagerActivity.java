@@ -26,7 +26,6 @@ import org.openintents.filemanager.util.FileUtils;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
@@ -39,17 +38,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-@SuppressLint("NewApi")
 public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	private static final String FRAGMENT_TAG = "ListFragment";
     
-	protected static final int REQUEST_CODE_MOVE = 1;
-	protected static final int REQUEST_CODE_COPY = 2;
-    private static final int REQUEST_CODE_MULTI_SELECT = 3;
-    protected static final int REQUEST_CODE_EXTRACT = 4;
-    protected static final int REQUEST_CODE_BOOKMARKS = 5;
-	
-	private static final int COPY_BUFFER_SIZE = 32 * 1024;
+    protected static final int REQUEST_CODE_BOOKMARKS = 1;
 	
 	private SimpleFileListFragment mFragment;
 	
@@ -150,24 +142,26 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			
+		
 		case R.id.menu_search:
 			onSearchRequested();
 			return true;
-			
+		
 		case R.id.menu_multiselect:
-            promptMultiSelect();
+	        Intent intent = new Intent(FileManagerIntents.ACTION_MULTI_SELECT);
+	        intent.putExtra(FileManagerIntents.EXTRA_DIR_PATH, mFragment.getPath());
+	        startActivity(intent);
 			return true;
-			
+		
 		case R.id.menu_settings:
-			Intent intent = new Intent(this, PreferenceActivity.class);
+			intent = new Intent(this, PreferenceActivity.class);
 			startActivity(intent);
 			return true;
 		
 		case R.id.menu_bookmarks:
 			startActivityForResult(new Intent(FileManagerActivity.this, BookmarkListActivity.class), REQUEST_CODE_BOOKMARKS);
 			return true;
-			
+		
 		case android.R.id.home:
 			mFragment.browseToHome();
 			return true;
@@ -175,43 +169,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		return super.onOptionsItemSelected(item);
 
 	}
-	
-	/**
-	 * Starts activity for multi select.
-	 */
-	private void promptMultiSelect() {
-        Intent intent = new Intent(FileManagerIntents.ACTION_MULTI_SELECT);
-        intent.putExtra(FileManagerIntents.EXTRA_DIR_PATH, mFragment.getPath());
-        startActivity(intent);
-    }
-	
-	
-//	TODO
-//	private boolean copy(File oldFile, File newFile) {
-//		try {
-//			FileInputStream input = new FileInputStream(oldFile);
-//			FileOutputStream output = new FileOutputStream(newFile);
-//		
-//			byte[] buffer = new byte[COPY_BUFFER_SIZE];
-//			
-//			while (true) {
-//				int bytes = input.read(buffer);
-//				
-//				if (bytes <= 0) {
-//					break;
-//				}
-//				
-//				output.write(buffer, 0, bytes);
-//			}
-//			
-//			output.close();
-//			input.close();
-//			
-//		} catch (Exception e) {
-//		    return false;
-//		}
-//		return true;
-//	}
 	
 	// The following methods should properly handle back button presses on every API Level.
 	@Override
@@ -239,10 +196,9 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
      */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
 
 		switch (requestCode) {
-		case REQUEST_CODE_MOVE:
+//		case REQUEST_CODE_MOVE:
 //			if (resultCode == RESULT_OK && data != null) {
 //				// obtain the filename
 //				File movefrom = mContextFile;
@@ -296,66 +252,20 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 //				}				
 //				
 //			}
-			break;
-        
-        case REQUEST_CODE_EXTRACT:
+//			break;
+//        
+//        case REQUEST_CODE_EXTRACT:
 //            if (resultCode == RESULT_OK && data != null) {
 //                new ExtractManager(this).extract(mContextFile, data.getData().getPath());
 //            }
-            break;
-
-		case REQUEST_CODE_COPY:
-//			if (resultCode == RESULT_OK && data != null) {
-//				// obtain the filename
-//				File copyfrom = mContextFile;
-//				File copyto = FileUtils.getFile(data.getData());
-//				if (copyto != null) {
-// TODO                    if (getSelectedItemCount() == 1) {
-//                        // Copy single file.
-//                        copyto = createUniqueCopyName(this, copyto, copyfrom.getName());
-//                        
-//                        if (copyto != null) {
-//                            int toast = 0;
-//                            if (copy(copyfrom, copyto)) {
-//                                toast = R.string.file_copied;
-//                                showDirectory(null);
-//                            } else {
-//                                toast = R.string.error_copying_file;
-//                            }
-//                            Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
-//                        }
-//                    } else {
-//                        // Copy multiple files.
-//						ArrayList<File> files = (ArrayList<File>) data.getSerializableExtra("checked_files");
-//                        int toastMessage = 0;
-//
-//                        for (File f: files) {
-//                            File newPath = createUniqueCopyName(this, copyto, f.getName());
-//                            if (!copy(f, newPath)) {
-//                                toastMessage = R.string.error_copying_file;
-//                                break;
-//                            }
-//                        }
-//
-//                        if (toastMessage == 0) {
-//                            // Copy was successful.
-//                            toastMessage = R.string.file_copied;
-//                            showDirectory(null);
-//                        }
-//
-//                        Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
-//
-//                        Intent intent = getIntent();
-//                        setResult(RESULT_OK, intent);
-//                    }
-//				}				
-//			}
-			break; 
+//            break;
         case REQUEST_CODE_BOOKMARKS:
             if (resultCode == RESULT_OK && data != null) {
             	mFragment.open(new FileHolder(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)), this));
             }
             break;
+        default:
+        	super.onActivityResult(requestCode, resultCode, data);
         }
 		
 	}

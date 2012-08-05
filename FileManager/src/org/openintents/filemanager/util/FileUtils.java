@@ -294,7 +294,7 @@ public class FileUtils {
 	/**
 	 * @param path The path that the file is supposed to be in.
 	 * @param fileName Desired file name. This name will be modified to create a unique file if necessary.
-	 * @return A file name that is guaranteed to not exist yet.
+	 * @return A file name that is guaranteed to not exist yet. MAY RETURN NULL!
 	 */
 	public static File createUniqueCopyName(Context context, File path, String fileName) {
 		// Does that file exist?

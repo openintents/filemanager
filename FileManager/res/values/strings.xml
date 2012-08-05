@@ -40,7 +40,7 @@
     <string name="menu_rename">Rename</string>
     <string name="menu_send">Send</string>
     <string name="menu_open">Open</string>
-    <string name="menu_move">Move</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">Copy</string>
     <string name="menu_details">Details</string>
     <string name="menu_more">More</string>
@@ -76,7 +76,7 @@
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Do you really want to delete %d files?</string>
-    <string name="move_button_multiselect">Move</string>
+    <string name="move_button_multiselect">Cut</string>
     <string name="copy_button_multiselect">Copy</string>
     <string name="delete_button_multiselect">Delete</string>
 
@@ -198,13 +198,14 @@
     <string name="menu_bookmarks">Bookmarks</string>
     <string name="menu_search">Search</string>
     <string name="menu_create_folder">Create folder</string>
+    <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_about">About</string>
     
     <string name="menu_send">Send</string>
     <string name="menu_delete">Delete</string>
-    <string name="menu_move">Move</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">Copy</string>
     <string name="menu_compress">Compress</string>
     <string name="menu_rename">Rename</string>

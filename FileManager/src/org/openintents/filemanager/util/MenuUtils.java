@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openintents.filemanager.FileManagerActivity;
+import org.openintents.filemanager.FileManagerApplication;
 import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
@@ -80,7 +81,6 @@ public abstract class MenuUtils {
 		// If selected item is a directory
 		if (file.isDirectory()) {
 			m.removeItem(R.id.menu_send);
-			m.removeItem(R.id.menu_copy);
 		}
 
 		// If selected item is a zip archive
@@ -139,10 +139,10 @@ public abstract class MenuUtils {
 				dialog.show(navigator.getFragmentManager(), MultiDeleteDialog.class.getName());
 				break;
 			case R.id.menu_move:
-				// TODO PICK fragment first.
+				((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().cut(fItems);
 				break;
 			case R.id.menu_copy:
-				// TODO PICK fragment first.
+				((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().copy(fItems);
 				break;
 			case R.id.menu_compress:
 				dialog = new MultiCompressDialog();
@@ -178,11 +178,11 @@ public abstract class MenuUtils {
 			return true;
 			
 		case R.id.menu_move:
-			pickDestinationAndMove();
+			((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().cut(fItem);
 			return true;
 			
 		case R.id.menu_copy:
-			pickDestinationAndCopy();
+			((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().copy(fItem);
 			return true;
 			
 		case R.id.menu_delete:
@@ -284,20 +284,6 @@ public abstract class MenuUtils {
 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, itl);
 		context.sendBroadcast(shortcutintent);
     }
-    
-    private static void pickDestinationAndMove() {
-// TODO implement once pick directory fragment is done.
-// 		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
-// 		
-// 		intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
-//
-// 		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.move_title));
-// 		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.move_button));
-// 		intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
-// // TODO		intent.putExtra("checked_files", getSelectedItemsFiles());
-//
-// 		startActivityForResult(intent, REQUEST_CODE_MOVE);
- 	}
 
     private static void pickDestinationAndExtract() {
 // TODO implement once pick directory fragment is done.
@@ -308,20 +294,6 @@ public abstract class MenuUtils {
 //        intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
 //        startActivityForResult(intent, REQUEST_CODE_EXTRACT);
     }
-    
-	private static void pickDestinationAndCopy() {
-// TODO implement once pick directory fragment is done.
-//		Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
-//		
-//		intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
-//		
-//		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.copy_title));
-//		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.copy_button));
-//		intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
-// TODO 		intent.putExtra("checked_files", getSelectedItemsFiles());
-//		
-//		startActivityForResult(intent, REQUEST_CODE_COPY);
-	}
 	
 	/**
 	 * Creates an activity picker to send a file.

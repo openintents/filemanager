@@ -112,48 +112,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 			mFragment.setArguments(args);
 			getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, FRAGMENT_TAG).commit();
 		}
-		
-		
-		// Shortcut?
-//		if(getIntent().getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET) != null)
-//			mFragment.open(new FileHolder(new File(getIntent().getStringExtra(FileManagerIntents.EXTRA_SHORTCUT_TARGET)), this));
-
-		// Set current directory and file based on intent data.
-//		File file = new File(intent.getData().getPath());
-//		if (file != null) {
-//			File dir = FileUtils.getPathWithoutFilename(file);
-//			if (dir.isDirectory()) {
-//				mPathBar.setInitialDirectory(dir);
-//			}
-//			if (!file.isDirectory()) {
-//				mEditFilename.setText(file.getName());
-//			}
-//		} else {
-//			if (mState == STATE_PICK_FILE || mState == STATE_PICK_DIRECTORY
-//					|| action.equals(Intent.ACTION_GET_CONTENT)) {
-//				String path = PreferenceActivity.getDefaultPickFilePath(this);
-//				if (path != null) {
-//					File dir = new File(path);
-//					if (dir.exists() && dir.isDirectory()) {
-//						mPathBar.setInitialDirectory(dir);
-//					}
-//				}
-//			}
-//		}
 	}
- 	
-//     private void selectInList(File selectFile) {
-//    	 String filename = selectFile.getName();
-//    	 IconifiedTextListAdapter la = (IconifiedTextListAdapter) getListAdapter();
-//    	 int count = la.getCount();
-//    	 for (int i = 0; i < count; i++) {
-//    		 IconifiedText it = (IconifiedText) la.getItem(i);
-//    		 if (it.getText().equals(filename)) {
-//    			 getListView().setSelection(i);
-//    			 break;
-//    		 }
-//    	 }
-//     }
 
  	@Override
  	public boolean onCreateOptionsMenu(Menu menu) {
@@ -391,13 +350,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 //                    }
 //				}				
 //			}
-			break;
-
-        case REQUEST_CODE_MULTI_SELECT:
-            if (resultCode == RESULT_OK && data != null) {
-// TODO used to refresh the list			showDirectory(null);
-            }
-            break;
+			break; 
         case REQUEST_CODE_BOOKMARKS:
             if (resultCode == RESULT_OK && data != null) {
             	mFragment.open(new FileHolder(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)), this));
@@ -413,7 +366,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	@Override
 	public boolean onSearchRequested() {
 		Bundle appData = new Bundle();
-// TODO		appData.putString(FileManagerIntents.EXTRA_SEARCH_INIT_PATH, mPathBar.getCurrentDirectory().getAbsolutePath());
+		appData.putString(FileManagerIntents.EXTRA_SEARCH_INIT_PATH, mFragment.getPath());
 		startSearch(null, false, appData, false);
 		
 		return true;

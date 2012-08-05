@@ -169,7 +169,6 @@ public class SimpleFileListFragment extends FileListFragment {
 			menu.findItem(R.id.menu_media_scan_include).setVisible(false);
 			menu.findItem(R.id.menu_media_scan_exclude).setVisible(false);
 		}
-		menu.findItem(R.id.menu_paste).setVisible(((FileManagerApplication) getActivity().getApplication()).getCopyHelper().canPaste());
 	}
 
 	@Override
@@ -194,12 +193,15 @@ public class SimpleFileListFragment extends FileListFragment {
 			return true;
 			
 		case R.id.menu_paste:
-			((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(mPath), new CopyHelper.OnOperationFinishedListener() {
-				@Override
-				public void operationFinished(boolean success) {
-					refresh();
-				}
-			});
+			if(((FileManagerApplication) getActivity().getApplication()).getCopyHelper().canPaste())
+				((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(mPath), new CopyHelper.OnOperationFinishedListener() {
+					@Override
+					public void operationFinished(boolean success) {
+						refresh();
+					}
+				});
+			else
+				Toast.makeText(getActivity(), R.string.nothing_to_paste, Toast.LENGTH_LONG).show();
 			return true;
 			
 		default:
@@ -240,8 +242,7 @@ public class SimpleFileListFragment extends FileListFragment {
 		} catch (IOException e) {
 			// That didn't work.
 			Toast.makeText(getActivity(),
-					getString(R.string.error_generic) + e.getMessage(),
-					Toast.LENGTH_LONG).show();
+					getString(R.string.error_generic) + e.getMessage(), Toast.LENGTH_LONG).show();
 		}
 		refresh();
 	}

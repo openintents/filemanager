@@ -71,24 +71,25 @@ public abstract class MenuUtils {
 		// Inflate all actions
 		mi.inflate(R.menu.context, m);
 		
-		// Get the selected file
         if(m instanceof ContextMenu){
 			((ContextMenu) m).setHeaderTitle(item.getName());
 			((ContextMenu) m).setHeaderIcon(item.getIcon());
         }
+        
+		// Get the selected file
 		File file = item.getFile();
 
 		// If selected item is a directory
 		if (file.isDirectory()) {
 			m.removeItem(R.id.menu_send);
 		}
-
+		
 		// If selected item is a zip archive
-        if (!FileUtils.checkIfZipArchive(file)){
-        	m.removeItem(R.id.menu_extract);
-        } else {
-        	m.removeItem(R.id.menu_compress);
-        }
+		if (!FileUtils.checkIfZipArchive(file)) {
+			m.removeItem(R.id.menu_extract);
+		} else {
+			m.removeItem(R.id.menu_compress);
+		}
         
         // If we are not showing a ContextMenu dialog, remove the open action, as it's overkill.
         if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)

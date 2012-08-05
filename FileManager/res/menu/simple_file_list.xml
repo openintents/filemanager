@@ -5,8 +5,7 @@
         android:alphabeticShortcut="p"
 		android:icon="@drawable/ic_action_paste"
 		android:showAsAction="ifRoom"
-		android:title="@string/menu_paste"
-		android:visible="false" />
+		android:title="@string/menu_paste" />
     <item
         android:id="@+id/menu_create_folder"
         android:alphabeticShortcut="c"

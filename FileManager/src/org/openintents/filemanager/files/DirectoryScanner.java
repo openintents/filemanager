@@ -113,6 +113,10 @@ public class DirectoryScanner extends Thread {
 				progress++;
 				updateProgress(progress, totalCount);
 				
+				// It's the noMedia file. Raise the flag.
+				if(currentFile.getName().equalsIgnoreCase(FileUtils.NOMEDIA_FILE_NAME))
+					noMedia = true;
+				
 				//If the user doesn't want to display hidden files and the file is hidden, ignore this file.
 				if (!displayHidden && currentFile.isHidden()){
 					continue;
@@ -131,11 +135,7 @@ public class DirectoryScanner extends Thread {
 					} 
 				// It's a file. Handle it too :P
 				} else { 
-					String fileName = currentFile.getName(); 
-					
-					// It's the noMedia file. Raise the flag.
-					if(fileName.equalsIgnoreCase(FileUtils.NOMEDIA_FILE_NAME))
-						noMedia = true;
+					String fileName = currentFile.getName();
 
 					// Get the file's mimetype.
 					String mimetype = mMimeTypes.getMimeType(fileName);

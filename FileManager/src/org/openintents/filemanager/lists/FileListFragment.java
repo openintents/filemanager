@@ -46,6 +46,9 @@ public abstract class FileListFragment extends ListFragment {
 			// if (PreferenceActivity.PREFS_DISPLAYHIDDENFILES.equals(key)
 			// || PreferenceActivity.PREFS_SORTBY.equals(key)
 			// || PreferenceActivity.PREFS_ASCENDING.equals(key))
+			
+			// Prevent NullPointerException caused from this getting called after we have finish()ed the activity.
+			if(getActivity()!=null)
 				refresh();
 		}
 	};

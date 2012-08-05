@@ -22,7 +22,7 @@ import android.util.Log;
 
 public class FileManagerProvider extends ContentProvider {
 
-	static final String FILE_PROVIDER_PREFIX = "content://org.openintents.filemanager";
+	public static final String FILE_PROVIDER_PREFIX = "content://org.openintents.filemanager";
 	private static final String TAG = "FileManagerProvider";
 	public static final String AUTHORITY = "org.openintents.filemanager";
 	private MimeTypes mMimeTypes;

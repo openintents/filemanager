@@ -57,6 +57,7 @@ public class IntentFilterActivity extends FragmentActivity {
 				mFragment = new PickFileListFragment();
 				
 				// Pass extras through to the list fragment. This helps centralize the path resolving, etc.
+				args.putBoolean(FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED, intent.getAction().equals(Intent.ACTION_GET_CONTENT));
 				args.putBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY, intent.getAction().equals(FileManagerIntents.ACTION_PICK_DIRECTORY));
 				
 				setTitle(R.string.pick_title);

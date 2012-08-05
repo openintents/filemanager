@@ -253,4 +253,12 @@
     <string name="overwrite_question">Overwrite old file?</string>
     
     <string name="directory_pick">Select current directory</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copying&#8230;</string>
+    <string name="copied">Successfully copied</string>
+    <string name="copy_error">Some or all items couldn\'t be copied!</string>
+    <string name="moving">Moving&#8230;</string>
+    <string name="moved">Successfully moved</string>
+    <string name="move_error">Some or all items couldn\'t be moved!</string>
 </resources>

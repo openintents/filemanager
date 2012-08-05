@@ -9,6 +9,7 @@ import org.openintents.filemanager.R;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
 import org.openintents.filemanager.dialogs.CreateDirectoryDialog;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.util.CopyHelper;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.PathBar;
@@ -193,7 +194,12 @@ public class SimpleFileListFragment extends FileListFragment {
 			return true;
 			
 		case R.id.menu_paste:
-			((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(mPath));
+			((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(mPath), new CopyHelper.OnOperationFinishedListener() {
+				@Override
+				public void operationFinished(boolean success) {
+					refresh();
+				}
+			});
 			return true;
 			
 		default:

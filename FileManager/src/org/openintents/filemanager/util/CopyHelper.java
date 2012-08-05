@@ -6,9 +6,11 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.widget.Toast;
 
 /**
@@ -25,6 +27,7 @@ public class CopyHelper {
 	private Context mContext;
 	private List<FileHolder> mClipboard;
 	private Operation mOperation;
+	private OnOperationFinishedListener mListener;
 	
 	public CopyHelper(Context c){
 		mContext = c;
@@ -54,41 +57,15 @@ public class CopyHelper {
 		cut(tbcl);
 	}
 	
-	public boolean paste(File copyTo){
-		// Quick check just to make sure. Normally this should never be the case as the path we get is not user-generated.
-		if(!copyTo.isDirectory())
-			return false;
-		
-		boolean res;
-		
-		switch (mOperation) {
-		case COPY:
-			// TODO async this ;)
-			Toast.makeText(mContext, "COPYING", Toast.LENGTH_SHORT).show();
-			res = performCopy(copyTo);
-			Toast.makeText(mContext, "COPIED:"+res, Toast.LENGTH_SHORT).show();
-			break;
-		case CUT:
-			// TODO async this ;)
-			Toast.makeText(mContext, "MOVING", Toast.LENGTH_SHORT).show();
-			res = performCut(copyTo);
-			Toast.makeText(mContext, "MOVED:"+res, Toast.LENGTH_SHORT).show();
-			break;
-		default:
-			res = false;
-			break;
-		}
-		
-		// Clear as the references have been invalidated.
-		mClipboard.clear();
-		return res;
-	}
-	
 	/**
 	 * Call this to check whether there are file references on the clipboard. 
 	 */
 	public boolean canPaste(){
 		return mClipboard != null && !mClipboard.isEmpty();
+	}
+	
+	public Operation getOperationType(){
+		return mOperation;
 	}
 	
 	/**
@@ -185,5 +162,84 @@ public class CopyHelper {
 			res &= fh.getFile().renameTo(FileUtils.getFile(dest, fh.getName()));
 		}
 		return res;
+	}
+	
+	/**
+	 * Paste the copied/cut items.
+	 * @param copyTo Path to paste to.
+	 * @param listener Listener that will be informed on operation finish. CAN'T BE NULL.
+	 */
+	public void paste(File copyTo, OnOperationFinishedListener listener){
+		mListener = listener;
+		
+		// Quick check just to make sure. Normally this should never be the case as the path we get is not user-generated.
+		if(!copyTo.isDirectory())
+			return;
+		
+		switch (mOperation) {
+		case COPY:
+			new CopyAsync().execute(copyTo);
+			break;
+		case CUT:
+			new MoveAsync().execute(copyTo);
+			break;
+		default:
+			return;
+		}
+	}
+	
+	private class CopyAsync extends AsyncTask<File, Void, Boolean> {
+		@Override
+		protected void onPreExecute() {
+			Toast.makeText(mContext, R.string.copying, Toast.LENGTH_SHORT).show();
+		}
+		
+		@Override
+		protected Boolean doInBackground(File... params) {
+			return performCopy(params[0]);
+		}
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			Toast.makeText(mContext, result ? R.string.copied : R.string.copy_error, Toast.LENGTH_SHORT).show();
+			
+			mListener.operationFinished(result);
+			// Invalidate listener. 
+			mListener = null;
+			
+			// Clear as the references have been invalidated.
+			mClipboard.clear();
+		}
+	}
+	
+	private class MoveAsync extends AsyncTask<File, Void, Boolean> {
+		@Override
+		protected void onPreExecute() {
+			Toast.makeText(mContext, R.string.moving, Toast.LENGTH_SHORT).show();
+		}
+		
+		@Override
+		protected Boolean doInBackground(File... params) {
+			return performCut(params[0]);
+		}
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			Toast.makeText(mContext, result ? R.string.moved : R.string.move_error, Toast.LENGTH_SHORT).show();
+			
+			mListener.operationFinished(result);
+			// Invalidate listener. 
+			mListener = null;
+			
+			// Clear as the references have been invalidated.
+			mClipboard.clear();
+		}
+	}
+	
+	public interface OnOperationFinishedListener {
+		/**
+		 * @param success Whether the operation was entirely successful.
+		 */
+		public void operationFinished(boolean success);
 	}
 }

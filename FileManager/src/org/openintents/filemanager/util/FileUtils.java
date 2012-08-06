@@ -357,4 +357,8 @@ public class FileUtils {
 			Toast.makeText(c, R.string.application_not_available, Toast.LENGTH_SHORT).show();
 		}
 	}
+
+	public static String getNameWithoutExtension(File f) {
+		return f.getName().substring(0, f.getName().length() - getExtension(getUri(f).toString()).length());
+	}
 }

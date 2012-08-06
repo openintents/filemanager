@@ -227,7 +227,21 @@ public abstract class MenuUtils {
             return true;
 
         case R.id.menu_extract:
-            pickDestinationAndExtract();            
+        	File dest = new File(fItem.getFile().getParentFile(), FileUtils.getNameWithoutExtension(fItem.getFile()));
+        	dest.mkdirs();
+        	
+        	// Changed from the previous behavior.
+        	// We just extract on the current directory. If the user needs to put it in another dir, 
+        	// he/she can copy/cut the file with the new, equally easy to use way.
+        	new ExtractManager(context)
+        	.setOnExtractFinishedListener(new ExtractManager.OnExtractFinishedListener() {
+				
+				@Override
+				public void extractFinished() {
+					navigator.refresh();
+				}
+			})
+        	.extract(fItem.getFile(), dest.getAbsolutePath());            
             return true;
 			
 		case R.id.menu_bookmark:
@@ -284,16 +298,6 @@ public abstract class MenuUtils {
 		
 		shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, itl);
 		context.sendBroadcast(shortcutintent);
-    }
-
-    private static void pickDestinationAndExtract() {
-// TODO implement once pick directory fragment is done.
-//        Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
-//        intent.setData(FileUtils.getUri(mPathBar.getCurrentDirectory()));
-//        intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.extract_title));
-//        intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.extract_button));
-//        intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
-//        startActivityForResult(intent, REQUEST_CODE_EXTRACT);
     }
 	
 	/**

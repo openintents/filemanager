@@ -100,6 +100,7 @@ public class CompressManager {
         protected void onPreExecute() {
             FileOutputStream out = null;
             progressDialog = new ProgressDialog(mContext);
+            progressDialog.setCancelable(false);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             progressDialog.setMessage(mContext.getString(R.string.compressing));
             progressDialog.show();

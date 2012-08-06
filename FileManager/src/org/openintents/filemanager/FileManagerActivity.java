@@ -198,67 +198,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		switch (requestCode) {
-//		case REQUEST_CODE_MOVE:
-//			if (resultCode == RESULT_OK && data != null) {
-//				// obtain the filename
-//				File movefrom = mContextFile;
-//				File moveto = FileUtils.getFile(data.getData());
-//				if (moveto != null) {
-// TODO					if (getSelectedItemCount() == 1) {
-//					    // Move single file.
-//                        moveto = FileUtils.getFile(moveto, movefrom.getName());
-//						int toast = 0;
-//						if (movefrom.renameTo(moveto)) {
-//							// Move was successful.
-//							showDirectory(null);
-//				            if (moveto.isDirectory()) {
-//								toast = R.string.folder_moved;
-//							} else {
-//								toast = R.string.file_moved;
-//							}
-//						} else {
-//							if (moveto.isDirectory()) {
-//								toast = R.string.error_moving_folder;
-//							} else {
-//								toast = R.string.error_moving_file;
-//							}
-//						}
-//						Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
-//					} else {
-//    					// Move multiple files.
-//                        int toastMessage = 0;
-//						ArrayList<File> files = (ArrayList<File>) data.getSerializableExtra("checked_files");
-//                        for (File f: files) {
-//					        File newPath = FileUtils.getFile(moveto, f.getName());
-//                            if (!f.renameTo(newPath)) {
-//                            	showDirectory(null);
-//                                toastMessage = moveto.isDirectory()?R.string.error_moving_folder : R.string.error_moving_file;
-//                                break;
-//                            }
-//					    }
-//
-//                        if (toastMessage == 0) {
-//                            // Move was successful.
-//                        	showDirectory(null);
-//                            toastMessage = R.string.file_moved;
-//                        }
-//
-//                        Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
-//
-//                        Intent intent = getIntent();
-//                        setResult(RESULT_OK, intent);
-//                    }
-//						
-//				}				
-//				
-//			}
-//			break;
-//        
-//        case REQUEST_CODE_EXTRACT:
-//            if (resultCode == RESULT_OK && data != null) {
-//                new ExtractManager(this).extract(mContextFile, data.getData().getPath());
-//            }
-//            break;
         case REQUEST_CODE_BOOKMARKS:
             if (resultCode == RESULT_OK && data != null) {
             	mFragment.open(new FileHolder(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)), this));

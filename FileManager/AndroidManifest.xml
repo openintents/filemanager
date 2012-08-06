@@ -218,7 +218,6 @@
                 <action android:name="org.openintents.action.MULTI_SELECT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-
             </intent-filter>
         </activity>
 

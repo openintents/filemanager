@@ -1,6 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
+        android:id="@+id/menu_multiselect"
+        android:alphabeticShortcut="m"
+        android:showAsAction="never"
+        android:icon="@drawable/ic_action_mark"
+        android:title="@string/menu_multiselect" />
+    <item
         android:id="@+id/menu_paste"
         android:alphabeticShortcut="p"
 		android:icon="@drawable/ic_action_paste"

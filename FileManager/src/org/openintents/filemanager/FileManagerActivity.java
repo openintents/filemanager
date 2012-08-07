@@ -111,10 +111,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
  		MenuInflater inflater = new MenuInflater(this);
  		inflater.inflate(R.menu.main, menu);
  		
- 		if (Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
- 			menu.removeItem(R.id.menu_multiselect);
-        }
- 		
  		mDistribution.onCreateOptionsMenu(menu);
  		return true;
  	}
@@ -147,14 +143,8 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 			onSearchRequested();
 			return true;
 		
-		case R.id.menu_multiselect:
-	        Intent intent = new Intent(FileManagerIntents.ACTION_MULTI_SELECT);
-	        intent.putExtra(FileManagerIntents.EXTRA_DIR_PATH, mFragment.getPath());
-	        startActivity(intent);
-			return true;
-		
 		case R.id.menu_settings:
-			intent = new Intent(this, PreferenceActivity.class);
+			Intent intent = new Intent(this, PreferenceActivity.class);
 			startActivity(intent);
 			return true;
 		

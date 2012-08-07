@@ -7,6 +7,7 @@ import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.LegacyActionContainer;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 /**
  * Dedicated file list fragment, used for multiple selection on platforms older than Honeycomb.
+ * OnDestroy sets RESULT_OK on the parent activity so that callers refresh their lists if appropriate.
  * @author George Venios
  */
 public class MultiselectListFragment extends FileListFragment {
@@ -89,4 +91,12 @@ public class MultiselectListFragment extends FileListFragment {
 			return false;
 		}
 	}
+//	
+//	@Override
+//	public void onDestroy() {
+//		// Just inform caller that we exited, so that it refreshes itself.s
+//		getActivity().setResult(Activity.RESULT_OK);
+//		
+//		super.onDestroy();
+//	}
 }

@@ -16,8 +16,10 @@ import org.openintents.filemanager.view.PathBar;
 import org.openintents.filemanager.view.PathBar.OnDirectoryChangedListener;
 import org.openintents.intents.FileManagerIntents;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -38,6 +40,8 @@ import android.widget.Toast;
  * @author George Venios
  */
 public class SimpleFileListFragment extends FileListFragment {
+    protected static final int REQUEST_CODE_MULTISELECT = 2;
+    
 	private PathBar mPathBar;
 	private boolean mActionsEnabled = true;
 
@@ -169,6 +173,10 @@ public class SimpleFileListFragment extends FileListFragment {
 			menu.findItem(R.id.menu_media_scan_include).setVisible(false);
 			menu.findItem(R.id.menu_media_scan_exclude).setVisible(false);
 		}
+ 		
+ 		if (Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
+ 			menu.removeItem(R.id.menu_multiselect);
+        }
 	}
 
 	@Override
@@ -204,9 +212,23 @@ public class SimpleFileListFragment extends FileListFragment {
 				Toast.makeText(getActivity(), R.string.nothing_to_paste, Toast.LENGTH_LONG).show();
 			return true;
 			
+		case R.id.menu_multiselect:
+	        Intent intent = new Intent(FileManagerIntents.ACTION_MULTI_SELECT);
+	        intent.putExtra(FileManagerIntents.EXTRA_DIR_PATH, getPath());
+	        startActivityForResult(intent, REQUEST_CODE_MULTISELECT);
+			return true;
+			
 		default:
 			return false;
 		}
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// Automatically refresh to display possible changes done through the multiselect fragment.
+		if(requestCode == REQUEST_CODE_MULTISELECT)
+			refresh();
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	private void includeInMediaScan() {

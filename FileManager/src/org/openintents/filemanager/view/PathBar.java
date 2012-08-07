@@ -110,7 +110,7 @@ public class PathBar extends ViewFlipper {
 			mSwitchToManualModeButton
 					.setImageResource(R.drawable.ic_navbar_edit);
 			mSwitchToManualModeButton
-					.setBackgroundResource(R.drawable.bg_navbar_btn_right);
+					.setBackgroundResource(R.drawable.bg_navbar_btn);
 			mSwitchToManualModeButton
 					.setVisibility(View.GONE);
 
@@ -126,8 +126,7 @@ public class PathBar extends ViewFlipper {
 
 			cdToRootButton.setLayoutParams(layoutParams);
 			cdToRootButton.setId(11);
-			cdToRootButton
-					.setBackgroundResource(R.drawable.bg_navbar_btn_standard);
+			cdToRootButton.setBackgroundResource(R.drawable.bg_navbar_btn);
 			cdToRootButton.setImageResource(R.drawable.ic_navbar_home);
 			cdToRootButton.setScaleType(ScaleType.CENTER_INSIDE);
 			cdToRootButton.setOnClickListener(new View.OnClickListener() {
@@ -189,7 +188,7 @@ public class PathBar extends ViewFlipper {
 
 			mGoButton.setLayoutParams(layoutParams);
 			mGoButton.setId(20);
-			mGoButton.setBackgroundResource(R.drawable.bg_navbar_btn_right);
+			mGoButton.setBackgroundResource(R.drawable.bg_navbar_btn);
 			mGoButton.setImageResource(R.drawable.ic_navbar_accept);
 			mGoButton.setScaleType(ScaleType.CENTER_INSIDE);
 			mGoButton.setOnClickListener(new View.OnClickListener() {
@@ -217,8 +216,7 @@ public class PathBar extends ViewFlipper {
 			mPathEditText.setTextColor(Color.BLACK);
 			mPathEditText.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 			mPathEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
-			mPathEditText
-					.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			mPathEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 						@Override
 						public boolean onEditorAction(TextView v, int actionId,
 								KeyEvent event) {

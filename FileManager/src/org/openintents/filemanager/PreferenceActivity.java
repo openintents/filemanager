@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -53,8 +54,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 	@Override
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-		
-		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
 		}
 
@@ -84,7 +84,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 			}
 		});
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -95,12 +95,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-	}
-
-	static boolean getMediaScanFromPreference(Context context) {
+	public static boolean getMediaScanFromPreference(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 					.getBoolean(PREFS_MEDIASCAN, false);
 	}
@@ -108,7 +103,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 	/**
 	 * @since 2011-09-30
 	 */
-	static void setShowAllWarning(Context context, boolean enabled) {
+	public static void setShowAllWarning(Context context, boolean enabled) {
 		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putBoolean(PREFS_SHOWALLWARNING, enabled);
@@ -118,12 +113,10 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 	/**
 	 * @since 2011-09-30
 	 */
-	static boolean getShowAllWarning(Context context) {
+	public static boolean getShowAllWarning(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(PREFS_SHOWALLWARNING, true);
 	}
-	
-
 	
 	static void setDisplayHiddenFiles(Context context, boolean enabled) {
 		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
@@ -133,12 +126,12 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 	}
 
 
-	static boolean getDisplayHiddenFiles(Context context) {
+	public static boolean getDisplayHiddenFiles(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(PREFS_DISPLAYHIDDENFILES, true);
 	}
 	
-	static void setDefaultPickFilePath(Context context, String path) {
+	public static void setDefaultPickFilePath(Context context, String path) {
 		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putString(PREFS_DEFAULTPICKFILEPATH, path);
@@ -148,7 +141,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 
 	static String getDefaultPickFilePath(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
-				.getString(PREFS_DEFAULTPICKFILEPATH, null);
+				.getString(PREFS_DEFAULTPICKFILEPATH, Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/");
 	}
 	
 	
@@ -164,13 +157,13 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 	}
 	
 
-	static int getSortBy(Context context) {
+	public static int getSortBy(Context context) {
 		/* entryValues must be a string-array while we need integers */
 		return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
 								 .getString(PREFS_SORTBY, "1"));
 	}
 	
-	static boolean getAscending(Context context) {
+	public static boolean getAscending(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(PREFS_ASCENDING, true);
 	}

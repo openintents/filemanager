@@ -1,20 +1,21 @@
 package org.openintents.filemanager.compatibility;
 
-import org.openintents.filemanager.FileManagerActivity;
+import java.util.ArrayList;
+
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.lists.SimpleFileListFragment;
+import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.PathBar;
 
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.ListView;
 
 /**
  * This class helps wrap some of the platform specific logic of MultiChoiceMode of Honeycomb and up, 
- * while keeping the FileManagerActivity compliant with API levels that do not ignore {@link VerifyError}s 
- * and crash the app.
+ * while keeping the app compliant with API levels that do not ignore {@link VerifyError}s  and crash the app.
  * 
  * @author George Venios
  * 
@@ -22,7 +23,7 @@ import android.widget.ListView;
 public class FileMultiChoiceModeHelper {
 	private ListView list;
 	private PathBar pathbar;
-	private FileManagerActivity activity;
+	private SimpleFileListFragment fragment;
 
 	public void setListView(ListView list) {
 		this.list = list;
@@ -33,8 +34,8 @@ public class FileMultiChoiceModeHelper {
 		pathbar = p;
 	}
 
-	public void setContext(FileManagerActivity a) {
-		activity = a;
+	public void setContext(SimpleFileListFragment f) {
+		fragment = f;
 	}
 
 	public MultiChoiceModeListener listener = new MultiChoiceModeListener() {
@@ -43,17 +44,15 @@ public class FileMultiChoiceModeHelper {
 		public boolean onPrepareActionMode(android.view.ActionMode mode,
 				Menu menu) {
 			menu.clear();
-			MenuInflater inflater = mode.getMenuInflater();
 
 			switch (list.getCheckedItemCount()) {
 			// Single selection
 			case 1:
-				activity.fillContextMenu(list, menu, mode.getMenuInflater(),
-						getSelectedPosition());
+				MenuUtils.fillContextMenu((FileHolder) list.getAdapter().getItem(getSelectedPosition()), menu, mode.getMenuInflater(), list.getContext());
 				break;
 			// Multiple selection
 			default:
-				inflater.inflate(R.menu.multiselect, menu);
+				MenuUtils.fillMultiselectionMenu(menu, mode.getMenuInflater());
 				break;
 			}
 			return true;
@@ -61,13 +60,13 @@ public class FileMultiChoiceModeHelper {
 
 		@Override
 		public void onDestroyActionMode(android.view.ActionMode mode) {
-			pathbar.setVisibility(View.VISIBLE);
+			pathbar.setEnabled(true);
 		}
 
 		@Override
 		public boolean onCreateActionMode(android.view.ActionMode mode,
 				Menu menu) {
-			pathbar.setVisibility(View.GONE);
+			pathbar.setEnabled(false);
 			return true;
 		}
 
@@ -78,14 +77,13 @@ public class FileMultiChoiceModeHelper {
 			switch (list.getCheckedItemCount()) {
 			// Single selection
 			case 1:
-				res = activity.handleSingleSelectionAction(item,
-					getSelectedPosition());
+				res = MenuUtils.handleSingleSelectionAction(fragment, item,
+						(FileHolder) list.getAdapter().getItem(getSelectedPosition()), fragment.getActivity());
 				break;
 			// Multiple selection
 			default:
-				res = activity.handleMultipleSelectionAction(item);
+				res = MenuUtils.handleMultipleSelectionAction(fragment, item, getCheckedItems(), fragment.getActivity());
 				break;
-				
 			}
 			mode.finish();
 
@@ -96,7 +94,7 @@ public class FileMultiChoiceModeHelper {
 		public void onItemCheckedStateChanged(android.view.ActionMode mode,
 				int position, long id, boolean checked) {
 			mode.setTitle(list.getCheckedItemCount() + " "
-					+ activity.getResources().getString(R.string.selected));
+					+ fragment.getActivity().getResources().getString(R.string.selected));
 
 			// Force actions' refresh
 			mode.invalidate();
@@ -104,14 +102,23 @@ public class FileMultiChoiceModeHelper {
 	};
 
 	/**
-	 * This is error free since IconifiedTextListAdapter uses stableIds and getItemId(int) returns the int passed (the position of the item).
+	 * This is error free only when FileHolderListAdapter uses stableIds and getItemId(int) returns the int passed (the position of the item).
 	 * @return 
 	 */
 	private int getSelectedPosition() {
 		return (int) list.getCheckedItemIds()[0];
 	}
-
-	public void finish() {
-//		list.setc
+	
+	/**
+	 * @return A {@link FileHolder} list with the currently selected items.
+	 */
+	private ArrayList<FileHolder> getCheckedItems(){
+		ArrayList<FileHolder> items = new ArrayList<FileHolder>();
+		
+		for(long pos : list.getCheckedItemIds()) {
+			items.add((FileHolder) list.getAdapter().getItem((int) pos));
+		}
+		
+		return items;
 	}
 }

@@ -20,13 +20,19 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Date;
 
+import org.openintents.filemanager.R;
+import org.openintents.filemanager.files.FileHolder;
+
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
 import android.provider.MediaStore.Video;
 import android.text.format.DateFormat;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * @version 2009-07-03
@@ -39,6 +45,7 @@ public class FileUtils {
 	/** TAG for log messages. */
 	static final String TAG = "FileUtils";
 	private static final int X_OK = 1;
+	public static final String NOMEDIA_FILE_NAME = ".nomedia";
 	
 	private static boolean libLoadSuccess;
 	
@@ -199,6 +206,18 @@ public class FileUtils {
 	public static String formatSize(Context context, long sizeInBytes) {
 		return Formatter.formatFileSize(context, sizeInBytes);
 	}
+
+	public static long folderSize(File directory) {
+		long length = 0;
+		File[] files = directory.listFiles();
+		if(files != null)
+			for (File file : files)
+				if (file.isFile())
+					length += file.length();
+				else
+					length += folderSize(file);
+		return length;
+	}
 	
 	public static String formatDate(Context context, long dateTime) {
 		return DateFormat.getDateFormat(context).format(new Date(dateTime));
@@ -216,7 +235,8 @@ public class FileUtils {
      */
     public static boolean checkIfZipArchive(File f){
     	int l = f.getName().length();
-    	if(f.isFile() && f.getName().substring(l-4, l).equals(".zip"))
+    	// TODO test
+    	if(f.isFile() && FileUtils.getExtension(f.getAbsolutePath()).equals(".zip"))
     		return true;
     	return false;
     	
@@ -229,6 +249,10 @@ public class FileUtils {
 //        }
     }
 
+    /**
+     * Recursively count all files in the <code>file</code>'s subtree.
+     * @param file The root of the tree to count.
+     */
     private static void calculateFileCount(File file){
         if (!file.isDirectory()){
             fileCount++;
@@ -241,7 +265,7 @@ public class FileUtils {
             File f = new File(file.getAbsolutePath()+File.separator+fileName);
             calculateFileCount(f);
         }
-    }    
+    }
 	
 	/**
 	 * Native helper method, returns whether the current process has execute privilages.
@@ -266,4 +290,75 @@ public class FileUtils {
 	
 	// Native interface to unistd.h's access(*char, int) method.
 	public static native boolean access(String path, int mode);
+	
+	/**
+	 * @param path The path that the file is supposed to be in.
+	 * @param fileName Desired file name. This name will be modified to create a unique file if necessary.
+	 * @return A file name that is guaranteed to not exist yet. MAY RETURN NULL!
+	 */
+	public static File createUniqueCopyName(Context context, File path, String fileName) {
+		// Does that file exist?
+		File file = FileUtils.getFile(path, fileName);
+		
+		if (!file.exists()) {
+			// Nope - we can take that.
+			return file;
+		}
+		
+		// Split file's name and extension to fix internationalization issue #307
+		int fromIndex = fileName.lastIndexOf('.');
+		String extension = "";
+		if (fromIndex > 0) {
+			extension = fileName.substring(fromIndex);
+			fileName = fileName.substring(0, fromIndex);
+		}
+		
+		// Try a simple "copy of".
+		file = FileUtils.getFile(path, context.getString(R.string.copied_file_name, fileName).concat(extension));
+		
+		if (!file.exists()) {
+			// Nope - we can take that.
+			return file;
+		}
+		
+		int copyIndex = 2;
+		
+		// Well, we gotta find a unique name at some point.
+		while (copyIndex < 500) {
+			file = FileUtils.getFile(path, context.getString(R.string.copied_file_name_2, copyIndex, fileName).concat(extension));
+			
+			if (!file.exists()) {
+				// Nope - we can take that.
+				return file;
+			}
+
+			copyIndex++;
+		}
+	
+		// I GIVE UP.
+		return null;
+	}	
+	
+	/**
+	 * Attempts to open a file for viewing.
+	 * 
+	 * @param fileholder The holder of the file to open.
+	 */
+	public static void openFile(FileHolder fileholder, Context c) {
+		Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+
+		Uri data = FileUtils.getUri(fileholder.getFile());
+		String type = fileholder.getMimeType();
+		intent.setDataAndType(data, type);
+
+		try {
+			c.startActivity(intent);
+		} catch (ActivityNotFoundException e) {
+			Toast.makeText(c, R.string.application_not_available, Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	public static String getNameWithoutExtension(File f) {
+		return f.getName().substring(0, f.getName().length() - getExtension(getUri(f).toString()).length());
+	}
 }

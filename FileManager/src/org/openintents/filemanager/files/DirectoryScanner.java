@@ -103,6 +103,7 @@ public class DirectoryScanner extends Thread {
 		running = true;
 		init();
 		
+		// Scan files
 		if (files != null) {
 			for (File currentFile : files){ 
 				if (cancelled) {
@@ -157,10 +158,14 @@ public class DirectoryScanner extends Thread {
 		int sortBy = PreferenceActivity.getSortBy(context);
 		boolean ascending = PreferenceActivity.getAscending(context);
 
-		Collections.sort(listSdCard); 
-		Collections.sort(listDir, Comparators.getForDirectory(sortBy, ascending)); 
-		Collections.sort(listFile, Comparators.getForFile(sortBy, ascending)); 
-
+		// Sort lists
+		if (!cancelled) {
+			Collections.sort(listSdCard); 
+			Collections.sort(listDir, Comparators.getForDirectory(sortBy, ascending)); 
+			Collections.sort(listFile, Comparators.getForFile(sortBy, ascending)); 
+		}
+		
+		// Return lists
 		if (!cancelled) {
 			Log.v(TAG, "Sending data back to main thread");
 			

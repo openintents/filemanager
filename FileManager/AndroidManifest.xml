@@ -39,7 +39,7 @@
 
     <uses-sdk
         android:minSdkVersion="4"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="16" />
     <!--
              If targetSdkVersion is increased from 4 to 5 or higher, 
         	the following needs to be adjusted:

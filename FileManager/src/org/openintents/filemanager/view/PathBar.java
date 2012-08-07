@@ -276,21 +276,20 @@ public class PathBar extends ViewFlipper {
 	/**
 	 * Use instead of {@link #cd(String)} when in {@link Mode#MANUAL_INPUT}.
 	 * 
-	 * @param path
-	 *            The path to cd() to.
+	 * @param path The path to cd() to.
 	 * @return true if the cd succeeded.
 	 */
 	private boolean manualInputCd(String path) {
-		if (!cd(path)) {
-			Log.w(TAG, "Input path does not exist or is not a folder!");
-			return false;
-		} else {
+		if (cd(path)) {
 			// if cd() successful, hide the keyboard
 			InputMethodManager imm = (InputMethodManager) getContext()
 					.getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.hideSoftInputFromWindow(getWindowToken(), 0);
 			switchToStandardInput();
 			return true;
+		} else {
+			Log.w(TAG, "Input path does not exist or is not a folder!");
+			return false;
 		}
 	}
 
@@ -332,7 +331,7 @@ public class PathBar extends ViewFlipper {
 			mPathEditText.setText(file.getAbsolutePath());
 			
 			res = true;
-		}	
+		}
 
 		mDirectoryChangedListener.directoryChanged(file);
 

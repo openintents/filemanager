@@ -66,7 +66,7 @@ public class SimpleFileListFragment extends FileListFragment {
 
 			@Override
 			public void directoryChanged(File newCurrentDir) {
-				openDir(new FileHolder(newCurrentDir, getActivity()));
+				open(new FileHolder(newCurrentDir, getActivity()));
 			}
 		});
 		

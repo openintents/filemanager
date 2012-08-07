@@ -4,47 +4,42 @@
 
     <!-- We only show this programmatically if we need to pick a directory. Other than that, we let the list item click indicate selection. -->
     <LinearLayout
-        android:layout_alignParentBottom="true"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/buttonBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:divider="?android:attr/dividerHorizontal"
+        android:dividerPadding="0dip"
+        android:orientation="vertical"
+        android:showDividers="beginning"
+        android:visibility="gone" >
+
+    <LinearLayout
         style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:measureWithLargestChild="true"
-        android:orientation="horizontal"
-        android:paddingLeft="2dip"
-        android:paddingRight="2dip"
-        android:paddingTop="4dip"
-        android:visibility="gone" >
+        android:orientation="horizontal" >
 
-        <LinearLayout
-            android:id="@+id/leftSpacer"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:orientation="horizontal"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/button"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:maxLines="2"
-            android:text="@string/about_copyright" />
-
-        <LinearLayout
-            android:id="@+id/rightSpacer"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:orientation="horizontal"
-            android:visibility="gone" />
+            <Button
+                android:id="@+id/button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:text="@string/directory_pick"
+                android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <include
         android:layout_above="@id/buttonBar"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         layout="@layout/filelist_browse" />
 
 </RelativeLayout>

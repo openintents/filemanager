@@ -36,14 +36,17 @@ public class PickFileListFragment extends SimpleFileListFragment{
 		super.onViewCreated(view, savedInstanceState);
 		
 		if(getArguments().getBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY)){
-			Button pickButton = (Button) view.findViewById(R.id.button);
-			pickButton.setVisibility(View.VISIBLE);
-			pickButton.setOnClickListener(new View.OnClickListener() {
+			view.findViewById(R.id.buttonBar).setVisibility(View.VISIBLE);
+			
+			Button button = (Button) view.findViewById(R.id.button);
+			button.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					pickFileOrFolder(new File(getPath()), false);
 				}
 			});
+			if(getArguments().containsKey(FileManagerIntents.EXTRA_BUTTON_TEXT))
+				button.setText(getArguments().getString(FileManagerIntents.EXTRA_BUTTON_TEXT));
 		}
 	}
 	

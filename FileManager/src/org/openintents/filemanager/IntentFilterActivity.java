@@ -49,6 +49,11 @@ public class IntentFilterActivity extends FragmentActivity {
 		}
 		// Item pickers
 		else if(intent.getAction().equals(FileManagerIntents.ACTION_PICK_DIRECTORY) || intent.getAction().equals(FileManagerIntents.ACTION_PICK_FILE) || intent.getAction().equals(Intent.ACTION_GET_CONTENT)){
+			if(intent.hasExtra(FileManagerIntents.EXTRA_TITLE))
+				setTitle(intent.getStringExtra(FileManagerIntents.EXTRA_TITLE));
+			else
+				setTitle(R.string.pick_title);
+			
 			String tag = "PickFileListFragment";
 			mFragment = (PickFileListFragment) getSupportFragmentManager().findFragmentByTag(tag);
 			
@@ -60,7 +65,6 @@ public class IntentFilterActivity extends FragmentActivity {
 				args.putBoolean(FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED, intent.getAction().equals(Intent.ACTION_GET_CONTENT));
 				args.putBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY, intent.getAction().equals(FileManagerIntents.ACTION_PICK_DIRECTORY));
 				
-				setTitle(R.string.pick_title);
 				
 				mFragment.setArguments(args);
 				getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, tag).commit();

@@ -22,8 +22,6 @@ import android.widget.Toast;
  * @author George Venios
  */
 public class MultiselectListFragment extends FileListFragment {
-	private static final String INSTANCE_STATE_LIST_SELECTION = "list_selection";
-	
 	private LegacyActionContainer mLegacyActionContainer;
 	
 	@Override

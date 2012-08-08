@@ -111,8 +111,11 @@ public class SimpleFileListFragment extends FileListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		FileHolder item = (FileHolder) mAdapter.getItem(position);
-
-		open(item);
+		
+		if(mPathBar == null)
+			open(item);
+		else
+			mPathBar.cd(item.getFile());
 	}
 
 	/**
@@ -125,12 +128,7 @@ public class SimpleFileListFragment extends FileListFragment {
 			return;
 
 		if (f.getFile().isDirectory()) {
-			if (mPathBar != null)
-				// Pass through PathBar
-				mPathBar.cd(f.getFile());
-			else
-				// Directly cd
-				openDir(f);
+			openDir(f);
 		} else if (f.getFile().isFile()) {
 			openFile(f);
 		}	

@@ -11,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class FileHolderListAdapter extends BaseAdapter {
 	private List<FileHolder> mItems;
 	private LayoutInflater mInflater;
 	private Context mContext;
+	private ListView mList;
 	private int mItemLayoutId = R.layout.item_filelist;
 	
 	// Thumbnail specific
@@ -29,6 +31,10 @@ public class FileHolderListAdapter extends BaseAdapter {
 		mContext = c;
 		
 		mThumbnailLoader = new ThumbnailLoader(c);
+	}
+	
+	public void setListView(ListView list){
+		mList = list;
 	}
 	
 	public Context getContext(){
@@ -98,9 +104,9 @@ public class FileHolderListAdapter extends BaseAdapter {
 		// Hide directories' size as it's irrelevant if we can't recursively find it.
 		holder.tertiaryInfo.setText(item.getFile().isDirectory()? "" : item.getFormattedSize(mContext, false));
         
-        if(!scrolling && item.getFile().isFile() && !item.getMimeType().equals("video/mpeg")){
+        if(shouldLoadIcon(item)){
       	  if(mThumbnailLoader != null) {
-      		  mThumbnailLoader.loadImage(item.getFile().getParent(), item, holder.icon);
+      		  mThumbnailLoader.loadImage(item, holder.icon);
       	  }
         }
         
@@ -113,5 +119,27 @@ public class FileHolderListAdapter extends BaseAdapter {
 	 */
 	public void setScrolling(boolean isScrolling){
 		scrolling = isScrolling;
+		if(!isScrolling)
+			reloadIconsOfVisibleChildren();
+	}
+	
+	/**
+	 * Call this to reload visible items' thumbnails. Must have set a {@link ListView} through {@link #setListView(ListView)} for this to work.
+	 */
+	private void reloadIconsOfVisibleChildren(){
+		if(!scrolling && mList != null){
+			int start = mList.getFirstVisiblePosition();
+			FileHolder item;
+			for(int i = start; i < mList.getLastVisiblePosition() + 1; i++){
+				item = mItems.get(i);
+				
+				if(shouldLoadIcon(item))
+					mThumbnailLoader.loadImage(item, ((ViewHolder) mList.getChildAt(i - start).getTag()).icon);
+			}
+		}
+	}
+	
+	private boolean shouldLoadIcon(FileHolder item){
+		return !scrolling && item.getFile().isFile() && !item.getMimeType().equals("video/mpeg");
 	}
 }

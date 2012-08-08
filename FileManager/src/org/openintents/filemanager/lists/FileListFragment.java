@@ -100,12 +100,12 @@ public abstract class FileListFragment extends ListFragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// Set list properties
+		mAdapter.setListView(getListView());
 		getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				if (scrollState == OnScrollListener.SCROLL_STATE_IDLE) {
 					mAdapter.setScrolling(false);
-					mAdapter.notifyDataSetChanged();
 				} else
 					mAdapter.setScrolling(true);
 			}

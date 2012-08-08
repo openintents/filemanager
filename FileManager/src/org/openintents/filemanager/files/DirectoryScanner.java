@@ -48,7 +48,7 @@ public class DirectoryScanner extends Thread {
 	private int totalCount, progress;
 	private long operationStartTime;
 	private boolean noMedia, displayHidden;
-	private Drawable sdIcon, folderIcon;
+	private Drawable sdIcon, folderIcon, genericFileIcon;
 	private File[] files;
 	/** We keep all these three instead of one, so that sorting is done separately on each. */
 	private List<FileHolder> listDir, listFile, listSdCard;
@@ -81,6 +81,7 @@ public class DirectoryScanner extends Thread {
 		displayHidden = PreferenceActivity.getDisplayHiddenFiles(context);
 		sdIcon = context.getResources().getDrawable(R.drawable.ic_launcher_sdcard);
 		folderIcon = context.getResources().getDrawable(R.drawable.ic_launcher_folder);
+		genericFileIcon = context.getResources().getDrawable(R.drawable.ic_launcher_file);
 		
 		operationStartTime = SystemClock.uptimeMillis();
 		
@@ -148,7 +149,7 @@ public class DirectoryScanner extends Thread {
 									mFilterFiletype == null);
 					if (!mDirectoriesOnly && (ext_allow || mime_allow)) {
 						// Take advantage of the already parsed mimeType to set a specific icon. 
-						listFile.add(new FileHolder(currentFile, mimetype, context));
+						listFile.add(new FileHolder(currentFile, mimetype, genericFileIcon, context));
 					}
 				} 
 			}

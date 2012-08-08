@@ -97,12 +97,10 @@ public class ThumbnailLoader {
 	}
 	
 	/**
-	 * 
-	 * @param parentFile The current directory.
 	 * @param holder The IconifiedText container.
 	 * @param imageView The ImageView from the IconifiedTextView.
 	 */
-	public void loadImage(String parentFile, FileHolder holder, ImageView imageView) {
+	public void loadImage(FileHolder holder, ImageView imageView) {
 		if(!cancel && !mBlacklist.contains(holder.getName())){
 			// We reset the caches after every 30 or so seconds of inactivity for memory efficiency.
 			resetPurgeTimer();

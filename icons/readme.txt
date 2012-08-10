@@ -20,3 +20,7 @@ ic_menu_folder: Darriel (GCI task 2011)
 ic_menu_multiselect: Rado Nikolov (GCI task 2011, issue 430)
 ic_menu_scan_exclude: Chickenbellyfinn (GCI task 2011/12, issue 466)
 ic_menu_scan_include: Chickenbellyfinn (GCI task 2011/12, issue 466)
+Icons of redesign/*: George Venios (GSoC 2012, OIFM UI/UX redesign)
+
+
+NOTICE: Action icons used after the redesign can be found in "Icons of redesign"

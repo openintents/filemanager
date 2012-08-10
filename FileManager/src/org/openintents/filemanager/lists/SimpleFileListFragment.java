@@ -44,7 +44,7 @@ public class SimpleFileListFragment extends FileListFragment {
     
 	private PathBar mPathBar;
 	private boolean mActionsEnabled = true;
-
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -112,6 +112,14 @@ public class SimpleFileListFragment extends FileListFragment {
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		FileHolder item = (FileHolder) mAdapter.getItem(position);
 		
+		openInformingPathBar(item);
+	}
+
+	/**
+	 * Use this to open files and folders using this fragment. Appropriately handles pathbar updates.
+	 * @param item The dir/file to open.
+	 */
+	public void openInformingPathBar(FileHolder item) {
 		if(mPathBar == null)
 			open(item);
 		else
@@ -123,7 +131,7 @@ public class SimpleFileListFragment extends FileListFragment {
 	 * 
 	 * @param f If same as current, does nothing.
 	 */
-	public void open(FileHolder f) {
+	private void open(FileHolder f) {
 		if (!f.getFile().exists())
 			return;
 

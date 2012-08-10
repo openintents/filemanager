@@ -47,7 +47,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	
 	@Override
 	protected void onNewIntent(Intent intent) {
-		mFragment.open(new FileHolder(FileUtils.getFile(intent.getData()), this));
+		mFragment.openInformingPathBar(new FileHolder(FileUtils.getFile(intent.getData()), this));
 	}
 	
 	/**
@@ -103,6 +103,9 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 				args.putString(FileManagerIntents.EXTRA_DIR_PATH, data.toString());
 			mFragment.setArguments(args);
 			getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, FRAGMENT_TAG).commit();
+		}
+		else {
+			mFragment.openInformingPathBar(new FileHolder(new File(data.toString()), this));
 		}
 	}
 
@@ -190,7 +193,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		switch (requestCode) {
         case REQUEST_CODE_BOOKMARKS:
             if (resultCode == RESULT_OK && data != null) {
-            	mFragment.open(new FileHolder(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)), this));
+            	mFragment.openInformingPathBar(new FileHolder(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)), this));
             }
             break;
         default:

@@ -171,7 +171,7 @@ public abstract class MenuUtils {
 		
 		switch (mItem.getItemId()) {
 		case R.id.menu_open:
-			navigator.open(fItem);
+			navigator.openInformingPathBar(fItem);
 			return true;
 			
 		case R.id.menu_create_shortcut:

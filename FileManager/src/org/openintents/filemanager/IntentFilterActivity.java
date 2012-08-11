@@ -1,14 +1,18 @@
 package org.openintents.filemanager;
 
+import java.io.File;
+
 import org.openintents.filemanager.lists.FileListFragment;
 import org.openintents.filemanager.lists.MultiselectListFragment;
 import org.openintents.filemanager.lists.PickFileListFragment;
+import org.openintents.filemanager.util.FileUtils;
 import org.openintents.intents.FileManagerIntents;
 
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 
@@ -25,8 +29,21 @@ public class IntentFilterActivity extends FragmentActivity {
 		if(args == null)
 			args = new Bundle();
 		// Add a path if path is not specified in this activity's call
-		if(!args.containsKey(FileManagerIntents.EXTRA_DIR_PATH))
-			args.putString(FileManagerIntents.EXTRA_DIR_PATH, PreferenceActivity.getDefaultPickFilePath(this));
+		if(!args.containsKey(FileManagerIntents.EXTRA_DIR_PATH)){
+			
+			File defaultFile = new File(PreferenceActivity.getDefaultPickFilePath(this));
+			if(!defaultFile.exists()) {
+				PreferenceActivity.setDefaultPickFilePath(this, Environment.getExternalStorageDirectory().getAbsolutePath());
+				defaultFile = new File(PreferenceActivity.getDefaultPickFilePath(this));
+			}
+			args.putString(FileManagerIntents.EXTRA_DIR_PATH, defaultFile.getAbsolutePath());
+		}
+		
+		// Add a path if a path has been specified in this activity's call. 
+		File data = FileUtils.getFile(getIntent().getData());
+		if(data!=null && !data.isFile())
+			args.putString(FileManagerIntents.EXTRA_DIR_PATH, data.getAbsolutePath());
+			
 		// Add a mimetype filter if it was specified through the type of the intent.
 		if(!args.containsKey(FileManagerIntents.EXTRA_FILTER_MIMETYPE) && intent.getType() != null)
 			args.putString(FileManagerIntents.EXTRA_FILTER_MIMETYPE, intent.getType());

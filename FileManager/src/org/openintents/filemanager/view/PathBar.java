@@ -221,9 +221,7 @@ public class PathBar extends ViewFlipper {
 						public boolean onEditorAction(TextView v, int actionId,
 								KeyEvent event) {
 							if (actionId == EditorInfo.IME_ACTION_GO
-									|| (event.getAction() == KeyEvent.ACTION_UP && (event
-											.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER || event
-											.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
+									|| (event.getAction() == KeyEvent.ACTION_DOWN && (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER || event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
 								if (manualInputCd(v.getText().toString()))
 									// Since we have successfully navigated.
 									return true;

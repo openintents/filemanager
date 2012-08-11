@@ -105,7 +105,9 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 			getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, FRAGMENT_TAG).commit();
 		}
 		else {
-			mFragment.openInformingPathBar(new FileHolder(new File(data.toString()), this));
+			// If we didn't rotate and data wasn't null.
+			if(icicle == null && data!=null)
+				mFragment.openInformingPathBar(new FileHolder(new File(data.toString()), this));
 		}
 	}
 

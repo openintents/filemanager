@@ -4,35 +4,18 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
-import org.openintents.filemanager.R;
 import org.openintents.filemanager.util.FileUtils;
-import org.openintents.filemanager.util.ImageUtils;
 import org.openintents.filemanager.util.MimeTypes;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
-import android.content.res.Resources.NotFoundException;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.format.Formatter;
-import android.util.TypedValue;
 
 public class FileHolder implements Parcelable, Comparable<FileHolder> {
-	private static final String MIME_APK = "application/vnd.android.package-archive";
 	
 	private File mFile;
 	private Drawable mIcon;
@@ -91,16 +74,6 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	 * @return The icon.
 	 */
 	public Drawable getIcon(){
-		Resources res = mContext.getResources();
-		if(mIcon == null){
-			if(mFile.isDirectory())
-				mIcon = new BitmapDrawable(res, BitmapFactory.decodeResource(res, R.drawable.ic_launcher_folder));
-			else if (mFile.getAbsolutePath().equals(Environment.getExternalStorageDirectory().getAbsolutePath()))
-				mIcon = new BitmapDrawable(res, BitmapFactory.decodeResource(res, R.drawable.ic_launcher_sdcard));
-			else {
-				mIcon = getScaledDrawableForMimetype(mContext);
-			}
-		}
 		return mIcon;
 	}
 
@@ -167,89 +140,4 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 		return mFile.compareTo(another.getFile());
 	}
 
-	/**
-	 * Return the Drawable that is associated with a specific mime type for the VIEW action.
-	 */
-	private Drawable getDrawableForMimetype(Context context) {
-		if (mMimeType == null) {
-			return null;
-		}
-
-		PackageManager pm = context.getPackageManager();
-
-		// Returns the icon packaged in files with the .apk MIME type.
-		if (mMimeType.equals(MIME_APK)) {
-			String path = mFile.getPath();
-			PackageInfo pInfo = pm.getPackageArchiveInfo(path,
-					PackageManager.GET_ACTIVITIES);
-			if (pInfo != null) {
-				ApplicationInfo aInfo = pInfo.applicationInfo;
-
-				// Bug in SDK versions >= 8. See here:
-				// http://code.google.com/p/android/issues/detail?id=9151
-				if (Build.VERSION.SDK_INT >= 8) {
-					aInfo.sourceDir = path;
-					aInfo.publicSourceDir = path;
-				}
-
-				return aInfo.loadIcon(pm);
-			}
-		}
-
-		int iconResource = MimeTypes.newInstance(context).getIcon(mMimeType);
-		Drawable ret = null;
-		if (iconResource > 0) {
-			try {
-				ret = pm.getResourcesForApplication(context.getPackageName())
-						.getDrawable(iconResource);
-			} catch (NotFoundException e) {
-			} catch (NameNotFoundException e) {
-			}
-		}
-
-		if (ret != null) {
-			return ret;
-		}
-
-		Uri data = FileUtils.getUri(mFile);
-
-		Intent intent = new Intent(Intent.ACTION_VIEW);
-		// intent.setType(mimetype);
-
-		// Let's probe the intent exactly in the same way as the VIEW action
-		// is performed in FileManagerActivity.openFile(..)
-		intent.setDataAndType(data, mMimeType);
-
-		final List<ResolveInfo> lri = pm.queryIntentActivities(intent,
-				PackageManager.MATCH_DEFAULT_ONLY);
-
-		if (lri != null && lri.size() > 0) {
-			// Log.i(TAG, "lri.size()" + lri.size());
-
-			// return first element
-			int index = 0;
-
-			// Actually first element should be "best match",
-			// but it seems that more recently installed applications
-			// could be even better match.
-			index = lri.size() - 1;
-
-			final ResolveInfo ri = lri.get(index);
-			return ri.loadIcon(pm);
-		}
-
-		return null;
-	}
-	
-	private Drawable getScaledDrawableForMimetype(Context context){
-		Drawable d = getDrawableForMimetype(context);
-		
-		if (d == null) {
-			return new BitmapDrawable(context.getResources(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_sdcard));
-		} else {
-			int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, context.getResources().getDisplayMetrics());
-			// Resizing image.
-			return ImageUtils.resizeDrawable(d, size, size);
-		}
-	}
 }

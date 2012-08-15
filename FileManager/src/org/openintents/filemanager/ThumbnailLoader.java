@@ -126,6 +126,7 @@ public class ThumbnailLoader {
 				imageView.setImageBitmap(bitmap);
 				holder.setIcon(new BitmapDrawable(bitmap));
 			} else {
+				// Give a drawable based on mimetype. Generic file drawable for undefined types.
 				if(holder.getFile().isFile())
 					holder.setIcon(getScaledDrawableForMimetype(holder, mContext));
 					
@@ -304,12 +305,24 @@ public class ThumbnailLoader {
 		public void run() {
 			if(!cancel){
 				Bitmap bitmap = decodeFile(thumb.holder.getFile());
-				if(bitmap != null && !cancel){
-					// Bitmap was successfully decoded so we place it in the hard cache.
-					mHardBitmapCache.put(thumb.holder.getName(), bitmap);
-					Activity activity = ((Activity) mContext);
-					activity.runOnUiThread(new ThumbnailUpdater(bitmap, thumb));
-					thumb = null;
+				
+				Activity activity = ((Activity) mContext);
+				
+				if(!cancel){
+					if(bitmap != null){
+						// Bitmap was successfully decoded so we place it in the hard cache.
+						mHardBitmapCache.put(thumb.holder.getName(), bitmap);
+						activity.runOnUiThread(new ThumbnailUpdater(bitmap, thumb));
+					}
+					else {
+						activity.runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								thumb.imageView.setImageDrawable(thumb.holder.getIcon());
+								thumb = null;
+							}
+						});
+					}
 				}
 			}
 		}
@@ -334,13 +347,14 @@ public class ThumbnailLoader {
 				thumb.imageView.setImageBitmap(bitmap);
 				thumb.holder.setIcon(new BitmapDrawable(bitmap));
 			}
+			thumb = null;
 		}
 	}
 	private Drawable getScaledDrawableForMimetype(FileHolder holder, Context context){
 		Drawable d = getDrawableForMimetype(holder, context);
 		
 		if (d == null) {
-			return new BitmapDrawable(context.getResources(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_sdcard));
+			return new BitmapDrawable(context.getResources(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_file));
 		} else {
 			int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, context.getResources().getDisplayMetrics());
 			// Resizing image.

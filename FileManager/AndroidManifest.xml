@@ -87,7 +87,7 @@
             <meta-data android:name="android.app.default_searchable"
                    android:value=".search.SearchableActivity" />
         </activity>
-        <activity android:name=".bookmarks.BookmarkListActivity" >
+        <activity android:name=".bookmarks.BookmarkListActivity" android:label="@string/bookmarks" >
         </activity>
         <activity
             android:name=".PreferenceActivity"

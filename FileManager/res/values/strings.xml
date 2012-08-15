@@ -166,6 +166,7 @@
     <string name="bookmark_empty">No bookmarks added.</string>
     <string name="bookmark_added">Bookmark added</string>
     <string name="bookmark_already_exists">This file is already bookmarked</string>
+    <string name="bookmarks">Bookmarks</string>
     
     <!-- Search related -->
     <string name="search_hint">Search files</string>

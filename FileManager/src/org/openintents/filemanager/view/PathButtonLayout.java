@@ -7,6 +7,7 @@ import org.openintents.filemanager.R;
 import org.openintents.filemanager.view.PathBar.Mode;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -39,10 +40,16 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 		this.setOrientation(LinearLayout.HORIZONTAL);
 		this.setOnLongClickListener(this);
 
+		mPathDrawables.put(Environment.getExternalStorageDirectory().getAbsolutePath(), R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/sdcard", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard-ext", R.drawable.ic_navbar_sdcard);
+		mPathDrawables.put("/mnt/sdcard0", R.drawable.ic_navbar_sdcard);
+		mPathDrawables.put("/mnt/sdcard1", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/mnt/sdcard2", R.drawable.ic_navbar_sdcard);
+		mPathDrawables.put("/storage/sdcard0", R.drawable.ic_navbar_sdcard);
+		mPathDrawables.put("/storage/sdcard1", R.drawable.ic_navbar_sdcard);
+		mPathDrawables.put("/storage/sdcard2", R.drawable.ic_navbar_sdcard);
 		mPathDrawables.put("/", R.drawable.ic_navbar_home);
 	}
 
@@ -212,10 +219,8 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 		/**
 		 * Creates a Button or ImageButton according to the path. e.g. {@code if(file.getAbsolutePath() == '/')}, it should return an ImageButton with the home drawable on it.
 		 * 
-		 * @param file
-		 *            The directory this button will represent.
-		 * @param navbar
-		 *            The {@link PathBar} which will contain the created buttons.
+		 * @param file The directory this button will represent.
+		 * @param navbar The {@link PathBar} which will contain the created buttons.
 		 * @return An {@link ImageButton} or a {@link Button}.
 		 */
 		private static View newButton(File file, final PathBar navbar) {
@@ -223,16 +228,13 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 
 			if (mPathDrawables.containsKey(file.getAbsolutePath())) {
 				btn = new ImageButton(navbar.getContext());
-				((ImageButton) btn).setImageResource(mPathDrawables.get(file
-						.getAbsolutePath()));
-				((ImageButton) btn).setAdjustViewBounds(true);
+				((ImageButton) btn).setImageResource(mPathDrawables.get(file.getAbsolutePath()));
 			} else {
 				btn = new Button(navbar.getContext());
 
 				((Button) btn).setText(file.getName());
 				((Button) btn).setMaxLines(1);
-				((Button) btn).setTextColor(navbar.getResources().getColor(
-						R.color.navbar_details));
+				((Button) btn).setTextColor(navbar.getResources().getColor(R.color.navbar_details));
 				((Button) btn).setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
 			}
 
@@ -252,7 +254,7 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 				}
 			});
 			btn.setOnLongClickListener(navbar.getPathButtonLayout());
-			btn.setBackgroundResource(R.drawable.bg_navbar_btn_standard);
+			btn.setBackgroundResource(R.drawable.bg_navbar_btn);
 
 			return btn;
 		}

@@ -11,12 +11,11 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
-import org.openintents.intents.FileManagerIntents;
+import org.openintents.filemanager.files.FileHolder;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -28,36 +27,36 @@ public class CompressManager {
     static final String TAG = "CompressManager";
 
     private static final int BUFFER_SIZE = 1024;
-    private FileManagerActivity activity;
+    private Context mContext;
     private ProgressDialog progressDialog;
     private int fileCount;
     private String fileOut;
 	private OnCompressFinishedListener onCompressFinishedListener = null;
 
-    public CompressManager(FileManagerActivity activity) {
-        this.activity = activity;
+    public CompressManager(Context context) {
+        mContext = context;
     }
 
-    public void compress(File f, String out) {
-        List <File>list = new ArrayList<File>();
+    public void compress(FileHolder f, String out) {
+        List<FileHolder> list = new ArrayList<FileHolder>(1);
         list.add(f);
         compress(list, out);
     }    
 
-    public void compress(List<File> list, String out) {
+    public void compress(List<FileHolder> list, String out) {
         if (list.isEmpty()){
             Log.v(TAG, "couldn't compress empty file list");
             return;
         }
-        this.fileOut = list.get(0).getParent()+File.separator+out;
+        this.fileOut = list.get(0).getFile().getParent() + File.separator + out;
         fileCount = 0;
-        for (File f: list){
-            fileCount += FileUtils.getFileCount(f);
+        for (FileHolder f: list){
+            fileCount += FileUtils.getFileCount(f.getFile());
         }
         new CompressTask().execute(list);
     }
 
-    private class CompressTask extends AsyncTask<Object, Void, Integer> {
+    private class CompressTask extends AsyncTask<List<FileHolder>, Void, Integer> {
         private static final int success = 0;
         private static final int error = 1;
         private ZipOutputStream zos;
@@ -100,9 +99,10 @@ public class CompressManager {
         @Override
         protected void onPreExecute() {
             FileOutputStream out = null;
-            progressDialog = new ProgressDialog(activity);
+            progressDialog = new ProgressDialog(mContext);
+            progressDialog.setCancelable(false);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progressDialog.setMessage(activity.getResources().getString(R.string.compressing));
+            progressDialog.setMessage(mContext.getString(R.string.compressing));
             progressDialog.show();
             progressDialog.setProgress(0);
             try {
@@ -114,14 +114,14 @@ public class CompressManager {
         }
 
         @Override
-        protected Integer doInBackground(Object... params) {
+        protected Integer doInBackground(List<FileHolder>... params) {
             if (zos == null){
                 return error;
             }
-            List<File> list = (List<File>) params[0]; 
-            for (File file:list){
+            List<FileHolder> list = params[0]; 
+            for (FileHolder file : list){
                 try {
-                    compressFile(file, "");
+                    compressFile(file.getFile(), "");
                 } catch (IOException e) {
                     Log.e(TAG, "Error while compressing", e);
                     return error;
@@ -140,17 +140,9 @@ public class CompressManager {
             }
             progressDialog.cancel();
             if (result == error){
-                Toast.makeText(activity, R.string.compressing_error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, R.string.compressing_error, Toast.LENGTH_SHORT).show();
             } else if (result == success){
-                Toast.makeText(activity, R.string.compressing_success, Toast.LENGTH_SHORT).show();
-            }
-
-            if (activity.getIntent().getAction().equals(FileManagerIntents.ACTION_MULTI_SELECT)){
-                Intent intent = activity.getIntent();
-                activity.setResult(activity.RESULT_OK, intent);
-                activity.finish();
-            } else {
-                activity.showDirectory(null);
+                Toast.makeText(mContext, R.string.compressing_success, Toast.LENGTH_SHORT).show();
             }
             
             if(onCompressFinishedListener != null)

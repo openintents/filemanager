@@ -75,10 +75,8 @@ public class SearchSuggestionsProvider extends ContentProvider {
 		
 		searcher.dropPreviousResults();
 		
-		System.out.println("SEARCH STARTED");
 		searcher.startClock(MAX_NANOS);
 		searcher.search(Environment.getExternalStorageDirectory());
-		System.out.println("SEARCH ended");
 		
 		MatrixCursor cursor = new MatrixCursor(new String[] {
 				SearchManager.SUGGEST_COLUMN_ICON_1,

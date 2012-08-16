@@ -1,16 +1,21 @@
 package org.openintents.filemanager.util;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
-import org.openintents.filemanager.FileManagerActivity;
-import org.openintents.filemanager.R;
-
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+
+import org.openintents.filemanager.R;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
 public class ExtractManager {
     /**
@@ -19,11 +24,12 @@ public class ExtractManager {
     static final String TAG = "ExtractManager";
 
     private static final int BUFFER_SIZE = 1024;
-    private FileManagerActivity activity;
+    private Context context;
     private ProgressDialog progressDialog;
+	private OnExtractFinishedListener onExtractFinishedListener = null;
 
-    public ExtractManager(FileManagerActivity activity) {
-        this.activity = activity;
+    public ExtractManager(Context context) {
+        this.context = context;
     }
 
     public void extract(File f, String destinationPath) {
@@ -96,9 +102,10 @@ public class ExtractManager {
 
         @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(activity);
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setCancelable(false);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progressDialog.setMessage(activity.getResources().getString(R.string.extracting));
+            progressDialog.setMessage(context.getResources().getString(R.string.extracting));
             progressDialog.show();
             progressDialog.setProgress(0);
             isExtracted = 0;
@@ -116,11 +123,22 @@ public class ExtractManager {
         protected void onPostExecute(Integer result) {
             progressDialog.cancel();
             if (result == error){
-                Toast.makeText(activity, R.string.extracting_error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.extracting_error, Toast.LENGTH_SHORT).show();
             } else if (result == success){
-                Toast.makeText(activity, R.string.extracting_success, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.extracting_success, Toast.LENGTH_SHORT).show();
             }
-            activity.showDirectory(null);
+            
+            if(onExtractFinishedListener != null)
+            	onExtractFinishedListener.extractFinished();
         }
     }
+    
+    public interface OnExtractFinishedListener{
+    	public abstract void extractFinished();
+    }
+
+	public ExtractManager setOnExtractFinishedListener(OnExtractFinishedListener listener) {
+		this.onExtractFinishedListener = listener;
+		return this;
+	}
 }

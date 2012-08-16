@@ -37,7 +37,7 @@ public class SearchCore {
 	private FilenameFilter filter = new FilenameFilter() {
 		@Override
 		public boolean accept(File dir, String filename) {
-			return mQuery == null ? false : filename.contains(mQuery);
+			return mQuery == null ? false : filename.toLowerCase().contains(mQuery.toLowerCase());
 		}
 	};
 

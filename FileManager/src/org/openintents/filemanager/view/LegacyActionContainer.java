@@ -1,6 +1,5 @@
 package org.openintents.filemanager.view;
 
-import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
 
 import android.content.Context;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 
 public class LegacyActionContainer extends LinearLayout {
 	private Menu menu = null;
-	private FileManagerActivity activity;
+	private OnActionSelectedListener mListener;
 
 	public LegacyActionContainer(Context context) {
 		super(context);
@@ -34,13 +33,13 @@ public class LegacyActionContainer extends LinearLayout {
 	 */
 	private void init() {
 		setOrientation(HORIZONTAL);
+		setGravity(Gravity.CENTER_VERTICAL);
 	}
 
 	/**
 	 * Set the menu resource which contains the actions this view will display.
 	 * 
-	 * @param menuRes
-	 *            The menu resource id.
+	 * @param menuRes The menu resource id.
 	 */
 	public void setMenuResource(int menuRes) {
 		removeAllViews();
@@ -82,7 +81,8 @@ public class LegacyActionContainer extends LinearLayout {
 			itemView.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					activity.handleMultipleSelectionAction((MenuItem) v.getTag());
+					if(mListener != null)
+						mListener.actionSelected((MenuItem) v.getTag());
 				}
 			});
 			addView(itemView);
@@ -92,7 +92,11 @@ public class LegacyActionContainer extends LinearLayout {
 	/**
 	 * Set the activity member that contains the multiselect actions.
 	 */
-	public void setFileManagerActivity(FileManagerActivity act) {
-		this.activity = act;
+	public void setOnActionSelectedListener(OnActionSelectedListener listener) {
+		mListener = listener;
+	}
+	
+	public interface OnActionSelectedListener {
+		public void actionSelected(MenuItem item);
 	}
 }

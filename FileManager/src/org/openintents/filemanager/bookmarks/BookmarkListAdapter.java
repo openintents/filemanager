@@ -1,8 +1,11 @@
 package org.openintents.filemanager.bookmarks;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.ThumbnailLoader;
+import org.openintents.filemanager.files.FileHolder;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -20,13 +24,19 @@ public class BookmarkListAdapter extends BaseAdapter{
 	private ArrayList<Bookmark> items;
 	private LayoutInflater inflater;
 	private Activity act;
-	
+
+	// Thumbnail specific
+    private ThumbnailLoader mThumbnailLoader;
+    private boolean scrolling = false;
+    
 	public BookmarkListAdapter(Activity activity){
 		items = new ArrayList<Bookmark>();
 		
 		act = activity;
 		refreshItems();
 		inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
+		mThumbnailLoader = new ThumbnailLoader(act);
 	}
 	
 	private void refreshItems() {
@@ -79,13 +89,39 @@ public class BookmarkListAdapter extends BaseAdapter{
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		if(convertView==null)
-			convertView = inflater.inflate(R.layout.bookmarklist_item, null);
+		FileHolder item = new FileHolder(new File(items.get(position).path), act);
 		
-		((TextView) convertView.findViewById(android.R.id.text1)).setText(items.get(position).name);
-		((TextView) convertView.findViewById(android.R.id.text2)).setText(items.get(position).path);
+		if(convertView==null)
+			convertView = inflater.inflate(R.layout.item_filelist, null);
+		
+		((TextView) convertView.findViewById(R.id.primary_info)).setText(items.get(position).name);
+		((TextView) convertView.findViewById(R.id.secondary_info)).setText(items.get(position).path);
+        
+		if(item.getFile().isDirectory()) {
+			((ImageView) convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_launcher_folder);
+		}
+		
+		if (shouldLoadIcon(item)) {
+			if (mThumbnailLoader != null) {
+				mThumbnailLoader.loadImage(item, (ImageView) convertView.findViewById(R.id.icon));
+			}
+		}
 		
 		return convertView;
+	}
+	
+	/**
+	 * Inform this adapter about scrolling state of list so that lists don't lag due to cache ops.
+	 * @param isScrolling True if the ListView is still scrolling.
+	 */
+	public void setScrolling(boolean isScrolling){
+		scrolling = isScrolling;
+		if(!isScrolling)
+			notifyDataSetChanged();
+	}
+	
+	private boolean shouldLoadIcon(FileHolder item){
+		return !scrolling && item.getFile().isFile() && !item.getMimeType().equals("video/mpeg");
 	}
 	
 	protected class Bookmark{

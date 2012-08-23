@@ -6,11 +6,6 @@
         android:title="@string/menu_delete">
     </item>
     <item
-        android:id="@+id/menu_send"
-        android:icon="@drawable/ic_action_send"
-        android:title="@string/menu_compress_send">
-    </item>
-    <item
         android:id="@+id/menu_move"
         android:icon="@drawable/ic_action_cut"
         android:title="@string/menu_move">
@@ -19,6 +14,11 @@
         android:id="@+id/menu_copy"
         android:icon="@drawable/ic_action_copy"
         android:title="@string/menu_copy">
+    </item>
+    <item
+        android:id="@+id/menu_send"
+        android:icon="@drawable/ic_action_send"
+        android:title="@string/menu_send">
     </item>
     <item
         android:id="@+id/menu_compress"

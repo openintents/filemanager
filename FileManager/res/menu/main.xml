@@ -15,36 +15,6 @@
         android:title="@string/menu_search">
     </item>
     <item
-        android:id="@+id/menu_create_folder"
-        android:alphabeticShortcut="c"
-        android:icon="@drawable/ic_action_create_folder"
-        android:showAsAction="ifRoom"
-        android:title="@string/menu_create_folder">
-    </item>
-    <item
-        android:id="@+id/menu_multiselect"
-        android:alphabeticShortcut="m"
-        android:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_mark"
-        android:title="@string/menu_multiselect">
-    </item>
-    <item
-        android:id="@+id/menu_media_scan_include"
-        android:alphabeticShortcut="i"
-        android:icon="@android:drawable/ic_menu_gallery"
-        android:showAsAction="ifRoom"
-        android:title="@string/menu_include_in_media_scan"
-        android:visible="false">
-    </item>
-    <item
-        android:id="@+id/menu_media_scan_exclude"
-        android:alphabeticShortcut="e"
-        android:icon="@android:drawable/ic_menu_gallery"
-        android:showAsAction="ifRoom"
-        android:title="@string/menu_exclude_from_media_scan"
-        android:visible="false">
-    </item>
-    <item
         android:id="@+id/menu_settings"
         android:icon="@drawable/ic_action_settings"
         android:showAsAction="ifRoom"

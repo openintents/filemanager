@@ -16,6 +16,8 @@
 
 package org.openintents.intents;
 
+import org.openintents.filemanager.lists.SimpleFileListFragment;
+
 
 // Version Dec 9, 2008
 
@@ -83,8 +85,6 @@ public final class FileManagerIntents {
 	 */
 	public static final String EXTRA_WRITEABLE_ONLY = "org.openintents.extra.WRITEABLE_ONLY";
 
-	public static final String EXTRA_SHORTCUT_TARGET = "org.openintents.extra.SHORTCUT_TARGET";
-
 	/**
 	 * The path to prioritize in search. Usually denotes the path the user was on when the search was initiated.
 	 * 
@@ -98,4 +98,34 @@ public final class FileManagerIntents {
      * <p>Constant Value: "org.openintents.extra.SEARCH_QUERY"</p>
 	 */
 	public static final String EXTRA_SEARCH_QUERY = "org.openintents.extra.SEARCH_QUERY";
+
+	/**
+     * <p>Constant Value: "org.openintents.extra.DIR_PATH"</p>
+	 */
+	public static final String EXTRA_DIR_PATH = "org.openintents.extra.DIR_PATH";
+
+	/**
+	 * Extension by which to filter.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.FILTER_FILETYPE"</p>
+	 */
+	public static final String EXTRA_FILTER_FILETYPE = "org.openintents.extra.FILTER_FILETYPE";
+	
+	/**
+	 * Mimetype by which to filter.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.FILTER_MIMETYPE"</p>
+	 */
+	public static final String EXTRA_FILTER_MIMETYPE = "org.openintents.extra.FILTER_MIMETYPE";
+	
+	/**
+	 * Only show directories.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.DIRECTORIES_ONLY"</p>
+	 */
+	public static final String EXTRA_DIRECTORIES_ONLY = "org.openintents.extra.DIRECTORIES_ONLY";
+
+	public static final String EXTRA_DIALOG_FILE_HOLDER = "org.openintents.extra.DIALOG_FILE";
+
+	public static final String EXTRA_IS_GET_CONTENT_INITIATED = "org.openintents.extra.ENABLE_ACTIONS";
 }

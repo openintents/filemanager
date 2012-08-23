@@ -12,7 +12,9 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.AbsListView.OnScrollListener;
 
 /**
  * @author George Venios
@@ -28,6 +30,24 @@ public class BookmarkListFragment extends ListFragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+		
+		// Set list properties
+		getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				if (scrollState == OnScrollListener.SCROLL_STATE_IDLE) {
+					((BookmarkListAdapter) getListAdapter()).setScrolling(false);
+				} else
+					((BookmarkListAdapter) getListAdapter()).setScrolling(true);
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+			}
+		});
+		getListView().requestFocus();
+		getListView().requestFocusFromTouch();
 		
 		setEmptyText(getString(R.string.bookmark_empty));
 		

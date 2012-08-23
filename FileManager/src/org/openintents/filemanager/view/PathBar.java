@@ -110,7 +110,7 @@ public class PathBar extends ViewFlipper {
 			mSwitchToManualModeButton
 					.setImageResource(R.drawable.ic_navbar_edit);
 			mSwitchToManualModeButton
-					.setBackgroundResource(R.drawable.bg_navbar_btn_right);
+					.setBackgroundResource(R.drawable.bg_navbar_btn);
 			mSwitchToManualModeButton
 					.setVisibility(View.GONE);
 
@@ -126,8 +126,7 @@ public class PathBar extends ViewFlipper {
 
 			cdToRootButton.setLayoutParams(layoutParams);
 			cdToRootButton.setId(11);
-			cdToRootButton
-					.setBackgroundResource(R.drawable.bg_navbar_btn_standard);
+			cdToRootButton.setBackgroundResource(R.drawable.bg_navbar_btn);
 			cdToRootButton.setImageResource(R.drawable.ic_navbar_home);
 			cdToRootButton.setScaleType(ScaleType.CENTER_INSIDE);
 			cdToRootButton.setOnClickListener(new View.OnClickListener() {
@@ -189,7 +188,7 @@ public class PathBar extends ViewFlipper {
 
 			mGoButton.setLayoutParams(layoutParams);
 			mGoButton.setId(20);
-			mGoButton.setBackgroundResource(R.drawable.bg_navbar_btn_right);
+			mGoButton.setBackgroundResource(R.drawable.bg_navbar_btn);
 			mGoButton.setImageResource(R.drawable.ic_navbar_accept);
 			mGoButton.setScaleType(ScaleType.CENTER_INSIDE);
 			mGoButton.setOnClickListener(new View.OnClickListener() {
@@ -209,6 +208,7 @@ public class PathBar extends ViewFlipper {
 			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(
 					LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+			layoutParams.alignWithParent = true;
 			layoutParams.addRule(RelativeLayout.LEFT_OF, mGoButton.getId());
 
 			mPathEditText.setLayoutParams(layoutParams);
@@ -216,15 +216,12 @@ public class PathBar extends ViewFlipper {
 			mPathEditText.setTextColor(Color.BLACK);
 			mPathEditText.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 			mPathEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
-			mPathEditText
-					.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			mPathEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 						@Override
 						public boolean onEditorAction(TextView v, int actionId,
 								KeyEvent event) {
 							if (actionId == EditorInfo.IME_ACTION_GO
-									|| (event.getAction() == KeyEvent.ACTION_UP && (event
-											.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER || event
-											.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
+									|| (event.getAction() == KeyEvent.ACTION_DOWN && (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER || event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
 								if (manualInputCd(v.getText().toString()))
 									// Since we have successfully navigated.
 									return true;
@@ -277,61 +274,66 @@ public class PathBar extends ViewFlipper {
 	/**
 	 * Use instead of {@link #cd(String)} when in {@link Mode#MANUAL_INPUT}.
 	 * 
-	 * @param path
-	 *            The path to cd() to.
+	 * @param path The path to cd() to.
 	 * @return true if the cd succeeded.
 	 */
 	private boolean manualInputCd(String path) {
-		if (!cd(path)) {
-			Log.w(TAG, "Input path does not exist or is not a folder!");
-			return false;
-		} else {
+		if (cd(path)) {
 			// if cd() successful, hide the keyboard
 			InputMethodManager imm = (InputMethodManager) getContext()
 					.getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.hideSoftInputFromWindow(getWindowToken(), 0);
 			switchToStandardInput();
 			return true;
+		} else {
+			Log.w(TAG, "Input path does not exist or is not a folder!");
+			return false;
 		}
 	}
 
 	/**
-	 * {@code cd} to the passed file. If the file is legal input, sets it as the currently active Directory. Otherwise does nothing.
+	 * {@code cd} to the passed file. If the file is legal input, sets it as the currently active Directory. Otherwise calls the listener to handle it, if any.
 	 * 
-	 * @param file
-	 *            The file to {@code cd} to.
+	 * @param file The file to {@code cd} to.
 	 * @return Whether the path entered exists and can be navigated to.
 	 */
 	public boolean cd(File file) {
+		boolean res = false;
+		
 		// Check file state.
 		boolean isFileOK = true;
 		isFileOK &= file.exists();
-		isFileOK &= file.isDirectory();
-		if (!isFileOK)
+		// add more filters here..
+		
+		if(!isFileOK)
 			return false;
-
-		// Set proper current directory.
-		mCurrentDirectory = file;
-
-		// Refresh button layout.
-		mPathButtons.refresh(mCurrentDirectory);
-
-		// Reset scrolling position. http://stackoverflow.com/questions/3263259/scrollview-scrollto-not-working-saving-scrollview-position-on-rotation
-		mPathButtonsContainer.post(new Runnable() {
-			@Override
-			public void run() {
-				mPathButtonsContainer.scrollTo(
-						mPathButtonsContainer.getMaxScrollAmount(),
-						(int) mPathButtonsContainer.getTop());
-			}
-		});
-
-		// Refresh manual input field.
-		mPathEditText.setText(file.getAbsolutePath());
+		
+		if (file.isDirectory()) {
+			// Set proper current directory.
+			mCurrentDirectory = file;
+	
+			// Refresh button layout.
+			mPathButtons.refresh(mCurrentDirectory);
+	
+			// Reset scrolling position. http://stackoverflow.com/questions/3263259/scrollview-scrollto-not-working-saving-scrollview-position-on-rotation
+			mPathButtonsContainer.post(new Runnable() {
+				@Override
+				public void run() {
+					mPathButtonsContainer.scrollTo(
+							mPathButtonsContainer.getMaxScrollAmount(),
+							(int) mPathButtonsContainer.getTop());
+				}
+			});
+	
+			// Refresh manual input field.
+			mPathEditText.setText(file.getAbsolutePath());
+			
+			res = true;
+		}
 
 		mDirectoryChangedListener.directoryChanged(file);
 
-		return true;
+		return res;
 	}
 
 	/**
@@ -404,7 +406,6 @@ public class PathBar extends ViewFlipper {
 	/**
 	 * Returns the current {@link PathBar.Mode}.
 	 * 
-	 * @return
 	 */
 	public Mode getMode() {
 		return mCurrentMode;
@@ -412,37 +413,41 @@ public class PathBar extends ViewFlipper {
 
 	/**
 	 * 
-	 * @param dirPath
-	 *            The current directory's absolute path.
+	 * @param dirPath The current directory's absolute path.
 	 * @return
 	 */
 	private boolean backWillExit(String dirPath) {
 		// Count tree depths
-		int dirTreeDepth = 0;
-		for (int i = 0; i < dirPath.length(); i++) {
-			if (dirPath.charAt(i) == '/')
-				dirTreeDepth++;
-		}
+		String[] dir = dirPath.split("/");
+		int dirTreeDepth = dir.length;
 
-		int initTreeDepth = 0;
-		String initPath = mInitialDirectory.getAbsolutePath();
-		for (int i = 0; i < initPath.length(); i++) {
-			if (initPath.charAt(i) == '/')
-				initTreeDepth++;
-		}
+		String[] init = mInitialDirectory.getAbsolutePath().split("/");
+		int initTreeDepth = init.length;
 
 		// analyze and return
 		if (dirTreeDepth > initTreeDepth) {
 			return false;
-		} else if (dirTreeDepth == initTreeDepth) {
+		} else if (dirTreeDepth < initTreeDepth) {
+			return true;
+		} else {
 			if (dirPath.equals(mInitialDirectory.getAbsolutePath())) {
 				return true;
 			} else {
 				return false;
 			}
-		} else {
-			return true;
 		}
+	}
+	
+	@Override
+	public void setEnabled(boolean enabled) {
+		if(enabled)
+			switchToStandardInput();
+		else
+			switchToManualInput();
+		mPathEditText.setEnabled(enabled);
+		mGoButton.setVisibility(enabled ? View.VISIBLE : View.GONE);
+		
+		super.setEnabled(enabled);
 	}
 
 	/**

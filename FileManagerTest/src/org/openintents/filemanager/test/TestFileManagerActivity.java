@@ -76,31 +76,31 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 	private String getAppString(int resId) {
 		return activity.getString(resId);
 	}
-
-	@Smoke
-	public void test000Eula() {
-		String accept = getAppString(org.openintents.distribution.R.string.oi_distribution_eula_accept);
-		String cancel = getAppString(org.openintents.distribution.R.string.oi_distribution_eula_refuse);
-		boolean existsAccept = solo.searchButton(accept);
-		boolean existsCancel = solo.searchButton(cancel);
-		
-		if (existsAccept && existsCancel) {
-			solo.clickOnButton(accept);
-		}
-	}
-
-	@Smoke
-	public void test001RecentChanges() {
-		String recentChanges = getAppString(org.openintents.distribution.R.string.oi_distribution_newversion_recent_changes);
-		String cont = getAppString(org.openintents.distribution.R.string.oi_distribution_newversion_continue);
-		while(solo.scrollUp());
-		boolean existsRecentChanges = solo.searchText(recentChanges);
-		boolean existsCont = solo.searchButton(cont);
-		
-		if (existsRecentChanges && existsCont) {
-			solo.clickOnButton(cont);
-		}
-	}
+//
+//	@Smoke
+//	public void test000Eula() {
+//		String accept = getAppString(org.openintents.distribution.R.string.oi_distribution_eula_accept);
+//		String cancel = getAppString(org.openintents.distribution.R.string.oi_distribution_eula_refuse);
+//		boolean existsAccept = solo.searchButton(accept);
+//		boolean existsCancel = solo.searchButton(cancel);
+//		
+//		if (existsAccept && existsCancel) {
+//			solo.clickOnButton(accept);
+//		}
+//	}
+//
+//	@Smoke
+//	public void test001RecentChanges() {
+//		String recentChanges = getAppString(org.openintents.distribution.R.string.oi_distribution_newversion_recent_changes);
+//		String cont = getAppString(org.openintents.distribution.R.string.oi_distribution_newversion_continue);
+//		while(solo.scrollUp());
+//		boolean existsRecentChanges = solo.searchText(recentChanges);
+//		boolean existsCont = solo.searchButton(cont);
+//		
+//		if (existsRecentChanges && existsCont) {
+//			solo.clickOnButton(cont);
+//		}
+//	}
 
 	private void cleanDirectory(File file) {
 		if(!file.exists()) return;
@@ -175,14 +175,17 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		createFile(sdcardPath + "oi-filemanager-tests/oi-rem-test.txt", "");
 		solo.clickOnText("oi-filemanager-tests");
 		solo.clickLongOnText("oi-rem-test.txt");
-		solo.clickOnText(getAppString(org.openintents.filemanager.R.string.menu_delete)); // Delete
+		
+		if(android.os.Build.VERSION.SDK_INT < 11)
+			solo.clickOnText(getAppString(org.openintents.filemanager.R.string.menu_delete)); // Delete
+		else
+			solo.clickOnActionBarItem(org.openintents.filemanager.R.id.menu_delete);
 		solo.clickOnText(getAppString(android.R.string.ok));
 		
-		//when actionbar is present, this test case should find the first ImageButton
 		if(android.os.Build.VERSION.SDK_INT < 11)
-			solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.menu_new_folder)); // New Folder
+			solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.menu_create_folder), true); // New Folder
 		else
-			solo.clickOnImageButton(0);
+			solo.clickOnActionBarItem(org.openintents.filemanager.R.id.menu_create_folder);
 		solo.enterText(0, "oi-created-folder");
 		solo.clickOnText(getAppString(android.R.string.ok));
 		
@@ -203,29 +206,31 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		createFile(sdcardPath + "oi-filemanager-tests/" + fn + "/oi-inside-book.txt", "");
 		
 		// create bookmark
-		
 		solo.clickOnText("oi-filemanager-tests");
 		solo.clickLongOnText(fn);
 		solo.clickOnText(getAppString(org.openintents.filemanager.R.string.menu_bookmark)); // Add to bookmarks
 		
 		// navigate to it
-		
-		solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.bookmarks)); // Bookmarks
+		if(android.os.Build.VERSION.SDK_INT < 11)
+			solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.bookmarks)); // Bookmarks
+		else
+			solo.clickOnActionBarItem(org.openintents.filemanager.R.id.menu_bookmarks);
 		solo.clickOnText(fn);
 		assertTrue(solo.searchText("oi-inside-book.txt"));
-		solo.goBack();
-		solo.goBack();
 		
 		// remove it
-		
-		solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.settings));
-		solo.clickOnText(getAppString(org.openintents.filemanager.R.string.bookmarks_manage));
-		solo.clickOnText(fn);
-		solo.clickOnText(getAppString(org.openintents.filemanager.R.string.bookmarks_delete));
+		if(android.os.Build.VERSION.SDK_INT < 11)
+			solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.bookmarks)); // Bookmarks
+		else
+			solo.clickOnActionBarItem(org.openintents.filemanager.R.id.menu_bookmarks);
+		solo.clickLongOnText(fn);
+		if(android.os.Build.VERSION.SDK_INT < 11)
+			solo.clickOnText(getAppString(org.openintents.filemanager.R.string.menu_delete));
+		else
+			solo.clickOnActionBarItem(org.openintents.filemanager.R.id.menu_delete);
 		solo.goBack();
 		
 		// make sure that it is deleted
-		
 		solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.bookmarks));
 		assertFalse(solo.searchText(fn));
 		solo.goBack();
@@ -243,29 +248,29 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		solo.clickOnText("oi-filemanager-tests");
 		
 		// copy
-		
 		solo.clickLongOnText("oi-file-1.txt");
 		solo.clickOnText(getAppString(org.openintents.filemanager.R.string.menu_copy));
-		selectTargetAndCheck("oi-move-target", "oi-file-1.txt", null);
+		navigateToTargetAndPasteAndCheck("oi-move-target", "oi-file-1.txt", null);
 		assertTrue(solo.searchText("oi-file-1.txt"));
-		
+
 		// move
-		
 		solo.clickLongOnText("oi-file-2.txt");
 		solo.clickOnText(getAppString(org.openintents.filemanager.R.string.menu_move));
-		selectTargetAndCheck("oi-move-target", "oi-file-2.txt", null);
+		navigateToTargetAndPasteAndCheck("oi-move-target", "oi-file-2.txt", null);
 		assertFalse(solo.searchText("oi-file-2.txt"));
-		
+
 		// multi select
-		
-		solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.menu_multi_select));
-		solo.clickOnText("oi-file-3.txt");
-		solo.clickOnText("oi-file-4.txt");
-		solo.clickOnText(getAppString(org.openintents.filemanager.R.string.move_button_multiselect));
-		selectTargetAndCheck("oi-move-target", "oi-file-3.txt", "oi-file-4.txt");
-		
+		if(android.os.Build.VERSION.SDK_INT < 11){
+			solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.menu_multiselect));
+			solo.clickOnText("oi-file-3.txt");
+			solo.clickOnText("oi-file-4.txt");
+			solo.clickOnImageButton(1);
+			solo.goBack();
+			
+			navigateToTargetAndPasteAndCheck("oi-move-target", "oi-file-3.txt", "oi-file-4.txt");
+		}
+
 		// rename
-		
 		solo.clickLongOnText("oi-file-5.txt");
 		solo.clickOnText(getAppString(org.openintents.filemanager.R.string.menu_rename));
 		solo.enterText(0, "oi-renamed-file.txt");
@@ -276,12 +281,15 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		solo.goBack();
 	}
 	
-	private void selectTargetAndCheck(String dirname, String name1, String name2) throws IOException {
-		createDirectory(sdcardPath + "oi-filemanager-tests");
+	private void navigateToTargetAndPasteAndCheck(String dirname, String name1, String name2) throws IOException {
+		createDirectory(sdcardPath + "oi-filemanager-tests/");
 		solo.clickOnText(dirname);
-		solo.clickOnButton(getAppString(org.openintents.filemanager.R.string.copy_button) + "|" + 
-							getAppString(org.openintents.filemanager.R.string.move_button));
-		solo.clickOnText(dirname);
+
+		if(android.os.Build.VERSION.SDK_INT < 11)
+			solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.menu_paste), true);
+		else
+			solo.clickOnActionBarItem(org.openintents.filemanager.R.id.menu_paste);
+		
 		assertTrue(solo.searchText(name1));
 		if(name2 != null)
 			assertTrue(solo.searchText(name2));
@@ -306,25 +314,6 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		//assertTrue(solo.searchText(todayString));
 
 		solo.goBack();
-		solo.goBack();
-		solo.goBack();
-	}
-	
-	public void testFilters() throws IOException {
-		createDirectory(sdcardPath + "oi-filemanager-tests");
-		createFile(sdcardPath + "oi-filemanager-tests/oi-not-filter.txt", "");
-		createFile(sdcardPath + "oi-filemanager-tests/oi-filtered.py", "");
-		createDirectory(sdcardPath + "oi-filemanager-tests/oi-f-dir");
-		solo.clickOnText("oi-filemanager-tests");
-		
-		solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.menu_filter));
-		solo.enterText(0, ".py");
-		solo.clickOnButton(getAppString(android.R.string.ok));
-		
-		assertTrue(solo.searchText("oi-filtered.py"));
-		assertTrue(solo.searchText("oi-f-dir"));
-		assertFalse(solo.searchText("oi-not-filter.txt"));
-		
 		solo.goBack();
 		solo.goBack();
 	}
@@ -400,16 +389,17 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		createDirectory(sdcardPath + "oi-filemanager-tests");
 		createFile(sdcardPath + "oi-filemanager-tests/oi-to-open.txt", "bbb");
 
-		Uri uri = Uri.parse("file:///mnt/sdcard/oi-filemanager-tests/oi-to-open.txt");
+		Uri uri = Uri.parse("file://" + sdcardPath + "oi-filemanager-tests/oi-to-open.txt");
 		intent = new Intent("android.intent.action.VIEW", uri);
 		intent.setClassName("org.openintents.filemanager",
 				"org.openintents.filemanager.SaveAsActivity");
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		
 		activity = getInstrumentation().startActivitySync(intent);
-		
+
+		solo.clickLongOnText(Environment.getExternalStorageDirectory().getParentFile().getName());
 		solo.enterText(0, "oi-target.txt");
-		solo.clickOnButton(getAppString(android.R.string.ok));
+		solo.sendKey(Solo.ENTER);
 		assertTrue(new File(sdcardPath + "oi-filemanager-tests/oi-to-open.txtoi-target.txt").exists());
 		solo.goBack();
 		solo.goBack();
@@ -420,7 +410,7 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		createDirectory(sdcardPath + "oi-filemanager-tests/oi-dir-to-open");
 		createDirectory(sdcardPath + "oi-filemanager-tests/oi-dir-to-open/oi-intent");
 		
-		Uri uri = Uri.parse("file:///mnt/sdcard/oi-filemanager-tests/oi-dir-to-open");
+		Uri uri = Uri.parse("file://" + sdcardPath + "oi-filemanager-tests/oi-dir-to-open");
 		intent = new Intent("android.intent.action.VIEW", uri);
 		intent.setClassName("org.openintents.filemanager",
 				"org.openintents.filemanager.FileManagerActivity");
@@ -433,45 +423,26 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		solo.goBack();
 	}
 	
-	public void testIntentUri() throws IOException {
-		createDirectory(sdcardPath + "oi-filemanager-tests");
-		createFile(sdcardPath + "oi-filemanager-tests/oi-to-open.txt", "bbb");		
-		
-		Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.setData(Uri.parse("file://" + sdcardPath + "oi-filemanager-tests/oi-to-open.txt"));
-		intent.setPackage("org.openintents.filemanager");
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		
-		activity = getInstrumentation().startActivitySync(intent);
-		
-		assertTrue(solo.searchText("oi-to-open.txt"));
-		solo.goBack();
-		solo.goBack();	
-	}
-	
 	public void testIntentPickFile() throws IOException {
 		// startActivityForResult is, I think, impossible to test on Robotinium
 		createDirectory(sdcardPath + "oi-filemanager-tests");
 		createFile(sdcardPath + "oi-filemanager-tests/oi-pick-file", "");
 		
-		Uri uri = Uri.parse("file:///mnt/sdcard/oi-filemanager-tests/oi-dir-to-open");
+		Uri uri = Uri.parse("file://" + sdcardPath + "oi-filemanager-tests");
 		intent = new Intent("org.openintents.action.PICK_FILE", uri);
-		intent.setClassName("org.openintents.filemanager",
-				"org.openintents.filemanager.FileManagerActivity");
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		
 		activity = getInstrumentation().startActivitySync(intent);
 		
 		solo.clickOnText("oi-pick-file");
-		solo.clickOnButton(getAppString(android.R.string.ok));
 		
 		solo.goBack();
 	}
 	
 	public void testIntentRememberPickFilePath() throws IOException {
 		String[] actions = new String[]{
-			"org.openintents.action.PICK_FILE",
-			"org.openintents.action.PICK_DIRECTORY",
+			org.openintents.intents.FileManagerIntents.ACTION_PICK_FILE,
+			org.openintents.intents.FileManagerIntents.ACTION_PICK_DIRECTORY,
 			Intent.ACTION_GET_CONTENT
 		};
 		
@@ -488,10 +459,8 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 			
 
 			// Pick a file first
-			Uri uri = Uri.parse("file:///mnt/sdcard"); //If there was already a remembered pick file path
+			Uri uri = Uri.parse("file://" + sdcardPath); //If there was already a remembered pick file path
 			intent = new Intent(actions[i], uri);
-			intent.setClassName("org.openintents.filemanager",
-					"org.openintents.filemanager.FileManagerActivity");
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			
 			activity = getInstrumentation().startActivitySync(intent);
@@ -502,13 +471,11 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 			else
 				solo.clickOnText("oi-file-to-pick.txt");
 			
-			if(i != 2) // When ACTION_GET_CONTENT, the file is picked automatically, when clicked
-				solo.clickOnButton(getAppString(android.R.string.ok));
+			if(i == 2) // When ACTION_GET_CONTENT, the file is picked automatically, when clicked
+				solo.clickOnButton(getAppString(org.openintents.filemanager.R.string.directory_pick));
 			
 			// Check, if we are in the oi-filemanager-tests directory
 			intent = new Intent(actions[i]);
-			intent.setClassName("org.openintents.filemanager",
-					"org.openintents.filemanager.FileManagerActivity");
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			activity = getInstrumentation().startActivitySync(intent);
 			
@@ -520,8 +487,6 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 			
 			//Check, if the current directory is the default (sdcardPath)
 			intent = new Intent(actions[i]);
-			intent.setClassName("org.openintents.filemanager",
-					"org.openintents.filemanager.FileManagerActivity");
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			activity = getInstrumentation().startActivitySync(intent);
 			
@@ -542,19 +507,11 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		createFile(sdcardPath + dirPath + "/" + filename, "");
 		
 		/*
-		 *  We start at the SD card. Home ImageButton has index 0. Then there's a mnt classic button.
-		 *  And finally SD card ImageButton with index 1. (Android 1.x and 2.x)
-		 *  
-		 *  Remark: On Android 3.x(?) and 4.x, the index may have to be set to 2?
+		 *  We start at the SD card. 
 		 */
-		int imageButtonIndex = 0;
-		if(android.os.Build.VERSION.SDK_INT < 11)
-			imageButtonIndex = 1;
-		else
-			imageButtonIndex = 2;
-		solo.clickOnImageButton(imageButtonIndex);
+		solo.clickLongOnText(Environment.getExternalStorageDirectory().getParentFile().getName());
 		
-		solo.clickOnEditText(0); // Let the editText has focus to be able to send the enter key.
+		solo.clickOnEditText(0); // Let the editText have focus to be able to send the enter key.
 		solo.enterText(0, "/"+dirPath);
 		solo.sendKey(Solo.ENTER);
 
@@ -563,6 +520,43 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 		solo.goBack();
 		solo.goBack();
 	}
+	
+// Current implementation directly opens the file and therefore can't be tested.
+//	public void testIntentUri() throws IOException {
+//		createDirectory(sdcardPath + "oi-filemanager-tests");
+//		createFile(sdcardPath + "oi-filemanager-tests/oi-to-open.txt", "bbb");		
+//		
+//		Intent intent = new Intent(Intent.ACTION_VIEW);
+//		intent.setData(Uri.parse("file://" + sdcardPath + "oi-filemanager-tests/oi-to-open.txt"));
+//		intent.setClass(activity, org.openintents.filemanager.FileManagerActivity.class);
+//		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//		
+//		activity = getInstrumentation().startActivitySync(intent);
+//		
+//		assertTrue(solo.searchText("oi-to-open.txt"));
+//		solo.goBack();
+//		solo.goBack();	
+//	}
+	
+//	Removed as Filter action is obsolete and removed.
+//	public void testFilters() throws IOException {
+//		createDirectory(sdcardPath + "oi-filemanager-tests");
+//		createFile(sdcardPath + "oi-filemanager-tests/oi-not-filter.txt", "");
+//		createFile(sdcardPath + "oi-filemanager-tests/oi-filtered.py", "");
+//		createDirectory(sdcardPath + "oi-filemanager-tests/oi-f-dir");
+//		solo.clickOnText("oi-filemanager-tests");
+//		
+//		solo.clickOnMenuItem(getAppString(org.openintents.filemanager.R.string.menu_filter));
+//		solo.enterText(0, ".py");
+//		solo.clickOnButton(getAppString(android.R.string.ok));
+//		
+//		assertTrue(solo.searchText("oi-filtered.py"));
+//		assertTrue(solo.searchText("oi-f-dir"));
+//		assertFalse(solo.searchText("oi-not-filter.txt"));
+//		
+//		solo.goBack();
+//		solo.goBack();
+//	}
 	
 	// Other possible tests:
 	// 		testSend

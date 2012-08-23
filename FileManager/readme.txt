@@ -21,6 +21,20 @@ seamlessly cooperates with other applications.
 To obtain the current release, visit
   http://www.openintents.org
 
+release: ?? (Changes made by George Venios as part of GSoC 2012)
+date: ??
+
+- User Interface redesigned to follow Android Design Guidelines. Many usability changes too. 
+- Improved performance. Browsing is now way faster. 
+- Full ActionBar support on devices with Honeycomb and up. 
+- Search has been added. 
+- Copying and moving made easier. 
+- Bookmarks are easier to use. 
+- Multiple file “send” action enabled. 
+- Native multiple selection on platforms that support it (done through the ActionBar). 
+- You can now create home screen shortcuts for any file or folder. 
+
+
 ----------------
 release: 1.3
 date: ?

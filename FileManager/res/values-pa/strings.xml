@@ -33,60 +33,33 @@
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI ਫਾਇਲ ਮੈਨਿਜਰ</string>
     
-    <string name="menu_new_folder">ਨਵਾਂ ਫੋਲਡਰ</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">ਮਲਟੀ ਸੈਲੇਕਟ</string>
-
     <string name="menu_delete">ਹਟਾਉ</string>
     <string name="menu_rename">ਨਾਂ ਬਦਲੋ</string>
     <string name="menu_send">ਭੇਜੋ</string>
     <string name="menu_open">ਖੋਲੋ</string>
-    <string name="menu_move">ਹਿਲਾਓ</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">ਕਾਪੀ</string>
     <string name="menu_details">ਵਿਸਤਾਰ</string>
     <string name="menu_more">ਹੋਰ</string>
     <string name="menu_compress">Compress (ZIP)</string>
     <string name="menu_extract">Extract (ZIP)</string>
-    <string name="menu_filter">ਫਿਲਟਰ</string>
     <string name="menu_include_in_media_scan">ਮਿਡਿਯਾ ਸਕੈਨ ਮੇ ਜੋੜੋ</string>
     <string name="menu_exclude_from_media_scan">ਮਿਡਿਯਾ ਸਕੈਨ ਸੇ ਹਟਾਓ</string>
-    <string name="menu_bookmark">ਬੁਕਮਾਰਕ ਕੋ ਜੋੜੋ</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_bookmark">Bookmark</string>
     
     <string name="create_new_folder">ਨਵਾ ਫੋਲਡਰ ਬਨਾਓ</string>
     <string name="folder_name">ਫੋਲਡਰ ਦਾ ਨਾਮ</string>
-    <string name="file_name">ਫੋਲਡਰ ਦਾ ਨਾਮ</string>
-    <string name="extension">ਇਕਸਟੈੰਸ਼ਨ (\'.\' ਤੇ ਨਾਲ</string>
     <string name="this_folder_is_empty">ਇਹ ਫੋਲਡਰ ਖਾਲੀ ਹੈ।</string>
     <string name="really_delete">ਕਯਾ ਆਪ %s ਹਟਾਨਾ ਚਾਹਤੇ ਹੈ ?</string>
-    <string name="file_deleted">ਫਾਇਲ ਹਟਾਦੀ</string>
-    <string name="folder_deleted">ਫੋਲਡਰ  ਹਟਾਦੀ</string>
-    <string name="file_renamed">ਫਾਇਲ ਕਾ ਨਹਮ ਬਦਲਾ</string>
-    <string name="folder_renamed">ਫੋਲਡਰ ਕਾ ਨਹਮ ਬਦਲਾ</string>
-    <string name="file_moved">ਫਾਇਲ ਹਟਾਦੀ</string>
-    <string name="folder_moved">ਫੋਲਡਰ ਹਟਾਦੀ</string>
-    <string name="file_copied">ਫਾਇਲ ਦੀ ਨਕਲ ਕਰੀ</string>
-    <string name="move_title">ਫੋਲਡਰ ਸੈਲੇਕਟ ਕਰੇ ਹਟਾਨੇ ਕੇ ਲਿਏ</string>
-    <string name="move_button">ਇੱਥੇ ਭੇਜੋ</string>
-    <string name="copy_title">ਫੋਲਡਰ ਚੁਨੇ ਨਕਲ ਕਰਣ ਦੇ ਲਿਏ</string>
-    <string name="copy_button">ਇੱਥੇ ਨਕਲ ਕਰੋ</string>
-	<string name="deleting_files">ਫਾਇਲ ਹਟ ਰਹੀ ਹੈ</string>
     <string name="title_warning_some_may_not_work">ਚੇਤਾਵਨੀ</string>
     <string name="warning_some_may_not_work">ਕਇ ਕਾਮ ਨਹੀ ਕਰੇੰਗੇ</string>
     <string name="show_warning_again">ਚੇਤਾਵਨੀ ਫਿਰਸੇ ਦਿਖਾਓ</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect"> </string>
-    <string name="move_button_multiselect">ਹਿਲਾਓ</string>
-    <string name="copy_button_multiselect">ਕਾਪੀ</string>
-    <string name="delete_button_multiselect">ਹਟਾਉ</string>
-
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">ZIP</string>
 
     <string name="multiselect_title">ਕਇ ਫਾਇਲ ਚੁਨੇ</string>
-    <string name="error_selection">1 ਯਾ ਜਯਾਦਾ ਫਾਇਲ ਚੁਨੇ</string>
+    <string name="pick_title">File picker</string>
     
     <!-- Strings for details table -->
     <string name="details_type">ਟਾਈਪ</string>
@@ -109,16 +82,6 @@
     <string name="media_scan_included">ਯੇ ਫੋਲਡਰ ਅਗਲੇ ਮੀਜਿਯਾ ਸਕੈਨ ਮੇ ਡਾਲੋ</string>
     <string name="media_scan_excluded">ਯੇ ਫੋਲਡਰ ਅਗਲੇ ਮੀਜਿਯਾ ਸਕੈਨ ਮੇ ਨਹੀ ਹੋਗਾ</string>
     
-    <string name="error_creating_new_folder">ਨਵਾ ਫੋਲਡਰ ਨਹੀ ਪਨਾ</string>
-    <string name="error_deleting_file">ਫਾਇਲ ਨਹੀ ਹਟੀ</string>
-    <string name="error_deleting_folder">%s ਫੋਲਡਰ ਨਹੀ ਪਨਾ</string>
-    <string name="error_renaming_file">ਫਾਇਲ ਦਾ ਨਾਂ ਨਹੀ ਬਦਲਾ</string>
-    <string name="error_renaming_folder">ਫੋਲਡਰ  ਦਾ ਨਾਂ ਨਹੀ ਬਦਲਾ</string>
-    <string name="error_moving_file">ਫਾਇਲ ਨਹੀ ਹਟੀ</string>
-    <string name="error_moving_folder">ਫੋਲਡਰ ਨਹੀ ਹਟਾ</string>
-    <string name="error_copying_file">ਫਾਇਲ ਕਾਪੀ ਨਹੀ ਹੁਇ</string>
-    <string name="error_file_does_not_exists">ਫਾਇਲ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।</string>
-    <string name="error_deleting_child_file">ਫਾਇਲ ਨਹੀ ਹਟੀ</string>
     <string name="error_generic">ਏਰਰ ਆ ਗਯਾ</string>
     <string name="error_media_scan">ਮੀਡਿਯਾ ਸਕੈਨ  ਸੈਟਿੰਗ ਨਹੀ ਬਦਲੀ</string>
     
@@ -165,33 +128,84 @@
     <string name="saveas_error">ਏਰਰ ਆ ਗਯਾ</string>
     <string name="saveas_file_saved">ਫਾਇਲ ਰਖ ਲੀ ਗਯੀ</string>
     
-        
-   
-    <string name="bookmarks">ਬੁੱਕਮਾਰਕ</string>
-    <string name="bookmarks_cancel">ਰਦ ਕਰੋ</string>
-    <string name="bookmarks_delete">ਹਟਾਉ</string>
-    <string name="bookmarks_select_to_delete">ਸੇਲੇਕਟ ਬੁੱਕਮਾਰਕ ਟੂ ਡਿਲੀਟ</string>
-    <string name="bookmarks_manage">ਮੈਨੇਜ ਬੁਕਮਾਰਕ</string>
-    <string name="bookmark_added">ਬੁਕਮਾਰਕ ਡਾਲਾ</string>
-    <string name="bookmark_not_found">ਬੁਕਮਾਰਕ ਨਹੀ ਮਿਲਾ</string>
-    <string name="bookmarks_deleted">ਬੁਕਮਾਰਕ ਹਟ ਗਯੇ</string>
-    <string name="bookmark_already_exists">ਯੇ ਫਾਇਲ ਬੁਕਮਾਰਕ ਹੁਈ ਹੁਈ ਹੈ</string>
-
-
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
     <string name="compressing_success">Item compressed successfully</string>
     <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
     <string name="extracting_success">Item extracted successfully</string>
     <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
-
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="extracting">Extracting…</string>
+    <string name="compressing">Compressing…</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">ਬੁੱਕਮਾਰਕ</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_paste">Paste</string>
+    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_settings">ਸੈਟਿੰਗ</string>
+    
+    <string name="menu_send">ਭੇਜੋ</string>
+    <string name="menu_delete">ਹਟਾਉ</string>
+    <string name="menu_move">Cut</string>
+    <string name="menu_copy">ਕਾਪੀ</string>
+    <string name="menu_compress">Compress</string>
+    <string name="menu_rename">ਨਾਂ ਬਦਲੋ</string>
+    
+    <string name="menu_extract">Extract</string>
+    <string name="menu_details">ਵਿਸਤਾਰ</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="send_chooser_title">Send using:</string>
+    
+    <string name="menu_check_all">Check all</string>
+    <string name="menu_uncheck_all">Uncheck all</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">selected</string>
+    <string name="no_selection">No items checked</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="bookmark_added">ਬੁਕਮਾਰਕ ਡਾਲਾ</string>
+    <string name="bookmark_already_exists">ਯੇ ਫਾਇਲ ਬੁਕਮਾਰਕ ਹੁਈ ਹੁਈ ਹੈ</string>
+    <string name="bookmarks">ਬੁੱਕਮਾਰਕ</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Item icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning…</string>
+    
+    <!-- Dialogs -->
+    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_failure">Some files not deleted</string>
+    <string name="deleting">Deleting…</string>
+    <string name="rename_success">Successfully renamed</string>
+    <string name="rename_failure">Couldn\'t rename</string>
+    <string name="loading">Loading…</string>
+    <string name="create_dir_success">Successfully created directory</string>
+    <string name="create_dir_failure">Couldn\'t create directory</string>
+    <string name="compressed_file_name">Zip file name</string>
+    <string name="file_exists">File exists</string>
+    <string name="overwrite_question">Overwrite old file?</string>
+    
+    <string name="directory_pick">Select current directory</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copying…</string>
+    <string name="copied">Successfully copied</string>
+    <string name="copy_error">Some or all items couldn\'t be copied!</string>
+    <string name="moving">Moving…</string>
+    <string name="moved">Successfully moved</string>
+    <string name="move_error">Some or all items couldn\'t be moved!</string>
+    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 </resources>

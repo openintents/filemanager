@@ -33,60 +33,33 @@
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI مدير پرونده‌</string>
     
-    <string name="menu_new_folder">لفاف‌ جديد</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">انتخاب چند مليتي</string>
-
     <string name="menu_delete">انداختن‌</string>
     <string name="menu_rename">محدودة رودهاي</string>
     <string name="menu_send">فرستادن</string>
     <string name="menu_open">باز</string>
-    <string name="menu_move">حرکت نکنید</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">رونوشت‌</string>
     <string name="menu_details">جزئيات</string>
     <string name="menu_more">بيشتر</string>
     <string name="menu_compress">بهم‌ فشردن‌ (زور)</string>
     <string name="menu_extract">اقتباس‌ كردن‌ (زور)</string>
-    <string name="menu_filter">صاف‌ كردن‌</string>
     <string name="menu_include_in_media_scan">در رسانه ها شامل یک اسکن بکنیم</string>
     <string name="menu_exclude_from_media_scan">محروم‌ كردن‌ از رسانه ها با وزن‌ خواندن‌</string>
-    <string name="menu_bookmark">به اضافه بوک مارک ها</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_bookmark">Bookmark</string>
     
     <string name="create_new_folder">جديد ايجاد تاه‌ كن‌</string>
     <string name="folder_name">لفاف‌ نام</string>
-    <string name="file_name">لفاف‌ نام</string>
-    <string name="extension">اضافي‌ (با \'. \')</string>
     <string name="this_folder_is_empty">اين پوشه خالی شده است.</string>
     <string name="really_delete">آیا شما واقعا می خواهند انداختن‌ %s?</string>
-    <string name="file_deleted">پرونده‌ ها حذف شد.</string>
-    <string name="folder_deleted">لفاف‌ حذف.</string>
-    <string name="file_renamed">تغيير نام فايل.</string>
-    <string name="folder_renamed">لفاف‌ نام نيوهارمني.</string>
-    <string name="file_moved">حركت پرونده.</string>
-    <string name="folder_moved">لفاف‌ تحت تاثير.</string>
-    <string name="file_copied">پرونده‌ تقليد.</string>
-    <string name="move_title">لفاف‌ انتخاب كه به</string>
-    <string name="move_button">اینجا تکان بدهید</string>
-    <string name="copy_title">لفاف‌ نسخه را انتخاب کنند</string>
-    <string name="copy_button">در اينجا نسخه</string>
-	<string name="deleting_files">حذف پرونده...</string>
     <string name="title_warning_some_may_not_work">اشاره‌</string>
     <string name="warning_some_may_not_work">برخي از اين کار نه ممکن است به دنبال گزینه های دیگر.</string>
     <string name="show_warning_again">بار ديگر هشدار نشان</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">آیا شما واقعا می خواهند انداختن‌ %d پرونده?</string>
-    <string name="move_button_multiselect">حرکت نکنید</string>
-    <string name="copy_button_multiselect">رونوشت‌</string>
-    <string name="delete_button_multiselect">انداختن‌</string>
-
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">ZIP</string>
 
     <string name="multiselect_title">انتخاب چند پرونده</string>
-    <string name="error_selection">لطفا انتخاب‌ كردن‌ يكي از پرونده‌ يا بيشتر(s).</string>
+    <string name="pick_title">File picker</string>
     
     <!-- Strings for details table -->
     <string name="details_type">نوعی</string>
@@ -109,16 +82,6 @@
     <string name="media_scan_included">لفاف‌ اين منظور خواهد شد تا رسانه ها با وزن‌ خواندن‌............. .          ..</string>
     <string name="media_scan_excluded">لفاف‌ محروم خواهد شد این در رسانه های آينده کت اسکن انجام بدهیم.</string>
     
-    <string name="error_creating_new_folder">لفاف‌ جديد ايجاد نمي كند.</string>
-    <string name="error_deleting_file">حذف نمي تواند پرونده كردند.</string>
-    <string name="error_deleting_folder">لفاف‌ حذف نمي توانست \'%s\'.</string>
-    <string name="error_renaming_file">نمي تواند پرونده محدودة ميان رودهاي.</string>
-    <string name="error_renaming_folder">لفاف‌ محدودة ميان رودهاي نمي توانست.</string>
-    <string name="error_moving_file">نمى توانست پرونده‌....</string>
-    <string name="error_moving_folder">لفاف‌ نمى توانست.</string>
-    <string name="error_copying_file">نمي تواند نسخه اي از پرونده.</string>
-    <string name="error_file_does_not_exists">پرونده وجود ندارد.</string>
-    <string name="error_deleting_child_file">پرونده‌ بچه نمى توانست انداختن‌ \'%s\'.</string>
     <string name="error_generic">يك اشتباه رخ داد:</string>
     <string name="error_media_scan">تغيير نمي توانست رسانه های ما بدنبال یک اسکن بکنیم.</string>
     
@@ -165,33 +128,84 @@
     <string name="saveas_error">بهدخت رشديه خطا.</string>
     <string name="saveas_file_saved">پرونده‌ نجات داد با موفقيت!</string>
     
-        
-   
-    <string name="bookmarks">نشانکها</string>
-    <string name="bookmarks_cancel">باطل‌ كردن‌</string>
-    <string name="bookmarks_delete">انداختن‌</string>
-    <string name="bookmarks_select_to_delete">انتخاب نشانکها به برداشتن</string>
-    <string name="bookmarks_manage">اداره‌ كردن‌ نشانکها</string>
-    <string name="bookmark_added">نشانکها وی افزود</string>
-    <string name="bookmark_not_found">نشانه سرنوشت‌ نه يافت.</string>
-    <string name="bookmarks_deleted">برگزيده شدن نشانکها  زيرزمينى</string>
-    <string name="bookmark_already_exists">اين پرونده هم اكنون نشانه</string>
-
-
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
     <string name="compressing_success">تكه‌ فشرده با موفقيت</string>
     <string name="compressing_error">نمى توانست به یک کمپرس بگذارم ردیف</string>
-    <string name="compress_into_archive">فونت فارسی کمپرس بگذارم:</string>
     <string name="extracting_success">تكه‌ با موفقيت استخراج</string>
     <string name="extracting_error">نمى توانست استخراج بخش‌</string>
-    <string name="extract_into_folder">لفاف‌ به استخراج:</string>
-    <string name="extract_title">لفاف‌ انتخاب را به عصاره</string>
-    <string name="extract_button">اقتباس‌ كردن‌ اینجا</string>
-    <string name="extracting">استخراج...</string>
-    <string name="compressing">بارگلولهء توپى...</string>
-    <string name="warning_overwrite">پرونده‌ %s هست.آیا شما می خواهم به آن زياد نوشتن‌?</string>
-
-    <string name="change_file_extension">آیا شما می خواهم برای تغيير در تمديد پرونده‌?</string>
+    <string name="extracting">Extracting…</string>
+    <string name="compressing">Compressing…</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">نشانکها</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_paste">Paste</string>
+    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_settings">مک کليلن</string>
+    
+    <string name="menu_send">فرستادن</string>
+    <string name="menu_delete">انداختن‌</string>
+    <string name="menu_move">Cut</string>
+    <string name="menu_copy">رونوشت‌</string>
+    <string name="menu_compress">Compress</string>
+    <string name="menu_rename">محدودة رودهاي</string>
+    
+    <string name="menu_extract">Extract</string>
+    <string name="menu_details">جزئيات</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="send_chooser_title">Send using:</string>
+    
+    <string name="menu_check_all">Check all</string>
+    <string name="menu_uncheck_all">Uncheck all</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">selected</string>
+    <string name="no_selection">No items checked</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="bookmark_added">نشانکها وی افزود</string>
+    <string name="bookmark_already_exists">اين پرونده هم اكنون نشانه</string>
+    <string name="bookmarks">نشانکها</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Item icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning…</string>
+    
+    <!-- Dialogs -->
+    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_failure">Some files not deleted</string>
+    <string name="deleting">Deleting…</string>
+    <string name="rename_success">Successfully renamed</string>
+    <string name="rename_failure">Couldn\'t rename</string>
+    <string name="loading">Loading…</string>
+    <string name="create_dir_success">Successfully created directory</string>
+    <string name="create_dir_failure">Couldn\'t create directory</string>
+    <string name="compressed_file_name">Zip file name</string>
+    <string name="file_exists">File exists</string>
+    <string name="overwrite_question">Overwrite old file?</string>
+    
+    <string name="directory_pick">Select current directory</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copying…</string>
+    <string name="copied">Successfully copied</string>
+    <string name="copy_error">Some or all items couldn\'t be copied!</string>
+    <string name="moving">Moving…</string>
+    <string name="moved">Successfully moved</string>
+    <string name="move_error">Some or all items couldn\'t be moved!</string>
+    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 </resources>

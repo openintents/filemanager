@@ -33,60 +33,33 @@
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI Διαχειριστής Αρχείων</string>
     
-    <string name="menu_new_folder">Νέος Φάκελος</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">Πολλαπλή Επιλογή</string>
-
     <string name="menu_delete">Διαγραφή</string>
     <string name="menu_rename">Μετονομασία</string>
     <string name="menu_send">Αποστολή</string>
     <string name="menu_open">Άνοιγμα</string>
-    <string name="menu_move">Μετακίνηση</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">Αντιγραφή</string>
     <string name="menu_details">Λεπτομέρεις</string>
     <string name="menu_more">Περισσότερα</string>
     <string name="menu_compress">Συμπίεση (ZIP)</string>
     <string name="menu_extract">Αποσυμπίεση (ZIP)</string>
-    <string name="menu_filter">Φίλτρο</string>
     <string name="menu_include_in_media_scan">Συμπερίληψη στη σάρωση μέσων</string>
     <string name="menu_exclude_from_media_scan">Εξαίρεση από τη σάρωση μέσων</string>
-    <string name="menu_bookmark">Προσθήκη στους σελιδοδείκτες</string>
-    <string name="menu_refresh">Ανανέωση</string>
+    <string name="menu_bookmark">Bookmark</string>
     
     <string name="create_new_folder">Δημιουργία νέου φακέλου</string>
     <string name="folder_name">Όνομα φακέλου</string>
-    <string name="file_name">Όνομα φακέλου</string>
-    <string name="extension">Κατάληξη (με\'.\')</string>
     <string name="this_folder_is_empty">Αυτός ο φάκελος είναι κενός.</string>
     <string name="really_delete">Θέλετε σίγουρα να διαγράψετε το %s;</string>
-    <string name="file_deleted">Το αρχείο διεγράφη.</string>
-    <string name="folder_deleted">Ο φάκελος διεγράφη.</string>
-    <string name="file_renamed">Το αρχείο μετονομάστηκε.</string>
-    <string name="folder_renamed">Ο φάκελος μετονομάστηκε.</string>
-    <string name="file_moved">Το αρχείο μετακινήθηκε.</string>
-    <string name="folder_moved">Ο φάκελος μετακινήθηκε.</string>
-    <string name="file_copied">Το αρχείο αντεγράφη.</string>
-    <string name="move_title">Επιλέξτε φάκελο προς μετακίνηση</string>
-    <string name="move_button">Μετακίνηση εδώ</string>
-    <string name="copy_title">Επιλέξτε φάκελο προς αντιγραφή</string>
-    <string name="copy_button">Αντιγραφή εδώ</string>
-	<string name="deleting_files">Διαγραφή αρχείων...</string>
     <string name="title_warning_some_may_not_work">Προσοχή</string>
     <string name="warning_some_may_not_work">Κάποιες από τις παρακάτω επιλογές μπορεί να μη δουλεύουν.</string>
     <string name="show_warning_again">Εμφάνιση της προειδοποίησης ξανά</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Θέλετε σίγουρα να διαγράψετε %d αρχεία;</string>
-    <string name="move_button_multiselect">Μετακίνηση</string>
-    <string name="copy_button_multiselect">Αντιγραφή</string>
-    <string name="delete_button_multiselect">Διαγραφή</string>
-
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">ZIP</string>
 
     <string name="multiselect_title">Επιλογή πολλαπλών αρχείων</string>
-    <string name="error_selection">Παρακαλώ επιλέξτε ένα ή περισσότερα αρχεία.</string>
+    <string name="pick_title">File picker</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Τύπος</string>
@@ -109,16 +82,6 @@
     <string name="media_scan_included">Αυτός ο φάκελος θα συμπεριληφθεί στην επόμενη σάρωση μέσων.</string>
     <string name="media_scan_excluded">Αυτός ο φάκελος θα εξαιρεθεί από την επόμενη σάρωση μέσων.</string>
     
-    <string name="error_creating_new_folder">Αδυναμία δημιουργίας νέου φακέλου.</string>
-    <string name="error_deleting_file">Αδυναμία διαφραφής αρχείου.</string>
-    <string name="error_deleting_folder">Αδυναμία διαγραφής του φακέλου \'%s\'.</string>
-    <string name="error_renaming_file">Αδυναμία μετονομασίας αρχείου.</string>
-    <string name="error_renaming_folder">Αδυναμία μετονομασίας φακέλου.</string>
-    <string name="error_moving_file">Αδυναμία μετακίνησης αρχείου.</string>
-    <string name="error_moving_folder">Αδυναμία μετακίνησης φακέλου.</string>
-    <string name="error_copying_file">Αδυναμία αντιγραφής αρχείου.</string>
-    <string name="error_file_does_not_exists">Το αρχείο δεν υπάρχει.</string>
-    <string name="error_deleting_child_file">Αδυναμία δημιουργίας το παράγωγου αρχείου \'%s\'.</string>
     <string name="error_generic">Προέκυψε ένα σφάλμα:</string>
     <string name="error_media_scan">Αδυναμία αλλαγής των ρυθμίσεων της σάρωσης μέσων.</string>
     
@@ -165,33 +128,84 @@
     <string name="saveas_error">Προέκυψε ένα σφάλμα.</string>
     <string name="saveas_file_saved">Το αρχείο αποθηκεύτηκε επιτυχώς!</string>
     
-        
-   
-    <string name="bookmarks">Σελιδοδείκτες</string>
-    <string name="bookmarks_cancel">Ακύρωση</string>
-    <string name="bookmarks_delete">Διαγραφή</string>
-    <string name="bookmarks_select_to_delete">Επιλογή σελιδοδεικτών προς διαγραφή</string>
-    <string name="bookmarks_manage">Διαχείριση σελιδοδεικτών</string>
-    <string name="bookmark_added">Προστέθηκε ο σελιδοδείκτης</string>
-    <string name="bookmark_not_found">Ο προορισμός  του σελιδοδείκτη δε βρέθηκε.</string>
-    <string name="bookmarks_deleted">Οι επιλεγμένοι σελιδοδείκτες διαγράφτηκαν.</string>
-    <string name="bookmark_already_exists">Αυτό το αρχείο έχει ήδη προστεθεί στους σελιδοδείκτες</string>
-
-
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
     <string name="compressing_success">Το αντικείμενο συμπιέστηκε με επιτυχία</string>
     <string name="compressing_error">Αδυναμία συμπίεσης του αντικειμένου</string>
-    <string name="compress_into_archive">Συμπίεση σε αρχείο:</string>
     <string name="extracting_success">Το αντικείμενο αποσυμπιέστηκε με επιτυχία</string>
     <string name="extracting_error">Αδυναμία αποσυμπίεσης του αντικειμένου</string>
-    <string name="extract_into_folder">Αποσυμπίεση σε φάκελο:</string>
-    <string name="extract_title">Επιλέξτε φάκελο για να γίνει η απουμπίεση</string>
-    <string name="extract_button">Αποσυμπίεση εδώ</string>
-    <string name="extracting">Γίνεται αποσυμπίεση...</string>
-    <string name="compressing">Γίνεται συμπίεση...</string>
-    <string name="warning_overwrite">Το αρχείο %s υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;</string>
-
-    <string name="change_file_extension">Θέλετε να αλλάξτε την επέκταση του αρχείου;</string>
+    <string name="extracting">Extracting…</string>
+    <string name="compressing">Compressing…</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Σελιδοδείκτες</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_paste">Paste</string>
+    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_settings">Ρυθμίσεις</string>
+    
+    <string name="menu_send">Αποστολή</string>
+    <string name="menu_delete">Διαγραφή</string>
+    <string name="menu_move">Cut</string>
+    <string name="menu_copy">Αντιγραφή</string>
+    <string name="menu_compress">Compress</string>
+    <string name="menu_rename">Μετονομασία</string>
+    
+    <string name="menu_extract">Extract</string>
+    <string name="menu_details">Λεπτομέρεις</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="send_chooser_title">Send using:</string>
+    
+    <string name="menu_check_all">Check all</string>
+    <string name="menu_uncheck_all">Uncheck all</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">selected</string>
+    <string name="no_selection">No items checked</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="bookmark_added">Προστέθηκε ο σελιδοδείκτης</string>
+    <string name="bookmark_already_exists">Αυτό το αρχείο έχει ήδη προστεθεί στους σελιδοδείκτες</string>
+    <string name="bookmarks">Σελιδοδείκτες</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Item icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning…</string>
+    
+    <!-- Dialogs -->
+    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_failure">Some files not deleted</string>
+    <string name="deleting">Deleting…</string>
+    <string name="rename_success">Successfully renamed</string>
+    <string name="rename_failure">Couldn\'t rename</string>
+    <string name="loading">Loading…</string>
+    <string name="create_dir_success">Successfully created directory</string>
+    <string name="create_dir_failure">Couldn\'t create directory</string>
+    <string name="compressed_file_name">Zip file name</string>
+    <string name="file_exists">File exists</string>
+    <string name="overwrite_question">Overwrite old file?</string>
+    
+    <string name="directory_pick">Select current directory</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copying…</string>
+    <string name="copied">Successfully copied</string>
+    <string name="copy_error">Some or all items couldn\'t be copied!</string>
+    <string name="moving">Moving…</string>
+    <string name="moved">Successfully moved</string>
+    <string name="move_error">Some or all items couldn\'t be moved!</string>
+    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 </resources>

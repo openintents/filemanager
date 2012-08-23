@@ -36,60 +36,33 @@
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
     
-    <string name="menu_new_folder">Nouveau dossier</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">Sélectionnez multi</string>
-
     <string name="menu_delete">Supprimer</string>
     <string name="menu_rename">Renommer</string>
     <string name="menu_send">Envoyer</string>
     <string name="menu_open">Ouvrir</string>
-    <string name="menu_move">Déplacer</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">Copier</string>
     <string name="menu_details">Détails</string>
     <string name="menu_more">Plus</string>
     <string name="menu_compress">Compresser (ZIP)</string>
     <string name="menu_extract">Extraire</string>
-    <string name="menu_filter">filtre</string>
     <string name="menu_include_in_media_scan">Inclure dans les recherches</string>
     <string name="menu_exclude_from_media_scan">Exclure des recherches</string>
-    <string name="menu_bookmark">Ajouter aux favoris</string>
-    <string name="menu_refresh">Rafraîchir</string>
+    <string name="menu_bookmark">Bookmark</string>
     
     <string name="create_new_folder">Créer un nouveau dossier</string>
     <string name="folder_name">Nom du dossier</string>
-    <string name="file_name">Nom du dossier</string>
-    <string name="extension">Extension (avec \'.\')</string>
     <string name="this_folder_is_empty">Ce dossier est vide.</string>
     <string name="really_delete">Voulez-vous vraiment supprimer %s?</string>
-    <string name="file_deleted">Fichier supprimé.</string>
-    <string name="folder_deleted">Dossier supprimé.</string>
-    <string name="file_renamed">Fichier renommé.</string>
-    <string name="folder_renamed">Dossier renommé.</string>
-    <string name="file_moved">Fichier déplacé.</string>
-    <string name="folder_moved">Dossier déplacé.</string>
-    <string name="file_copied">Fichier copié.</string>
-    <string name="move_title">Sélectionner un dossier vers lequel déplacer</string>
-    <string name="move_button">Déplacer ici</string>
-    <string name="copy_title">Sélectionner le dossier à copier sur</string>
-    <string name="copy_button">Copier ici</string>
-	<string name="deleting_files">Suppression de fichiers ...</string>
     <string name="title_warning_some_may_not_work">Attention</string>
     <string name="warning_some_may_not_work">Certaines des options suivantes ne peuvent pas travailler.</string>
     <string name="show_warning_again">Afficher une alerte à nouveau</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Voulez-vous vraiment supprimer %d fichiers?</string>
-    <string name="move_button_multiselect">Déplacer</string>
-    <string name="copy_button_multiselect">Copier</string>
-    <string name="delete_button_multiselect">Supprimer</string>
-
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">Code postal</string>
 
     <string name="multiselect_title">Sélectionner plusieurs fichiers</string>
-    <string name="error_selection">S\'il vous plaît sélectionner un ou plusieurs fichier(s).</string>
+    <string name="pick_title">File picker</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Tapez</string>
@@ -112,16 +85,6 @@
     <string name="media_scan_included">Ce dossier sera inclus dans la prochaine recherche</string>
     <string name="media_scan_excluded">Ce dossier sera exclus de la prochaine recherche</string>
     
-    <string name="error_creating_new_folder">Impossible de créer le nouveau dossier.</string>
-    <string name="error_deleting_file">Impossible de supprimer le fichier.</string>
-    <string name="error_deleting_folder">Impossible de supprimer le dossier \'%s\'.</string>
-    <string name="error_renaming_file">Impossible de renommer le fichier.</string>
-    <string name="error_renaming_folder">Impossible de renommer le dossier.</string>
-    <string name="error_moving_file">Impossible de déplacer le fichier.</string>
-    <string name="error_moving_folder">Impossible de déplacer le dossier.</string>
-    <string name="error_copying_file">Impossible de copier le fichier.</string>
-    <string name="error_file_does_not_exists">Le fichier n\'existe pas.</string>
-    <string name="error_deleting_child_file">Impossible de supprimer le fichier enfant \'%s\'.</string>
     <string name="error_generic">Une erreur s\'est produite:</string>
     <string name="error_media_scan">Impossible de changer les paramètres de numérisation des médias.</string>
     
@@ -168,33 +131,84 @@
     <string name="saveas_error">Une erreur s\'est produite</string>
     <string name="saveas_file_saved">Fichier sauvegardé avec succès</string>
     
-        
-   
-    <string name="bookmarks">Signets</string>
-    <string name="bookmarks_cancel">Annuler</string>
-    <string name="bookmarks_delete">Supprimer</string>
-    <string name="bookmarks_select_to_delete">Sélectionnez les signets de supprimer</string>
-    <string name="bookmarks_manage">Gérer les signets</string>
-    <string name="bookmark_added">Signet ajouté</string>
-    <string name="bookmark_not_found">Destination de signet pas été trouvé.</string>
-    <string name="bookmarks_deleted">Signets sélectionnés supprimés</string>
-    <string name="bookmark_already_exists">Ce fichier est déjà un signet</string>
-
-
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
     <string name="compressing_success">Fichier compressé avec succès</string>
     <string name="compressing_error">Impossible de compresser ce fichier</string>
-    <string name="compress_into_archive">Compresser dans l\'archive :</string>
     <string name="extracting_success">Fichier extrait avec succès</string>
     <string name="extracting_error">Impossible d\'extraire le fichier</string>
-    <string name="extract_into_folder">Extraire vers le dossier :</string>
-    <string name="extract_title">Sélectionnez le dossier de destination</string>
-    <string name="extract_button">Extraire ici</string>
-    <string name="extracting">Extraction en cours ...</string>
-    <string name="compressing">Compression en cours ...</string>
-    <string name="warning_overwrite">Le fichier %s existe déjà. Voulez-vous l\'écraser ?</string>
-
-    <string name="change_file_extension">Voulez-vous modifier l\'extension du fichier ?</string>
+    <string name="extracting">Extracting…</string>
+    <string name="compressing">Compressing…</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Signets</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_paste">Paste</string>
+    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_settings">Réglages</string>
+    
+    <string name="menu_send">Envoyer</string>
+    <string name="menu_delete">Supprimer</string>
+    <string name="menu_move">Cut</string>
+    <string name="menu_copy">Copier</string>
+    <string name="menu_compress">Compress</string>
+    <string name="menu_rename">Renommer</string>
+    
+    <string name="menu_extract">Extract</string>
+    <string name="menu_details">Détails</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="send_chooser_title">Send using:</string>
+    
+    <string name="menu_check_all">Check all</string>
+    <string name="menu_uncheck_all">Uncheck all</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">selected</string>
+    <string name="no_selection">No items checked</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="bookmark_added">Signet ajouté</string>
+    <string name="bookmark_already_exists">Ce fichier est déjà un signet</string>
+    <string name="bookmarks">Signets</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Item icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning…</string>
+    
+    <!-- Dialogs -->
+    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_failure">Some files not deleted</string>
+    <string name="deleting">Deleting…</string>
+    <string name="rename_success">Successfully renamed</string>
+    <string name="rename_failure">Couldn\'t rename</string>
+    <string name="loading">Loading…</string>
+    <string name="create_dir_success">Successfully created directory</string>
+    <string name="create_dir_failure">Couldn\'t create directory</string>
+    <string name="compressed_file_name">Zip file name</string>
+    <string name="file_exists">File exists</string>
+    <string name="overwrite_question">Overwrite old file?</string>
+    
+    <string name="directory_pick">Select current directory</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copying…</string>
+    <string name="copied">Successfully copied</string>
+    <string name="copy_error">Some or all items couldn\'t be copied!</string>
+    <string name="moving">Moving…</string>
+    <string name="moved">Successfully moved</string>
+    <string name="move_error">Some or all items couldn\'t be moved!</string>
+    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 </resources>

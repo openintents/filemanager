@@ -34,60 +34,33 @@
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI Správca Súborov</string>
     
-    <string name="menu_new_folder">Nový Priečinok</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">Viacnásobné Označenie</string>
-
     <string name="menu_delete">Zmazať</string>
     <string name="menu_rename">Premenovať</string>
     <string name="menu_send">Odoslať</string>
     <string name="menu_open">Otvoriť</string>
-    <string name="menu_move">Presunúť</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">Kopírovať</string>
     <string name="menu_details">Detaily</string>
     <string name="menu_more">Viac</string>
     <string name="menu_compress">Komprimovat (ZIP)</string>
     <string name="menu_extract">Extrahovať (ZIP)</string>
-    <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Zahrnúť v prehľadávaní médií</string>
     <string name="menu_exclude_from_media_scan">Vyňať z prehľadávania médií</string>
-    <string name="menu_bookmark">Pridať do záložiek</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_bookmark">Bookmark</string>
     
     <string name="create_new_folder">Vytvoriť nový priečinok</string>
     <string name="folder_name">Názov priečinka</string>
-    <string name="file_name">Názov priečinka</string>
-    <string name="extension">Rozšírenie (s \'.\')</string>
     <string name="this_folder_is_empty">Tento priečinok je prázdny.</string>
     <string name="really_delete">Naozaj chcete zmazať %s?</string>
-    <string name="file_deleted">Súbor bol zmazaný.</string>
-    <string name="folder_deleted">Priečinok bol zmazaný.</string>
-    <string name="file_renamed">Súbor bol premenovaný.</string>
-    <string name="folder_renamed">Priečinok bol premenovaný.</string>
-    <string name="file_moved">Súbor bol presunutý.</string>
-    <string name="folder_moved">Priečinok bol presunutý.</string>
-    <string name="file_copied">Súbor bol skopírovaný.</string>
-    <string name="move_title">Vybrať priečinok do ktorého presunúť</string>
-    <string name="move_button">Presunúť sem</string>
-    <string name="copy_title">Vybrať priečinok do ktorého kopírovať</string>
-    <string name="copy_button">Kopírovať sem</string>
-	<string name="deleting_files">Súbory sa odstraňujú...</string>
     <string name="title_warning_some_may_not_work">Varovanie</string>
     <string name="warning_some_may_not_work">Niektoré z nasledujúcich možností nemusia fungovať.</string>
     <string name="show_warning_again">Znovu zobraziť varovanie.</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Naozaj chcete zmazať %d súborov?</string>
-    <string name="move_button_multiselect">Presunúť</string>
-    <string name="copy_button_multiselect">Kopírovať</string>
-    <string name="delete_button_multiselect">Zmazať</string>
-
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">ZIP</string>
 
     <string name="multiselect_title">Označiť viacero súborov</string>
-    <string name="error_selection">Prosím označte jeden alebo viac súborov.</string>
+    <string name="pick_title">File picker</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Typ</string>
@@ -110,16 +83,6 @@
     <string name="media_scan_included">Tento priečinok bude zahrnutý v nasledujúcom prehľadávaní médií.</string>
     <string name="media_scan_excluded">Tento priečinok bude vyňatý z nasledujúceho prehľadávania médií.</string>
     
-    <string name="error_creating_new_folder">Nebolo možné vytvoriť priečinok.</string>
-    <string name="error_deleting_file">Nebolo možné zmazať súbor.</string>
-    <string name="error_deleting_folder">Nebolo možné zmazať priečinok \'%s\'.</string>
-    <string name="error_renaming_file">Nebolo možné premenovať súbor.</string>
-    <string name="error_renaming_folder">Nebolo možné premenovať priečinok.</string>
-    <string name="error_moving_file">Nebolo možné presunúť súbor.</string>
-    <string name="error_moving_folder">Nebolo možné presunúť priečinok.</string>
-    <string name="error_copying_file">Nebolo možné skopírovať súbor.</string>
-    <string name="error_file_does_not_exists">Súbor neexistuje.</string>
-    <string name="error_deleting_child_file">Nebolo možné zmazať dcérsky súbor \'%s\'.</string>
     <string name="error_generic">Nastala chyba.</string>
     <string name="error_media_scan">Nebolo možné zmeniť nastavenia prehľadávania médií.</string>
     
@@ -166,33 +129,84 @@
     <string name="saveas_error">Nastala chyba.</string>
     <string name="saveas_file_saved">Súbor bol úspešne uložený!</string>
     
-        
-   
-    <string name="bookmarks">Záložky</string>
-    <string name="bookmarks_cancel">Zrušiť</string>
-    <string name="bookmarks_delete">Zmazať</string>
-    <string name="bookmarks_select_to_delete">Vybrať záložky na vymazanie</string>
-    <string name="bookmarks_manage">Spravovať záložky</string>
-    <string name="bookmark_added">Záložka pridaná</string>
-    <string name="bookmark_not_found">Uložená destinácia nebola nájdená.</string>
-    <string name="bookmarks_deleted">Vybrané záložky boli vymazané</string>
-    <string name="bookmark_already_exists">Tento súbor už má záložku</string>
-
-
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
     <string name="compressing_success">Položky boli úspešne skomprimované</string>
     <string name="compressing_error">Nebolo možné komprimovať položku</string>
-    <string name="compress_into_archive">Komprimovat do archívu:</string>
     <string name="extracting_success">Položky boli úspešne extrahované</string>
     <string name="extracting_error">Nebolo možné extrahovať položku</string>
-    <string name="extract_into_folder">Extrahovať do adresára:</string>
-    <string name="extract_title">Zvoľte adresár do ktorého sa bude extrahovať</string>
-    <string name="extract_button">Extrahovať sem</string>
-    <string name="extracting">Extrahujem...</string>
-    <string name="compressing">Komprimujem...</string>
-    <string name="warning_overwrite">Súbor %s existuje. Chcete ho prepísať?</string>
-
-    <string name="change_file_extension">Chcete zmeniť príponu súboru?</string>
+    <string name="extracting">Extracting…</string>
+    <string name="compressing">Compressing…</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Záložky</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_paste">Paste</string>
+    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_settings">Nastavenia</string>
+    
+    <string name="menu_send">Odoslať</string>
+    <string name="menu_delete">Zmazať</string>
+    <string name="menu_move">Cut</string>
+    <string name="menu_copy">Kopírovať</string>
+    <string name="menu_compress">Compress</string>
+    <string name="menu_rename">Premenovať</string>
+    
+    <string name="menu_extract">Extract</string>
+    <string name="menu_details">Detaily</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="send_chooser_title">Send using:</string>
+    
+    <string name="menu_check_all">Check all</string>
+    <string name="menu_uncheck_all">Uncheck all</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">selected</string>
+    <string name="no_selection">No items checked</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="bookmark_added">Záložka pridaná</string>
+    <string name="bookmark_already_exists">Tento súbor už má záložku</string>
+    <string name="bookmarks">Záložky</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Item icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning…</string>
+    
+    <!-- Dialogs -->
+    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_failure">Some files not deleted</string>
+    <string name="deleting">Deleting…</string>
+    <string name="rename_success">Successfully renamed</string>
+    <string name="rename_failure">Couldn\'t rename</string>
+    <string name="loading">Loading…</string>
+    <string name="create_dir_success">Successfully created directory</string>
+    <string name="create_dir_failure">Couldn\'t create directory</string>
+    <string name="compressed_file_name">Zip file name</string>
+    <string name="file_exists">File exists</string>
+    <string name="overwrite_question">Overwrite old file?</string>
+    
+    <string name="directory_pick">Select current directory</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copying…</string>
+    <string name="copied">Successfully copied</string>
+    <string name="copy_error">Some or all items couldn\'t be copied!</string>
+    <string name="moving">Moving…</string>
+    <string name="moved">Successfully moved</string>
+    <string name="move_error">Some or all items couldn\'t be moved!</string>
+    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 </resources>

@@ -37,60 +37,33 @@
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
     
-    <string name="menu_new_folder">Dosar nou</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">Selecție multiplă</string>
-
     <string name="menu_delete">Șterge</string>
     <string name="menu_rename">Redenumește</string>
     <string name="menu_send">Trimite</string>
     <string name="menu_open">Deschide</string>
-    <string name="menu_move">Mută</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">Copiază</string>
     <string name="menu_details">Detalii</string>
     <string name="menu_more">Mai mult</string>
     <string name="menu_compress">Comprimă (ZIP)</string>
     <string name="menu_extract">Extrage (ZIP)</string>
-    <string name="menu_filter">Filtru</string>
     <string name="menu_include_in_media_scan">Include în scanare media</string>
     <string name="menu_exclude_from_media_scan">Exclude din scanare media</string>
-    <string name="menu_bookmark">Adaugă la favorite</string>
-    <string name="menu_refresh">Actualizează</string>
+    <string name="menu_bookmark">Bookmark</string>
     
     <string name="create_new_folder">Crează un dosar nou</string>
     <string name="folder_name">Numele dosarului</string>
-    <string name="file_name">Numele dosarului</string>
-    <string name="extension">Extensie (cu „ . ”)</string>
     <string name="this_folder_is_empty">Dosarul este gol.</string>
     <string name="really_delete">Sigur doriți să ștergeți %s?</string>
-    <string name="file_deleted">Fișier sters.</string>
-    <string name="folder_deleted">Dosar șters.</string>
-    <string name="file_renamed">Fișier redenumit.</string>
-    <string name="folder_renamed">Dosar redenumit.</string>
-    <string name="file_moved">Fișier mutat.</string>
-    <string name="folder_moved">Dosar mutat.</string>
-    <string name="file_copied">Fișier copiat.</string>
-    <string name="move_title">Selectați dosarul destinație</string>
-    <string name="move_button">Mută aici</string>
-    <string name="copy_title">Selectați dosarul destinație</string>
-    <string name="copy_button">Copiază aici</string>
-	<string name="deleting_files">Se șterg fișierele...</string>
     <string name="title_warning_some_may_not_work">Avertizare</string>
     <string name="warning_some_may_not_work">Una din următoarele opțiuni s-ar putea să nu funcționeze.</string>
     <string name="show_warning_again">Arată avertizarea din nou</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Sigur doriți ștergerea a %d fișiere?</string>
-    <string name="move_button_multiselect">Mută</string>
-    <string name="copy_button_multiselect">Copiază</string>
-    <string name="delete_button_multiselect">Șterge</string>
-
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">ZIP</string>
 
     <string name="multiselect_title">Selectează fișiere multiple</string>
-    <string name="error_selection">Selectați unul sau mai multe fișiere.</string>
+    <string name="pick_title">File picker</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Tip</string>
@@ -113,16 +86,6 @@
     <string name="media_scan_included">Acest dosar va fi inclus în următoarea scanare media.</string>
     <string name="media_scan_excluded">Acest dosar va fi exclus în timpul următoarei scanări media.</string>
     
-    <string name="error_creating_new_folder">Nu s-a putut crea un dosar nou.</string>
-    <string name="error_deleting_file">Nu s-a putut șterge fișierul.</string>
-    <string name="error_deleting_folder">Nu s-a putut șterge dosarul \'%s\'.</string>
-    <string name="error_renaming_file">Nu s-a putut redenumi fișierul.</string>
-    <string name="error_renaming_folder">Nu s-a putut redenumi dosarul.</string>
-    <string name="error_moving_file">Nu s-a putut muta fișierul.</string>
-    <string name="error_moving_folder">Nu s-a putut muta dosarul.</string>
-    <string name="error_copying_file">Nu s-a putut copia fișierul.</string>
-    <string name="error_file_does_not_exists">Fișierul nu există.</string>
-    <string name="error_deleting_child_file">Nu s-a putut șterge sub-fișierul „%s”.</string>
     <string name="error_generic">A apărut o eroare:</string>
     <string name="error_media_scan">Nu s-au putut schimba configurările scanării media.</string>
     
@@ -169,33 +132,84 @@
     <string name="saveas_error">A apărut o eroare.</string>
     <string name="saveas_file_saved">Fișierul a fost salvat cu succes!</string>
     
-        
-   
-    <string name="bookmarks">Semne de carte</string>
-    <string name="bookmarks_cancel">Anulează</string>
-    <string name="bookmarks_delete">Șterge</string>
-    <string name="bookmarks_select_to_delete">Selectează semnele de carte care să fie șterse</string>
-    <string name="bookmarks_manage">Gestionaţi semnele de carte</string>
-    <string name="bookmark_added">Semn de carte adăugat</string>
-    <string name="bookmark_not_found">Destinația semnului de carte nu a fost găsită.</string>
-    <string name="bookmarks_deleted">Selectează semnele de carte șterse</string>
-    <string name="bookmark_already_exists">Acest fișier este deja semn de carte.</string>
-
-
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
     <string name="compressing_success">Element comprimat cu succes</string>
     <string name="compressing_error">Nu s-a putut comprima elementul</string>
-    <string name="compress_into_archive">Comprimă într-o arhivă</string>
     <string name="extracting_success">Element extras cu succes</string>
     <string name="extracting_error">Nu s-a putut extrage elementul</string>
-    <string name="extract_into_folder">Extrage în dosarul:</string>
-    <string name="extract_title">Selectează dosarul în care se extrage</string>
-    <string name="extract_button">Extrage aici</string>
-    <string name="extracting">Se extrage...</string>
-    <string name="compressing">Se comprimă...</string>
-    <string name="warning_overwrite">Fișierul %s există. Doriți să îl suprascrieți?</string>
-
-    <string name="change_file_extension">Doriți să modificați extensia fișierului?</string>
+    <string name="extracting">Extracting…</string>
+    <string name="compressing">Compressing…</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Semne de carte</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_paste">Paste</string>
+    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_settings">Configurări</string>
+    
+    <string name="menu_send">Trimite</string>
+    <string name="menu_delete">Șterge</string>
+    <string name="menu_move">Cut</string>
+    <string name="menu_copy">Copiază</string>
+    <string name="menu_compress">Compress</string>
+    <string name="menu_rename">Redenumește</string>
+    
+    <string name="menu_extract">Extract</string>
+    <string name="menu_details">Detalii</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="send_chooser_title">Send using:</string>
+    
+    <string name="menu_check_all">Check all</string>
+    <string name="menu_uncheck_all">Uncheck all</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">selected</string>
+    <string name="no_selection">No items checked</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="bookmark_added">Semn de carte adăugat</string>
+    <string name="bookmark_already_exists">Acest fișier este deja semn de carte.</string>
+    <string name="bookmarks">Semne de carte</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Item icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning…</string>
+    
+    <!-- Dialogs -->
+    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_failure">Some files not deleted</string>
+    <string name="deleting">Deleting…</string>
+    <string name="rename_success">Successfully renamed</string>
+    <string name="rename_failure">Couldn\'t rename</string>
+    <string name="loading">Loading…</string>
+    <string name="create_dir_success">Successfully created directory</string>
+    <string name="create_dir_failure">Couldn\'t create directory</string>
+    <string name="compressed_file_name">Zip file name</string>
+    <string name="file_exists">File exists</string>
+    <string name="overwrite_question">Overwrite old file?</string>
+    
+    <string name="directory_pick">Select current directory</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copying…</string>
+    <string name="copied">Successfully copied</string>
+    <string name="copy_error">Some or all items couldn\'t be copied!</string>
+    <string name="moving">Moving…</string>
+    <string name="moved">Successfully moved</string>
+    <string name="move_error">Some or all items couldn\'t be moved!</string>
+    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 </resources>

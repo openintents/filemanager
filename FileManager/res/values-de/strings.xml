@@ -24,8 +24,6 @@
   Alexander Sapronov https://launchpad.net/~warmonger
   Daniel Winzen https://launchpad.net/~q-d
   Dennis Baudys https://launchpad.net/~thecondordb
-  Flosen https://launchpad.net/~flose
-  Giannis Konstantinidis https://launchpad.net/~giankonstantinidis
   Hans https://launchpad.net/~hans-wuerstchen42
   OpenIntents devs https://launchpad.net/~openintents-devs
   Patrick Eigensatz https://launchpad.net/~p.eigensatz
@@ -33,8 +31,7 @@
   Schrotti https://launchpad.net/~schrott-micha
   cmdrhenner https://launchpad.net/~cmdrhenner
   hani https://launchpad.net/~markushahnenkamm
-  marco.jahn https://launchpad.net/~accounts+launchpad-net
-  mrx5682 https://launchpad.net/~mrx5682</string>
+  marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
     <string name="about_comments">Mit den OI Dateimanager können Sie Ihre Daten auf der SD-Karte verwalten.</string>  

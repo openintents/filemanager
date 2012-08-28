@@ -22,8 +22,7 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Arne Tobias Malkenes Ødegaard https://launchpad.net/~arne-tobias
-  OpenIntents devs https://launchpad.net/~openintents-devs
-  Simen https://launchpad.net/~simen-burud</string>
+  OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
     <string name="about_comments">Administrer filer på SD-kortet med OI Filbehandler.</string>  

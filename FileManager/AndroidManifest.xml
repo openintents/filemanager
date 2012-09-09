@@ -16,12 +16,13 @@
 -->
 <manifest package="org.openintents.filemanager"
     android:installLocation="auto"
-    android:versionCode="20"
-    android:versionName="1.2" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:versionCode="21"
+    android:versionName="1.3-rc1" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
     History: 
 	 * * * UPDATE ATRACKDOG METADATA BELOW FOR RELEASE CANDIDATES * * *
+	[21] 1.3-rc1: 
 	[20] 1.2: 2012-02-18
 	[19] 1.2-rc2: 2012-02-04
 	[18] 1.2-rc1: 2012-01-26

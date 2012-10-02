@@ -13,7 +13,6 @@ import org.openintents.intents.FileManagerIntents;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -167,14 +166,10 @@ public abstract class FileListFragment extends ListFragment {
 	 * @return {@link #mScanner} for convenience.
 	 */
 	protected DirectoryScanner renewScanner() {
-		String filetypeFilter = getArguments().getString(
-				FileManagerIntents.EXTRA_FILTER_FILETYPE);
-		String mimetypeFilter = getArguments().getString(
-				FileManagerIntents.EXTRA_FILTER_MIMETYPE);
-		boolean writeableOnly = getArguments().getBoolean(
-				FileManagerIntents.EXTRA_WRITEABLE_ONLY);
-		boolean directoriesOnly = getArguments().getBoolean(
-				FileManagerIntents.EXTRA_DIRECTORIES_ONLY);
+		String filetypeFilter = getArguments().getString(FileManagerIntents.EXTRA_FILTER_FILETYPE);
+		String mimetypeFilter = getArguments().getString(FileManagerIntents.EXTRA_FILTER_MIMETYPE);
+		boolean writeableOnly = getArguments().getBoolean(FileManagerIntents.EXTRA_WRITEABLE_ONLY);
+		boolean directoriesOnly = getArguments().getBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY);
 
 		mScanner = new DirectoryScanner(new File(mPath), getActivity(),
 				new FileListMessageHandler(),
@@ -198,6 +193,10 @@ public abstract class FileListFragment extends ListFragment {
 				mFiles.addAll(c.listFile);
 
 				mAdapter.notifyDataSetChanged();
+				
+				// Reset list position.
+				if(mFiles.size() > 0)
+					getListView().setSelection(0);
 				setLoading(false);
 				break;
 			case DirectoryScanner.MESSAGE_SET_PROGRESS:

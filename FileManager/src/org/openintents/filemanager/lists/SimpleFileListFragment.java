@@ -35,7 +35,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * A file list fragment that supports context menu and CAB selection. Check {@link #setPathBar(PathBar)} for info on list item click behavior.
+ * A file list fragment that supports context menu and CAB selection. 
  * 
  * @author George Venios
  */
@@ -103,8 +103,7 @@ public class SimpleFileListFragment extends FileListFragment {
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		FileHolder fh = (FileHolder) mAdapter
-				.getItem(((AdapterContextMenuInfo) item.getMenuInfo()).position);
+		FileHolder fh = (FileHolder) mAdapter.getItem(((AdapterContextMenuInfo) item.getMenuInfo()).position);
 		return MenuUtils.handleSingleSelectionAction(this, item, fh, getActivity());
 	}
 

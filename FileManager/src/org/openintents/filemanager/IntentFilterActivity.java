@@ -20,33 +20,33 @@ public class IntentFilterActivity extends FragmentActivity {
 	private FileListFragment mFragment;
 	
 	@Override
-	protected void onCreate(Bundle arg0) {
-		super.onCreate(arg0);
+	protected void onCreate(Bundle savedInstance) {
+		super.onCreate(savedInstance);
 		Intent intent = getIntent();
 
 		// Initialize arguments
-		Bundle args = intent.getExtras();
-		if(args == null)
-			args = new Bundle();
+		Bundle extras = intent.getExtras();
+		if(extras == null)
+			extras = new Bundle();
 		// Add a path if path is not specified in this activity's call
-		if(!args.containsKey(FileManagerIntents.EXTRA_DIR_PATH)){
+		if(!extras.containsKey(FileManagerIntents.EXTRA_DIR_PATH)){
 			
 			File defaultFile = new File(PreferenceActivity.getDefaultPickFilePath(this));
 			if(!defaultFile.exists()) {
 				PreferenceActivity.setDefaultPickFilePath(this, Environment.getExternalStorageDirectory().getAbsolutePath());
 				defaultFile = new File(PreferenceActivity.getDefaultPickFilePath(this));
 			}
-			args.putString(FileManagerIntents.EXTRA_DIR_PATH, defaultFile.getAbsolutePath());
+			extras.putString(FileManagerIntents.EXTRA_DIR_PATH, defaultFile.getAbsolutePath());
 		}
 		
 		// Add a path if a path has been specified in this activity's call. 
 		File data = FileUtils.getFile(getIntent().getData());
 		if(data!=null && !data.isFile())
-			args.putString(FileManagerIntents.EXTRA_DIR_PATH, data.getAbsolutePath());
+			extras.putString(FileManagerIntents.EXTRA_DIR_PATH, data.getAbsolutePath());
 			
 		// Add a mimetype filter if it was specified through the type of the intent.
-		if(!args.containsKey(FileManagerIntents.EXTRA_FILTER_MIMETYPE) && intent.getType() != null)
-			args.putString(FileManagerIntents.EXTRA_FILTER_MIMETYPE, intent.getType());
+		if(!extras.containsKey(FileManagerIntents.EXTRA_FILTER_MIMETYPE) && intent.getType() != null)
+			extras.putString(FileManagerIntents.EXTRA_FILTER_MIMETYPE, intent.getType());
 		
 		// Multiselect
 		if(intent.getAction().equals(FileManagerIntents.ACTION_MULTI_SELECT)){
@@ -57,7 +57,7 @@ public class IntentFilterActivity extends FragmentActivity {
 			if(mFragment == null){
 				mFragment = new MultiselectListFragment();
 				// Pass extras through to the list fragment. This helps centralize the path resolving, etc.
-				mFragment.setArguments(args);
+				mFragment.setArguments(extras);
 				
 				setTitle(R.string.multiselect_title);
 				
@@ -79,11 +79,11 @@ public class IntentFilterActivity extends FragmentActivity {
 				mFragment = new PickFileListFragment();
 				
 				// Pass extras through to the list fragment. This helps centralize the path resolving, etc.
-				args.putBoolean(FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED, intent.getAction().equals(Intent.ACTION_GET_CONTENT));
-				args.putBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY, intent.getAction().equals(FileManagerIntents.ACTION_PICK_DIRECTORY));
+				extras.putBoolean(FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED, intent.getAction().equals(Intent.ACTION_GET_CONTENT));
+				extras.putBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY, intent.getAction().equals(FileManagerIntents.ACTION_PICK_DIRECTORY));
 				
 				
-				mFragment.setArguments(args);
+				mFragment.setArguments(extras);
 				getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, tag).commit();
 			}
 		}

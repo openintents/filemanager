@@ -171,7 +171,12 @@ public abstract class FileListFragment extends ListFragment {
 		boolean writeableOnly = getArguments().getBoolean(FileManagerIntents.EXTRA_WRITEABLE_ONLY);
 		boolean directoriesOnly = getArguments().getBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY);
 
-		mScanner = new DirectoryScanner(new File(mPath), getActivity(),
+		File dir = new File(mPath);
+		// sanity check that the path (coming from extras_dir_path) is indeed a directory
+		if (!dir.isDirectory() && dir.getParentFile() != null){
+			dir = dir.getParentFile();
+		}
+		mScanner = new DirectoryScanner(dir, getActivity(),
 				new FileListMessageHandler(),
 				MimeTypes.newInstance(getActivity()),
 				filetypeFilter == null ? "" : filetypeFilter,

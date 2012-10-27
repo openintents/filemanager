@@ -59,9 +59,9 @@ public class SimpleFileListFragment extends FileListFragment {
 		mPathBar = (PathBar) view.findViewById(R.id.pathbar);
 		// Handle mPath differently if we restore state or just initially create the view.
 		if(savedInstanceState == null)
-			mPathBar.setInitialDirectory(mPath);
+			mPathBar.setInitialDirectory(getPath());
 		else
-			mPathBar.cd(mPath);
+			mPathBar.cd(getPath());
 		mPathBar.setOnDirectoryChangedListener(new OnDirectoryChangedListener() {
 
 			@Override
@@ -156,9 +156,9 @@ public class SimpleFileListFragment extends FileListFragment {
 	 */
 	protected void openDir(FileHolder fileholder){
 		// Avoid unnecessary attempts to load.
-		if(fileholder.getFile().getAbsolutePath().equals(mPath))
+		if(fileholder.getFile().getAbsolutePath().equals(getPath()))
 			return;
-		mPath = fileholder.getFile().getAbsolutePath();
+		setPath(fileholder.getFile().getAbsolutePath());
 		refresh();
 	}
 
@@ -192,7 +192,7 @@ public class SimpleFileListFragment extends FileListFragment {
 			CreateDirectoryDialog dialog = new CreateDirectoryDialog();
 			dialog.setTargetFragment(this, 0);
 			Bundle args = new Bundle();
-			args.putString(FileManagerIntents.EXTRA_DIR_PATH, mPath);
+			args.putString(FileManagerIntents.EXTRA_DIR_PATH, getPath());
 			dialog.setArguments(args);
 			dialog.show(getActivity().getSupportFragmentManager(), CreateDirectoryDialog.class.getName());
 			return true;
@@ -207,7 +207,7 @@ public class SimpleFileListFragment extends FileListFragment {
 			
 		case R.id.menu_paste:
 			if(((FileManagerApplication) getActivity().getApplication()).getCopyHelper().canPaste())
-				((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(mPath), new CopyHelper.OnOperationFinishedListener() {
+				((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(getPath()), new CopyHelper.OnOperationFinishedListener() {
 					@Override
 					public void operationFinished(boolean success) {
 						refresh();

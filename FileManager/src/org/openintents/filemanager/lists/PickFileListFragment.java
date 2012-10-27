@@ -20,12 +20,6 @@ import android.widget.Button;
 public class PickFileListFragment extends SimpleFileListFragment{
 	
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setActionsEnabled(false);
-	}
-	
-	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.filelist_pick, null);
@@ -63,7 +57,7 @@ public class PickFileListFragment extends SimpleFileListFragment{
 	 * @param selection A {@link File} representing the user's selection.
 	 * @param getContentInitiated Whether the fragment was called through a GET_CONTENT intent on the IntentFilterActivity. We have to know this so that result is correctly formatted.
 	 */
-	private void pickFileOrFolder(File selection, boolean getContentInitiated){
+	void pickFileOrFolder(File selection, boolean getContentInitiated){
 		Intent intent = new Intent();
 		PreferenceActivity.setDefaultPickFilePath(getActivity(), selection.getParent() != null ?  selection.getParent() : "/");
 		

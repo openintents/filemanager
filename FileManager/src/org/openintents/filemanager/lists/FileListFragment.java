@@ -67,7 +67,7 @@ public abstract class FileListFragment extends ListFragment {
 	protected FileHolderListAdapter mAdapter;
 	protected DirectoryScanner mScanner;
 	protected ArrayList<FileHolder> mFiles = new ArrayList<FileHolder>();
-	protected String mPath;
+	private String mPath;
 
 	private ViewFlipper mFlipper;
 
@@ -222,6 +222,16 @@ public abstract class FileListFragment extends ListFragment {
 	 */
 	public final String getPath() {
 		return mPath;
+	}
+	
+	/**
+	 * This will be ignored if path doesn't pass check as valid.
+	 * @param path The path to set.
+	 */
+	public final void setPath(String path){
+		File f = new File(path);
+		if(f.exists() && f.isDirectory())
+			mPath = path;
 	}
 	
 	private void pathCheckAndFix(){

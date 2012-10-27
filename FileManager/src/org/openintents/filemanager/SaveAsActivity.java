@@ -25,9 +25,8 @@ import android.widget.Toast;
 public class SaveAsActivity extends Activity {
 	protected static final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 1;
 	private Uri source;
-	//Whether the scheme is file: (otherwise it's content:)
+	// Whether the scheme is file: (otherwise it's content:)
 	private boolean fileScheme = false;
-	
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {

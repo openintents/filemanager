@@ -277,7 +277,7 @@ public class PathBar extends ViewFlipper {
 	 * @param path The path to cd() to.
 	 * @return true if the cd succeeded.
 	 */
-	private boolean manualInputCd(String path) {
+	boolean manualInputCd(String path) {
 		if (cd(path)) {
 			// if cd() successful, hide the keyboard
 			InputMethodManager imm = (InputMethodManager) getContext()
@@ -300,15 +300,7 @@ public class PathBar extends ViewFlipper {
 	public boolean cd(File file) {
 		boolean res = false;
 		
-		// Check file state.
-		boolean isFileOK = true;
-		isFileOK &= file.exists();
-		// add more filters here..
-		
-		if(!isFileOK)
-			return false;
-		
-		if (file.isDirectory()) {
+		if (isFileOk(file)) {
 			// Set proper current directory.
 			mCurrentDirectory = file;
 	
@@ -329,7 +321,8 @@ public class PathBar extends ViewFlipper {
 			mPathEditText.setText(file.getAbsolutePath());
 			
 			res = true;
-		}
+		} else
+			res = false;
 
 		mDirectoryChangedListener.directoryChanged(file);
 
@@ -461,5 +454,13 @@ public class PathBar extends ViewFlipper {
 		return mPathButtons;
 	}
 	
-	
+	boolean isFileOk(File file) {
+		// Check file state.
+		boolean isFileOK = true;
+		isFileOK &= file.exists();
+		isFileOK &= file.isDirectory();
+		// add more filters here..
+		
+		return isFileOK;
+	}
 }

@@ -40,7 +40,7 @@ public class PickBar extends LinearLayout {
 				@Override
 				public void onClick(View v) {
 					if(mListener!=null)
-						mListener.saveRequested(mEditText.getText().toString());
+						mListener.pickRequested(mEditText.getText().toString());
 				}
 			});
 		}
@@ -62,7 +62,7 @@ public class PickBar extends LinearLayout {
 						public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 							if (actionId == EditorInfo.IME_ACTION_GO || (event.getAction() == KeyEvent.ACTION_DOWN && (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER || event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
 								if(mListener!=null)
-									mListener.saveRequested(mEditText.getText().toString());
+									mListener.pickRequested(mEditText.getText().toString());
 								return true;
 							}
 
@@ -84,7 +84,7 @@ public class PickBar extends LinearLayout {
 	}
 	
 	public interface OnPickRequestedListener {
-		public void saveRequested(String filename);
+		public void pickRequested(String filename);
 	}
 
 	public void setButtonText(CharSequence text) {

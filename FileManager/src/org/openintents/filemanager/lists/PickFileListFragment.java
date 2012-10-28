@@ -65,7 +65,7 @@ public class PickFileListFragment extends SimpleFileListFragment{
 			mPickBar.setButtonText(getArguments().getString(FileManagerIntents.EXTRA_BUTTON_TEXT));
 			mPickBar.setOnPickRequestedListener(new OnPickRequestedListener() {
 				@Override
-				public void saveRequested(String filename) {
+				public void pickRequested(String filename) {
 					if(filename.trim().length() == 0) {
 						Toast.makeText(getActivity(), R.string.choose_filename, Toast.LENGTH_SHORT).show();
 						return;

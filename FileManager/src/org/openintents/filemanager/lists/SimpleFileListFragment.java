@@ -78,8 +78,7 @@ public class SimpleFileListFragment extends FileListFragment {
 		});
 		if(savedInstanceState != null && savedInstanceState.getBoolean(INSTANCE_STATE_PATHBAR_MODE))
 			mPathBar.switchToManualInput();
-		else
-			mPathBar.switchToStandardInput();
+		// Removed else clause as the other mode is the default. It seems faster this way on Nexus S.
 		
 		initContextualActions();
 	}

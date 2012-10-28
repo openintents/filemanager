@@ -5,7 +5,6 @@ import java.io.File;
 import org.openintents.filemanager.lists.FileListFragment;
 import org.openintents.filemanager.lists.MultiselectListFragment;
 import org.openintents.filemanager.lists.PickFileListFragment;
-import org.openintents.filemanager.lists.SaveAsFileListFragment;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.intents.FileManagerIntents;
 
@@ -40,16 +39,6 @@ public class IntentFilterActivity extends FragmentActivity {
 			extras.putString(FileManagerIntents.EXTRA_DIR_PATH, defaultFile.getAbsolutePath());
 		}
 		
-		// If this was a PICK_FILE intent and we have "save" somehow in the button text
-		// then mark this as a save_as intent. Kind of a leap of faith though :/
-		// This is due to the previous UI being too tied to the actual implementation of intents
-		// which is not compatible with the new "modular" approach OIFM uses. 
-		// There is a new "Save as" intent action added though, which can be used to ensure the correct type of list.
-		// UNSAFE FOR LOCALES OTHER THAN ENGLISH.
-		if(intent.getAction().equals(FileManagerIntents.ACTION_PICK_FILE) 
-				&& (extras.containsKey(FileManagerIntents.EXTRA_BUTTON_TEXT) && extras.getString(FileManagerIntents.EXTRA_BUTTON_TEXT).toLowerCase().contains("save")))
-			intent.setAction(FileManagerIntents.ACTION_SAVE_AS);
-		
 		// Add a path if a path has been specified in this activity's call. 
 		File data = FileUtils.getFile(getIntent().getData());
 		if(data!=null && !data.isFile())
@@ -78,26 +67,6 @@ public class IntentFilterActivity extends FragmentActivity {
 				setTitle(R.string.multiselect_title);
 				
 				getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, tag).commit();
-			}
-		}
-		// Save as
-		else if(intent.getAction().equals(FileManagerIntents.ACTION_SAVE_AS)) {
-			if(intent.hasExtra(FileManagerIntents.EXTRA_TITLE))
-				setTitle(intent.getStringExtra(FileManagerIntents.EXTRA_TITLE));
-			else
-				setTitle(R.string.pick_title);
-
-			mFragment = (SaveAsFileListFragment) getSupportFragmentManager().findFragmentByTag(SaveAsFileListFragment.class.getName());
-			
-			// Only add if it doesn't exist
-			if(mFragment == null){
-				mFragment = new SaveAsFileListFragment();
-				
-				// Pass extras through to the list fragment. This helps centralize the path resolving, etc.
-				extras.putBoolean(FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED, intent.getAction().equals(Intent.ACTION_GET_CONTENT));
-				
-				mFragment.setArguments(extras);
-				getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, SaveAsFileListFragment.class.getName()).commit();
 			}
 		}
 		// Item pickers

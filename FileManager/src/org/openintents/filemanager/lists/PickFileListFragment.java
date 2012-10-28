@@ -6,6 +6,8 @@ import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.view.PickBar;
+import org.openintents.filemanager.view.PickBar.OnPickRequestedListener;
 import org.openintents.intents.FileManagerIntents;
 
 import android.app.Activity;
@@ -16,8 +18,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 public class PickFileListFragment extends SimpleFileListFragment{
+	private PickBar mPickBar;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,9 +33,11 @@ public class PickFileListFragment extends SimpleFileListFragment{
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+		ViewFlipper modeSelector = (ViewFlipper) view.findViewById(R.id.modeSelector);
 		
+		// Folder init
 		if(getArguments().getBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY)){
-			view.findViewById(R.id.buttonBar).setVisibility(View.VISIBLE);
+			modeSelector.setDisplayedChild(0);
 			
 			Button button = (Button) view.findViewById(R.id.button);
 			button.setOnClickListener(new View.OnClickListener() {
@@ -42,14 +49,32 @@ public class PickFileListFragment extends SimpleFileListFragment{
 			if(getArguments().containsKey(FileManagerIntents.EXTRA_BUTTON_TEXT))
 				button.setText(getArguments().getString(FileManagerIntents.EXTRA_BUTTON_TEXT));
 		}
+		// Files init
+		else {
+			modeSelector.setDisplayedChild(1);
+			
+			mPickBar = (PickBar) view.findViewById(R.id.pickBar);
+			mPickBar.setButtonText(getArguments().getString(FileManagerIntents.EXTRA_BUTTON_TEXT));
+			mPickBar.setOnPickRequestedListener(new OnPickRequestedListener() {
+				@Override
+				public void saveRequested(String filename) {
+					if(filename.trim().length() == 0) {
+						Toast.makeText(getActivity(), R.string.choose_filename, Toast.LENGTH_SHORT).show();
+						return;
+					}
+
+					// Pick
+					pickFileOrFolder(new File(getPath() + (getPath().endsWith("/") ? "" : "/") + filename), 
+							getArguments().getBoolean(FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED, false));
+				}
+			});
+		}
 	}
 	
 	@Override
 	protected void openFile(FileHolder fileholder) {
-		// GET_CONTENT or PICK_FILE request. If it was PICK_DIRECTORY, we wouldn't have shown files, and therefore we would have never reached this call.
-		
-		pickFileOrFolder(fileholder.getFile(), getArguments().getBoolean(FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED, false));
-
+		if(fileholder.getFile().isFile())
+			mPickBar.setText(fileholder.getName());
 	}
 	
 	/**
@@ -57,7 +82,7 @@ public class PickFileListFragment extends SimpleFileListFragment{
 	 * @param selection A {@link File} representing the user's selection.
 	 * @param getContentInitiated Whether the fragment was called through a GET_CONTENT intent on the IntentFilterActivity. We have to know this so that result is correctly formatted.
 	 */
-	void pickFileOrFolder(File selection, boolean getContentInitiated){
+	private void pickFileOrFolder(File selection, boolean getContentInitiated){
 		Intent intent = new Intent();
 		PreferenceActivity.setDefaultPickFilePath(getActivity(), selection.getParent() != null ?  selection.getParent() : "/");
 		

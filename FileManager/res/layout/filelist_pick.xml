@@ -2,45 +2,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <!-- We only show this programmatically if we need to pick a directory. Other than that, we let the list item click indicate selection. -->
+    <!-- Provide button bar styling for any type of "pick" -->
+
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/buttonBar"
+        android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:divider="?android:attr/dividerHorizontal"
         android:dividerPadding="0dip"
         android:orientation="vertical"
-        android:showDividers="beginning"
-        android:visibility="gone" >
+        android:showDividers="beginning" >
 
-    <LinearLayout
-        style="?android:attr/buttonBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:measureWithLargestChild="true"
-        android:orientation="horizontal" >
+        <!-- We switch between these programmatically based on the type of pick request. -->
 
-            <Button
-                android:id="@+id/button"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
+        <ViewFlipper
+        	android:id="@+id/modeSelector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                style="?android:attr/buttonBarStyle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:maxLines="2"
-                android:text="@string/directory_pick"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:measureWithLargestChild="true"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:maxLines="2"
+                    android:text="@string/directory_pick"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <org.openintents.filemanager.view.PickBar
+                android:id="@+id/pickBar"
+                style="?android:attr/buttonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/topBar_height" />
+        </ViewFlipper>
     </LinearLayout>
 
     <include
-        android:layout_above="@id/buttonBar"
-        android:layout_alignParentTop="true"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_alignWithParentIfMissing="true"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottomBar"
+        android:layout_alignParentTop="true"
         layout="@layout/filelist_browse" />
 
 </RelativeLayout>

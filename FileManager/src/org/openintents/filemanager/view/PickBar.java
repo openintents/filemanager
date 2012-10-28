@@ -3,70 +3,57 @@ package org.openintents.filemanager.view;
 import org.openintents.filemanager.R;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView.ScaleType;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class SaveAsBar extends RelativeLayout {
+public class PickBar extends LinearLayout {
 	private EditText mEditText;
-	private onSaveRequestedListener mListener;
+	private Button mButton;
+	private OnPickRequestedListener mListener;
 	
-	public SaveAsBar(Context context) {
+	public PickBar(Context context) {
 		super(context);
 		init();
 	}
-	public SaveAsBar(Context context, AttributeSet attrs) {
+	public PickBar(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init();
 	}
-	public SaveAsBar(Context context, AttributeSet attrs, int defStyle) {
+	public PickBar(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init();
 	}
 	
 	private void init() {
-		// ImageButton
-		ImageButton mSaveButton = new ImageButton(getContext());
+		mButton = new Button(getContext(), null, android.R.attr.buttonBarButtonStyle);
 		{
-			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-
-			mSaveButton.setLayoutParams(layoutParams);
-			mSaveButton.setId(50);
-			mSaveButton.setBackgroundResource(R.drawable.bg_navbar_btn);
-			mSaveButton.setImageResource(R.drawable.ic_action_save);
-			mSaveButton.setScaleType(ScaleType.CENTER_INSIDE);
-			mSaveButton.setOnClickListener(new View.OnClickListener() {
+			mButton.setText(R.string.pick_button_default);
+			mButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					if(mListener!=null)
 						mListener.saveRequested(mEditText.getText().toString());
 				}
 			});
-
-			addView(mSaveButton);
 		}
 
 		// EditText
 		mEditText = new EditText(getContext());
 		{
-			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-			layoutParams.alignWithParent = true;
-			layoutParams.addRule(RelativeLayout.LEFT_OF, mSaveButton.getId());
+			LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+			// Take up as much space as possible.
+			layoutParams.weight = 1;
 
 			mEditText.setLayoutParams(layoutParams);
 			mEditText.setBackgroundResource(R.drawable.bg_navbar_textfield);
-			mEditText.setTextColor(Color.BLACK);
-			mEditText.setHint(R.string.saveas_hint);
+			mEditText.setHint(R.string.filename_hint);
 			mEditText.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 			mEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
 			mEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -81,20 +68,25 @@ public class SaveAsBar extends RelativeLayout {
 							return false;
 						}
 					});
-
-			addView(mEditText);
 		}
+		
+		addView(mEditText);
+		addView(mButton);
 	}
 
 	public void setText(CharSequence name) {
 		mEditText.setText(name);
 	}
 	
-	public void setOnSaveRequestedListener(onSaveRequestedListener listener) {
+	public void setOnPickRequestedListener(OnPickRequestedListener listener) {
 		mListener = listener;
 	}
 	
-	public interface onSaveRequestedListener {
+	public interface OnPickRequestedListener {
 		public void saveRequested(String filename);
+	}
+
+	public void setButtonText(CharSequence text) {
+		mButton.setText( (text == null || text.toString().trim().length() == 0) ? getResources().getString(R.string.pick_button_default) : text);
 	}
 }

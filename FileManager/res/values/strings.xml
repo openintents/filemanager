@@ -125,9 +125,6 @@
     <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
     <string name="saveas_error">An error occured.</string>
     <string name="saveas_file_saved">File successfully saved!</string>
-    <!-- new save_as here -->
-    <string name="saveas_hint">File name</string>
-    <string name="choose_filename">File name can\'t be empty!</string>
     
     <!-- ***************************
              Strings for the 'Compressing' and 'Extracting' feature
@@ -200,6 +197,9 @@
     <string name="overwrite_question">Overwrite old file?</string>
     
     <string name="directory_pick">Select current directory</string>
+    <string name="filename_hint">File name</string>
+    <string name="choose_filename">File name can\'t be empty!</string>
+    <string name="pick_button_default">Pick file</string>
     
     <!-- CopyHelper statuses -->
     <string name="copying">Copying&#8230;</string>

@@ -33,15 +33,6 @@ public final class FileManagerIntents {
 	public static final String ACTION_PICK_FILE = "org.openintents.action.PICK_FILE";
 
 	/**
-	 * Activity Action: Display a "Save as" window to allow user to select a path and filename for a file to add.
-	 * Data is the current file name or file name suggestion.
-	 * Returns a new file name as file URI in data.
-	 * 
-	 * <p>Constant Value: "org.openintents.action.SAVE_AS"</p>
-	 */
-	public static final String ACTION_SAVE_AS = "org.openintents.action.SAVE_AS";
-
-	/**
 	 * Activity Action: Pick a directory through the file manager, or let user
 	 * specify a custom file name.
 	 * Data is the current directory name or directory name suggestion.

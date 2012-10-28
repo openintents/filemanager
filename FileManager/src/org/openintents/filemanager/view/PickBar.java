@@ -3,6 +3,7 @@ package org.openintents.filemanager.view;
 import org.openintents.filemanager.R;
 
 import android.content.Context;
+import android.os.Build.VERSION;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -26,13 +27,13 @@ public class PickBar extends LinearLayout {
 		super(context, attrs);
 		init();
 	}
-	public PickBar(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		init();
-	}
 	
 	private void init() {
-		mButton = new Button(getContext(), null, android.R.attr.buttonBarButtonStyle);
+		// Apply borderless style when applicable.
+		if(VERSION.SDK_INT >= 11)
+			mButton = new Button(getContext(), null, android.R.attr.buttonBarButtonStyle);
+		else
+			mButton = new Button(getContext());
 		{
 			mButton.setText(R.string.pick_button_default);
 			mButton.setOnClickListener(new View.OnClickListener() {

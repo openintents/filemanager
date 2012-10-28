@@ -231,7 +231,7 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 				((ImageButton) btn).setImageResource(mPathDrawables.get(file.getAbsolutePath()));
 			} else {
 				btn = new Button(navbar.getContext());
-
+				
 				((Button) btn).setText(file.getName());
 				((Button) btn).setMaxLines(1);
 				((Button) btn).setTextColor(navbar.getResources().getColor(R.color.navbar_details));
@@ -255,6 +255,12 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 			});
 			btn.setOnLongClickListener(navbar.getPathButtonLayout());
 			btn.setBackgroundResource(R.drawable.bg_navbar_btn);
+			
+			// We have to set this after adding the background as it'll cancel the padding out.
+			if(btn instanceof Button) {
+				int sidePadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, navbar.getContext().getResources().getDisplayMetrics());
+				btn.setPadding(sidePadding, btn.getPaddingTop(), sidePadding, btn.getPaddingBottom());
+			}
 
 			return btn;
 		}

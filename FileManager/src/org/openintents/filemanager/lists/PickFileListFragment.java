@@ -18,11 +18,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class PickFileListFragment extends SimpleFileListFragment{
 	private PickBar mPickBar;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		setLongClickMenus(R.menu.context_pick, R.menu.multiselect);
+	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,11 +78,15 @@ public class PickFileListFragment extends SimpleFileListFragment{
 			});
 		}
 	}
-	
+
 	@Override
-	protected void openFile(FileHolder fileholder) {
-		if(fileholder.getFile().isFile())
-			mPickBar.setText(fileholder.getName());
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		FileHolder item = (FileHolder) mAdapter.getItem(position);
+		
+		if(item.getFile().isFile())
+			mPickBar.setText(item.getName());
+		else
+			super.onListItemClick(l, v, position, id);
 	}
 	
 	/**

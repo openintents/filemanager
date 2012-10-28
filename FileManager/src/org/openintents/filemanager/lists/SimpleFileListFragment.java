@@ -45,6 +45,9 @@ public class SimpleFileListFragment extends FileListFragment {
 	private PathBar mPathBar;
 	private boolean mActionsEnabled = true;
 	
+	private int mSingleSelectionMenu = R.menu.context;
+	private int mMultiSelectionMenu = R.menu.multiselect;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -70,11 +73,18 @@ public class SimpleFileListFragment extends FileListFragment {
 			}
 		});
 		
+		initContextualActions();
+	}
+	
+	/**
+	 * Override this to handle initialization of list item long clicks.
+	 */
+	void initContextualActions(){
 		if(mActionsEnabled){
 			if (VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
 				registerForContextMenu(getListView());
 			} else {
-				FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper();
+				FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper(mSingleSelectionMenu, mMultiSelectionMenu);
 				multiChoiceModeHelper.setListView(getListView());
 				multiChoiceModeHelper.setPathBar(mPathBar);
 				multiChoiceModeHelper.setContext(this);
@@ -98,7 +108,7 @@ public class SimpleFileListFragment extends FileListFragment {
 			return;
 		}
 
-		MenuUtils.fillContextMenu((FileHolder) mAdapter.getItem(info.position), menu, inflater, getActivity());
+		MenuUtils.fillContextMenu((FileHolder) mAdapter.getItem(info.position), menu, mSingleSelectionMenu, inflater, getActivity());
 	}
 
 	@Override
@@ -141,10 +151,7 @@ public class SimpleFileListFragment extends FileListFragment {
 		}	
 	}
 	
-	/**
-	 * Override this to handle file click behavior.
-	 */
-	protected void openFile(FileHolder fileholder){
+	private void openFile(FileHolder fileholder){
 		FileUtils.openFile(fileholder, getActivity());
 	}
 	
@@ -160,6 +167,11 @@ public class SimpleFileListFragment extends FileListFragment {
 			return;
 		setPath(fileholder.getFile().getAbsolutePath());
 		refresh();
+	}
+	
+	protected void setLongClickMenus(int singleSelectionResource, int multiSelectionResource) {
+		mSingleSelectionMenu = singleSelectionResource;
+		mMultiSelectionMenu = multiSelectionResource;
 	}
 
 	@Override

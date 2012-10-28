@@ -56,20 +56,22 @@ public abstract class MenuUtils {
 	/**
 	 * Fill <code>m</code> with multiselection actions, using <code>mi</code>.
 	 * @param m The {@link Menu} to fill.
+	 * @param menuResource The resource id of the menu to load.
 	 * @param mi The {@link MenuInflater} to use. This is a parameter since the ActionMode provides a context-based inflater and we could possibly lose functionality with a common MenuInflater.
 	 */
-	static public void fillMultiselectionMenu(Menu m, MenuInflater mi) {
-		mi.inflate(R.menu.multiselect, m);
+	static public void fillMultiselectionMenu(Menu m, int menuResource, MenuInflater mi) {
+		mi.inflate(menuResource, m);
 	}
 	
 	/**
 	 * Fill the passed Menu attribute with the proper single selection actions for the passed {@link FileHolder} object.
 	 * @param m The {@link Menu} to fill.
+	 * @param menuResource The resource id of the menu to load.
 	 * @param mi The {@link MenuInflater} to use. This is a parameter since the ActionMode provides a context-based inflater and we could possibly lose functionality with a common MenuInflater.
 	 */
-	static public void fillContextMenu(FileHolder item, Menu m, MenuInflater mi, Context context){
+	static public void fillContextMenu(FileHolder item, Menu m, int menuResource, MenuInflater mi, Context context){
 		// Inflate all actions
-		mi.inflate(R.menu.context, m);
+		mi.inflate(menuResource, m);
 		
         if(m instanceof ContextMenu){
 			((ContextMenu) m).setHeaderTitle(item.getName());
@@ -91,10 +93,6 @@ public abstract class MenuUtils {
 			m.removeItem(R.id.menu_compress);
 		}
         
-        // If we are not showing a ContextMenu dialog, remove the open action, as it's overkill.
-        if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
-        	m.removeItem(R.id.menu_open);
-		
 		// Add CATEGORY_SELECTED_ALTERNATIVE intent options
         Uri data = Uri.fromFile(file);
         Intent intent = new Intent(null, data);

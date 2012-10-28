@@ -234,28 +234,6 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            
-            <!-- Filter for save as feature -->
-            <intent-filter>
-                <action android:name="org.openintents.action.SAVE_AS" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="file" />
-                <data android:mimeType="*/*" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="org.openintents.action.SAVE_AS" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="file" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="org.openintents.action.SAVE_AS" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
 
     </application>

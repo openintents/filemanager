@@ -10,6 +10,7 @@ import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
+import org.openintents.filemanager.compatibility.ActionbarRefreshHelper;
 import org.openintents.filemanager.dialogs.DetailsDialog;
 import org.openintents.filemanager.dialogs.MultiCompressDialog;
 import org.openintents.filemanager.dialogs.MultiDeleteDialog;
@@ -139,9 +140,17 @@ public abstract class MenuUtils {
 				break;
 			case R.id.menu_move:
 				((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().cut(fItems);
+				
+				// Refresh options menu
+				if(VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
+					ActionbarRefreshHelper.activity_invalidateOptionsMenu(navigator.getActivity());
 				break;
 			case R.id.menu_copy:
 				((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().copy(fItems);
+				
+				// Refresh options menu
+				if(VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
+					ActionbarRefreshHelper.activity_invalidateOptionsMenu(navigator.getActivity());
 				break;
 			case R.id.menu_compress:
 				dialog = new MultiCompressDialog();
@@ -178,10 +187,18 @@ public abstract class MenuUtils {
 			
 		case R.id.menu_move:
 			((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().cut(fItem);
+			
+			// Refresh options menu
+			if(VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
+				ActionbarRefreshHelper.activity_invalidateOptionsMenu(navigator.getActivity());
 			return true;
 			
 		case R.id.menu_copy:
 			((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().copy(fItem);
+			
+			// Refresh options menu
+			if(VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
+				ActionbarRefreshHelper.activity_invalidateOptionsMenu(navigator.getActivity());
 			return true;
 			
 		case R.id.menu_delete:

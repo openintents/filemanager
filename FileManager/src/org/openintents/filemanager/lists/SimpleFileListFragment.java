@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.openintents.filemanager.FileManagerApplication;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.compatibility.ActionbarRefreshHelper;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
 import org.openintents.filemanager.dialogs.CreateDirectoryDialog;
 import org.openintents.filemanager.files.FileHolder;
@@ -190,6 +191,12 @@ public class SimpleFileListFragment extends FileListFragment {
 			menu.findItem(R.id.menu_media_scan_include).setVisible(false);
 			menu.findItem(R.id.menu_media_scan_exclude).setVisible(false);
 		}
+		
+		if(((FileManagerApplication) getActivity().getApplication()).getCopyHelper().canPaste()) {
+			menu.findItem(R.id.menu_paste).setVisible(true);
+		} else {
+			menu.findItem(R.id.menu_paste).setVisible(false);
+		}
 	}
 
 	@Override
@@ -219,6 +226,10 @@ public class SimpleFileListFragment extends FileListFragment {
 					@Override
 					public void operationFinished(boolean success) {
 						refresh();
+						
+						// Refresh options menu
+						if(VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
+							ActionbarRefreshHelper.activity_invalidateOptionsMenu(getActivity());
 					}
 				});
 			else

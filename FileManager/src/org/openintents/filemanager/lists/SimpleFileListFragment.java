@@ -14,6 +14,7 @@ import org.openintents.filemanager.util.CopyHelper;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.PathBar;
+import org.openintents.filemanager.view.PathBar.Mode;
 import org.openintents.filemanager.view.PathBar.OnDirectoryChangedListener;
 import org.openintents.intents.FileManagerIntents;
 
@@ -41,6 +42,8 @@ import android.widget.Toast;
  * @author George Venios
  */
 public class SimpleFileListFragment extends FileListFragment {
+	private static final String INSTANCE_STATE_PATHBAR_MODE = "pathbar_mode";
+	
     protected static final int REQUEST_CODE_MULTISELECT = 2;
     
 	private PathBar mPathBar;
@@ -73,6 +76,10 @@ public class SimpleFileListFragment extends FileListFragment {
 				open(new FileHolder(newCurrentDir, getActivity()));
 			}
 		});
+		if(savedInstanceState != null && savedInstanceState.getBoolean(INSTANCE_STATE_PATHBAR_MODE))
+			mPathBar.switchToManualInput();
+		else
+			mPathBar.switchToStandardInput();
 		
 		initContextualActions();
 	}
@@ -307,5 +314,12 @@ public class SimpleFileListFragment extends FileListFragment {
 	 */
 	public void setActionsEnabled(boolean enabled){
 		mActionsEnabled = enabled;
+	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		
+		outState.putBoolean(INSTANCE_STATE_PATHBAR_MODE, mPathBar.getMode() == Mode.MANUAL_INPUT);
 	}
 }

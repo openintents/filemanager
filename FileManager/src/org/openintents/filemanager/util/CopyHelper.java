@@ -203,12 +203,13 @@ public class CopyHelper {
 		protected void onPostExecute(Boolean result) {
 			Toast.makeText(mContext, result ? R.string.copied : R.string.copy_error, Toast.LENGTH_SHORT).show();
 			
-			mListener.operationFinished(result);
-			// Invalidate listener. 
-			mListener = null;
-			
 			// Clear as the references have been invalidated.
 			mClipboard.clear();
+			
+			mListener.operationFinished(result);
+			
+			// Invalidate listener. 
+			mListener = null;
 		}
 	}
 	
@@ -227,12 +228,13 @@ public class CopyHelper {
 		protected void onPostExecute(Boolean result) {
 			Toast.makeText(mContext, result ? R.string.moved : R.string.move_error, Toast.LENGTH_SHORT).show();
 			
-			mListener.operationFinished(result);
-			// Invalidate listener. 
-			mListener = null;
-			
 			// Clear as the references have been invalidated.
 			mClipboard.clear();
+			
+			mListener.operationFinished(result);
+			
+			// Invalidate listener. 
+			mListener = null;
 		}
 	}
 	

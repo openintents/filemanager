@@ -16,12 +16,6 @@
 
 package org.openintents.intents;
 
-import org.openintents.filemanager.lists.SimpleFileListFragment;
-
-
-// Version Dec 9, 2008
-
-
 /**
  * Provides OpenIntents actions, extras, and categories used by providers. 
  * <p>These specifiers extend the standard Android specifiers.</p>

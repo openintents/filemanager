@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.openintents.filemanager.FileManagerApplication;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
+import org.openintents.filemanager.compatibility.ActionbarRefreshHelper;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
 import org.openintents.filemanager.dialogs.CreateDirectoryDialog;
 import org.openintents.filemanager.files.FileHolder;
@@ -13,6 +14,7 @@ import org.openintents.filemanager.util.CopyHelper;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.PathBar;
+import org.openintents.filemanager.view.PathBar.Mode;
 import org.openintents.filemanager.view.PathBar.OnDirectoryChangedListener;
 import org.openintents.intents.FileManagerIntents;
 
@@ -40,10 +42,15 @@ import android.widget.Toast;
  * @author George Venios
  */
 public class SimpleFileListFragment extends FileListFragment {
+	private static final String INSTANCE_STATE_PATHBAR_MODE = "pathbar_mode";
+	
     protected static final int REQUEST_CODE_MULTISELECT = 2;
     
 	private PathBar mPathBar;
 	private boolean mActionsEnabled = true;
+	
+	private int mSingleSelectionMenu = R.menu.context;
+	private int mMultiSelectionMenu = R.menu.multiselect;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,9 +66,9 @@ public class SimpleFileListFragment extends FileListFragment {
 		mPathBar = (PathBar) view.findViewById(R.id.pathbar);
 		// Handle mPath differently if we restore state or just initially create the view.
 		if(savedInstanceState == null)
-			mPathBar.setInitialDirectory(mPath);
+			mPathBar.setInitialDirectory(getPath());
 		else
-			mPathBar.cd(mPath);
+			mPathBar.cd(getPath());
 		mPathBar.setOnDirectoryChangedListener(new OnDirectoryChangedListener() {
 
 			@Override
@@ -69,12 +76,22 @@ public class SimpleFileListFragment extends FileListFragment {
 				open(new FileHolder(newCurrentDir, getActivity()));
 			}
 		});
+		if(savedInstanceState != null && savedInstanceState.getBoolean(INSTANCE_STATE_PATHBAR_MODE))
+			mPathBar.switchToManualInput();
+		// Removed else clause as the other mode is the default. It seems faster this way on Nexus S.
 		
+		initContextualActions();
+	}
+	
+	/**
+	 * Override this to handle initialization of list item long clicks.
+	 */
+	void initContextualActions(){
 		if(mActionsEnabled){
 			if (VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
 				registerForContextMenu(getListView());
 			} else {
-				FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper();
+				FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper(mSingleSelectionMenu, mMultiSelectionMenu);
 				multiChoiceModeHelper.setListView(getListView());
 				multiChoiceModeHelper.setPathBar(mPathBar);
 				multiChoiceModeHelper.setContext(this);
@@ -98,7 +115,7 @@ public class SimpleFileListFragment extends FileListFragment {
 			return;
 		}
 
-		MenuUtils.fillContextMenu((FileHolder) mAdapter.getItem(info.position), menu, inflater, getActivity());
+		MenuUtils.fillContextMenu((FileHolder) mAdapter.getItem(info.position), menu, mSingleSelectionMenu, inflater, getActivity());
 	}
 
 	@Override
@@ -141,10 +158,7 @@ public class SimpleFileListFragment extends FileListFragment {
 		}	
 	}
 	
-	/**
-	 * Override this to handle file click behavior.
-	 */
-	protected void openFile(FileHolder fileholder){
+	private void openFile(FileHolder fileholder){
 		FileUtils.openFile(fileholder, getActivity());
 	}
 	
@@ -156,10 +170,15 @@ public class SimpleFileListFragment extends FileListFragment {
 	 */
 	protected void openDir(FileHolder fileholder){
 		// Avoid unnecessary attempts to load.
-		if(fileholder.getFile().getAbsolutePath().equals(mPath))
+		if(fileholder.getFile().getAbsolutePath().equals(getPath()))
 			return;
-		mPath = fileholder.getFile().getAbsolutePath();
+		setPath(fileholder.getFile().getAbsolutePath());
 		refresh();
+	}
+	
+	protected void setLongClickMenus(int singleSelectionResource, int multiSelectionResource) {
+		mSingleSelectionMenu = singleSelectionResource;
+		mMultiSelectionMenu = multiSelectionResource;
 	}
 
 	@Override
@@ -178,10 +197,12 @@ public class SimpleFileListFragment extends FileListFragment {
 			menu.findItem(R.id.menu_media_scan_include).setVisible(false);
 			menu.findItem(R.id.menu_media_scan_exclude).setVisible(false);
 		}
- 		
- 		if (Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
- 			menu.removeItem(R.id.menu_multiselect);
-        }
+		
+		if(((FileManagerApplication) getActivity().getApplication()).getCopyHelper().canPaste()) {
+			menu.findItem(R.id.menu_paste).setVisible(true);
+		} else {
+			menu.findItem(R.id.menu_paste).setVisible(false);
+		}
 	}
 
 	@Override
@@ -192,7 +213,7 @@ public class SimpleFileListFragment extends FileListFragment {
 			CreateDirectoryDialog dialog = new CreateDirectoryDialog();
 			dialog.setTargetFragment(this, 0);
 			Bundle args = new Bundle();
-			args.putString(FileManagerIntents.EXTRA_DIR_PATH, mPath);
+			args.putString(FileManagerIntents.EXTRA_DIR_PATH, getPath());
 			dialog.setArguments(args);
 			dialog.show(getActivity().getSupportFragmentManager(), CreateDirectoryDialog.class.getName());
 			return true;
@@ -207,10 +228,14 @@ public class SimpleFileListFragment extends FileListFragment {
 			
 		case R.id.menu_paste:
 			if(((FileManagerApplication) getActivity().getApplication()).getCopyHelper().canPaste())
-				((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(mPath), new CopyHelper.OnOperationFinishedListener() {
+				((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(getPath()), new CopyHelper.OnOperationFinishedListener() {
 					@Override
 					public void operationFinished(boolean success) {
 						refresh();
+						
+						// Refresh options menu
+						if(VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
+							ActionbarRefreshHelper.activity_invalidateOptionsMenu(getActivity());
 					}
 				});
 			else
@@ -288,5 +313,12 @@ public class SimpleFileListFragment extends FileListFragment {
 	 */
 	public void setActionsEnabled(boolean enabled){
 		mActionsEnabled = enabled;
+	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		
+		outState.putBoolean(INSTANCE_STATE_PATHBAR_MODE, mPathBar.getMode() == Mode.MANUAL_INPUT);
 	}
 }

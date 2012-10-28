@@ -67,7 +67,7 @@ public abstract class FileListFragment extends ListFragment {
 	protected FileHolderListAdapter mAdapter;
 	protected DirectoryScanner mScanner;
 	protected ArrayList<FileHolder> mFiles = new ArrayList<FileHolder>();
-	protected String mPath;
+	private String mPath;
 
 	private ViewFlipper mFlipper;
 
@@ -121,6 +121,7 @@ public abstract class FileListFragment extends ListFragment {
 			mFiles = savedInstanceState
 					.getParcelableArrayList(INSTANCE_STATE_FILES);
 		}
+		pathCheckAndFix();
 		renewScanner();
 		mAdapter = new FileHolderListAdapter(mFiles, getActivity());
 
@@ -171,12 +172,7 @@ public abstract class FileListFragment extends ListFragment {
 		boolean writeableOnly = getArguments().getBoolean(FileManagerIntents.EXTRA_WRITEABLE_ONLY);
 		boolean directoriesOnly = getArguments().getBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY);
 
-		File dir = new File(mPath);
-		// sanity check that the path (coming from extras_dir_path) is indeed a directory
-		if (!dir.isDirectory() && dir.getParentFile() != null){
-			dir = dir.getParentFile();
-		}
-		mScanner = new DirectoryScanner(dir, getActivity(),
+		mScanner = new DirectoryScanner(new File(mPath), getActivity(),
 				new FileListMessageHandler(),
 				MimeTypes.newInstance(getActivity()),
 				filetypeFilter == null ? "" : filetypeFilter,
@@ -226,5 +222,24 @@ public abstract class FileListFragment extends ListFragment {
 	 */
 	public final String getPath() {
 		return mPath;
+	}
+	
+	/**
+	 * This will be ignored if path doesn't pass check as valid.
+	 * @param path The path to set.
+	 */
+	public final void setPath(String path){
+		File f = new File(path);
+		if(f.exists() && f.isDirectory())
+			mPath = path;
+	}
+	
+	private void pathCheckAndFix(){
+		File dir = new File(mPath);
+		// Sanity check that the path (coming from extras_dir_path) is indeed a directory
+		if (!dir.isDirectory() && dir.getParentFile() != null){
+			dir = dir.getParentFile();
+			mPath = dir.getAbsolutePath();
+		}
 	}
 }

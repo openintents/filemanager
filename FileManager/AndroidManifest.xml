@@ -228,7 +228,7 @@
                 <category android:name="android.intent.category.OPENABLE" />
             </intent-filter>
 
-            <!-- Filter for a multi select feature -->
+            <!-- Filter for multi select feature -->
             <intent-filter>
                 <action android:name="org.openintents.action.MULTI_SELECT" />
 

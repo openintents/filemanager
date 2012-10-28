@@ -190,10 +190,6 @@ public class SimpleFileListFragment extends FileListFragment {
 			menu.findItem(R.id.menu_media_scan_include).setVisible(false);
 			menu.findItem(R.id.menu_media_scan_exclude).setVisible(false);
 		}
- 		
- 		if (Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
- 			menu.removeItem(R.id.menu_multiselect);
-        }
 	}
 
 	@Override

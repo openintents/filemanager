@@ -30,7 +30,7 @@ public class IntentFilterActivity extends FragmentActivity {
 			extras = new Bundle();
 		// Add a path if path is not specified in this activity's call
 		if(!extras.containsKey(FileManagerIntents.EXTRA_DIR_PATH)){
-			
+			// Set a default path so that we launch a proper list.
 			File defaultFile = new File(PreferenceActivity.getDefaultPickFilePath(this));
 			if(!defaultFile.exists()) {
 				PreferenceActivity.setDefaultPickFilePath(this, Environment.getExternalStorageDirectory().getAbsolutePath());
@@ -47,7 +47,12 @@ public class IntentFilterActivity extends FragmentActivity {
 		// Add a mimetype filter if it was specified through the type of the intent.
 		if(!extras.containsKey(FileManagerIntents.EXTRA_FILTER_MIMETYPE) && intent.getType() != null)
 			extras.putString(FileManagerIntents.EXTRA_FILTER_MIMETYPE, intent.getType());
-		
+
+		// Actually fill the ui
+		chooseListType(intent, extras);
+	}
+	
+	private void chooseListType(Intent intent, Bundle extras) {
 		// Multiselect
 		if(intent.getAction().equals(FileManagerIntents.ACTION_MULTI_SELECT)){
 			String tag = "MultiSelectListFragment";
@@ -71,8 +76,7 @@ public class IntentFilterActivity extends FragmentActivity {
 			else
 				setTitle(R.string.pick_title);
 			
-			String tag = "PickFileListFragment";
-			mFragment = (PickFileListFragment) getSupportFragmentManager().findFragmentByTag(tag);
+			mFragment = (PickFileListFragment) getSupportFragmentManager().findFragmentByTag(PickFileListFragment.class.getName());
 			
 			// Only add if it doesn't exist
 			if(mFragment == null){
@@ -82,9 +86,8 @@ public class IntentFilterActivity extends FragmentActivity {
 				extras.putBoolean(FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED, intent.getAction().equals(Intent.ACTION_GET_CONTENT));
 				extras.putBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY, intent.getAction().equals(FileManagerIntents.ACTION_PICK_DIRECTORY));
 				
-				
 				mFragment.setArguments(extras);
-				getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, tag).commit();
+				getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, PickFileListFragment.class.getName()).commit();
 			}
 		}
 	}

@@ -24,7 +24,19 @@ public class FileMultiChoiceModeHelper {
 	private ListView list;
 	private PathBar pathbar;
 	private SimpleFileListFragment fragment;
+	
+	private int mSingleItemMenuResource;
+	private int mMultipleItemsMenuResource;
 
+	/**
+	 * @param singleSelectMenuResource The menu to use on single selection.
+	 * @param multiSelectMenuResource The menu to use on multiple selection.
+	 */
+	public FileMultiChoiceModeHelper(int singleSelectMenuResource, int multiSelectMenuResource) {
+		mSingleItemMenuResource = singleSelectMenuResource;
+		mMultipleItemsMenuResource = multiSelectMenuResource;
+	}
+	
 	public void setListView(ListView list) {
 		this.list = list;
 		list.setMultiChoiceModeListener(listener);
@@ -48,11 +60,11 @@ public class FileMultiChoiceModeHelper {
 			switch (list.getCheckedItemCount()) {
 			// Single selection
 			case 1:
-				MenuUtils.fillContextMenu((FileHolder) list.getAdapter().getItem(getSelectedPosition()), menu, mode.getMenuInflater(), list.getContext());
+				MenuUtils.fillContextMenu((FileHolder) list.getAdapter().getItem(getSelectedPosition()), menu, mSingleItemMenuResource, mode.getMenuInflater(), list.getContext());
 				break;
 			// Multiple selection
 			default:
-				MenuUtils.fillMultiselectionMenu(menu, mode.getMenuInflater());
+				MenuUtils.fillMultiselectionMenu(menu, mMultipleItemsMenuResource, mode.getMenuInflater());
 				break;
 			}
 			return true;

@@ -54,8 +54,9 @@ public class PickFileListFragment extends SimpleFileListFragment{
 					pickFileOrFolder(new File(getPath()), false);
 				}
 			});
-			if(getArguments().containsKey(FileManagerIntents.EXTRA_BUTTON_TEXT))
+			if(getArguments().containsKey(FileManagerIntents.EXTRA_BUTTON_TEXT)){
 				button.setText(getArguments().getString(FileManagerIntents.EXTRA_BUTTON_TEXT));
+			}
 		}
 		// Files init
 		else {
@@ -63,6 +64,10 @@ public class PickFileListFragment extends SimpleFileListFragment{
 			
 			mPickBar = (PickBar) view.findViewById(R.id.pickBar);
 			mPickBar.setButtonText(getArguments().getString(FileManagerIntents.EXTRA_BUTTON_TEXT));
+			 
+			mPickBar.setText(getFilename());
+			// TODO make file visible, i.e. scroll to item 
+			
 			mPickBar.setOnPickRequestedListener(new OnPickRequestedListener() {
 				@Override
 				public void pickRequested(String filename) {
@@ -76,6 +81,7 @@ public class PickFileListFragment extends SimpleFileListFragment{
 							getArguments().getBoolean(FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED, false));
 				}
 			});
+			
 		}
 	}
 

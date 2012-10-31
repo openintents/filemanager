@@ -122,4 +122,6 @@ public final class FileManagerIntents {
 	public static final String EXTRA_DIALOG_FILE_HOLDER = "org.openintents.extra.DIALOG_FILE";
 
 	public static final String EXTRA_IS_GET_CONTENT_INITIATED = "org.openintents.extra.ENABLE_ACTIONS";
+
+	public static final String EXTRA_FILENAME = "org.openintents.extra.FILENAME";
 }

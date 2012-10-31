@@ -68,8 +68,10 @@ public abstract class FileListFragment extends ListFragment {
 	protected DirectoryScanner mScanner;
 	protected ArrayList<FileHolder> mFiles = new ArrayList<FileHolder>();
 	private String mPath;
-
+	private String mFilename;
+	
 	private ViewFlipper mFlipper;
+	
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
@@ -116,6 +118,7 @@ public abstract class FileListFragment extends ListFragment {
 		// Get arguments
 		if (savedInstanceState == null) {
 			mPath = getArguments().getString(FileManagerIntents.EXTRA_DIR_PATH);
+			mFilename = getArguments().getString(FileManagerIntents.EXTRA_FILENAME);
 		} else {
 			mPath = savedInstanceState.getString(INSTANCE_STATE_PATH);
 			mFiles = savedInstanceState
@@ -238,8 +241,14 @@ public abstract class FileListFragment extends ListFragment {
 		File dir = new File(mPath);
 		// Sanity check that the path (coming from extras_dir_path) is indeed a directory
 		if (!dir.isDirectory() && dir.getParentFile() != null){
+			// remember the filename for picking.
+			mFilename = dir.getName();
 			dir = dir.getParentFile();
 			mPath = dir.getAbsolutePath();
 		}
+	}
+	
+	public String getFilename(){
+		return mFilename;
 	}
 }

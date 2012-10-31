@@ -18,7 +18,7 @@ import android.view.KeyEvent;
 
 public class IntentFilterActivity extends FragmentActivity {
 	private FileListFragment mFragment;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstance) {
 		super.onCreate(savedInstance);
@@ -26,79 +26,114 @@ public class IntentFilterActivity extends FragmentActivity {
 
 		// Initialize arguments
 		Bundle extras = intent.getExtras();
-		if(extras == null)
+		if (extras == null)
 			extras = new Bundle();
 		// Add a path if path is not specified in this activity's call
-		if(!extras.containsKey(FileManagerIntents.EXTRA_DIR_PATH)){
+		if (!extras.containsKey(FileManagerIntents.EXTRA_DIR_PATH)) {
 			// Set a default path so that we launch a proper list.
-			File defaultFile = new File(PreferenceActivity.getDefaultPickFilePath(this));
-			if(!defaultFile.exists()) {
-				PreferenceActivity.setDefaultPickFilePath(this, Environment.getExternalStorageDirectory().getAbsolutePath());
-				defaultFile = new File(PreferenceActivity.getDefaultPickFilePath(this));
+			File defaultFile = new File(
+					PreferenceActivity.getDefaultPickFilePath(this));
+			if (!defaultFile.exists()) {
+				PreferenceActivity.setDefaultPickFilePath(this, Environment
+						.getExternalStorageDirectory().getAbsolutePath());
+				defaultFile = new File(
+						PreferenceActivity.getDefaultPickFilePath(this));
 			}
-			extras.putString(FileManagerIntents.EXTRA_DIR_PATH, defaultFile.getAbsolutePath());
+			extras.putString(FileManagerIntents.EXTRA_DIR_PATH,
+					defaultFile.getAbsolutePath());
 		}
-		
-		// Add a path if a path has been specified in this activity's call. 
+
+		// Add a path if a path has been specified in this activity's call.
 		File data = FileUtils.getFile(getIntent().getData());
-		if(data!=null && !data.isFile())
-			extras.putString(FileManagerIntents.EXTRA_DIR_PATH, data.getAbsolutePath());
-			
-		// Add a mimetype filter if it was specified through the type of the intent.
-		if(!extras.containsKey(FileManagerIntents.EXTRA_FILTER_MIMETYPE) && intent.getType() != null)
-			extras.putString(FileManagerIntents.EXTRA_FILTER_MIMETYPE, intent.getType());
+		if (data != null) {			
+			File dir = FileUtils.getPathWithoutFilename(data);		
+			if (dir != null) {
+				extras.putString(FileManagerIntents.EXTRA_DIR_PATH,
+						data.getAbsolutePath());
+			}
+			if (dir != data){
+				// data is a file
+				extras.putString(FileManagerIntents.EXTRA_FILENAME, data.getName());
+			}
+		}
+
+		// Add a mimetype filter if it was specified through the type of the
+		// intent.
+		if (!extras.containsKey(FileManagerIntents.EXTRA_FILTER_MIMETYPE)
+				&& intent.getType() != null)
+			extras.putString(FileManagerIntents.EXTRA_FILTER_MIMETYPE,
+					intent.getType());
 
 		// Actually fill the ui
 		chooseListType(intent, extras);
 	}
-	
+
 	private void chooseListType(Intent intent, Bundle extras) {
 		// Multiselect
-		if(intent.getAction().equals(FileManagerIntents.ACTION_MULTI_SELECT)){
+		if (intent.getAction().equals(FileManagerIntents.ACTION_MULTI_SELECT)) {
 			String tag = "MultiSelectListFragment";
-			mFragment = (MultiselectListFragment) getSupportFragmentManager().findFragmentByTag(tag);
-			
+			mFragment = (MultiselectListFragment) getSupportFragmentManager()
+					.findFragmentByTag(tag);
+
 			// Only add if it doesn't exist
-			if(mFragment == null){
+			if (mFragment == null) {
 				mFragment = new MultiselectListFragment();
-				// Pass extras through to the list fragment. This helps centralize the path resolving, etc.
+				// Pass extras through to the list fragment. This helps
+				// centralize the path resolving, etc.
 				mFragment.setArguments(extras);
-				
+
 				setTitle(R.string.multiselect_title);
-				
-				getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, tag).commit();
+
+				getSupportFragmentManager().beginTransaction()
+						.add(android.R.id.content, mFragment, tag).commit();
 			}
 		}
 		// Item pickers
-		else if(intent.getAction().equals(FileManagerIntents.ACTION_PICK_DIRECTORY) || intent.getAction().equals(FileManagerIntents.ACTION_PICK_FILE) || intent.getAction().equals(Intent.ACTION_GET_CONTENT)){
-			if(intent.hasExtra(FileManagerIntents.EXTRA_TITLE))
+		else if (intent.getAction().equals(
+				FileManagerIntents.ACTION_PICK_DIRECTORY)
+				|| intent.getAction().equals(
+						FileManagerIntents.ACTION_PICK_FILE)
+				|| intent.getAction().equals(Intent.ACTION_GET_CONTENT)) {
+			if (intent.hasExtra(FileManagerIntents.EXTRA_TITLE))
 				setTitle(intent.getStringExtra(FileManagerIntents.EXTRA_TITLE));
 			else
 				setTitle(R.string.pick_title);
-			
-			mFragment = (PickFileListFragment) getSupportFragmentManager().findFragmentByTag(PickFileListFragment.class.getName());
-			
+
+			mFragment = (PickFileListFragment) getSupportFragmentManager()
+					.findFragmentByTag(PickFileListFragment.class.getName());
+
 			// Only add if it doesn't exist
-			if(mFragment == null){
+			if (mFragment == null) {
 				mFragment = new PickFileListFragment();
-				
-				// Pass extras through to the list fragment. This helps centralize the path resolving, etc.
-				extras.putBoolean(FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED, intent.getAction().equals(Intent.ACTION_GET_CONTENT));
-				extras.putBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY, intent.getAction().equals(FileManagerIntents.ACTION_PICK_DIRECTORY));
-				
+
+				// Pass extras through to the list fragment. This helps
+				// centralize the path resolving, etc.
+				extras.putBoolean(
+						FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED,
+						intent.getAction().equals(Intent.ACTION_GET_CONTENT));
+				extras.putBoolean(
+						FileManagerIntents.EXTRA_DIRECTORIES_ONLY,
+						intent.getAction().equals(
+								FileManagerIntents.ACTION_PICK_DIRECTORY));
+
 				mFragment.setArguments(extras);
-				getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, PickFileListFragment.class.getName()).commit();
+				getSupportFragmentManager()
+						.beginTransaction()
+						.add(android.R.id.content, mFragment,
+								PickFileListFragment.class.getName()).commit();
 			}
 		}
 	}
-	
-	// The following methods should properly handle back button presses on every API Level.
+
+	// The following methods should properly handle back button presses on every
+	// API Level.
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		// Only check fragment back-ability if we're on the filepicker fragment.
-		if(mFragment instanceof PickFileListFragment)
+		if (mFragment instanceof PickFileListFragment)
 			if (VERSION.SDK_INT > VERSION_CODES.DONUT) {
-				if (keyCode == KeyEvent.KEYCODE_BACK && ((PickFileListFragment) mFragment).pressBack())
+				if (keyCode == KeyEvent.KEYCODE_BACK
+						&& ((PickFileListFragment) mFragment).pressBack())
 					return true;
 			}
 
@@ -108,9 +143,10 @@ public class IntentFilterActivity extends FragmentActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// Only check fragment back-ability if we're on the filepicker fragment.
-		if(mFragment instanceof PickFileListFragment)
+		if (mFragment instanceof PickFileListFragment)
 			if (VERSION.SDK_INT <= VERSION_CODES.DONUT) {
-				if (keyCode == KeyEvent.KEYCODE_BACK && ((PickFileListFragment) mFragment).pressBack())
+				if (keyCode == KeyEvent.KEYCODE_BACK
+						&& ((PickFileListFragment) mFragment).pressBack())
 					return true;
 			}
 

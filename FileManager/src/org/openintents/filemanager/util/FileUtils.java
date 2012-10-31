@@ -349,6 +349,12 @@ public class FileUtils {
 
 		Uri data = FileUtils.getUri(fileholder.getFile());
 		String type = fileholder.getMimeType();
+		
+		if ("*/*".equals(type)){
+			Toast.makeText(c, R.string.application_not_available, Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
 		intent.setDataAndType(data, type);
 
 		try {

@@ -406,6 +406,10 @@ public class ThumbnailLoader {
 			return ret;
 		}
 
+		if ("*/*".equals(holder.getMimeType())){
+			return null;
+		}
+		
 		Uri data = FileUtils.getUri(holder.getFile());
 
 		Intent intent = new Intent(Intent.ACTION_VIEW);

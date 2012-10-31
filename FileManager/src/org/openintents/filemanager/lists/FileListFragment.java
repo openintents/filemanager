@@ -39,6 +39,7 @@ import android.widget.ViewFlipper;
 public abstract class FileListFragment extends ListFragment {
 	private static final String INSTANCE_STATE_PATH = "path";
 	private static final String INSTANCE_STATE_FILES = "files";
+	File mPreviousDirectory = null;
 
 	// Not an anonymous inner class because of:
 	// http://stackoverflow.com/questions/2542938/sharedpreferences-onsharedpreferencechangelistener-not-being-called-consistently
@@ -69,9 +70,9 @@ public abstract class FileListFragment extends ListFragment {
 	protected ArrayList<FileHolder> mFiles = new ArrayList<FileHolder>();
 	private String mPath;
 	private String mFilename;
-	
+
 	private ViewFlipper mFlipper;
-	
+	private File mCurrentDirectory;
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
@@ -89,7 +90,7 @@ public abstract class FileListFragment extends ListFragment {
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-		
+
 		// Set auto refresh on preference change.
 		PreferenceManager.getDefaultSharedPreferences(getActivity())
 				.registerOnSharedPreferenceChangeListener(preferenceListener);
@@ -114,11 +115,12 @@ public abstract class FileListFragment extends ListFragment {
 
 		// Init flipper
 		mFlipper = (ViewFlipper) view.findViewById(R.id.flipper);
-		
+
 		// Get arguments
 		if (savedInstanceState == null) {
 			mPath = getArguments().getString(FileManagerIntents.EXTRA_DIR_PATH);
-			mFilename = getArguments().getString(FileManagerIntents.EXTRA_FILENAME);
+			mFilename = getArguments().getString(
+					FileManagerIntents.EXTRA_FILENAME);
 		} else {
 			mPath = savedInstanceState.getString(INSTANCE_STATE_PATH);
 			mFiles = savedInstanceState
@@ -163,6 +165,19 @@ public abstract class FileListFragment extends ListFragment {
 		onLoadingChanged(show);
 	}
 
+	protected void selectInList(File selectFile) {
+		String filename = selectFile.getName();
+
+		int count = mAdapter.getCount();
+		for (int i = 0; i < count; i++) {
+			FileHolder it = (FileHolder) mAdapter.getItem(i);
+			if (it.getName().equals(filename)) {
+				getListView().setSelection(i);
+				break;
+			}
+		}
+	}
+
 	/**
 	 * Recreates the {@link #mScanner} using the previously set arguments and
 	 * {@link #mPath}.
@@ -170,10 +185,14 @@ public abstract class FileListFragment extends ListFragment {
 	 * @return {@link #mScanner} for convenience.
 	 */
 	protected DirectoryScanner renewScanner() {
-		String filetypeFilter = getArguments().getString(FileManagerIntents.EXTRA_FILTER_FILETYPE);
-		String mimetypeFilter = getArguments().getString(FileManagerIntents.EXTRA_FILTER_MIMETYPE);
-		boolean writeableOnly = getArguments().getBoolean(FileManagerIntents.EXTRA_WRITEABLE_ONLY);
-		boolean directoriesOnly = getArguments().getBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY);
+		String filetypeFilter = getArguments().getString(
+				FileManagerIntents.EXTRA_FILTER_FILETYPE);
+		String mimetypeFilter = getArguments().getString(
+				FileManagerIntents.EXTRA_FILTER_MIMETYPE);
+		boolean writeableOnly = getArguments().getBoolean(
+				FileManagerIntents.EXTRA_WRITEABLE_ONLY);
+		boolean directoriesOnly = getArguments().getBoolean(
+				FileManagerIntents.EXTRA_DIRECTORIES_ONLY);
 
 		mScanner = new DirectoryScanner(new File(mPath), getActivity(),
 				new FileListMessageHandler(),
@@ -197,10 +216,15 @@ public abstract class FileListFragment extends ListFragment {
 				mFiles.addAll(c.listFile);
 
 				mAdapter.notifyDataSetChanged();
+
 				
-				// Reset list position.
-				if(mFiles.size() > 0)
-					getListView().setSelection(0);
+				if (mPreviousDirectory != null){
+					selectInList(mPreviousDirectory);
+				} else {
+					// Reset list position.
+					if (mFiles.size() > 0)
+						getListView().setSelection(0);					
+				}
 				setLoading(false);
 				break;
 			case DirectoryScanner.MESSAGE_SET_PROGRESS:
@@ -226,29 +250,36 @@ public abstract class FileListFragment extends ListFragment {
 	public final String getPath() {
 		return mPath;
 	}
-	
+
 	/**
 	 * This will be ignored if path doesn't pass check as valid.
-	 * @param path The path to set.
+	 * 
+	 * @param dir
+	 *            The path to set.
 	 */
-	public final void setPath(String path){
-		File f = new File(path);
-		if(f.exists() && f.isDirectory())
-			mPath = path;
+	public final void setPath(File dir) {
+		
+		if (dir.exists() && dir.isDirectory()){
+			mPreviousDirectory = mCurrentDirectory;
+			mCurrentDirectory = dir;
+			mPath = dir.getAbsolutePath();
+			
+		}
 	}
-	
-	private void pathCheckAndFix(){
+
+	private void pathCheckAndFix() {
 		File dir = new File(mPath);
-		// Sanity check that the path (coming from extras_dir_path) is indeed a directory
-		if (!dir.isDirectory() && dir.getParentFile() != null){
+		// Sanity check that the path (coming from extras_dir_path) is indeed a
+		// directory
+		if (!dir.isDirectory() && dir.getParentFile() != null) {
 			// remember the filename for picking.
 			mFilename = dir.getName();
 			dir = dir.getParentFile();
 			mPath = dir.getAbsolutePath();
 		}
 	}
-	
-	public String getFilename(){
+
+	public String getFilename() {
 		return mFilename;
 	}
 }

@@ -16,8 +16,8 @@
 -->
 <manifest package="org.openintents.filemanager"
     android:installLocation="auto"
-    android:versionCode="22"
-    android:versionName="1.3.1-rc1" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:versionCode="23"
+    android:versionName="2.0-rc2" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
     History: 

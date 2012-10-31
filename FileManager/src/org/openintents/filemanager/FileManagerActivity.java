@@ -23,6 +23,7 @@ import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.filemanager.util.FileUtils;
+import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 
@@ -83,6 +84,8 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 			return;
 		}
 
+		UIUtils.setThemeFor(this);
+		
 		// Enable home button.
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 			HomeIconHelper.activity_actionbar_setHomeButtonEnabled(this);

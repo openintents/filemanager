@@ -172,7 +172,8 @@ public class SimpleFileListFragment extends FileListFragment {
 		// Avoid unnecessary attempts to load.
 		if(fileholder.getFile().getAbsolutePath().equals(getPath()))
 			return;
-		setPath(fileholder.getFile().getAbsolutePath());
+		
+		setPath(fileholder.getFile());
 		refresh();
 	}
 	

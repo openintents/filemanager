@@ -6,6 +6,7 @@ import org.openintents.filemanager.lists.FileListFragment;
 import org.openintents.filemanager.lists.MultiselectListFragment;
 import org.openintents.filemanager.lists.PickFileListFragment;
 import org.openintents.filemanager.util.FileUtils;
+import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 
 import android.content.Intent;
@@ -22,6 +23,8 @@ public class IntentFilterActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstance) {
 		super.onCreate(savedInstance);
+		
+		UIUtils.setThemeFor(this);
 		Intent intent = getIntent();
 
 		// Initialize arguments

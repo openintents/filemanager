@@ -82,7 +82,7 @@ public class PickFileListFragment extends SimpleFileListFragment{
 				}
 			});
 			
-		}
+		}			
 	}
 
 	@Override

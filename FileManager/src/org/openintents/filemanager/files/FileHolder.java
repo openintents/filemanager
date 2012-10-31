@@ -96,8 +96,11 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 		return mMimeType;
 	}
 	
-	public String getFormattedModificationDate(){
-		return SimpleDateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date(mFile.lastModified()));
+	public String getFormattedModificationDate(Context c){
+		DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(c);
+		DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(c);
+		Date date = new Date(mFile.lastModified());
+		return dateFormat.format(date) + " " + timeFormat.format(date);		
 	}
 	
 	/**
@@ -125,7 +128,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 		dest.writeString(mMimeType);
 	}
 	
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+    public static final Parcelable.Creator<FileHolder> CREATOR = new Parcelable.Creator<FileHolder>() {
         public FileHolder createFromParcel(Parcel in) {
             return new FileHolder(in);
         }

@@ -47,7 +47,7 @@ public class DetailsDialog extends DialogFragment {
 		
 		((TextView) v.findViewById(R.id.details_hidden_value)).setText(f.isHidden() ? R.string.details_yes : R.string.details_no);
 		
-		((TextView) v.findViewById(R.id.details_lastmodified_value)).setText(mFileHolder.getFormattedModificationDate());
+		((TextView) v.findViewById(R.id.details_lastmodified_value)).setText(mFileHolder.getFormattedModificationDate(getActivity()));
 		
 		// Finally create the dialog
 		return new AlertDialog.Builder(getActivity())

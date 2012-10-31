@@ -23,7 +23,7 @@ To obtain the current release, visit
 
 ----------------
 release: 1.3 (Changes made by George Venios as part of GSoC 2012)
-date: ??
+date: 2012-10-31
 
 - User Interface redesigned to follow Android Design Guidelines. Many usability changes too. 
 - Improved performance. Browsing is now way faster. 

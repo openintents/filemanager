@@ -26,15 +26,13 @@ public class MultiselectListFragment extends FileListFragment {
 	private LegacyActionContainer mLegacyActionContainer;
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {		
 		return inflater.inflate(R.layout.filelist_legacy_multiselect, null);
 	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		mAdapter.setItemLayout(R.layout.item_filelist_multiselect);
-		
+		super.onCreate(savedInstanceState);			
 		setHasOptionsMenu(true);
 	}
 	
@@ -43,6 +41,8 @@ public class MultiselectListFragment extends FileListFragment {
 		getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		
 		super.onViewCreated(view, savedInstanceState);
+		
+		mAdapter.setItemLayout(R.layout.item_filelist_multiselect);
 		
 		// Init members
 		mLegacyActionContainer =  (LegacyActionContainer) view.findViewById(R.id.action_container);

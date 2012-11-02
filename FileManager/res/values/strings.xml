@@ -118,9 +118,9 @@
         <item>Last modified</item>
     </string-array>
 
-    <string name="preference_usedarktheme_title">Use dark theme</string>
-    <string name="preference_usedarktheme_summary_on">Dark background and light text color is used.</string>
-    <string name="preference_usedarktheme_summary_off">Light background and dark text color is used.</string>
+    <string name="preference_usedarktheme_title">Use dark theme (Requires restart)</string>
+    <string name="preference_usedarktheme_summary_on">Dark theme selected</string>
+    <string name="preference_usedarktheme_summary_off">Light theme selected</string>
         
     <!-- ***************************
    		 Strings for the 'Save as' feature

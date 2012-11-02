@@ -53,7 +53,6 @@ public class PickBar extends LinearLayout {
 			layoutParams.weight = 1;
 
 			mEditText.setLayoutParams(layoutParams);
-			mEditText.setBackgroundResource(R.drawable.bg_navbar_textfield);
 			mEditText.setHint(R.string.filename_hint);
 			mEditText.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 			mEditText.setImeOptions(EditorInfo.IME_ACTION_GO);

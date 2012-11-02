@@ -18,6 +18,7 @@ package org.openintents.filemanager;
 
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.search.SearchableActivity;
+import org.openintents.filemanager.util.UIUtils;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -53,6 +54,8 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		
 	@Override
 	protected void onCreate(Bundle icicle) {
+		UIUtils.setThemeFor(this);
+		
 		super.onCreate(icicle);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);

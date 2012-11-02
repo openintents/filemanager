@@ -1,6 +1,7 @@
 <resources>
 
     <style name="Theme.Light.DarkTitle" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:editTextBackground">@drawable/bg_textfield_light</item>
         <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>
         <item name="pathBarBackground">@drawable/bg_pathbar_light</item>
         <item name="topBarBackground">@drawable/bg_top_bar_light</item>

@@ -4,6 +4,7 @@
         <item name="android:actionBarStyle">@style/Widget.Holo.Light.DarkActionBar.ActionBar</item>
 		<item name="android:actionOverflowButtonStyle">@style/Compatibility.Widget.Holo.Light.DarkActionBar.ActionButton.Overflow</item>
 		
+        <item name="android:editTextBackground">@drawable/bg_textfield_light</item>
         <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>
         <item name="pathBarBackground">@drawable/bg_pathbar_light</item>
         <item name="topBarBackground">@drawable/bg_top_bar_light</item>

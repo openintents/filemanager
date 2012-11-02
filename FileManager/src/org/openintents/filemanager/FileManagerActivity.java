@@ -73,6 +73,8 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle icicle) {
+		UIUtils.setThemeFor(this);
+		
 		super.onCreate(icicle);
 
 		mDistribution.setFirst(MENU_DISTRIBUTION_START,
@@ -83,8 +85,6 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		if (mDistribution.showEulaOrNewVersion()) {
 			return;
 		}
-
-		UIUtils.setThemeFor(this);
 		
 		// Enable home button.
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)

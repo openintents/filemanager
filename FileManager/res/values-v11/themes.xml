@@ -3,6 +3,10 @@
     <style name="Theme.Light.DarkTitle" parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/Widget.Holo.Light.DarkActionBar.ActionBar</item>
 		<item name="android:actionOverflowButtonStyle">@style/Compatibility.Widget.Holo.Light.DarkActionBar.ActionButton.Overflow</item>
+		
+        <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>
+        <item name="pathBarBackground">@drawable/bg_pathbar_light</item>
+        <item name="topBarBackground">@drawable/bg_top_bar_light</item>
     </style>
 
     <style name="Widget.Holo.Light.DarkActionBar.ActionBar" parent="@android:style/Widget.Holo.ActionBar">
@@ -23,5 +27,12 @@
     <!-- Icon copied from the Honeycomb (3.0) source. Only the mdpi one was available there too. -->
     <style name="Compatibility.Widget.Holo.Light.DarkActionBar.ActionButton.Overflow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_menu_moreoverflow_normal_holo_dark</item>
+    </style>
+    
+    <!-- Black theme -->
+    <style name="Theme.Dark" parent="@android:style/Theme.Holo">
+        <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>
+        <item name="pathBarBackground">@drawable/bg_top_bar_dark</item>
+        <item name="topBarBackground">@drawable/bg_top_bar_dark</item>
     </style>
 </resources>

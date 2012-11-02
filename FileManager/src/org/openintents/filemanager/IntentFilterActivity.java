@@ -22,9 +22,10 @@ public class IntentFilterActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstance) {
+		UIUtils.setThemeFor(this);
+		
 		super.onCreate(savedInstance);
 		
-		UIUtils.setThemeFor(this);
 		Intent intent = getIntent();
 
 		// Initialize arguments

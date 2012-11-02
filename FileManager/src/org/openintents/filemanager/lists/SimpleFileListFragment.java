@@ -53,8 +53,7 @@ public class SimpleFileListFragment extends FileListFragment {
 	private int mMultiSelectionMenu = R.menu.multiselect;
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.filelist_browse, null);
 	}
 	

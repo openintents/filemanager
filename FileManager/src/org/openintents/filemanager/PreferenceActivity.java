@@ -18,6 +18,7 @@ package org.openintents.filemanager;
 
 import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.search.SearchableActivity;
+import org.openintents.filemanager.util.UIUtils;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -57,7 +58,9 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
 		}
-
+		
+		UIUtils.setThemeFor(this);
+		
 		addPreferencesFromResource(R.xml.preferences);
 		
 		/* Register the onSharedPreferenceChanged listener to update the SortBy ListPreference summary */
@@ -80,6 +83,15 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 				    }})
 				 .setNegativeButton(android.R.string.cancel, null).show();
 				
+				return true;
+			}
+		});
+		
+		findPreference("usedarktheme").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+			
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				UIUtils.setThemeFor(PreferenceActivity.this);				
 				return true;
 			}
 		});

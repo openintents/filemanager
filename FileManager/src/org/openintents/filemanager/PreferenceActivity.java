@@ -54,6 +54,8 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		
 	@Override
 	protected void onCreate(Bundle icicle) {
+		UIUtils.setThemeFor(this);
+		
 		super.onCreate(icicle);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);

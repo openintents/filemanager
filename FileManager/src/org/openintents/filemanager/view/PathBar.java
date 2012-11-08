@@ -5,7 +5,8 @@ import java.io.File;
 import org.openintents.filemanager.R;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -35,7 +36,7 @@ import android.widget.ViewFlipper;
  */
 public class PathBar extends ViewFlipper {
 	private String TAG = this.getClass().getName();
-
+	
 	/**
 	 * The available Modes of this PathBar. </br> See {@link PathBar#switchToManualInput() switchToManualInput()} and {@link PathBar#switchToStandardInput() switchToStandardInput()}.
 	 */
@@ -64,7 +65,7 @@ public class PathBar extends ViewFlipper {
 	private EditText mPathEditText = null;
 	/** The ImageButton to confirm the manually entered path. */
 	private ImageButton mGoButton = null;
-
+	
 	private OnDirectoryChangedListener mDirectoryChangedListener = new OnDirectoryChangedListener() {
 		@Override
 		public void directoryChanged(File newCurrentDir) {
@@ -85,7 +86,6 @@ public class PathBar extends ViewFlipper {
 		mCurrentDirectory = Environment.getExternalStorageDirectory();
 		mInitialDirectory = Environment.getExternalStorageDirectory();
 
-		this.setBackgroundResource(R.drawable.bg_pathbar);
 		this.setInAnimation(getContext(), R.anim.fade_in);
 		this.setOutAnimation(getContext(), R.anim.fade_out);
 
@@ -107,12 +107,9 @@ public class PathBar extends ViewFlipper {
 
 			mSwitchToManualModeButton.setLayoutParams(layoutParams);
 			mSwitchToManualModeButton.setId(10);
-			mSwitchToManualModeButton
-					.setImageResource(R.drawable.ic_navbar_edit);
-			mSwitchToManualModeButton
-					.setBackgroundResource(R.drawable.bg_navbar_btn);
-			mSwitchToManualModeButton
-					.setVisibility(View.GONE);
+			mSwitchToManualModeButton.setBackgroundDrawable(getItemBackground());
+			mSwitchToManualModeButton.setImageResource(R.drawable.ic_navbar_edit);
+			mSwitchToManualModeButton.setVisibility(View.GONE);
 
 			standardModeLayout.addView(mSwitchToManualModeButton);
 		}
@@ -126,7 +123,7 @@ public class PathBar extends ViewFlipper {
 
 			cdToRootButton.setLayoutParams(layoutParams);
 			cdToRootButton.setId(11);
-			cdToRootButton.setBackgroundResource(R.drawable.bg_navbar_btn);
+			cdToRootButton.setBackgroundDrawable(getItemBackground());
 			cdToRootButton.setImageResource(R.drawable.ic_navbar_home);
 			cdToRootButton.setScaleType(ScaleType.CENTER_INSIDE);
 			cdToRootButton.setOnClickListener(new View.OnClickListener() {
@@ -188,7 +185,7 @@ public class PathBar extends ViewFlipper {
 
 			mGoButton.setLayoutParams(layoutParams);
 			mGoButton.setId(20);
-			mGoButton.setBackgroundResource(R.drawable.bg_navbar_btn);
+			mGoButton.setBackgroundDrawable(getItemBackground());
 			mGoButton.setImageResource(R.drawable.ic_navbar_accept);
 			mGoButton.setScaleType(ScaleType.CENTER_INSIDE);
 			mGoButton.setOnClickListener(new View.OnClickListener() {
@@ -212,8 +209,6 @@ public class PathBar extends ViewFlipper {
 			layoutParams.addRule(RelativeLayout.LEFT_OF, mGoButton.getId());
 
 			mPathEditText.setLayoutParams(layoutParams);
-			mPathEditText.setBackgroundResource(R.drawable.bg_navbar_textfield);
-			mPathEditText.setTextColor(Color.BLACK);
 			mPathEditText.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 			mPathEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
 			mPathEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -462,5 +457,16 @@ public class PathBar extends ViewFlipper {
 		// add more filters here..
 		
 		return isFileOK;
+	}
+	
+	public Drawable getItemBackground(){
+		int[] attrs = new int[] {R.attr.pathBarItemBackground};
+
+		TypedArray ta = getContext().obtainStyledAttributes(attrs);
+		Drawable d = ta.getDrawable(0);
+		
+		ta.recycle();
+		
+		return d.mutate();
 	}
 }

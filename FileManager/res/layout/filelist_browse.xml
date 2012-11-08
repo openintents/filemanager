@@ -5,7 +5,8 @@
 
     <org.openintents.filemanager.view.PathBar
         android:id="@+id/pathbar"
-        android:layout_width="fill_parent"
+        android:background="?org.openintents.filemanager:attr/pathBarBackground"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/topBar_height" >
     </org.openintents.filemanager.view.PathBar>
 

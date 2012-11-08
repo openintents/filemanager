@@ -8,4 +8,7 @@
         <attr name="android:title" />
     </declare-styleable>
 
+    <attr name="pathBarItemBackground" format="reference" />
+    <attr name="pathBarBackground" format="reference" />
+    <attr name="topBarBackground" format="reference" />
 </resources>

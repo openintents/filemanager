@@ -7,6 +7,8 @@ import org.openintents.filemanager.R;
 import org.openintents.filemanager.view.PathBar.Mode;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -254,7 +256,7 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 				}
 			});
 			btn.setOnLongClickListener(navbar.getPathButtonLayout());
-			btn.setBackgroundResource(R.drawable.bg_navbar_btn);
+			btn.setBackgroundDrawable(navbar.getItemBackground());
 			
 			// We have to set this after adding the background as it'll cancel the padding out.
 			if(btn instanceof Button) {

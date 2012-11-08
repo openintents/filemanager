@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- THIS IS THE BUGFIX WORKAROUND VERSION. PROPER ONE IS AT /drawable-v8/bg_pathbar_btn.xml -->
+
+	<!-- Fix as per: http://stackoverflow.com/questions/5272706/nullpointerexception-in-drawables-mutate-method-android-1-6 -->
+	<!-- For bug: http://code.google.com/p/android/issues/detail?id=17184 occuring in 1.6 and 2.1 -->
+    
+    <item android:state_pressed="true"
+          android:drawable="@drawable/bg_pathbar_btn_standard_pressed" /> <!-- pressed -->
+    <item android:state_focused="true"
+          android:drawable="@drawable/bg_pathbar_btn_standard_focused" /> <!-- focused -->
+    <item android:drawable="@drawable/bg_pathbar_btn_standard_normal" /> <!-- default -->
+    
+    <!-- workaround from this point below // adding dummy unreachable states -->
+	<item android:animationCache="true"
+	    android:drawable="@android:color/transparent" />
+	
+	<item android:animationCache="false"
+	    android:drawable="@android:color/transparent" />
+	
+	<item android:alwaysDrawnWithCache="false"
+	    android:drawable="@android:color/transparent" />
+	
+	<item android:alwaysDrawnWithCache="true"
+	    android:drawable="@android:color/transparent" />
+	
+	<item android:state_focused="true" android:state_pressed="true"
+	    android:drawable="@android:color/transparent"/>
+	
+    <item android:state_focused="false" android:state_pressed="true"
+        android:drawable="@android:color/transparent" />
+
+    <item android:state_focused="true" android:state_enabled="false"
+        android:drawable="@android:color/transparent" />
+</selector>

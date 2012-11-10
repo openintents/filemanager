@@ -2,6 +2,7 @@ package org.openintents.filemanager.bookmarks;
 
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
+import org.openintents.filemanager.util.UIUtils;
 
 import android.content.Intent;
 import android.os.Build;
@@ -16,8 +17,9 @@ public class BookmarkListActivity extends FragmentActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
+		UIUtils.setThemeFor(this);
+		super.onCreate(savedInstanceState);				
+			 
 		if(Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB){
 			HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
 		}

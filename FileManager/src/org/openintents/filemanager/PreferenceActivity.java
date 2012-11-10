@@ -93,7 +93,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 			
 			@Override
 			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				UIUtils.setThemeFor(PreferenceActivity.this);				
+				//TODO show dialog about restarting app
 				return true;
 			}
 		});

@@ -118,7 +118,7 @@
         <item>Last modified</item>
     </string-array>
 
-    <string name="preference_usedarktheme_title">Use dark theme (Requires restart)</string>
+    <string name="preference_usedarktheme_title">Use dark theme (Requires restart of app)</string>
     <string name="preference_usedarktheme_summary_on">Dark theme selected</string>
     <string name="preference_usedarktheme_summary_off">Light theme selected</string>
         

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 
 import android.app.Activity;
@@ -30,6 +31,7 @@ public class SaveAsActivity extends Activity {
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
+		UIUtils.setThemeFor(this);
         super.onCreate(savedInstanceState);
         //This activity is never shown to the user.
         setContentView(new RelativeLayout(this));

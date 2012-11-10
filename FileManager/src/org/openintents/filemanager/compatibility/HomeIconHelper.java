@@ -11,7 +11,9 @@ public class HomeIconHelper {
 	}
 	
 	public static void activity_actionbar_setDisplayHomeAsUpEnabled(Activity act){
-		act.getActionBar().setDisplayHomeAsUpEnabled(true);
+		if (act != null && act.getActionBar() != null){
+			act.getActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 	}
 
 	/**

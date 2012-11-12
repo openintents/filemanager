@@ -5,6 +5,7 @@ import java.io.File;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.dialogs.OverwriteFileDialog.Overwritable;
 import org.openintents.filemanager.lists.FileListFragment;
+import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 
 import android.app.AlertDialog;
@@ -47,7 +48,7 @@ public class CreateDirectoryDialog extends DialogFragment implements Overwritabl
 		});
 
 		return new AlertDialog.Builder(getActivity())
-				.setInverseBackgroundForced(true)
+				.setInverseBackgroundForced(UIUtils.shouldDialogInverseBackground(getActivity()))
 				.setTitle(R.string.create_new_folder)
 				.setIcon(android.R.drawable.ic_dialog_alert)
 				.setView(v)

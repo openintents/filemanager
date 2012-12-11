@@ -74,7 +74,7 @@ public class IntentFilterActivity extends FragmentActivity {
 
 	private void chooseListType(Intent intent, Bundle extras) {
 		// Multiselect
-		if (intent.getAction().equals(FileManagerIntents.ACTION_MULTI_SELECT)) {
+		if (!intent.getAction().isEmpty()) {
 			String tag = "MultiSelectListFragment";
 			mFragment = (MultiselectListFragment) getSupportFragmentManager()
 					.findFragmentByTag(tag);

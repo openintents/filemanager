@@ -6,6 +6,7 @@ import java.util.List;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.FileListFragment;
+import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 
 import android.app.AlertDialog;
@@ -30,7 +31,7 @@ public class MultiDeleteDialog extends DialogFragment {
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		return new AlertDialog.Builder(getActivity())
-				.setInverseBackgroundForced(true)
+				.setInverseBackgroundForced(UIUtils.shouldDialogInverseBackground(getActivity()))
 				.setTitle(getString(R.string.really_delete_multiselect, mFileHolders.size()))
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					@Override

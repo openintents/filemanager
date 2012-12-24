@@ -13,6 +13,9 @@ public abstract class UIUtils {
 		} else {
 			act.setTheme(R.style.Theme_Light_DarkTitle);
 		}
-
+	}
+	
+	public static boolean shouldDialogInverseBackground(Activity act){
+		return !PreferenceManager.getDefaultSharedPreferences(act).getBoolean("usedarktheme", true);
 	}
 }

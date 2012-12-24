@@ -223,12 +223,14 @@ class Comparators{
 	public static final int NAME = 1;
 	public static final int SIZE = 2;
 	public static final int LAST_MODIFIED = 3;
+	public static final int EXTENSION = 4;
 	
 	
 	public static Comparator<FileHolder> getForFile(int comparator, boolean ascending){
 		switch(comparator){
 		case NAME: return new NameComparator(ascending);
 		case SIZE: return new SizeComparator(ascending);
+		case EXTENSION: return new ExtensionComparator(ascending);
 		case LAST_MODIFIED: return new LastModifiedComparator(ascending);
 		default: return null;
 		}
@@ -236,7 +238,8 @@ class Comparators{
 	public static Comparator<FileHolder> getForDirectory(int comparator, boolean ascending){
 		switch(comparator){
 		case NAME: return new NameComparator(ascending);
-		case SIZE: return new NameComparator(ascending); //Not a bug! Getting directory's size is verry slow
+		case SIZE: return new NameComparator(ascending); //Not a bug! Getting directory's size is very slow
+		case EXTENSION: return new NameComparator(ascending); // Sorting by name as folders don't have extensions.
 		case LAST_MODIFIED: return new LastModifiedComparator(ascending);
 		default: return null;
 		}
@@ -281,6 +284,30 @@ class SizeComparator extends FileHolderComparator{
 	@Override
 	protected int comp(FileHolder f1, FileHolder f2) {
 	    return ((Long)f1.getFile().length()).compareTo(f2.getFile().length());
+	}
+}
+
+class ExtensionComparator extends FileHolderComparator{
+	public ExtensionComparator(boolean asc){
+		super(asc);
+	}
+	
+	/*
+	 * Get the extension of a file.
+	 */  
+	public static String getExtension(String fname) {
+	    String ext = "";
+	    int i = fname.lastIndexOf('.');
+
+	    if (i > 0 &&  i < fname.length() - 1) {
+	        ext = fname.substring(i+1).toLowerCase();
+	    }
+	    return ext;
+	}
+
+	@Override
+	protected int comp(FileHolder f1, FileHolder f2) {
+	    return getExtension(f1.getName()).compareTo(getExtension(f2.getName()));
 	}
 }
 

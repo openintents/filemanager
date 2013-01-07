@@ -5,6 +5,7 @@ import java.io.File;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.FileListFragment;
+import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 
 import android.app.AlertDialog;
@@ -46,7 +47,7 @@ public class RenameDialog extends DialogFragment {
 		});
 		
 		return new AlertDialog.Builder(getActivity())
-				.setInverseBackgroundForced(true)
+				.setInverseBackgroundForced(UIUtils.shouldDialogInverseBackground(getActivity()))
 				.setTitle(R.string.menu_rename)
 				.setIcon(mFileHolder.getIcon())
 				.setView(v)

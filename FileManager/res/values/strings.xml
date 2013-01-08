@@ -150,6 +150,7 @@
     
     <string name="menu_send">Send</string>
     <string name="menu_delete">Delete</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">Copy</string>
     <string name="menu_compress">Compress</string>
     <string name="menu_rename">Rename</string>
@@ -212,9 +213,4 @@
     <string name="moved">Successfully moved</string>
     <string name="move_error">Some or all items couldn\'t be moved!</string>
     <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
-    <string name="menu_moveaction">Move</string>
-    <string name="file_moved">File Moved</string>
-    <string name="folder_moved">Folder Moved</string>
-    <string name="error_moving_file">Error Moving File</string>
-    <string name="error_moving_folder">ErrorMoving Folder</string>
 </resources>

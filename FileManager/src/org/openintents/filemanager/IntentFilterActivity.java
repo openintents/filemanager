@@ -10,7 +10,6 @@ import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 
 import android.content.Intent;
-import android.drm.DrmStore.Action;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -75,7 +74,7 @@ public class IntentFilterActivity extends FragmentActivity {
 
 	private void chooseListType(Intent intent, Bundle extras) {
 		// Multiselect
-		if (FileManagerIntents.ACTION_MULTI_SELECT.equals(intent.getAction())) {
+		if (!intent.getAction().isEmpty()) {
 			String tag = "MultiSelectListFragment";
 			mFragment = (MultiselectListFragment) getSupportFragmentManager()
 					.findFragmentByTag(tag);

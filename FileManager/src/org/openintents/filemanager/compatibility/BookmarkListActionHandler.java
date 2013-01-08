@@ -34,15 +34,21 @@ public class BookmarkListActionHandler {
 			if (VERSION.SDK_INT > VERSION_CODES.HONEYCOMB)
 				id = ListViewMethodHelper.listView_getCheckedItemIds(list)[0];
 			
-			if (item.getItemId() == R.id.menu_delete) {
+			// Handle selection
+			switch (item.getItemId()) {
+			case R.id.menu_delete:
 				list.getContext().getContentResolver().delete(BookmarksProvider.CONTENT_URI, BookmarksProvider._ID + "=?", new String[] {""+id});
+				break;
 			}
+			// Multiple selection
 		} else {
-			if (item.getItemId() == R.id.menu_delete) {
+			switch (item.getItemId()) {
+			case R.id.menu_delete:
 				long[] ids = ListViewMethodHelper.listView_getCheckedItemIds(list);
 				for(int i=0; i<ids.length; i++){
 					list.getContext().getContentResolver().delete(BookmarksProvider.CONTENT_URI, BookmarksProvider._ID + "=?", new String[] {""+ids[i]});
 				}
+				break;
 			}
 		}
 		

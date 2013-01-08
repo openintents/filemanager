@@ -2,6 +2,7 @@ package org.openintents.filemanager.files;
 
 import java.io.File;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.openintents.filemanager.util.FileUtils;
@@ -15,14 +16,16 @@ import android.os.Parcelable;
 import android.text.format.Formatter;
 
 public class FileHolder implements Parcelable, Comparable<FileHolder> {
-
+	
 	private File mFile;
 	private Drawable mIcon;
 	private String mMimeType = "";
-
-	public FileHolder(File f, Context c) {
+	private Context mContext;
+	
+	public FileHolder(File f, Context c){
 		mFile = f;
 		mMimeType = MimeTypes.newInstance(c).getMimeType(f.getName());
+		mContext = c;
 	}
 	
 	/**
@@ -34,6 +37,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 		mFile = f;
 		mIcon = i;
 		mMimeType = MimeTypes.newInstance(c).getMimeType(f.getName());
+		mContext = c;
 	}
 	
 	/**
@@ -42,6 +46,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	public FileHolder(File f, String m, Context c) {
 		mFile = f;
 		mMimeType = m;
+		mContext = c;
 		getIcon();
 	}
 	
@@ -52,6 +57,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 		mFile = f;
 		mIcon = i;
 		mMimeType = m;
+		mContext = c;
 	}
 	
 	public FileHolder(Parcel in){

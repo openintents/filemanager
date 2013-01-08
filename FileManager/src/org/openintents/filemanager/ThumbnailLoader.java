@@ -287,7 +287,6 @@ public class ThumbnailLoader {
 			this.imageView = imageView;
 			this.holder = text;
 		}
-
 	}
 	
 	/**
@@ -440,6 +439,4 @@ public class ThumbnailLoader {
 
 		return null;
 	}
-
-	
 }

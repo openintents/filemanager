@@ -1,6 +1,8 @@
 package org.openintents.filemanager.util;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
@@ -46,21 +48,26 @@ public final class ImageUtils {
 	/**
 	 * Resizes specific a Drawable with keeping ratio.
 	 */
+
 	public static Drawable resizeDrawable(Drawable drawable, int desireWidth,
 			int desireHeight) {
-				Drawable dr = null;
+		Drawable dr = null;
 		int width = drawable.getIntrinsicWidth();
 		int height = drawable.getIntrinsicHeight();
 
-		if (0 < width && 0 < height && desireWidth < width
-				|| desireHeight < height) {
+		if (width > 0 && height > 0
+				&& (desireWidth < width || desireHeight < height)) {
+			/*
+			 * drawable = new BitmapDrawable(resizeBitmap( ((BitmapDrawable)
+			 * drawable).getBitmap(), desireWidth, desireHeight));
+			 */
+
 			Bitmap b = ((BitmapDrawable) drawable).getBitmap();
 			Bitmap resized = Bitmap.createScaledBitmap(b, desireWidth,
 					desireHeight, true);
 			dr = new BitmapDrawable(resized);
 
 		}
-
 		return dr;
 	}
 

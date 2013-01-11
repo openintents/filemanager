@@ -12,12 +12,13 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
+ * limitations under the License.
 -->
-<manifest package="org.openintents.filemanager"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.openintents.filemanager"
     android:installLocation="auto"
     android:versionCode="27"
-    android:versionName="2.0.2" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:versionName="2.0.2" >
 
     <!--
     History: 
@@ -40,17 +41,17 @@
 	[5] 1.1.0: 2009-10-30
 	[3] 1.0.2: 2009-10-15
 	[2] 1.0.1: 2009-01-16 
-	[1] 1.0.0: 2008-12-10
+	[1] 1.0.0: 2008-12-10
     -->
 
     <uses-sdk
-        android:minSdkVersion="4"
-        android:targetSdkVersion="16" />
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" />
     <!--
              If targetSdkVersion is increased from 4 to 5 or higher, 
         	the following needs to be adjusted:
              * FileManagerActivity: onKeyDown(): New way how "back" key is handled.
-            NOTE: Tested on target=9, and it works both on Android 2.3 and Android 1.6.
+            NOTE: Tested on target=9, and it works both on Android 2.3 and Android 1.6.
     -->
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -63,10 +64,11 @@
 
     <!-- We use this theme here, so that for the time the user waits for the app to launch, he doesn't get blinded by the white default theme. Proper theme is set onCreate of any Activity. -->
     <application
+        android:name="FileManagerApplication"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.Launch"
-        android:name="FileManagerApplication">
+        android:allowBackup="true" >
 
         <!-- aTrackDog metadata -->
         <meta-data
@@ -92,10 +94,14 @@
 
                 <data android:scheme="file" />
             </intent-filter>
-            <meta-data android:name="android.app.default_searchable"
-                   android:value=".search.SearchableActivity" />
+
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".search.SearchableActivity" />
         </activity>
-        <activity android:name=".bookmarks.BookmarkListActivity" android:label="@string/bookmarks" >
+        <activity
+            android:name=".bookmarks.BookmarkListActivity"
+            android:label="@string/bookmarks" >
         </activity>
         <activity
             android:name=".PreferenceActivity"
@@ -114,7 +120,7 @@
 		        <category android:name="android.intent.category.DEFAULT" />
 		        <category android:name="android.intent.category.BROWSABLE" />
 		        <data android:scheme="file" android:host="*" android:mimeType="*/*"/>
-       		</intent-filter>
+       		</intent-filter>
             -->
             <!-- Save as a content: scheme with CATHEGORY_OPENABLE - the right way -->
             <intent-filter>
@@ -130,7 +136,7 @@
                  Special intent for GMail attachments. GMail doesn't use CATEGORY_OPENABLE,
             	 although it's possible to use ContentResolver.openFileReader().
             	 For further applications like GMail, just copy following five lines and change "gmail-ls"
-            	 to something else. You will also have to do some changes in SaveAsActivity.java
+            	 to something else. You will also have to do some changes in SaveAsActivity.java
             -->
             <!--
             ** DEACTIVATED FOR NOW, because it interferes with many commands **
@@ -138,10 +144,10 @@
 		        <action android:name="android.intent.action.VIEW" />
 		        <category android:name="android.intent.category.DEFAULT" />
 		        <data android:scheme="content" android:mimeType="*/*" android:host="gmail-ls"/>
-       		</intent-filter>
+       		</intent-filter>
             -->
         </activity>
-
+        
         <provider
             android:name=".bookmarks.BookmarksProvider"
             android:authorities="org.openintents.filemanager.bookmarks" >
@@ -163,23 +169,30 @@
         <activity
             android:name="org.openintents.distribution.EulaActivity"
             android:theme="@android:style/Theme.DeviceDefault" />
-        
         <activity
             android:name="org.openintents.distribution.NewVersionActivity"
             android:theme="@android:style/Theme.DeviceDefault" />
-        
-        <activity android:name=".search.SearchableActivity"
-                    android:launchMode="singleTop">
+        <activity
+            android:name=".search.SearchableActivity"
+            android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <provider android:name=".search.RecentsSuggestionsProvider" android:authorities="org.openintents.filemanager.search.SuggestionProvider"></provider>
-        <service android:name=".search.SearchService"></service>
-        <activity android:name=".IntentFilterActivity"  >
+
+        <provider
+            android:name=".search.RecentsSuggestionsProvider"
+            android:authorities="org.openintents.filemanager.search.SuggestionProvider" >
+        </provider>
+
+        <service android:name=".search.SearchService" >
+        </service>
+
+        <activity android:name=".IntentFilterActivity" >
             <intent-filter>
                 <action android:name="org.openintents.action.PICK_FILE" />
 
@@ -242,7 +255,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
+    </application>
+    <application>
     </application>
 
 </manifest>

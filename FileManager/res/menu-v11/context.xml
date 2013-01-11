@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
     <item
         android:id="@+id/menu_delete"
         android:icon="@drawable/ic_action_delete"
@@ -15,6 +16,11 @@
         android:title="@string/menu_copy">
     </item>
     <item
+        android:id="@+id/menu_moveaction"
+        android:icon="@drawable/ic_action_moveaction"
+        android:title="@string/menu_moveaction">
+    </item>
+    <item
         android:id="@+id/menu_send"
         android:icon="@drawable/ic_action_send"
         android:title="@string/menu_send">
@@ -26,8 +32,8 @@
     </item>
     <item
         android:id="@+id/menu_create_shortcut"
-        android:title="@string/menu_create_shortcut"
-        android:icon="@drawable/ic_action_create_shortcut">
+        android:icon="@drawable/ic_action_create_shortcut"
+        android:title="@string/menu_create_shortcut">
     </item>
     <item
         android:id="@+id/menu_rename"

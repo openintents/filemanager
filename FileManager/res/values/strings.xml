@@ -116,7 +116,6 @@
         <item>Name</item>
         <item>Size</item>
         <item>Last modified</item>
-        <item>File extension</item>
     </string-array>
 
     <string name="preference_usedarktheme_title">Use dark theme (Requires restart of app)</string>

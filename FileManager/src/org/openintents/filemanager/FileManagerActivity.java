@@ -40,45 +40,41 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class FileManagerActivity extends DistributionLibraryFragmentActivity {
-
 	private static final String FRAGMENT_TAG = "ListFragment";
-
-	protected static final int REQUEST_CODE_BOOKMARKS = 1;
-
+    
+    protected static final int REQUEST_CODE_BOOKMARKS = 1;
+	
 	private SimpleFileListFragment mFragment;
-
+	
 	@Override
 	protected void onNewIntent(Intent intent) {
-		if (intent.getData() != null)
-			mFragment.openInformingPathBar(new FileHolder(FileUtils
-					.getFile(intent.getData()), this));
+		if(intent.getData() != null)
+			mFragment.openInformingPathBar(new FileHolder(FileUtils.getFile(intent.getData()), this));
 	}
-
+	
 	/**
-	 * Either open the file and finish, or navigate to the designated directory.
-	 * This gives FileManagerActivity the flexibility to actually handle file
-	 * scheme data of any type.
-	 * 
+	 * Either open the file and finish, or navigate to the designated directory. This gives FileManagerActivity the flexibility to actually handle file scheme data of any type.
 	 * @return The folder to navigate to, if applicable. Null otherwise.
 	 */
-	private File resolveIntentData() {
+	private File resolveIntentData(){
 		File data = FileUtils.getFile(getIntent().getData());
-		if (data == null)
+		if(data == null)
 			return null;
-
-		if (data.isFile()) {
+		
+		if(data.isFile()){
 			FileUtils.openFile(new FileHolder(data, this), this);
 			finish();
 			return null;
-		} else
+		}
+		else
 			return FileUtils.getFile(getIntent().getData());
 	}
-
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle icicle) {
 		UIUtils.setThemeFor(this);
-
+		
 		super.onCreate(icicle);
 
 		mDistribution.setFirst(MENU_DISTRIBUTION_START,
@@ -89,53 +85,44 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		if (mDistribution.showEulaOrNewVersion()) {
 			return;
 		}
-
+		
 		// Enable home button.
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 			HomeIconHelper.activity_actionbar_setHomeButtonEnabled(this);
-
+		
 		// Search when the user types.
 		setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
-
+		
 		// If not called by name, open on the requested location.
 		File data = resolveIntentData();
 
 		// Add fragment only if it hasn't already been added.
-		mFragment = (SimpleFileListFragment) getSupportFragmentManager()
-				.findFragmentByTag(FRAGMENT_TAG);
-		if (mFragment == null) {
+		mFragment = (SimpleFileListFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+		if(mFragment == null){
 			mFragment = new SimpleFileListFragment();
 			Bundle args = new Bundle();
-			if (data == null)
-				args.putString(
-						FileManagerIntents.EXTRA_DIR_PATH,
-						Environment.getExternalStorageState().equals(
-								Environment.MEDIA_MOUNTED) ? Environment
-								.getExternalStorageDirectory()
-								.getAbsolutePath() : "/");
+			if(data == null)
+				args.putString(FileManagerIntents.EXTRA_DIR_PATH, Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/");
 			else
-				args.putString(FileManagerIntents.EXTRA_DIR_PATH,
-						data.toString());
+				args.putString(FileManagerIntents.EXTRA_DIR_PATH, data.toString());
 			mFragment.setArguments(args);
-			getSupportFragmentManager().beginTransaction()
-					.add(android.R.id.content, mFragment, FRAGMENT_TAG)
-					.commit();
-		} else {
+			getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, FRAGMENT_TAG).commit();
+		}
+		else {
 			// If we didn't rotate and data wasn't null.
-			if (icicle == null && data != null)
-				mFragment.openInformingPathBar(new FileHolder(new File(data
-						.toString()), this));
+			if(icicle == null && data!=null)
+				mFragment.openInformingPathBar(new FileHolder(new File(data.toString()), this));
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = new MenuInflater(this);
-		inflater.inflate(R.menu.main, menu);
-
-		mDistribution.onCreateOptionsMenu(menu);
-		return true;
-	}
+ 	@Override
+ 	public boolean onCreateOptionsMenu(Menu menu) {
+ 		MenuInflater inflater = new MenuInflater(this);
+ 		inflater.inflate(R.menu.main, menu);
+ 		
+ 		mDistribution.onCreateOptionsMenu(menu);
+ 		return true;
+ 	}
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
@@ -159,27 +146,30 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.menu_search) {
+		switch (item.getItemId()) {
+		
+		case R.id.menu_search:
 			onSearchRequested();
 			return true;
-		} else if (item.getItemId() == R.id.menu_settings) {
+		
+		case R.id.menu_settings:
 			Intent intent = new Intent(this, PreferenceActivity.class);
 			startActivity(intent);
 			return true;
-		} else if (item.getItemId() == R.id.menu_bookmarks) {
-			startActivityForResult(new Intent(FileManagerActivity.this,
-					BookmarkListActivity.class), REQUEST_CODE_BOOKMARKS);
+		
+		case R.id.menu_bookmarks:
+			startActivityForResult(new Intent(FileManagerActivity.this, BookmarkListActivity.class), REQUEST_CODE_BOOKMARKS);
 			return true;
-		} else if (item.getItemId() == android.R.id.home) {
+		
+		case android.R.id.home:
 			mFragment.browseToHome();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 
 	}
-
-	// The following methods should properly handle back button presses on every
-	// API Level.
+	
+	// The following methods should properly handle back button presses on every API Level.
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if (VERSION.SDK_INT > VERSION_CODES.DONUT) {
@@ -199,38 +189,34 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 
 		return super.onKeyDown(keyCode, event);
 	}
-
-	/**
-	 * This is called after the file manager finished.
-	 */
+	
+    /**
+     * This is called after the file manager finished.
+     */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		switch (requestCode) {
-		case REQUEST_CODE_BOOKMARKS:
-			if (resultCode == RESULT_OK && data != null) {
-				//mFragment.openInformingPathBar(new FileHolder(new File(data
-					//	.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)),
-						//this));
-			}
-			break;
-		default:
-			super.onActivityResult(requestCode, resultCode, data);
-		}
-
+        case REQUEST_CODE_BOOKMARKS:
+            if (resultCode == RESULT_OK && data != null) {
+            	mFragment.openInformingPathBar(new FileHolder(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)), this));
+            }
+            break;
+        default:
+        	super.onActivityResult(requestCode, resultCode, data);
+        }
+		
 	}
-
+	
 	/**
-	 * We override this, so that we get informed about the opening of the search
-	 * dialog and start scanning silently.
+	 * We override this, so that we get informed about the opening of the search dialog and start scanning silently.
 	 */
 	@Override
 	public boolean onSearchRequested() {
 		Bundle appData = new Bundle();
-		appData.putString(FileManagerIntents.EXTRA_SEARCH_INIT_PATH,
-				mFragment.getPath());
+		appData.putString(FileManagerIntents.EXTRA_SEARCH_INIT_PATH, mFragment.getPath());
 		startSearch(null, false, appData, false);
-
+		
 		return true;
 	}
 }

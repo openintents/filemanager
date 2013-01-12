@@ -23,9 +23,9 @@ public class IntentFilterActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstance) {
 		UIUtils.setThemeFor(this);
-
+		
 		super.onCreate(savedInstance);
-
+		
 		Intent intent = getIntent();
 
 		// Initialize arguments
@@ -49,16 +49,15 @@ public class IntentFilterActivity extends FragmentActivity {
 
 		// Add a path if a path has been specified in this activity's call.
 		File data = FileUtils.getFile(getIntent().getData());
-		if (data != null) {
-			File dir = FileUtils.getPathWithoutFilename(data);
+		if (data != null) {			
+			File dir = FileUtils.getPathWithoutFilename(data);		
 			if (dir != null) {
 				extras.putString(FileManagerIntents.EXTRA_DIR_PATH,
 						data.getAbsolutePath());
 			}
-			if (dir != data) {
+			if (dir != data){
 				// data is a file
-				extras.putString(FileManagerIntents.EXTRA_FILENAME,
-						data.getName());
+				extras.putString(FileManagerIntents.EXTRA_FILENAME, data.getName());
 			}
 		}
 
@@ -114,12 +113,12 @@ public class IntentFilterActivity extends FragmentActivity {
 				// Pass extras through to the list fragment. This helps
 				// centralize the path resolving, etc.
 				extras.putBoolean(
+						FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED,
+						intent.getAction().equals(Intent.ACTION_GET_CONTENT));
+				extras.putBoolean(
 						FileManagerIntents.EXTRA_DIRECTORIES_ONLY,
 						intent.getAction().equals(
 								FileManagerIntents.ACTION_PICK_DIRECTORY));
-				extras.putBoolean(
-						FileManagerIntents.EXTRA_IS_GET_CONTENT_INITIATED,
-						intent.getAction().equals(Intent.ACTION_GET_CONTENT));
 
 				mFragment.setArguments(extras);
 				getSupportFragmentManager()

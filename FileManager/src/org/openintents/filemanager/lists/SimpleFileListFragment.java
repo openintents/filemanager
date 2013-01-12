@@ -61,8 +61,6 @@ public class SimpleFileListFragment extends FileListFragment {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		if (savedInstanceState != null) {
-			// mContextFile = new File(
-			// savedInstanceState.getString(BUNDLE_CONTEXT_FILE));
 		}
 	}
 
@@ -153,6 +151,10 @@ public class SimpleFileListFragment extends FileListFragment {
 			intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, "Move Here");
 			intent.putExtra(FileManagerIntents.EXTRA_WRITEABLE_ONLY, true);
 			startActivityForResult(intent, REQUEST_CODE_MOVE);
+			
+			if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
+				ActionbarRefreshHelper.activity_invalidateOptionsMenu(this
+						.getActivity());
 
 			return true;
 		} else {

@@ -20,9 +20,11 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Date;
 
+import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -40,7 +42,7 @@ import android.widget.Toast;
  * @author Peli
  *
  */
-public class FileUtils {
+public class FileUtils{
 	
 	/** TAG for log messages. */
 	static final String TAG = "FileUtils";
@@ -357,6 +359,17 @@ public class FileUtils {
 		
 		intent.setDataAndType(data, type);
 
+		Activity a = new Activity();
+		// Were we in GET_CONTENT mode?
+        Intent originalIntent = a.getIntent();
+        
+        if (originalIntent != null && originalIntent.getAction() != null && originalIntent.getAction().equals(Intent.ACTION_GET_CONTENT)) {
+                // In that case, we should probably just return the requested data.
+                intent.setData(Uri.parse(FileManagerProvider.MIME_TYPE_PREFIX + fileholder));
+                a.setResult(Activity.RESULT_OK, intent);
+                a.finish();
+                return;
+        }
 		try {
 			c.startActivity(intent);
 		} catch (ActivityNotFoundException e) {

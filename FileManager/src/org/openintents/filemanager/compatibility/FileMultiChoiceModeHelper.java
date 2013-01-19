@@ -14,8 +14,9 @@ import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.ListView;
 
 /**
- * This class helps wrap some of the platform specific logic of MultiChoiceMode of Honeycomb and up, 
- * while keeping the app compliant with API levels that do not ignore {@link VerifyError}s  and crash the app.
+ * This class helps wrap some of the platform specific logic of MultiChoiceMode
+ * of Honeycomb and up, while keeping the app compliant with API levels that do
+ * not ignore {@link VerifyError}s and crash the app.
  * 
  * @author George Venios
  * 
@@ -24,19 +25,22 @@ public class FileMultiChoiceModeHelper {
 	private ListView list;
 	private PathBar pathbar;
 	private SimpleFileListFragment fragment;
-	
+
 	private int mSingleItemMenuResource;
 	private int mMultipleItemsMenuResource;
 
 	/**
-	 * @param singleSelectMenuResource The menu to use on single selection.
-	 * @param multiSelectMenuResource The menu to use on multiple selection.
+	 * @param singleSelectMenuResource
+	 *            The menu to use on single selection.
+	 * @param multiSelectMenuResource
+	 *            The menu to use on multiple selection.
 	 */
-	public FileMultiChoiceModeHelper(int singleSelectMenuResource, int multiSelectMenuResource) {
+	public FileMultiChoiceModeHelper(int singleSelectMenuResource,
+			int multiSelectMenuResource) {
 		mSingleItemMenuResource = singleSelectMenuResource;
 		mMultipleItemsMenuResource = multiSelectMenuResource;
 	}
-	
+
 	public void setListView(ListView list) {
 		this.list = list;
 		list.setMultiChoiceModeListener(listener);
@@ -60,11 +64,15 @@ public class FileMultiChoiceModeHelper {
 			switch (list.getCheckedItemCount()) {
 			// Single selection
 			case 1:
-				MenuUtils.fillContextMenu((FileHolder) list.getAdapter().getItem(getSelectedPosition()), menu, mSingleItemMenuResource, mode.getMenuInflater(), list.getContext());
+				MenuUtils.fillContextMenu((FileHolder) list.getAdapter()
+						.getItem(getSelectedPosition()), menu,
+						mSingleItemMenuResource, mode.getMenuInflater(), list
+								.getContext());
 				break;
 			// Multiple selection
 			default:
-				MenuUtils.fillMultiselectionMenu(menu, mMultipleItemsMenuResource, mode.getMenuInflater());
+				MenuUtils.fillMultiselectionMenu(menu,
+						mMultipleItemsMenuResource, mode.getMenuInflater());
 				break;
 			}
 			return true;
@@ -89,13 +97,26 @@ public class FileMultiChoiceModeHelper {
 			switch (list.getCheckedItemCount()) {
 			// Single selection
 			case 1:
-				res = MenuUtils.handleSingleSelectionAction(fragment, item,
-						(FileHolder) list.getAdapter().getItem(getSelectedPosition()), fragment.getActivity());
+				if (item.getItemId() == R.id.menu_moveaction) {
+					res = true;
+				} else {
+					res = MenuUtils.handleSingleSelectionAction(
+							fragment,
+							item,
+							(FileHolder) list.getAdapter().getItem(
+									getSelectedPosition()),
+							fragment.getActivity());
+				}
 				break;
 			// Multiple selection
 			default:
-				res = MenuUtils.handleMultipleSelectionAction(fragment, item, getCheckedItems(), fragment.getActivity());
-				break;
+				if (item.getItemId() == R.id.menu_moveaction) {
+					res = true;
+				} else {
+					res = MenuUtils.handleMultipleSelectionAction(fragment,
+							item, getCheckedItems(), fragment.getActivity());
+					break;
+				}
 			}
 			mode.finish();
 
@@ -105,8 +126,10 @@ public class FileMultiChoiceModeHelper {
 		@Override
 		public void onItemCheckedStateChanged(android.view.ActionMode mode,
 				int position, long id, boolean checked) {
-			mode.setTitle(list.getCheckedItemCount() + " "
-					+ fragment.getActivity().getResources().getString(R.string.selected));
+			mode.setTitle(list.getCheckedItemCount()
+					+ " "
+					+ fragment.getActivity().getResources()
+							.getString(R.string.selected));
 
 			// Force actions' refresh
 			mode.invalidate();
@@ -114,23 +137,25 @@ public class FileMultiChoiceModeHelper {
 	};
 
 	/**
-	 * This is error free only when FileHolderListAdapter uses stableIds and getItemId(int) returns the int passed (the position of the item).
-	 * @return 
+	 * This is error free only when FileHolderListAdapter uses stableIds and
+	 * getItemId(int) returns the int passed (the position of the item).
+	 * 
+	 * @return
 	 */
 	private int getSelectedPosition() {
 		return (int) list.getCheckedItemIds()[0];
 	}
-	
+
 	/**
 	 * @return A {@link FileHolder} list with the currently selected items.
 	 */
-	private ArrayList<FileHolder> getCheckedItems(){
+	private ArrayList<FileHolder> getCheckedItems() {
 		ArrayList<FileHolder> items = new ArrayList<FileHolder>();
-		
-		for(long pos : list.getCheckedItemIds()) {
+
+		for (long pos : list.getCheckedItemIds()) {
 			items.add((FileHolder) list.getAdapter().getItem((int) pos));
 		}
-		
+
 		return items;
 	}
 }

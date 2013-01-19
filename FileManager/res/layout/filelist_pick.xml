@@ -1,8 +1,10 @@
+<?xml version="1.0"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <!-- Provide button bar styling for any type of "pick" -->
+ -
 
     <LinearLayout
         android:id="@+id/bottomBar"
@@ -15,11 +17,13 @@
         android:showDividers="beginning" >
 
         <!-- We switch between these programmatically based on the type of pick request. -->
+ -
 
         <ViewFlipper
-        	android:id="@+id/modeSelector"
+            android:id="@+id/modeSelector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+ -
 
             <LinearLayout
                 style="?android:attr/buttonBarStyle"

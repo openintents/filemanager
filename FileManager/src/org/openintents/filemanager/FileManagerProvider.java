@@ -23,6 +23,7 @@ import android.util.Log;
 public class FileManagerProvider extends ContentProvider {
 
 	public static final String FILE_PROVIDER_PREFIX = "content://org.openintents.filemanager";
+	public static final String MIME_TYPE_PREFIX = "content://org.openintents.filemanager/mimetype/";
 	private static final String TAG = "FileManagerProvider";
 	public static final String AUTHORITY = "org.openintents.filemanager";
 	private MimeTypes mMimeTypes;
@@ -39,10 +40,10 @@ public class FileManagerProvider extends ContentProvider {
 		try {
 			mtp = new MimeTypeParser(ctx, ctx.getPackageName());
 		} catch (NameNotFoundException e) {
-			//Should never get here
+			// Should never get here
 		}
-		XmlResourceParser in = 
-			getContext().getResources().getXml(R.xml.mimetypes);
+		XmlResourceParser in = getContext().getResources().getXml(
+				R.xml.mimetypes);
 
 		try {
 			mMimeTypes = mtp.fromXmlResource(in);
@@ -76,45 +77,45 @@ public class FileManagerProvider extends ContentProvider {
 	}
 
 	@Override
-	public Cursor query(Uri uri, String[] projection, String s, 
-			String[] as1, String s1) {
+	public Cursor query(Uri uri, String[] projection, String s, String[] as1,
+			String s1) {
 		if (uri.toString().startsWith(FILE_PROVIDER_PREFIX)) {
 			if (projection == null || projection.length == 0) {
 				// Standard projection including all supported rows
-				projection = new String [] {
-								MediaStore.MediaColumns.DATA,
-								MediaStore.MediaColumns.MIME_TYPE,
-								MediaStore.MediaColumns.DISPLAY_NAME,
-								MediaStore.MediaColumns.SIZE};
-			} 
-			
+				projection = new String[] { MediaStore.MediaColumns.DATA,
+						MediaStore.MediaColumns.MIME_TYPE,
+						MediaStore.MediaColumns.DISPLAY_NAME,
+						MediaStore.MediaColumns.SIZE };
+			}
+
 			MatrixCursor c = new MatrixCursor(projection);
 			MatrixCursor.RowBuilder row = c.newRow();
-			
+
 			// data = absolute path to file
 			String data = uri.getPath();
-			
+
 			int fromIndex = data.lastIndexOf(File.separatorChar) + 1;
 			if (fromIndex >= data.length()) {
-				// Last character was '/' or data is empty, so no file name 
-				// was specified and we don't want to raise an 
+				// Last character was '/' or data is empty, so no file name
+				// was specified and we don't want to raise an
 				// IndexOutOfBoundsException
-				throw new RuntimeException("No file name specified: ".concat(data));
+				throw new RuntimeException(
+						"No file name specified: ".concat(data));
 			}
-			
+
 			// According to Android docs, DISPLAY_NAME should be
 			// the last segment of Uri
-			String displayName = 
-				(fromIndex > 0) ? data.substring(fromIndex) : data;
-			
+			String displayName = (fromIndex > 0) ? data.substring(fromIndex)
+					: data;
+
 			String mimeType = mMimeTypes.getMimeType(data);
-				
+
 			long size = -1;
-			File file = new File(data);			
+			File file = new File(data);
 			if (file.exists() && file.isFile()) {
 				size = file.length();
 			}
-			
+
 			for (String col : projection) {
 				if (col.equals(MediaStore.MediaColumns.DATA)) {
 					row.add(data);
@@ -136,13 +137,13 @@ public class FileManagerProvider extends ContentProvider {
 					row.add(null);
 				}
 			}
-			
+
 			return c;
 		} else {
 			throw new RuntimeException("Unsupported uri");
 		}
 	}
-	
+
 	@Override
 	public ParcelFileDescriptor openFile(Uri uri, String mode)
 			throws FileNotFoundException {
@@ -154,12 +155,14 @@ public class FileManagerProvider extends ContentProvider {
 			ParcelFileDescriptor pfd = ParcelFileDescriptor.open(f, m);
 			return pfd;
 		} else {
-			throw new FileNotFoundException	("Unsupported uri: " + uri.toString());
+			throw new FileNotFoundException("Unsupported uri: "
+					+ uri.toString());
 		}
 	}
 
 	@Override
-	public int update(Uri uri, ContentValues contentvalues, String s, String[] as) {
+	public int update(Uri uri, ContentValues contentvalues, String s,
+			String[] as) {
 		// not supported
 		return 0;
 	}

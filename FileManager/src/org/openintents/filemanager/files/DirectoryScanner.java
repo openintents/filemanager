@@ -292,22 +292,9 @@ class ExtensionComparator extends FileHolderComparator{
 		super(asc);
 	}
 	
-	/*
-	 * Get the extension of a file.
-	 */  
-	public static String getExtension(String fname) {
-	    String ext = "";
-	    int i = fname.lastIndexOf('.');
-
-	    if (i > 0 &&  i < fname.length() - 1) {
-	        ext = fname.substring(i+1).toLowerCase();
-	    }
-	    return ext;
-	}
-
 	@Override
 	protected int comp(FileHolder f1, FileHolder f2) {
-	    return getExtension(f1.getName()).compareTo(getExtension(f2.getName()));
+	    return f1.getExtension().compareTo(f2.getExtension());
 	}
 }
 

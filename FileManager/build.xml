@@ -26,10 +26,10 @@
     <property file="build-private.properties" />
 
 	<!-- Root directory of all OpenIntents files. -->
-	<property name="source.base" value="../.." />
+	<property name="source.base" value="." />
 
 	<!-- Path for common ant script. -->
-    <property name="build.common.dir" value="${source.base}/distribution/ant" />
+    <property name="build.common.dir" value="${source.base}/../../distribution/ant" />
 
 	<!-- All definitions are imported from a central location -->
 	<import file="${build.common.dir}/build_common.xml" />

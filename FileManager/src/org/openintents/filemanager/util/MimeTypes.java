@@ -16,19 +16,46 @@
 
 package org.openintents.filemanager.util;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.openintents.filemanager.R;
+import org.xmlpull.v1.XmlPullParserException;
+
+import android.content.Context;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.XmlResourceParser;
 import android.webkit.MimeTypeMap;
 
 public class MimeTypes {
 
-	private Map<String, String> mMimeTypes;
-	private Map<String, Integer> mIcons;
+	private Map<String, String> mMimeTypes = new HashMap<String,String>();
+	private Map<String, Integer> mIcons = new HashMap<String,Integer>();
 
-	public MimeTypes() {
-		mMimeTypes = new HashMap<String,String>();
-		mIcons = new HashMap<String,Integer>();
+	/**
+	 * Use this instead of the default constructor to get a prefilled object.
+	 */
+	public static MimeTypes newInstance(Context c){
+		MimeTypes mimeTypes = null;
+		MimeTypeParser mtp = null;
+		try {
+			mtp = new MimeTypeParser(c, c.getPackageName());
+		} catch (NameNotFoundException e) {
+			// Should never happen
+		}
+
+		XmlResourceParser in = c.getResources().getXml(R.xml.mimetypes);
+
+		try {
+			mimeTypes = mtp.fromXmlResource(in);
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return mimeTypes;
 	}
 	
 	/* I think the type and extension names are switched (type contains .png, extension contains x/y),
@@ -47,7 +74,6 @@ public class MimeTypes {
 	}
 	
 	public String getMimeType(String filename) {
-		
 		String extension = FileUtils.getExtension(filename);
 		
 		// Let's check the official map first. Webkit has a nice extension-to-MIME map.

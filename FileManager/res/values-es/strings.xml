@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
  * Copyright (C) 2007-2008 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,13 +18,13 @@
 	<!-- ***************************
 	     About information
 	     *************************** -->
-	
+
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
+  Adolfo Jayme Barrientos https://launchpad.net/~fitoschido
   Alfredo Hernández https://launchpad.net/~aldomann
   DiegoJ https://launchpad.net/~diegojromerolopez
   Donal Estrada https://launchpad.net/~donalestrada
-  Fitoschido https://launchpad.net/~fitoschido
   Javier Martínez Arrieta https://launchpad.net/~javote87
   Martín González https://launchpad.net/~mgonzlezgmz
   OpenIntents devs https://launchpad.net/~openintents-devs
@@ -32,71 +32,44 @@
   Peli https://launchpad.net/~peli0101
   miwie https://launchpad.net/~mw-miwie
   simon https://launchpad.net/~sianhulo</string>
-	
+
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Administrar archivos en la tarjeta SD con OI File Manager</string>  
-	
+    <string name="about_comments">Administrar archivos de la memoria con File Manager</string>
+
 	<!-- ***************************
 	     Applicatio-specific strings
 	     *************************** -->
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
-    <string name="app_name">OI File Manager</string>
-    
-    <string name="menu_new_folder">Carpeta nueva</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">Selección multiple</string>
+    <string name="app_name">File Manager</string>
 
     <string name="menu_delete">Borrar</string>
     <string name="menu_rename">Renombrar</string>
     <string name="menu_send">Enviar</string>
     <string name="menu_open">Abrir</string>
-    <string name="menu_move">Mover</string>
+    <string name="menu_move">Cortar</string>
     <string name="menu_copy">Copiar</string>
     <string name="menu_details">Mostrar detalles</string>
     <string name="menu_more">Más</string>
     <string name="menu_compress">Comprimir (ZIP)</string>
     <string name="menu_extract">Extraer (ZIP)</string>
-    <string name="menu_filter">Filtro</string>
     <string name="menu_include_in_media_scan">Incluir en la exploración de archivos multimedia</string>
     <string name="menu_exclude_from_media_scan">Excluir de la exploración de archivos multimedia</string>
-    <string name="menu_bookmark">Añadir a marcadores</string>
-    <string name="menu_refresh">Actualizar</string>
-    
+    <string name="menu_bookmark">Marcador</string>
+
     <string name="create_new_folder">Crear nueva carpeta</string>
     <string name="folder_name">Nombre de carpeta</string>
-    <string name="file_name">Nombre de carpeta</string>
-    <string name="extension">Complemento (con \'.\')</string>
-    <string name="this_folder_is_empty">Esta carpeta está vacía.</string>
-    <string name="really_delete">Verdaderamente quiere borrar %s?</string>
-    <string name="file_deleted">Archivo borrado.</string>
-    <string name="folder_deleted">Carpeta borrada.</string>
-    <string name="file_renamed">Archivo cambiado de nombre.</string>
-    <string name="folder_renamed">Carpeta cambiada de nombre.</string>
-    <string name="file_moved">Archivo movido.</string>
-    <string name="folder_moved">Carpeta movida.</string>
-    <string name="file_copied">Archivo copiado.</string>
-    <string name="move_title">Seleccionar carpeta de destino</string>
-    <string name="move_button">Mover aquí</string>
-    <string name="copy_title">Seleccione carpeta de destino</string>
-    <string name="copy_button">Copiar aquí</string>
-	<string name="deleting_files">Borrando archivos...</string>
+    <string name="this_folder_is_empty">Esta carpeta está vacía</string>
+    <string name="really_delete">¿Borrar %s?</string>
     <string name="title_warning_some_may_not_work">Advertencia</string>
     <string name="warning_some_may_not_work">Algunas de las siguientes opciones pueden no funcionar</string>
-    <string name="show_warning_again">Mostrar advertencia de nuevo</string>
-    
+    <string name="show_warning_again">Mostrar advertencia nuevamente</string>
+
     <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">¿Realmente quiere borrar los archivos %d?</string>
-    <string name="move_button_multiselect">Mover</string>
-    <string name="copy_button_multiselect">Copiar</string>
-    <string name="delete_button_multiselect">Borrar</string>
+	<string name="really_delete_multiselect">¿Borrar %d archivos?</string>
 
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">ZIP</string>
+    <string name="multiselect_title">Seleccionar varios archivos</string>
+    <string name="pick_title">Selector de archivos</string>
 
-    <string name="multiselect_title">Seleccione varios archivos</string>
-    <string name="error_selection">Por favor, seleccione uno o mas archivos</string>
-    
     <!-- Strings for details table -->
     <string name="details_type">Tipo</string>
     <string name="details_type_folder">Carpeta</string>
@@ -105,57 +78,47 @@
     <string name="details_size">Tamaño</string>
     <string name="details_permissions">Permisos</string>
     <string name="details_hidden">Oculto</string>
-    <string name="details_lastmodified">Ultima modificación</string>
-    <string name="details_yes">Si</string>
+    <string name="details_lastmodified">Última modificación</string>
+    <string name="details_yes">Sí</string>
     <string name="details_no">No</string>
-    
+
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Copia de %s</string>
-    
+
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">Copiar %1$d de %2$s</string>
-    
+
     <string name="media_scan_included">Esta carpeta se incluirá en la siguiente exploración de archivos multimedia</string>
     <string name="media_scan_excluded">Esta carpeta se excluirá durante la exploración de archivos multimedia</string>
-    
-    <string name="error_creating_new_folder">No se puede crear la carpeta nueva.</string>
-    <string name="error_deleting_file">No se puede borrar el fichero.</string>
-    <string name="error_deleting_folder">No se puede borrar la carpeta «\'%sx.</string>
-    <string name="error_renaming_file">No se puede cambiar de nombre del fichero.</string>
-    <string name="error_renaming_folder">No se puede cambiar de nombre de la carpeta.</string>
-    <string name="error_moving_file">No se puede mover el fichero.</string>
-    <string name="error_moving_folder">No se puede mover la carpeta.</string>
-    <string name="error_copying_file">No se pudo copiar el archivo.</string>
-    <string name="error_file_does_not_exists">El archivo no existe.</string>
-    <string name="error_deleting_child_file">No se puede borrar el archivo hijo «%s».</string>
-    <string name="error_generic">Ocurrió un error:</string>
+
+    <string name="error_generic">Ocurrió un error: </string>
     <string name="error_media_scan">No pudo cambiarse la configuración de exploración de archivos multimedia</string>
-    
-    <string name="send_not_available">Aplicación no disponible para enviar.</string>
-    
+
+    <string name="send_not_available">Aplicación no disponible para enviar</string>
+
     <string name="application_not_available">Aplicación no disponible</string>
-    
+
 	<!-- ***************************
 	     Preferences
 	     *************************** -->
     <!-- Menu item for Settings -->
 	<string name="settings">Configuración</string>
-	
+
     <!-- Category for preferences. -->
     <string name="preference_advanced_features">Características avanzadas</string>
 	<string name="preference_mediascan_title">Excluir de la exploración de archivos multimedia</string>
-    <string name="preference_mediascan_summary_on">Muestra el elemento del menú para excluir carpetas del escaneo del medio</string>
-    <string name="preference_mediascan_summary_off">Esconde el elemento del menú para excluir carpetas del escaneo del medio</string>
-    
+    <string name="preference_mediascan_summary_on">Mostrar la opción para excluir carpetas de la exploración de archivos multimedia</string>
+    <string name="preference_mediascan_summary_off">Ocultar la opción para excluir carpetas de la exploración de archivos multimedia</string>
+
     <string name="preference_showallwarning_title">Mostrar todos los avisos</string>
     <string name="preference_showallwarning_summary_on">Mostrar todos los mensajes de aviso</string>
-    <string name="preference_showallwarning_summary_off">Suprimir mensajes de aviso</string>
-       
+    <string name="preference_showallwarning_summary_off">Ocultar mensajes de aviso</string>
+
     <string name="preference_displayhiddenfiles_title">Mostrar archivos ocultos</string>
     <string name="preference_displayhiddenfiles_summary_on">Mostrar archivos ocultos</string>
-    <string name="preference_displayhiddenfiles_summary_off">Ocultar archivos ocultos</string>
-    
-    <string name="preference_sort_settings">Opciones de ordenado</string>
+    <string name="preference_displayhiddenfiles_summary_off">No mostrar archivos ocultos</string>
+
+    <string name="preference_sort_settings">Opciones de ordenación</string>
     <string name="preference_sortby">Ordenar por</string>
     <string name="preference_sortby_ascending">Orden ascendente</string>
     <string name="preference_sortby_ascending_summary_on">Ordenar ascendentemente</string>
@@ -166,41 +129,83 @@
         <item>Última modificación</item>
     </string-array>
 
-        
+
     <!-- ***************************
-   		 Strings for the \'Save as\' feature
-    	 *************************** -->
-    <string name="saveas_no_file_picked">No ha elegido ningún archivo.</string>
+         Strings for the \'Save as\' feature
+         *************************** -->
+    <string name="saveas_no_file_picked">No se ha elegido ningún archivo</string>
     <string name="saveas_error">Ocurrió un error</string>
-    <string name="saveas_file_saved">El archivo se guardó correctamente.</string>
-    
-        
-   
-    <string name="bookmarks">Marcadores</string>
-    <string name="bookmarks_cancel">Cancelar</string>
-    <string name="bookmarks_delete">Borrar</string>
-    <string name="bookmarks_select_to_delete">Elija los marcadores a eliminar</string>
-    <string name="bookmarks_manage">Gestionar marcadores</string>
-    <string name="bookmark_added">Marcador añadido</string>
-    <string name="bookmark_not_found">No se encontró el destino del marcador.</string>
-    <string name="bookmarks_deleted">Se eliminaron los marcadores seleccionados</string>
-    <string name="bookmark_already_exists">Este archivo ya está en marcadores</string>
-
+    <string name="saveas_file_saved">El archivo se guardó con éxito</string>
 
     <!-- ***************************
-             Strings for the \'Compressing\' and \'Extracting\' feature
-          *************************** -->
-    <string name="compressing_success">Archivo comprimido satisfactoriamente</string>
+         Strings for the \'Compressing\' and \'Extracting\' feature
+         *************************** -->
+    <string name="compressing_success">Archivo comprimido con éxito</string>
     <string name="compressing_error">No se puede comprimir el archivo</string>
-    <string name="compress_into_archive">Comprimir en un archivo:</string>
-    <string name="extracting_success">Archivo extraído satisfactoriamente</string>
+    <string name="extracting_success">Archivo extraído con éxito</string>
     <string name="extracting_error">No se puede extraer el archivo</string>
-    <string name="extract_into_folder">Extraer en una carpeta:</string>
-    <string name="extract_title">Seleccionar carpeta donde extraer</string>
-    <string name="extract_button">Extraer aquí</string>
-    <string name="extracting">Extrayendo...</string>
-    <string name="compressing">Comprimiendo...</string>
-    <string name="warning_overwrite">El archivo %s existe. ¿Le gustaría sobreescribirlo?</string>
+    <string name="extracting">Extrayendo\u2026</string>
+    <string name="compressing">Comprimiendo\u2026</string>
 
-    <string name="change_file_extension">¿Le gustaría cambiar la extensión del archivo?</string>
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Marcadores</string>
+    <string name="menu_search">Buscar</string>
+    <string name="menu_create_folder">Crear carpeta</string>
+    <string name="menu_paste">Pegar</string>
+    <string name="menu_multiselect">Selecc. múltiple</string>
+    <string name="menu_settings">Configuración</string>
+
+    <string name="menu_create_shortcut">Crear accceso directo</string>
+    <string name="send_chooser_title">Enviar usando:</string>
+
+    <string name="menu_check_all">Marcar todo</string>
+    <string name="menu_uncheck_all">Desmarcar todo</string>
+
+    <!-- Multi selection action strings -->
+    <string name="selected">seleccionado</string>
+    <string name="no_selection">No hay elementos seleccionados</string>
+
+    <string name="bookmark_empty">No hay marcadores</string>
+    <string name="bookmark_added">Marcador añadido</string>
+    <string name="bookmark_already_exists">Este archivo ya está en marcadores</string>
+    <string name="bookmarks">Marcadores</string>
+
+    <!-- Search related -->
+    <string name="search_hint">Buscar archivos</string>
+    <string name="query_error">Consultar error</string>
+    <string name="search_settings_descr">Archivos y carpetas en almacenamiento</string>
+    <string name="preference_search_title">Borrar historial</string>
+    <string name="preference_search_category">Buscar</string>
+    <string name="preference_search_dialog_message">¿Borrar historial de búsqueda?</string>
+    <string name="search_history_cleared">Historial de búsqueda borrado</string>
+
+    <!-- icon content description -->
+    <string name="item_icon">Icono</string>
+
+    <!-- list layout -->
+    <string name="scanning">Buscando\u2026</string>
+
+    <!-- Dialogs -->
+    <string name="delete_success">Borrado con éxito</string>
+    <string name="delete_failure">¡Algunos archivos no pudieron ser borrados!</string>
+    <string name="deleting">Borrando\u2026</string>
+    <string name="rename_success">Renombrado con éxito</string>
+    <string name="rename_failure">No se pudo renombrar</string>
+    <string name="loading">Cargando\u2026</string>
+    <string name="create_dir_success">Carpeta creada con éxito</string>
+    <string name="create_dir_failure">No se pudo crear la carpeta</string>
+    <string name="compressed_file_name">Nombre de fichero ZIP</string>
+    <string name="file_exists">Fichero existente</string>
+    <string name="overwrite_question">¿Sobrescribir fichero anterior?</string>
+
+    <string name="directory_pick">Seleccionar carpeta actual</string>
+
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copiando\u2026</string>
+    <string name="copied">Copiado con éxito</string>
+    <string name="copy_error">¡Algunos elementos no pudieron ser copiados!</string>
+    <string name="moving">Moviendo\u2026</string>
+    <string name="moved">Movido con éxito</string>
+    <string name="move_error">¡Algunos elementos no pudieron ser movidos!</string>
+    <string name="nothing_to_paste">Nada para pegar. Corte o copie algunos archivos primero</string>
 </resources>

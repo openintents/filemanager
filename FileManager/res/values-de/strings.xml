@@ -24,8 +24,6 @@
   Alexander Sapronov https://launchpad.net/~warmonger
   Daniel Winzen https://launchpad.net/~q-d
   Dennis Baudys https://launchpad.net/~thecondordb
-  Flosen https://launchpad.net/~flose
-  Giannis Konstantinidis https://launchpad.net/~giankonstantinidis
   Hans https://launchpad.net/~hans-wuerstchen42
   OpenIntents devs https://launchpad.net/~openintents-devs
   Patrick Eigensatz https://launchpad.net/~p.eigensatz
@@ -33,8 +31,7 @@
   Schrotti https://launchpad.net/~schrott-micha
   cmdrhenner https://launchpad.net/~cmdrhenner
   hani https://launchpad.net/~markushahnenkamm
-  marco.jahn https://launchpad.net/~accounts+launchpad-net
-  mrx5682 https://launchpad.net/~mrx5682</string>
+  marco.jahn https://launchpad.net/~accounts+launchpad-net</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
     <string name="about_comments">Mit den OI Dateimanager können Sie Ihre Daten auf der SD-Karte verwalten.</string>  
@@ -45,60 +42,33 @@
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI Dateimanager</string>
     
-    <string name="menu_new_folder">Neuer Ordner</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">Mehrfachauswahl</string>
-
     <string name="menu_delete">Löschen</string>
     <string name="menu_rename">Umbenennen</string>
     <string name="menu_send">Senden</string>
     <string name="menu_open">Öffnen</string>
-    <string name="menu_move">Verschieben</string>
+    <string name="menu_move">Ausschneiden</string>
     <string name="menu_copy">Kopieren</string>
     <string name="menu_details">Details</string>
     <string name="menu_more">Mehr</string>
     <string name="menu_compress">Komprimiere (ZIP)</string>
     <string name="menu_extract">Entpacke (ZIP)</string>
-    <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">In Mediensuche einschließen</string>
     <string name="menu_exclude_from_media_scan">Von Mediensuche ausschließen</string>
-    <string name="menu_bookmark">Als Lesezeichnen hinzufügen</string>
-    <string name="menu_refresh">Aktualisieren</string>
+    <string name="menu_bookmark">Lesezeichen</string>
     
     <string name="create_new_folder">Neuen Ordner erstellen</string>
     <string name="folder_name">Name des Ordners</string>
-    <string name="file_name">Name des Ordners</string>
-    <string name="extension">Erweiterung (mit \'.\')</string>
     <string name="this_folder_is_empty">Dieser Ordner ist leer.</string>
     <string name="really_delete">Möchten Sie %s wirklich löschen?</string>
-    <string name="file_deleted">Datei gelöscht.</string>
-    <string name="folder_deleted">Ordner gelöscht.</string>
-    <string name="file_renamed">Datei umbenannt.</string>
-    <string name="folder_renamed">Ordner umbenannt.</string>
-    <string name="file_moved">Datei verschoben.</string>
-    <string name="folder_moved">Ordner verschoben.</string>
-    <string name="file_copied">Datei kopiert.</string>
-    <string name="move_title">Wählen Sie ein Zielverzeichnis für das Verschieben aus</string>
-    <string name="move_button">Hierher verschieben</string>
-    <string name="copy_title">Wählen Sie ein Zielverzeichnis für das Kopieren aus</string>
-    <string name="copy_button">Hierher kopieren</string>
-	<string name="deleting_files">Lösche Dateien...</string>
     <string name="title_warning_some_may_not_work">Achtung</string>
     <string name="warning_some_may_not_work">Es könnte sein, dass einige der folgenden Optionen nicht funktionieren.</string>
     <string name="show_warning_again">Zeige Warnung noch einmal</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Möchten Sie die %d Dateien wirklich löschen?</string>
-    <string name="move_button_multiselect">Verschieben</string>
-    <string name="copy_button_multiselect">Kopieren</string>
-    <string name="delete_button_multiselect">Löschen</string>
-
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">ZIP</string>
 
     <string name="multiselect_title">Wählen Sie mehrere Dateien aus</string>
-    <string name="error_selection">Bitte wählen Sie eine oder mehrere Datei(en) aus.</string>
+    <string name="pick_title">Dateiauswahl</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Typ</string>
@@ -121,16 +91,6 @@
     <string name="media_scan_included">Dieser Ordner wird bei der nächsten Mediensuche einbezogen.</string>
     <string name="media_scan_excluded">Dieser Ordner wird bei der nächsten Mediensuche ausgeschlossen.</string>
     
-    <string name="error_creating_new_folder">Neuer Ordner konnte nicht erstellt werden.</string>
-    <string name="error_deleting_file">Datei konnte nicht gelöscht werden.</string>
-    <string name="error_deleting_folder">Ordner \'%s\' konnte nicht gelöscht werden.</string>
-    <string name="error_renaming_file">Datei konnte nicht umbenannt werden.</string>
-    <string name="error_renaming_folder">Ordner konnte nicht umbenannt werden.</string>
-    <string name="error_moving_file">Datei konnte nicht verschoben werden.</string>
-    <string name="error_moving_folder">Ordner konnte nicht verschoben werden.</string>
-    <string name="error_copying_file">Datei konnte nicht kopiert werden.</string>
-    <string name="error_file_does_not_exists">Datei ist nicht vorhanden.</string>
-    <string name="error_deleting_child_file">Unterdatei %s konnte nicht gelöscht werden.</string>
     <string name="error_generic">Ein Fehler ist aufgetreten:</string>
     <string name="error_media_scan">Mediensucheinstellungen konnten nicht verändert werden.</string>
     
@@ -169,6 +129,9 @@
         <item>Zuletzt geändert</item>
     </string-array>
 
+    <string name="preference_usedarktheme_title">Dunkles Design verwenden (Neustart der App nötig)</string>
+    <string name="preference_usedarktheme_summary_on">Dunkles Design ausgewählt</string>
+    <string name="preference_usedarktheme_summary_off">Helles Design ausgewählt</string>
         
     <!-- ***************************
    		 Strings for the \'Save as\' feature
@@ -177,33 +140,87 @@
     <string name="saveas_error">Es ist ein Fehler aufgetreten.</string>
     <string name="saveas_file_saved">Datei erfolgreich gespeichert!</string>
     
-        
-   
-    <string name="bookmarks">Lesezeichen</string>
-    <string name="bookmarks_cancel">Abbrechen</string>
-    <string name="bookmarks_delete">Löschen</string>
-    <string name="bookmarks_select_to_delete">Wählen Sie ein Lesezeichen zum Löschen aus</string>
-    <string name="bookmarks_manage">Lesezeichen verwalten</string>
-    <string name="bookmark_added">Lesezeichen hinzugefügt</string>
-    <string name="bookmark_not_found">Adresse des Lesezeichens nicht gefunden</string>
-    <string name="bookmarks_deleted">Ausgewählte Lesezeichen gelöscht</string>
-    <string name="bookmark_already_exists">Diese Datei hat schon ein Lesezeichen</string>
-
-
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
     <string name="compressing_success">Datei erfolgreich komprimiert</string>
     <string name="compressing_error">Datei konnte nicht komprimiert werden</string>
-    <string name="compress_into_archive">In Archiv komprimieren:</string>
     <string name="extracting_success">Datei wurde erfolgreich entpackt</string>
     <string name="extracting_error">Datei konnte nicht entpackt werden</string>
-    <string name="extract_into_folder">In Ordner entpacken:</string>
-    <string name="extract_title">Wählen Sie ein Zielverzeichnis für das Entpacken aus</string>
-    <string name="extract_button">Hierher entpacken</string>
-    <string name="extracting">Entpacke...</string>
-    <string name="compressing">Komprimiere...</string>
-    <string name="warning_overwrite">Die Datei %s existiert schon. Möchten Sie die Datei überschreiben?</string>
-
-    <string name="change_file_extension">Möchten Sie die Dateiendung ändern?</string>
+    <string name="extracting">Entpackt…</string>
+    <string name="compressing">Komprimiert…</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Lesezeichen</string>
+    <string name="menu_search">Suchen</string>
+    <string name="menu_create_folder">Ordner anlegen</string>
+    <string name="menu_paste">Einfügen</string>
+    <string name="menu_multiselect">Mehrfachauswahl</string>
+    <string name="menu_settings">Einstellungen</string>
+    
+    <string name="menu_send">Senden</string>
+    <string name="menu_delete">Löschen</string>
+    <string name="menu_move">Ausschneiden</string>
+    <string name="menu_copy">Kopieren</string>
+    <string name="menu_compress">Komprimieren</string>
+    <string name="menu_rename">Umbenennen</string>
+    
+    <string name="menu_extract">Entpacken</string>
+    <string name="menu_details">Details</string>
+    <string name="menu_create_shortcut">Verknüpfung anlegen</string>
+    <string name="send_chooser_title">Senden mit:</string>
+    
+    <string name="menu_check_all">Alles auswählen</string>
+    <string name="menu_uncheck_all">Auswahl entfernen</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">ausgewählt</string>
+    <string name="no_selection">Nichts ausgewählt</string>
+    
+    <string name="bookmark_empty">Kein Lesenzeichen hinzugefügt</string>
+    <string name="bookmark_added">Lesezeichen hinzugefügt</string>
+    <string name="bookmark_already_exists">Diese Datei hat schon ein Lesezeichen</string>
+    <string name="bookmarks">Lesezeichen</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Dateien suchen</string>
+    <string name="query_error">Abfragefehler</string>
+    <string name="search_settings_descr">Dateien und Ordner auf SD-Karte</string>
+    <string name="preference_search_title">Verlauf löschen</string>
+    <string name="preference_search_category">Suche</string>
+    <string name="preference_search_dialog_message">Verlauf der Suche löschen?</string>
+    <string name="search_history_cleared">Verlauf der Suche gelöscht.</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning…</string>
+    
+    <!-- Dialogs -->
+    <string name="delete_success">Erfolgreich gelöscht.</string>
+    <string name="delete_failure">Einige Dateien wurden nicht gelöscht</string>
+    <string name="deleting">Löschen…</string>
+    <string name="rename_success">Erfolgreich umbenannt</string>
+    <string name="rename_failure">Umbenennung fehlgeschlagen</string>
+    <string name="loading">Lädt…</string>
+    <string name="create_dir_success">Ordner erfolgreich angelegt</string>
+    <string name="create_dir_failure">Ordner konnte nicht angelegt werden</string>
+    <string name="compressed_file_name">Zip Dateiname</string>
+    <string name="file_exists">Datei vorhanden</string>
+    <string name="overwrite_question">Alte Datei überschreiben?</string>
+    
+    <string name="directory_pick">Aktuellen Ordner auswählen</string>
+    <string name="filename_hint">Dateiname</string>
+    <string name="choose_filename">Dateiname darf nicht leer sein!</string>
+    <string name="pick_button_default">Datei auswählen</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Kopiert…</string>
+    <string name="copied">Erfolgreich kopiert</string>
+    <string name="copy_error">Einige oder alle Objekte konnte nicht kopiert werden!</string>
+    <string name="moving">Verschiebt…</string>
+    <string name="moved">Erfolgreich verschoben</string>
+    <string name="move_error">Einige oder alle Objekte konnte nicht verschoben werden!</string>
+    <string name="nothing_to_paste">Zwischenablage ist leer. Zuerst Dateien kopieren oder auswählen.</string>
 </resources>

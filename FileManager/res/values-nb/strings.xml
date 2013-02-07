@@ -22,8 +22,7 @@
 	<!-- Automatically filled in by Launchpad: -->
 	<string name="about_translators">Launchpad Contributions:
   Arne Tobias Malkenes Ødegaard https://launchpad.net/~arne-tobias
-  OpenIntents devs https://launchpad.net/~openintents-devs
-  Simen https://launchpad.net/~simen-burud</string>
+  OpenIntents devs https://launchpad.net/~openintents-devs</string>
 	
     <!-- Short explanation of the application (max. 80 characters) -->
     <string name="about_comments">Administrer filer på SD-kortet med OI Filbehandler.</string>  
@@ -34,60 +33,33 @@
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI Filbehandler</string>
     
-    <string name="menu_new_folder">Ny mappe</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">Flervalg</string>
-
     <string name="menu_delete">Slett</string>
     <string name="menu_rename">Gi nytt navn</string>
     <string name="menu_send">Send</string>
     <string name="menu_open">Åpne</string>
-    <string name="menu_move">Flytt</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">Kopier</string>
     <string name="menu_details">Detaljer</string>
     <string name="menu_more">Mer</string>
     <string name="menu_compress">Komprimer (ZIP)</string>
     <string name="menu_extract">Pakk ut (ZIP)</string>
-    <string name="menu_filter">Filter</string>
     <string name="menu_include_in_media_scan">Inkluder i mediaskanning</string>
     <string name="menu_exclude_from_media_scan">Ekskulder fra mediaskanning</string>
-    <string name="menu_bookmark">Legg til bokmerker</string>
-    <string name="menu_refresh">Last på nytt</string>
+    <string name="menu_bookmark">Bookmark</string>
     
     <string name="create_new_folder">Opprett ny mappe</string>
     <string name="folder_name">Mappenavn</string>
-    <string name="file_name">Mappenavn</string>
-    <string name="extension">Utvidelse (med \'.\')</string>
     <string name="this_folder_is_empty">Denne mappen er tom.</string>
     <string name="really_delete">Vil du virkelig slette %s?</string>
-    <string name="file_deleted">Fil slettet.</string>
-    <string name="folder_deleted">Mappe slettet.</string>
-    <string name="file_renamed">Fil gitt nytt navn.</string>
-    <string name="folder_renamed">Mappe gitt nytt navn.</string>
-    <string name="file_moved">Fil flyttet.</string>
-    <string name="folder_moved">Mappe flyttet.</string>
-    <string name="file_copied">Fil kopiert.</string>
-    <string name="move_title">Velg mappe å flytte til</string>
-    <string name="move_button">Flytt hit</string>
-    <string name="copy_title">Velg mappe å kopiere til</string>
-    <string name="copy_button">Kopier hit</string>
-	<string name="deleting_files">Sletter filer...</string>
     <string name="title_warning_some_may_not_work">Advarsel</string>
     <string name="warning_some_may_not_work">Noen av de følgende mulighetene vil kanskje ikke fungere.</string>
     <string name="show_warning_again">Vis advarsel igjen</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">Vil du virkelig slette %d filer?</string>
-    <string name="move_button_multiselect">Flytt</string>
-    <string name="copy_button_multiselect">Kopier</string>
-    <string name="delete_button_multiselect">Slett</string>
-
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">ZIP</string>
 
     <string name="multiselect_title">Velg flere filer</string>
-    <string name="error_selection">Vennligst velg en eller flere fil(er).</string>
+    <string name="pick_title">File picker</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Type</string>
@@ -110,16 +82,6 @@
     <string name="media_scan_included">Denne mappen vil bli inkludert i den neste mediaskanningen.</string>
     <string name="media_scan_excluded">Denne mappen vil bli ekskludert under den neste mediaskanningen.</string>
     
-    <string name="error_creating_new_folder">Kunne ikke opprette ny mappe.</string>
-    <string name="error_deleting_file">Kunne ikke slette fil.</string>
-    <string name="error_deleting_folder">Kunne ikke slette mappe \'%s\'.</string>
-    <string name="error_renaming_file">Kunne ikke gi fil nytt navn.</string>
-    <string name="error_renaming_folder">Kunne ikke gi mappe nytt navn.</string>
-    <string name="error_moving_file">Kunne ikke flytte fil.</string>
-    <string name="error_moving_folder">Kunne ikke flytte mappe.</string>
-    <string name="error_copying_file">Kunne ikke kopiere fil.</string>
-    <string name="error_file_does_not_exists">Fil eksisterer ikke.</string>
-    <string name="error_deleting_child_file">Kunne ikke slette barnefilen \'%s\'.</string>
     <string name="error_generic">En feil oppstod:</string>
     <string name="error_media_scan">Kunne ikke endre innstillinger for mediaskanning.</string>
     
@@ -166,33 +128,84 @@
     <string name="saveas_error">En feil oppstod.</string>
     <string name="saveas_file_saved">Fil vellykket lagret!</string>
     
-        
-   
-    <string name="bookmarks">Bokmerker</string>
-    <string name="bookmarks_cancel">Avbryt</string>
-    <string name="bookmarks_delete">Slett</string>
-    <string name="bookmarks_select_to_delete">Velg bokmerker å slette</string>
-    <string name="bookmarks_manage">Administrer bokmerker</string>
-    <string name="bookmark_added">Bokmerke lagt til</string>
-    <string name="bookmark_not_found">Bokmerket mål ikke funnet.</string>
-    <string name="bookmarks_deleted">Valgte bokmerker slettet</string>
-    <string name="bookmark_already_exists">Denne filen er allerede bokmerket</string>
-
-
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
     <string name="compressing_success">Punkt vellykket komprimert</string>
     <string name="compressing_error">Kunne ikke komprimere punkt</string>
-    <string name="compress_into_archive">Komprimer inn i arkiv:</string>
     <string name="extracting_success">Punkt vellykket pakket ut</string>
     <string name="extracting_error">Kunne ikke pakke ut punktet</string>
-    <string name="extract_into_folder">Pakk ut til mappe:</string>
-    <string name="extract_title">Velg mappe å pakke ut til</string>
-    <string name="extract_button">Pakk ut her</string>
-    <string name="extracting">Pakker ut...</string>
-    <string name="compressing">Komprimerer...</string>
-    <string name="warning_overwrite">Fil %s finnes. Vil du overskrive den?</string>
-
-    <string name="change_file_extension">Vil du endre filutvidelsen?</string>
+    <string name="extracting">Extracting…</string>
+    <string name="compressing">Compressing…</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Bokmerker</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_paste">Paste</string>
+    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_settings">Innstillinger</string>
+    
+    <string name="menu_send">Send</string>
+    <string name="menu_delete">Slett</string>
+    <string name="menu_move">Cut</string>
+    <string name="menu_copy">Kopier</string>
+    <string name="menu_compress">Compress</string>
+    <string name="menu_rename">Gi nytt navn</string>
+    
+    <string name="menu_extract">Extract</string>
+    <string name="menu_details">Detaljer</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="send_chooser_title">Send using:</string>
+    
+    <string name="menu_check_all">Check all</string>
+    <string name="menu_uncheck_all">Uncheck all</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">selected</string>
+    <string name="no_selection">No items checked</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="bookmark_added">Bokmerke lagt til</string>
+    <string name="bookmark_already_exists">Denne filen er allerede bokmerket</string>
+    <string name="bookmarks">Bokmerker</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Item icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning…</string>
+    
+    <!-- Dialogs -->
+    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_failure">Some files not deleted</string>
+    <string name="deleting">Deleting…</string>
+    <string name="rename_success">Successfully renamed</string>
+    <string name="rename_failure">Couldn\'t rename</string>
+    <string name="loading">Loading…</string>
+    <string name="create_dir_success">Successfully created directory</string>
+    <string name="create_dir_failure">Couldn\'t create directory</string>
+    <string name="compressed_file_name">Zip file name</string>
+    <string name="file_exists">File exists</string>
+    <string name="overwrite_question">Overwrite old file?</string>
+    
+    <string name="directory_pick">Select current directory</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copying…</string>
+    <string name="copied">Successfully copied</string>
+    <string name="copy_error">Some or all items couldn\'t be copied!</string>
+    <string name="moving">Moving…</string>
+    <string name="moved">Successfully moved</string>
+    <string name="move_error">Some or all items couldn\'t be moved!</string>
+    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 </resources>

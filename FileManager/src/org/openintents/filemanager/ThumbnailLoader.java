@@ -1,29 +1,42 @@
 package org.openintents.filemanager;
 
+import java.io.File;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.ImageUtils;
+import org.openintents.filemanager.util.MimeTypes;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.ImageView;
 
 public class ThumbnailLoader {
+	private static final String MIME_APK = "application/vnd.android.package-archive";
 	
 	private static final String TAG = "OIFM_ThumbnailLoader";
 	
@@ -40,8 +53,8 @@ public class ThumbnailLoader {
 	
     //private static int thumbnailWidth = 96;
     //private static int thumbnailHeight = 129;
-    private static int thumbnailWidth = 32;
-    private static int thumbnailHeight = 32;
+    private static int thumbnailWidth = 96;
+    private static int thumbnailHeight = 96;
     
     private Runnable purger;
     private Handler purgeHandler;
@@ -99,25 +112,27 @@ public class ThumbnailLoader {
 	}
 	
 	/**
-	 * 
-	 * @param parentFile The current directory.
-	 * @param text The IconifiedText container.
+	 * @param holder The {@link File} container.
 	 * @param imageView The ImageView from the IconifiedTextView.
 	 */
-	public void loadImage(String parentFile, IconifiedText text, ImageView imageView) {
-		if(!cancel && !mBlacklist.contains(text.getText())){
+	public void loadImage(FileHolder holder, ImageView imageView) {
+		if(!cancel && !mBlacklist.contains(holder.getName())){
 			// We reset the caches after every 30 or so seconds of inactivity for memory efficiency.
 			resetPurgeTimer();
 			
-			Bitmap bitmap = getBitmapFromCache(text.getText());
+			Bitmap bitmap = getBitmapFromCache(holder.getName());
 			if(bitmap != null){
 				// We're still in the UI thread so we just update the icons from here.
 				imageView.setImageBitmap(bitmap);
-				text.setIcon(bitmap);
+				holder.setIcon(new BitmapDrawable(bitmap));
 			} else {
+				// Give a drawable based on mimetype. Generic file drawable for undefined types.
+				if(holder.getFile().isFile())
+					holder.setIcon(getScaledDrawableForMimetype(holder, mContext));
+					
 				if (!cancel) {
 					// Submit the file for decoding.
-					Thumbnail thumbnail = new Thumbnail(parentFile, imageView, text);
+					Thumbnail thumbnail = new Thumbnail(imageView, holder);
 					WeakReference<ThumbnailRunner> runner = new WeakReference<ThumbnailRunner>(new ThumbnailRunner(thumbnail));
 					mExecutor.submit(runner.get());
 				}
@@ -206,11 +221,10 @@ public class ThumbnailLoader {
 	}
 	
 	/**
-	 * @param parentFile The parentFile, so we can obtain the full path of the bitmap
-	 * @param fileName The name of the file, also the text in the list item.
+	 * The file to decode.
 	 * @return The resized and resampled bitmap, if can not be decoded it returns null.
 	 */
-	private Bitmap decodeFile(String parentFile, String fileName) {
+	private Bitmap decodeFile(File file) {
 		if(!cancel){
 			try {
 				BitmapFactory.Options options = new BitmapFactory.Options();
@@ -220,8 +234,7 @@ public class ThumbnailLoader {
 				options.outHeight = 0;
 				options.inSampleSize = 1;
 				
-				String filePath = FileUtils.getFile(parentFile, fileName).getPath();
-		
+				String filePath = file.getAbsolutePath();
 				BitmapFactory.decodeFile(filePath, options);
 				
 				if(options.outWidth > 0 && options.outHeight > 0){
@@ -254,8 +267,8 @@ public class ThumbnailLoader {
 					}
 				} else {
 					// Must not be a bitmap, so we add it to the blacklist.
-					if(!mBlacklist.contains(fileName)){
-						mBlacklist.add(fileName);
+					if(!mBlacklist.contains(file.getName())){
+						mBlacklist.add(filePath);
 					}
 				}
 			} catch(Exception e) { }
@@ -264,17 +277,15 @@ public class ThumbnailLoader {
 	}
 	
 	/**
-	 * Holder object for thumbnail information.
+	 * Holder object for thumbnail information. 
 	 */
 	private class Thumbnail {
-		public String parentFile;
 		public ImageView imageView;
-		public IconifiedText text;
+		public FileHolder holder;
 		
-		public Thumbnail(String parentFile, ImageView imageView, IconifiedText text) {
-			this.parentFile = parentFile;
+		public Thumbnail(ImageView imageView, FileHolder text) {
 			this.imageView = imageView;
-			this.text = text;
+			this.holder = text;
 		}
 	}
 	
@@ -293,13 +304,25 @@ public class ThumbnailLoader {
 		@Override
 		public void run() {
 			if(!cancel){
-				Bitmap bitmap = decodeFile(thumb.parentFile, thumb.text.getText());
-				if(bitmap != null && !cancel){
-					// Bitmap was successfully decoded so we place it in the hard cache.
-					mHardBitmapCache.put(thumb.text.getText(), bitmap);
-					Activity activity = ((Activity) mContext);
-					activity.runOnUiThread(new ThumbnailUpdater(bitmap, thumb));
-					thumb = null;
+				Bitmap bitmap = decodeFile(thumb.holder.getFile());
+				
+				Activity activity = ((Activity) mContext);
+				
+				if(!cancel){
+					if(bitmap != null){
+						// Bitmap was successfully decoded so we place it in the hard cache.
+						mHardBitmapCache.put(thumb.holder.getName(), bitmap);
+						activity.runOnUiThread(new ThumbnailUpdater(bitmap, thumb));
+					}
+					else {
+						activity.runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								thumb.imageView.setImageDrawable(thumb.holder.getIcon());
+								thumb = null;
+							}
+						});
+					}
 				}
 			}
 		}
@@ -322,8 +345,98 @@ public class ThumbnailLoader {
 		public void run() {
 			if(bitmap != null && mContext != null && !cancel){
 				thumb.imageView.setImageBitmap(bitmap);
-				thumb.text.setIcon(bitmap);
+				thumb.holder.setIcon(new BitmapDrawable(bitmap));
+			}
+			thumb = null;
+		}
+	}
+	private Drawable getScaledDrawableForMimetype(FileHolder holder, Context context){
+		Drawable d = getDrawableForMimetype(holder, context);
+		
+		if (d == null) {
+			return new BitmapDrawable(context.getResources(), BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_file));
+		} else {
+			int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, context.getResources().getDisplayMetrics());
+			// Resizing image.
+			return ImageUtils.resizeDrawable(d, size, size);
+		}
+	}
+	
+	/**
+	 * Return the Drawable that is associated with a specific mime type for the VIEW action.
+	 */
+	private Drawable getDrawableForMimetype(FileHolder holder, Context context) {
+		if (holder.getMimeType() == null) {
+			return null;
+		}
+
+		PackageManager pm = context.getPackageManager();
+
+		// Returns the icon packaged in files with the .apk MIME type.
+		if (holder.getMimeType().equals(MIME_APK)) {
+			String path = holder.getFile().getPath();
+			PackageInfo pInfo = pm.getPackageArchiveInfo(path,
+					PackageManager.GET_ACTIVITIES);
+			if (pInfo != null) {
+				ApplicationInfo aInfo = pInfo.applicationInfo;
+
+				// Bug in SDK versions >= 8. See here:
+				// http://code.google.com/p/android/issues/detail?id=9151
+				if (Build.VERSION.SDK_INT >= 8) {
+					aInfo.sourceDir = path;
+					aInfo.publicSourceDir = path;
+				}
+
+				return aInfo.loadIcon(pm);
 			}
 		}
+
+		int iconResource = MimeTypes.newInstance(context).getIcon(holder.getMimeType());
+		Drawable ret = null;
+		if (iconResource > 0) {
+			try {
+				ret = pm.getResourcesForApplication(context.getPackageName())
+						.getDrawable(iconResource);
+			} catch (NotFoundException e) {
+			} catch (NameNotFoundException e) {
+			}
+		}
+
+		if (ret != null) {
+			return ret;
+		}
+
+		if ("*/*".equals(holder.getMimeType())){
+			return null;
+		}
+		
+		Uri data = FileUtils.getUri(holder.getFile());
+
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		// intent.setType(mimetype);
+
+		// Let's probe the intent exactly in the same way as the VIEW action
+		// is performed in FileManagerActivity.openFile(..)
+		intent.setDataAndType(data, holder.getMimeType());
+
+		final List<ResolveInfo> lri = pm.queryIntentActivities(intent,
+				PackageManager.MATCH_DEFAULT_ONLY);
+
+		if (lri != null && lri.size() > 0) {
+			// Log.i(TAG, "lri.size()" + lri.size());
+
+			// return first element
+			int index = 0;
+
+			// Actually first element should be "best match",
+			// but it seems that more recently installed applications
+			// could be even better match.
+			index = lri.size() - 1;
+
+			final ResolveInfo ri = lri.get(index);
+			return ri.loadIcon(pm);
+		}
+
+		return null;
 	}
 }

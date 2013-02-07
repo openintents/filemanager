@@ -16,11 +16,6 @@
 
 package org.openintents.intents;
 
-import android.content.Intent;
-
-// Version Dec 9, 2008
-
-
 /**
  * Provides OpenIntents actions, extras, and categories used by providers. 
  * <p>These specifiers extend the standard Android specifiers.</p>
@@ -55,6 +50,10 @@ public final class FileManagerIntents {
 	 */
 	public static final String ACTION_MULTI_SELECT = "org.openintents.action.MULTI_SELECT";
 
+	public static final String ACTION_SEARCH_STARTED = "org.openintents.action.SEARCH_STARTED";
+	
+	public static final String ACTION_SEARCH_FINISHED = "org.openintens.action.SEARCH_FINISHED";
+	
 	/**
 	 * The title to display.
 	 * 
@@ -80,4 +79,49 @@ public final class FileManagerIntents {
 	 */
 	public static final String EXTRA_WRITEABLE_ONLY = "org.openintents.extra.WRITEABLE_ONLY";
 
+	/**
+	 * The path to prioritize in search. Usually denotes the path the user was on when the search was initiated.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.SEARCH_INIT_PATH"</p>
+	 */
+	public static final String EXTRA_SEARCH_INIT_PATH = "org.openintents.extra.SEARCH_INIT_PATH";
+
+	/**
+	 * The search query as sent to SearchService.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.SEARCH_QUERY"</p>
+	 */
+	public static final String EXTRA_SEARCH_QUERY = "org.openintents.extra.SEARCH_QUERY";
+
+	/**
+     * <p>Constant Value: "org.openintents.extra.DIR_PATH"</p>
+	 */
+	public static final String EXTRA_DIR_PATH = "org.openintents.extra.DIR_PATH";
+
+	/**
+	 * Extension by which to filter.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.FILTER_FILETYPE"</p>
+	 */
+	public static final String EXTRA_FILTER_FILETYPE = "org.openintents.extra.FILTER_FILETYPE";
+	
+	/**
+	 * Mimetype by which to filter.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.FILTER_MIMETYPE"</p>
+	 */
+	public static final String EXTRA_FILTER_MIMETYPE = "org.openintents.extra.FILTER_MIMETYPE";
+	
+	/**
+	 * Only show directories.
+	 * 
+     * <p>Constant Value: "org.openintents.extra.DIRECTORIES_ONLY"</p>
+	 */
+	public static final String EXTRA_DIRECTORIES_ONLY = "org.openintents.extra.DIRECTORIES_ONLY";
+
+	public static final String EXTRA_DIALOG_FILE_HOLDER = "org.openintents.extra.DIALOG_FILE";
+
+	public static final String EXTRA_IS_GET_CONTENT_INITIATED = "org.openintents.extra.ENABLE_ACTIONS";
+
+	public static final String EXTRA_FILENAME = "org.openintents.extra.FILENAME";
 }

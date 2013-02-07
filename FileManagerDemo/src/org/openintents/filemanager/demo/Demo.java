@@ -37,6 +37,7 @@ public class Demo extends Activity {
 	
 	protected static final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 1;
 	protected static final int REQUEST_CODE_GET_CONTENT = 2;
+	private static final String MY_EXTRA = "org.openintents.filemanager.demo.EXTRA_MY_EXTRA";
 
 	protected EditText mEditText;
 	protected TextView mTextView;
@@ -86,6 +87,7 @@ public class Demo extends Activity {
 		// Set fancy title and button (optional)
 		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.open_title));
 		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.open_button));
+		intent.putExtra(MY_EXTRA, "magic");
 		
 		try {
 			startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
@@ -111,6 +113,7 @@ public class Demo extends Activity {
 		// Set fancy title and button (optional)
 		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.save_title));
 		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.save_button));
+		intent.putExtra(MY_EXTRA, "magic");
 		
 		try {
 			startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
@@ -137,7 +140,7 @@ public class Demo extends Activity {
 		// Set fancy title and button (optional)
 		intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.pick_directory_title));
 		intent.putExtra(FileManagerIntents.EXTRA_BUTTON_TEXT, getString(R.string.pick_directory_button));
-		
+		intent.putExtra(MY_EXTRA, "magic");
 		try {
 			startActivityForResult(intent, REQUEST_CODE_PICK_FILE_OR_DIRECTORY);
 		} catch (ActivityNotFoundException e) {
@@ -205,7 +208,8 @@ public class Demo extends Activity {
 					String filePath = fileUri.getPath();
 					if (filePath != null) {
 						mEditText.setText(filePath);
-					}
+					}					
+					mTextView.setText("additional extra: " + data.getStringExtra(MY_EXTRA));
 				}
 			}
 			break;

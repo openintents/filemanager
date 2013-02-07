@@ -36,60 +36,33 @@
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI फ़ाइल प्रबंधक</string>
     
-    <string name="menu_new_folder">नया फ़ोल्डर</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">बहु चयन</string>
-
     <string name="menu_delete">मिटाएँ</string>
     <string name="menu_rename">नाम बदलें</string>
     <string name="menu_send">भेजें</string>
     <string name="menu_open">खोलें</string>
-    <string name="menu_move">स्थानांतरित करें</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">प्रतिलिपि बनाएँ</string>
     <string name="menu_details">विवरण</string>
     <string name="menu_more">अतिरिक्त</string>
     <string name="menu_compress">कम्प्रेस (ZIP)</string>
     <string name="menu_extract">उद्धरण (ZIP)</string>
-    <string name="menu_filter">फिल्टर करें</string>
     <string name="menu_include_in_media_scan">मीडिया स्कैन में शामिल करें</string>
     <string name="menu_exclude_from_media_scan">मीडिया स्कैन से अपवर्जित करें</string>
-    <string name="menu_bookmark">बुकमार्क जोड़ें</string>
-    <string name="menu_refresh">नवीकरण</string>
+    <string name="menu_bookmark">Bookmark</string>
     
     <string name="create_new_folder">नया फ़ोल्डर बनाएँ</string>
     <string name="folder_name">फ़ोल्डर का नाम</string>
-    <string name="file_name">फ़ोल्डर का नाम</string>
-    <string name="extension">एक्सटेंशन ( \'.\' के साथ)</string>
     <string name="this_folder_is_empty">यह फ़ोल्डर खाली है|</string>
     <string name="really_delete">क्या आप वास्तव में% s को मिटाना चाहते हैं?</string>
-    <string name="file_deleted">फ़ाइल मिट गयी|</string>
-    <string name="folder_deleted">फ़ोल्डर मिट गया|</string>
-    <string name="file_renamed">फ़ाइल का नाम बदला गया|</string>
-    <string name="folder_renamed">फोल्डर का नाम बदला गया|</string>
-    <string name="file_moved">फाइल स्थानांतरित हो गयी|</string>
-    <string name="folder_moved">फोल्डर स्थानांतरित हो गया|</string>
-    <string name="file_copied">फाइल की प्रतिलिपि बन गई|</string>
-    <string name="move_title">स्थानांतरित करने के लिए फ़ोल्डर का चयन करें</string>
-    <string name="move_button">यहाँ स्थानांतरित करें</string>
-    <string name="copy_title">प्रतिलिपि बनाने के लिए फ़ोल्डर का चयन करें</string>
-    <string name="copy_button">यहाँ प्रतिलिपि बनाएँ</string>
-	<string name="deleting_files">फाईलें मिटा रहे हैं ...</string>
     <string name="title_warning_some_may_not_work">चेतावनी</string>
     <string name="warning_some_may_not_work">निम्न विकल्पों में से कुछ काम नहीं करेंगे|</string>
     <string name="show_warning_again">चेतावनी फिर से दिखाएँ</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">क्या आप वास्तव में% d फ़ाइलें हटाना चाहते हैं?</string>
-    <string name="move_button_multiselect">स्थानांतरित करें</string>
-    <string name="copy_button_multiselect">प्रतिलिपि बनाएँ</string>
-    <string name="delete_button_multiselect">मिटाएँ</string>
-
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">सिकोड़िए</string>
 
     <string name="multiselect_title">एकाधिक फ़ाइलों का चयन करें</string>
-    <string name="error_selection">एक या एक से अधिक फ़ाइल (ओं) का चयन करें|</string>
+    <string name="pick_title">File picker</string>
     
     <!-- Strings for details table -->
     <string name="details_type">प्ररूप</string>
@@ -112,16 +85,6 @@
     <string name="media_scan_included">यह फ़ोल्डर अगले मीडिया स्कैन में शामिल किया जाएगा|</string>
     <string name="media_scan_excluded">यह फ़ोल्डर अगले मीडिया स्कैन के दौरान अपवर्जित किया जाएगा|</string>
     
-    <string name="error_creating_new_folder">नए फ़ोल्डर नहीं बना सके|</string>
-    <string name="error_deleting_file">फ़ाइल को मिटा नहीं सके|</string>
-    <string name="error_deleting_folder">फ़ोल्डर \'%s\' को मिटा नहीं सके|</string>
-    <string name="error_renaming_file">आपने कोई  भी फाईल नहीं उठाई|</string>
-    <string name="error_renaming_folder">फ़ोल्डर का नाम बदल नहीं सके|</string>
-    <string name="error_moving_file">फ़ाइल स्थानांतरित नहीं कर सके|</string>
-    <string name="error_moving_folder">फ़ोल्डर को स्थानांतरित नहीं कर सके|</string>
-    <string name="error_copying_file">फ़ाइल की प्रतिलिपि नहीं कर सका|</string>
-    <string name="error_file_does_not_exists">फ़ाइल मौजूद नहीं है|</string>
-    <string name="error_deleting_child_file">बच्चा फाईल \'%s\' को मिटा नहीं सके|</string>
     <string name="error_generic">एक त्रुटि हुई:</string>
     <string name="error_media_scan">मीडिया स्कैन सेटिंग्स को बदला नहीं जा सका|</string>
     
@@ -168,33 +131,84 @@
     <string name="saveas_error">कोई त्रुटि उत्पन्न हुई|</string>
     <string name="saveas_file_saved">फाईल सफलतापूवक सुरक्षित की गयी!</string>
     
-        
-   
-    <string name="bookmarks">बुकमार्क</string>
-    <string name="bookmarks_cancel">रद्द करें</string>
-    <string name="bookmarks_delete">मिटाएँ</string>
-    <string name="bookmarks_select_to_delete">बुकमार्क को चुने हटाने के लिए</string>
-    <string name="bookmarks_manage">बुकमार्क को मनेज करें</string>
-    <string name="bookmark_added">बुकमार्क को जोड़ें</string>
-    <string name="bookmark_not_found">बुकमार्क जगह नहीं मीली.</string>
-    <string name="bookmarks_deleted">चुने गए बुकमार्क हटा चुके है</string>
-    <string name="bookmark_already_exists">यह फ़ाइल पहले से ही बुकमार्क  हो चुकी है</string>
-
-
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
     <string name="compressing_success">आइटम सफलतापूर्वक कम्प्रेस हो चुकी है</string>
     <string name="compressing_error">आइटम को कम्प्रेस नहीं कर सके</string>
-    <string name="compress_into_archive">संग्रह मैं कम्प्रेस करें:</string>
     <string name="extracting_success">आइटम सफलतापूर्वक एक्स्त्रक्ट हो चुके है</string>
     <string name="extracting_error">आइटम को एक्स्त्रक्ट नहीं कर सकते</string>
-    <string name="extract_into_folder">फोल्डर मैं एक्स्त्रक्ट करें:</string>
-    <string name="extract_title">फोल्डर को चुने जिसमें एक्स्त्रक्ट करना है</string>
-    <string name="extract_button">इधर एक्स्त्रक्ट करें</string>
-    <string name="extracting">एक्स्त्रक्ट कर रहें है...</string>
-    <string name="compressing">कम्प्रेस कर रहें है...</string>
-    <string name="warning_overwrite">फ़ाइल %s मोजूद है. क्या आप को ओवरराइट करना है?</string>
-
-    <string name="change_file_extension">क्या आप को फ़ाइल एक्सटेंशन को बदलना चाहतें है?</string>
+    <string name="extracting">Extracting…</string>
+    <string name="compressing">Compressing…</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">बुकमार्क</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_paste">Paste</string>
+    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_settings">सेटिंग्स</string>
+    
+    <string name="menu_send">भेजें</string>
+    <string name="menu_delete">मिटाएँ</string>
+    <string name="menu_move">Cut</string>
+    <string name="menu_copy">प्रतिलिपि बनाएँ</string>
+    <string name="menu_compress">Compress</string>
+    <string name="menu_rename">नाम बदलें</string>
+    
+    <string name="menu_extract">Extract</string>
+    <string name="menu_details">विवरण</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="send_chooser_title">Send using:</string>
+    
+    <string name="menu_check_all">Check all</string>
+    <string name="menu_uncheck_all">Uncheck all</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">selected</string>
+    <string name="no_selection">No items checked</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="bookmark_added">बुकमार्क को जोड़ें</string>
+    <string name="bookmark_already_exists">यह फ़ाइल पहले से ही बुकमार्क  हो चुकी है</string>
+    <string name="bookmarks">बुकमार्क</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Item icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning…</string>
+    
+    <!-- Dialogs -->
+    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_failure">Some files not deleted</string>
+    <string name="deleting">Deleting…</string>
+    <string name="rename_success">Successfully renamed</string>
+    <string name="rename_failure">Couldn\'t rename</string>
+    <string name="loading">Loading…</string>
+    <string name="create_dir_success">Successfully created directory</string>
+    <string name="create_dir_failure">Couldn\'t create directory</string>
+    <string name="compressed_file_name">Zip file name</string>
+    <string name="file_exists">File exists</string>
+    <string name="overwrite_question">Overwrite old file?</string>
+    
+    <string name="directory_pick">Select current directory</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copying…</string>
+    <string name="copied">Successfully copied</string>
+    <string name="copy_error">Some or all items couldn\'t be copied!</string>
+    <string name="moving">Moving…</string>
+    <string name="moved">Successfully moved</string>
+    <string name="move_error">Some or all items couldn\'t be moved!</string>
+    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 </resources>

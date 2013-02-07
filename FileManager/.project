@@ -30,11 +30,4 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>OI Distribution Library_src</name>
-			<type>2</type>
-			<locationURI>_android_OI_Distribution_Library_f07e49a5/src</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

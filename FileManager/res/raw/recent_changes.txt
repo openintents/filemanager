@@ -1,4 +1,20 @@
 ----------------
+release: 2.0 (Changes made by George Venios as part of GSoC 2012)
+
+- User Interface redesigned to follow Android Design Guidelines. Many usability changes too. 
+- Improved performance. Browsing is now way faster. 
+- Full ActionBar support on devices with Honeycomb and up. 
+- Search has been added. 
+- Copying and moving made easier. 
+- Bookmarks are easier to use. 
+- Multiple file “send” action enabled. 
+- Native multiple selection on platforms that support it (done through the ActionBar). 
+- You can now create home screen shortcuts for any file or folder. 
+- Accept "return" when creating new folder (issue 505, patch by Darriel Kremov)
+- Added last modified to directories (issue 453, patch by George Venios)
+- Fix crash in multi-select confirmation dialog (issue 459, patch by George Venios)
+
+----------------
 release: 1.2
 date: 2012-02-18
 
@@ -37,15 +53,6 @@ Thanks to Google Code-in for many of the following patches:
 release: 1.1.6
 date: 2011-06-02
 - fix bug that prevented sending attachments through menu "Send" (patch by Alex)
-
-----------------
-release: 1.1.5
-date: 2011-05-28
-- new menu item for multiselect: copy, move or delete multiple files at once (patch by John Doe).
-- case insensitive sort order (issue 334, patch by Vishrut Patel).
-- handle projections in the provider (issue 324, patch by Dominik Pretzsch).
-- drop "mimetype" from provider path.
-- delete files and folders in background (issue 294, patch by Damienix).
 
 ----------------
 For the complete list of changes and a list of frequently asked questions, please visit:

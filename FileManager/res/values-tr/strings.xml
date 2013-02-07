@@ -38,60 +38,33 @@ Launchpad Contributions:
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI Dosya Yöneticisi</string>
     
-    <string name="menu_new_folder">Yeni Klasör</string>
-    
-    <!-- Multi select option menu -->
-    <string name="menu_multi_select">Çoklu Seçme</string>
-
     <string name="menu_delete">Sil</string>
     <string name="menu_rename">Yeniden adlandır</string>
     <string name="menu_send">Gönder</string>
     <string name="menu_open">Aç</string>
-    <string name="menu_move">Taşı</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">Kopyala</string>
     <string name="menu_details">Detaylar.</string>
     <string name="menu_more">Daha Fazla</string>
     <string name="menu_compress">Compress (ZIP)</string>
     <string name="menu_extract">Extract (ZIP)</string>
-    <string name="menu_filter">Filtre</string>
     <string name="menu_include_in_media_scan">Medya tarama dahil</string>
     <string name="menu_exclude_from_media_scan">Medya tarama hariç</string>
-    <string name="menu_bookmark">Yer imleri ekle</string>
-    <string name="menu_refresh">Refresh</string>
+    <string name="menu_bookmark">Bookmark</string>
     
     <string name="create_new_folder">Yeni klasör oluştur</string>
     <string name="folder_name">Klasör adı</string>
-    <string name="file_name">Klasör adı</string>
-    <string name="extension">Uzantı(\'.\' ile)</string>
     <string name="this_folder_is_empty">Bu klasör boş.</string>
     <string name="really_delete">%s  gerçekten silmek istiyor musunuz?</string>
-    <string name="file_deleted">Dosya silindi.</string>
-    <string name="folder_deleted">Klasör silindi.</string>
-    <string name="file_renamed">Dosya adı değiştirildi.</string>
-    <string name="folder_renamed">Klasör adı değiştirildi.</string>
-    <string name="file_moved">Dosya taşındı.</string>
-    <string name="folder_moved">Klasör taşındı.</string>
-    <string name="file_copied">Dosya kopyalandı.</string>
-    <string name="move_title">Taşınacak klasörü seçin</string>
-    <string name="move_button">Buraya taşı</string>
-    <string name="copy_title">Kopyalanacak klasörü seçin</string>
-    <string name="copy_button">Buraya kopyala</string>
-	<string name="deleting_files">Dosyalar siliniyor...</string>
     <string name="title_warning_some_may_not_work">Uyarı</string>
     <string name="warning_some_may_not_work">Aşağıdaki seçeneklerden bazıları çalışmoypr olabilir.</string>
     <string name="show_warning_again">Uyarıyı tekrar göster.</string>
     
     <!-- Strings for a multi select feature -->
 	<string name="really_delete_multiselect">%d dosyayı gerçekten silmek istediğinize emin misiniz?</string>
-    <string name="move_button_multiselect">Taşı</string>
-    <string name="copy_button_multiselect">Kopyala</string>
-    <string name="delete_button_multiselect">Sil</string>
-
-    <!-- ZIP is the ZIP compression (NOT the ZIP code!) -->
-    <string name="compress_zip_button_multiselect">ZIP</string>
 
     <string name="multiselect_title">Dosyaları çoklu seçin</string>
-    <string name="error_selection">Lütfen bir veya daha çok dosya seçin.</string>
+    <string name="pick_title">File picker</string>
     
     <!-- Strings for details table -->
     <string name="details_type">Tür</string>
@@ -114,16 +87,6 @@ Launchpad Contributions:
     <string name="media_scan_included">Bu dosya sonraki medya taramasına eklenecek.</string>
     <string name="media_scan_excluded">Bu dosya sonraki medya taraması boyunca yok sayılacak.</string>
     
-    <string name="error_creating_new_folder">Yeni klasör oluşturulamadı.</string>
-    <string name="error_deleting_file">Dosya silinemedi.</string>
-    <string name="error_deleting_folder">\'%s\' Klasör silinemedi.</string>
-    <string name="error_renaming_file">Dosyayı yeniden adlandırma başarısız.</string>
-    <string name="error_renaming_folder">Klasörü yeniden adlandırma başarısız.</string>
-    <string name="error_moving_file">Dosya taşınamadı.</string>
-    <string name="error_moving_folder">Klasör taşınamadı.</string>
-    <string name="error_copying_file">Dosya kopyalanamadı.</string>
-    <string name="error_file_does_not_exists">Dosya yok.</string>
-    <string name="error_deleting_child_file">\'%s\' alt dosyası silinemedi.</string>
     <string name="error_generic">Bir hata meydana geldi:</string>
     <string name="error_media_scan">Medya tarama ayarları değiştirilemedi.</string>
     
@@ -170,33 +133,84 @@ Launchpad Contributions:
     <string name="saveas_error">Hata oluştu.</string>
     <string name="saveas_file_saved">Dosya başarılı bir şekilde kaydedildi.</string>
     
-        
-   
-    <string name="bookmarks">Yer imleri</string>
-    <string name="bookmarks_cancel">İptal</string>
-    <string name="bookmarks_delete">Sil</string>
-    <string name="bookmarks_select_to_delete">Seçili yer imlerini sil</string>
-    <string name="bookmarks_manage">Yer imleri yöneticisi</string>
-    <string name="bookmark_added">Yer imi eklendi</string>
-    <string name="bookmark_not_found">Yer imi hedefi bulunamadı.</string>
-    <string name="bookmarks_deleted">Seçili yer imleri silindi</string>
-    <string name="bookmark_already_exists">Bu dosya zaten yer imi.</string>
-
-
     <!-- ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
           *************************** -->
     <string name="compressing_success">Item compressed successfully</string>
     <string name="compressing_error">Could not compress the item</string>
-    <string name="compress_into_archive">Compress into archive:</string>
     <string name="extracting_success">Item extracted successfully</string>
     <string name="extracting_error">Could not extract the item</string>
-    <string name="extract_into_folder">Extract into folder:</string>
-    <string name="extract_title">Select folder to extract into</string>
-    <string name="extract_button">Extract here</string>
-    <string name="extracting">Extracting...</string>
-    <string name="compressing">Compressing...</string>
-    <string name="warning_overwrite">File %s exists. Do you want to overwrite it?</string>
-
-    <string name="change_file_extension">Do you want to change the file extension?</string>
+    <string name="extracting">Extracting…</string>
+    <string name="compressing">Compressing…</string>
+    
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Yer imleri</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_paste">Paste</string>
+    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_settings">Ayarlar</string>
+    
+    <string name="menu_send">Gönder</string>
+    <string name="menu_delete">Sil</string>
+    <string name="menu_move">Cut</string>
+    <string name="menu_copy">Kopyala</string>
+    <string name="menu_compress">Compress</string>
+    <string name="menu_rename">Yeniden adlandır</string>
+    
+    <string name="menu_extract">Extract</string>
+    <string name="menu_details">Detaylar.</string>
+    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="send_chooser_title">Send using:</string>
+    
+    <string name="menu_check_all">Check all</string>
+    <string name="menu_uncheck_all">Uncheck all</string>
+    
+    <!-- Multi selection action strings -->
+    <string name="selected">selected</string>
+    <string name="no_selection">No items checked</string>
+    
+    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="bookmark_added">Yer imi eklendi</string>
+    <string name="bookmark_already_exists">Bu dosya zaten yer imi.</string>
+    <string name="bookmarks">Yer imleri</string>
+    
+    <!-- Search related -->
+    <string name="search_hint">Search files</string>
+    <string name="query_error">Query error</string>
+    <string name="search_settings_descr">Files and folders in storage</string>
+    <string name="preference_search_title">Clear history</string>
+    <string name="preference_search_category">Search</string>
+    <string name="preference_search_dialog_message">Clear search history?</string>
+    <string name="search_history_cleared">Search history cleared</string>
+    
+    <!-- icon content description -->
+    <string name="item_icon">Item icon</string>
+    
+    <!-- list layout -->
+    <string name="scanning">Scanning…</string>
+    
+    <!-- Dialogs -->
+    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_failure">Some files not deleted</string>
+    <string name="deleting">Deleting…</string>
+    <string name="rename_success">Successfully renamed</string>
+    <string name="rename_failure">Couldn\'t rename</string>
+    <string name="loading">Loading…</string>
+    <string name="create_dir_success">Successfully created directory</string>
+    <string name="create_dir_failure">Couldn\'t create directory</string>
+    <string name="compressed_file_name">Zip file name</string>
+    <string name="file_exists">File exists</string>
+    <string name="overwrite_question">Overwrite old file?</string>
+    
+    <string name="directory_pick">Select current directory</string>
+    
+    <!-- CopyHelper statuses -->
+    <string name="copying">Copying…</string>
+    <string name="copied">Successfully copied</string>
+    <string name="copy_error">Some or all items couldn\'t be copied!</string>
+    <string name="moving">Moving…</string>
+    <string name="moved">Successfully moved</string>
+    <string name="move_error">Some or all items couldn\'t be moved!</string>
+    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 </resources>

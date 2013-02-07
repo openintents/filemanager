@@ -1,159 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 
- * Copyright (C) 2007-2008 OpenIntents.org
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent">
-    <FrameLayout
-        android:layout_width="fill_parent" 
-        android:layout_height="wrap_content">
-	    <LinearLayout android:id="@+id/directory_buttons"
-		    android:orientation="horizontal"
-		    android:layout_width="wrap_content" 
-		    android:layout_height="wrap_content">
-		    <!-- Buttons added here dynamically -->
-		</LinearLayout>
-		<LinearLayout android:id="@+id/directory_input"
-		    android:orientation="horizontal"
-		    android:layout_width="fill_parent" 
-		    android:layout_height="wrap_content"
-		    android:visibility="gone">
-		    <EditText android:id="@+id/directory_text"
-				    android:layout_width="0dip"
-				    android:layout_weight="1" 
-				    android:layout_height="wrap_content" />
-			<ImageButton android:id="@+id/button_directory_pick"
-					android:src="@drawable/ic_menu_forward_small"
-				    android:layout_width="wrap_content" 
-				    android:layout_height="wrap_content" />
-		</LinearLayout>
-	</FrameLayout>
-    <FrameLayout
-        android:layout_width="fill_parent" 
-        android:layout_height="wrap_content">
-	    <LinearLayout android:id="@+id/action_normal"
-		    android:orientation="horizontal"
-		    android:layout_width="fill_parent" 
-		    android:layout_height="wrap_content">
-		    <EditText android:id="@+id/filename"
-				    android:layout_width="0dip"
-				    android:layout_weight="1" 
-				    android:layout_height="wrap_content" />
-			<Button android:id="@+id/button_pick"
-					android:text="@android:string/ok"
-				    android:layout_width="wrap_content" 
-				    android:layout_height="wrap_content"
-				    android:minWidth="64dip" />
-		</LinearLayout>
-		<LinearLayout android:id="@+id/action_multiselect"
-			android:orientation="horizontal"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content">
-			<Button android:id="@+id/button_move"
-					android:text="@string/move_button_multiselect"
-					android:layout_width="fill_parent" 
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:maxLines="1" />
-			<Button android:id="@+id/button_copy"
-					android:text="@string/copy_button_multiselect"
-					android:layout_width="fill_parent" 
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:maxLines="1" />
-			<Button android:id="@+id/button_delete"
-					android:text="@string/delete_button_multiselect"
-					android:layout_width="fill_parent" 
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:maxLines="1" />
-            <Button android:id="@+id/button_compress_zip"
-                    android:text="@string/compress_zip_button_multiselect"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:maxLines="1" />
-			<ImageView android:id="@+id/check_icon_select"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:minWidth="23dp"
-					android:layout_marginRight="4dp"
-					android:layout_gravity="right|center_vertical"
-					android:src="@drawable/ic_button_unchecked" />
-		</LinearLayout>
-	</FrameLayout>
-    <!-- 
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flipper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:inAnimation="@anim/fade_in"
+    android:outAnimation="@anim/fade_out"
+    android:isScrollContainer="true" >
+
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent" 
-        android:layout_height="wrap_content">
-        
-        <Button android:id="@+id/add"
-            android:layout_width="wrap_content" 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/menu_insert"
-            android:layout_gravity="center" />
-            
+            android:indeterminate="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/scanning" />
     </LinearLayout>
-     -->
-     
-    <!-- The frame layout is here since we will be showing either
-    the empty view or the list view.  -->
-    <FrameLayout
-        android:layout_width="fill_parent" 
-        android:layout_height="0dip"
-        android:layout_weight="1" >
-        <!-- Here is the list. Since we are using a ListActivity, we
-             have to call it "@android:id/list" so ListActivity will
-             find it -->
-        <ListView android:id="@android:id/list"
-            android:layout_width="fill_parent" 
-            android:layout_height="fill_parent"
-            android:fastScrollEnabled="true"
-            android:drawSelectorOnTop="false"/>
-        
-        <!-- Here is the view to show if the list is empty -->
-        
-        <LinearLayout android:id="@+id/empty"
-            android:layout_width="fill_parent" 
-            android:layout_height="fill_parent">
 
-		<!--  If the list is empty because there are no files... -->
-        
-        <TextView android:id="@+id/empty_text"
-            android:layout_width="fill_parent" 
-            android:layout_height="fill_parent"
-            android:text="@string/this_folder_is_empty"
-        	android:textAppearance="?android:attr/textAppearanceMedium"
-        	android:gravity="center" />
-        	
-        <!--  If the list is empty because we're still scanning... -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center" >
 
-		<ProgressBar android:id="@+id/scan_progress" 
-			android:layout_height="wrap_content"
-			style="?android:attr/progressBarStyleHorizontal"
-			android:layout_width="fill_parent"
-			android:progress="0"
-			android:max="10"
-			android:secondaryProgress="0"
-			android:layout_gravity="center"
-			android:visibility="gone"/>
-        	
-        </LinearLayout>
-            
-    </FrameLayout>
-</LinearLayout>
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fastScrollEnabled="true" >
+        </ListView>
+
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/this_folder_is_empty" />
+    </LinearLayout>
+
+</ViewFlipper>

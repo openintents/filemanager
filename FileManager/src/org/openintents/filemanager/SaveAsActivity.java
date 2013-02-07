@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 
 import android.app.Activity;
@@ -25,12 +26,12 @@ import android.widget.Toast;
 public class SaveAsActivity extends Activity {
 	protected static final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 1;
 	private Uri source;
-	//Whether the scheme is file: (otherwise it's content:)
+	// Whether the scheme is file: (otherwise it's content:)
 	private boolean fileScheme = false;
-	
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
+		UIUtils.setThemeFor(this);
         super.onCreate(savedInstanceState);
         //This activity is never shown to the user.
         setContentView(new RelativeLayout(this));

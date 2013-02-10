@@ -32,8 +32,10 @@
         <item name="topBarBackground">@drawable/bg_top_bar_dark</item>
     </style>
     
+    <!-- Last attribute based on this blog post: http://android.cyrilmottier.com/?p=873 -->
     <style name="Theme.Launch" parent="@android:style/Theme.DeviceDefault">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
+		<item name="android:windowDisablePreview">true</item>
     </style>
 </resources>

@@ -2,7 +2,6 @@ package org.openintents.filemanager.files;
 
 import java.io.File;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.openintents.filemanager.util.FileUtils;
@@ -16,14 +15,15 @@ import android.os.Parcelable;
 import android.text.format.Formatter;
 
 public class FileHolder implements Parcelable, Comparable<FileHolder> {
-	
 	private File mFile;
 	private Drawable mIcon;
 	private String mMimeType = "";
 	private Context mContext;
+	private String mExtension;
 	
 	public FileHolder(File f, Context c){
 		mFile = f;
+		mExtension = parseExtension();
 		mMimeType = MimeTypes.newInstance(c).getMimeType(f.getName());
 		mContext = c;
 	}
@@ -36,6 +36,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	public FileHolder(File f, Drawable i, Context c){
 		mFile = f;
 		mIcon = i;
+		mExtension = parseExtension();
 		mMimeType = MimeTypes.newInstance(c).getMimeType(f.getName());
 		mContext = c;
 	}
@@ -45,6 +46,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	 */
 	public FileHolder(File f, String m, Context c) {
 		mFile = f;
+		mExtension = parseExtension();
 		mMimeType = m;
 		mContext = c;
 		getIcon();
@@ -56,6 +58,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	public FileHolder(File f, String m, Drawable i, Context c){
 		mFile = f;
 		mIcon = i;
+		mExtension = parseExtension();
 		mMimeType = m;
 		mContext = c;
 	}
@@ -63,6 +66,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	public FileHolder(Parcel in){
 		mFile = new File(in.readString());
 		mMimeType = in.readString();
+		mExtension = in.readString();
 	}
 
 	public File getFile(){
@@ -87,6 +91,13 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	 */
 	public String getName(){
 		return mFile.getName();
+	}
+	
+	/**
+	 * Get the contained file's extension.
+	 */
+	public String getExtension() {
+		return mExtension;
 	}
 	
 	/**
@@ -126,6 +137,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(mFile.getAbsolutePath());
 		dest.writeString(mMimeType);
+		dest.writeString(mExtension);
 	}
 	
     public static final Parcelable.Creator<FileHolder> CREATOR = new Parcelable.Creator<FileHolder>() {
@@ -142,5 +154,19 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	public int compareTo(FileHolder another) {
 		return mFile.compareTo(another.getFile());
 	}
+	
+	/**
+	 * Parse the extension from the filename of the mFile member.
+	 */  
+	private String parseExtension() {
+	    String ext = "";
+	    String name = mFile.getName();
+	    
+	    int i = name.lastIndexOf('.');
 
+	    if (i > 0 &&  i < name.length() - 1) {
+	        ext = name.substring(i+1).toLowerCase();
+	    }
+	    return ext;
+	}
 }

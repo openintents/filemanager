@@ -147,6 +147,9 @@ public class CompressManager {
             }
             List<FileHolder> list = params[0]; 
             for (FileHolder file : list){
+            	if(cancelCompression==true) {
+            		return error;
+            	}
                 try {
                     compressFile(file.getFile(), "");
                 } catch (IOException e) {
@@ -179,6 +182,7 @@ public class CompressManager {
 
         @Override
         protected void onPostExecute(Integer result) {
+        	cancelCompression=true;
             try {
                 zos.flush();
                 zos.close();

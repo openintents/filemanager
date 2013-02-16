@@ -74,8 +74,7 @@ public class CompressManager {
         /**
          * Recursively compress file or directory
          * @returns 0 if successful, error value otherwise.
-         */
-        
+         */        
         private void compressFile(File file, String path) throws IOException {
         	progressDialog.setOnDismissListener(new OnDismissListener() {
         		
@@ -143,8 +142,7 @@ public class CompressManager {
         }
 
         @Override
-        protected Integer doInBackground(List<FileHolder>... params) {
-        	
+        protected Integer doInBackground(List<FileHolder>... params) {        	
             if (zos == null){
             	return error;
             }

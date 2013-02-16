@@ -150,6 +150,7 @@
     
     <string name="menu_send">Send</string>
     <string name="menu_delete">Delete</string>
+    <string name="menu_move">Cut</string>
     <string name="menu_copy">Copy</string>
     <string name="menu_compress">Compress</string>
     <string name="menu_rename">Rename</string>

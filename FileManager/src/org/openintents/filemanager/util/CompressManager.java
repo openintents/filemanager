@@ -78,13 +78,12 @@ public class CompressManager {
         	progressDialog.setOnDismissListener(new OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface progressDialog) {
-                 if(cancelCompression==false) {
-                 Log.e(TAG, "Dialog Dismissed");
-                 Log.e(TAG, "Compression Cancel Attempted");
-                 cancelCompression=true;
-                    cancel(true);
-                 }
-                
+                	if(cancelCompression==false) {
+                		Log.e(TAG, "Dialog Dismissed");
+                		Log.e(TAG, "Compression Cancel Attempted");
+                		cancelCompression=true;
+                		cancel(true);
+                	}                
                 }
             }); 
             if (!file.isDirectory()){
@@ -117,15 +116,15 @@ public class CompressManager {
 
         @Override
         protected void onPreExecute() {
-            FileOutputStream out = null;
-            zipDirectory=new File(fileOut);
-            progressDialog = new ProgressDialog(mContext);
-            progressDialog.setCancelable(false);
-            progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+        	FileOutputStream out = null;
+        	zipDirectory=new File(fileOut);
+        	progressDialog = new ProgressDialog(mContext);
+        	progressDialog.setCancelable(false);
+        	progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface progressDialog, int which) {
-                 progressDialog.dismiss();
-                 Log.e(TAG, "Dialog Dismiss Detected");
+                	progressDialog.dismiss();
+                	Log.e(TAG, "Dialog Dismiss Detected");
                 }
             });
             progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -133,16 +132,16 @@ public class CompressManager {
             progressDialog.show();
             progressDialog.setProgress(0);
             try {
-                out = new FileOutputStream(zipDirectory);
+            	out = new FileOutputStream(zipDirectory);
                 zos = new ZipOutputStream(new BufferedOutputStream(out));
             } catch (FileNotFoundException e) {
-                Log.e(TAG, "error while creating ZipOutputStream");
+            	Log.e(TAG, "error while creating ZipOutputStream");
             }
         }
 
         @Override
         protected Integer doInBackground(List<FileHolder>... params) {
-            if (zos == null){
+        	if (zos == null){
                 return error;
             }
             List<FileHolder> list = params[0]; 
@@ -162,22 +161,21 @@ public class CompressManager {
         
         @Override
         protected void onCancelled (Integer result) {
-         Log.e(TAG,"onCancelled Initialised");
-         try {
-                 zos.flush();
-                 zos.close();
-             } catch (IOException e) {
-                 Log.e(TAG, "error while closing zos", e);
-             }
-         if(zipDirectory.delete()){
-         Log.e(TAG, "test deleted successfully");
-         }
-         else{
+        	Log.e(TAG,"onCancelled Initialised");
+        	try {
+        		zos.flush();
+                zos.close();
+            } catch (IOException e) {
+            	Log.e(TAG, "error while closing zos", e);
+            }             
+         if(zipDirectory.delete()) {
+        	 Log.e(TAG, "test deleted successfully");
+         } else {
         	 Log.e(TAG, "error while deleting test");
          }
              Toast.makeText(mContext, "Compression Canceled", Toast.LENGTH_SHORT).show();             
              if(onCompressFinishedListener != null)
-              onCompressFinishedListener.compressFinished();
+            	 onCompressFinishedListener.compressFinished();
         }
 
         @Override
@@ -193,7 +191,7 @@ public class CompressManager {
             if (result == error){
                 Toast.makeText(mContext, R.string.compressing_error, Toast.LENGTH_SHORT).show();
             } else if (result == success){
-                Toast.makeText(mContext, R.string.compressing_success, Toast.LENGTH_SHORT).show();
+            	Toast.makeText(mContext, R.string.compressing_success, Toast.LENGTH_SHORT).show();
             }
             
             if(onCompressFinishedListener != null)

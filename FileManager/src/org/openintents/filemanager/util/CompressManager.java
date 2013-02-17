@@ -148,7 +148,7 @@ public class CompressManager {
             List<FileHolder> list = params[0]; 
             for (FileHolder file : list){            	
             	if(cancelCompression==true){
-            		return error;
+            	    return error;
             	}
                 try {
                     compressFile(file.getFile(), "");
@@ -189,7 +189,7 @@ public class CompressManager {
                 Log.e(TAG, "error while closing zos", e);
             }
             cancelCompression=true;
-        	progressDialog.cancel();
+            progressDialog.cancel();
             if (result == error){
                 Toast.makeText(mContext, R.string.compressing_error, Toast.LENGTH_SHORT).show();
             } else if (result == success){

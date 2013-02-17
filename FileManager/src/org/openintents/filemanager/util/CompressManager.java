@@ -55,17 +55,16 @@ public class CompressManager {
         for (FileHolder f: list){
             fileCount += FileUtils.getFileCount(f.getFile());
         }
-        new CompressTask().execute(list);
-        
+        new CompressTask().execute(list);        
     }
 
-    private class CompressTask extends AsyncTask<List<FileHolder>, Void, Integer> {
-    	
+    private class CompressTask extends AsyncTask<List<FileHolder>, Void, Integer> {    	
         private static final int success = 0;
         private static final int error = 1;       
         private ZipOutputStream zos;
         private File zipDirectory;
         private boolean cancelCompression=false;
+        
         /**
          * count of compressed file to update the progress bar
          */
@@ -199,8 +198,7 @@ public class CompressManager {
             
             if(onCompressFinishedListener != null)
             	onCompressFinishedListener.compressFinished();
-        }
-       
+        }       
     }
     
     public interface OnCompressFinishedListener{

@@ -33,7 +33,7 @@ public class CompressManager {
     private ProgressDialog progressDialog;
     private int fileCount;
     private String fileOut;
-	private OnCompressFinishedListener onCompressFinishedListener = null;
+    private OnCompressFinishedListener onCompressFinishedListener = null;
 
     public CompressManager(Context context) {
         mContext = context;
@@ -76,16 +76,16 @@ public class CompressManager {
          * @returns 0 if successful, error value otherwise.
          */        
         private void compressFile(File file, String path) throws IOException {
-        	progressDialog.setOnDismissListener(new OnDismissListener() {
+            progressDialog.setOnDismissListener(new OnDismissListener() {
         		
                 @Override
                 public void onDismiss(DialogInterface progressDialog) {
-                	if(cancelCompression==false) {
+                    if(cancelCompression==false) {
                 	Log.e(TAG, "Dialog Dismissed");
                 	Log.e(TAG, "Compression Cancel Attempted"); 
                 	cancelCompression=true;
-                    cancel(true);
-                	}                	
+                        cancel(true);
+                    }                	
                 }
             });        	
             if (!file.isDirectory()){
@@ -163,18 +163,18 @@ public class CompressManager {
         
         @Override
         protected void onCancelled (Integer result) {
-        	Log.e(TAG,"onCancelled Initialised");
-        	try {
-        		zos.flush();
+            Log.e(TAG,"onCancelled Initialised");
+            try {
+       	        zos.flush();
                 zos.close();                
             } catch (IOException e) {
-            	Log.e(TAG, "error while closing zos", e);
+                Log.e(TAG, "error while closing zos", e);
             }  
-        	if(zipDirectory.delete()){
-        		Log.e(TAG, "test deleted successfully");
-     		} else {
-     			Log.e(TAG, "error while deleting test");
-     	  	}
+            if(zipDirectory.delete()){
+        	Log.e(TAG, "test deleted successfully");
+     	    } else {
+     		Log.e(TAG, "error while deleting test");
+     	    }
             Toast.makeText(mContext, "Compression Canceled", Toast.LENGTH_SHORT).show();  
              
             if(onCompressFinishedListener != null)

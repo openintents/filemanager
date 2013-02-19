@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="topBar_height">@dimen/topBar_height_big</dimen>
+
+    <!-- Side margins for file list -->
+    <dimen name="list_margin">@dimen/list_margin_huge</dimen>
+</resources>

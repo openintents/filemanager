@@ -32,7 +32,9 @@
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fastScrollEnabled="true" >
+            android:fastScrollEnabled="true"
+            android:layout_marginLeft="@dimen/list_margin"
+            android:layout_marginRight="@dimen/list_margin" >
         </ListView>
 
         <TextView

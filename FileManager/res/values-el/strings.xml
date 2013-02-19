@@ -37,7 +37,7 @@
     <string name="menu_rename">Μετονομασία</string>
     <string name="menu_send">Αποστολή</string>
     <string name="menu_open">Άνοιγμα</string>
-    <string name="menu_move">Cut</string>
+    <string name="menu_move">Αποκοπή</string>
     <string name="menu_copy">Αντιγραφή</string>
     <string name="menu_details">Λεπτομέρεις</string>
     <string name="menu_more">Περισσότερα</string>
@@ -135,77 +135,75 @@
     <string name="compressing_error">Αδυναμία συμπίεσης του αντικειμένου</string>
     <string name="extracting_success">Το αντικείμενο αποσυμπιέστηκε με επιτυχία</string>
     <string name="extracting_error">Αδυναμία αποσυμπίεσης του αντικειμένου</string>
-    <string name="extracting">Extracting…</string>
-    <string name="compressing">Compressing…</string>
+    <string name="extracting">Αποσυμπίεση…</string>
+    <string name="compressing">Συμπίεση…</string>
     
     <!-- new menu strings -->
     <string name="menu_bookmarks">Σελιδοδείκτες</string>
-    <string name="menu_search">Search</string>
-    <string name="menu_create_folder">Create folder</string>
-    <string name="menu_paste">Paste</string>
-    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_search">Αναζήτηση</string>
+    <string name="menu_create_folder">Νέος φάκελος</string>
+    <string name="menu_paste">Επικόλληση</string>
+    <string name="menu_multiselect">Πολλαπλή επιλογή</string>
     <string name="menu_settings">Ρυθμίσεις</string>
     
     <string name="menu_send">Αποστολή</string>
     <string name="menu_delete">Διαγραφή</string>
-    <string name="menu_move">Cut</string>
+    <string name="menu_move">Αποκοπή</string>
     <string name="menu_copy">Αντιγραφή</string>
-    <string name="menu_compress">Compress</string>
     <string name="menu_rename">Μετονομασία</string>
     
-    <string name="menu_extract">Extract</string>
     <string name="menu_details">Λεπτομέρεις</string>
-    <string name="menu_create_shortcut">Create shortcut</string>
-    <string name="send_chooser_title">Send using:</string>
+    <string name="menu_create_shortcut">Δημιουργία συντόμευσης</string>
+    <string name="send_chooser_title">Αποστολή μέσω:</string>
     
-    <string name="menu_check_all">Check all</string>
-    <string name="menu_uncheck_all">Uncheck all</string>
+    <string name="menu_check_all">Επιλογή όλων</string>
+    <string name="menu_uncheck_all">Αποεπιλογή όλων</string>
     
     <!-- Multi selection action strings -->
-    <string name="selected">selected</string>
-    <string name="no_selection">No items checked</string>
+    <string name="selected">επιλεγμένα</string>
+    <string name="no_selection">Κανένα αρχείο επιλεγμένο</string>
     
-    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="bookmark_empty">Δεν υπάρχουν σελιδοδείκτες.</string>
     <string name="bookmark_added">Προστέθηκε ο σελιδοδείκτης</string>
     <string name="bookmark_already_exists">Αυτό το αρχείο έχει ήδη προστεθεί στους σελιδοδείκτες</string>
     <string name="bookmarks">Σελιδοδείκτες</string>
     
     <!-- Search related -->
-    <string name="search_hint">Search files</string>
-    <string name="query_error">Query error</string>
-    <string name="search_settings_descr">Files and folders in storage</string>
-    <string name="preference_search_title">Clear history</string>
-    <string name="preference_search_category">Search</string>
-    <string name="preference_search_dialog_message">Clear search history?</string>
-    <string name="search_history_cleared">Search history cleared</string>
+    <string name="search_hint">Αναζήτηση αρχείων</string>
+    <string name="query_error">Σφάλμα αναζήτησης</string>
+    <string name="search_settings_descr">Αρχεία και φάκελοι στην μνήμη</string>
+    <string name="preference_search_title">Διαγραφή ιστορικού</string>
+    <string name="preference_search_category">Αναζήτηση</string>
+    <string name="preference_search_dialog_message">Διαγραφή ιστορικού αναζήτησης?</string>
+    <string name="search_history_cleared">Το ιστορικό αναζήτησης διαγράφηκε</string>
     
     <!-- icon content description -->
     <string name="item_icon">Item icon</string>
     
     <!-- list layout -->
-    <string name="scanning">Scanning…</string>
+    <string name="scanning">Φόρτωση…</string>
     
     <!-- Dialogs -->
-    <string name="delete_success">Successfully deleted</string>
-    <string name="delete_failure">Some files not deleted</string>
-    <string name="deleting">Deleting…</string>
-    <string name="rename_success">Successfully renamed</string>
-    <string name="rename_failure">Couldn\'t rename</string>
-    <string name="loading">Loading…</string>
-    <string name="create_dir_success">Successfully created directory</string>
-    <string name="create_dir_failure">Couldn\'t create directory</string>
-    <string name="compressed_file_name">Zip file name</string>
-    <string name="file_exists">File exists</string>
-    <string name="overwrite_question">Overwrite old file?</string>
+    <string name="delete_success">Διαγραφή επιτυχής</string>
+    <string name="delete_failure">Κάποια αρχεία δεν μπορούσαν να διαγραφούν</string>
+    <string name="deleting">Διαγραφή…</string>
+    <string name="rename_success">Μετονομασία επιτυχής</string>
+    <string name="rename_failure">Μετονομασία αδύνατη</string>
+    <string name="loading">Φόρτωση…</string>
+    <string name="create_dir_success">Δημιουργία φακέλου επιτυχής</string>
+    <string name="create_dir_failure">Δημιουργία φακέλου αδύνατη</string>
+    <string name="compressed_file_name">Όνομα αρχείου ZIP</string>
+    <string name="file_exists">Το αρχείο υπάρχει ήδη</string>
+    <string name="overwrite_question">Διαγραφή παλιού αρχείου;</string>
     
-    <string name="directory_pick">Select current directory</string>
+    <string name="directory_pick">Επιλογή τρέχοντος φακέλου</string>
     
     <!-- CopyHelper statuses -->
-    <string name="copying">Copying…</string>
-    <string name="copied">Successfully copied</string>
-    <string name="copy_error">Some or all items couldn\'t be copied!</string>
-    <string name="moving">Moving…</string>
-    <string name="moved">Successfully moved</string>
-    <string name="move_error">Some or all items couldn\'t be moved!</string>
-    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
+    <string name="copying">Αντιγραφή…</string>
+    <string name="copied">Αντιγραφή επιτυχής</string>
+    <string name="copy_error">Κάποια αρχεία δεν μπόρεσαν να αντιγραφούν!</string>
+    <string name="moving">Μεταφορά…</string>
+    <string name="moved">Μεταφορά επιτυχής</string>
+    <string name="move_error">Κάποια αρχεία δεν μπόρεσαν να μεταφερθούν!</string>
+    <string name="nothing_to_paste">Δεν υπάρχουν αρχεία για επικόλληση. Αντιγράψτε ή αποκόψτε αρχεία πρώτα.</string>
 </resources>

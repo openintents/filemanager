@@ -20,6 +20,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MultiCompressDialog extends DialogFragment implements Overwritable {
@@ -47,7 +48,8 @@ public class MultiCompressDialog extends DialogFragment implements Overwritable 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
-		final EditText v = (EditText) inflater.inflate(R.layout.dialog_text_input, null);
+		LinearLayout view = (LinearLayout) inflater.inflate(R.layout.dialog_text_input, null);
+		final EditText v = (EditText) view.findViewById(R.id.foldername);
 		v.setHint(R.string.compressed_file_name);
 		
 		v.setOnEditorActionListener(new TextView.OnEditorActionListener(){
@@ -61,7 +63,7 @@ public class MultiCompressDialog extends DialogFragment implements Overwritable 
 		
 		return new AlertDialog.Builder(getActivity())
 				.setTitle(R.string.menu_compress)
-				.setView(v)
+				.setView(view)
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						compress(v.getText().toString());

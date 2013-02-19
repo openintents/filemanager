@@ -17,6 +17,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,8 @@ public class RenameDialog extends DialogFragment {
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
-		final EditText v = (EditText) inflater.inflate(R.layout.dialog_text_input, null);
+		LinearLayout view = (LinearLayout) inflater.inflate(R.layout.dialog_text_input, null);
+		final EditText v = (EditText) view.findViewById(R.id.foldername);
 		v.setText(mFileHolder.getName());
 
 		v.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -50,7 +52,7 @@ public class RenameDialog extends DialogFragment {
 				.setInverseBackgroundForced(UIUtils.shouldDialogInverseBackground(getActivity()))
 				.setTitle(R.string.menu_rename)
 				.setIcon(mFileHolder.getIcon())
-				.setView(v)
+				.setView(view)
 				.setNegativeButton(android.R.string.cancel, null)
 				.setPositiveButton(android.R.string.ok,
 						new DialogInterface.OnClickListener() {

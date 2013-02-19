@@ -14,15 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
 -->
-<EditText xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/foldername"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
-    android:minHeight="60dp"
-    android:imeOptions="actionGo"
-    android:inputType="textUri"
-    android:maxLines="1" >
+    android:layout_width="match_parent" >
+    
+	<EditText
+	    android:id="@+id/foldername"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:imeOptions="actionGo"
+	    android:inputType="textUri"
+	    android:selectAllOnFocus="true"
+	    android:layout_gravity="center"
+	    android:maxLines="1"
+	    android:layout_margin="16dp" />
 
-    <requestFocus />
-
-</EditText>
+</LinearLayout>

@@ -11,4 +11,5 @@
     <attr name="pathBarItemBackground" format="reference" />
     <attr name="pathBarBackground" format="reference" />
     <attr name="topBarBackground" format="reference" />
+    <attr name="listBackground" format="reference" />
 </resources>

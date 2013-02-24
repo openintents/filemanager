@@ -9,6 +9,7 @@
         <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>
         <item name="pathBarBackground">@drawable/bg_pathbar_light</item>
         <item name="topBarBackground">@drawable/bg_top_bar_light</item>
+        <item name="listBackground">@drawable/list_background_light</item>
     </style>
     
     <style name="TitleBackgroundStyle">
@@ -37,5 +38,6 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
 		<item name="android:windowDisablePreview">true</item>
+        <item name="listBackground">@drawable/list_background_dark</item>
     </style>
 </resources>

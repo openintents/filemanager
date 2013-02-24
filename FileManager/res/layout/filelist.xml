@@ -35,7 +35,7 @@
             android:fastScrollEnabled="true"
             android:layout_marginLeft="@dimen/list_margin"
             android:layout_marginRight="@dimen/list_margin"
-            android:background="@drawable/bg_list" >
+            android:background="?attr/listBackground" >
         </ListView>
 
         <TextView

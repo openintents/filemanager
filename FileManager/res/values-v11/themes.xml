@@ -8,6 +8,7 @@
         <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>
         <item name="pathBarBackground">@drawable/bg_pathbar_light</item>
         <item name="topBarBackground">@drawable/bg_top_bar_light</item>
+        <item name="listBackground">@drawable/list_background_light</item>
     </style>
 
     <style name="Widget.Holo.Light.DarkActionBar.ActionBar" parent="@android:style/Widget.Holo.ActionBar">
@@ -35,5 +36,6 @@
         <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>
         <item name="pathBarBackground">@drawable/bg_top_bar_dark</item>
         <item name="topBarBackground">@drawable/bg_top_bar_dark</item>
+        <item name="listBackground">@drawable/list_background_dark</item>
     </style>
 </resources>

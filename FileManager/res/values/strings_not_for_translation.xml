@@ -19,7 +19,7 @@
 	<!-- ***************************
 	     About information
 	     *************************** -->
-	<string name="about_copyright">Copyright © 2008-2012 OpenIntents</string> 
+	<string name="about_copyright">Copyright © 2008-2013 OpenIntents</string> 
 	<string name="about_website_url">http://www.openintents.org/en/filemanager</string>
 	<string name="about_email">support@openintents.org</string>
 	
@@ -46,6 +46,7 @@
     <string-array name="about_artists"><!-- Add your name here if you helped out -->
         <item>Peli</item>
         <item>Androidicons www.androidicons.com</item>
+        <item>George Venios</item>
     </string-array>
     
 	<!-- ***************************

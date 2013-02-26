@@ -82,6 +82,10 @@ public class CopyHelper {
 			else
 				res &= copyFolder(fh.getFile(), FileUtils.createUniqueCopyName(mContext, dest, fh.getName()));
 		}
+		
+		// Request media scan
+		MediaScannerUtils.scanFile(mContext, dest);
+		
 		return res;
 	}	
 
@@ -157,10 +161,20 @@ public class CopyHelper {
 	 */
 	private boolean performCut(File dest){
 		boolean res = true;
-		
+
+		File from = null;
 		for(FileHolder fh : mClipboard){
+			if(from == null)
+				from = fh.getFile().getParentFile();
+				
 			res &= fh.getFile().renameTo(FileUtils.getFile(dest, fh.getName()));
 		}
+		
+		// Request media scan
+		MediaScannerUtils.scanFile(mContext, dest);
+		if(from != null)	// Since it's 'cut', scan source to inform about its deletion
+			MediaScannerUtils.scanFile(mContext, from);
+		
 		return res;
 	}
 	

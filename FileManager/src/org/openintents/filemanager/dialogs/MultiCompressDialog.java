@@ -8,6 +8,7 @@ import org.openintents.filemanager.dialogs.OverwriteFileDialog.Overwritable;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.FileListFragment;
 import org.openintents.filemanager.util.CompressManager;
+import org.openintents.filemanager.util.MediaScannerUtils;
 import org.openintents.intents.FileManagerIntents;
 
 import android.app.AlertDialog;
@@ -37,6 +38,8 @@ public class MultiCompressDialog extends DialogFragment implements Overwritable 
 			@Override
 			public void compressFinished() {
 				((FileListFragment) getTargetFragment()).refresh();
+				
+				MediaScannerUtils.scanFile(getTargetFragment().getActivity().getApplicationContext(), tbcreated);
 			}
 		});
 	}

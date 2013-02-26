@@ -137,6 +137,8 @@ public class CompressManager {
                 zos.close();
             } catch (IOException e) {
                 Log.e(TAG, "error while closing zos", e);
+            } catch (NullPointerException e) {
+                Log.e(TAG, "zos was null and couldn't be closed", e);
             }
             progressDialog.cancel();
             if (result == error){

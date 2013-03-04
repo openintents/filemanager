@@ -13,6 +13,7 @@ import org.openintents.intents.FileManagerIntents;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -46,6 +47,13 @@ public class MultiDeleteDialog extends DialogFragment {
 	}
 	
 	private class RecursiveDeleteTask extends AsyncTask<Void, Void, Void> {
+		private Context mContext;
+		
+		public RecursiveDeleteTask() {
+			// Init before having the fragment in an undefined state because of dialog dismissal
+			mContext = getTargetFragment().getActivity().getApplicationContext();
+		}
+		
 		/**
 		 * If 0 some failed, if 1 all succeeded. 
 		 */
@@ -66,11 +74,14 @@ public class MultiDeleteDialog extends DialogFragment {
 						recursiveDelete(childFile);
 					} else {
 						mResult *= childFile.delete() ? 1 : 0;
+
+						MediaScannerUtils.informFileDeleted(mContext, childFile);
 					}
 				}
 				
 				// And then delete parent. -- or just delete the file.
 				mResult *= file.delete() ? 1 : 0;
+				MediaScannerUtils.informFileDeleted(mContext, file);
 		}
 		
 		@Override
@@ -93,8 +104,7 @@ public class MultiDeleteDialog extends DialogFragment {
 			((FileListFragment) getTargetFragment()).refresh();
 			dialog.dismiss();
 			
-			// Request a scan for all the deleted files
-			MediaScannerUtils.scanFiles(getTargetFragment().getActivity().getApplicationContext(), mFileHolders);
+			mContext = null;
 		}
 	}
 }

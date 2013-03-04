@@ -13,7 +13,7 @@ public abstract class MediaScannerUtils {
 	/**
 	 * Request a MediaScanner scan for a single file.
 	 */
-	public static void scanFile(Context c, File f) {
+	public static void informFileAdded(Context c, File f) {
 		if(f == null)
 			return;
 		
@@ -25,22 +25,36 @@ public abstract class MediaScannerUtils {
 	/**
 	 * Request a MediaScanner scan for multiple files.
 	 */
-	public static void scanFiles(Context c, File[] files) {
+	public static void informFilesAdded(Context c, File[] files) {
 		// NOTE: it seemed like overkill having to create a Helper class to 
 		// avoid VerifyError on 1.6 so that we can use MediaScannerConnection.scanFile()
 		// Therefore we just iterate through files and use the compatible-with-every-version broadcast.
 		for(int i = 0; i < files.length; i++)
-			scanFile(c, files[i]);
+			informFileAdded(c, files[i]);
 	}
 	
 	/**
 	 * Request a MediaScanner scan for multiple files.
 	 */
-	public static void scanFiles(Context c, List<FileHolder> files) {
+	public static void informFilesAdded(Context c, List<FileHolder> files) {
 		// NOTE: it seemed like overkill having to create a Helper class to 
 		// avoid VerifyError on 1.6 so that we can use MediaScannerConnection.scanFile()
 		// Therefore we just iterate through files and use the compatible-with-every-version broadcast.
 		for(FileHolder fh : files)
-			scanFile(c, fh.getFile());
+			informFileAdded(c, fh.getFile());
+	}
+	
+	public static void informFileDeleted(Context c, File f) {
+		// TODO implement
+	}
+
+	public static void informFilesDeleted(Context c, File[] files) {
+		for(File f : files)
+			informFileDeleted(c, f);
+	}
+	
+	public static void informFilesDeleted(Context c, List<FileHolder> files) {
+		for(FileHolder fh : files)
+			informFileDeleted(c, fh.getFile());
 	}
 }

@@ -83,9 +83,6 @@ public class CopyHelper {
 				res &= copyFolder(fh.getFile(), FileUtils.createUniqueCopyName(mContext, dest, fh.getName()));
 		}
 		
-		// Request media scan
-		MediaScannerUtils.scanFile(mContext, dest);
-		
 		return res;
 	}	
 
@@ -114,6 +111,9 @@ public class CopyHelper {
 			
 			output.close();
 			input.close();
+			
+			// Request media scan
+			MediaScannerUtils.informFileAdded(mContext, newFile);
 			
 		} catch (Exception e) {
 		    return false;
@@ -161,19 +161,22 @@ public class CopyHelper {
 	 */
 	private boolean performCut(File dest){
 		boolean res = true;
+		boolean deleteOk = false;
 
-		File from = null;
+		File from;
 		for(FileHolder fh : mClipboard){
-			if(from == null)
-				from = fh.getFile().getParentFile();
+			from = fh.getFile().getAbsoluteFile();
 				
-			res &= fh.getFile().renameTo(FileUtils.getFile(dest, fh.getName()));
+			deleteOk = fh.getFile().renameTo(FileUtils.getFile(dest, fh.getName()));
+			
+			// Inform media scanner
+			if(deleteOk) {
+				MediaScannerUtils.informFileDeleted(mContext, from);
+				MediaScannerUtils.informFileAdded(mContext, FileUtils.getFile(dest, fh.getName()));
+			}
+			
+			res &= deleteOk;
 		}
-		
-		// Request media scan
-		MediaScannerUtils.scanFile(mContext, dest);
-		if(from != null)	// Since it's 'cut', scan source to inform about its deletion
-			MediaScannerUtils.scanFile(mContext, from);
 		
 		return res;
 	}

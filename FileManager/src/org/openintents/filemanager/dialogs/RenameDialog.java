@@ -5,6 +5,7 @@ import java.io.File;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.FileListFragment;
+import org.openintents.filemanager.util.MediaScannerUtils;
 import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 
@@ -67,11 +68,18 @@ public class RenameDialog extends DialogFragment {
 	
 	private void renameTo(String to){
 		boolean res = false;
+		
 		if(to.length() > 0){
+			File from = mFileHolder.getFile();
+			
 			File dest = new File(mFileHolder.getFile().getParent() + File.separator + to);
 			if(!dest.exists()){
 				res = mFileHolder.getFile().renameTo(dest);
 				((FileListFragment) getTargetFragment()).refresh();
+
+				// Inform media scanner
+				MediaScannerUtils.informFileDeleted(getActivity().getApplicationContext(), from);
+				MediaScannerUtils.informFileAdded(getActivity().getApplicationContext(), dest);
 			}
 		}
 		

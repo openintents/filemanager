@@ -91,7 +91,7 @@ public class SingleDeleteDialog extends DialogFragment {
 			((FileListFragment) getTargetFragment()).refresh();
 			dialog.dismiss();
 			
-			MediaScannerUtils.scanFile(getTargetFragment().getActivity().getApplicationContext(), mFileHolder.getFile());
+			MediaScannerUtils.informFileDeleted(getTargetFragment().getActivity().getApplicationContext(), mFileHolder.getFile());
 		}
 	}
 

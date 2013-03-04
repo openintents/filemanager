@@ -39,7 +39,7 @@ public class SingleCompressDialog extends DialogFragment implements Overwritable
 			public void compressFinished() {
 				((FileListFragment) SingleCompressDialog.this.getTargetFragment()).refresh();
 
-				MediaScannerUtils.scanFile(getTargetFragment().getActivity().getApplicationContext(), tbcreated);
+				MediaScannerUtils.informFileAdded(getTargetFragment().getActivity().getApplicationContext(), tbcreated);
 			}
 		});
 	}

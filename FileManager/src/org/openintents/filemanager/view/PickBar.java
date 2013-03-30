@@ -4,6 +4,8 @@ import org.openintents.filemanager.R;
 
 import android.content.Context;
 import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -88,5 +90,24 @@ public class PickBar extends LinearLayout {
 
 	public void setButtonText(CharSequence text) {
 		mButton.setText( (text == null || text.toString().trim().length() == 0) ? getResources().getString(R.string.pick_button_default) : text);
+	}
+	
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		Bundle state = new Bundle();
+		state.putParcelable("superState", super.onSaveInstanceState());
+		state.putParcelable("editText", mEditText.onSaveInstanceState());
+		state.putParcelable("button", mButton.onSaveInstanceState());
+		
+		return state;
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Parcelable state) {
+		Bundle savedstate = (Bundle) state;
+		
+		super.onRestoreInstanceState(savedstate.getParcelable("superState"));
+		mEditText.onRestoreInstanceState(savedstate.getParcelable("editText"));
+		mButton.onRestoreInstanceState(savedstate.getParcelable("button"));
 	}
 }

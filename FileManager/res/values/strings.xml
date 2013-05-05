@@ -116,7 +116,7 @@
         <item>Name</item>
         <item>Size</item>
         <item>Last modified</item>
-        <item>File extension</item>
+         <item>File extension</item>
     </string-array>
 
     <string name="preference_usedarktheme_title">Use dark theme (Requires restart of app)</string>
@@ -213,4 +213,9 @@
     <string name="moved">Successfully moved</string>
     <string name="move_error">Some or all items couldn\'t be moved!</string>
     <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
+    <string name="menu_moveaction">Move</string>
+    <string name="file_moved">File Moved</string>
+    <string name="folder_moved">Folder Moved</string>
+    <string name="error_moving_file">Error Moving File</string>
+    <string name="error_moving_folder">ErrorMoving Folder</string>
 </resources>

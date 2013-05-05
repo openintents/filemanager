@@ -13,6 +13,11 @@
         android:title="@string/menu_move">
     </item>
     <item
+        android:id="@+id/menu_moveaction"
+        android:icon="@drawable/ic_action_moveaction"
+        android:title="@string/menu_moveaction">
+    </item>
+    <item
         android:id="@+id/menu_copy"
         android:icon="@drawable/ic_action_copy"
         android:title="@string/menu_copy">

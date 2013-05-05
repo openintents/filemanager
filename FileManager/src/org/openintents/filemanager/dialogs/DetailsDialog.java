@@ -51,7 +51,7 @@ public class DetailsDialog extends DialogFragment {
 		
 		// Finally create the dialog
 		return new AlertDialog.Builder(getActivity())
-				.setInverseBackgroundForced(true)
+				
 				.setTitle(mFileHolder.getName())
 				.setIcon(mFileHolder.getIcon())
 				.setView(v)

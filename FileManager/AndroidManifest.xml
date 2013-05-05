@@ -17,7 +17,7 @@
 <manifest package="org.openintents.filemanager"
     android:installLocation="auto"
     android:versionCode="27"
-    android:versionName="2.0.2" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:versionName="2.0.2" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
 
     <!--
     History: 
@@ -84,6 +84,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="tv.ouya.intent.category.GAME"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -162,11 +163,11 @@
         <!-- Activities from OI Distribution Library -->
         <activity
             android:name="org.openintents.distribution.EulaActivity"
-            android:theme="@android:style/Theme.DeviceDefault" />
+            android:theme="@android:style/Theme.DeviceDefault" tools:ignore="NewApi"/>
         
         <activity
             android:name="org.openintents.distribution.NewVersionActivity"
-            android:theme="@android:style/Theme.DeviceDefault" />
+            android:theme="@android:style/Theme.DeviceDefault" tools:ignore="NewApi"/>
         
         <activity android:name=".search.SearchableActivity"
                     android:launchMode="singleTop">

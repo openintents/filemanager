@@ -16,8 +16,8 @@
 -->
 <manifest package="org.openintents.filemanager"
     android:installLocation="auto"
-    android:versionCode="27"
-    android:versionName="2.0.2" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:versionCode="28"
+    android:versionName="2.0.3-rc1" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
     History: 
@@ -71,7 +71,7 @@
         <!-- aTrackDog metadata -->
         <meta-data
             android:name="com.a0soft.gphone.aTrackDog.testVersion"
-            android:value="19" />
+            android:value="28" />
         <meta-data
             android:name="org.openintents.about"
             android:resource="@xml/about" />

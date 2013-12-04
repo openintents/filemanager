@@ -351,11 +351,12 @@ public class FileUtils {
 		String type = fileholder.getMimeType();
 		
 		if ("*/*".equals(type)){
-			Toast.makeText(c, R.string.application_not_available, Toast.LENGTH_SHORT).show();
-			return;
+			intent.setData(data);	
+		} else {
+			intent.setDataAndType(data, type);
 		}
 		
-		intent.setDataAndType(data, type);
+		
 
 		try {
 			c.startActivity(intent);

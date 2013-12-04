@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebIconDatabase.IconListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -90,20 +91,30 @@ public class BookmarkListAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		FileHolder item = new FileHolder(new File(items.get(position).path), act);
+		ViewHolder viewHolder;
 		
-		if(convertView==null)
+		if(convertView == null) {
 			convertView = inflater.inflate(R.layout.item_filelist, null);
+			
+			viewHolder = new ViewHolder();
+			viewHolder.icon = (ImageView) convertView.findViewById(R.id.icon);
+			viewHolder.primaryInfo = (TextView) convertView.findViewById(R.id.primary_info);
+			viewHolder.secondaryInfo = (TextView) convertView.findViewById(R.id.secondary_info);
+			convertView.setTag(viewHolder);
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
 		
-		((TextView) convertView.findViewById(R.id.primary_info)).setText(items.get(position).name);
-		((TextView) convertView.findViewById(R.id.secondary_info)).setText(items.get(position).path);
+		viewHolder.primaryInfo.setText(items.get(position).name);
+		viewHolder.secondaryInfo.setText(items.get(position).path);
         
 		if(item.getFile().isDirectory()) {
-			((ImageView) convertView.findViewById(R.id.icon)).setImageResource(R.drawable.ic_launcher_folder);
+			viewHolder.icon.setImageResource(R.drawable.ic_launcher_folder);
 		}
 		
 		if (shouldLoadIcon(item)) {
 			if (mThumbnailLoader != null) {
-				mThumbnailLoader.loadImage(item, (ImageView) convertView.findViewById(R.id.icon));
+				mThumbnailLoader.loadImage(item, viewHolder.icon);
 			}
 		}
 		
@@ -128,5 +139,11 @@ public class BookmarkListAdapter extends BaseAdapter{
 		long id;
 		String name;
 		String path;
+	}
+	
+	private class ViewHolder {
+		public TextView primaryInfo;
+		public TextView secondaryInfo;
+		public ImageView icon;
 	}
 }

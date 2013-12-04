@@ -34,4 +34,8 @@
 	<!-- All definitions are imported from a central location -->
 	<import file="${build.common.dir}/build_common.xml" />
 
+	<target name="-pre-build">
+    	<exec executable="${ndk.dir}/ndk-build.cmd" failonerror="true"/>
+	</target>
+	
 </project>

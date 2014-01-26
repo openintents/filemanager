@@ -1,5 +1,13 @@
 package org.openintents.filemanager;
 
+import android.content.Intent;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
+
 import java.io.File;
 
 import org.openintents.filemanager.lists.FileListFragment;
@@ -8,14 +16,6 @@ import org.openintents.filemanager.lists.PickFileListFragment;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
-
-import android.content.Intent;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
-import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.app.FragmentActivity;
-import android.view.KeyEvent;
 
 public class IntentFilterActivity extends FragmentActivity {
 	private FileListFragment mFragment;
@@ -93,11 +93,9 @@ public class IntentFilterActivity extends FragmentActivity {
 			}
 		}
 		// Item pickers
-		else if (intent.getAction().equals(
-				FileManagerIntents.ACTION_PICK_DIRECTORY)
-				|| intent.getAction().equals(
-						FileManagerIntents.ACTION_PICK_FILE)
-				|| intent.getAction().equals(Intent.ACTION_GET_CONTENT)) {
+		else if ( FileManagerIntents.ACTION_PICK_DIRECTORY.equals(intent.getAction())
+				|| FileManagerIntents.ACTION_PICK_FILE.equals(intent.getAction())
+				|| Intent.ACTION_GET_CONTENT.equals(intent.getAction())){
 			if (intent.hasExtra(FileManagerIntents.EXTRA_TITLE))
 				setTitle(intent.getStringExtra(FileManagerIntents.EXTRA_TITLE));
 			else

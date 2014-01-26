@@ -1,0 +1,40 @@
+OI Menadžer Datoteka dozvolja va ti da pretražuješ SD kartu, praviš direktorijume, preimenuješ, kopiras, pomeris i obrišeš fajlove. Takođe služi kao dodatak u drugim aplikacijama da prikaže "Otvori" i "Sačuvaj" dialoge. 
+
+Ova aplikacija nema reklame i zahtijeva internet konkciju. 
+
+Za punu listu promena i listu ubičaeno pitanih pitanja, molimo posetite: 
+http://www.openintents.org
+
+Možete pomoći u poboljšanju prevoda u vaš jezik na Launchpad-u: 
+https://translations.launchpad.net/openintents/trunk
+
+Izvorni kod ovog programa je besplatan i otvoreni izvor aplikacije je dostupan na: 
+http://code.google.com/p/openintents
+
+Značajke: 
+* Prikaži listu fajlova sa sličicama za slike.
+* Pomeri, kopiraj, preimenuj, i briši fajlove.
+* Napravi i obriši direktorijume (foldere).
+* Pošalji fajlove e-mailom.
+* Ponaša se kao dodatak u drugim aplikacijama, kao GMail, da zakači datoteke.
+* Podrška za mnoge krajeve fajlova i mime tipove.
+* Podržava PICK_FILE i PICK_DIRECTORZ intents da bi ostale aplikacije koristile OI Menadžer Datoteka.
+
+Dostupni dodatci za "OI Menadžer Datoteka": 
+* Prikaži informacije licence sa "OI About":
+
+Aplikacije koje rade sa "OI Menadžer Datoteka": 
+* Otvori i čuvaj tesktualne datoteke u "OI Blokčiću".
+
+Ključne riječi: 
+* file manager, filemanager, file explorer, menadžer datoteka, fajlovi
+* OI, IO, OpenIntents, Open Intents
+
+Internacionalna verzija: 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Tiedostonhallinta, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+
+
+Pretraži tekst na Marketu: 
+* uses OI About
+* extension for OI Notepad
+

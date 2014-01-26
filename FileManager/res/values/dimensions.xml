@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="topBar_height">48dp</dimen>
+    <dimen name="topBar_height_big">56dp</dimen>
+
+    <!-- Side margins for file list -->
+    <dimen name="list_margin">8dp</dimen>
+    <dimen name="list_margin_big">32dp</dimen>
+    <dimen name="list_margin_huge">56dp</dimen>
+</resources>

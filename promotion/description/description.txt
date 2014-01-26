@@ -1,0 +1,48 @@
+# OI File Manager
+#
+# Application name and promo text are extracted from the application strings.
+#
+# (Put each sentence in a separate line. Each sentence is translated separately)
+#
+# Description of application
+OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files.
+It also acts as an extension to other applications to display "Open" and "Save" dialogs.
+
+This application is ad free and does not require the internet permission.
+
+For the complete list of changes and a list of frequently asked questions, please visit:
+http://www.openintents.org
+
+You can help to improve the translation into your language at Launchpad:
+https://translations.launchpad.net/openintents/trunk
+
+The source code of this free and open source application is available at:
+http://code.google.com/p/openintents
+
+Features:
+* Show list of files with thumbnails for images.
+* Move, copy, rename, and delete files.
+* Create and delete directories (folders).
+* Send files by email.
+* Acts as an extension to other applications, like GMail, to attach files.
+* Support for many file endings and mime types.
+* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+
+Available extensions for "OI File Manager":
+* Show the license information with "OI About".
+
+Applications that work with "OI File Manager":
+* Open and save text files in "OI Notepad".
+
+Keywords:
+# Keywords: List several related key words and variations in your language and in English that people might search for.
+* file manager, filemanager, file explorer
+# Keep these keywords untranslated, or list the English version and a translation of the company name into your language in variations that people might search for.
+* OI, IO, OpenIntents, Open Intents
+
+International versions:
+#$ international
+
+Search strings for Market:
+# (these are not translated into other languages)
+#$ include description_extensions.txt

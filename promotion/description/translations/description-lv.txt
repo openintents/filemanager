@@ -1,0 +1,47 @@
+# Application:
+OI Failu pārvaldnieks
+
+# Promo text:
+Pārvaldiet failus SD kartē ar OI Failu pārvaldnieku.
+
+# Description:
+OI Failu pārvaldnieks ļauj pārlūkot Jūsu SD karti, izveidot failu katalogus, pārsaukt, kopēt, pārvietot un izdzēst failus. Tas darbojas arī kā paplašinājums citām aplikācijām, lai parādītu "Open" un "Save" dialogus. 
+
+Šī aplikācija ir bezmaksas un tai nevajag interneta atļauju. 
+
+Lai skatītu pilnīgu izmaiņu sarakstu un sarakstu ar biežāk uzdotajiem jautājumiem, lūdzu apmeklējiet: 
+http://www.openintents.org
+
+Jūs varat palīdzēt uzlabot tulkojumu savā valodā izmantojot Launchpad: 
+https://translations.launchpad.net/openintents/trunk
+
+Pirmkods ir bezmaksas un atvērtā pirmkoda aplikācija ir pieejama: 
+http://code.google.com/p/openintents
+
+Funkcijas: 
+* Parāda failu sarakstu ar sīktēliem kā attēliem.
+* Pārvietojiet, kopējiet, pārsauciet un izdzēšiet failus.
+* Izveidojiet un izdzēsiet failu katalogus (mapes).
+* Sūtiet failus ar e-pastu.
+* Darbojas kā paplašinājums citām aplikācijām kā GMail, lai pievienotu failus.
+* Atbalsta daudzus failu nobeigumus un mime veidus.
+* Atbalsta PICK_FILE un PICK_DIRECTORY darbības, tādējādi citas aplikācijas var izmantot OI Failu pārvaldnieku.
+
+Pieejamie paplašinājumi "OI Failu pārvaldnieks": 
+* Parādīt licenzes informāciju ar "OI Paskaidrojumi".
+
+Aplikācijas, kuras strādā ar "OI Failu pārvaldnieks": 
+* Atveriet un saglabājiet teksta failus ar "OI Piezīmju bloku".
+
+Atslēgvārdi: 
+* failu pārvaldnieks, failu pārlūks, file manager, filemanager, file explorer
+* OI, IO, OpenIntents, Open Intents
+
+Starptautiskās versijas: 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Tiedostonhallinta, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+
+
+Meklēt rindiņas tirgum: 
+* uses OI About
+* extension for OI Notepad
+

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+<resources>
+	<!-- ***************************
+	     About information
+	     *************************** -->
+	
+	<!-- Automatically filled in by Launchpad: -->
+	<string name="about_translators">Launchpad Contributions:
+  CSro https://launchpad.net/~choongsan
+  Jihyeok Seo https://launchpad.net/~limeburst
+  Sun Ha Woo http://www.linkedin.com/profile/view?id=225381452
+  OpenIntents devs https://launchpad.net/~openintents-devs</string>
+	
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">OI 파일 관리자로 SD 카드에있는 파일을 관리하세요.</string>
+	
+	<!-- ****************************
+	     Application-specific strings
+	     **************************** -->
+	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI 파일 관리자</string>
+    
+    <string name="menu_delete">삭제</string>
+    <string name="menu_rename">이름 변경</string>
+    <string name="menu_send">보내기</string>
+    <string name="menu_open">열기</string>
+    <string name="menu_move">잘라 내기</string>
+    <string name="menu_copy">복사</string>
+    <string name="menu_details">자세히</string>
+    <string name="menu_more">더 보기</string>
+    <string name="menu_compress">압축 (ZIP)</string>
+    <string name="menu_extract">압축풀기 (ZIP)</string>
+    <string name="menu_include_in_media_scan">미디어 검색에 포함하기</string>
+    <string name="menu_exclude_from_media_scan">미디어 검색에서 제외하기</string>
+    <string name="menu_bookmark">북마크</string>
+    
+    <string name="create_new_folder">새 폴더 생성</string>
+    <string name="folder_name">폴더 이름</string>
+    <string name="this_folder_is_empty">폴더가 비어 있습니다.</string>
+    <string name="really_delete">%s 을(를) 삭제하시겠습니까?</string>
+    <string name="title_warning_some_may_not_work">주의</string>
+    <string name="warning_some_may_not_work">다음 옵션 중 몇가지는 작동하지 않을 수도 있습니다.</string>
+    <string name="show_warning_again">경고 다시 보기</string>
+    
+    <!-- Strings for a multi select feature -->
+    <string name="really_delete_multiselect">%d 개 파일을 삭제하시겠습니까?</string>
+    
+    <string name="multiselect_title">여러 파일 선택</string>
+    <string name="pick_title">파일 선택기</string>
+
+    <!-- Strings for details table -->
+    <string name="details_type">종류</string>
+    <string name="details_type_folder">폴더</string>
+    <string name="details_type_file">파일</string>
+    <string name="details_type_other">기타</string>
+    <string name="details_size">용량</string>
+    <string name="details_permissions">권한</string>
+    <string name="details_hidden">숨겨짐</string>
+    <string name="details_lastmodified">최종 수정됨</string>
+    <string name="details_yes">네</string>
+    <string name="details_no">아니오</string>
+    
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">%s의 복사</string>
+    
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">%2$s의 복사본 %1$d</string>
+
+    <string name="media_scan_included">다음 미디어 검색 대상에 이 폴더가 추가됩니다.</string>
+    <string name="media_scan_excluded">다음 미디어 검색 대상에서 이 폴더가 제외됩니다.</string>
+
+    <string name="error_generic">오류가 발생하였습니다!</string>
+    <string name="error_media_scan">미디어 검색 설정을 바꾸는 데 실패하였습니다.</string>
+
+    <string name="send_not_available">보낼 수 있는 앱이 없습니다.</string>
+
+    <string name="application_not_available">사용 가능한 앱이 없습니다.</string>
+    <!-- ***************************
+	 Preferences
+	 *************************** -->
+    <!-- Menu item for Settings -->
+    <string name="settings">설정</string>
+
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">고급 기능</string>
+    <string name="preference_mediascan_title">미디어 검색에서 제외하기</string>
+    <string name="preference_mediascan_summary_on">미디어 검색 대상에서 폴더를 제외하기 위한 메뉴 항목 보이기.</string>
+    <string name="preference_mediascan_summary_off">미디어 검색 대상에서 폴더를 제외하기 위한 메뉴 항목 숨기기.</string>
+    <string name="preference_showallwarning_title">모든 경고 보기</string>
+    <string name="preference_showallwarning_summary_on">모든 경고 메시지 보기</string>
+    <string name="preference_showallwarning_summary_off">경고 메시지 보이지 않기</string>
+    <string name="preference_displayhiddenfiles_title">숨겨진 파일 보이기</string>
+    <string name="preference_displayhiddenfiles_summary_on">숨겨진 파일 보이기</string>
+    <string name="preference_displayhiddenfiles_summary_off">숨겨진 파일 보이지 않기</string>
+    <string name="preference_sort_settings">정렬 설정</string>
+    <string name="preference_sortby">정렬 기준</string>
+    <string name="preference_sortby_ascending">오름차순</string>
+    <string name="preference_sortby_ascending_summary_on">오름차순으로 정렬하기</string>
+    <string name="preference_sortby_ascending_summary_off">내림차순으로 정렬하기</string>
+    <string-array name="preference_sortby_names">
+        <item>이름</item>
+        <item>용량</item>
+        <item>마지막으로 수정됨</item>
+        <item>파일 포맷</item>
+    </string-array>
+
+    <string name="preference_usedarktheme_title">어두운 테마를 사용하기(응용 프로그램을 다시 시작해야 합니다.)</string>
+    <string name="preference_usedarktheme_summary_on"> 어두운 테마를 선택하셨습니다.</string>
+    <string name="preference_usedarktheme_summary_off">밝은 테미를 선택하셨습니다.</string>
+
+    <!-- ***************************
+   		 Strings for the 'Save as' feature
+    	 *************************** -->
+    <string name="saveas_no_file_picked">파일을 선택하지 않았습니다.</string>
+    <string name="saveas_error">오류가 발생하였습니다.</string>
+    <string name="saveas_file_saved">파일을 성공적으로 저장하였습니다!</string>
+
+    <!-- ***************************
+             Strings for the 'Compressing' and 'Extracting' feature
+          *************************** -->
+    <string name="compressing_success">항목 대상이 성공적으로 압축 되었습니다.</string>
+    <string name="compressing_error">압축하는데 실패하였습니다.</string>
+    <string name="extracting_success">항목 대상이 성공적으로 압축 해제 되었습니다.</string>
+    <string name="extracting_error">압축을 푸는데에 실페하였습니다.</string>
+    <string name="extracting">압축 푸는 중…</string>
+    <string name="compressing">압축하는 중…</string>
+
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">북마크</string>
+    <string name="menu_search">검색</string>
+    <string name="menu_create_folder">폴더 만들기</string>
+    <string name="menu_paste">붙여 넣기</string>
+    <string name="menu_multiselect">멀티 선택</string>
+    <string name="menu_settings">설정</string>
+
+    <string name="menu_send">보내기</string>
+    <string name="menu_delete">삭제</string>
+    <string name="menu_move">Cut</string>
+    <string name="menu_copy">복사</string>
+    <string name="menu_compress">압축</string>
+    <string name="menu_rename">이름 변경</string>
+    <string name="menu_extract">압축풀기</string>
+    <string name="menu_details">자세히</string>
+    <string name="menu_create_shortcut">바로가기 만들기</string>
+    <string name="send_chooser_title">다음을 사용하여 전송하기:</string>
+    <string name="menu_check_all">모두 선택하기</string>
+    <string name="menu_uncheck_all">모든선택 취소하기</string>
+
+    <!-- Multi selection action strings -->
+    <string name="selected">선택됨</string>
+    <string name="no_selection">아무 항목도 선택되지 않았습니다.</string>
+    <string name="bookmark_empty">북마크가 추가되지 않습니다.</string>
+    <string name="bookmark_added">북마크가 추가되었습니다.</string>
+    <string name="bookmark_already_exists">이 파일은 이미 북마크 되어 있습니다.</string>
+    <string name="bookmarks">북마크</string>
+
+    <!-- Search related -->
+    <string name="search_hint">파일 검색</string>
+    <string name="query_error">쿼리 오류</string>
+    <string name="search_settings_descr">보관된 파일 및 폴더</string>
+    <string name="preference_search_title">기록 삭제</string>
+    <string name="preference_search_category">검색</string>
+    <string name="preference_search_dialog_message">검색 기록을 삭제 하시겠습니까?</string>
+    <string name="search_history_cleared">검색 기록이 삭제 되었습니다.</string>
+
+    <!-- icon content description -->
+    <string name="item_icon">항목 아이콘</string>
+
+    <!-- list layout -->
+    <string name="scanning">스캐닝…</string>
+
+    <!-- Dialogs -->
+    <string name="delete_success">성공적으로 삭제되었습니다.</string>
+    <string name="delete_failure">일부 파일이 삭제되지 않았습니다.</string>
+    <string name="deleting">삭제중…</string>
+    <string name="rename_success">성공적으로 이름이 변경되었습니다.</string>
+    <string name="rename_failure">이름을 바꿀 수 없었습니다.</string>
+    <string name="loading">여는중…</string>
+    <string name="create_dir_success">성공적으로 디렉토리를 만들었습니다.</string>
+    <string name="create_dir_failure">디렉토리를 만들수 없었습니다.</string>
+    <string name="compressed_file_name">압축 파일이름</string>
+    <string name="file_exists">파일이 존재합니다.</string>
+    <string name="overwrite_question">기존 파일을 덮어 쓰시겠습니까?</string>
+    <string name="directory_pick">현재 디렉토리를 선택해 주세요.</string>
+    <string name="filename_hint">파일 이름</string>
+    <string name="choose_filename">파일 이름은 비워 둘 수 없습니다!</string>
+    <string name="pick_button_default">파일을 선택해 주세요.</string>
+
+    <!-- CopyHelper statuses -->
+    <string name="copying">복사중…</string>
+    <string name="copied">성공적으로 복사되었습니다.</string>
+    <string name="copy_error">일부 또는 모든 항목이 복사 되지 않았습니다!</string>
+    <string name="moving">이동중…</string>
+    <string name="moved">성공적으로 이동되었습니다.</string>
+    <string name="move_error">일부 또는 모든 항목이 이동 되지 않았습니다!</string>
+    <string name="nothing_to_paste">붙여 넣을게 없습니다. 먼저 파일을 복사 또는 잘라 내어 주세요.</string>
+</resources>

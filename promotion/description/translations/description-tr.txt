@@ -1,0 +1,47 @@
+# Application:
+OI Dosya Yöneticisi
+
+# Promo text:
+Manage files on the SD card with OI File Manager.
+
+# Description:
+OI Dosya Yöneticisi, yeniden adlandırma, kopyalama, taşıma, dizinler oluşturma ,SD karta göz atma ve dosyaları silmenizi sağlar. O "Aç" ve "Kaydet" diyaloglarını göstermek için diğer uygulamalara bir ek gibi davranır. 
+
+Bu uygulama ücretsiz reklamdır ve internet izni gerektirmez. 
+
+Değişiklikler ve sık sorulan sorular listesini tamamlamak için lütfen şurayı ziyaret edin: 
+http://www.openintents.org
+
+Launchpad'te dilinize çevirileri geliştirmek için yardım edebilirsiniz: 
+https://translations.launchpad.net/openintents/trunk
+
+Bunun kaynak kodu ücretsizdir ve açık kaynak uygulamalarına şuradan ulaşabilirsiniz: 
+http://code.google.com/p/openintents
+
+Özellikler: 
+* Listeyi resimler için küçük resim ekleyerek göster.
+* Dosyaları taşı, kopyala, yeniden adlandır ve sil.
+* Dizinleri (dosyaları) oluştur ve sil.
+* Dosyaları email ile gönder.
+* Dosya eklemek için GMail gibi diğer uygulamalara eklenti gibi davranır.
+* Bir çok dosya ve mime tipi desteği.
+* PICK_FILE ve PICK_DIRECTORY amaçlarını destekler, bu sayede diğer uygulamalar OI Dosya Yönetici'yi kullanabilir.
+
+"OI File Manager" için uygun eklentiler: 
+* "OI About" ile lisans bilgilerini görüntüle.
+
+"OI File Manager" ile birlikte çalışan uygulamalar: 
+* "OI Notepad" içinde metin dosyalarını açma ve kaydetme.
+
+Anahtar kelimeler: 
+* dosya yönetici, dosyayönetici, dosya araştırıcı
+* OI, IO, OpenIntents, Open Intents
+
+Uluslararası versiyonlar: 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Tiedostonhallinta, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+
+
+Market için arama metinleri: 
+* uses OI About
+* extension for OI Notepad
+

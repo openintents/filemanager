@@ -1,0 +1,43 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- We use this theme to be consistent across OEM themes. -->
+    <style name="Theme.Light.DarkTitle" parent="@android:style/Theme.Light">
+        <item name="android:windowTitleBackgroundStyle">@style/TitleBackgroundStyle</item>
+        <item name="android:windowTitleStyle">@style/WindowTitleStyle</item>
+        <item name="android:windowTitleSize">30dp</item>
+        
+        <item name="android:editTextBackground">@drawable/bg_textfield_light</item>
+        <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>
+        <item name="pathBarBackground">@drawable/bg_pathbar_light</item>
+        <item name="topBarBackground">@drawable/bg_top_bar_light</item>
+        <item name="listBackground">@drawable/list_background_light</item>
+    </style>
+    
+    <style name="TitleBackgroundStyle">
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:background">@drawable/ab_solid_dark_holo</item>
+    </style>
+    
+    <style name="WindowTitleStyle">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.WindowTitle</item>
+        <item name="android:shadowColor">#BB000000</item>
+        <item name="android:shadowRadius">2.75</item>
+    </style>
+    
+    <!-- Black theme -->
+    <style name="Theme.Dark" parent="@android:style/Theme.Black">
+        <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>
+        <item name="pathBarBackground">@drawable/bg_top_bar_dark</item>
+        <item name="topBarBackground">@drawable/bg_top_bar_dark</item>
+    </style>
+    
+    <!-- Last attribute based on this blog post: http://android.cyrilmottier.com/?p=873 -->
+    <style name="Theme.Launch" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+		<item name="android:windowDisablePreview">true</item>
+        <item name="listBackground">@drawable/list_background_dark</item>
+    </style>
+</resources>

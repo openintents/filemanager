@@ -1,0 +1,47 @@
+# Application:
+Gestor de fitxers d'OI.
+
+# Promo text:
+Manage files on the SD card with OI File Manager.
+
+# Description:
+El gestor de fitxers d'OI et permet navegar per la teva targeta SD, crear directoris, reanomenar, moure i esborrar fitxers. També actua com a extensió a altres aplicacions per mostrar diàlegs "Obre" i "Desa". 
+
+Aquesta aplicació no té anuncis i no necessita permisos a Internet. 
+
+Per a una llista sencera de canvis i una llista de preguntes més freqüents, vegeu: 
+http://www.openintents.org
+
+Podeu ajudar a millorar la traducció al vostre idioma a Launchpad 
+https://translations.launchpad.net/openintents/trunk
+
+El codi font d'això és lliure i l'aplicació de codi obert està disponible a: 
+http://code.google.com/p/openintents
+
+Característiques 
+* Mostra una llista de fitxers amb previsualitzacions d'imatges.
+* Mou, copia, reanomena i esborra fitxers.
+* Crea i esborra directoris (carpetes).
+* Envia fitxers per correu electrònic.
+* Actua com a extensió a altres aplicacions, com el GMail, per adjuntar fitxers.
+* Suporta moltes extensions de fitxer i tipus mime.
+* Suporta els intents PICK_FILE I PICK_DIRECTORY per tal que altres aplicacions puguin utilitzar el gestor de fitxers d'OI.
+
+Extensions disponibles per al gestor de fitxers d'OI: 
+* Mostra informació de llicència amb "OI Quant a"
+
+Aplicacions que funcionen amb el "gestor de fitxers d'OI": 
+* Obre i desa fitxers de text amb el "bloc de notes d'OI".
+
+Paraules clau: 
+* gestor de fitxers, explorador de fitxers, explorador
+* OI, IO, OpenIntents, Open Intents
+
+Versions internacionals: 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Tiedostonhallinta, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+
+
+Cerca cadenes al Mercat: 
+* uses OI About
+* extension for OI Notepad
+

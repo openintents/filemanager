@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<project name="FileManager" default="help">
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     If Eclipse does not let you build the project because
+     it claims the "help" target above does not exist,
+     go to Window->preferences->Ant->Editor->Problems tab
+     and add "build.xml" to the ignore list.
+     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-->
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     NOTE: In order for the jar files in the libs folder to
+     be properly imported, this build script requires
+     Ant 1.8 or higher.
+     Download Apache-Ant 1.8 and in Eclipse set
+     Window > Preferences > Ant > Runtime > Ant Home...
+     to the new Ant path.
+     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-->
+
+<!-- #############################################
+     Import tasks from common build script.
+     ############################################# -->
+
+    <!-- Private build properties are not shared via svn, 
+         developers must have their own copy. -->	 
+    <property file="build-private.properties" />
+
+	<!-- Root directory of all OpenIntents files. -->
+	<property name="source.base" value="." />
+
+	<!-- Path for common ant script. -->
+    <property name="build.common.dir" value="${source.base}/../../distribution/ant" />
+
+	<!-- All definitions are imported from a central location -->
+	<import file="${build.common.dir}/build_common.xml" />
+
+	<target name="-pre-build">
+    	<exec executable="${ndk.dir}/ndk-build.cmd" failonerror="true"/>
+	</target>
+	
+</project>

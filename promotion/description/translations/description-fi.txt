@@ -1,0 +1,47 @@
+# Application:
+OI Tiedostonhallinta
+
+# Promo text:
+Hallinnoi SD-kortin tiedostoja OI Tiedostonhallinnalla.
+
+# Description:
+OI File Managerin avulla voit selata SD-kortti, luoda hakemistoja, nimetä uudelleen, kopioida, siirtää ja poistaa tiedostoja. Se toimii myös laajentamista muihin sovelluksiin näyttämään "Avaa" ja "Save" valintaikkunoissa. 
+
+Tässä ohjelmassa EI OLE mainoksia ja ei vaadi internetyhteyttä ja -lupaa. 
+
+Täydellinen luettelo muutoksista ja lista usein kysytyistä kysymyksistä on saatavilla osoitteessa: 
+http://www.openintents.org
+
+Voit auttaa parantamaan käännöksiä omalle kielellesi Launchpadissa: 
+https://translations.launchpad.net/openintents/trunk
+
+Tämän ilmaisen ja avoimen lähdekoodin ohjelman lähdekoodi on saatavilla osoitteesta: 
+http://code.google.com/p/openintents
+
+Ominaisuudet: 
+* Show list of files with thumbnails for images.
+* Move, copy, rename, and delete files.
+* Create and delete directories (folders).
+* Send files by email.
+* Acts as an extension to other applications, like GMail, to attach files.
+* Support for many file endings and mime types.
+* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+
+Available extensions for "OI File Manager": 
+* Show the license information with "OI About".
+
+Applications that work with "OI File Manager": 
+* Open and save text files in "OI Notepad".
+
+Avainsanat: 
+* file manager, filemanager, file explorer
+* OI, IO, OpenIntents, Open Intents
+
+Kansainvälinen versiot: 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Tiedostonhallinta, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+
+
+Etsintä jousille Markkinoiden: 
+* uses OI About
+* extension for OI Notepad
+

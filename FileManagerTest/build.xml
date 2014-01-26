@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="FileManagerTest" default="help">
+	<!--
+		#############################################
+		Import tasks from common build script.
+		############################################# -->
+
+	<!-- Private build properties are not shared via svn, 
+		developers must have their own copy. -->
+	<property file="build-private.properties" />
+
+	<!-- Root directory of all OpenIntents files. -->
+	<property name="source.base" value="../.." />
+
+	<!-- Path for common ant script. -->
+	<property name="build.common.dir" value="${source.base}/distribution/ant" />
+
+	<!-- All definitions are imported from a central location -->
+	<import file="${build.common.dir}/test_build_common.xml" />
+</project>

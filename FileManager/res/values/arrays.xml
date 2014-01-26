@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><resources/>
+
+	<!-- NOTICE: 
+	
+	* There are no arrays in here.
+	
+	* All arrays have been moved either to strings.xml
+	  (if they should be translated)
+	  
+	* Or to strings_not_for_translation.xml
+	  (if they should not be translated)
+	
+	 -->

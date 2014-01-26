@@ -1,0 +1,47 @@
+# Application:
+OI Bestandsbeheer
+
+# Promo text:
+Beheer uw bestanden op een SD kaart met OI File Manager
+
+# Description:
+OI File Manager biedt de mogelijkheid om de inhoud van de SD kaart te doorzoeken, directory's aan te maken, en bestanden te hernoemen, kopiëren, verplaatsen en te verwijderen. Wordt als extensie gebuikt door andere programma's, om de dialoogboxen "open" en "save" te tonen, 
+
+Deze applicatie is advertentievrij, en heeft geen internet toegang nodig. 
+
+Het complete overzicht van wijzigingen en de FAQ is te lezen op: 
+http://www.openintents.org
+
+Jij kan helpen om de vertaling in je eigen taal te verbeteren via Launchpad: 
+https://translations.launchpad.net/openintents/trunk
+
+De broncode van deze gratis en open source applicatie is beschikbaar op: 
+http://code.google.com/p/openintents
+
+Eigenschappen: 
+* Toon een lijst van bestanden met thumbnails voor foto's.
+* Verplaats, kopieer, hernoem en verwijder bestanden.
+* Maak en verwijder directories
+* Verstuur bestanden via email
+* Wordt als extensie gebuikt door andere programma's zoals GMail, om bestanden toe te kunnen voegen.
+* Ondersteunt vele bestandsformaten en mime types.
+* Ondersteunt PICK_FILE en PICK_DIRECTORY intents, waardoor andere programma's OI File Manager ook kunnen gebruiken.
+
+Beschikbare extensies voor "OI File Manager" 
+* Toon licentie-informatie met OI About
+
+Applicaties die werken met "OI File Manager" 
+* Open en bewaar tekstbestanden in "OI Notepad"
+
+Sleutelwoorden: 
+* Copy text 	 file manager, filemanager, file explorer
+* OI, IO, OpenIntents, Open Intents
+
+Internationale versies 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Tiedostonhallinta, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+
+
+Zoektekst voor Market: 
+* uses OI About
+* extension for OI Notepad
+

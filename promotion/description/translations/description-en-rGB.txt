@@ -1,0 +1,47 @@
+# Application:
+OI File Manager
+
+# Promo text:
+Manage files on the SD card with OI File Manager.
+
+# Description:
+OI File Manager allows you to browse your SD card, create directories, rename, copy, move, and delete files. It also acts as an extension to other applications to display "Open" and "Save" dialogs. 
+
+This application is ad free and does not require the internet permission. 
+
+For the complete list of changes and a list of frequently asked questions, please visit: 
+http://www.openintents.org
+
+You can help to improve the translation into your language at Launchpad: 
+https://translations.launchpad.net/openintents/trunk
+
+The source code of this free and open source application is available at: 
+http://code.google.com/p/openintents
+
+Features: 
+* Show list of files with thumbnails for images.
+* Move, copy, rename, and delete files.
+* Create and delete directories (folders).
+* Send files by email.
+* Acts as an extension to other applications, like GMail, to attach files.
+* Support for many file endings and mime types.
+* Supports PICK_FILE and PICK_DIRECTORY intents so that other applications can use OI File Manager.
+
+Available extensions for "OI File Manager": 
+* Show the licence information with "OI About".
+
+Applications that work with "OI File Manager": 
+* Open and save text files in "OI Notepad".
+
+Keywords: 
+* file manager, filemanager, file explorer
+* OI, IO, OpenIntents, Open Intents
+
+International versions: 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Tiedostonhallinta, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+
+
+Search strings for Market: 
+* uses OI About
+* extension for OI Notepad
+

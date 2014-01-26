@@ -1,0 +1,47 @@
+# Application:
+OI Správca Súborov
+
+# Promo text:
+Spravujte súbory na SD karte s OI Správca Súborov.
+
+# Description:
+OI Správca Súborov Vám umožňuje prechádzať Vašu SD kartu, vytvárať adresáre, premenovávať, kopírovať, presúvať a mazať súbory. Tiež sa správa ako rozšírenie iných aplikácií na zobrazovanie dialógových okien "Otvoriť" a "Uložiť " . 
+
+Táto aplikácia neobsahuje reklamy a nepotrebuje povolenie na používanie internetu. 
+
+Pre úplný zoznam zmien a zoznam často kladených otázok, navštívte prosím: 
+http://www.openintents.org
+
+Môžete pomôcť zlepšit preklad do vášho jazyka na Launchpad-e: 
+https://translations.launchpad.net/openintents/trunk
+
+Zdrojový kód tejto neplatenej a voľne prístupnej aplikácie je dostupný na: 
+http://code.google.com/p/openintents
+
+Vlastnosti: 
+* Zobraz zoznam súborov s náhľadmi pre obrázky.
+* Presúvanie, kopírovanie, premenovávanie a mazanie súborov.
+* Vytváranie a mazanie adresárov (priečinkov).
+* Poslať súbory e-mailom.
+* Správa sa ako rozšírenie pre iné aplikácie, ako GMail, na pripínanie súborov.
+* Podpora pre mnohé prípony súborov a typy MIME.
+* Podporuje významy PICK_FILE a PICK_DIRECTORY, čiže iné aplikácie môžu používať OI Správcu Súborov.
+
+Dostupné rozšírenia pre "OI Správca Súborov": 
+* Zobraziť informácie o licencií s "OI About".
+
+Aplikácie ktoré pracujú s "OI Správca Súborov": 
+* Otvoriť a uložiť textové súbory v "OI Poznámkový blok".
+
+Kľúčové slová 
+* správca súborov, spravca suborov, prehliadač súborov, prehliadac suborov, file manager, filemanager, file explorer
+* OI, IO, OpenIntents, Open Intents, openintents, openIntents, Openintents
+
+Medzinárodné verzie: 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Tiedostonhallinta, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+
+
+Vyhľadávanie reťazcov pre Obchod: 
+* uses OI About
+* extension for OI Notepad
+

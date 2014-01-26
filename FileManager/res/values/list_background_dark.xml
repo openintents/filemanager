@@ -1,0 +1,3 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<item name="list_background_dark" type="drawable">@null</item>
+</resources>

@@ -1,0 +1,47 @@
+# Application:
+OI ファイルマネージャー
+
+# Promo text:
+OI ファイルマネージャーで SDカードのファイルを管理します。
+
+# Description:
+OI ファイルマネージャーでSD カードを閲覧したり、ディレクトリの作成・変更・コピー・移動・削除ができます。 また"開く" と "保存" ダイアログをほかのアプリケーションに表示する拡張機能のようにも動作します。 
+
+このアプリケーションは広告を含まず、インターネット許可を必要としません。 
+
+すべての変更リストや質問リストを見るには： 
+http://www.openintents.org
+
+あなたもこの言語の翻訳を Launchpad で改善することができます： 
+https://translations.launchpad.net/openintents/trunk
+
+この無料でオープンソースのアプリケーションのソースコードは以下の場所から取得できます： 
+http://code.google.com/p/openintents
+
+機能： 
+* ファイルの画像用のサムネイルのリストを表示する。
+* ファイルの移動・コピー・削除。
+* ディレクトリ (フォルダー) の作成・削除
+* ファイルをメールで送る
+* GMail などの他のアプリケーションにファイルを添付する拡張機能のようにも動作します。
+* 様々なファイルエンディングとMIMEタイプ のサポート。
+* 他のアプリケーションが OI ファイルマネージャーを使用できるように PICK_FILE と PICK_DIRECTORY インテントをサポートしています。
+
+"OI ファイルマネージャー" の利用可能な拡張子： 
+* "OI 情報" のライセンス情報を表示する。
+
+"OI ファイルマネージャー" と動作するアプリケーション： 
+* "OI メモ帳" でテキストファイルを開く・保存する。
+
+キーワード: 
+* ファイルマネージャ、ファイル・マネージャー、ファイル マネージャー
+* OI, IO, OpenIntents, Open Intents
+
+国際バージョン： 
+Gestor de fitxers d'OI., OI Bestandsbeheer, OI Dateimanager, OI Dosya Yöneticisi, OI Failu pārvaldnieks, OI Fajl Meneger, OI Filbehandler, OI File Manager, OI File Manedyer, OI Fájlkezelő, OI Gestore File, OI Menedżer plików, OI Správca Súborov, OI Správce souborů, OI Tiedostonhallinta, OI Διαχειριστής Αρχείων, OI Файл-мэнэджар, OI Файлов Мениджър, OI مدير پرونده‌, OI ھۆججەت باشقۇرغۇچ, OI फ़ाइल प्रबंधक, OI ਫਾਇਲ ਮੈਨਿਜਰ, OI ແຟ້ມ ບໍລີຫານ, OI ファイルマネージャー, OI 파일 관리자, OI文件管理器, מנהל קבצים OI, مدير الملفات OI, 檔案總管
+
+
+マーケット用に文字列を検索： 
+* uses OI About
+* extension for OI Notepad
+

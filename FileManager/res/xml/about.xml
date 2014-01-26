@@ -1,0 +1,13 @@
+<about xmlns:oi="http://schemas.openintents.org/android/about">
+	<oi:comments oi:value="@string/about_comments" />
+	<oi:copyright oi:value="@string/about_copyright" />
+	<oi:authors oi:resource="@array/about_authors" />
+	<oi:documenters oi:resource="@array/about_documenters" />
+	<oi:translators oi:resource="@string/about_translators" />
+	<oi:artists oi:resource="@array/about_artists" />
+	<oi:website-label oi:value="@string/app_name" />
+	<oi:website-url oi:value="@string/about_website_url" />
+	<oi:license oi:resource="@raw/license_short" />
+	<oi:email oi:value="@string/about_email" />
+	<oi:recent-changes oi:resource="@raw/recent_changes" />
+</about>

@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <org.openintents.filemanager.view.PathBar
+        android:id="@+id/pathbar"
+        android:background="?org.openintents.filemanager:attr/pathBarBackground"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topBar_height" >
+    </org.openintents.filemanager.view.PathBar>
+
+    <include layout="@layout/filelist"/>
+    
+</LinearLayout>

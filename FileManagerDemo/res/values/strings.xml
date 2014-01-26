@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OI File Manager Demo</string>
+    <string name="no_filemanager_installed">No compatible file manager found</string>
+    <string name="file_name">File name</string>
+    <string name="open_title">Select file to open</string>
+    <string name="open_button">Open</string>
+    <string name="save_title">Select file to save</string>
+    <string name="save_button">Save</string>
+    <string name="pick_directory_title">Select a folder</string>
+    <string name="pick_directory_button">Use this folder</string>
+    <string name="get_content_title">Open using GET_CONTENT</string>
+    <string name="get_content_info">Display name: %1$s, File size: %2$s</string>
+    <string name="open_uri_button">Open URI</string>
+</resources>

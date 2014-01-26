@@ -48,7 +48,7 @@
 	
 	<!-- Text types -->
 	<type extension=".txt" mimetype="text/plain" icon="@drawable/ic_launcher_text_plain" />
-	<type extension=".csv" mimetype="text/comma-separated-values" icon="@drawable/ic_launcher_text_csv" />
+	<type extension=".csv" mimetype="text/csv" icon="@drawable/ic_launcher_text_csv" />
 	<type extension=".xml" mimetype="text/xml" icon="@drawable/ic_launcher_text_xml" />
 	
 	<!-- Android specific -->

@@ -16,17 +16,6 @@
 
 package org.openintents.filemanager;
 
-import java.io.File;
-
-import org.openintents.filemanager.bookmarks.BookmarkListActivity;
-import org.openintents.filemanager.compatibility.HomeIconHelper;
-import org.openintents.filemanager.files.FileHolder;
-import org.openintents.filemanager.lists.SimpleFileListFragment;
-import org.openintents.filemanager.util.FileUtils;
-import org.openintents.filemanager.util.UIUtils;
-import org.openintents.intents.FileManagerIntents;
-import org.openintents.util.MenuIntentOptionsWithIcons;
-
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
@@ -38,6 +27,17 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import java.io.File;
+
+import org.openintents.filemanager.bookmarks.BookmarkListActivity;
+import org.openintents.filemanager.compatibility.HomeIconHelper;
+import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.lists.SimpleFileListFragment;
+import org.openintents.filemanager.util.FileUtils;
+import org.openintents.filemanager.util.UIUtils;
+import org.openintents.intents.FileManagerIntents;
+import org.openintents.util.MenuIntentOptionsWithIcons;
 
 public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	private static final String FRAGMENT_TAG = "ListFragment";
@@ -61,7 +61,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		if(data == null)
 			return null;
 		
-		if(data.isFile()){
+		if(data.isFile() && ! getIntent().getBooleanExtra(FileManagerIntents.EXTRA_FROM_OI_FILEMANAGER, false)){
 			FileUtils.openFile(new FileHolder(data, this), this);
 			finish();
 			return null;

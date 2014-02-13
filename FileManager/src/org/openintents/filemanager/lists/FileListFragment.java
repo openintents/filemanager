@@ -1,18 +1,8 @@
 package org.openintents.filemanager.lists;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import org.openintents.filemanager.FileHolderListAdapter;
-import org.openintents.filemanager.R;
-import org.openintents.filemanager.files.DirectoryContents;
-import org.openintents.filemanager.files.DirectoryScanner;
-import org.openintents.filemanager.files.FileHolder;
-import org.openintents.filemanager.util.MimeTypes;
-import org.openintents.intents.FileManagerIntents;
-
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,7 +13,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import org.openintents.filemanager.FileHolderListAdapter;
+import org.openintents.filemanager.FileManagerApplication;
+import org.openintents.filemanager.R;
+import org.openintents.filemanager.compatibility.ActionbarRefreshHelper;
+import org.openintents.filemanager.files.DirectoryContents;
+import org.openintents.filemanager.files.DirectoryScanner;
+import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.util.CopyHelper;
+import org.openintents.filemanager.util.MimeTypes;
+import org.openintents.intents.FileManagerIntents;
 
 /**
  * A {@link ListFragment} that displays the contents of a directory.
@@ -73,8 +78,11 @@ public abstract class FileListFragment extends ListFragment {
 
 	private ViewFlipper mFlipper;
 	private File mCurrentDirectory;
+    private View mClipboardInfo;
+    private TextView mClipboardContent;
+    private TextView mClipboardAction;
 
-	@Override
+    @Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 
@@ -114,6 +122,19 @@ public abstract class FileListFragment extends ListFragment {
 
 		// Init flipper
 		mFlipper = (ViewFlipper) view.findViewById(R.id.flipper);
+        mClipboardInfo = view.findViewById(R.id.clipboard_info);
+        mClipboardContent = (TextView) view.findViewById(R.id.clipboard_content);
+        mClipboardAction = (TextView) view.findViewById(R.id.clipboard_action);
+        mClipboardAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((FileManagerApplication)getActivity().getApplication()).getCopyHelper().clear();
+                updateClipboardInfo();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                    ActionbarRefreshHelper.activity_invalidateOptionsMenu(getActivity());
+            }
+        });
 
 		// Get arguments
 		if (savedInstanceState == null) {
@@ -225,6 +246,7 @@ public abstract class FileListFragment extends ListFragment {
 						getListView().setSelection(0);					
 				}
 				setLoading(false);
+                updateClipboardInfo();
 				break;
 			case DirectoryScanner.MESSAGE_SET_PROGRESS:
 				// Irrelevant.
@@ -233,7 +255,24 @@ public abstract class FileListFragment extends ListFragment {
 		}
 	}
 
-	/**
+    public void updateClipboardInfo() {
+        CopyHelper copyHelper = ((FileManagerApplication) getActivity().getApplication()).getCopyHelper();
+        if (copyHelper.canPaste()){
+            mClipboardInfo.setVisibility(View.VISIBLE);
+            int count = copyHelper.getItemsCount();
+            if (CopyHelper.Operation.COPY.equals(copyHelper.getOperationType())) {
+                mClipboardContent.setText(getResources().getQuantityString(R.plurals.clipboard_info_items_to_copy, count, count));
+                mClipboardAction.setText(getString(R.string.clipboard_dismiss));
+            } else if (CopyHelper.Operation.CUT.equals(copyHelper.getOperationType())) {
+                mClipboardContent.setText(getResources().getQuantityString(R.plurals.clipboard_info_items_to_move, count, count));
+                mClipboardAction.setText(getString(R.string.clipboard_undo));
+            }
+        } else {
+            mClipboardInfo.setVisibility(View.GONE);
+        }
+    }
+
+    /**
 	 * Used to inform subclasses about loading state changing. Can be used to
 	 * make the ui indicate the loading state of the fragment.
 	 * 

@@ -6,44 +6,91 @@
     android:outAnimation="@anim/fade_out"
     android:isScrollContainer="true" >
 
-    <LinearLayout
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ProgressBar
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:indeterminate="true" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/scanning" />
+  </LinearLayout>
+
+  <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical" >
+        android:layout_height="match_parent">
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true" />
+    <FrameLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:id="@+id/list_container"
+          android:orientation="vertical"
+          android:gravity="center"
+      android:layout_above="@+id/clipboard_info">
+          <ListView
+              android:id="@android:id/list"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fastScrollEnabled="true"
+              android:layout_marginLeft="@dimen/list_margin"
+              android:layout_marginRight="@dimen/list_margin"
+              android:background="?attr/listBackground" >
+          </ListView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/scanning" />
-    </LinearLayout>
+          <TextView
+              android:id="@android:id/empty"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/this_folder_is_empty"
+              android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <LinearLayout
+    </FrameLayout>
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:padding="@dimen/list_margin"
+      android:orientation="horizontal"
+      android:id="@+id/clipboard_info"
+      android:background="?org.openintents.filemanager:attr/pathBarBackground">
+
+      <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center" >
+        android:layout_height="wrap_content"
+        android:id="@+id/clipboard_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/navbar_details"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/clipboard_separator"
+        android:layout_centerVertical="true" />
+      <TextView
+        android:layout_width="2dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/list_margin"
+        android:background="@color/navbar_details"
+        android:id="@+id/clipboard_separator"
+        android:layout_toLeftOf="@+id/clipboard_action"
+        android:layout_margin="@dimen/list_margin"
+        android:layout_centerVertical="true" />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clipboard_action"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/navbar_details"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:layout_centerVertical="true" />
+    </RelativeLayout>
 
-        <ListView
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fastScrollEnabled="true"
-            android:layout_marginLeft="@dimen/list_margin"
-            android:layout_marginRight="@dimen/list_margin"
-            android:background="?attr/listBackground" >
-        </ListView>
-
-        <TextView
-            android:id="@android:id/empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/this_folder_is_empty"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
+  </RelativeLayout>
 
 </ViewFlipper>

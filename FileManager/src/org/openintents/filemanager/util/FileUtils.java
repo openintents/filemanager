@@ -19,13 +19,19 @@ package org.openintents.filemanager.util;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.List;
 
+import org.openintents.filemanager.IntentFilterActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
+import org.openintents.intents.FileManagerIntents;
 
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.provider.MediaStore.Audio;
 import android.provider.MediaStore.Video;
@@ -351,7 +357,8 @@ public class FileUtils {
 		String type = fileholder.getMimeType();
 		
 		if ("*/*".equals(type)){
-			intent.setData(data);	
+			intent.setData(data);
+            intent.putExtra(FileManagerIntents.EXTRA_FROM_OI_FILEMANAGER, true);
 		} else {
 			intent.setDataAndType(data, type);
 		}
@@ -359,10 +366,18 @@ public class FileUtils {
 		
 
 		try {
-			c.startActivity(intent);
+            List<ResolveInfo> activities = c.getPackageManager().queryIntentActivities(intent, PackageManager.GET_ACTIVITIES);
+            if (activities.size() == 0 || (activities.size() == 1 && c.getApplicationInfo().packageName.equals(activities.get(0).activityInfo.packageName))){
+                Toast.makeText(c, R.string.application_not_available, Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                c.startActivity(intent);
+            }
 		} catch (ActivityNotFoundException e) {
 			Toast.makeText(c.getApplicationContext(), R.string.application_not_available, Toast.LENGTH_SHORT).show();
-		}
+		} catch (SecurityException e){
+            Toast.makeText(c.getApplicationContext(), R.string.application_not_available, Toast.LENGTH_SHORT).show();
+        }
 	}
 
 	public static String getNameWithoutExtension(File f) {

@@ -64,13 +64,9 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		if(data == null)
 			return null;
 		
-		if(data.isFile()){
-			FileHolder fileholder = new FileHolder(data, this);
-			if ("*/*".equals(fileholder.getMimeType())){
-				Toast.makeText(this.getApplicationContext(), R.string.application_not_available, Toast.LENGTH_SHORT).show();
-			} else {
-				FileUtils.openFile(fileholder, this);
-			}
+		if(data.isFile() && ! getIntent().getBooleanExtra(FileManagerIntents.EXTRA_FROM_OI_FILEMANAGER, false)){
+			FileUtils.openFile(new FileHolder(data, this), this);
+
 			finish();
 			return null;
 		}

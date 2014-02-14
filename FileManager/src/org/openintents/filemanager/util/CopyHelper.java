@@ -1,5 +1,9 @@
 package org.openintents.filemanager.util;
 
+import android.content.Context;
+import android.os.AsyncTask;
+import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,10 +13,6 @@ import java.util.List;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 
-import android.content.Context;
-import android.os.AsyncTask;
-import android.widget.Toast;
-
 /**
  * This class helps simplify copying and moving of files and folders by providing a simple interface to the operations and handling the actual operation transparently.
  * @author George Venios
@@ -20,7 +20,8 @@ import android.widget.Toast;
  */
 public class CopyHelper {
 	private static final int COPY_BUFFER_SIZE = 32 * 1024;
-	public static enum Operation {
+
+    public static enum Operation {
 		COPY, CUT
 	}
 	
@@ -32,8 +33,16 @@ public class CopyHelper {
 	public CopyHelper(Context c){
 		mContext = c;
 	}
-	
-	public void copy(List<FileHolder> tbc){
+
+    public int getItemsCount() {
+        if (canPaste()){
+            return mClipboard.size();
+        } else {
+            return 0;
+        }
+    }
+
+    public void copy(List<FileHolder> tbc){
 		mOperation = Operation.COPY;
 		
 		mClipboard = tbc;
@@ -56,8 +65,12 @@ public class CopyHelper {
 		tbcl.add(tbc);
 		cut(tbcl);
 	}
-	
-	/**
+
+    public void clear() {
+        mClipboard.clear();
+    }
+
+    /**
 	 * Call this to check whether there are file references on the clipboard. 
 	 */
 	public boolean canPaste(){

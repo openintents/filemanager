@@ -1,35 +1,8 @@
 package org.openintents.filemanager.util;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openintents.filemanager.FileManagerActivity;
-import org.openintents.filemanager.FileManagerApplication;
-import org.openintents.filemanager.FileManagerProvider;
-import org.openintents.filemanager.PreferenceActivity;
-import org.openintents.filemanager.R;
-import org.openintents.filemanager.bookmarks.BookmarksProvider;
-import org.openintents.filemanager.compatibility.ActionbarRefreshHelper;
-import org.openintents.filemanager.dialogs.DetailsDialog;
-import org.openintents.filemanager.dialogs.MultiCompressDialog;
-import org.openintents.filemanager.dialogs.MultiDeleteDialog;
-import org.openintents.filemanager.dialogs.RenameDialog;
-import org.openintents.filemanager.dialogs.SingleCompressDialog;
-import org.openintents.filemanager.dialogs.SingleDeleteDialog;
-import org.openintents.filemanager.files.FileHolder;
-import org.openintents.filemanager.lists.FileListFragment;
-import org.openintents.filemanager.lists.SimpleFileListFragment;
-import org.openintents.intents.FileManagerIntents;
-
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
+import android.content.*;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -40,14 +13,22 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.DialogFragment;
-import android.view.ContextMenu;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.CheckBox;
 import android.widget.Toast;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openintents.filemanager.*;
+import org.openintents.filemanager.bookmarks.BookmarksProvider;
+import org.openintents.filemanager.compatibility.ActionbarRefreshHelper;
+import org.openintents.filemanager.dialogs.*;
+import org.openintents.filemanager.files.FileHolder;
+import org.openintents.filemanager.lists.FileListFragment;
+import org.openintents.filemanager.lists.SimpleFileListFragment;
+import org.openintents.intents.FileManagerIntents;
 
 /**
  * Utility class that helps centralize multiple and single selection actions for all API levels.
@@ -140,13 +121,15 @@ public abstract class MenuUtils {
 				break;
 			case R.id.menu_move:
 				((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().cut(fItems);
-				
+                navigator.updateClipboardInfo();
+
 				// Refresh options menu
 				if(VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
 					ActionbarRefreshHelper.activity_invalidateOptionsMenu(navigator.getActivity());
 				break;
 			case R.id.menu_copy:
 				((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().copy(fItems);
+                navigator.updateClipboardInfo();
 				
 				// Refresh options menu
 				if(VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
@@ -187,7 +170,8 @@ public abstract class MenuUtils {
 			
 		case R.id.menu_move:
 			((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().cut(fItem);
-			
+            navigator.updateClipboardInfo();
+
 			// Refresh options menu
 			if(VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
 				ActionbarRefreshHelper.activity_invalidateOptionsMenu(navigator.getActivity());
@@ -195,7 +179,8 @@ public abstract class MenuUtils {
 			
 		case R.id.menu_copy:
 			((FileManagerApplication) navigator.getActivity().getApplication()).getCopyHelper().copy(fItem);
-			
+            navigator.updateClipboardInfo();
+
 			// Refresh options menu
 			if(VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
 				ActionbarRefreshHelper.activity_invalidateOptionsMenu(navigator.getActivity());

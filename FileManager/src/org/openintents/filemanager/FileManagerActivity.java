@@ -27,8 +27,10 @@ import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -38,6 +40,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 	private static final String FRAGMENT_TAG = "ListFragment";
@@ -62,7 +65,12 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 			return null;
 		
 		if(data.isFile()){
-			FileUtils.openFile(new FileHolder(data, this), this);
+			FileHolder fileholder = new FileHolder(data, this);
+			if ("*/*".equals(fileholder.getMimeType())){
+				Toast.makeText(this.getApplicationContext(), R.string.application_not_available, Toast.LENGTH_SHORT).show();
+			} else {
+				FileUtils.openFile(fileholder, this);
+			}
 			finish();
 			return null;
 		}
@@ -159,6 +167,16 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		
 		case R.id.menu_bookmarks:
 			startActivityForResult(new Intent(FileManagerActivity.this, BookmarkListActivity.class), REQUEST_CODE_BOOKMARKS);
+			return true;
+
+		case R.id.menu_donate:
+			intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse("http://openintents.org/en/contribute"));
+			try {
+				startActivity(intent);
+			} catch (ActivityNotFoundException e){
+				// ignore
+			}
 			return true;
 		
 		case android.R.id.home:

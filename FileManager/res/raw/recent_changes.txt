@@ -1,4 +1,11 @@
 ----------------
+release: 2.0.3
+
+- Update for Android 4.4
+- Support for x86
+- try to open any file
+
+----------------
 release: 2.0 (Changes made by George Venios as part of GSoC 2012)
 
 - User Interface redesigned to follow Android Design Guidelines. Many usability changes too. 
@@ -7,7 +14,7 @@ release: 2.0 (Changes made by George Venios as part of GSoC 2012)
 - Search has been added. 
 - Copying and moving made easier. 
 - Bookmarks are easier to use. 
-- Multiple file “send” action enabled. 
+- Multiple file “send�? action enabled. 
 - Native multiple selection on platforms that support it (done through the ActionBar). 
 - You can now create home screen shortcuts for any file or folder. 
 - Accept "return" when creating new folder (issue 505, patch by Darriel Kremov)
@@ -23,36 +30,31 @@ Thanks to Google Code-in for many of the following patches:
 
 - Limit icon size in file list (issue 319, patch by John Doe)
 - Hide optional commands in context menu (issue 329, patch by John Doe).
-- "Save as" integration for Google Mail (Google Code-in task by Matěj Konečný)
-- Option to hide hidden files (Google Code-In task by Matěj Konečný)
+- "Save as" integration for Google Mail (Google Code-in task by Matěj Kone�?ný)
+- Option to hide hidden files (Google Code-In task by Matěj Kone�?ný)
 - Filter by file type (issue 166, Google Code-in task by Aviral Dasgupta)
 - Show file details through context menu (Google Code-in task by Aviral Dasgupta)
-- Option to sort files (Google Code-In task by Matěj Konečný)
+- Option to sort files (Google Code-In task by Matěj Kone�?ný)
 - Keep list position after delete (Google Code-in task by Chickenbellyfinn)
 - Show correct toast when deleting file (issue 365, Google Code-in task by Chickenbellyfinn)
 - Apk icon support (Google Code-in task by Philip Hayes)
-- Bookmarks of folder locations (Google Code-In task by Matěj Konečný)
+- Bookmarks of folder locations (Google Code-In task by Matěj Kone�?ný)
 - Details dialog shows size of folder contents (Google Code-In task by Philip Hayes)
 - Fixed bug with details dialog on API 7 and earlier (Google Code-In task by Philip Hayes)
-- Fixed bug with More option (issue 330, Google Code-In task by Matěj Konečný)
+- Fixed bug with More option (issue 330, Google Code-In task by Matěj Kone�?ný)
 - Select/Deselect all in multi-select (Google Code-In task by Philip Hayes)
-- remember previous directory when attaching files (Google Code-in task by Matěj Konečný)
+- remember previous directory when attaching files (Google Code-in task by Matěj Kone�?ný)
 - Better visibility for multi-select selection (issue 460, Google Code-in task by Philip Hayes)
 - support for ZIP compression (patch by Evgeniy Berlog)
 - warning dialog for file extension changes (issue 397, patch by Evgeniy Berlog)
 - Refresh menu item (Google Code-in task by Aviral Dasgupta)
 - Lazy loading of thumbnails (issue 271, Google Code-in task by Philip Hayes)
-- Use custom icons for certain file types (issue 333, Google Code-in task by Matěj Konečný)
-- Accept return key for entering a path (issue 461, Google Code-in task by Matěj Konečný)
+- Use custom icons for certain file types (issue 333, Google Code-in task by Matěj Kone�?ný)
+- Accept return key for entering a path (issue 461, Google Code-in task by Matěj Kone�?ný)
 - Support View Intent to open the filemanager (issue 396, Google Code-in task by Chickenbellyfinn)
 - support for multi-select ZIP compression (patch by Evgeniy Berlog)
 
 - new icons and translations by Google Code-in students
-
-----------------
-release: 1.1.6
-date: 2011-06-02
-- fix bug that prevented sending attachments through menu "Send" (patch by Alex)
 
 ----------------
 For the complete list of changes and a list of frequently asked questions, please visit:

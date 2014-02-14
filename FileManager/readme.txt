@@ -21,6 +21,13 @@ seamlessly cooperates with other applications.
 To obtain the current release, visit
   http://www.openintents.org
 ----------------
+release: 2.0.3
+
+- Update for Android 4.4
+- Support for x86
+- try to open any file
+
+----------------
 release: 2.0 (Changes made by George Venios as part of GSoC 2012)
 
 - User Interface redesigned to follow Android Design Guidelines. Many usability changes too. 

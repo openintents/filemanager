@@ -1,4 +1,11 @@
 ----------------
+release: 2.0.3
+
+- Update for Android 4.4
+- Support for x86
+- try to open any file
+
+----------------
 release: 2.0 (Changes made by George Venios as part of GSoC 2012)
 
 - User Interface redesigned to follow Android Design Guidelines. Many usability changes too. 
@@ -48,11 +55,6 @@ Thanks to Google Code-in for many of the following patches:
 - support for multi-select ZIP compression (patch by Evgeniy Berlog)
 
 - new icons and translations by Google Code-in students
-
-----------------
-release: 1.1.6
-date: 2011-06-02
-- fix bug that prevented sending attachments through menu "Send" (patch by Alex)
 
 ----------------
 For the complete list of changes and a list of frequently asked questions, please visit:

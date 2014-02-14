@@ -374,9 +374,9 @@ public class FileUtils {
                 c.startActivity(intent);
             }
 		} catch (ActivityNotFoundException e) {
-			Toast.makeText(c, R.string.application_not_available, Toast.LENGTH_SHORT).show();
+			Toast.makeText(c.getApplicationContext(), R.string.application_not_available, Toast.LENGTH_SHORT).show();
 		} catch (SecurityException e){
-            Toast.makeText(c, R.string.application_not_available, Toast.LENGTH_SHORT).show();
+            Toast.makeText(c.getApplicationContext(), R.string.application_not_available, Toast.LENGTH_SHORT).show();
         }
 	}
 

@@ -1,4 +1,10 @@
 ----------------
+release: 2.0.5
+
+- fix file opening
+- add indicator for copy/cut and paste
+
+----------------
 release: 2.0.3
 
 - Update for Android 4.4
@@ -20,41 +26,6 @@ release: 2.0 (Changes made by George Venios as part of GSoC 2012)
 - Accept "return" when creating new folder (issue 505, patch by Darriel Kremov)
 - Added last modified to directories (issue 453, patch by George Venios)
 - Fix crash in multi-select confirmation dialog (issue 459, patch by George Venios)
-
-----------------
-release: 1.2
-date: 2012-02-18
-
-Thanks to Google Code-in for many of the following patches:
-(see http://www.google-melange.com/gci/homepage/google/gci2011 )
-
-- Limit icon size in file list (issue 319, patch by John Doe)
-- Hide optional commands in context menu (issue 329, patch by John Doe).
-- "Save as" integration for Google Mail (Google Code-in task by Matěj Konečný)
-- Option to hide hidden files (Google Code-In task by Matěj Konečný)
-- Filter by file type (issue 166, Google Code-in task by Aviral Dasgupta)
-- Show file details through context menu (Google Code-in task by Aviral Dasgupta)
-- Option to sort files (Google Code-In task by Matěj Konečný)
-- Keep list position after delete (Google Code-in task by Chickenbellyfinn)
-- Show correct toast when deleting file (issue 365, Google Code-in task by Chickenbellyfinn)
-- Apk icon support (Google Code-in task by Philip Hayes)
-- Bookmarks of folder locations (Google Code-In task by Matěj Konečný)
-- Details dialog shows size of folder contents (Google Code-In task by Philip Hayes)
-- Fixed bug with details dialog on API 7 and earlier (Google Code-In task by Philip Hayes)
-- Fixed bug with More option (issue 330, Google Code-In task by Matěj Konečný)
-- Select/Deselect all in multi-select (Google Code-In task by Philip Hayes)
-- remember previous directory when attaching files (Google Code-in task by Matěj Konečný)
-- Better visibility for multi-select selection (issue 460, Google Code-in task by Philip Hayes)
-- support for ZIP compression (patch by Evgeniy Berlog)
-- warning dialog for file extension changes (issue 397, patch by Evgeniy Berlog)
-- Refresh menu item (Google Code-in task by Aviral Dasgupta)
-- Lazy loading of thumbnails (issue 271, Google Code-in task by Philip Hayes)
-- Use custom icons for certain file types (issue 333, Google Code-in task by Matěj Konečný)
-- Accept return key for entering a path (issue 461, Google Code-in task by Matěj Konečný)
-- Support View Intent to open the filemanager (issue 396, Google Code-in task by Chickenbellyfinn)
-- support for multi-select ZIP compression (patch by Evgeniy Berlog)
-
-- new icons and translations by Google Code-in students
 
 ----------------
 For the complete list of changes and a list of frequently asked questions, please visit:

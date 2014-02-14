@@ -21,7 +21,7 @@ seamlessly cooperates with other applications.
 To obtain the current release, visit
   http://www.openintents.org
 ----------------
-release: 2.0.4
+release: 2.0.5
 
 - fix file opening
 - add indicator for copy/cut and paste

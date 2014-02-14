@@ -21,6 +21,12 @@ seamlessly cooperates with other applications.
 To obtain the current release, visit
   http://www.openintents.org
 ----------------
+release: 2.0.4
+
+- fix file opening
+- add indicator for copy/cut and paste
+
+----------------
 release: 2.0.3
 
 - Update for Android 4.4

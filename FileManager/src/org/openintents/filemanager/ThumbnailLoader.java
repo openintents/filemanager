@@ -31,6 +31,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
@@ -47,7 +48,8 @@ public class ThumbnailLoader {
 	// Maximum number of threads in the executor pool.
 	// TODO: Tune POOL_SIZE for maximum performance gain
 	private static final int POOL_SIZE = 5;
-	
+    private final boolean mUseBestMatch;
+
     private boolean cancel;
     private Context mContext;
 	
@@ -104,6 +106,8 @@ public class ThumbnailLoader {
 				}
 			}
 		};
+
+        mUseBestMatch = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PreferenceActivity.PREFS_USEBESTMATCH, true);
 	}  
 
 	public static void setThumbnailHeight(int height) {
@@ -425,13 +429,12 @@ public class ThumbnailLoader {
 		if (lri != null && lri.size() > 0) {
 			// Log.i(TAG, "lri.size()" + lri.size());
 
-			// return first element
-			int index = 0;
+            // Actually first element should be "best match",
+            // but it seems that more recently installed applications
+            // could be even better match.
+            int index = (mUseBestMatch ? 0: lri.size() - 1);
 
-			// Actually first element should be "best match",
-			// but it seems that more recently installed applications
-			// could be even better match.
-			index = lri.size() - 1;
+
 
 			final ResolveInfo ri = lri.get(index);
 			return ri.loadIcon(pm);

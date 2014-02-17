@@ -48,7 +48,7 @@ public final class ImageUtils {
 	 */
 	public static Drawable resizeDrawable(Drawable drawable, int desireWidth,
 			int desireHeight) {
-				Drawable dr = null;
+				Drawable dr = drawable;
 		int width = drawable.getIntrinsicWidth();
 		int height = drawable.getIntrinsicHeight();
 

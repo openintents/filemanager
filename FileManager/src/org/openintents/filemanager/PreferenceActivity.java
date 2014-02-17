@@ -16,10 +16,6 @@
 
 package org.openintents.filemanager;
 
-import org.openintents.filemanager.compatibility.HomeIconHelper;
-import org.openintents.filemanager.search.SearchableActivity;
-import org.openintents.filemanager.util.UIUtils;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,6 +29,10 @@ import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import org.openintents.filemanager.compatibility.HomeIconHelper;
+import org.openintents.filemanager.search.SearchableActivity;
+import org.openintents.filemanager.util.UIUtils;
 
 public class PreferenceActivity extends android.preference.PreferenceActivity
                                 implements OnSharedPreferenceChangeListener {
@@ -51,6 +51,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 	public static final String PREFS_ASCENDING = "ascending";
 	
 	public static final String PREFS_DEFAULTPICKFILEPATH = "defaultpickfilepath";
+    public static final String PREFS_USEBESTMATCH = "usebestmatch";
 		
 	@Override
 	protected void onCreate(Bundle icicle) {

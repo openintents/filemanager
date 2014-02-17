@@ -33,14 +33,16 @@
           android:id="@+id/list_container"
           android:orientation="vertical"
           android:gravity="center"
-      android:layout_above="@+id/clipboard_info">
+          android:layout_alignParentStart="true"
+          android:layout_alignParentEnd="true"
+          android:layout_above="@+id/clipboard_info">
           <ListView
               android:id="@android:id/list"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:fastScrollEnabled="true"
-              android:layout_marginLeft="@dimen/list_margin"
-              android:layout_marginRight="@dimen/list_margin"
+              android:paddingLeft="@dimen/list_margin"
+              android:paddingRight="@dimen/list_margin"
               android:background="?attr/listBackground" >
           </ListView>
 
@@ -57,7 +59,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_alignParentBottom="true"
-      android:padding="@dimen/list_margin"
+      android:padding="8dp"
       android:orientation="horizontal"
       android:id="@+id/clipboard_info"
       android:background="?org.openintents.filemanager:attr/pathBarBackground">
@@ -69,16 +71,19 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/navbar_details"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/clipboard_separator"
+        android:layout_toStartOf="@+id/clipboard_separator"
         android:layout_centerVertical="true" />
       <TextView
         android:layout_width="2dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/list_margin"
+        android:paddingLeft="@dimen/list_margin"
+        android:paddingRight="@dimen/list_margin"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:background="@color/navbar_details"
         android:id="@+id/clipboard_separator"
-        android:layout_toLeftOf="@+id/clipboard_action"
-        android:layout_margin="@dimen/list_margin"
+        android:layout_toStartOf="@+id/clipboard_action"
+        android:layout_margin="8dp"
         android:layout_centerVertical="true" />
       <TextView
         android:layout_width="wrap_content"
@@ -88,6 +93,7 @@
         android:textColor="@color/navbar_details"
         android:layout_alignParentEnd="true"
         android:clickable="true"
+        android:gravity="center"
         android:layout_centerVertical="true" />
     </RelativeLayout>
 

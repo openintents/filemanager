@@ -234,5 +234,7 @@
     <string name="preference_usebestmatch_title">Use best app for icons</string>
     <string name="preference_usebestmatch_summary_off">use most recently installed app</string>
     <string name="preference_usebestmatch_summary_on">use most suitable app</string>
+    <string name="external_storage">External storage</string>
+    <string name="read_only">(read-only)</string>
 
 </resources>

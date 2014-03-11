@@ -1,5 +1,8 @@
 package org.openintents.filemanager.bookmarks;
 
+import org.openintents.filemanager.FileManagerApplication;
+import org.openintents.filemanager.R;
+
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -13,6 +16,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
+import java.io.File;
 
 public class BookmarksProvider extends ContentProvider implements BaseColumns{
     public static final String TB_NAME = "bookmarks";
@@ -48,14 +52,26 @@ public class BookmarksProvider extends ContentProvider implements BaseColumns{
     private static final int DATABASE_VERSION = 2;
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
+        private Context context;
 
         DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
+            this.context = context;
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(DATABASE_CREATE);
+            // Fill in bookmarks for secondary external storage on KitKat
+            for (File dir: FileManagerApplication.getExternalStoragePaths(context)) {
+                ContentValues values = new ContentValues();
+                values.put(BookmarksProvider.NAME, context.getString(R.string.external_storage));
+                values.put(BookmarksProvider.PATH, dir.getPath());
+                db.insert(TB_NAME, "", values);
+                values.put(BookmarksProvider.NAME, context.getString(R.string.external_storage) + " " + context.getString(R.string.read_only));
+                values.put(BookmarksProvider.PATH, dir.getParentFile().getParentFile().getParentFile().getParentFile().getPath());
+                db.insert(TB_NAME, "", values);
+            }
         }
 
         /*

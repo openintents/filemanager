@@ -209,4 +209,6 @@
     <string name="moved">성공적으로 이동되었습니다.</string>
     <string name="move_error">일부 또는 모든 항목이 이동 되지 않았습니다!</string>
     <string name="nothing_to_paste">붙여 넣을게 없습니다. 먼저 파일을 복사 또는 잘라 내어 주세요.</string>
+    <string name="external_storage">External storage</string>
+    <string name="read_only">(read-only)</string>
 </resources>

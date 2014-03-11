@@ -208,4 +208,6 @@
     <string name="moved">Movido con éxito</string>
     <string name="move_error">¡Algunos elementos no pudieron ser movidos!</string>
     <string name="nothing_to_paste">Nada para pegar. Corte o copie algunos archivos primero</string>
+    <string name="external_storage">External storage</string>
+    <string name="read_only">(read-only)</string>
 </resources>

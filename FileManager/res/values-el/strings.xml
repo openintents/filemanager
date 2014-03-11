@@ -206,4 +206,6 @@
     <string name="moved">Μεταφορά επιτυχής</string>
     <string name="move_error">Κάποια αρχεία δεν μπόρεσαν να μεταφερθούν!</string>
     <string name="nothing_to_paste">Δεν υπάρχουν αρχεία για επικόλληση. Αντιγράψτε ή αποκόψτε αρχεία πρώτα.</string>
+    <string name="external_storage">External storage</string>
+    <string name="read_only">(read-only)</string>
 </resources>

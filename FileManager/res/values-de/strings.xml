@@ -223,4 +223,6 @@
     <string name="moved">Erfolgreich verschoben</string>
     <string name="move_error">Einige oder alle Objekte konnte nicht verschoben werden!</string>
     <string name="nothing_to_paste">Zwischenablage ist leer. Zuerst Dateien kopieren oder auswählen.</string>
+    <string name="external_storage">External storage</string>
+    <string name="read_only">(read-only)</string>
 </resources>

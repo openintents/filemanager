@@ -50,6 +50,11 @@
         android:title="@string/menu_details">
     </item>
     <item
+        android:id="@+id/menu_add_to_media_library"
+        android:icon="@drawable/ic_action_media_library"
+        android:title="@string/menu_add_to_media_library">
+    </item>
+    <item
         android:id="@+id/menu_more"
         android:title="@string/menu_more">
     </item>

@@ -170,6 +170,10 @@
     <string name="send_chooser_title">Send using:</string>
     <string name="menu_check_all">Check all</string>
     <string name="menu_uncheck_all">Uncheck all</string>
+    <string name="menu_add_to_media_library">Add to media library</string>
+
+    <string name="add_to_media_library_success">File added to media library</string>
+    <string name="add_to_media_library_failed">Failed to add file to media library</string>
 
     <!-- Multi selection action strings -->
     <string name="selected">selected</string>

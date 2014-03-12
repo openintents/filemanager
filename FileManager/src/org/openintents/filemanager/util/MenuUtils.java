@@ -1,6 +1,7 @@
 package org.openintents.filemanager.util;
 
 import android.app.AlertDialog;
+import android.app.Activity;
 import android.content.*;
 import android.content.DialogInterface.OnClickListener;
 import android.content.pm.ActivityInfo;
@@ -16,6 +17,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.*;
 import android.widget.CheckBox;
 import android.widget.Toast;
+import android.os.Build;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import java.util.List;
 import org.openintents.filemanager.*;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.compatibility.ActionbarRefreshHelper;
+import org.openintents.filemanager.compatibility.MediaScannerConnectionHelper;
 import org.openintents.filemanager.dialogs.*;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.FileListFragment;
@@ -155,7 +158,7 @@ public abstract class MenuUtils {
 	 * @param mItem The selected menu option/action.
 	 * @param fItem The data to act upon.
 	 */
-	public static boolean handleSingleSelectionAction(final SimpleFileListFragment navigator, MenuItem mItem, FileHolder fItem, Context context){
+	public static boolean handleSingleSelectionAction(final SimpleFileListFragment navigator, MenuItem mItem, FileHolder fItem, Activity context){
 		DialogFragment dialog;
 		Bundle args;
 		
@@ -215,6 +218,11 @@ public abstract class MenuUtils {
 			args.putParcelable(FileManagerIntents.EXTRA_DIALOG_FILE_HOLDER, fItem);
 			dialog.setArguments(args);
 			dialog.show(navigator.getFragmentManager(), DetailsDialog.class.getName());
+			return true;
+
+		case R.id.menu_add_to_media_library:
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO)
+				MediaScannerConnectionHelper.scanFile(context, fItem.getFile());
 			return true;
 
         case R.id.menu_compress:

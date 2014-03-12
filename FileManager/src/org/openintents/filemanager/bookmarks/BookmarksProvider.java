@@ -1,6 +1,6 @@
 package org.openintents.filemanager.bookmarks;
 
-import org.openintents.filemanager.FileManagerApplication;
+import org.openintents.filemanager.compatibility.KitKatExternalStorage;
 import org.openintents.filemanager.R;
 
 import android.content.ContentProvider;
@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 import java.io.File;
+import android.os.Build;
 
 public class BookmarksProvider extends ContentProvider implements BaseColumns{
     public static final String TB_NAME = "bookmarks";
@@ -63,14 +64,16 @@ public class BookmarksProvider extends ContentProvider implements BaseColumns{
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(DATABASE_CREATE);
             // Fill in bookmarks for secondary external storage on KitKat
-            for (File dir: FileManagerApplication.getExternalStoragePaths(context)) {
-                ContentValues values = new ContentValues();
-                values.put(BookmarksProvider.NAME, context.getString(R.string.external_storage));
-                values.put(BookmarksProvider.PATH, dir.getPath());
-                db.insert(TB_NAME, "", values);
-                values.put(BookmarksProvider.NAME, context.getString(R.string.external_storage) + " " + context.getString(R.string.read_only));
-                values.put(BookmarksProvider.PATH, dir.getParentFile().getParentFile().getParentFile().getParentFile().getPath());
-                db.insert(TB_NAME, "", values);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                for (File dir: KitKatExternalStorage.getExternalStoragePaths(context)) {
+                    ContentValues values = new ContentValues();
+                    values.put(BookmarksProvider.NAME, context.getString(R.string.external_storage) + " " + context.getString(R.string.read_only));
+                    values.put(BookmarksProvider.PATH, dir.getParentFile().getParentFile().getParentFile().getParentFile().getPath());
+                    db.insert(TB_NAME, "", values);
+                    values.put(BookmarksProvider.NAME, context.getString(R.string.external_storage));
+                    values.put(BookmarksProvider.PATH, dir.getPath());
+                    db.insert(TB_NAME, "", values);
+                }
             }
         }
 

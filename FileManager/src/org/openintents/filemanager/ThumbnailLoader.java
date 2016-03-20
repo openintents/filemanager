@@ -251,14 +251,12 @@ public class ThumbnailLoader {
 						widthFactor = Math.max(widthFactor, heightFactor);
 						widthFactor = Math.max(widthFactor, 1);
 						// Now turn it into a power of two.
-						if (widthFactor > 1) {
-							if ((widthFactor & (widthFactor - 1)) != 0) {
-								while ((widthFactor & (widthFactor - 1)) != 0) {
-									widthFactor &= widthFactor - 1;
-								}
-
-								widthFactor <<= 1;
+						if (widthFactor > 1 && (widthFactor & (widthFactor - 1)) != 0) {
+							while ((widthFactor & (widthFactor - 1)) != 0) {
+								widthFactor &= widthFactor - 1;
 							}
+
+							widthFactor <<= 1;
 						}
 						options.inSampleSize = widthFactor;
 						options.inJustDecodeBounds = false;

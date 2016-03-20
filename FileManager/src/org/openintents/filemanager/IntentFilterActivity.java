@@ -132,12 +132,11 @@ public class IntentFilterActivity extends FragmentActivity {
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		// Only check fragment back-ability if we're on the filepicker fragment.
-		if (mFragment instanceof PickFileListFragment)
-			if (VERSION.SDK_INT > VERSION_CODES.DONUT) {
+		if (mFragment instanceof PickFileListFragment && VERSION.SDK_INT > VERSION_CODES.DONUT) {
 				if (keyCode == KeyEvent.KEYCODE_BACK
 						&& ((PickFileListFragment) mFragment).pressBack())
 					return true;
-			}
+		}
 
 		return super.onKeyUp(keyCode, event);
 	}
@@ -145,12 +144,11 @@ public class IntentFilterActivity extends FragmentActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// Only check fragment back-ability if we're on the filepicker fragment.
-		if (mFragment instanceof PickFileListFragment)
-			if (VERSION.SDK_INT <= VERSION_CODES.DONUT) {
+		if (mFragment instanceof PickFileListFragment && VERSION.SDK_INT <= VERSION_CODES.DONUT) {
 				if (keyCode == KeyEvent.KEYCODE_BACK
 						&& ((PickFileListFragment) mFragment).pressBack())
 					return true;
-			}
+		}
 
 		return super.onKeyDown(keyCode, event);
 	}

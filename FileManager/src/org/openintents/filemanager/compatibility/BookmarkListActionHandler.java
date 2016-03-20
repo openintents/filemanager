@@ -11,6 +11,9 @@ import android.widget.ListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class BookmarkListActionHandler {
+	private BookmarkListActionHandler() {
+	}
+
 	/**
 	 * Offers a centralized bookmark action execution component.
 	 * 

@@ -10,6 +10,9 @@ import android.widget.ListView;
 
 public class BookmarkMultiChoiceModeHelper {
 
+	private BookmarkMultiChoiceModeHelper() {
+	}
+
 	public static void listView_setMultiChoiceModeListener(final ListView list, final Context context) {
 		list.setMultiChoiceModeListener(new MultiChoiceModeListener() {
 

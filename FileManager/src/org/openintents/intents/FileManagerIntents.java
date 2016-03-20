@@ -126,4 +126,7 @@ public final class FileManagerIntents {
 	public static final String EXTRA_FILENAME = "org.openintents.extra.FILENAME";
 
     public static final String EXTRA_FROM_OI_FILEMANAGER = "org.openintents.extra.FROM_OI_FILEMANAGER";
+
+	private FileManagerIntents() {
+	}
 }

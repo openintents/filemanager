@@ -63,4 +63,6 @@ public final class FileManagerIntents {
 	 */
 	public static final String EXTRA_BUTTON_TEXT = "org.openintents.extra.BUTTON_TEXT";
 
+	private FileManagerIntents() {
+	}
 }

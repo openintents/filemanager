@@ -40,7 +40,7 @@ public class CompressManager {
 	}
 
 	public void compress(FileHolder f, String out) {
-		List<FileHolder> list = new ArrayList<FileHolder>(1);
+		List<FileHolder> list = new ArrayList<>(1);
 		list.add(f);
 		compress(list, out);
 	}

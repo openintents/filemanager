@@ -72,7 +72,7 @@ public abstract class FileListFragment extends ListFragment {
 
 	protected FileHolderListAdapter mAdapter;
 	protected DirectoryScanner mScanner;
-	protected ArrayList<FileHolder> mFiles = new ArrayList<FileHolder>();
+	protected ArrayList<FileHolder> mFiles = new ArrayList<>();
 	private String mPath;
 	private String mFilename;
 

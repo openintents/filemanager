@@ -22,7 +22,7 @@ import android.widget.TextView;
  *
  */
 public class SearchListAdapter extends CursorAdapter {
-	private HashMap<String, FileHolder> itemCache = new HashMap<String, FileHolder>();
+	private HashMap<String, FileHolder> itemCache = new HashMap<>();
 
 	public SearchListAdapter(Context context, Cursor c) {
 		super(context, c, true);

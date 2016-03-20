@@ -49,7 +49,7 @@ public class CopyHelper {
 	}
 	
 	public void copy(FileHolder tbc){
-		ArrayList<FileHolder> tbcl = new ArrayList<FileHolder>();
+		ArrayList<FileHolder> tbcl = new ArrayList<>();
 		tbcl.add(tbc);
 		copy(tbcl);
 	}
@@ -61,7 +61,7 @@ public class CopyHelper {
 	}
 	
 	public void cut(FileHolder tbc){
-		ArrayList<FileHolder> tbcl = new ArrayList<FileHolder>();
+		ArrayList<FileHolder> tbcl = new ArrayList<>();
 		tbcl.add(tbc);
 		cut(tbcl);
 	}

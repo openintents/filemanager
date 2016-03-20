@@ -126,9 +126,9 @@ public class MenuBuilder implements Menu {
         mContext = context;
         mResources = context.getResources();
         
-        mItems = new ArrayList<MenuItemImpl>();
+        mItems = new ArrayList<>();
         
-        mVisibleItems = new ArrayList<MenuItemImpl>();
+        mVisibleItems = new ArrayList<>();
         mIsVisibleItemsStale = true;
     }
     
@@ -564,7 +564,7 @@ public class MenuBuilder implements Menu {
             return null;
         }
 
-        Vector<MenuItemImpl> items = new Vector<MenuItemImpl>();
+        Vector<MenuItemImpl> items = new Vector<>();
         // Look for an item whose shortcut is this key.
         final int N = mItems.size();
         for (int i = 0; i < N; i++) {

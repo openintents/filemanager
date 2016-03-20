@@ -31,7 +31,7 @@ public class BookmarkListAdapter extends BaseAdapter{
     private boolean scrolling = false;
     
 	public BookmarkListAdapter(Activity activity){
-		items = new ArrayList<Bookmark>();
+		items = new ArrayList<>();
 		
 		act = activity;
 		refreshItems();

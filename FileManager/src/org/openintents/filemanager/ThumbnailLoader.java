@@ -401,8 +401,7 @@ public class ThumbnailLoader {
 			try {
 				ret = pm.getResourcesForApplication(context.getPackageName())
 						.getDrawable(iconResource);
-			} catch (NotFoundException e) {
-			} catch (NameNotFoundException e) {
+			} catch (NotFoundException|NameNotFoundException e) {
 			}
 		}
 
@@ -426,7 +425,7 @@ public class ThumbnailLoader {
 		final List<ResolveInfo> lri = pm.queryIntentActivities(intent,
 				PackageManager.MATCH_DEFAULT_ONLY);
 
-		if (lri != null && lri.size() > 0) {
+		if (lri != null && !lri.isEmpty()) {
 			// Log.i(TAG, "lri.size()" + lri.size());
 
             // Actually first element should be "best match",

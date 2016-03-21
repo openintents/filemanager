@@ -2,6 +2,7 @@ package org.openintents.filemanager.view;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.view.PathBar.Mode;
@@ -26,7 +27,7 @@ import android.widget.LinearLayout;
 class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 	private PathBar mPathBar = null;
 	/** <absolute path, R.drawable id of image to use> */
-	public static HashMap<String, Integer> mPathDrawables = new HashMap<>();
+	public static Map<String, Integer> mPathDrawables = new HashMap<>();
 
 	public PathButtonLayout(Context context) {
 		super(context);
@@ -213,7 +214,7 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 		mPathDrawables.put(path, drawableResourceId);
 	}
 
-	public static HashMap<String, Integer> getPathDrawables() {
+	public static Map<String, Integer> getPathDrawables() {
 		return mPathDrawables;
 	}
 

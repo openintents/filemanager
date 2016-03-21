@@ -85,7 +85,7 @@ public class FileMultiChoiceModeHelper {
 		@Override
 		public boolean onActionItemClicked(android.view.ActionMode mode,
 				MenuItem item) {
-			boolean res = false;
+			boolean res;
 			switch (list.getCheckedItemCount()) {
 			// Single selection
 			case 1:

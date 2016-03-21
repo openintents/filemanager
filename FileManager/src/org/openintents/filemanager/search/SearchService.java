@@ -43,7 +43,7 @@ public class SearchService extends IntentService {
 		// Set initial path. To be searched first!
 		String path = intent
 				.getStringExtra(FileManagerIntents.EXTRA_SEARCH_INIT_PATH);
-		File root = null;
+		File root;
 		if (path != null)
 			root = new File(path);
 		else

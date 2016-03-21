@@ -293,7 +293,7 @@ public class PathBar extends ViewFlipper {
 	 * @return Whether the path entered exists and can be navigated to.
 	 */
 	public boolean cd(File file) {
-		boolean res = false;
+		boolean res;
 		
 		if (isFileOk(file)) {
 			// Set proper current directory.

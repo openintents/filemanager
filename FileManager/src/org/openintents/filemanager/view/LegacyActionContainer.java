@@ -53,7 +53,7 @@ public class LegacyActionContainer extends LinearLayout {
 	 * Add the {@link #menu} members as children in the view. Each view will have the corresponding MenuItem as its tag.
 	 */
 	private void loadChildViews() {
-		ImageButton itemView = null;
+		ImageButton itemView;
 		LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
 		params.weight = 1;

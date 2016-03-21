@@ -176,7 +176,7 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 	 * Checks this {@link ViewGroup}'s children and keeps the ones that fit inside it.
 	 */
 	private void keepFittingChildren() {
-		View child = null;
+		View child;
 		int childrenToDraw = 0;
 		int sumWidth = 0;
 		int index = this.getChildCount() - 1;
@@ -194,7 +194,7 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 			childrenToDraw--;
 		}
 
-		int i = 0;
+		int i;
 		int childrenCount = this.getChildCount();
 		for (i = 0; i < childrenCount - childrenToDraw; i++) {
 			this.removeViewAt(0);
@@ -226,7 +226,7 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 		 * @return An {@link ImageButton} or a {@link Button}.
 		 */
 		private static View newButton(File file, final PathBar navbar) {
-			View btn = null;
+			View btn;
 
 			if (mPathDrawables.containsKey(file.getAbsolutePath())) {
 				btn = new ImageButton(navbar.getContext());

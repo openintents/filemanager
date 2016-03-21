@@ -151,8 +151,7 @@ public class FileManagerProvider extends ContentProvider {
 			if (mode.equalsIgnoreCase("rw"))
 				m = ParcelFileDescriptor.MODE_READ_WRITE;
 			File f = new File(uri.getPath());
-			ParcelFileDescriptor pfd = ParcelFileDescriptor.open(f, m);
-			return pfd;
+			return ParcelFileDescriptor.open(f, m);
 		} else {
 			throw new FileNotFoundException	("Unsupported uri: " + uri.toString());
 		}

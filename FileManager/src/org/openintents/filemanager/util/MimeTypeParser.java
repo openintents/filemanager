@@ -55,7 +55,7 @@ public class MimeTypeParser {
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 
 		mXpp = factory.newPullParser();
-		mXpp.setInput(new InputStreamReader(in));
+		mXpp.setInput(new InputStreamReader(in, "UTF-8"));
 
 		return parse();
 	}

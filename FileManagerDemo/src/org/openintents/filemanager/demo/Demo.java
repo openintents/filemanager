@@ -235,7 +235,7 @@ public class Demo extends Activity {
 				if (filePath != null) {
 					mEditText.setText(filePath);
 					String strFileSize = getString(R.string.get_content_info,
-							displayName, "" + fileSize);
+							displayName, Long.toString(fileSize));
 					mTextView.setText(strFileSize);
 				}
 			}

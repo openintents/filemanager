@@ -60,8 +60,8 @@ public class CompressManager {
 
 	private class CompressTask extends
 			AsyncTask<List<FileHolder>, Void, Integer> {
-		private static final int success = 0;
-		private static final int error = 1;
+		private static final int SUCCESS = 0;
+		private static final int ERROR = 1;
 		private ZipOutputStream zos;
 		private File zipDirectory;
 		private boolean cancelCompression = false;
@@ -148,21 +148,21 @@ public class CompressManager {
 		@Override
 		protected Integer doInBackground(List<FileHolder>... params) {
 			if (zos == null) {
-				return error;
+				return ERROR;
 			}
 			List<FileHolder> list = params[0];
 			for (FileHolder file : list) {
 				if (cancelCompression == true) {
-					return error;
+					return ERROR;
 				}
 				try {
 					compressFile(file.getFile(), "");
 				} catch (IOException e) {
 					Log.e(TAG, "Error while compressing", e);
-					return error;
+					return ERROR;
 				}
 			}
-			return success;
+			return SUCCESS;
 		}
 
 		@Override
@@ -198,10 +198,10 @@ public class CompressManager {
 			}
 			cancelCompression = true;
 			progressDialog.cancel();
-			if (result == error) {
+			if (result == ERROR) {
 				Toast.makeText(mContext, R.string.compressing_error,
 						Toast.LENGTH_SHORT).show();
-			} else if (result == success) {
+			} else if (result == SUCCESS) {
 				Toast.makeText(mContext, R.string.compressing_success,
 						Toast.LENGTH_SHORT).show();
 			}

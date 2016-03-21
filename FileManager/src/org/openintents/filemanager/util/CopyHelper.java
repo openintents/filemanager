@@ -7,6 +7,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,9 +107,11 @@ public class CopyHelper {
 	 * @return Was copy successful?
 	 */
 	private boolean copyFile(File oldFile, File newFile) {
+		FileInputStream input = null;
+		FileOutputStream output = null;
 		try {
-			FileInputStream input = new FileInputStream(oldFile);
-			FileOutputStream output = new FileOutputStream(newFile);
+			input = new FileInputStream(oldFile);
+			output = new FileOutputStream(newFile);
 		
 			byte[] buffer = new byte[COPY_BUFFER_SIZE];
 			
@@ -122,14 +125,22 @@ public class CopyHelper {
 				output.write(buffer, 0, bytes);
 			}
 			
-			output.close();
-			input.close();
-			
 			// Request media scan
 			MediaScannerUtils.informFileAdded(mContext, newFile);
 			
 		} catch (Exception e) {
 		    return false;
+		} finally {
+			try {
+				input.close();
+			} catch (IOException e) {
+				// ignore
+			}
+			try {
+				output.close();
+			} catch (IOException e) {
+				// ignore
+			}
 		}
 		return true;
 	}

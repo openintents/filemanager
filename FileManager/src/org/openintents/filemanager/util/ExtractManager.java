@@ -49,8 +49,9 @@ public class ExtractManager {
          * Recursively extract file or directory
          */
         public boolean extract(File archive, String destinationPath) {
+            ZipFile zipfile = null;
             try {
-                ZipFile zipfile = new ZipFile(archive);
+                zipfile = new ZipFile(archive);
                 int fileCount = zipfile.size();
                 for (Enumeration e = zipfile.entries(); e.hasMoreElements();) {
                     ZipEntry entry = (ZipEntry) e.nextElement();
@@ -62,6 +63,14 @@ public class ExtractManager {
             } catch (Exception e) {
                 Log.e(TAG, "Error while extracting file " + archive, e);
                 return false;
+            } finally {
+                if (zipfile != null) {
+                    try {
+                        zipfile.close();
+                    } catch (IOException e) {
+                        // ignore
+                    }
+                }
             }
         }        
         

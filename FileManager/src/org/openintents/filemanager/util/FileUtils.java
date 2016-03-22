@@ -70,6 +70,9 @@ public class FileUtils {
      */
     private static int fileCount = 0;
 
+	private FileUtils() {
+	}
+
 	/**
 	 * Whether the filename is a video file.
 	 * 

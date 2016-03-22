@@ -8,6 +8,9 @@ import android.graphics.drawable.Drawable;
 
 public final class ImageUtils {
 
+	private ImageUtils() {
+	}
+
 	/**
 	 * Resizes specific a Bitmap with keeping ratio.
 	 */

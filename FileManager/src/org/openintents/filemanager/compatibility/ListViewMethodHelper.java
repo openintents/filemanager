@@ -7,6 +7,9 @@ import android.widget.ListView;
  * @author George Venios
  */
 public class ListViewMethodHelper {
+	private ListViewMethodHelper() {
+	}
+
 	public static long[] listView_getCheckedItemIds(ListView l){
 		return l.getCheckedItemIds();
 	}

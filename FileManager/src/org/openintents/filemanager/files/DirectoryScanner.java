@@ -224,8 +224,11 @@ class Comparators{
 	public static final int SIZE = 2;
 	public static final int LAST_MODIFIED = 3;
 	public static final int EXTENSION = 4;
-	
-	
+
+	private Comparators() {
+	}
+
+
 	public static Comparator<FileHolder> getForFile(int comparator, boolean ascending){
 		switch(comparator){
 		case NAME: return new NameComparator(ascending);

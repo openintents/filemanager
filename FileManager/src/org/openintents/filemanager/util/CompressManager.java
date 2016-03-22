@@ -142,6 +142,14 @@ public class CompressManager {
 				zos = new ZipOutputStream(new BufferedOutputStream(out));
 			} catch (FileNotFoundException e) {
 				Log.e(TAG, "error while creating ZipOutputStream");
+			} finally {
+				if (out != null) {
+					try {
+						out.close();
+					} catch (IOException e) {
+						// ignore
+					}
+				}
 			}
 		}
 

@@ -30,8 +30,8 @@ import android.webkit.MimeTypeMap;
 
 public class MimeTypes {
 
-	private Map<String, String> mMimeTypes = new HashMap<String,String>();
-	private Map<String, Integer> mIcons = new HashMap<String,Integer>();
+	private Map<String, String> mMimeTypes = new HashMap<>();
+	private Map<String, Integer> mIcons = new HashMap<>();
 
 	/**
 	 * Use this instead of the default constructor to get a prefilled object.

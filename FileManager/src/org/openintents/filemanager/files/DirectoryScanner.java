@@ -93,11 +93,11 @@ public class DirectoryScanner extends Thread {
 		Log.v(TAG, "Total count=" + totalCount + ")");
 		
 		/** Directory container */
- 		listDir = new ArrayList<FileHolder>(totalCount);
+ 		listDir = new ArrayList<>(totalCount);
 		/** File container */
- 		listFile = new ArrayList<FileHolder>(totalCount);
+ 		listFile = new ArrayList<>(totalCount);
 		/** External storage container*/
-		listSdCard = new ArrayList<FileHolder>(3);
+		listSdCard = new ArrayList<>(3);
 	}
 	
 	public void run() {

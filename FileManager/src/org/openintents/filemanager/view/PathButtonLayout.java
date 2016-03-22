@@ -26,7 +26,7 @@ import android.widget.LinearLayout;
 class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 	private PathBar mPathBar = null;
 	/** <absolute path, R.drawable id of image to use> */
-	public static HashMap<String, Integer> mPathDrawables = new HashMap<String, Integer>();
+	public static HashMap<String, Integer> mPathDrawables = new HashMap<>();
 
 	public PathButtonLayout(Context context) {
 		super(context);

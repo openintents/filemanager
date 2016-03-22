@@ -88,8 +88,8 @@ public class ThumbnailLoader {
 		purgeHandler = new Handler();
 		mExecutor = Executors.newFixedThreadPool(POOL_SIZE);
 		
-		mBlacklist = new ArrayList<String>();
-		mSoftBitmapCache = new ConcurrentHashMap<String, SoftReference<Bitmap>>(MAX_CACHE_CAPACITY / 2);
+		mBlacklist = new ArrayList<>();
+		mSoftBitmapCache = new ConcurrentHashMap<>(MAX_CACHE_CAPACITY / 2);
 		mHardBitmapCache = new LinkedHashMap<String, Bitmap>(MAX_CACHE_CAPACITY / 2, 0.75f, true){
 			
 			/***/
@@ -99,7 +99,7 @@ public class ThumbnailLoader {
 			protected boolean removeEldestEntry(LinkedHashMap.Entry<String, Bitmap> eldest){
 				// Moves the last used item in the hard cache to the soft cache.
 				if(size() > MAX_CACHE_CAPACITY){
-					mSoftBitmapCache.put(eldest.getKey(), new SoftReference<Bitmap>(eldest.getValue()));
+					mSoftBitmapCache.put(eldest.getKey(), new SoftReference<>(eldest.getValue()));
 					return true;
 				} else {
 					return false;
@@ -137,7 +137,7 @@ public class ThumbnailLoader {
 				if (!cancel) {
 					// Submit the file for decoding.
 					Thumbnail thumbnail = new Thumbnail(imageView, holder);
-					WeakReference<ThumbnailRunner> runner = new WeakReference<ThumbnailRunner>(new ThumbnailRunner(thumbnail));
+					WeakReference<ThumbnailRunner> runner = new WeakReference<>(new ThumbnailRunner(thumbnail));
 					mExecutor.submit(runner.get());
 				}
 			}

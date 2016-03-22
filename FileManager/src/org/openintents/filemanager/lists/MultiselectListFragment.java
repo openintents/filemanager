@@ -55,7 +55,7 @@ public class MultiselectListFragment extends FileListFragment {
 					return;
 				}
 				
-				ArrayList<FileHolder> fItems = new ArrayList<FileHolder>();
+				ArrayList<FileHolder> fItems = new ArrayList<>();
 				
 				for(long i : getListView().getCheckItemIds()){
 					fItems.add((FileHolder) mAdapter.getItem((int) i));

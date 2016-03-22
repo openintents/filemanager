@@ -101,7 +101,7 @@ public abstract class MenuUtils {
 		switch (mItem.getItemId()) {
 			case R.id.menu_send:
 				Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
-				ArrayList<Uri> uris = new ArrayList<Uri>();
+				ArrayList<Uri> uris = new ArrayList<>();
 				intent.setType("text/plain");
 				
 				for(FileHolder fh : fItems)
@@ -369,12 +369,12 @@ public abstract class MenuUtils {
 			final int N = lri != null ? lri.size() : 0;
 
 			// Create name list for menu item.
-			final List<CharSequence> items = new ArrayList<CharSequence>();
+			final List<CharSequence> items = new ArrayList<>();
 			/* Some of the options don't go to the list hence we have to remove them
 			 * to keep the lri correspond with the menu items. In the addition, we have
 			 * to remove them after the first iteration, otherwise the iteration breaks.
 			 */
-			List<ResolveInfo> toRemove = new ArrayList<ResolveInfo>();
+			List<ResolveInfo> toRemove = new ArrayList<>();
 			for (int i = 0; i < N; i++) {
 				final ResolveInfo ri = lri.get(i);
 				Intent rintent = new Intent(intent);

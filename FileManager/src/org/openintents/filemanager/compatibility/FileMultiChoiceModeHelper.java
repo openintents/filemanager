@@ -125,7 +125,7 @@ public class FileMultiChoiceModeHelper {
 	 * @return A {@link FileHolder} list with the currently selected items.
 	 */
 	private ArrayList<FileHolder> getCheckedItems(){
-		ArrayList<FileHolder> items = new ArrayList<FileHolder>();
+		ArrayList<FileHolder> items = new ArrayList<>();
 		
 		for(long pos : list.getCheckedItemIds()) {
 			items.add((FileHolder) list.getAdapter().getItem((int) pos));

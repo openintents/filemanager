@@ -25,7 +25,7 @@ public class SearchSuggestionsProvider extends ContentProvider {
 	private static final long MAX_NANOS = 2000000;
 	private static final int MAX_SUGGESTIONS = 7;
 
-	private ArrayList<ContentValues> mSuggestions = new ArrayList<ContentValues>();
+	private ArrayList<ContentValues> mSuggestions = new ArrayList<>();
 	private SearchCore searcher;
 
 	@Override

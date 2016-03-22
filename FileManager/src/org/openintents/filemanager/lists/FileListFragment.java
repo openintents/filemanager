@@ -242,7 +242,7 @@ public abstract class FileListFragment extends ListFragment {
 					selectInList(mPreviousDirectory);
 				} else {
 					// Reset list position.
-					if (mFiles.size() > 0)
+					if (!mFiles.isEmpty())
 						getListView().setSelection(0);					
 				}
 				setLoading(false);

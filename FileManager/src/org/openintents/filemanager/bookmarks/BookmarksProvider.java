@@ -73,7 +73,7 @@ public class BookmarksProvider extends ContentProvider implements BaseColumns{
 
 	@Override
 	public int delete(Uri arg0, String arg1, String[] arg2) {
-		int count = 0;
+		int count;
 		switch (uriMatcher.match(arg0)) {
 		case BOOKMARKS:
 			count = db.delete(TB_NAME, arg1, arg2);
@@ -147,7 +147,7 @@ public class BookmarksProvider extends ContentProvider implements BaseColumns{
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
-		int count = 0;
+		int count;
 		switch (uriMatcher.match(uri)){
 		case BOOKMARKS:
 			count = db.update(

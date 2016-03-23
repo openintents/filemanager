@@ -50,7 +50,7 @@ public class BookmarkListAdapter extends BaseAdapter{
 				null, 
 				null);
 		
-		Bookmark b = null;
+		Bookmark b;
 		while(c.moveToNext()){
 			b = new Bookmark();
 			

@@ -19,7 +19,7 @@ public class BitmapDrawable_Compatible {
 	 * @return
 	 */
 	public static BitmapDrawable getNewBitmapDrawable(Resources resources, Bitmap bitmap) {
-		BitmapDrawable b = null;
+		BitmapDrawable b;
 		if (use_SDK_1_6) {
 			try {
 				// SDK 1.6 compatible version

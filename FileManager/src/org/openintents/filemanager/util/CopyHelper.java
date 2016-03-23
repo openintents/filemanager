@@ -185,7 +185,7 @@ public class CopyHelper {
 	 */
 	private boolean performCut(File dest){
 		boolean res = true;
-		boolean deleteOk = false;
+		boolean deleteOk;
 
 		File from;
 		for(FileHolder fh : mClipboard){

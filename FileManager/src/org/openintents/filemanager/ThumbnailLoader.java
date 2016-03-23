@@ -310,8 +310,8 @@ public class ThumbnailLoader {
 			if(!cancel){
 				Bitmap bitmap = decodeFile(thumb.holder.getFile());
 				
-				Activity activity = ((Activity) mContext);
-				
+				Activity activity = (Activity) mContext;
+
 				if(!cancel){
 					if(bitmap != null){
 						// Bitmap was successfully decoded so we place it in the hard cache.
@@ -431,7 +431,7 @@ public class ThumbnailLoader {
             // Actually first element should be "best match",
             // but it seems that more recently installed applications
             // could be even better match.
-            int index = (mUseBestMatch ? 0: lri.size() - 1);
+            int index = mUseBestMatch ? 0: lri.size() - 1;
 
 
 

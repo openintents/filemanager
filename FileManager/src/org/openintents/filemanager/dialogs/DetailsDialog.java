@@ -37,8 +37,8 @@ public class DetailsDialog extends DialogFragment {
 		final View v = inflater.inflate(R.layout.dialog_details, null);
 		
 		// Fill the views
-		((TextView) v.findViewById(R.id.details_type_value)).setText((f.isDirectory() ? R.string.details_type_folder :
-																		(f.isFile() ? R.string.details_type_file : R.string.details_type_other) ));
+		((TextView) v.findViewById(R.id.details_type_value)).setText(f.isDirectory() ? R.string.details_type_folder :
+																		(f.isFile() ? R.string.details_type_file : R.string.details_type_other));
 		
 		mSizeView = (TextView) v.findViewById(R.id.details_size_value);
 		new SizeRefreshTask().execute();

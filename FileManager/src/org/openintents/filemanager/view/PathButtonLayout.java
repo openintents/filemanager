@@ -83,7 +83,7 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
 			cChar = path.charAt(i);
 			cPath.append(cChar);
 
-			if ((cChar == '/' || i == path.length() - 1)) { // if folder name ended, or path string ended but not if we 're on root
+			if (cChar == '/' || i == path.length() - 1) { // if folder name ended, or path string ended but not if we 're on root
 				// add a button
 				this.addView(PathButtonFactory.newButton(cPath.toString(),
 						mPathBar));

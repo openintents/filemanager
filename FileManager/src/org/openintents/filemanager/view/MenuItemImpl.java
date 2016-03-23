@@ -192,7 +192,7 @@ public final class MenuItemImpl implements MenuItem {
 	 * @return The active shortcut (based on QWERTY-mode of the menu).
 	 */
 	char getShortcut() {
-		return (mMenu.isQwertyMode() ? mShortcutAlphabeticChar : mShortcutNumericChar);
+		return mMenu.isQwertyMode() ? mShortcutAlphabeticChar : mShortcutNumericChar;
 	}
 
 	/**

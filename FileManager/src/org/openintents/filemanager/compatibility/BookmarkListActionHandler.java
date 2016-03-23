@@ -40,7 +40,7 @@ public class BookmarkListActionHandler {
 			// Handle selection
 			switch (item.getItemId()) {
 			case R.id.menu_delete:
-				list.getContext().getContentResolver().delete(BookmarksProvider.CONTENT_URI, BookmarksProvider._ID + "=?", new String[] {""+id});
+				list.getContext().getContentResolver().delete(BookmarksProvider.CONTENT_URI, BookmarksProvider._ID + "=?", new String[] {Long.toString(id)});
 				break;
 			}
 			// Multiple selection
@@ -49,7 +49,7 @@ public class BookmarkListActionHandler {
 			case R.id.menu_delete:
 				long[] ids = ListViewMethodHelper.listView_getCheckedItemIds(list);
 				for(int i=0; i<ids.length; i++){
-					list.getContext().getContentResolver().delete(BookmarksProvider.CONTENT_URI, BookmarksProvider._ID + "=?", new String[] {""+ids[i]});
+					list.getContext().getContentResolver().delete(BookmarksProvider.CONTENT_URI, BookmarksProvider._ID + "=?", new String[] {Long.toString(ids[i])});
 				}
 				break;
 			}

@@ -418,11 +418,7 @@ public class PathBar extends ViewFlipper {
 		} else if (dirTreeDepth < initTreeDepth) {
 			return true;
 		} else {
-			if (dirPath.equals(mInitialDirectory.getAbsolutePath())) {
-				return true;
-			} else {
-				return false;
-			}
+			return dirPath.equals(mInitialDirectory.getAbsolutePath());
 		}
 	}
 	

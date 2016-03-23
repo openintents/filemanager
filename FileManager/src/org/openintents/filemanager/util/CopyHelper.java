@@ -162,7 +162,7 @@ public class CopyHelper {
 			}
 
 			// list all the directory contents
-			String files[] = oldFile.list();
+			String[] files = oldFile.list();
 
 			for (String file : files) {
 				// construct the src and dest file structure

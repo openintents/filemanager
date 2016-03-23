@@ -37,8 +37,8 @@ public class ExtractManager {
     }
 
     private class ExtractTask extends AsyncTask<Object, Void, Integer> {
-        private static final int success = 0;
-        private static final int error = 1;
+        private static final int SUCCESS = 0;
+        private static final int ERROR = 1;
 
         /**
          * count of extracted files to update the progress bar
@@ -99,7 +99,7 @@ public class ExtractManager {
             BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
             try {
                 int len;
-                byte buf[] = new byte[BUFFER_SIZE];
+                byte[] buf = new byte[BUFFER_SIZE];
                 while ((len = inputStream.read(buf)) > 0) {
                     outputStream.write(buf, 0, len);
                 }
@@ -125,15 +125,15 @@ public class ExtractManager {
             File f= (File) params[0];
             String destination = (String) params[1];
             boolean result = extract(f, destination);
-            return result ? success : error;
+            return result ? SUCCESS : ERROR;
         }
 
         @Override
         protected void onPostExecute(Integer result) {
             progressDialog.cancel();
-            if (result == error){
+            if (result == ERROR){
                 Toast.makeText(context, R.string.extracting_error, Toast.LENGTH_SHORT).show();
-            } else if (result == success){
+            } else if (result == SUCCESS){
                 Toast.makeText(context, R.string.extracting_success, Toast.LENGTH_SHORT).show();
             }
             

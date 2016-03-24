@@ -67,7 +67,7 @@ public class MultiDeleteDialog extends DialogFragment {
 		 */
 		private void recursiveDelete(File file) {
 			File[] files = file.listFiles();
-			if (files != null && files.length != 0) 
+			if (files != null && files.length != 0) {
 				// If it's a directory delete all children.
 				for (File childFile : files) {
 					if (childFile.isDirectory()) {
@@ -78,10 +78,10 @@ public class MultiDeleteDialog extends DialogFragment {
 						MediaScannerUtils.informFileDeleted(mContext, childFile);
 					}
 				}
-				
-				// And then delete parent. -- or just delete the file.
-				mResult *= file.delete() ? 1 : 0;
-				MediaScannerUtils.informFileDeleted(mContext, file);
+			}
+			// And then delete parent. -- or just delete the file.
+			mResult *= file.delete() ? 1 : 0;
+			MediaScannerUtils.informFileDeleted(mContext, file);
 		}
 		
 		@Override

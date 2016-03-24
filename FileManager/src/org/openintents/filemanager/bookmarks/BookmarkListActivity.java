@@ -13,7 +13,7 @@ import android.view.MenuItem;
 public class BookmarkListActivity extends FragmentActivity {
 	private static final String FRAGMENT_TAG = "Fragment";
 	
-	public static String KEY_RESULT_PATH = "path";
+	public static final String KEY_RESULT_PATH = "path";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

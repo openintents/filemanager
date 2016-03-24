@@ -22,7 +22,7 @@ import org.openintents.filemanager.files.FileHolder;
 public class CopyHelper {
 	private static final int COPY_BUFFER_SIZE = 32 * 1024;
 
-    public static enum Operation {
+    public enum Operation {
 		COPY, CUT
 	}
 	

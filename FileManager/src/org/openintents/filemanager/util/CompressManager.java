@@ -81,7 +81,7 @@ public class CompressManager {
 
 				@Override
 				public void onDismiss(DialogInterface progressDialog) {
-					if (cancelCompression == false) {
+					if (!cancelCompression) {
 						Log.e(TAG, "Dialog Dismissed");
 						Log.e(TAG, "Compression Cancel Attempted");
 						cancelCompression = true;
@@ -103,11 +103,11 @@ public class CompressManager {
 				in.close();
 				return;
 			}
-			if (file.list() == null || cancelCompression == true) {
+			if (file.list() == null || cancelCompression) {
 				return;
 			}
 			for (String fileName : file.list()) {
-				if (cancelCompression == true) {
+				if (cancelCompression) {
 					return;
 				}
 				File f = new File(file.getAbsolutePath() + File.separator
@@ -160,7 +160,7 @@ public class CompressManager {
 			}
 			List<FileHolder> list = params[0];
 			for (FileHolder file : list) {
-				if (cancelCompression == true) {
+				if (cancelCompression) {
 					return ERROR;
 				}
 				try {

@@ -98,10 +98,8 @@ public class FileHolderListAdapter extends BaseAdapter {
 		// Hide directories' size as it's irrelevant if we can't recursively find it.
 		holder.tertiaryInfo.setText(item.getFile().isDirectory()? "" : item.getFormattedSize(mContext, false));
         
-        if(shouldLoadIcon(item)){
-	        if(mThumbnailLoader != null) {
-	        	mThumbnailLoader.loadImage(item, holder.icon);
-	        }
+        if(shouldLoadIcon(item) && mThumbnailLoader != null){
+			mThumbnailLoader.loadImage(item, holder.icon);
         }
         
 		return convertView;

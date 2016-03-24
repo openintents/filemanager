@@ -112,10 +112,8 @@ public class BookmarkListAdapter extends BaseAdapter{
 			viewHolder.icon.setImageResource(R.drawable.ic_launcher_folder);
 		}
 		
-		if (shouldLoadIcon(item)) {
-			if (mThumbnailLoader != null) {
-				mThumbnailLoader.loadImage(item, viewHolder.icon);
-			}
+		if (shouldLoadIcon(item) && mThumbnailLoader != null) {
+			mThumbnailLoader.loadImage(item, viewHolder.icon);
 		}
 		
 		return convertView;

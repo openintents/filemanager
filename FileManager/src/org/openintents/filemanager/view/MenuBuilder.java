@@ -310,8 +310,8 @@ public class MenuBuilder implements Menu {
         boolean changedAtLeastOneItem = false;
         for (int i = 0; i < N; i++) {
             MenuItemImpl item = mItems.get(i);
-            if (item.getGroupId() == group) {
-                if (item.setVisibleInt(visible)) changedAtLeastOneItem = true;
+            if (item.getGroupId() == group && item.setVisibleInt(visible)) {
+                changedAtLeastOneItem = true;
             }
         }
 
@@ -636,8 +636,8 @@ public class MenuBuilder implements Menu {
      * @param cleared Whether the items were cleared or just changed.
      */
     private void onItemsChanged(boolean cleared) {
-        if (!mPreventDispatchingItemsChanged) {
-            if (!mIsVisibleItemsStale) mIsVisibleItemsStale = true;
+        if (!mPreventDispatchingItemsChanged && !mIsVisibleItemsStale) {
+            mIsVisibleItemsStale = true;
         }
     }
 

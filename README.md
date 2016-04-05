@@ -3,7 +3,7 @@ File Manager
 
 OpenIntents file manager, see [the website](http://www.openintents.org/en/filemanager)
 
-Requires distribution repositiory to build
+Requires [distribution library](https://github.com/openintents/distribution) to build (available through jitpack).
 
 License
 --------

@@ -145,16 +145,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Preferències</string>
-    
-    <string name="menu_send">Envia</string>
-    <string name="menu_delete">Suprimeix</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">Copia</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">Reanomena</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Detalls</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

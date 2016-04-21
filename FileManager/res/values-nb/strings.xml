@@ -145,16 +145,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Innstillinger</string>
-    
-    <string name="menu_send">Send</string>
-    <string name="menu_delete">Slett</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">Kopier</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">Gi nytt navn</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Detaljer</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

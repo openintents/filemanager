@@ -146,15 +146,6 @@
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">تەڭشەكلەر</string>
     
-    <string name="menu_send">يوللا</string>
-    <string name="menu_delete">ئۆچۈر</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">كۆچۈر</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">ئات ئۆزگەرت</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">تەپسىلاتلار</string>
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

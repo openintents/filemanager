@@ -147,16 +147,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">设置</string>
-    
-    <string name="menu_send">发送</string>
-    <string name="menu_delete">删除</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">复制</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">重命名</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">详细信息</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

@@ -144,16 +144,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Settings</string>
-    
-    <string name="menu_send">ສົ່ງ</string>
-    <string name="menu_delete">ລຶບ</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">Copy</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">ປ່ຽນຊື່</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Details</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

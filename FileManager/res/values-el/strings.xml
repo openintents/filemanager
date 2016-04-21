@@ -145,14 +145,7 @@
     <string name="menu_paste">Επικόλληση</string>
     <string name="menu_multiselect">Πολλαπλή επιλογή</string>
     <string name="menu_settings">Ρυθμίσεις</string>
-    
-    <string name="menu_send">Αποστολή</string>
-    <string name="menu_delete">Διαγραφή</string>
-    <string name="menu_move">Αποκοπή</string>
-    <string name="menu_copy">Αντιγραφή</string>
-    <string name="menu_rename">Μετονομασία</string>
-    
-    <string name="menu_details">Λεπτομέρεις</string>
+
     <string name="menu_create_shortcut">Δημιουργία συντόμευσης</string>
     <string name="send_chooser_title">Αποστολή μέσω:</string>
     

@@ -147,16 +147,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Nastavení</string>
-    
-    <string name="menu_send">Odeslat</string>
-    <string name="menu_delete">Odstranit</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">Kopírovat</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">Přejmenovat</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Podrobnosti</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

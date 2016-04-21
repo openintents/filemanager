@@ -148,15 +148,7 @@
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">الاعدادات</string>
     <string name="menu_donate">تبرع</string>
-    <string name="menu_send">ارسال</string>
-    <string name="menu_delete">حذف</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">نسخ</string>
-    <string name="menu_compress">ضغط</string>
-    <string name="menu_rename">اعادة تسمية</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">تفاصيل</string>
+
     <string name="menu_create_shortcut">إنشاء اختصار</string>
     <string name="send_chooser_title">Send using:</string>
     

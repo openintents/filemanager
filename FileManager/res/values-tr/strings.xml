@@ -150,16 +150,7 @@ Launchpad Contributions:
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Ayarlar</string>
-    
-    <string name="menu_send">Gönder</string>
-    <string name="menu_delete">Sil</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">Kopyala</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">Yeniden adlandır</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Detaylar.</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

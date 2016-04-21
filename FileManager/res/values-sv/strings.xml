@@ -144,16 +144,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Inställningar</string>
-    
-    <string name="menu_send">Skicka</string>
-    <string name="menu_delete">Ta Bort</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">Kopiera</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">Byt Namn</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Detaljer</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

@@ -32,7 +32,7 @@
 	     *************************** -->
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
-    
+
     <string name="menu_delete">Izbriši</string>
     <string name="menu_rename">Preimenuj</string>
     <string name="menu_send">Pošlji</string>
@@ -145,16 +145,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Nastavitve</string>
-    
-    <string name="menu_send">Pošlji</string>
-    <string name="menu_delete">Izbriši</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">Kopiraj</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">Preimenuj</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Details</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

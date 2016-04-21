@@ -145,16 +145,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Iestatījumi</string>
-    
-    <string name="menu_send">Sūtīt</string>
-    <string name="menu_delete">Dzēst</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">Kopēt</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">Pārdēvēt</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Detaļas</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

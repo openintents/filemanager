@@ -148,14 +148,6 @@
     <string name="menu_multiselect">멀티 선택</string>
     <string name="menu_settings">설정</string>
 
-    <string name="menu_send">보내기</string>
-    <string name="menu_delete">삭제</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">복사</string>
-    <string name="menu_compress">압축</string>
-    <string name="menu_rename">이름 변경</string>
-    <string name="menu_extract">압축풀기</string>
-    <string name="menu_details">자세히</string>
     <string name="menu_create_shortcut">바로가기 만들기</string>
     <string name="send_chooser_title">다음을 사용하여 전송하기:</string>
     <string name="menu_check_all">모두 선택하기</string>

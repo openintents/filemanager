@@ -150,16 +150,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Impostazioni</string>
-    
-    <string name="menu_send">Invia</string>
-    <string name="menu_delete">Elimina</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">Copia</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">Rinomina</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Dettagli</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

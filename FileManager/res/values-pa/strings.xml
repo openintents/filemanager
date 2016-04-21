@@ -145,16 +145,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">ਸੈਟਿੰਗ</string>
-    
-    <string name="menu_send">ਭੇਜੋ</string>
-    <string name="menu_delete">ਹਟਾਉ</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">ਕਾਪੀ</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">ਨਾਂ ਬਦਲੋ</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">ਵਿਸਤਾਰ</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

@@ -2,11 +2,11 @@
     <item
         android:id="@+id/menu_paste"
         android:alphabeticShortcut="p"
-		    android:icon="@drawable/ic_action_paste"
-		    android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_paste"
+        android:showAsAction="ifRoom"
         android:menuCategory="container"
         android:orderInCategory="1"
-		    android:title="@string/menu_paste" />
+        android:title="@string/menu_paste" />
     <item
         android:id="@+id/menu_create_folder"
         android:alphabeticShortcut="c"

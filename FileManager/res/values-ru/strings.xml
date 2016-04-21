@@ -38,7 +38,7 @@
 	     *************************** -->
 	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI File Manager</string>
-    
+
     <string name="menu_delete">Удалить</string>
     <string name="menu_rename">Переименовать</string>
     <string name="menu_send">Отправить</string>
@@ -151,16 +151,7 @@
     <string name="menu_paste">Вставить</string>
     <string name="menu_multiselect">Множественный выбор</string>
     <string name="menu_settings">Параметры</string>
-    
-    <string name="menu_send">Отправить</string>
-    <string name="menu_delete">Удалить</string>
-    <string name="menu_move">Вырезать</string>
-    <string name="menu_copy">Копировать</string>
-    <string name="menu_compress">Сжать</string>
-    <string name="menu_rename">Переименовать</string>
-    
-    <string name="menu_extract">Извлечь</string>
-    <string name="menu_details">Подробная информация</string>
+
     <string name="menu_create_shortcut">Создать ярлык</string>
     <string name="send_chooser_title">Отправить с помощью:</string>
     

@@ -144,16 +144,7 @@
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Postavke</string>
-    
-    <string name="menu_send">Šalji</string>
-    <string name="menu_delete">Brisanje</string>
-    <string name="menu_move">Cut</string>
-    <string name="menu_copy">kopiraj</string>
-    <string name="menu_compress">Compress</string>
-    <string name="menu_rename">Preimenuj</string>
-    
-    <string name="menu_extract">Extract</string>
-    <string name="menu_details">Detalji</string>
+
     <string name="menu_create_shortcut">Create shortcut</string>
     <string name="send_chooser_title">Send using:</string>
     

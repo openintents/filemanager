@@ -50,16 +50,6 @@ public class MimeTypeParser {
 		resources = ctx.getPackageManager().getResourcesForApplication(packagename);
 	}
 	
-	public MimeTypes fromXml(InputStream in)
-			throws XmlPullParserException, IOException {
-		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-
-		mXpp = factory.newPullParser();
-		mXpp.setInput(new InputStreamReader(in, "UTF-8"));
-
-		return parse();
-	}
-	
 	public MimeTypes fromXmlResource(XmlResourceParser in)
 	throws XmlPullParserException, IOException {
 		mXpp = in;

@@ -216,7 +216,7 @@ public abstract class FileListFragment extends ListFragment {
 
 		mScanner = new DirectoryScanner(new File(mPath), getActivity(),
 				new FileListMessageHandler(),
-				MimeTypes.newInstance(getActivity()),
+				MimeTypes.getInstance(),
 				filetypeFilter == null ? "" : filetypeFilter,
 				mimetypeFilter == null ? "" : mimetypeFilter, writeableOnly,
 				directoriesOnly);

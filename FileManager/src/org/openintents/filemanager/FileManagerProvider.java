@@ -23,38 +23,14 @@ import android.util.Log;
 public class FileManagerProvider extends ContentProvider {
 
 	public static final String FILE_PROVIDER_PREFIX = "content://org.openintents.filemanager";
-	private static final String TAG = "FileManagerProvider";
 	public static final String AUTHORITY = "org.openintents.filemanager";
 	private MimeTypes mMimeTypes;
 
 	@Override
 	public boolean onCreate() {
-		getMimeTypes();
+		MimeTypes.initInstance(getContext());
+		mMimeTypes = MimeTypes.getInstance();
 		return true;
-	}
-
-	private void getMimeTypes() {
-		Context ctx = getContext();
-		MimeTypeParser mtp = null;
-		try {
-			mtp = new MimeTypeParser(ctx, ctx.getPackageName());
-		} catch (NameNotFoundException e) {
-			//Should never get here
-		}
-		XmlResourceParser in = 
-			getContext().getResources().getXml(R.xml.mimetypes);
-
-		try {
-			mMimeTypes = mtp.fromXmlResource(in);
-		} catch (XmlPullParserException e) {
-			Log.e(TAG, "PreselectedChannelsActivity: XmlPullParserException", e);
-			throw new RuntimeException(
-					"PreselectedChannelsActivity: XmlPullParserException");
-		} catch (IOException e) {
-			Log.e(TAG, "PreselectedChannelsActivity: IOException", e);
-			throw new RuntimeException(
-					"PreselectedChannelsActivity: IOException");
-		}
 	}
 
 	@Override

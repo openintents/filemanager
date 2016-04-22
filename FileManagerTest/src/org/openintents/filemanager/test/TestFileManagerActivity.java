@@ -14,8 +14,10 @@
 package org.openintents.filemanager.test;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Random;
 
 import android.app.Activity;
@@ -122,7 +124,7 @@ public class TestFileManagerActivity extends InstrumentationTestCase {
 
 	private void createFile(String path, String content) throws IOException {
 		File file = new File(path);
-		FileWriter wr = new FileWriter(file);
+		OutputStreamWriter wr = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
 		wr.write(content);
 		wr.close();
 	}

@@ -196,12 +196,10 @@ public class FileUtils {
 	 */
 	public static File getFile(String curdir, String file) {
 		String separator = "/";
-		  if (curdir.endsWith("/")) {
-			  separator = "";
-		  }
-		   File clickedFile = new File(curdir + separator
-		                       + file);
-		return clickedFile;
+		if (curdir.endsWith("/")) {
+			separator = "";
+		}
+		return new File(curdir + separator + file);
 	}
 	
 	public static File getFile(File curdir, String file) {
@@ -282,8 +280,7 @@ public class FileUtils {
 			// File.canExecute() was introduced in API 9.  If it doesn't exist, then
 			// this will throw an exception and the NDK version will be used.
 			Method m = File.class.getMethod("canExecute", new Class[] {} );
-			Boolean result=(Boolean)m.invoke(mContextFile);
-			return result;
+			return (Boolean)m.invoke(mContextFile);
 		} catch (Exception e) {
 			if(libLoadSuccess){
 				return access(mContextFile.getPath(), X_OK);

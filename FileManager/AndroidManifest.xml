@@ -54,21 +54,15 @@
     <uses-sdk
         android:minSdkVersion="4"
         android:targetSdkVersion="19" />
-    <!--
-             If targetSdkVersion is increased from 4 to 5 or higher, 
-        	the following needs to be adjusted:
-             * FileManagerActivity: onKeyDown(): New way how "back" key is handled.
-            NOTE: Tested on target=9, and it works both on Android 2.3 and Android 1.6.
-    -->
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
-  <uses-feature
+    <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
 
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <!-- We use this theme here, so that for the time the user waits for the app to launch, he doesn't get blinded by the white default theme. Proper theme is set onCreate of any Activity. -->
     <application

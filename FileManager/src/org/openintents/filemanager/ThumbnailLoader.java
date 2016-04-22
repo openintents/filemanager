@@ -393,7 +393,7 @@ public class ThumbnailLoader {
 			}
 		}
 
-		int iconResource = MimeTypes.newInstance(context).getIcon(holder.getMimeType());
+		int iconResource = MimeTypes.getInstance().getIcon(holder.getMimeType());
 		Drawable ret = null;
 		if (iconResource > 0) {
 			try {

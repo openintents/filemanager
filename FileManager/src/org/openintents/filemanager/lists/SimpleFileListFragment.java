@@ -18,6 +18,7 @@ import org.openintents.filemanager.view.PathBar.Mode;
 import org.openintents.filemanager.view.PathBar.OnDirectoryChangedListener;
 import org.openintents.intents.FileManagerIntents;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION;
@@ -72,7 +73,11 @@ public class SimpleFileListFragment extends FileListFragment {
 
 			@Override
 			public void directoryChanged(File newCurrentDir) {
-				open(new FileHolder(newCurrentDir, getActivity()));
+				Context activity = getActivity();
+				if (activity == null ) {
+					return;
+				}
+				open(new FileHolder(newCurrentDir, activity));
 			}
 		});
 		if(savedInstanceState != null && savedInstanceState.getBoolean(INSTANCE_STATE_PATHBAR_MODE))

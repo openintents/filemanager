@@ -24,7 +24,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	public FileHolder(File f, Context c){
 		mFile = f;
 		mExtension = parseExtension();
-		mMimeType = MimeTypes.newInstance(c).getMimeType(f.getName());
+		mMimeType = MimeTypes.getInstance().getMimeType(f.getName());
 		mContext = c;
 	}
 	
@@ -37,7 +37,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 		mFile = f;
 		mIcon = i;
 		mExtension = parseExtension();
-		mMimeType = MimeTypes.newInstance(c).getMimeType(f.getName());
+		mMimeType = MimeTypes.getInstance().getMimeType(f.getName());
 		mContext = c;
 	}
 	

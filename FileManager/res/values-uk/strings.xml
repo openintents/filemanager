@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2007-2008 OpenIntents.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+
+
+-->
+<resources>
+
+    <!--
+         ***************************
+	     About information
+	     ***************************
+
+    -->
+
+
+    <!-- Automatically filled in by Launchpad: -->
+    <string name="about_translators">Launchpad Contributions:
+  Андрій Бандура https://launchpad.net/~andriykopanytsia</string>
+
+    <!-- Short explanation of the application (max. 80 characters) -->
+    <string name="about_comments">Управляйте файлами на карті пам\'яті з Менеджером файлів OI File.</string>
+
+    <!--
+         ***************************
+	     Applicatio-specific strings
+	     ***************************
+
+    -->
+    <!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">Менеджер файлів OI</string>
+    <string name="menu_delete">Видалити</string>
+    <string name="menu_rename">Перейменувати</string>
+
+    <string name="menu_send">Надіслати</string>
+    <string name="menu_open">Відкрити</string>
+    <string name="menu_move">Вирізати</string>
+    <string name="menu_copy">Копіювати</string>
+    <string name="menu_details">Подробиці</string>
+    <string name="menu_more">Більше</string>
+    <string name="menu_compress">Стиснути (ZIP)</string>
+    <string name="menu_extract">Видобути (ZIP)</string>
+    <string name="menu_include_in_media_scan">Включити у сканування медіа</string>
+    <string name="menu_exclude_from_media_scan">Виключити із сканування медіа</string>
+    <string name="menu_bookmark">Закладка</string>
+    <string name="create_new_folder">Створити нову теку</string>
+    <string name="folder_name">Ім\'я теки</string>
+    <string name="this_folder_is_empty">Ця тека є порожньою.</string>
+    <string name="really_delete">Ви дійсно хочете видалити %s?</string>
+    <string name="title_warning_some_may_not_work">Застереження</string>
+    <string name="warning_some_may_not_work">Деякі з наступних параметрів можуть не працювати.</string>
+    <string name="show_warning_again">Показувати попередження знову</string>
+
+    <!-- Strings for a multi select feature -->
+    <string name="really_delete_multiselect">Ви справді хочете видалити %d файлів?</string>
+    <string name="multiselect_title">Вибрати декілька файлів</string>
+    <string name="pick_title">В</string>
+
+    <!-- Strings for details table -->
+    <string name="details_type">Тип</string>
+    <string name="details_type_folder">Тека</string>
+    <string name="details_type_file">Файл</string>
+    <string name="details_type_other">Інше</string>
+    <string name="details_size">Розмір</string>
+    <string name="details_permissions">Права</string>
+    <string name="details_hidden">Прихований</string>
+    <string name="details_lastmodified">Дата зміни</string>
+    <string name="details_yes">Так</string>
+    <string name="details_no">Ні</string>
+
+    <!-- Construct a unique file name of a file called %s. -->
+    <string name="copied_file_name">Копія %s</string>
+
+    <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
+    <string name="copied_file_name_2">Копія %1$d з %2$s</string>
+    <string name="media_scan_included">Ця тека буде включена у наступне сканування медіа.</string>
+    <string name="media_scan_excluded">Ця тека буде виключена з наступного сканування медіа.</string>
+    <string name="error_generic">Трапилася помилка:</string>
+    <string name="error_media_scan">Не можливо змінити параметри сканування медіа.</string>
+    <string name="send_not_available">Програма недоступна для надсилання.</string>
+    <string name="application_not_available">Програма не доступна</string>
+
+    <!--
+         ***************************
+	     Preferences
+	     ***************************
+
+    -->
+    <!-- Menu item for Settings -->
+    <string name="settings">Параметри</string>
+
+    <!-- Category for preferences. -->
+    <string name="preference_advanced_features">Додаткові можливості</string>
+    <string name="preference_mediascan_title">Виключити із сканування медіа</string>
+    <string name="preference_mediascan_summary_on">Показати пункт меню, щоб виключити теки із сканування медіа.</string>
+    <string name="preference_mediascan_summary_off">Сховати пункт меню, щоб виключити теки із сканування медіа.</string>
+    <string name="preference_showallwarning_title">Показувати усі попередження</string>
+    <string name="preference_showallwarning_summary_on">Показувати всі повідомлення попередження</string>
+    <string name="preference_showallwarning_summary_off">Пригнічувати попередження</string>
+    <string name="preference_displayhiddenfiles_title">Відображати приховані файли</string>
+    <string name="preference_displayhiddenfiles_summary_on">Відображати приховані файли</string>
+    <string name="preference_displayhiddenfiles_summary_off">Сховати приховані файли</string>
+    <string name="preference_sort_settings">Параметри сортування</string>
+    <string name="preference_sortby">Сортувати за</string>
+    <string name="preference_sortby_ascending">зростанням</string>
+    <string name="preference_sortby_ascending_summary_on">Сортувати за зростанням</string>
+    <string name="preference_sortby_ascending_summary_off">Сортувати за спаданням</string>
+
+    <string-array name="preference_sortby_names">
+        <item>Ім\'я</item>
+        <item>Розмір</item>
+        <item>Дата зміни</item>
+        <item>File extension</item>
+    </string-array>
+
+    <string name="preference_usedarktheme_title">Use dark theme (Requires restart of app)</string>
+    <string name="preference_usedarktheme_summary_on">Dark theme selected</string>
+    <string name="preference_usedarktheme_summary_off">Light theme selected</string>
+
+    <!--
+         ***************************
+   		 Strings for the \'Save as\' feature
+    	 ***************************
+
+    -->
+    <string name="saveas_no_file_picked">Ви не вибрали жодного файлу.</string>
+    <string name="saveas_error">Виникла помилка.</string>
+    <string name="saveas_file_saved">Файл успішно збережено.</string>
+
+    <!--
+         ***************************
+             Strings for the \'Compressing\' and \'Extracting\' feature
+          ***************************
+
+    -->
+    <string name="compressing_success">Елемент стиснуто успішно</string>
+    <string name="compressing_error">Не стиснуто елемент</string>
+    <string name="extracting_success">Елемент видобути успішно</string>
+    <string name="extracting_error">Не видобуто елемент</string>
+    <string name="extracting">Видобувається…</string>
+    <string name="compressing">Стискається</string>
+
+    <!-- new menu strings -->
+    <string name="menu_bookmarks">Закладки</string>
+    <string name="menu_search">Пошук</string>
+    <string name="menu_create_folder">Створити теку</string>
+    <string name="menu_paste">Вставка</string>
+    <string name="menu_multiselect">Множинний вибір</string>
+    <string name="menu_settings">Параметри</string>
+    <string name="menu_donate">Donate</string>
+    <string name="menu_create_shortcut">Створити ярлик</string>
+    <string name="send_chooser_title">Надіслати використовуючи:</string>
+    <string name="menu_check_all">Помітити все</string>
+    <string name="menu_uncheck_all">Зняти все</string>
+
+    <!-- Multi selection action strings -->
+    <string name="selected">позначені</string>
+    <string name="no_selection">Жодний елемент не позначений</string>
+    <string name="bookmark_empty">Жодної закладки не додано.</string>
+    <string name="bookmark_added">Закладку додано</string>
+    <string name="bookmark_already_exists">Цей файл вже закладено</string>
+    <string name="bookmarks">Закладки</string>
+
+    <!-- Search related -->
+    <string name="search_hint">Шукати файли</string>
+    <string name="query_error">Помилка запиту</string>
+    <string name="search_settings_descr">Файли і теки на носії</string>
+    <string name="preference_search_title">Спорожнити журнал</string>
+    <string name="preference_search_category">Пошук</string>
+    <string name="preference_search_dialog_message">Очистити історію пошуку?</string>
+    <string name="search_history_cleared">Очищено історію пошуку</string>
+
+    <!-- icon content description -->
+    <string name="item_icon">Піктограма елементу</string>
+
+    <!-- list layout -->
+    <string name="scanning">Сканування…</string>
+
+    <!-- Dialogs -->
+    <string name="delete_success">Успішно видалено</string>
+    <string name="delete_failure">Деякі файли не видалені</string>
+    <string name="deleting">Вилучається…</string>
+    <string name="rename_success">Успішно перейменовано</string>
+    <string name="rename_failure">Не вдається перейменувати</string>
+    <string name="loading">Завантаження...</string>
+    <string name="create_dir_success">Успішно створено каталог</string>
+    <string name="create_dir_failure">Не вдалося створити каталог</string>
+    <string name="compressed_file_name">ім\'я файлу ZIP</string>
+    <string name="file_exists">Файл існує</string>
+    <string name="overwrite_question">Переписати старий файл?</string>
+    <string name="directory_pick">Вибрати поточний каталог</string>
+    <string name="filename_hint">File name</string>
+    <string name="choose_filename">File name can\'t be empty!</string>
+    <string name="pick_button_default">Pick file</string>
+
+    <!-- CopyHelper statuses -->
+    <string name="copying">Копіюється…</string>
+    <string name="copied">Успішно скопійовано</string>
+    <string name="copy_error">Деякі чи всі елементи не можуть бути скопійовані!</string>
+    <string name="moving">Переміщується…</string>
+    <string name="moved">Успішно переміщено</string>
+    <string name="move_error">Деякі чи всі елементи не можуть бути переміщені!</string>
+    <string name="nothing_to_paste">Нічого не вставлено. Скопіюйте або виріжуть спершу файл.</string>
+
+    <plurals name="clipboard_info_items_to_copy">
+        <item quantity="one">%1$d item to copy</item>
+        <item quantity="other">%1$d items to copy</item>
+    </plurals>
+    <plurals name="clipboard_info_items_to_move">
+        <item quantity="one">%1$d item to move</item>
+        <item quantity="other">%1$d items to move</item>
+    </plurals>
+
+    <string name="clipboard_undo">Undo</string>
+    <string name="clipboard_dismiss">Dismiss</string>
+    <string name="preference_usebestmatch_title">Use best app for icons</string>
+    <string name="preference_usebestmatch_summary_off">use most recently installed app</string>
+    <string name="preference_usebestmatch_summary_on">use most suitable app</string>
+
+</resources>

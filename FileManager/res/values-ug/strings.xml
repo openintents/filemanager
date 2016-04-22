@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
  * Copyright (C) 2007-2008 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,31 +13,41 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- -->
+
+
+-->
 <resources>
-	<!-- ***************************
+
+    <!--
+         ***************************
 	     About information
-	     *************************** -->
-	
-	<!-- Automatically filled in by Launchpad: -->
-	<string name="about_translators">Launchpad Contributions:
+	     ***************************
+
+    -->
+
+
+    <!-- Automatically filled in by Launchpad: -->
+    <string name="about_translators">Launchpad Contributions:
   OpenIntents devs https://launchpad.net/~openintents-devs
   Sahran https://launchpad.net/~sahran</string>
-	
+
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">بۇ SD كارتىدىكى ھۆججەتلەرنى OI ھۆججەت باشقۇرغۇچ بىلەن باشقۇرىدۇ.</string>  
-	
-	<!-- ***************************
+    <string name="about_comments">بۇ SD كارتىدىكى ھۆججەتلەرنى OI ھۆججەت باشقۇرغۇچ بىلەن باشقۇرىدۇ.</string>
+
+    <!--
+         ***************************
 	     Applicatio-specific strings
-	     *************************** -->
-	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+	     ***************************
+
+    -->
+    <!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI ھۆججەت باشقۇرغۇچ</string>
-    
     <string name="menu_delete">ئۆچۈر</string>
     <string name="menu_rename">ئات ئۆزگەرت</string>
+
     <string name="menu_send">يوللا</string>
     <string name="menu_open">ئاچ</string>
-    <string name="menu_move">Cut</string>
+    <string name="menu_move">كەس</string>
     <string name="menu_copy">كۆچۈر</string>
     <string name="menu_details">تەپسىلاتلار</string>
     <string name="menu_more">تېخىمۇ كۆپ</string>
@@ -45,8 +55,7 @@
     <string name="menu_extract">يەش(ZIP)</string>
     <string name="menu_include_in_media_scan">ۋاسىتە تەكشۈرۈش ئىچىدە</string>
     <string name="menu_exclude_from_media_scan">ۋاسىتە تەكشۈرۈش سىرتىدا</string>
-    <string name="menu_bookmark">Bookmark</string>
-    
+    <string name="menu_bookmark">بەتكۈش</string>
     <string name="create_new_folder">يېڭى قىسقۇچ قۇر</string>
     <string name="folder_name">قىسقۇچ ئاتى</string>
     <string name="this_folder_is_empty">بۇ قىسقۇچ بوش.</string>
@@ -54,13 +63,12 @@
     <string name="title_warning_some_may_not_work">ئاگاھلاندۇرۇش</string>
     <string name="warning_some_may_not_work">تۆۋەندىكى بەزى تاللانمىلار ئىشلىمەيۋاتقان بولۇشى مۇمكىن.</string>
     <string name="show_warning_again">ئاگاھلاندۇرۇشنى قايتا كۆرسەت</string>
-    
-    <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">راستىنلا %d ھۆججەتنى ئۆچۈرەمسىز؟</string>
 
+    <!-- Strings for a multi select feature -->
+    <string name="really_delete_multiselect">راستىنلا %d ھۆججەتنى ئۆچۈرەمسىز؟</string>
     <string name="multiselect_title">كۆپ ھۆججەت تاللاڭ</string>
-    <string name="pick_title">File picker</string>
-    
+    <string name="pick_title">ھۆججەت تاللىغۇچ</string>
+
     <!-- Strings for details table -->
     <string name="details_type">تىپى</string>
     <string name="details_type_folder">قىسقۇچ</string>
@@ -72,131 +80,154 @@
     <string name="details_lastmodified">ئاخىرقى ئۆزگەرتىش</string>
     <string name="details_yes">ھەئە</string>
     <string name="details_no">ياق</string>
-    
+
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">%s كۆچۈر</string>
-    
+
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">%2$s نىڭ %1$d نى كۆچۈر</string>
-    
     <string name="media_scan_included">بۇ قىسقۇچنى كېيىنكى قېتىم ۋاسىتە تەكشۈرگەندە ئۆز ئىچىگە ئالىدۇ.</string>
     <string name="media_scan_excluded">بۇ قىسقۇچنى كېيىنكى قېتىم ۋاسىتە تەكشۈرگەندە ئۆز ئىچىگە ئالمايدۇ.</string>
-    
     <string name="error_generic">خاتالىق كۆرۈلدى:</string>
     <string name="error_media_scan">ۋاسىتە تەكشۈرۈش تەڭشىكىنى ئۆزگەرتەلمىدى.</string>
-    
     <string name="send_not_available">يوللاشقا ئىشلىتىدىغان قوللىنىشچان پىروگرامما يوق.</string>
-    
     <string name="application_not_available">قوللىنىشچان پىروگرامما تېپىلمىدى</string>
-    
-	<!-- ***************************
+
+    <!--
+         ***************************
 	     Preferences
-	     *************************** -->
+	     ***************************
+
+    -->
     <!-- Menu item for Settings -->
-	<string name="settings">تەڭشەكلەر</string>
-	
+    <string name="settings">تەڭشەكلەر</string>
+
     <!-- Category for preferences. -->
     <string name="preference_advanced_features">ئالىي ئىقتىدارلار</string>
-	<string name="preference_mediascan_title">ۋاسىتە تەكشۈرۈش سىرتىدا</string>
+    <string name="preference_mediascan_title">ۋاسىتە تەكشۈرۈش سىرتىدا</string>
     <string name="preference_mediascan_summary_on">ۋاسىتە تەكشۈرۈشنىڭ سىرتىدا قالدۇرۇلغان قىسقۇچلارنىڭ تىزىملىك تۈرىنى كۆرسەت</string>
     <string name="preference_mediascan_summary_off">ۋاسىتە تەكشۈرۈشنىڭ سىرتىدا قالدۇرۇلغان قىسقۇچلارنىڭ تىزىملىك تۈرىنى يوشۇر.</string>
-    
     <string name="preference_showallwarning_title">ھەممە ئاگاھلاندۇرۇشنى كۆرسەت</string>
     <string name="preference_showallwarning_summary_on">ھەممە ئاگاھلاندۇرۇش ئۇچۇرىنى كۆرسەت</string>
     <string name="preference_showallwarning_summary_off">ئاگاھلاندۇرۇش ئۇچۇرىنى چەكلە</string>
-       
     <string name="preference_displayhiddenfiles_title">يوشۇرۇن ھۆججەتلەرنى كۆرسەت</string>
     <string name="preference_displayhiddenfiles_summary_on">يوشۇرۇن ھۆججەتلەرنى كۆرسەت</string>
     <string name="preference_displayhiddenfiles_summary_off">يوشۇرۇن ھۆججەتلەرنى يوشۇر</string>
-    
     <string name="preference_sort_settings">تەرتىپلەش تەڭشىكى</string>
     <string name="preference_sortby">تەرتىپلەش تەرتىپى</string>
     <string name="preference_sortby_ascending">ئۆسكۈچى تەرتىپتە</string>
     <string name="preference_sortby_ascending_summary_on">ئۆسكۈچى تەرتىپتە تەرتىپلەيدۇ</string>
     <string name="preference_sortby_ascending_summary_off">كېمەيگۈچى تەرتىپتە تەرتىپلەيدۇ</string>
+
     <string-array name="preference_sortby_names">
         <item>ئاتى</item>
         <item>چوڭلۇقى</item>
         <item>ئاخىرقى ئۆزگەرتىلگىنى</item>
+        <item>File extension</item>
     </string-array>
 
-        
-    <!-- ***************************
+    <string name="preference_usedarktheme_title">Use dark theme (Requires restart of app)</string>
+    <string name="preference_usedarktheme_summary_on">Dark theme selected</string>
+    <string name="preference_usedarktheme_summary_off">Light theme selected</string>
+
+    <!--
+         ***************************
    		 Strings for the \'Save as\' feature
-    	 *************************** -->
+    	 ***************************
+
+    -->
     <string name="saveas_no_file_picked">ھېچقانداق ھۆججەتنى تاللىمىدىڭىز.</string>
     <string name="saveas_error">خاتالىق كۆرۈلدى.</string>
     <string name="saveas_file_saved">ھۆججەت مۇۋەپپەقىيەتلىك ساقلاندى!</string>
-    
-    <!-- ***************************
+
+    <!--
+         ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
-          *************************** -->
+          ***************************
+
+    -->
     <string name="compressing_success">تۈر مۇۋەپپەقىيەتلىك پىرىسلاندى</string>
     <string name="compressing_error">بۇ تۈرنى پىرىسلىيالمايدۇ</string>
     <string name="extracting_success">تۈر مۇۋەپپەقىيەتلىك يېشىلدى</string>
     <string name="extracting_error">تۈرنى يېشەلمەيدۇ</string>
-    <string name="extracting">Extracting…</string>
-    <string name="compressing">Compressing…</string>
-    
+    <string name="extracting">يېشىۋاتىدۇ…</string>
+    <string name="compressing">پىرېسلاۋاتىدۇ…</string>
+
     <!-- new menu strings -->
     <string name="menu_bookmarks">خەتكۈش</string>
-    <string name="menu_search">Search</string>
-    <string name="menu_create_folder">Create folder</string>
-    <string name="menu_paste">Paste</string>
-    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_search">ئىزدە</string>
+    <string name="menu_create_folder">قىسقۇچ قۇر</string>
+    <string name="menu_paste">چاپلا</string>
+    <string name="menu_multiselect">كۆپ تاللاش</string>
     <string name="menu_settings">تەڭشەكلەر</string>
-    
-    <string name="menu_create_shortcut">Create shortcut</string>
-    <string name="send_chooser_title">Send using:</string>
-    
-    <string name="menu_check_all">Check all</string>
-    <string name="menu_uncheck_all">Uncheck all</string>
-    
+    <string name="menu_donate">Donate</string>
+    <string name="menu_create_shortcut">قىسقا يول قۇر</string>
+    <string name="send_chooser_title">يوللاشتا ئىشلىتىدىغىنى:</string>
+    <string name="menu_check_all">ھەممىنى تاللا</string>
+    <string name="menu_uncheck_all">ھېچقايسىسىنى تاللىما</string>
+
     <!-- Multi selection action strings -->
-    <string name="selected">selected</string>
-    <string name="no_selection">No items checked</string>
-    
-    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="selected">تاللانغان</string>
+    <string name="no_selection">ھېچقانداق تۈر تاللانمىدى</string>
+    <string name="bookmark_empty">ھېچقانداق خەتكۈش قوشۇلمىدى.</string>
     <string name="bookmark_added">خەتكۈش قوشۇلدى</string>
     <string name="bookmark_already_exists">بۇ ھۆججەت خەتكۈشتە بار</string>
     <string name="bookmarks">خەتكۈش</string>
-    
+
     <!-- Search related -->
-    <string name="search_hint">Search files</string>
-    <string name="query_error">Query error</string>
-    <string name="search_settings_descr">Files and folders in storage</string>
-    <string name="preference_search_title">Clear history</string>
-    <string name="preference_search_category">Search</string>
-    <string name="preference_search_dialog_message">Clear search history?</string>
-    <string name="search_history_cleared">Search history cleared</string>
-    
+    <string name="search_hint">ھۆججەت ئىزدەش</string>
+    <string name="query_error">سۈرۈشتۈرۈش خاتالىقى</string>
+    <string name="search_settings_descr">ساقلىغۇچتىكى ھۆججەت ۋە قىسقۇچلار</string>
+    <string name="preference_search_title">تارىخ خاتىرىسىنى تازىلا</string>
+    <string name="preference_search_category">ئىزدە</string>
+    <string name="preference_search_dialog_message">ئىزدەش خاتىرىسىنى تازىلامدۇ؟</string>
+    <string name="search_history_cleared">ئىزدەش خاتىرىسى تازىلاندى</string>
+
     <!-- icon content description -->
-    <string name="item_icon">Item icon</string>
-    
+    <string name="item_icon">تۈر سىنبەلگىسى</string>
+
     <!-- list layout -->
-    <string name="scanning">Scanning…</string>
-    
+    <string name="scanning">تەكشۈرۈۋاتىدۇ…</string>
+
     <!-- Dialogs -->
-    <string name="delete_success">Successfully deleted</string>
-    <string name="delete_failure">Some files not deleted</string>
-    <string name="deleting">Deleting…</string>
-    <string name="rename_success">Successfully renamed</string>
-    <string name="rename_failure">Couldn\'t rename</string>
-    <string name="loading">Loading…</string>
-    <string name="create_dir_success">Successfully created directory</string>
-    <string name="create_dir_failure">Couldn\'t create directory</string>
-    <string name="compressed_file_name">Zip file name</string>
-    <string name="file_exists">File exists</string>
-    <string name="overwrite_question">Overwrite old file?</string>
-    
-    <string name="directory_pick">Select current directory</string>
-    
+    <string name="delete_success">مۇۋەپپەقىيەتلىك ئۆچۈرۈلدى</string>
+    <string name="delete_failure">بەزى ھۆججەتلەر ئۆچۈرۈلمىدى</string>
+    <string name="deleting">ئۆچۈرۈۋاتىدۇ…</string>
+    <string name="rename_success">مۇۋەپپەقىيەتلىك ئات ئۆزگەرتىلدى</string>
+    <string name="rename_failure">ئات ئۆزگەرتەلمەيدۇ</string>
+    <string name="loading">يۈكلەۋاتىدۇ…</string>
+    <string name="create_dir_success">مۇندەرىجىنى مۇۋەپپەقىيەتلىك قۇردى</string>
+    <string name="create_dir_failure">مۇندەرىجە قۇرالمايدۇ</string>
+    <string name="compressed_file_name">Zip ھۆججەت ئاتى</string>
+    <string name="file_exists">ھۆججەت مەۋجۇت</string>
+    <string name="overwrite_question">كونا ھۆججەتنى قاپلىۋېتەمدۇ؟</string>
+    <string name="directory_pick">نۆۋەتتىكى مۇندەرىجىنى تاللا</string>
+    <string name="filename_hint">File name</string>
+    <string name="choose_filename">File name can\'t be empty!</string>
+    <string name="pick_button_default">Pick file</string>
+
     <!-- CopyHelper statuses -->
-    <string name="copying">Copying…</string>
-    <string name="copied">Successfully copied</string>
-    <string name="copy_error">Some or all items couldn\'t be copied!</string>
-    <string name="moving">Moving…</string>
-    <string name="moved">Successfully moved</string>
-    <string name="move_error">Some or all items couldn\'t be moved!</string>
-    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
+    <string name="copying">كۆچۈرۈۋاتىدۇ…</string>
+    <string name="copied">مۇۋەپپەقىيەتلىك كۆچۈردى</string>
+    <string name="copy_error">بەزى ياكى ھەممە تۈرلەرنى كۆچۈرەلمەيدۇ!</string>
+    <string name="moving">يۆتكەۋاتىدۇ…</string>
+    <string name="moved">مۇۋەپپەقىيەتلىك يۆتكىدى</string>
+    <string name="move_error">بەزى ياكى ھەممە تۈرلەرنى يۆتكىيەلمەيدۇ!</string>
+    <string name="nothing_to_paste">چاپلايدىغان ھېچنېمە يوق. ئالدى بىلەن ھۆججەتنى كۆچۈرۈڭ ياكى كېسىڭ.</string>
+
+    <plurals name="clipboard_info_items_to_copy">
+        <item quantity="one">%1$d item to copy</item>
+        <item quantity="other">%1$d items to copy</item>
+    </plurals>
+    <plurals name="clipboard_info_items_to_move">
+        <item quantity="one">%1$d item to move</item>
+        <item quantity="other">%1$d items to move</item>
+    </plurals>
+
+    <string name="clipboard_undo">Undo</string>
+    <string name="clipboard_dismiss">Dismiss</string>
+    <string name="preference_usebestmatch_title">Use best app for icons</string>
+    <string name="preference_usebestmatch_summary_off">use most recently installed app</string>
+    <string name="preference_usebestmatch_summary_on">use most suitable app</string>
+
 </resources>

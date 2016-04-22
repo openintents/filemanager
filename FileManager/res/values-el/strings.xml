@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
  * Copyright (C) 2007-2008 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,54 +13,63 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- -->
+
+
+-->
 <resources>
-	<!-- ***************************
+
+    <!--
+         ***************************
 	     About information
-	     *************************** -->
-	
-	<!-- Automatically filled in by Launchpad: -->
-	<string name="about_translators">Launchpad Contributions:
+	     ***************************
+
+    -->
+
+
+    <!-- Automatically filled in by Launchpad: -->
+    <string name="about_translators">Launchpad Contributions:
   Giannis Konstantinidis https://launchpad.net/~giankonstantinidis
+  Nikos Aggelis https://launchpad.net/~nikosaggelis
   OpenIntents devs https://launchpad.net/~openintents-devs</string>
-	
+
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Διαχείριση αρχείων στην κάρτα SD με το OI Διαχειριστής Αρχείων.</string>  
-	
-	<!-- ***************************
+    <string name="about_comments">Διαχείριση αρχείων στην κάρτα SD με το OI Διαχειριστής Αρχείων.</string>
+
+    <!--
+         ***************************
 	     Applicatio-specific strings
-	     *************************** -->
-	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
-    <string name="app_name">OI Διαχειριστής Αρχείων</string>
-    
+	     ***************************
+
+    -->
+    <!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+    <string name="app_name">OI Διαχείριση αρχείων</string>
     <string name="menu_delete">Διαγραφή</string>
     <string name="menu_rename">Μετονομασία</string>
+
     <string name="menu_send">Αποστολή</string>
     <string name="menu_open">Άνοιγμα</string>
     <string name="menu_move">Αποκοπή</string>
     <string name="menu_copy">Αντιγραφή</string>
-    <string name="menu_details">Λεπτομέρεις</string>
+    <string name="menu_details">Λεπτομέρειες</string>
     <string name="menu_more">Περισσότερα</string>
     <string name="menu_compress">Συμπίεση (ZIP)</string>
     <string name="menu_extract">Αποσυμπίεση (ZIP)</string>
     <string name="menu_include_in_media_scan">Συμπερίληψη στη σάρωση μέσων</string>
     <string name="menu_exclude_from_media_scan">Εξαίρεση από τη σάρωση μέσων</string>
-    <string name="menu_bookmark">Bookmark</string>
-    
+    <string name="menu_bookmark">Σελιδοδείκτης</string>
     <string name="create_new_folder">Δημιουργία νέου φακέλου</string>
     <string name="folder_name">Όνομα φακέλου</string>
     <string name="this_folder_is_empty">Αυτός ο φάκελος είναι κενός.</string>
     <string name="really_delete">Θέλετε σίγουρα να διαγράψετε το %s;</string>
-    <string name="title_warning_some_may_not_work">Προσοχή</string>
-    <string name="warning_some_may_not_work">Κάποιες από τις παρακάτω επιλογές μπορεί να μη δουλεύουν.</string>
-    <string name="show_warning_again">Εμφάνιση της προειδοποίησης ξανά</string>
-    
-    <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">Θέλετε σίγουρα να διαγράψετε %d αρχεία;</string>
+    <string name="title_warning_some_may_not_work">Προειδοποίηση</string>
+    <string name="warning_some_may_not_work">Μερικές από τις παρακάτω επιλογές μπορεί να μην λειτουργούν.</string>
+    <string name="show_warning_again">Επανεμφάνιση της προειδοποίησης</string>
 
+    <!-- Strings for a multi select feature -->
+    <string name="really_delete_multiselect">Θέλετε σίγουρα να διαγράψετε %d αρχεία;</string>
     <string name="multiselect_title">Επιλογή πολλαπλών αρχείων</string>
-    <string name="pick_title">File picker</string>
-    
+    <string name="pick_title">Επιλογέας αρχείου</string>
+
     <!-- Strings for details table -->
     <string name="details_type">Τύπος</string>
     <string name="details_type_folder">Φάκελος</string>
@@ -69,134 +78,157 @@
     <string name="details_size">Μέγεθος</string>
     <string name="details_permissions">Δικαιώματα</string>
     <string name="details_hidden">Κρυφό</string>
-    <string name="details_lastmodified">Τελευταία Τροποποίηση</string>
+    <string name="details_lastmodified">Τελευταία τροποποίηση</string>
     <string name="details_yes">Ναι</string>
     <string name="details_no">Όχι</string>
-    
+
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Αντιγραφή του %s</string>
-    
+
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">Αντιγραφή %1$d από %2$s</string>
-    
     <string name="media_scan_included">Αυτός ο φάκελος θα συμπεριληφθεί στην επόμενη σάρωση μέσων.</string>
     <string name="media_scan_excluded">Αυτός ο φάκελος θα εξαιρεθεί από την επόμενη σάρωση μέσων.</string>
-    
     <string name="error_generic">Προέκυψε ένα σφάλμα:</string>
     <string name="error_media_scan">Αδυναμία αλλαγής των ρυθμίσεων της σάρωσης μέσων.</string>
-    
     <string name="send_not_available">Καμία διαθέσιμη εφαρμογή για αποστολή.</string>
-    
     <string name="application_not_available">Η εφαρμογή δεν είναι διαθέσιμη</string>
-    
-	<!-- ***************************
+
+    <!--
+         ***************************
 	     Preferences
-	     *************************** -->
+	     ***************************
+
+    -->
     <!-- Menu item for Settings -->
-	<string name="settings">Ρυθμίσεις</string>
-	
+    <string name="settings">Ρυθμίσεις</string>
+
     <!-- Category for preferences. -->
     <string name="preference_advanced_features">Προηγμένα χαρακτηριστικά</string>
-	<string name="preference_mediascan_title">Εξαίρεση από τη σάρωση μέσων</string>
-    <string name="preference_mediascan_summary_on">Εμφάνιση στοιχείου του μενού για την εξαίρεση φακέλων από τη σάρωση μέων.</string>
-    <string name="preference_mediascan_summary_off">Απόκρυψη στοιχείου του μενού για την εξαίρεση φακέλων από τη σάρωση μέων.</string>
-    
+    <string name="preference_mediascan_title">Εξαίρεση από τη σάρωση μέσων</string>
+    <string name="preference_mediascan_summary_on">Εμφάνιση στοιχείου του μενού για την εξαίρεση φακέλων από τη σάρωση μέσων.</string>
+    <string name="preference_mediascan_summary_off">Απόκρυψη στοιχείου του μενού για την εξαίρεση φακέλων από τη σάρωση μέσων.</string>
     <string name="preference_showallwarning_title">Εφάνιση όλων των προειδοποιήσεων</string>
     <string name="preference_showallwarning_summary_on">Εμφάνιση όλων των μηνυμάτων προειδοποίησης</string>
     <string name="preference_showallwarning_summary_off">Καταστολή των προειδοποιητικών μηνυμάτων</string>
-       
-    <string name="preference_displayhiddenfiles_title">Προβολή κρυμμένων αρχείων</string>
-    <string name="preference_displayhiddenfiles_summary_on">Προβολή κρυμμένων αρχείων</string>
-    <string name="preference_displayhiddenfiles_summary_off">Απόκρυψη κρυμμένων αρχείων</string>
-    
+    <string name="preference_displayhiddenfiles_title">Εμφάνιση κρυφών αρχείων</string>
+    <string name="preference_displayhiddenfiles_summary_on">Εμφάνιση κρυφών αρχείων</string>
+    <string name="preference_displayhiddenfiles_summary_off">Απόκρυψη κρυφών αρχείων</string>
     <string name="preference_sort_settings">Ρυθμίσεις ταξινόμησης</string>
     <string name="preference_sortby">Ταξινόμηση κατά</string>
     <string name="preference_sortby_ascending">Κατά αύξουσα σειρά</string>
     <string name="preference_sortby_ascending_summary_on">Ταξινόμηση κατά αύξουσα σειρά</string>
     <string name="preference_sortby_ascending_summary_off">Ταξινόμηση κατά φθίνουσα σειρά</string>
+
     <string-array name="preference_sortby_names">
         <item>Όνομα</item>
         <item>Μέγεθος</item>
         <item>Τελευταία τροποποίηση</item>
+        <item>File extension</item>
     </string-array>
 
-        
-    <!-- ***************************
+    <string name="preference_usedarktheme_title">Use dark theme (Requires restart of app)</string>
+    <string name="preference_usedarktheme_summary_on">Dark theme selected</string>
+    <string name="preference_usedarktheme_summary_off">Light theme selected</string>
+
+    <!--
+         ***************************
    		 Strings for the \'Save as\' feature
-    	 *************************** -->
+    	 ***************************
+
+    -->
     <string name="saveas_no_file_picked">Δεν έχετε επιλεξει κάποιο αρχείο.</string>
     <string name="saveas_error">Προέκυψε ένα σφάλμα.</string>
     <string name="saveas_file_saved">Το αρχείο αποθηκεύτηκε επιτυχώς!</string>
-    
-    <!-- ***************************
+
+    <!--
+         ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
-          *************************** -->
+          ***************************
+
+    -->
     <string name="compressing_success">Το αντικείμενο συμπιέστηκε με επιτυχία</string>
     <string name="compressing_error">Αδυναμία συμπίεσης του αντικειμένου</string>
     <string name="extracting_success">Το αντικείμενο αποσυμπιέστηκε με επιτυχία</string>
     <string name="extracting_error">Αδυναμία αποσυμπίεσης του αντικειμένου</string>
-    <string name="extracting">Αποσυμπίεση…</string>
-    <string name="compressing">Συμπίεση…</string>
-    
+    <string name="extracting">Γίνεται αποσυμπίεση...</string>
+    <string name="compressing">Γίνεται συμπίεση...</string>
+
     <!-- new menu strings -->
     <string name="menu_bookmarks">Σελιδοδείκτες</string>
     <string name="menu_search">Αναζήτηση</string>
-    <string name="menu_create_folder">Νέος φάκελος</string>
+    <string name="menu_create_folder">Δημιουργία φακέλου</string>
     <string name="menu_paste">Επικόλληση</string>
     <string name="menu_multiselect">Πολλαπλή επιλογή</string>
     <string name="menu_settings">Ρυθμίσεις</string>
-
+    <string name="menu_donate">Donate</string>
     <string name="menu_create_shortcut">Δημιουργία συντόμευσης</string>
-    <string name="send_chooser_title">Αποστολή μέσω:</string>
-    
+    <string name="send_chooser_title">Αποστολή με:</string>
     <string name="menu_check_all">Επιλογή όλων</string>
     <string name="menu_uncheck_all">Αποεπιλογή όλων</string>
-    
+
     <!-- Multi selection action strings -->
     <string name="selected">επιλεγμένα</string>
-    <string name="no_selection">Κανένα αρχείο επιλεγμένο</string>
-    
-    <string name="bookmark_empty">Δεν υπάρχουν σελιδοδείκτες.</string>
-    <string name="bookmark_added">Προστέθηκε ο σελιδοδείκτης</string>
+    <string name="no_selection">Δεν επιλέχτηκαν αντικείμενα</string>
+    <string name="bookmark_empty">Δεν προστέθηκαν σελιδοδείκτες</string>
+    <string name="bookmark_added">Ο σελιδοδείκτης προστέθηκε</string>
     <string name="bookmark_already_exists">Αυτό το αρχείο έχει ήδη προστεθεί στους σελιδοδείκτες</string>
     <string name="bookmarks">Σελιδοδείκτες</string>
-    
+
     <!-- Search related -->
     <string name="search_hint">Αναζήτηση αρχείων</string>
-    <string name="query_error">Σφάλμα αναζήτησης</string>
-    <string name="search_settings_descr">Αρχεία και φάκελοι στην μνήμη</string>
-    <string name="preference_search_title">Διαγραφή ιστορικού</string>
+    <string name="query_error">Σφάλμα ερωτήματος</string>
+    <string name="search_settings_descr">Αρχεία και φάκελοι στο μέσο</string>
+    <string name="preference_search_title">Εκκαθάριση ιστορικού</string>
     <string name="preference_search_category">Αναζήτηση</string>
-    <string name="preference_search_dialog_message">Διαγραφή ιστορικού αναζήτησης?</string>
-    <string name="search_history_cleared">Το ιστορικό αναζήτησης διαγράφηκε</string>
-    
+    <string name="preference_search_dialog_message">Εκκαθάριση ιστορικού αναζήτησης;</string>
+    <string name="search_history_cleared">Το ιστορικό αναζήτησης έχει εκκαθαριστεί</string>
+
     <!-- icon content description -->
-    <string name="item_icon">Item icon</string>
-    
+    <string name="item_icon">Εικονίδιο αντικειμένου</string>
+
     <!-- list layout -->
-    <string name="scanning">Φόρτωση…</string>
-    
+    <string name="scanning">Γίνεται σάρωση...</string>
+
     <!-- Dialogs -->
-    <string name="delete_success">Διαγραφή επιτυχής</string>
-    <string name="delete_failure">Κάποια αρχεία δεν μπορούσαν να διαγραφούν</string>
-    <string name="deleting">Διαγραφή…</string>
-    <string name="rename_success">Μετονομασία επιτυχής</string>
-    <string name="rename_failure">Μετονομασία αδύνατη</string>
-    <string name="loading">Φόρτωση…</string>
-    <string name="create_dir_success">Δημιουργία φακέλου επιτυχής</string>
-    <string name="create_dir_failure">Δημιουργία φακέλου αδύνατη</string>
-    <string name="compressed_file_name">Όνομα αρχείου ZIP</string>
-    <string name="file_exists">Το αρχείο υπάρχει ήδη</string>
-    <string name="overwrite_question">Διαγραφή παλιού αρχείου;</string>
-    
-    <string name="directory_pick">Επιλογή τρέχοντος φακέλου</string>
-    
+    <string name="delete_success">Διεγράφη επιτυχώς</string>
+    <string name="delete_failure">Μερικά αρχεία δεν διαγράφηκαν</string>
+    <string name="deleting">Γίνεται διαγραφή...</string>
+    <string name="rename_success">Μετονομάστηκε επιτυχώς</string>
+    <string name="rename_failure">Δεν ήταν δυνατή η μετονομασία</string>
+    <string name="loading">Γίνεται φόρτωση...</string>
+    <string name="create_dir_success">Ο κατάλογος δημιουργήθηκε επιτυχώς</string>
+    <string name="create_dir_failure">Δεν ήταν δυνατή η δημιουργία καταλόγου</string>
+    <string name="compressed_file_name">Όνομα αρχείου zip</string>
+    <string name="file_exists">Το αρχείο υπάρχει</string>
+    <string name="overwrite_question">Αντικατάσταση παλαιού αρχείου;</string>
+    <string name="directory_pick">Επιλογή αυτού του καταλόγου</string>
+    <string name="filename_hint">File name</string>
+    <string name="choose_filename">File name can\'t be empty!</string>
+    <string name="pick_button_default">Pick file</string>
+
     <!-- CopyHelper statuses -->
-    <string name="copying">Αντιγραφή…</string>
-    <string name="copied">Αντιγραφή επιτυχής</string>
-    <string name="copy_error">Κάποια αρχεία δεν μπόρεσαν να αντιγραφούν!</string>
-    <string name="moving">Μεταφορά…</string>
-    <string name="moved">Μεταφορά επιτυχής</string>
-    <string name="move_error">Κάποια αρχεία δεν μπόρεσαν να μεταφερθούν!</string>
-    <string name="nothing_to_paste">Δεν υπάρχουν αρχεία για επικόλληση. Αντιγράψτε ή αποκόψτε αρχεία πρώτα.</string>
+    <string name="copying">Γίνεται αντιγραφή...</string>
+    <string name="copied">Αντιγράφηκε επιτυχώς</string>
+    <string name="copy_error">Μερικά ή όλα τα αντικείμενα δεν μπόρεσαν να αντιγραφούν!</string>
+    <string name="moving">Γίνεται μετακίνηση...</string>
+    <string name="moved">Μετακινήθηκε επιτυχώς</string>
+    <string name="move_error">Μερικά ή όλα τα αντικείμενα δεν μπόρεσαν να μετακινηθούν!</string>
+    <string name="nothing_to_paste">Τίποτα για επικόλληση. Κάντε αντιγραφή ή αποκοπή αρχείων πρώτα.</string>
+
+    <plurals name="clipboard_info_items_to_copy">
+        <item quantity="one">%1$d item to copy</item>
+        <item quantity="other">%1$d items to copy</item>
+    </plurals>
+    <plurals name="clipboard_info_items_to_move">
+        <item quantity="one">%1$d item to move</item>
+        <item quantity="other">%1$d items to move</item>
+    </plurals>
+
+    <string name="clipboard_undo">Undo</string>
+    <string name="clipboard_dismiss">Dismiss</string>
+    <string name="preference_usebestmatch_title">Use best app for icons</string>
+    <string name="preference_usebestmatch_summary_off">use most recently installed app</string>
+    <string name="preference_usebestmatch_summary_on">use most suitable app</string>
+
 </resources>

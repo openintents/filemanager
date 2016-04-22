@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
  * Copyright (C) 2007-2008 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,33 +13,44 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- -->
+
+
+-->
 <resources>
-	<!-- ***************************
+
+    <!--
+         ***************************
 	     About information
-	     *************************** -->
-	
-	<!-- Automatically filled in by Launchpad: -->
-	<string name="about_translators">Launchpad Contributions:
+	     ***************************
+
+    -->
+
+
+    <!-- Automatically filled in by Launchpad: -->
+    <string name="about_translators">Launchpad Contributions:
   Li Shiyi https://launchpad.net/~li3shiyi
   OpenIntents devs https://launchpad.net/~openintents-devs
   Swandle https://launchpad.net/~swandle
+  gaoyunpeng https://launchpad.net/~gaoyunpeng1982
   zhangchun https://launchpad.net/~zhangchun</string>
-	
+
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">OI文件管理器用来管理SD卡上的文件。</string>  
-	
-	<!-- ***************************
+    <string name="about_comments">OI文件管理器用来管理SD卡上的文件。</string>
+
+    <!--
+         ***************************
 	     Applicatio-specific strings
-	     *************************** -->
-	<!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
+	     ***************************
+
+    -->
+    <!-- Name of application. Can be localized. OI = OpenIntents should stay unmodified. -->
     <string name="app_name">OI文件管理器</string>
-    
     <string name="menu_delete">删除</string>
     <string name="menu_rename">重命名</string>
+
     <string name="menu_send">发送</string>
     <string name="menu_open">打开</string>
-    <string name="menu_move">Cut</string>
+    <string name="menu_move">剪切</string>
     <string name="menu_copy">复制</string>
     <string name="menu_details">详细信息</string>
     <string name="menu_more">更多</string>
@@ -47,8 +58,7 @@
     <string name="menu_extract">解压(ZIP)</string>
     <string name="menu_include_in_media_scan">包括在媒体扫描中</string>
     <string name="menu_exclude_from_media_scan">从媒体扫描中排除</string>
-    <string name="menu_bookmark">Bookmark</string>
-    
+    <string name="menu_bookmark">书签</string>
     <string name="create_new_folder">新建文件夹</string>
     <string name="folder_name">文件夹名称</string>
     <string name="this_folder_is_empty">该文件夹为空。</string>
@@ -56,13 +66,12 @@
     <string name="title_warning_some_may_not_work">警告</string>
     <string name="warning_some_may_not_work">下列选项中的某些可能不起作用。</string>
     <string name="show_warning_again">再次显示警告</string>
-    
-    <!-- Strings for a multi select feature -->
-	<string name="really_delete_multiselect">确定要删除文件%d？</string>
 
+    <!-- Strings for a multi select feature -->
+    <string name="really_delete_multiselect">确定要删除文件%d？</string>
     <string name="multiselect_title">选择多个文件</string>
-    <string name="pick_title">File picker</string>
-    
+    <string name="pick_title">文件采集</string>
+
     <!-- Strings for details table -->
     <string name="details_type">类型</string>
     <string name="details_type_folder">文件夹</string>
@@ -74,131 +83,154 @@
     <string name="details_lastmodified">最近修改</string>
     <string name="details_yes">是</string>
     <string name="details_no">否</string>
-    
+
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">%s的副本</string>
-    
+
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">%2$s的副本%1$d</string>
-    
     <string name="media_scan_included">该文件夹将包含在下次媒体扫描中。</string>
     <string name="media_scan_excluded">该文件夹将从下次媒体扫描中排除。</string>
-    
     <string name="error_generic">出错：</string>
     <string name="error_media_scan">无法更改媒体扫描设置。</string>
-    
     <string name="send_not_available">无法找到用于发送的应用程序。</string>
-    
     <string name="application_not_available">应用程序不可用</string>
-    
-	<!-- ***************************
+
+    <!--
+         ***************************
 	     Preferences
-	     *************************** -->
+	     ***************************
+
+    -->
     <!-- Menu item for Settings -->
-	<string name="settings">设置</string>
-	
+    <string name="settings">设置</string>
+
     <!-- Category for preferences. -->
     <string name="preference_advanced_features">高级功能</string>
-	<string name="preference_mediascan_title">从媒体扫描中排除</string>
+    <string name="preference_mediascan_title">从媒体扫描中排除</string>
     <string name="preference_mediascan_summary_on">显示用于在媒体扫描中排除文件夹的菜单项。</string>
     <string name="preference_mediascan_summary_off">隐藏用于在媒体扫描中排除文件夹的菜单项。</string>
-    
     <string name="preference_showallwarning_title">显示所有警告</string>
     <string name="preference_showallwarning_summary_on">显示所有警告消息</string>
     <string name="preference_showallwarning_summary_off">忽略警告消息</string>
-       
     <string name="preference_displayhiddenfiles_title">显示隐藏文件</string>
     <string name="preference_displayhiddenfiles_summary_on">显示隐藏文件</string>
     <string name="preference_displayhiddenfiles_summary_off">不显示隐藏文件</string>
-    
     <string name="preference_sort_settings">排序设置</string>
     <string name="preference_sortby">排序方式</string>
     <string name="preference_sortby_ascending">升序</string>
     <string name="preference_sortby_ascending_summary_on">按升序排序</string>
     <string name="preference_sortby_ascending_summary_off">按降充排序</string>
+
     <string-array name="preference_sortby_names">
         <item>名称</item>
         <item>大小</item>
         <item>上次修改</item>
+        <item>File extension</item>
     </string-array>
 
-        
-    <!-- ***************************
+    <string name="preference_usedarktheme_title">Use dark theme (Requires restart of app)</string>
+    <string name="preference_usedarktheme_summary_on">Dark theme selected</string>
+    <string name="preference_usedarktheme_summary_off">Light theme selected</string>
+
+    <!--
+         ***************************
    		 Strings for the \'Save as\' feature
-    	 *************************** -->
+    	 ***************************
+
+    -->
     <string name="saveas_no_file_picked">你没有选择任何文件。</string>
     <string name="saveas_error">发生错误。</string>
     <string name="saveas_file_saved">文件保存成功！</string>
-    
-    <!-- ***************************
+
+    <!--
+         ***************************
              Strings for the \'Compressing\' and \'Extracting\' feature
-          *************************** -->
+          ***************************
+
+    -->
     <string name="compressing_success">项目压缩完成</string>
     <string name="compressing_error">无法压缩该项目</string>
     <string name="extracting_success">项目解压成功</string>
     <string name="extracting_error">无法解压该项目</string>
-    <string name="extracting">Extracting…</string>
-    <string name="compressing">Compressing…</string>
-    
+    <string name="extracting">提取中…</string>
+    <string name="compressing">压缩中…</string>
+
     <!-- new menu strings -->
     <string name="menu_bookmarks">书签</string>
-    <string name="menu_search">Search</string>
-    <string name="menu_create_folder">Create folder</string>
-    <string name="menu_paste">Paste</string>
-    <string name="menu_multiselect">Multiselect</string>
+    <string name="menu_search">搜索</string>
+    <string name="menu_create_folder">创建文件夹</string>
+    <string name="menu_paste">粘贴</string>
+    <string name="menu_multiselect">多选</string>
     <string name="menu_settings">设置</string>
+    <string name="menu_donate">Donate</string>
+    <string name="menu_create_shortcut">创建快捷方式</string>
+    <string name="send_chooser_title">发送使用中</string>
+    <string name="menu_check_all">全部选中</string>
+    <string name="menu_uncheck_all">全部不选中</string>
 
-    <string name="menu_create_shortcut">Create shortcut</string>
-    <string name="send_chooser_title">Send using:</string>
-    
-    <string name="menu_check_all">Check all</string>
-    <string name="menu_uncheck_all">Uncheck all</string>
-    
     <!-- Multi selection action strings -->
-    <string name="selected">selected</string>
-    <string name="no_selection">No items checked</string>
-    
-    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="selected">已选择</string>
+    <string name="no_selection">未选中任何项</string>
+    <string name="bookmark_empty">未添加任何书签</string>
     <string name="bookmark_added">书签已添加</string>
     <string name="bookmark_already_exists">该文件已添加过书签。</string>
     <string name="bookmarks">书签</string>
-    
+
     <!-- Search related -->
-    <string name="search_hint">Search files</string>
-    <string name="query_error">Query error</string>
-    <string name="search_settings_descr">Files and folders in storage</string>
-    <string name="preference_search_title">Clear history</string>
-    <string name="preference_search_category">Search</string>
-    <string name="preference_search_dialog_message">Clear search history?</string>
-    <string name="search_history_cleared">Search history cleared</string>
-    
+    <string name="search_hint">搜索文件</string>
+    <string name="query_error">查询错误</string>
+    <string name="search_settings_descr">存储空间中的文件和文件夹</string>
+    <string name="preference_search_title">清除历史</string>
+    <string name="preference_search_category">搜索</string>
+    <string name="preference_search_dialog_message">清除搜索历史</string>
+    <string name="search_history_cleared">搜索历史已清除</string>
+
     <!-- icon content description -->
-    <string name="item_icon">Item icon</string>
-    
+    <string name="item_icon">项目图标</string>
+
     <!-- list layout -->
-    <string name="scanning">Scanning…</string>
-    
+    <string name="scanning">正在扫描…</string>
+
     <!-- Dialogs -->
-    <string name="delete_success">Successfully deleted</string>
-    <string name="delete_failure">Some files not deleted</string>
-    <string name="deleting">Deleting…</string>
-    <string name="rename_success">Successfully renamed</string>
-    <string name="rename_failure">Couldn\'t rename</string>
-    <string name="loading">Loading…</string>
-    <string name="create_dir_success">Successfully created directory</string>
-    <string name="create_dir_failure">Couldn\'t create directory</string>
-    <string name="compressed_file_name">Zip file name</string>
-    <string name="file_exists">File exists</string>
-    <string name="overwrite_question">Overwrite old file?</string>
-    
-    <string name="directory_pick">Select current directory</string>
-    
+    <string name="delete_success">删除成功</string>
+    <string name="delete_failure">有一些文件未被删除</string>
+    <string name="deleting">正在删除…</string>
+    <string name="rename_success">重命名成功</string>
+    <string name="rename_failure">未能重命名</string>
+    <string name="loading">正在加载...</string>
+    <string name="create_dir_success">创建目录成功</string>
+    <string name="create_dir_failure">未能创建目录</string>
+    <string name="compressed_file_name">Zip 文件名</string>
+    <string name="file_exists">文件已存在</string>
+    <string name="overwrite_question">覆盖旧文件？</string>
+    <string name="directory_pick">选择当前目录</string>
+    <string name="filename_hint">File name</string>
+    <string name="choose_filename">File name can\'t be empty!</string>
+    <string name="pick_button_default">Pick file</string>
+
     <!-- CopyHelper statuses -->
-    <string name="copying">Copying…</string>
-    <string name="copied">Successfully copied</string>
-    <string name="copy_error">Some or all items couldn\'t be copied!</string>
-    <string name="moving">Moving…</string>
-    <string name="moved">Successfully moved</string>
-    <string name="move_error">Some or all items couldn\'t be moved!</string>
-    <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
+    <string name="copying">正在复制…</string>
+    <string name="copied">复制成功</string>
+    <string name="copy_error">有一些或者所有项目无法被复制！</string>
+    <string name="moving">正在移动…</string>
+    <string name="moved">移动成功</string>
+    <string name="move_error">有一些或者全部项目无法被移动！</string>
+    <string name="nothing_to_paste">没有可以粘贴的内容。请先复制或者剪切文件。</string>
+
+    <plurals name="clipboard_info_items_to_copy">
+        <item quantity="one">%1$d item to copy</item>
+        <item quantity="other">%1$d items to copy</item>
+    </plurals>
+    <plurals name="clipboard_info_items_to_move">
+        <item quantity="one">%1$d item to move</item>
+        <item quantity="other">%1$d items to move</item>
+    </plurals>
+
+    <string name="clipboard_undo">Undo</string>
+    <string name="clipboard_dismiss">Dismiss</string>
+    <string name="preference_usebestmatch_title">Use best app for icons</string>
+    <string name="preference_usebestmatch_summary_off">use most recently installed app</string>
+    <string name="preference_usebestmatch_summary_on">use most suitable app</string>
+
 </resources>

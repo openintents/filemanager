@@ -8,6 +8,8 @@ import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.PathBar;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AbsListView.MultiChoiceModeListener;
@@ -20,6 +22,7 @@ import android.widget.ListView;
  * @author George Venios
  * 
  */
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class FileMultiChoiceModeHelper {
 	private ListView list;
 	private PathBar pathbar;
@@ -86,18 +89,27 @@ public class FileMultiChoiceModeHelper {
 		public boolean onActionItemClicked(android.view.ActionMode mode,
 				MenuItem item) {
 			boolean res;
-			switch (list.getCheckedItemCount()) {
-			// Single selection
-			case 1:
-				res = MenuUtils.handleSingleSelectionAction(fragment, item,
-						(FileHolder) list.getAdapter().getItem(getSelectedPosition()), fragment.getActivity());
-				break;
-			// Multiple selection
-			default:
-				res = MenuUtils.handleMultipleSelectionAction(fragment, item, getCheckedItems(), fragment.getActivity());
-				break;
+			switch (item.getItemId()) {
+				case R.id.menu_select_all:
+					for ( int i=0; i < list.getAdapter().getCount(); i++) {
+						list.setItemChecked(i, true);
+					}
+					res = true;
+					break;
+				default:
+					switch (list.getCheckedItemCount()) {
+						// Single selection
+						case 1:
+							res = MenuUtils.handleSingleSelectionAction(fragment, item,
+									(FileHolder) list.getAdapter().getItem(getSelectedPosition()), fragment.getActivity());
+							break;
+						// Multiple selection
+						default:
+							res = MenuUtils.handleMultipleSelectionAction(fragment, item, getCheckedItems(), fragment.getActivity());
+							break;
+					}
+					mode.finish();
 			}
-			mode.finish();
 
 			return res;
 		}

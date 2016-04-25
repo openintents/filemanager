@@ -29,7 +29,9 @@
     <!-- Automatically filled in by Launchpad: -->
     <string name="about_translators">Launchpad Contributions:
   OpenIntents devs https://launchpad.net/~openintents-devs
-  kenn dhia https://launchpad.net/~kendhia</string>
+  kenn dhia https://launchpad.net/~kendhia
+  	mahmood saqba
+  </string>
 
     <!-- Short explanation of the application (max. 80 characters) -->
     <string name="about_comments">ادارة الملفات على بطاقة SD باستعمال مدير المفات .OI</string>
@@ -47,7 +49,7 @@
 
     <string name="menu_send">ارسال</string>
     <string name="menu_open">فتح</string>
-    <string name="menu_move">Cut</string>
+    <string name="menu_move">قص</string>
     <string name="menu_copy">نسخ</string>
     <string name="menu_details">تفاصيل</string>
     <string name="menu_more">مزيد</string>
@@ -55,7 +57,8 @@
     <string name="menu_extract">فك الظغط (ZIP)</string>
     <string name="menu_include_in_media_scan">ادراج في فحص الميديا</string>
     <string name="menu_exclude_from_media_scan">استبعاد من فحص الميديا</string>
-    <string name="menu_bookmark">Bookmark</string>
+    <string name="menu_bookmark">إضافة الى المفضلة</string>
+
     <string name="create_new_folder">انشاء مجلد جديد</string>
     <string name="folder_name">اسم المجلد</string>
     <string name="this_folder_is_empty">هذا المجلد فارغ.</string>
@@ -155,19 +158,19 @@
 
     <!-- new menu strings -->
     <string name="menu_bookmarks">المفضلات</string>
-    <string name="menu_search">Search</string>
-    <string name="menu_create_folder">Create folder</string>
+    <string name="menu_search">بحث</string>
+    <string name="menu_create_folder">مجلد جديد</string>
     <string name="menu_paste">Paste</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">الاعدادات</string>
-    <string name="menu_donate">Donate</string>
-    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="menu_donate">تبرع</string>
+    <string name="menu_create_shortcut">إنشاء اختصار</string>
     <string name="send_chooser_title">Send using:</string>
     <string name="menu_check_all">Check all</string>
     <string name="menu_uncheck_all">Uncheck all</string>
 
     <!-- Multi selection action strings -->
-    <string name="selected">selected</string>
+    <string name="selected">العناصر المحددة</string>
     <string name="no_selection">No items checked</string>
     <string name="bookmark_empty">No bookmarks added.</string>
     <string name="bookmark_added">تم اضافة المفضلة</string>
@@ -179,7 +182,7 @@
     <string name="query_error">Query error</string>
     <string name="search_settings_descr">Files and folders in storage</string>
     <string name="preference_search_title">Clear history</string>
-    <string name="preference_search_category">Search</string>
+    <string name="preference_search_category">بحث</string>
     <string name="preference_search_dialog_message">Clear search history?</string>
     <string name="search_history_cleared">Search history cleared</string>
 

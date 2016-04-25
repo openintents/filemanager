@@ -1,16 +1,17 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/menu_multiselect"
         android:alphabeticShortcut="m"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:icon="@drawable/ic_action_mark"
         android:title="@string/menu_multiselect" />
     <item
         android:id="@+id/menu_paste"
         android:alphabeticShortcut="p"
         android:icon="@drawable/ic_action_paste"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
         android:menuCategory="container"
         android:orderInCategory="1"
         android:title="@string/menu_paste" />
@@ -18,7 +19,7 @@
         android:id="@+id/menu_create_folder"
         android:alphabeticShortcut="c"
         android:icon="@drawable/ic_action_create_folder"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
         android:menuCategory="container"
         android:orderInCategory="10"
         android:title="@string/menu_create_folder">
@@ -27,7 +28,7 @@
         android:id="@+id/menu_media_scan_include"
         android:alphabeticShortcut="i"
         android:icon="@android:drawable/ic_menu_gallery"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
         android:title="@string/menu_include_in_media_scan"
         android:visible="false">
     </item>
@@ -35,7 +36,7 @@
         android:id="@+id/menu_media_scan_exclude"
         android:alphabeticShortcut="e"
         android:icon="@android:drawable/ic_menu_gallery"
-        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
         android:title="@string/menu_exclude_from_media_scan"
         android:visible="false">
     </item>

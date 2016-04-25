@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
     compile 'com.github.openintents:distribution:1.1.3'
+    compile 'com.android.support:appcompat-v7:23.3.0'
 
     androidTestCompile 'com.android.support.test:runner:0.4'
     androidTestCompile 'com.android.support.test:rules:0.4'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
     androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.1'
+    androidTestCompile 'com.android.support:support-annotations:23.3.0'
 }
 
 android {

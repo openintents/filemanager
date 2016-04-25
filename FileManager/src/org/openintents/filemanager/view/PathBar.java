@@ -106,7 +106,7 @@ public class PathBar extends ViewFlipper {
 			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
 			mSwitchToManualModeButton.setLayoutParams(layoutParams);
-			mSwitchToManualModeButton.setId(10);
+			mSwitchToManualModeButton.setId(R.id.path_bar_switch_to_manual_mode_button);
 			mSwitchToManualModeButton.setBackgroundDrawable(getItemBackground());
 			mSwitchToManualModeButton.setImageResource(R.drawable.ic_navbar_edit);
 			mSwitchToManualModeButton.setVisibility(View.GONE);
@@ -122,7 +122,7 @@ public class PathBar extends ViewFlipper {
 			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 
 			cdToRootButton.setLayoutParams(layoutParams);
-			cdToRootButton.setId(11);
+			cdToRootButton.setId(R.id.path_bar_cd_to_root_button);
 			cdToRootButton.setBackgroundDrawable(getItemBackground());
 			cdToRootButton.setImageResource(R.drawable.ic_navbar_home);
 			cdToRootButton.setScaleType(ScaleType.CENTER_INSIDE);
@@ -184,7 +184,7 @@ public class PathBar extends ViewFlipper {
 			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
 			mGoButton.setLayoutParams(layoutParams);
-			mGoButton.setId(20);
+			mGoButton.setId(R.id.path_bar_go_button);
 			mGoButton.setBackgroundDrawable(getItemBackground());
 			mGoButton.setImageResource(R.drawable.ic_navbar_accept);
 			mGoButton.setScaleType(ScaleType.CENTER_INSIDE);

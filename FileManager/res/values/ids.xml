@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="checkable_file_list_item_checkbox" type="id" />
+    <item name="path_bar_go_button" type="id" />
+    <item name="path_bar_switch_to_manual_mode_button" type="id" />
+    <item name="path_bar_cd_to_root_button" type="id" />
+</resources>

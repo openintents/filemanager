@@ -28,7 +28,7 @@ public class CheckableFileListItem extends RelativeLayout implements Checkable{
 	}
 	private void init(){
 		mCheckbox = new CheckBox(getContext());
-		mCheckbox.setId(10);
+		mCheckbox.setId(R.id.checkable_file_list_item_checkbox);
 		LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		params.addRule(ALIGN_PARENT_RIGHT);
 		params.addRule(CENTER_VERTICAL);

@@ -7,7 +7,7 @@
 	* All arrays have been moved either to strings.xml
 	  (if they should be translated)
 	  
-	* Or to strings_not_for_translation.xml
+	* Or to donottranslate.xml
 	  (if they should not be translated)
 	
 	 -->

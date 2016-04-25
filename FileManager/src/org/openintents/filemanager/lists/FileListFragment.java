@@ -1,12 +1,15 @@
 package org.openintents.filemanager.lists;
 
+import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import java.io.File;
@@ -29,6 +33,10 @@ import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.CopyHelper;
 import org.openintents.filemanager.util.MimeTypes;
 import org.openintents.intents.FileManagerIntents;
+import static android.support.v4.content.ContextCompat.checkSelfPermission;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+
 
 /**
  * A {@link ListFragment} that displays the contents of a directory.
@@ -44,7 +52,8 @@ import org.openintents.intents.FileManagerIntents;
 public abstract class FileListFragment extends ListFragment {
 	private static final String INSTANCE_STATE_PATH = "path";
 	private static final String INSTANCE_STATE_FILES = "files";
-	File mPreviousDirectory = null;
+    private static final int REQUEST_CODE_STORAGE_PERMISSION = 1;
+    File mPreviousDirectory = null;
 
 	// Not an anonymous inner class because of:
 	// http://stackoverflow.com/questions/2542938/sharedpreferences-onsharedpreferencechangelistener-not-being-called-consistently
@@ -165,17 +174,45 @@ public abstract class FileListFragment extends ListFragment {
 	 * Reloads {@link #mPath}'s contents.
 	 */
 	public void refresh() {
-		// Cancel and GC previous scanner so that it doesn't load on top of the
-		// new list.
-		// Race condition seen if a long list is requested, and a short list is
-		// requested before the long one loads.
-		mScanner.cancel();
-		mScanner = null;
+        if (hasPermissions()) {
+            // Cancel and GC previous scanner so that it doesn't load on top of the
+            // new list.
+            // Race condition seen if a long list is requested, and a short list is
+            // requested before the long one loads.
+            mScanner.cancel();
+            mScanner = null;
 
-		// Indicate loading and start scanning.
-		setLoading(true);
-		renewScanner().start();
+            // Indicate loading and start scanning.
+            setLoading(true);
+            renewScanner().start();
+        } else {
+            requestPermissions();
+        }
 	}
+
+
+	private boolean hasPermissions() {
+		return checkSelfPermission(getActivity(), WRITE_EXTERNAL_STORAGE) == PERMISSION_GRANTED;
+	}
+
+	private void requestPermissions() {
+		showLoading(true);
+		requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_STORAGE_PERMISSION);
+	}
+
+	/**
+	 * Switch to permission request mode.
+	 */
+	private void showPermissionDenied() {
+        Toast.makeText(getActivity(), R.string.details_permissions, Toast.LENGTH_SHORT).show();
+    }
+
+	/**
+	 * Make the UI indicate loading.
+	 */
+	private void showLoading(boolean loading) {
+	}
+
 
 	/**
 	 * Make the UI indicate loading.
@@ -320,4 +357,19 @@ public abstract class FileListFragment extends ListFragment {
 	public String getFilename() {
 		return mFilename;
 	}
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_STORAGE_PERMISSION:
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PERMISSION_GRANTED) {
+                    refresh();
+                } else {
+                    showPermissionDenied();
+                }
+                break;
+        }
+    }
 }

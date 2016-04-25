@@ -53,5 +53,11 @@
 	
 	<!-- Android specific -->
 	<type extension=".apk" mimetype="application/vnd.android.package-archive" icon="@drawable/ic_launcher_android_package" />
-	
+
+	<!-- Books -->
+	<type extension=".epub" mimetype="application/epub+zip" icon="@drawable/ic_launcher_text_plain" />
+	<type extension=".chm" mimetype="application/vnd.ms-htmlhelp" icon="@drawable/ic_launcher_text_plain" />
+	<type extension=".pdf" mimetype="application/pdf" icon="@drawable/ic_launcher_text_plain" />
+	<type extension=".mobi" mimetype="application/x-mobipocket-ebook" icon="@drawable/ic_launcher_text_plain" />
+
 </MimeTypes>

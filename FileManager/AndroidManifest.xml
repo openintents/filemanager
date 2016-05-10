@@ -19,12 +19,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.openintents.filemanager"
     android:installLocation="auto"
-    android:versionCode="34"
-    android:versionName="2.0.7" >
+    android:versionCode="35"
+    android:versionName="2.1.0" >
 
     <!--
     History: 
 	 * * * UPDATE ATRACKDOG METADATA BELOW FOR RELEASE CANDIDATES * * *
+	[35] 2.1.0:
 	[34] 2.0.7: 2014-02-19
 	[32] 2.0.6: 2014-02-17
 	[31] 2.0.5: 2014-02-14

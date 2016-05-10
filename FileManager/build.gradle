@@ -17,14 +17,16 @@ android {
 
     defaultConfig {
         applicationId "org.openintents.filemanager"
-        versionCode 34
-        versionName "2.0.7"
+        versionCode 35
+        versionName "2.1.0"
         minSdkVersion 8
         targetSdkVersion 23
 
         ndk {
             moduleName "access"
         }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     sourceSets {
@@ -40,7 +42,10 @@ android {
         }
 
         // Move the tests to tests/java, tests/res, etc...
-        instrumentTest.setRoot('tests')
+        androidTest {
+            manifest.srcFile 'tests/AndroidManifest.xml'
+            java.srcDirs file('tests/java')
+        }
 
         // Move the build types to build-types/<type>
         // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...

@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.Espresso;
-import android.support.test.filters.SdkSuppress;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.BeforeClass;
@@ -19,7 +16,6 @@ import org.openintents.intents.FileManagerIntents;
 import java.io.IOException;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasData;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -35,7 +31,7 @@ public class TestPickFileResult extends BaseTestFileManager {
 
     @BeforeClass
     public static void setup() throws IOException {
-        sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath()+'/';
+        sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath() + '/';
         createDirectory(sdcardPath + TEST_DIRECTORY);
         createFile(sdcardPath + "oi-filemanager-tests/oi-test1.txt", "bbb");
         createFile(sdcardPath + "oi-filemanager-tests/oi-test2.txt", "bbb");

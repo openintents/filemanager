@@ -2,7 +2,6 @@ package org.openintents.filemanager.test;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -35,7 +34,7 @@ public class ActivityResultTestRule<T extends Activity> extends ActivityTestRule
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public ActivityResult getActivityResult() {
         T activity = getActivity();
-        assertThat("Activity did not finish (destroyed: " + activity.isDestroyed() + ")" , activity.isFinishing(), is(true));
+        assertThat("Activity did not finish (destroyed: " + activity.isDestroyed() + ")", activity.isFinishing(), is(true));
 
 
         try {

@@ -1,11 +1,6 @@
 package org.openintents.filemanager.test;
 
-import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewAssertion;
-import android.support.test.espresso.action.GeneralClickAction;
-import android.support.test.espresso.action.GeneralLocation;
-import android.support.test.espresso.action.Press;
-import android.support.test.espresso.action.Tap;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.view.View;
 import android.widget.Adapter;
@@ -26,9 +21,6 @@ import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.action.ViewActions.pressBack;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.intent.Checks.checkNotNull;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
@@ -38,19 +30,19 @@ public class BaseTestFileManager {
     protected static String sdcardPath;
 
     protected static void cleanDirectory(File file) {
-        if(!file.exists()) return;
-        for(String name:file.list()) {
-            if(!name.startsWith("oi-") && !name.startsWith(".oi-")) {
+        if (!file.exists()) return;
+        for (String name : file.list()) {
+            if (!name.startsWith("oi-") && !name.startsWith(".oi-")) {
                 throw new RuntimeException(file + " contains unexpected file");
             }
             File child = new File(file, name);
-            if(child.isDirectory())
+            if (child.isDirectory())
                 cleanDirectory(child);
             else
                 child.delete();
         }
         file.delete();
-        if(file.exists()) {
+        if (file.exists()) {
             throw new RuntimeException("Deletion of " + file + " failed");
         }
     }
@@ -65,25 +57,25 @@ public class BaseTestFileManager {
     protected static void createDirectory(String path) throws IOException {
         File file = new File(path);
         file.mkdir();
-        if(!file.exists())
+        if (!file.exists())
             throw new IOException("Creation of " + path + " failed");
     }
 
     protected void deleteDirectory(String path) {
         File file = new File(path);
-        if(file.exists())
-            if(file.isDirectory())
+        if (file.exists())
+            if (file.isDirectory())
                 cleanDirectory(file);
-            file.delete();
+        file.delete();
     }
 
     protected void clickOnTestDirectory() {
-		clickOnFile(TEST_DIRECTORY);
+        clickOnFile(TEST_DIRECTORY);
     }
 
     protected void clickOnFile(String filename) {
-		onData(allOf(instanceOf(FileHolder.class), hasName(filename))).perform(click(pressBack()));
-	}
+        onData(allOf(instanceOf(FileHolder.class), hasName(filename))).perform(click(pressBack()));
+    }
 
     protected void longClickOnFile(String filename) {
         onData(allOf(instanceOf(FileHolder.class), hasName(filename))).perform(longClick());
@@ -99,19 +91,19 @@ public class BaseTestFileManager {
     }
 
     protected BoundedMatcher<Object, FileHolder> hasName(final String filename) {
-		return new BoundedMatcher<Object, FileHolder>(FileHolder.class) {
+        return new BoundedMatcher<Object, FileHolder>(FileHolder.class) {
 
-			@Override
-			public void describeTo(Description description) {
-				description.appendText("with name " + filename);
-			}
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("with name " + filename);
+            }
 
-			@Override
-			protected boolean matchesSafely(FileHolder item) {
-				return filename.equals(item.getName());
-			}
-		};
-	}
+            @Override
+            protected boolean matchesSafely(FileHolder item) {
+                return filename.equals(item.getName());
+            }
+        };
+    }
 
     protected BoundedMatcher<Object, BookmarkListAdapter.Bookmark> hasBookmarkName(final String filename) {
         return new BoundedMatcher<Object, BookmarkListAdapter.Bookmark>(BookmarkListAdapter.Bookmark.class) {

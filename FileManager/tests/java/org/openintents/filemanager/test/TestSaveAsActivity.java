@@ -1,27 +1,44 @@
 package org.openintents.filemanager.test;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.SystemClock;
+import android.support.test.espresso.InjectEventSecurityException;
+import android.support.test.espresso.UiController;
+import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.action.EspressoKey;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.text.InputType;
 import android.view.KeyEvent;
+import android.view.View;
 
+import org.hamcrest.Matcher;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openintents.filemanager.SaveAsActivity;
+import org.openintents.filemanager.*;
+import org.openintents.filemanager.R;
 
 import java.io.File;
 import java.io.IOException;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.actionWithAssertions;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.longClick;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withHint;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -41,8 +58,8 @@ public class TestSaveAsActivity extends BaseTestFileManager {
         }
     };
 
-    @Before
-    public void setup() throws IOException {
+    @BeforeClass
+    public static void setup() throws IOException {
         sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath()+'/';
         createDirectory(sdcardPath + TEST_DIRECTORY);
         createFile(sdcardPath + "oi-filemanager-tests/oi-to-open.txt", "bbb");
@@ -50,10 +67,45 @@ public class TestSaveAsActivity extends BaseTestFileManager {
 
     @Test
     public void testIntentSaveAs() {
-        onView(withText(Environment.getExternalStorageDirectory().getParentFile().getName())).perform(longClick());
-        onView(ViewMatchers.withInputType(InputType.TYPE_CLASS_TEXT)).perform(typeText("oi-target.txt"));
-        onView(ViewMatchers.withInputType(InputType.TYPE_CLASS_TEXT)).perform(ViewActions.pressKey(KeyEvent.KEYCODE_ENTER));
+        onView(withHint(R.string.filename_hint)).perform(closeSoftKeyboard(), replaceText("oi-target.txt"));
+        onView(withHint(R.string.filename_hint)).perform(actionWithAssertions(new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return isDisplayed();
+            }
 
-        assertThat(new File(sdcardPath + "oi-filemanager-tests/oi-to-open.txtoi-target.txt").exists(), is(true));
+            @Override
+            public String getDescription() {
+                return null;
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                try {
+                    sendKeyEvent(uiController);
+                } catch (InjectEventSecurityException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            private boolean sendKeyEvent(UiController controller)
+                    throws InjectEventSecurityException {
+
+                boolean injected = false;
+                long eventTime = SystemClock.uptimeMillis();
+                for (int attempts = 0; !injected && attempts < 4; attempts++) {
+                    injected = controller.injectKeyEvent(new KeyEvent(eventTime,
+                            eventTime,
+                            KeyEvent.ACTION_DOWN,
+                            KeyEvent.KEYCODE_ENTER,
+                            0,
+                            0));
+                }
+                return injected;
+            }
+        }));
+        //onView(withId(R.id.pickbar_button)).perform(click());
+
+        assertThat(new File(sdcardPath + "oi-filemanager-tests/oi-target.txt").exists(), is(true));
     }
 }

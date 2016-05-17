@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.FileUtils;
@@ -60,15 +63,15 @@ public class ThumbnailLoader {
     
     private Runnable purger;
     private Handler purgeHandler;
-    private ExecutorService mExecutor;
+    private PausableThreadPoolExecutor mExecutor;
     
     // Soft bitmap cache for thumbnails removed from the hard cache.
     // This gets cleared by the Garbage Collector everytime we get low on memory.
     private ConcurrentHashMap<String, SoftReference<Bitmap>> mSoftBitmapCache;
     private LinkedHashMap<String, Bitmap> mHardBitmapCache;
     private ArrayList<String> mBlacklist;
-    
-    /**
+
+	/**
      * Used for loading and decoding thumbnails from files.
      * 
      * @author PhilipHayes
@@ -86,7 +89,7 @@ public class ThumbnailLoader {
 		};
 		
 		purgeHandler = new Handler();
-		mExecutor = Executors.newFixedThreadPool(POOL_SIZE);
+		mExecutor = new PausableThreadPoolExecutor(POOL_SIZE);
 		
 		mBlacklist = new ArrayList<>();
 		mSoftBitmapCache = new ConcurrentHashMap<>(MAX_CACHE_CAPACITY / 2);
@@ -137,8 +140,8 @@ public class ThumbnailLoader {
 				if (!cancel) {
 					// Submit the file for decoding.
 					Thumbnail thumbnail = new Thumbnail(imageView, holder);
-					WeakReference<ThumbnailRunner> runner = new WeakReference<>(new ThumbnailRunner(thumbnail));
-					mExecutor.submit(runner.get());
+					ThumbnailRunner thumbnailRunner = new ThumbnailRunner(thumbnail);
+					mExecutor.submit(thumbnailRunner);
 				}
 			}
 		}
@@ -277,7 +280,15 @@ public class ThumbnailLoader {
 		}
 		return null;
 	}
-	
+
+	public void startProcessingLoaderQueue() {
+		mExecutor.resume();
+	}
+
+	public void stopProcessingLoaderQueue() {
+		mExecutor.pause();
+	}
+
 	/**
 	 * Holder object for thumbnail information. 
 	 */

@@ -5,4 +5,5 @@
     <item name="path_bar_switch_to_manual_mode_button" type="id" />
     <item name="path_bar_cd_to_root_button" type="id" />
     <item name="path_bar_path_edit_text" type="id" />
+    <item name="pickbar_button" type="id" />
 </resources>

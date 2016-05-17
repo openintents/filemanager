@@ -38,6 +38,7 @@ public class PickBar extends LinearLayout {
 			mButton = new Button(getContext());
 		{
 			mButton.setText(R.string.pick_button_default);
+			mButton.setId(R.id.pickbar_button);
 			mButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {

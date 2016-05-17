@@ -53,7 +53,7 @@
                 android:summaryOn="@string/preference_showallwarning_summary_on"
                 android:summaryOff="@string/preference_showallwarning_summary_off" />
 
-        <CheckBoxPreference 
+        <CheckBoxPreference
                 android:key="displayhiddenfiles"
                 android:title="@string/preference_displayhiddenfiles_title"
                 android:defaultValue="true"

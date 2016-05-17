@@ -6,7 +6,7 @@ import android.os.Environment;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,10 +15,8 @@ import org.openintents.intents.FileManagerIntents;
 
 import java.io.IOException;
 
-import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
 public class TestIntentFilterActivityForPickFile extends BaseTestFileManager {
@@ -34,8 +32,8 @@ public class TestIntentFilterActivityForPickFile extends BaseTestFileManager {
         }
     };
 
-    @Before
-    public void setup() throws IOException {
+    @BeforeClass
+    public static void setup() throws IOException {
         sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath()+'/';
         createDirectory(sdcardPath + TEST_DIRECTORY);
         createFile(sdcardPath + "oi-filemanager-tests/oi-pick-file", "");
@@ -43,8 +41,7 @@ public class TestIntentFilterActivityForPickFile extends BaseTestFileManager {
 
 
     @Test
-    public void testIntentPickFile() throws IOException {
-        // startActivityForResult is, I think, impossible to test on Robotinium
-        onView(withText("oi-pick-file")).check(matches(isDisplayed()));
+    public void testIntentDataIsUsedAsInitialDirectory() throws IOException {
+        checkFile("oi-pick-file", matches(isDisplayed()));
     }
 }

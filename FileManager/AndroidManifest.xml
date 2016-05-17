@@ -201,7 +201,7 @@
         <service android:name=".search.SearchService" >
         </service>
 
-        <activity android:name=".IntentFilterActivity" >
+        <activity android:name=".IntentFilterActivity">
             <intent-filter>
                 <action android:name="org.openintents.action.PICK_FILE" />
 

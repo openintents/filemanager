@@ -1,21 +1,21 @@
 package org.openintents.filemanager.lists;
 
-import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.test.espresso.IdlingResource;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -90,8 +90,9 @@ public abstract class FileListFragment extends ListFragment {
     private View mClipboardInfo;
     private TextView mClipboardContent;
     private TextView mClipboardAction;
+	private IdlingResource.ResourceCallback resourceCallback;
 
-    @Override
+	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 
@@ -116,9 +117,9 @@ public abstract class FileListFragment extends ListFragment {
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				if (scrollState == OnScrollListener.SCROLL_STATE_IDLE) {
-					mAdapter.setScrolling(false);
+					startUpdatingFileIcons();
 				} else
-					mAdapter.setScrolling(true);
+					stopUpdatingFileIcons();
 			}
 
 			@Override
@@ -162,6 +163,18 @@ public abstract class FileListFragment extends ListFragment {
 		setListAdapter(mAdapter);
 		mScanner.start();
 
+	}
+
+	private void startUpdatingFileIcons() {
+		mAdapter.startProcessingThumbnailLoaderQueue();
+	}
+
+	private void stopUpdatingFileIcons() {
+		mAdapter.stopProcessingThumbnailLoaderQueue();
+	}
+
+	public boolean isLoading() {
+		return mFlipper.getDisplayedChild() == 0;
 	}
 
 	@Override
@@ -222,6 +235,10 @@ public abstract class FileListFragment extends ListFragment {
 		onLoadingChanged(show);
 	}
 
+	public void setResourceCallback(IdlingResource.ResourceCallback resourceCallback) {
+		this.resourceCallback = resourceCallback;
+	}
+
 	protected void selectInList(File selectFile) {
 		String filename = selectFile.getName();
 
@@ -266,6 +283,10 @@ public abstract class FileListFragment extends ListFragment {
 
 			switch (msg.what) {
 			case DirectoryScanner.MESSAGE_SHOW_DIRECTORY_CONTENTS:
+				if (getActivity() == null) {
+					return;
+				}
+
 				DirectoryContents c = (DirectoryContents) msg.obj;
 				mFiles.clear();
 				mFiles.addAll(c.listSdCard);
@@ -284,9 +305,12 @@ public abstract class FileListFragment extends ListFragment {
 				}
 				setLoading(false);
                 updateClipboardInfo();
+				if (resourceCallback != null) {
+					resourceCallback.onTransitionToIdle();
+				}
 				break;
 			case DirectoryScanner.MESSAGE_SET_PROGRESS:
-				// Irrelevant.
+				// ignore
 				break;
 			}
 		}
@@ -333,24 +357,21 @@ public abstract class FileListFragment extends ListFragment {
 	 *            The path to set.
 	 */
 	public final void setPath(File dir) {
-		
 		if (dir.exists() && dir.isDirectory()){
 			mPreviousDirectory = mCurrentDirectory;
 			mCurrentDirectory = dir;
 			mPath = dir.getAbsolutePath();
-			
 		}
 	}
 
 	private void pathCheckAndFix() {
-		File dir = new File(mPath);
+		File file = new File(mPath);
 		// Sanity check that the path (coming from extras_dir_path) is indeed a
 		// directory
-		if (!dir.isDirectory() && dir.getParentFile() != null) {
+		if (!file.isDirectory() && file.getParentFile() != null) {
 			// remember the filename for picking.
-			mFilename = dir.getName();
-			dir = dir.getParentFile();
-			mPath = dir.getAbsolutePath();
+			mFilename = file.getName();
+			mPath = file.getParentFile().getAbsolutePath();
 		}
 	}
 

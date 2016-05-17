@@ -169,4 +169,9 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
 	    }
 	    return ext;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "-" + getName();
+	}
 }

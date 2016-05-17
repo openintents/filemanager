@@ -2,7 +2,9 @@ package org.openintents.filemanager.compatibility;
 
 import org.openintents.filemanager.R;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AbsListView.MultiChoiceModeListener;
@@ -13,16 +15,14 @@ public class BookmarkMultiChoiceModeHelper {
 	private BookmarkMultiChoiceModeHelper() {
 	}
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static void listView_setMultiChoiceModeListener(final ListView list, final Context context) {
 		list.setMultiChoiceModeListener(new MultiChoiceModeListener() {
 
 			@Override
 			public boolean onPrepareActionMode(android.view.ActionMode mode,
 					Menu menu) {
-				
-				mode.getMenuInflater().inflate(R.menu.bookmarks, menu);
-				
-				return true;
+				return false;
 			}
 
 			@Override
@@ -32,6 +32,7 @@ public class BookmarkMultiChoiceModeHelper {
 			@Override
 			public boolean onCreateActionMode(android.view.ActionMode mode,
 					Menu menu) {
+				mode.getMenuInflater().inflate(R.menu.bookmarks, menu);
 				return true;
 			}
 

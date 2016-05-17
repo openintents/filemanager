@@ -55,8 +55,8 @@ public class BookmarkListFragment extends ListFragment {
 		if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB){
 			registerForContextMenu(getListView());
 		} else {
-			BookmarkMultiChoiceModeHelper.listView_setMultiChoiceModeListener(getListView(), getActivity());
 			getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+			BookmarkMultiChoiceModeHelper.listView_setMultiChoiceModeListener(getListView(), getActivity());
 		}
 	}
 	

@@ -133,13 +133,17 @@ public class BookmarkListAdapter extends BaseAdapter{
 		return !scrolling && item.getFile().isFile() && !item.getMimeType().equals("video/mpeg");
 	}
 	
-	protected class Bookmark{
+	public static class Bookmark{
 		long id;
 		String name;
 		String path;
+
+		public String getName() {
+			return name;
+		}
 	}
 	
-	private class ViewHolder {
+	private static class ViewHolder {
 		public TextView primaryInfo;
 		public TextView secondaryInfo;
 		public ImageView icon;

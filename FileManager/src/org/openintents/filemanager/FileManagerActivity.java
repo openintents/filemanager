@@ -16,7 +16,20 @@
 
 package org.openintents.filemanager;
 
-import java.io.File;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.VisibleForTesting;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import org.openintents.filemanager.bookmarks.BookmarkListActivity;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
@@ -27,23 +40,11 @@ import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 
-import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
-import android.os.Bundle;
-import android.os.Environment;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
+import java.io.File;
 
 public class FileManagerActivity extends DistributionLibraryFragmentActivity {
-	private static final String FRAGMENT_TAG = "ListFragment";
+	@VisibleForTesting
+	public static final String FRAGMENT_TAG = "ListFragment";
     
     protected static final int REQUEST_CODE_BOOKMARKS = 1;
 	

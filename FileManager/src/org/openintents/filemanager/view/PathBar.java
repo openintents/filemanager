@@ -211,6 +211,7 @@ public class PathBar extends ViewFlipper {
 			mPathEditText.setLayoutParams(layoutParams);
 			mPathEditText.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 			mPathEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
+			mPathEditText.setId(R.id.path_bar_path_edit_text);
 			mPathEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 						@Override
 						public boolean onEditorAction(TextView v, int actionId,

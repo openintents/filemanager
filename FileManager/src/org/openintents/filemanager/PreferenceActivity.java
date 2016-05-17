@@ -27,6 +27,7 @@ import android.os.Environment;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.support.annotation.VisibleForTesting;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -132,8 +133,9 @@ public class PreferenceActivity extends android.preference.PreferenceActivity
 		return PreferenceManager.getDefaultSharedPreferences(context)
 				.getBoolean(PREFS_SHOWALLWARNING, true);
 	}
-	
-	static void setDisplayHiddenFiles(Context context, boolean enabled) {
+
+	@VisibleForTesting
+	public static void setDisplayHiddenFiles(Context context, boolean enabled) {
 		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putBoolean(PREFS_DISPLAYHIDDENFILES, enabled);

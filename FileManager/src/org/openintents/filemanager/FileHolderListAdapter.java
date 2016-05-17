@@ -97,25 +97,27 @@ public class FileHolderListAdapter extends BaseAdapter {
 		holder.secondaryInfo.setText(item.getFormattedModificationDate(mContext));
 		// Hide directories' size as it's irrelevant if we can't recursively find it.
 		holder.tertiaryInfo.setText(item.getFile().isDirectory()? "" : item.getFormattedSize(mContext, false));
-        
-        if(shouldLoadIcon(item) && mThumbnailLoader != null){
+
+		if(shouldLoadIcon(item) && mThumbnailLoader != null){
 			mThumbnailLoader.loadImage(item, holder.icon);
-        }
-        
+		}
+
 		return convertView;
 	}
-	
-	/**
-	 * Inform this adapter about scrolling state of list so that lists don't lag due to cache ops.
-	 * @param isScrolling True if the ListView is still scrolling.
-	 */
-	public void setScrolling(boolean isScrolling){
-		scrolling = isScrolling;
-		if(!isScrolling)
-			notifyDataSetChanged();
+
+	public void startProcessingThumbnailLoaderQueue() {
+		if (mThumbnailLoader != null) {
+			mThumbnailLoader.startProcessingLoaderQueue();
+		}
 	}
-	
+
+	public void stopProcessingThumbnailLoaderQueue() {
+		if (mThumbnailLoader != null) {
+			mThumbnailLoader.stopProcessingLoaderQueue();
+		}
+	}
+
 	private boolean shouldLoadIcon(FileHolder item){
-		return !scrolling && item.getFile().isFile() && !item.getMimeType().equals("video/mpeg");
+		return item.getFile().isFile() && !item.getMimeType().equals("video/mpeg");
 	}
 }

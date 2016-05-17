@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class DistributionLibraryFragmentActivity extends FragmentActivity{
+public class DistributionLibraryFragmentActivity extends FragmentActivity {
 
 	static final int MENU_DISTRIBUTION_START = Menu.FIRST;
 	

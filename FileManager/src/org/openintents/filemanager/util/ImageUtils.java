@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 
 public final class ImageUtils {
 
@@ -51,17 +52,18 @@ public final class ImageUtils {
 	 */
 	public static Drawable resizeDrawable(Drawable drawable, int desireWidth,
 			int desireHeight) {
-				Drawable dr = drawable;
+		Drawable dr = drawable;
 		int width = drawable.getIntrinsicWidth();
 		int height = drawable.getIntrinsicHeight();
 
 		if (0 < width && 0 < height && desireWidth < width
 				|| desireHeight < height) {
-			Bitmap b = ((BitmapDrawable) drawable).getBitmap();
-			Bitmap resized = Bitmap.createScaledBitmap(b, desireWidth,
-					desireHeight, true);
-			dr = new BitmapDrawable(resized);
-
+			if (drawable instanceof BitmapDrawable) {
+				Bitmap b = ((BitmapDrawable) drawable).getBitmap();
+				Bitmap resized = Bitmap.createScaledBitmap(b, desireWidth,
+						desireHeight, true);
+				dr = new BitmapDrawable(resized);
+			}
 		}
 
 		return dr;

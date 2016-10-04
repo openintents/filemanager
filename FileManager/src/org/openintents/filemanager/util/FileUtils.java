@@ -52,18 +52,6 @@ public class FileUtils {
 	static final String TAG = "FileUtils";
 	private static final int X_OK = 1;
 	public static final String NOMEDIA_FILE_NAME = ".nomedia";
-	
-	private static boolean libLoadSuccess;
-	
-	static {
-		try {
-			System.loadLibrary("access");
-			libLoadSuccess = true;
-		} catch(UnsatisfiedLinkError e) {
-			libLoadSuccess = false;
-			Log.d(TAG, "libaccess.so failed to load.");
-		}
-	}
 
     /**
      * use it to calculate file count in the directory recursively
@@ -276,23 +264,9 @@ public class FileUtils {
 	 * @return returns TRUE if the current process has execute privilages.
 	 */
 	public static boolean canExecute(File mContextFile) {
-		try {
-			// File.canExecute() was introduced in API 9.  If it doesn't exist, then
-			// this will throw an exception and the NDK version will be used.
-			Method m = File.class.getMethod("canExecute", new Class[] {} );
-			return (Boolean)m.invoke(mContextFile);
-		} catch (Exception e) {
-			if(libLoadSuccess){
-				return access(mContextFile.getPath(), X_OK);
-			} else {
-				return false;
-			}
-		}
+		return mContextFile.canExecute();
 	}
-	
-	// Native interface to unistd.h's access(*char, int) method.
-	public static native boolean access(String path, int mode);
-	
+
 	/**
 	 * @param path The path that the file is supposed to be in.
 	 * @param fileName Desired file name. This name will be modified to create a unique file if necessary.

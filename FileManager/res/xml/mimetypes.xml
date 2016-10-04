@@ -60,4 +60,7 @@
 	<type extension=".pdf" mimetype="application/pdf" icon="@drawable/ic_launcher_text_plain" />
 	<type extension=".mobi" mimetype="application/x-mobipocket-ebook" icon="@drawable/ic_launcher_text_plain" />
 
+	<!-- Maps -->
+	<type extension=".itn" mimetype="application/octet-stream" icon="@drawable/ic_launcher_map" />
+
 </MimeTypes>

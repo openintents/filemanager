@@ -19,8 +19,8 @@ android {
 
     defaultConfig {
         applicationId "org.openintents.filemanager"
-        versionCode 35
-        versionName "2.1.0"
+        versionCode 36
+        versionName "2.1.1"
         minSdkVersion 9
         targetSdkVersion 24
 

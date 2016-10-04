@@ -161,8 +161,11 @@ public abstract class FileListFragment extends ListFragment {
         mAdapter = new FileHolderListAdapter(mFiles, getActivity());
 
         setListAdapter(mAdapter);
-        mScanner.start();
-
+        if (hasPermissions()) {
+            mScanner.start();
+        } else {
+            requestPermissions();
+        }
     }
 
     private void startUpdatingFileIcons() {
@@ -209,7 +212,7 @@ public abstract class FileListFragment extends ListFragment {
     }
 
     private void requestPermissions() {
-        showLoading(true);
+        setLoading(true);
         requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_STORAGE_PERMISSION);
     }
 
@@ -217,15 +220,9 @@ public abstract class FileListFragment extends ListFragment {
      * Switch to permission request mode.
      */
     private void showPermissionDenied() {
+        setLoading(false);
         Toast.makeText(getActivity(), R.string.details_permissions, Toast.LENGTH_SHORT).show();
     }
-
-    /**
-     * Make the UI indicate loading.
-     */
-    private void showLoading(boolean loading) {
-    }
-
 
     /**
      * Make the UI indicate loading.

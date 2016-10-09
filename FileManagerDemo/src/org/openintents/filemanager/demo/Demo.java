@@ -238,6 +238,9 @@ public class Demo extends Activity {
 							displayName, Long.toString(fileSize));
 					mTextView.setText(strFileSize);
 				}
+				if (c != null && !c.isClosed()) {
+					c.close();
+				}
 			}
 		}
 	}

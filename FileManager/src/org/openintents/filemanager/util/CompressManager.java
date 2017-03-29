@@ -110,6 +110,7 @@ public class CompressManager {
                 while ((len = in.read(buf)) > 0) {
                     zos.write(buf, 0, len);
                 }
+                zos.closeEntry();
                 in.close();
                 return;
             }
@@ -152,14 +153,6 @@ public class CompressManager {
                 zos = new ZipOutputStream(new BufferedOutputStream(out));
             } catch (FileNotFoundException e) {
                 Log.e(TAG, "error while creating ZipOutputStream");
-            } finally {
-                if (out != null) {
-                    try {
-                        out.close();
-                    } catch (IOException e) {
-                        // ignore
-                    }
-                }
             }
         }
 

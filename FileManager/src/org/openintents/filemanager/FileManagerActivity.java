@@ -30,6 +30,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.openintents.filemanager.bookmarks.BookmarkListActivity;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
@@ -106,10 +107,23 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		if(mFragment == null){
 			mFragment = new SimpleFileListFragment();
 			Bundle args = new Bundle();
-			if(data == null)
-				args.putString(FileManagerIntents.EXTRA_DIR_PATH, Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/");
-			else
-				args.putString(FileManagerIntents.EXTRA_DIR_PATH, data.toString());
+
+			if (getIntent().hasExtra(FileManagerIntents.EXTRA_ABSOLUTE_PATH)) {
+				String absolutePath = getIntent().getStringExtra(FileManagerIntents.EXTRA_ABSOLUTE_PATH);
+				if (hasValidAbsolutePathExtra()) {
+					args.putString(FileManagerIntents.EXTRA_DIR_PATH,
+							absolutePath);
+				} else {
+					Toast.makeText(this, "invalid absolute path extra " + absolutePath, Toast.LENGTH_SHORT).show();
+					finish();
+				}
+			} else {
+				if (data == null) {
+					args.putString(FileManagerIntents.EXTRA_DIR_PATH, Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/");
+				} else {
+					args.putString(FileManagerIntents.EXTRA_DIR_PATH, data.toString());
+				}
+			}
 			mFragment.setArguments(args);
 			getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, FRAGMENT_TAG).commit();
 		}
@@ -120,7 +134,12 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
 		}
 	}
 
- 	@Override
+	private boolean hasValidAbsolutePathExtra() {
+		return  getIntent().getStringExtra(FileManagerIntents.EXTRA_ABSOLUTE_PATH) != null &&
+				new File(getIntent().getStringExtra(FileManagerIntents.EXTRA_ABSOLUTE_PATH)).isDirectory();
+	}
+
+	@Override
  	public boolean onCreateOptionsMenu(Menu menu) {
  		MenuInflater inflater = new MenuInflater(this);
  		inflater.inflate(R.menu.main, menu);

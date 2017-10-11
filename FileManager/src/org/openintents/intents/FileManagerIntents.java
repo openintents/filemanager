@@ -99,6 +99,10 @@ public final class FileManagerIntents {
 	public static final String EXTRA_DIR_PATH = "org.openintents.extra.DIR_PATH";
 
 	/**
+	 * <p>Constant Value: "org.openintents.extra.ABSOLUTE_PATH"</p>
+	 */
+	public static final String EXTRA_ABSOLUTE_PATH = "org.openintents.extra.ABSOLUTE_PATH";
+	/**
 	 * Extension by which to filter.
 	 * 
      * <p>Constant Value: "org.openintents.extra.FILTER_FILETYPE"</p>
@@ -111,7 +115,7 @@ public final class FileManagerIntents {
      * <p>Constant Value: "org.openintents.extra.FILTER_MIMETYPE"</p>
 	 */
 	public static final String EXTRA_FILTER_MIMETYPE = "org.openintents.extra.FILTER_MIMETYPE";
-	
+
 	/**
 	 * Only show directories.
 	 * 
@@ -127,6 +131,6 @@ public final class FileManagerIntents {
 
     public static final String EXTRA_FROM_OI_FILEMANAGER = "org.openintents.extra.FROM_OI_FILEMANAGER";
 
-	private FileManagerIntents() {
+    private FileManagerIntents() {
 	}
 }

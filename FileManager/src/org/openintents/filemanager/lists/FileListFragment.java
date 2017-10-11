@@ -182,7 +182,9 @@ public abstract class FileListFragment extends ListFragment {
 
     @Override
     public void onDestroy() {
-        mScanner.cancel();
+        if (mScanner != null) {
+            mScanner.cancel();
+        }
         super.onDestroy();
     }
 

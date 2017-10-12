@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -25,7 +26,8 @@ import android.widget.Toast;
  */
 public class MultiselectListFragment extends FileListFragment {
 	private LegacyActionContainer mLegacyActionContainer;
-	
+	private TextView mMessageView;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {		
 		return inflater.inflate(R.layout.filelist_legacy_multiselect, null);
@@ -44,6 +46,9 @@ public class MultiselectListFragment extends FileListFragment {
 		super.onViewCreated(view, savedInstanceState);
 
 		// Init members
+		mMessageView = (TextView) view.findViewById(R.id.message);
+		mMessageView.setText(getString(R.string.error_generic)  + "no access");
+
 		mLegacyActionContainer =  (LegacyActionContainer) view.findViewById(R.id.action_container);
 		mLegacyActionContainer.setMenuResource(R.menu.multiselect);
 		mLegacyActionContainer.setOnActionSelectedListener(new LegacyActionContainer.OnActionSelectedListener() {
@@ -93,5 +98,10 @@ public class MultiselectListFragment extends FileListFragment {
 		default:
 			return false;
 		}
+	}
+
+	@Override
+	protected void updateNoAccessMessage(boolean showMessage) {
+		mMessageView.setVisibility(showMessage ? View.VISIBLE : View.GONE);
 	}
 }

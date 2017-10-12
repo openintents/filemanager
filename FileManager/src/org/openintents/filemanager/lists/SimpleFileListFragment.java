@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.openintents.filemanager.FileManagerApplication;
@@ -52,6 +53,7 @@ public class SimpleFileListFragment extends FileListFragment {
 
     private int mSingleSelectionMenu = R.menu.context;
     private int mMultiSelectionMenu = R.menu.multiselect;
+    private TextView mMessageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class SimpleFileListFragment extends FileListFragment {
 
         // Pathbar init.
         mPathBar = (PathBar) view.findViewById(R.id.pathbar);
+        mMessageView = (TextView) view.findViewById(R.id.message);
+        mMessageView.setText(getString(R.string.error_generic)  + "no access");
         // Handle mPath differently if we restore state or just initially create the view.
         if (savedInstanceState == null)
             mPathBar.setInitialDirectory(getPath());
@@ -133,6 +137,11 @@ public class SimpleFileListFragment extends FileListFragment {
         FileHolder item = (FileHolder) mAdapter.getItem(position);
 
         openInformingPathBar(item);
+    }
+
+    @Override
+    protected void updateNoAccessMessage(boolean showMessage) {
+        mMessageView.setVisibility(showMessage ? View.VISIBLE : View.GONE);
     }
 
     /**

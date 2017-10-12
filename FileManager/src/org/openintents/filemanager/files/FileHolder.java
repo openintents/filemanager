@@ -15,7 +15,7 @@ import android.os.Parcelable;
 import android.text.format.Formatter;
 
 public class FileHolder implements Parcelable, Comparable<FileHolder> {
-	private File mFile;
+    private File mFile;
 	private Drawable mIcon;
 	private String mMimeType = "";
 	private Context mContext;

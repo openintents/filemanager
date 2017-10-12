@@ -237,6 +237,8 @@ public abstract class FileListFragment extends ListFragment {
         Toast.makeText(getActivity(), R.string.details_permissions, Toast.LENGTH_SHORT).show();
     }
 
+    protected abstract void updateNoAccessMessage(boolean showMessage);
+
     public void setResourceCallback(IdlingResource.ResourceCallback resourceCallback) {
         this.resourceCallback = resourceCallback;
     }
@@ -372,6 +374,7 @@ public abstract class FileListFragment extends ListFragment {
                     mFiles.addAll(c.listFile);
 
                     mAdapter.notifyDataSetChanged();
+                    updateNoAccessMessage(c.noAccess);
 
 
                     if (mPreviousDirectory != null) {

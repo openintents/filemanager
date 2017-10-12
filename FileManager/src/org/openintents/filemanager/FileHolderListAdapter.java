@@ -6,7 +6,6 @@ import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.view.ViewHolder;
 
 import android.content.Context;
-import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;

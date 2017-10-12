@@ -9,4 +9,6 @@ public class DirectoryContents {
     
     // If true, there's a ".nomedia" file in this directory.
     public boolean noMedia;
+    // if true, there was a problem accessing the directory
+    public boolean noAccess;
 }

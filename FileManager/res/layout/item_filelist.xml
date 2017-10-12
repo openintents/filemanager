@@ -28,7 +28,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
-        android:scaleType="centerInside"
+        android:scaleType="fitCenter"
         android:contentDescription="@string/item_icon" />
 
     <TextView

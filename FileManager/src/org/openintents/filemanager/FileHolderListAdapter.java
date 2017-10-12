@@ -6,6 +6,8 @@ import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.view.ViewHolder;
 
 import android.content.Context;
+import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +25,11 @@ public class FileHolderListAdapter extends BaseAdapter {
     private ThumbnailLoader mThumbnailLoader;
     private boolean scrolling = false;
 	
-	public FileHolderListAdapter(List<FileHolder> files, Context c){
+	public FileHolderListAdapter(List<FileHolder> files, Context c, @LayoutRes int itemLayout){
 		mItems = files;
 		mInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mContext = c;
+		mItemLayoutId = itemLayout;
 		
 		mThumbnailLoader = new ThumbnailLoader(c);
 	}
@@ -53,17 +56,6 @@ public class FileHolderListAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int position) {
 		return position;
-	}
-	
-	/**
-	 * Set the layout to be used for item drawing. 
-	 * @param resId The item layout id. 0 to reset.
-	 */
-	public void setItemLayout(int resId){
-		if(resId > 0)
-			mItemLayoutId = resId;
-		else
-			mItemLayoutId = R.layout.item_filelist;
 	}
 	
 	/**

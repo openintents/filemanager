@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.test.espresso.IdlingResource;
 import android.support.v4.app.ListFragment;
@@ -53,8 +54,13 @@ public abstract class FileListFragment extends ListFragment {
     private static final String INSTANCE_STATE_PATH = "path";
     private static final String INSTANCE_STATE_FILES = "files";
     private static final int REQUEST_CODE_STORAGE_PERMISSION = 1;
+    protected FileHolderListAdapter mAdapter;
+    protected DirectoryScanner mScanner;
+    protected ArrayList<FileHolder> mFiles = new ArrayList<>();
     File mPreviousDirectory = null;
-
+    private String mPath;
+    private String mFilename;
+    private ViewFlipper mFlipper;
     // Not an anonymous inner class because of:
     // http://stackoverflow.com/questions/2542938/sharedpreferences-onsharedpreferencechangelistener-not-being-called-consistently
     private OnSharedPreferenceChangeListener preferenceListener = new OnSharedPreferenceChangeListener() {
@@ -78,14 +84,6 @@ public abstract class FileListFragment extends ListFragment {
                 refresh();
         }
     };
-
-    protected FileHolderListAdapter mAdapter;
-    protected DirectoryScanner mScanner;
-    protected ArrayList<FileHolder> mFiles = new ArrayList<>();
-    private String mPath;
-    private String mFilename;
-
-    private ViewFlipper mFlipper;
     private File mCurrentDirectory;
     private View mClipboardInfo;
     private TextView mClipboardContent;
@@ -158,7 +156,7 @@ public abstract class FileListFragment extends ListFragment {
         }
         pathCheckAndFix();
         renewScanner();
-        mAdapter = new FileHolderListAdapter(mFiles, getActivity());
+        mAdapter = new FileHolderListAdapter(mFiles, getActivity(), getItemLayout());
 
         setListAdapter(mAdapter);
         if (hasPermissions()) {
@@ -166,6 +164,12 @@ public abstract class FileListFragment extends ListFragment {
         } else {
             requestPermissions();
         }
+    }
+
+    protected
+    @LayoutRes
+    int getItemLayout() {
+        return R.layout.item_filelist;
     }
 
     private void startUpdatingFileIcons() {
@@ -178,6 +182,14 @@ public abstract class FileListFragment extends ListFragment {
 
     public boolean isLoading() {
         return mFlipper.getDisplayedChild() == 0;
+    }
+
+    /**
+     * Make the UI indicate loading.
+     */
+    private void setLoading(boolean show) {
+        mFlipper.setDisplayedChild(show ? 0 : 1);
+        onLoadingChanged(show);
     }
 
     @Override
@@ -208,7 +220,6 @@ public abstract class FileListFragment extends ListFragment {
         }
     }
 
-
     private boolean hasPermissions() {
         return checkSelfPermission(getActivity(), WRITE_EXTERNAL_STORAGE) == PERMISSION_GRANTED;
     }
@@ -224,14 +235,6 @@ public abstract class FileListFragment extends ListFragment {
     private void showPermissionDenied() {
         setLoading(false);
         Toast.makeText(getActivity(), R.string.details_permissions, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * Make the UI indicate loading.
-     */
-    private void setLoading(boolean show) {
-        mFlipper.setDisplayedChild(show ? 0 : 1);
-        onLoadingChanged(show);
     }
 
     public void setResourceCallback(IdlingResource.ResourceCallback resourceCallback) {
@@ -274,45 +277,6 @@ public abstract class FileListFragment extends ListFragment {
                 mimetypeFilter == null ? "" : mimetypeFilter, writeableOnly,
                 directoriesOnly);
         return mScanner;
-    }
-
-    private class FileListMessageHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-
-            switch (msg.what) {
-                case DirectoryScanner.MESSAGE_SHOW_DIRECTORY_CONTENTS:
-                    if (getActivity() == null) {
-                        return;
-                    }
-
-                    DirectoryContents c = (DirectoryContents) msg.obj;
-                    mFiles.clear();
-                    mFiles.addAll(c.listSdCard);
-                    mFiles.addAll(c.listDir);
-                    mFiles.addAll(c.listFile);
-
-                    mAdapter.notifyDataSetChanged();
-
-
-                    if (mPreviousDirectory != null) {
-                        selectInList(mPreviousDirectory);
-                    } else {
-                        // Reset list position.
-                        if (!mFiles.isEmpty())
-                            getListView().setSelection(0);
-                    }
-                    setLoading(false);
-                    updateClipboardInfo();
-                    if (resourceCallback != null) {
-                        resourceCallback.onTransitionToIdle();
-                    }
-                    break;
-                case DirectoryScanner.MESSAGE_SET_PROGRESS:
-                    // ignore
-                    break;
-            }
-        }
     }
 
     public void updateClipboardInfo() {
@@ -388,6 +352,45 @@ public abstract class FileListFragment extends ListFragment {
                     showPermissionDenied();
                 }
                 break;
+        }
+    }
+
+    private class FileListMessageHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+
+            switch (msg.what) {
+                case DirectoryScanner.MESSAGE_SHOW_DIRECTORY_CONTENTS:
+                    if (getActivity() == null) {
+                        return;
+                    }
+
+                    DirectoryContents c = (DirectoryContents) msg.obj;
+                    mFiles.clear();
+                    mFiles.addAll(c.listSdCard);
+                    mFiles.addAll(c.listDir);
+                    mFiles.addAll(c.listFile);
+
+                    mAdapter.notifyDataSetChanged();
+
+
+                    if (mPreviousDirectory != null) {
+                        selectInList(mPreviousDirectory);
+                    } else {
+                        // Reset list position.
+                        if (!mFiles.isEmpty())
+                            getListView().setSelection(0);
+                    }
+                    setLoading(false);
+                    updateClipboardInfo();
+                    if (resourceCallback != null) {
+                        resourceCallback.onTransitionToIdle();
+                    }
+                    break;
+                case DirectoryScanner.MESSAGE_SET_PROGRESS:
+                    // ignore
+                    break;
+            }
         }
     }
 }

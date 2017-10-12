@@ -17,7 +17,7 @@ import android.widget.TextView;
  */
 public class MultiselectFileHolderListAdapter extends FileHolderListAdapter{
 	public MultiselectFileHolderListAdapter(List<FileHolder> files, Context c) {
-		super(files, c);
+		super(files, c, R.layout.item_filelist_multiselect);
 	}
 	
 	@Override

@@ -8,6 +8,7 @@ import org.openintents.filemanager.util.MenuUtils;
 import org.openintents.filemanager.view.LegacyActionContainer;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,9 +42,7 @@ public class MultiselectListFragment extends FileListFragment {
 		getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		
 		super.onViewCreated(view, savedInstanceState);
-		
-		mAdapter.setItemLayout(R.layout.item_filelist_multiselect);
-		
+
 		// Init members
 		mLegacyActionContainer =  (LegacyActionContainer) view.findViewById(R.id.action_container);
 		mLegacyActionContainer.setMenuResource(R.menu.multiselect);
@@ -65,7 +64,12 @@ public class MultiselectListFragment extends FileListFragment {
 			}
 		});
 	}
-	
+
+	@Override
+	protected @LayoutRes int getItemLayout() {
+		return R.layout.item_filelist_multiselect;
+	}
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.options_multiselect, menu);

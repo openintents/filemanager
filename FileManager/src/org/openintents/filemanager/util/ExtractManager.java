@@ -107,6 +107,7 @@ public class ExtractManager {
                 outputStream.close();
                 inputStream.close();
             }
+            outputFile.setLastModified(entry.getTime());
         }
 
         @Override

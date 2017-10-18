@@ -103,10 +103,13 @@ public class CompressManager {
                 byte[] buf = new byte[BUFFER_SIZE];
                 int len;
                 FileInputStream in = new FileInputStream(file);
+                ZipEntry entry;
                 if (path.length() > 0)
-                    zos.putNextEntry(new ZipEntry(path + "/" + file.getName()));
+                    entry = new ZipEntry(path + "/" + file.getName());
                 else
-                    zos.putNextEntry(new ZipEntry(file.getName()));
+                    entry = new ZipEntry(file.getName());
+                entry.setTime(file.lastModified());
+                zos.putNextEntry(entry);
                 while ((len = in.read(buf)) > 0) {
                     zos.write(buf, 0, len);
                 }

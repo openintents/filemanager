@@ -33,8 +33,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore.Audio;
 import android.provider.MediaStore.Video;
+import android.support.v4.content.FileProvider;
 import android.text.format.DateFormat;
 import android.text.format.Formatter;
 import android.util.Log;
@@ -323,7 +325,13 @@ public class FileUtils {
 	public static void openFile(FileHolder fileholder, Context c) {
 		Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
 
-		Uri data = FileUtils.getUri(fileholder.getFile());
+		Uri data;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+			data = FileProvider.getUriForFile(c, "org.openintents.filemanager.fileprovider", fileholder.getFile());
+		} else {
+			data = FileUtils.getUri(fileholder.getFile());
+		}
 		String type = fileholder.getMimeType();
 		
 		if ("*/*".equals(type)){

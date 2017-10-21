@@ -14,7 +14,9 @@ allprojects {
         maven {
             url 'https://jitpack.io'
         }
-
+        maven {
+            url "https://maven.google.com"
+        }
     }
 
     apply plugin: 'findbugs'

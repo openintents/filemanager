@@ -312,8 +312,7 @@ public abstract class MenuUtils {
 		i.setAction(Intent.ACTION_SEND);
 		i.setType(fHolder.getMimeType());
 		i.putExtra(Intent.EXTRA_SUBJECT, filename);
-		i.putExtra(Intent.EXTRA_STREAM, FileUtils.getUri(fHolder.getFile()));
-		i.putExtra(Intent.EXTRA_STREAM, Uri.parse("content://" + FileManagerProvider.AUTHORITY + fHolder.getFile().getAbsolutePath()));
+		i.putExtra(Intent.EXTRA_STREAM, FileManagerProvider.getUriForFile(fHolder.getFile().getAbsolutePath()));
 
 		i = Intent.createChooser(i, context.getString(R.string.menu_send));
 		

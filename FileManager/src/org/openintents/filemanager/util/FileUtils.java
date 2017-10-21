@@ -21,6 +21,7 @@ import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.List;
 
+import org.openintents.filemanager.FileManagerProvider;
 import org.openintents.filemanager.IntentFilterActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
@@ -33,6 +34,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.FileUriExposedException;
 import android.provider.MediaStore.Audio;
 import android.provider.MediaStore.Video;
 import android.text.format.DateFormat;
@@ -260,11 +262,11 @@ public class FileUtils {
 	
 	/**
 	 * Native helper method, returns whether the current process has execute privilages.
-	 * @param a File
+	 * @param file File
 	 * @return returns TRUE if the current process has execute privilages.
 	 */
-	public static boolean canExecute(File mContextFile) {
-		return mContextFile.canExecute();
+	public static boolean canExecute(File file) {
+		return file.canExecute();
 	}
 
 	/**
@@ -323,7 +325,7 @@ public class FileUtils {
 	public static void openFile(FileHolder fileholder, Context c) {
 		Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
 
-		Uri data = FileUtils.getUri(fileholder.getFile());
+		Uri data = FileManagerProvider.getUriForFile(fileholder.getFile().getAbsolutePath());
 		String type = fileholder.getMimeType();
 		
 		if ("*/*".equals(type)){
@@ -332,19 +334,21 @@ public class FileUtils {
 		} else {
 			intent.setDataAndType(data, type);
 		}
-		
-		
 
+		intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 		try {
-            List<ResolveInfo> activities = c.getPackageManager().queryIntentActivities(intent, PackageManager.GET_ACTIVITIES);
-            if (activities.isEmpty() || (activities.size() == 1 && c.getApplicationInfo().packageName.equals(activities.get(0).activityInfo.packageName))){
-                Toast.makeText(c, R.string.application_not_available, Toast.LENGTH_SHORT).show();
-                return;
-            } else {
-                c.startActivity(intent);
-            }
+			List<ResolveInfo> activities = c.getPackageManager().queryIntentActivities(intent, 0);
+			if (activities.isEmpty() || (activities.size() == 1 && c.getApplicationInfo().packageName.equals(activities.get(0).activityInfo.packageName))) {
+				Toast.makeText(c, R.string.application_not_available, Toast.LENGTH_SHORT).show();
+				return;
+			} else {
+				c.startActivity(intent);
+			}
 		} catch (ActivityNotFoundException|SecurityException e) {
 			Toast.makeText(c.getApplicationContext(), R.string.application_not_available, Toast.LENGTH_SHORT).show();
+		} catch (RuntimeException e) {
+			Log.d(TAG, "Couldn't open file", e);
+			Toast.makeText(c, "Couldn't open file " + e, Toast.LENGTH_SHORT).show();
 		}
 	}
 

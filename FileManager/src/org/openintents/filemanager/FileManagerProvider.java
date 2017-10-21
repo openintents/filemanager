@@ -1,24 +1,17 @@
 package org.openintents.filemanager;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import org.openintents.filemanager.util.MimeTypeParser;
-import org.openintents.filemanager.util.MimeTypes;
-import org.xmlpull.v1.XmlPullParserException;
-
 import android.content.ContentProvider;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
-import android.util.Log;
+
+import org.openintents.filemanager.util.MimeTypes;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class FileManagerProvider extends ContentProvider {
 
@@ -139,4 +132,17 @@ public class FileManagerProvider extends ContentProvider {
 		return 0;
 	}
 
+	public static Uri getUriForFile(Uri uri) {
+		String filePath = uri.getSchemeSpecificPart();
+		return getUriForFile(filePath);
+	}
+
+	public static Uri getUriForFile(String filePath) {
+		if (filePath.startsWith("//")) {
+			filePath = filePath.substring(2);
+		}
+		return Uri.parse(FILE_PROVIDER_PREFIX).buildUpon()
+				.appendPath(filePath)
+				.build();
+	}
 }

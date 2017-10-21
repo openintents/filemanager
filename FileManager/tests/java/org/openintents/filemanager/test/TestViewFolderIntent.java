@@ -1,6 +1,7 @@
 package org.openintents.filemanager.test;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
@@ -43,6 +44,8 @@ public class TestViewFolderIntent {
         intent.setType(DocumentsContract.Document.MIME_TYPE_DIR);
         intent.putExtra("org.openintents.extra.ABSOLUTE_PATH", (String) null);
         rule.launchActivity(intent);
+
+        // assert is showing toast
     }
 
     @Test
@@ -51,6 +54,19 @@ public class TestViewFolderIntent {
         intent.setType(DocumentsContract.Document.MIME_TYPE_DIR);
         intent.putExtra("org.openintents.extra.ABSOLUTE_PATH", "/xyz");
         rule.launchActivity(intent);
+
+        // assert is showing toast
+    }
+
+    @Test
+    public void testFileUriPath() {
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(path));
+        rule.launchActivity(intent);
+
+        onView(withId(org.openintents.filemanager.R.id.pathbar)).check(matches(isShowingPath(path)));
     }
 
     private Matcher<? super View> isShowingPath(final String path) {

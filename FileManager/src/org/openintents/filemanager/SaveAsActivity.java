@@ -1,18 +1,5 @@
 package org.openintents.filemanager;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import org.openintents.filemanager.util.UIUtils;
-import org.openintents.intents.FileManagerIntents;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -22,6 +9,19 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import org.openintents.filemanager.util.UIUtils;
+import org.openintents.intents.FileManagerIntents;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class SaveAsActivity extends Activity {
 	protected static final int REQUEST_CODE_PICK_FILE_OR_DIRECTORY = 1;
@@ -65,7 +65,7 @@ public class SaveAsActivity extends Activity {
 	private void processFile(Uri uri){
 		fileScheme = true;
 		Intent intent = createPickIntent();
-		intent.setData(uri);
+		intent.setData(FileManagerProvider.getUriForFile(uri));
 		startPickActivity(intent);
 	}
 	

@@ -381,8 +381,9 @@ public abstract class FileListFragment extends ListFragment {
                         selectInList(mPreviousDirectory);
                     } else {
                         // Reset list position.
-                        if (!mFiles.isEmpty())
+                        if (!mFiles.isEmpty() && getView() != null) {
                             getListView().setSelection(0);
+                        }
                     }
                     setLoading(false);
                     updateClipboardInfo();

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -23,7 +22,6 @@ import android.widget.Toast;
 import org.openintents.filemanager.FileManagerApplication;
 import org.openintents.filemanager.PreferenceActivity;
 import org.openintents.filemanager.R;
-import org.openintents.filemanager.compatibility.ActionbarRefreshHelper;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
 import org.openintents.filemanager.dialogs.CreateDirectoryDialog;
 import org.openintents.filemanager.files.FileHolder;
@@ -44,10 +42,8 @@ import java.io.IOException;
  * @author George Venios
  */
 public class SimpleFileListFragment extends FileListFragment {
-    private static final String INSTANCE_STATE_PATHBAR_MODE = "pathbar_mode";
-
     protected static final int REQUEST_CODE_MULTISELECT = 2;
-
+    private static final String INSTANCE_STATE_PATHBAR_MODE = "pathbar_mode";
     private PathBar mPathBar;
     private boolean mActionsEnabled = true;
 
@@ -67,7 +63,7 @@ public class SimpleFileListFragment extends FileListFragment {
         // Pathbar init.
         mPathBar = (PathBar) view.findViewById(R.id.pathbar);
         mMessageView = (TextView) view.findViewById(R.id.message);
-        mMessageView.setText(getString(R.string.error_generic)  + "no access");
+        mMessageView.setText(getString(R.string.error_generic) + "no access");
         // Handle mPath differently if we restore state or just initially create the view.
         if (savedInstanceState == null)
             mPathBar.setInitialDirectory(getPath());
@@ -81,7 +77,7 @@ public class SimpleFileListFragment extends FileListFragment {
                 if (activity == null) {
                     return;
                 }
-                open(new FileHolder(newCurrentDir, activity));
+                open(new FileHolder(newCurrentDir, true));
             }
         });
         if (savedInstanceState != null && savedInstanceState.getBoolean(INSTANCE_STATE_PATHBAR_MODE))
@@ -249,8 +245,7 @@ public class SimpleFileListFragment extends FileListFragment {
                             refresh();
 
                             // Refresh options menu
-                            if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
-                                ActionbarRefreshHelper.activity_invalidateOptionsMenu(getActivity());
+                            getActivity().supportInvalidateOptionsMenu();
                         }
                     });
                 else

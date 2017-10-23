@@ -13,7 +13,6 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebIconDatabase.IconListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -90,7 +89,7 @@ public class BookmarkListAdapter extends BaseAdapter{
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		FileHolder item = new FileHolder(new File(items.get(position).path), act);
+		FileHolder item = new FileHolder(new File(items.get(position).path));
 		ViewHolder viewHolder;
 		
 		if(convertView == null) {

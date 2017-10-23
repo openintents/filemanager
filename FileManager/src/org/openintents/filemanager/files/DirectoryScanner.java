@@ -6,7 +6,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import org.openintents.filemanager.PreferenceActivity;
@@ -129,12 +128,12 @@ public class DirectoryScanner extends Thread {
                 if (currentFile.isDirectory()) {
                     // It's the sd card.
                     if (currentFile.getAbsolutePath().equals(mSdCardPath)) {
-                        listSdCard.add(new FileHolder(currentFile, "*/*", sdIcon, context));
+                        listSdCard.add(new FileHolder(currentFile, "*/*", sdIcon, true));
                     }
                     // It's a normal directory.
                     else {
                         if (!mWriteableOnly || currentFile.canWrite())
-                            listDir.add(new FileHolder(currentFile, mMimeTypes.getMimeType(currentFile.getName()), folderIcon, context));
+                            listDir.add(new FileHolder(currentFile, mMimeTypes.getMimeType(currentFile.getName()), folderIcon, true));
                     }
                     // It's a file. Handle it too :P
                 } else {
@@ -144,20 +143,20 @@ public class DirectoryScanner extends Thread {
                     String mimetype = mMimeTypes.getMimeType(fileName);
                     String filetype = FileUtils.getExtension(fileName);
 
-                    boolean ext_allow = filetype.equalsIgnoreCase(mFilterFiletype) || mFilterFiletype == "";
+                    boolean ext_allow = filetype.equalsIgnoreCase(mFilterFiletype) || mFilterFiletype == null || mFilterFiletype.length() == 0;
                     boolean mime_allow = mFilterMimetype != null &&
                             (mimetype.contentEquals(mFilterMimetype) || mFilterMimetype.contentEquals("*/*") ||
                                     mFilterFiletype == null);
                     if (!mDirectoriesOnly && (ext_allow || mime_allow)) {
                         // Take advantage of the already parsed mimeType to set a specific icon.
-                        listFile.add(new FileHolder(currentFile, mimetype, genericFileIcon, context));
+                        listFile.add(new FileHolder(currentFile, mimetype, genericFileIcon, false));
                     }
                 }
             }
         } else {
             // show alternative directories
             File currentFile = new File(mSdCardPath);
-            listSdCard.add(new FileHolder(currentFile, "*/*", sdIcon, context));
+            listSdCard.add(new FileHolder(currentFile, "*/*", sdIcon, true));
         }
 
         Log.v(TAG, "Sorting results...");
@@ -189,20 +188,6 @@ public class DirectoryScanner extends Thread {
         }
 
         running = false;
-    }
-
-    private boolean isInFileList(File currentFile, List<File> fileList) {
-        try {
-            String currrentFilePath = currentFile.getCanonicalPath();
-            for (File file : fileList) {
-                if (file.getCanonicalPath().equalsIgnoreCase(currrentFilePath)) {
-                    return true;
-                }
-            }
-            return false;
-        } catch (IOException e) {
-            return false;
-        }
     }
 
     private void updateProgress(int progress, int maxProgress) {
@@ -240,16 +225,16 @@ public class DirectoryScanner extends Thread {
  * The container class for all comparators.
  */
 class Comparators {
-    public static final int NAME = 1;
-    public static final int SIZE = 2;
-    public static final int LAST_MODIFIED = 3;
-    public static final int EXTENSION = 4;
+    private static final int NAME = 1;
+    private static final int SIZE = 2;
+    private static final int LAST_MODIFIED = 3;
+    private static final int EXTENSION = 4;
 
     private Comparators() {
     }
 
 
-    public static Comparator<FileHolder> getForFile(int comparator, boolean ascending) {
+    static Comparator<FileHolder> getForFile(int comparator, boolean ascending) {
         switch (comparator) {
             case NAME:
                 return new NameComparator(ascending);
@@ -264,7 +249,7 @@ class Comparators {
         }
     }
 
-    public static Comparator<FileHolder> getForDirectory(int comparator, boolean ascending) {
+    static Comparator<FileHolder> getForDirectory(int comparator, boolean ascending) {
         switch (comparator) {
             case NAME:
                 return new NameComparator(ascending);

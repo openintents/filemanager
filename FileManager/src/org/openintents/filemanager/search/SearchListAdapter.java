@@ -33,7 +33,7 @@ public class SearchListAdapter extends CursorAdapter {
 		String path = cursor.getString(cursor.getColumnIndex(SearchResultsProvider.COLUMN_PATH));
 		FileHolder fHolder;
 		if((fHolder = itemCache.get(path)) == null){
-			fHolder = new FileHolder(new File(path), context);
+			fHolder = new FileHolder(new File(path));
 			itemCache.put(path, fHolder);
 		}
 

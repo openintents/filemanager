@@ -52,7 +52,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         if (intent.getData() != null)
-            mFragment.openInformingPathBar(new FileHolder(FileUtils.getFile(intent.getData()), this));
+            mFragment.openInformingPathBar(new FileHolder(FileUtils.getFile(intent.getData())));
     }
 
     /**
@@ -66,7 +66,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
             return null;
 
         if (data.isFile() && !getIntent().getBooleanExtra(FileManagerIntents.EXTRA_FROM_OI_FILEMANAGER, false)) {
-            FileUtils.openFile(new FileHolder(data, this), this);
+            FileUtils.openFile(new FileHolder(data, false), this);
 
             finish();
             return null;
@@ -129,7 +129,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
         } else {
             // If we didn't rotate and data wasn't null.
             if (icicle == null && data != null)
-                mFragment.openInformingPathBar(new FileHolder(new File(data.toString()), this));
+                mFragment.openInformingPathBar(new FileHolder(new File(data.toString())));
         }
     }
 
@@ -221,7 +221,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
         switch (requestCode) {
             case REQUEST_CODE_BOOKMARKS:
                 if (resultCode == RESULT_OK && data != null) {
-                    mFragment.openInformingPathBar(new FileHolder(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH)), this));
+                    mFragment.openInformingPathBar(new FileHolder(new File(data.getStringExtra(BookmarkListActivity.KEY_RESULT_PATH))));
                 }
                 break;
             default:

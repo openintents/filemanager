@@ -2,7 +2,6 @@ package org.openintents.filemanager.lists;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,7 +22,6 @@ import android.widget.ViewFlipper;
 import org.openintents.filemanager.FileHolderListAdapter;
 import org.openintents.filemanager.FileManagerApplication;
 import org.openintents.filemanager.R;
-import org.openintents.filemanager.compatibility.ActionbarRefreshHelper;
 import org.openintents.filemanager.files.DirectoryContents;
 import org.openintents.filemanager.files.DirectoryScanner;
 import org.openintents.filemanager.files.FileHolder;
@@ -139,8 +137,7 @@ public abstract class FileListFragment extends ListFragment {
                 ((FileManagerApplication) getActivity().getApplication()).getCopyHelper().clear();
                 updateClipboardInfo();
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-                    ActionbarRefreshHelper.activity_invalidateOptionsMenu(getActivity());
+                getActivity().supportInvalidateOptionsMenu();
             }
         });
 

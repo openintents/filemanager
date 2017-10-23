@@ -224,12 +224,12 @@ public class FileUtils {
 
     /**
      * @param f  - file which need be checked
-     * @return if is archive - returns true othewise
+     * @return if is archive - returns true otherwise
      */
     public static boolean checkIfZipArchive(File f){
     	int l = f.getName().length();
     	// TODO test
-    	if(f.isFile() && FileUtils.getExtension(f.getAbsolutePath()).equals(".zip"))
+    	if(f.isFile() && FileUtils.getExtension(f.getAbsolutePath()).equalsIgnoreCase(".zip"))
     		return true;
     	return false;
     	

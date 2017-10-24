@@ -128,13 +128,13 @@ public class CompressManager {
                         + fileName);
                 compressFile(f, path + File.separator + file.getName());
                 isCompressed++;
-                progressDialog.setProgress((isCompressed * 100) / fileCount);
+                publishProgress();
             }
         }
 
         @Override
         protected void onPreExecute() {
-            FileOutputStream out = null;
+            FileOutputStream out;
             zipDirectory = new File(fileOut);
             progressDialog = new ProgressDialog(mContext);
             progressDialog.setCancelable(false);
@@ -180,6 +180,11 @@ public class CompressManager {
         }
 
         @Override
+        protected void onProgressUpdate(Void... values) {
+            progressDialog.setProgress((isCompressed * 100) / fileCount);
+        }
+
+        @Override
         protected void onCancelled(Integer result) {
             Log.e(TAG, "onCancelled Initialised");
             try {
@@ -211,7 +216,9 @@ public class CompressManager {
                 Log.e(TAG, "zos was null and couldn't be closed", e);
             }
             cancelCompression = true;
-            progressDialog.cancel();
+            if (progressDialog.isShowing()) {
+                progressDialog.cancel();
+            }
             if (result == ERROR) {
                 Toast.makeText(mContext, R.string.compressing_error,
                         Toast.LENGTH_SHORT).show();

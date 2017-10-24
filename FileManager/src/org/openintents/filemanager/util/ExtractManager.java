@@ -45,7 +45,7 @@ public class ExtractManager {
         public abstract void extractFinished();
     }
 
-    private class ExtractTask extends AsyncTask<Object, Void, Integer> {
+    private class ExtractTask extends AsyncTask<Object, Integer, Integer> {
         private static final int SUCCESS = 0;
         private static final int ERROR = 1;
 
@@ -53,6 +53,7 @@ public class ExtractManager {
          * count of extracted files to update the progress bar
          */
         private int isExtracted = 0;
+        private int fileCount;
 
         /**
          * Recursively extract file or directory
@@ -61,12 +62,12 @@ public class ExtractManager {
             ZipFile zipfile = null;
             try {
                 zipfile = new ZipFile(archive);
-                int fileCount = zipfile.size();
+                fileCount = zipfile.size();
                 for (Enumeration e = zipfile.entries(); e.hasMoreElements(); ) {
                     ZipEntry entry = (ZipEntry) e.nextElement();
                     unzipEntry(zipfile, entry, destinationPath);
                     isExtracted++;
-                    progressDialog.setProgress((isExtracted * 100) / fileCount);
+                    publishProgress();
                 }
                 return true;
             } catch (Exception e) {
@@ -103,7 +104,6 @@ public class ExtractManager {
             if (!outputFile.getParentFile().exists()) {
                 createDir(outputFile.getParentFile());
             }
-            Log.i(TAG, "Extracting: " + entry);
             BufferedInputStream inputStream = new BufferedInputStream(zipfile.getInputStream(entry));
             BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
             try {
@@ -139,8 +139,15 @@ public class ExtractManager {
         }
 
         @Override
+        protected void onProgressUpdate(Integer... values) {
+            progressDialog.setProgress((isExtracted * 100) / fileCount);
+        }
+
+        @Override
         protected void onPostExecute(Integer result) {
-            progressDialog.cancel();
+            if (progressDialog.isShowing()) {
+                progressDialog.cancel();
+            }
             if (result == ERROR) {
                 Toast.makeText(context, R.string.extracting_error, Toast.LENGTH_SHORT).show();
             } else if (result == SUCCESS) {

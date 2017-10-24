@@ -43,10 +43,6 @@ public class FileUtils {
      * TAG for log messages.
      */
     static final String TAG = "FileUtils";
-    /**
-     * use it to calculate file count in the directory recursively
-     */
-    private static int fileCount = 0;
 
     private FileUtils() {
     }
@@ -159,9 +155,7 @@ public class FileUtils {
     }
 
     public static int getFileCount(File file) {
-        fileCount = 0;
-        calculateFileCount(file);
-        return fileCount;
+        return calculateFileCount(file, 0);
     }
 
     /**
@@ -187,20 +181,22 @@ public class FileUtils {
     /**
      * Recursively count all files in the <code>file</code>'s subtree.
      *
+     * @param countSoFar file count of previous counting
      * @param file The root of the tree to count.
      */
-    private static void calculateFileCount(File file) {
+    private static int calculateFileCount(File file, int countSoFar) {
         if (!file.isDirectory()) {
-            fileCount++;
-            return;
+            countSoFar++;
+            return countSoFar;
         }
         if (file.list() == null) {
-            return;
+            return countSoFar;
         }
         for (String fileName : file.list()) {
             File f = new File(file.getAbsolutePath() + File.separator + fileName);
-            calculateFileCount(f);
+            countSoFar += calculateFileCount(f, 0);
         }
+        return countSoFar;
     }
 
     /**

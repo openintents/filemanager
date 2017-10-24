@@ -103,6 +103,11 @@ public class DirectoryScanner extends Thread {
         running = true;
         init();
 
+        if (cancelled) {
+            Log.v(TAG, "Scan aborted while checking files");
+            return;
+        }
+
         // Scan files
         if (files != null) {
             for (File currentFile : files) {
@@ -110,7 +115,6 @@ public class DirectoryScanner extends Thread {
                     Log.v(TAG, "Scan aborted while checking files");
                     return;
                 }
-
                 progress++;
                 updateProgress(progress, totalCount);
 
@@ -153,9 +157,14 @@ public class DirectoryScanner extends Thread {
                 }
             }
         } else {
+            if (cancelled) {
+                Log.v(TAG, "Scan aborted while checking files");
+                return;
+            }
             // show alternative directories
             File currentFile = new File(mSdCardPath);
             listSdCard.add(new FileHolder(currentFile, "*/*", sdIcon, true));
+
         }
 
         Log.v(TAG, "Sorting results...");

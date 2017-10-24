@@ -19,8 +19,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.openintents.filemanager"
           android:installLocation="auto"
-          android:versionCode="36"
-          android:versionName="2.1.1">
+          android:versionCode="38"
+          android:versionName="2.2.1">
 
     <!--
     History: 

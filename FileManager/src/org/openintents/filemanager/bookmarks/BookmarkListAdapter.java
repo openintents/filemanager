@@ -80,7 +80,12 @@ public class BookmarkListAdapter extends BaseAdapter implements LoaderManager.Lo
         int id = -1;
         if (externalStorageFiles != null) {
             for (File f : externalStorageFiles) {
-                rootFile = new File(FileUtils.getRootOfInnerSdCardFolder(f));
+                String rootFolder = FileUtils.getRootOfInnerSdCardFolder(f);
+                if (rootFolder == null) {
+                    continue;
+                }
+
+                rootFile = new File(rootFolder);
                 b = new Bookmark();
                 b.id = id;
                 b.name = rootFile.getName();

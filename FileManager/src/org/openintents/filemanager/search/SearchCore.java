@@ -124,7 +124,12 @@ public class SearchCore {
      */
     public void search(File dir) {
         // Results in root pass
-        for (File f : dir.listFiles(filter)) {
+        File[] filteredFiles = dir.listFiles(filter);
+        if (filteredFiles == null) {
+            return;
+        }
+
+        for (File f : filteredFiles) {
             insertResult(f);
 
             // Break search on result count and search time conditions.

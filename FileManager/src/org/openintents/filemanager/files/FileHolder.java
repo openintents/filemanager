@@ -155,4 +155,8 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
     public String toString() {
         return super.toString() + "-" + getName();
     }
+
+    public Boolean isDirectory() {
+        return mIsDirectory;
+    }
 }

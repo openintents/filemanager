@@ -83,7 +83,7 @@ public abstract class MenuUtils {
         File file = item.getFile();
 
         // If selected item is a directory
-        if (file.isDirectory()) {
+        if (item.isDirectory() != null && item.isDirectory()) {
             m.removeItem(R.id.menu_send);
         }
 

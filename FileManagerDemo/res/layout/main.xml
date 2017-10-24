@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/file_name"
-	android:textAppearance="?android:attr/textAppearanceMedium"
-    android:layout_marginTop="10dip"
-    android:layout_marginLeft="10dip"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="10dip"
+        android:text="@string/file_name"
+        android:textAppearance="?android:attr/textAppearanceMedium"
     />
-    <LinearLayout android:orientation="horizontal"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    >
-	    <EditText android:id="@+id/file_path"
-		    android:layout_width="0dip" 
-		    android:layout_height="wrap_content" 
-		    android:layout_weight="1"/>
-		<ImageButton android:id="@+id/file_manager"
-			android:onClick="onClickOpenFile"
-			android:src="@drawable/ic_launcher_folder_small"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" />
-	</LinearLayout>
-	
-	<TextView android:id="@+id/info"
-	    android:layout_width="fill_parent" 
-	    android:layout_height="wrap_content" 
-	    android:layout_marginTop="10dip"
-	    android:layout_marginLeft="10dip" />
-	    
-	<Button android:id="@+id/open"
-		android:onClick="onClickOpenFile"
-		android:text="@string/open_button"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="10dip" />
-		
-	<Button android:id="@+id/save"
-		android:onClick="onClickSaveFile"
-		android:text="@string/save_button"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content" />
-		
-	<Button android:id="@+id/pick_directory"
-		android:onClick="onClickPickDirectory"
-		android:text="@string/pick_directory_title"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content" />
-		
-	<Button android:id="@+id/get_content"
-		android:onClick="onClickGetContent"
-		android:text="@string/get_content_title"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content" />
-		
-	<Button android:id="@+id/open_uri"
-		android:onClick="onClickOpenUri"
-		android:text="@string/open_uri_button"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content" />
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+    >
+        <EditText android:id="@+id/file_path"
+                  android:layout_width="0dip"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"/>
+        <ImageButton android:id="@+id/file_manager"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:onClick="onClickOpenFile"
+                     android:src="@drawable/ic_launcher_folder_small"/>
+    </LinearLayout>
+
+    <TextView android:id="@+id/info"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="10dip"
+              android:layout_marginTop="10dip"/>
+
+    <Button android:id="@+id/open"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:onClick="onClickOpenFile"
+            android:text="@string/open_button"/>
+
+    <Button android:id="@+id/save"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickSaveFile"
+            android:text="@string/save_button"/>
+
+    <Button android:id="@+id/pick_directory"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickPickDirectory"
+            android:text="@string/pick_directory_title"/>
+
+    <Button android:id="@+id/get_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickGetContent"
+            android:text="@string/get_content_title"/>
+
+    <Button android:id="@+id/open_uri"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickOpenUri"
+            android:text="@string/open_uri_button"/>
 </LinearLayout>

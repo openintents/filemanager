@@ -1,5 +1,5 @@
 <org.openintents.filemanager.view.CheckableFileListItem xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:paddingRight="8dp" />
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:minHeight="?android:attr/listPreferredItemHeight"
+                                                        android:paddingRight="8dp"/>

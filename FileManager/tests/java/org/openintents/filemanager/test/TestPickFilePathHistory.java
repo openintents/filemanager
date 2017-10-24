@@ -1,17 +1,13 @@
 package org.openintents.filemanager.test;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
-import android.support.test.espresso.core.deps.guava.collect.Iterables;
 import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.rule.UiThreadTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
-import android.support.test.runner.lifecycle.Stage;
 import android.view.View;
 
 import org.hamcrest.Description;
@@ -42,6 +38,21 @@ public class TestPickFilePathHistory extends BaseTestFileManager {
     public static final String OI_TO_PICK_TEST_FOLDER_DELETED = "oi-to-pick-test-folder-deleted";
     @Rule
     public UiThreadTestRule rule = new UiThreadTestRule();
+
+    private static Matcher<View> hasInitialDirectory(final Matcher<String> directoryNameMatcher) {
+        return new BoundedMatcher<View, PathBar>(PathBar.class) {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("with initial directory: ");
+                directoryNameMatcher.describeTo(description);
+            }
+
+            @Override
+            public boolean matchesSafely(PathBar view) {
+                return directoryNameMatcher.matches(view.getInitialDirectory().getAbsolutePath());
+            }
+        };
+    }
 
     @Before
     public void setup() {
@@ -125,20 +136,5 @@ public class TestPickFilePathHistory extends BaseTestFileManager {
 
     private boolean isPickDirectory(String action) {
         return action.equals(FileManagerIntents.ACTION_PICK_DIRECTORY);
-    }
-
-    private static Matcher<View> hasInitialDirectory(final Matcher<String> directoryNameMatcher) {
-        return new BoundedMatcher<View, PathBar>(PathBar.class) {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("with initial directory: ");
-                directoryNameMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(PathBar view) {
-                return directoryNameMatcher.matches(view.getInitialDirectory().getAbsolutePath());
-            }
-        };
     }
 }

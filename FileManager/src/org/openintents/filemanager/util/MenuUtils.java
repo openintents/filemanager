@@ -390,7 +390,7 @@ public abstract class MenuUtils {
             // Create name list for menu item.
             final List<CharSequence> items = new ArrayList<>();
             /* Some of the options don't go to the list hence we have to remove them
-			 * to keep the lri correspond with the menu items. In the addition, we have
+             * to keep the lri correspond with the menu items. In the addition, we have
 			 * to remove them after the first iteration, otherwise the iteration breaks.
 			 */
             List<ResolveInfo> toRemove = new ArrayList<>();

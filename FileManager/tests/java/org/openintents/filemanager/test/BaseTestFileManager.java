@@ -61,65 +61,6 @@ public class BaseTestFileManager {
             throw new IOException("Creation of " + path + " failed");
     }
 
-    protected void deleteDirectory(String path) {
-        File file = new File(path);
-        if (file.exists())
-            if (file.isDirectory())
-                cleanDirectory(file);
-        file.delete();
-    }
-
-    protected void clickOnTestDirectory() {
-        clickOnFile(TEST_DIRECTORY);
-    }
-
-    protected void clickOnFile(String filename) {
-        onData(allOf(instanceOf(FileHolder.class), hasName(filename))).perform(click(pressBack()));
-    }
-
-    protected void longClickOnFile(String filename) {
-        onData(allOf(instanceOf(FileHolder.class), hasName(filename))).perform(longClick());
-    }
-
-    protected void longClickOnBookmark(String filename) {
-        onData(allOf(instanceOf(BookmarkListAdapter.Bookmark.class), hasBookmarkName(filename))).perform(longClick());
-    }
-
-
-    protected void checkFile(String filename, ViewAssertion viewAssertion) {
-        onData(hasName(filename)).check(viewAssertion);
-    }
-
-    protected BoundedMatcher<Object, FileHolder> hasName(final String filename) {
-        return new BoundedMatcher<Object, FileHolder>(FileHolder.class) {
-
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("with name " + filename);
-            }
-
-            @Override
-            protected boolean matchesSafely(FileHolder item) {
-                return filename.equals(item.getName());
-            }
-        };
-    }
-
-    protected BoundedMatcher<Object, BookmarkListAdapter.Bookmark> hasBookmarkName(final String filename) {
-        return new BoundedMatcher<Object, BookmarkListAdapter.Bookmark>(BookmarkListAdapter.Bookmark.class) {
-
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("with name " + filename);
-            }
-
-            @Override
-            protected boolean matchesSafely(BookmarkListAdapter.Bookmark item) {
-                return filename.equals(item.getName());
-            }
-        };
-    }
-
     public static Matcher<View> withResourceName(String resourceName) {
         return withResourceName(is(resourceName));
     }
@@ -164,6 +105,64 @@ public class BaseTestFileManager {
                     }
                 }
                 return false;
+            }
+        };
+    }
+
+    protected void deleteDirectory(String path) {
+        File file = new File(path);
+        if (file.exists())
+            if (file.isDirectory())
+                cleanDirectory(file);
+        file.delete();
+    }
+
+    protected void clickOnTestDirectory() {
+        clickOnFile(TEST_DIRECTORY);
+    }
+
+    protected void clickOnFile(String filename) {
+        onData(allOf(instanceOf(FileHolder.class), hasName(filename))).perform(click(pressBack()));
+    }
+
+    protected void longClickOnFile(String filename) {
+        onData(allOf(instanceOf(FileHolder.class), hasName(filename))).perform(longClick());
+    }
+
+    protected void longClickOnBookmark(String filename) {
+        onData(allOf(instanceOf(BookmarkListAdapter.Bookmark.class), hasBookmarkName(filename))).perform(longClick());
+    }
+
+    protected void checkFile(String filename, ViewAssertion viewAssertion) {
+        onData(hasName(filename)).check(viewAssertion);
+    }
+
+    protected BoundedMatcher<Object, FileHolder> hasName(final String filename) {
+        return new BoundedMatcher<Object, FileHolder>(FileHolder.class) {
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("with name " + filename);
+            }
+
+            @Override
+            protected boolean matchesSafely(FileHolder item) {
+                return filename.equals(item.getName());
+            }
+        };
+    }
+
+    protected BoundedMatcher<Object, BookmarkListAdapter.Bookmark> hasBookmarkName(final String filename) {
+        return new BoundedMatcher<Object, BookmarkListAdapter.Bookmark>(BookmarkListAdapter.Bookmark.class) {
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("with name " + filename);
+            }
+
+            @Override
+            protected boolean matchesSafely(BookmarkListAdapter.Bookmark item) {
+                return filename.equals(item.getName());
             }
         };
     }

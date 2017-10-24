@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.openintents.filemanager.demo"
-      android:versionCode="3"
-      android:versionName="1.0.2">
-	<!-- History:
-	1.0.2 [3]: 2011-02-13
-	1.0.1 [2]: 2011-02-05
-	1.0.0 [1]: 2008-12-11 -->
-      
-	<uses-sdk android:minSdkVersion="2" android:targetSdkVersion="19"/>
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+          package="org.openintents.filemanager.demo"
+          android:versionCode="3"
+          android:versionName="1.0.2">
+    <!-- History:
+    1.0.2 [3]: 2011-02-13
+    1.0.1 [2]: 2011-02-05
+    1.0.0 [1]: 2008-12-11 -->
+
+    <uses-sdk android:minSdkVersion="2" android:targetSdkVersion="19"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".Demo"
                   android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

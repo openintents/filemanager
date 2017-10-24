@@ -1,63 +1,62 @@
 package org.openintents.filemanager.search;
 
-import java.io.File;
-
-import org.openintents.intents.FileManagerIntents;
-
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 
+import org.openintents.intents.FileManagerIntents;
+
+import java.io.File;
+
 /**
  * Service that asynchronously executes file searches.
- * 
+ *
  * @author George Venios.
- * 
  */
 public class SearchService extends IntentService {
-	/**
-	 * Used to inform the SearchableActivity of search start and end.
-	 */
-	private LocalBroadcastManager lbm;
-	private SearchCore searcher;
+    /**
+     * Used to inform the SearchableActivity of search start and end.
+     */
+    private LocalBroadcastManager lbm;
+    private SearchCore searcher;
 
-	public SearchService() {
-		super("SearchService");
-	}
+    public SearchService() {
+        super("SearchService");
+    }
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
+    @Override
+    public void onCreate() {
+        super.onCreate();
 
-		lbm = LocalBroadcastManager.getInstance(getApplicationContext());
-		
-		searcher = new SearchCore(this);
-		searcher.setURI(SearchResultsProvider.CONTENT_URI);
-	}
+        lbm = LocalBroadcastManager.getInstance(getApplicationContext());
 
-	@Override
-	protected void onHandleIntent(Intent intent) {
-		// The search query
-		searcher.setQuery(intent.getStringExtra(FileManagerIntents.EXTRA_SEARCH_QUERY));
+        searcher = new SearchCore(this);
+        searcher.setURI(SearchResultsProvider.CONTENT_URI);
+    }
 
-		// Set initial path. To be searched first!
-		String path = intent
-				.getStringExtra(FileManagerIntents.EXTRA_SEARCH_INIT_PATH);
-		File root;
-		if (path != null)
-			root = new File(path);
-		else
-			root = new File("/");
+    @Override
+    protected void onHandleIntent(Intent intent) {
+        // The search query
+        searcher.setQuery(intent.getStringExtra(FileManagerIntents.EXTRA_SEARCH_QUERY));
 
-		// Search started, let Receivers know.
-		lbm.sendBroadcast(new Intent(FileManagerIntents.ACTION_SEARCH_STARTED));
+        // Set initial path. To be searched first!
+        String path = intent
+                .getStringExtra(FileManagerIntents.EXTRA_SEARCH_INIT_PATH);
+        File root;
+        if (path != null)
+            root = new File(path);
+        else
+            root = new File("/");
 
-		// Search in current path.
-		searcher.dropPreviousResults();
-		searcher.setRoot(root);
-		searcher.search(root);
+        // Search started, let Receivers know.
+        lbm.sendBroadcast(new Intent(FileManagerIntents.ACTION_SEARCH_STARTED));
 
-		// Search is over, let Receivers know.
-		lbm.sendBroadcast(new Intent(FileManagerIntents.ACTION_SEARCH_FINISHED));
-	}
+        // Search in current path.
+        searcher.dropPreviousResults();
+        searcher.setRoot(root);
+        searcher.search(root);
+
+        // Search is over, let Receivers know.
+        lbm.sendBroadcast(new Intent(FileManagerIntents.ACTION_SEARCH_FINISHED));
+    }
 }

@@ -2,8 +2,10 @@
 
     <style name="Theme.Light.DarkTitle" parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/Widget.Holo.Light.DarkActionBar.ActionBar</item>
-		<item name="android:actionOverflowButtonStyle">@style/Compatibility.Widget.Holo.Light.DarkActionBar.ActionButton.Overflow</item>
-		
+        <item name="android:actionOverflowButtonStyle">
+            @style/Compatibility.Widget.Holo.Light.DarkActionBar.ActionButton.Overflow
+        </item>
+
         <item name="android:editTextBackground">@drawable/bg_textfield_light</item>
         <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>
         <item name="pathBarBackground">@drawable/bg_pathbar_light</item>
@@ -13,8 +15,12 @@
 
     <style name="Widget.Holo.Light.DarkActionBar.ActionBar" parent="@android:style/Widget.Holo.ActionBar">
         <item name="android:background">@drawable/ab_solid_dark_holo</item>
-        <item name="android:titleTextStyle">@style/Compatibility.TextAppearance.Holo.Light.DarkActionBar</item>
-        <item name="android:subtitleTextStyle">@android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle</item>
+        <item name="android:titleTextStyle">
+            @style/Compatibility.TextAppearance.Holo.Light.DarkActionBar
+        </item>
+        <item name="android:subtitleTextStyle">
+            @android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle
+        </item>
     </style>
 
     <!-- Hardcoded values are not meant to be changed, as they are mostly directly copied from private platform (3.0) resources. -->
@@ -30,7 +36,7 @@
     <style name="Compatibility.Widget.Holo.Light.DarkActionBar.ActionButton.Overflow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_menu_moreoverflow_normal_holo_dark</item>
     </style>
-    
+
     <!-- Black theme -->
     <style name="Theme.Dark" parent="@android:style/Theme.Holo">
         <item name="pathBarItemBackground">@drawable/bg_pathbar_btn</item>

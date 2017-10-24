@@ -15,18 +15,18 @@
  * limitations under the License.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent" >
-    
-	<EditText
-	    android:id="@+id/foldername"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:imeOptions="actionGo"
-	    android:inputType="textUri"
-	    android:selectAllOnFocus="true"
-	    android:layout_gravity="center"
-	    android:maxLines="1"
-	    android:layout_margin="16dp" />
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/foldername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:imeOptions="actionGo"
+        android:inputType="textUri"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"/>
 
 </LinearLayout>

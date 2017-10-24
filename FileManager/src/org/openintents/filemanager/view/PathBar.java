@@ -1,9 +1,5 @@
 package org.openintents.filemanager.view;
 
-import java.io.File;
-
-import org.openintents.filemanager.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -24,446 +20,453 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import org.openintents.filemanager.R;
+
+import java.io.File;
+
 /**
  * Provides a self contained way to represent the current path and provides a handy way of navigating. </br></br>
- * 
+ * <p>
  * <b>Note 1:</b> If you need to allow directory navigation outside of this class (e.g. when the user clicks on a folder from a {@link ListView}), use {@link #cd(File)} or {@link #cd(String)}. This is a requirement for the views of this class to
  * properly refresh themselves. <i>You will get notified through the usual {@link OnDirectoryChangedListener}. </i></br>
- * 
+ * <p>
  * <b>Note 2:</b> To switch between {@link Mode Modes} use the {@link #switchToManualInput()} and {@link #switchToStandardInput()} methods!
- * 
+ *
  * @author George Venios
  */
 public class PathBar extends ViewFlipper {
-	private String TAG = this.getClass().getName();
-	
-	/**
-	 * The available Modes of this PathBar. </br> See {@link PathBar#switchToManualInput() switchToManualInput()} and {@link PathBar#switchToStandardInput() switchToStandardInput()}.
-	 */
-	public enum Mode {
-		/**
-		 * The button path selection mode.
-		 */
-		STANDARD_INPUT,
-		/**
-		 * The text path input mode.
-		 */
-		MANUAL_INPUT
-	}
+    private String TAG = this.getClass().getName();
+    private File mCurrentDirectory = null;
+    private Mode mCurrentMode = Mode.STANDARD_INPUT;
+    private File mInitialDirectory = null;
+    /**
+     * ImageButton used to switch to MANUAL_INPUT.
+     */
+    private ImageButton mSwitchToManualModeButton = null;
+    /**
+     * Layout holding all path buttons.
+     */
+    private PathButtonLayout mPathButtons = null;
+    /**
+     * Container of {@link #mPathButtons}. Allows horizontal scrolling.
+     */
+    private HorizontalScrollView mPathButtonsContainer = null;
+    /**
+     * The EditText holding the path in MANUAL_INPUT.
+     */
+    private EditText mPathEditText = null;
+    /**
+     * The ImageButton to confirm the manually entered path.
+     */
+    private ImageButton mGoButton = null;
+    private OnDirectoryChangedListener mDirectoryChangedListener = new OnDirectoryChangedListener() {
+        @Override
+        public void directoryChanged(File newCurrentDir) {
+        }
+    };
 
-	private File mCurrentDirectory = null;
-	private Mode mCurrentMode = Mode.STANDARD_INPUT;
-	private File mInitialDirectory = null;
+    public PathBar(Context context) {
+        super(context);
+        init();
+    }
 
-	/** ImageButton used to switch to MANUAL_INPUT. */
-	private ImageButton mSwitchToManualModeButton = null;
-	/** Layout holding all path buttons. */
-	private PathButtonLayout mPathButtons = null;
-	/** Container of {@link #mPathButtons}. Allows horizontal scrolling. */
-	private HorizontalScrollView mPathButtonsContainer = null;
-	/** The EditText holding the path in MANUAL_INPUT. */
-	private EditText mPathEditText = null;
-	/** The ImageButton to confirm the manually entered path. */
-	private ImageButton mGoButton = null;
-	
-	private OnDirectoryChangedListener mDirectoryChangedListener = new OnDirectoryChangedListener() {
-		@Override
-		public void directoryChanged(File newCurrentDir) {
-		}
-	};
+    public PathBar(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
 
-	public PathBar(Context context) {
-		super(context);
-		init();
-	}
+    private void init() {
+        mCurrentDirectory = Environment.getExternalStorageDirectory();
+        mInitialDirectory = Environment.getExternalStorageDirectory();
 
-	public PathBar(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		init();
-	}
+        this.setInAnimation(getContext(), R.anim.fade_in);
+        this.setOutAnimation(getContext(), R.anim.fade_out);
 
-	private void init() {
-		mCurrentDirectory = Environment.getExternalStorageDirectory();
-		mInitialDirectory = Environment.getExternalStorageDirectory();
+        // RelativeLayout1
+        RelativeLayout standardModeLayout = new RelativeLayout(getContext());
+        { // I use a block here so that layoutParams can be used as a variable name further down.
+            android.widget.ViewFlipper.LayoutParams layoutParams = new android.widget.ViewFlipper.LayoutParams(
+                    LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+            standardModeLayout.setLayoutParams(layoutParams);
 
-		this.setInAnimation(getContext(), R.anim.fade_in);
-		this.setOutAnimation(getContext(), R.anim.fade_out);
+            this.addView(standardModeLayout);
+        }
 
-		// RelativeLayout1
-		RelativeLayout standardModeLayout = new RelativeLayout(getContext());
-		{ // I use a block here so that layoutParams can be used as a variable name further down.
-			android.widget.ViewFlipper.LayoutParams layoutParams = new android.widget.ViewFlipper.LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-			standardModeLayout.setLayoutParams(layoutParams);
+        // ImageButton -- GONE. Kept this code in case we need to use an right-aligned button in the future.
+        mSwitchToManualModeButton = new ImageButton(getContext());
+        {
+            android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
-			this.addView(standardModeLayout);
-		}
+            mSwitchToManualModeButton.setLayoutParams(layoutParams);
+            mSwitchToManualModeButton.setId(R.id.path_bar_switch_to_manual_mode_button);
+            mSwitchToManualModeButton.setBackgroundDrawable(getItemBackground());
+            mSwitchToManualModeButton.setImageResource(R.drawable.ic_navbar_edit);
+            mSwitchToManualModeButton.setVisibility(View.GONE);
 
-		// ImageButton -- GONE. Kept this code in case we need to use an right-aligned button in the future.
-		mSwitchToManualModeButton = new ImageButton(getContext());
-		{
-			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            standardModeLayout.addView(mSwitchToManualModeButton);
+        }
 
-			mSwitchToManualModeButton.setLayoutParams(layoutParams);
-			mSwitchToManualModeButton.setId(R.id.path_bar_switch_to_manual_mode_button);
-			mSwitchToManualModeButton.setBackgroundDrawable(getItemBackground());
-			mSwitchToManualModeButton.setImageResource(R.drawable.ic_navbar_edit);
-			mSwitchToManualModeButton.setVisibility(View.GONE);
+        // ImageButton -- GONE. Kept this code in case we need to use an left-aligned button in the future.
+        ImageButton cdToRootButton = new ImageButton(getContext());
+        {
+            android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(
+                    LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 
-			standardModeLayout.addView(mSwitchToManualModeButton);
-		}
+            cdToRootButton.setLayoutParams(layoutParams);
+            cdToRootButton.setId(R.id.path_bar_cd_to_root_button);
+            cdToRootButton.setBackgroundDrawable(getItemBackground());
+            cdToRootButton.setImageResource(R.drawable.ic_navbar_home);
+            cdToRootButton.setScaleType(ScaleType.CENTER_INSIDE);
+            cdToRootButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cd("/");
+                }
+            });
+            cdToRootButton.setVisibility(View.GONE);
 
-		// ImageButton -- GONE. Kept this code in case we need to use an left-aligned button in the future.
-		ImageButton cdToRootButton = new ImageButton(getContext());
-		{
-			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(
-					LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            standardModeLayout.addView(cdToRootButton);
+        }
 
-			cdToRootButton.setLayoutParams(layoutParams);
-			cdToRootButton.setId(R.id.path_bar_cd_to_root_button);
-			cdToRootButton.setBackgroundDrawable(getItemBackground());
-			cdToRootButton.setImageResource(R.drawable.ic_navbar_home);
-			cdToRootButton.setScaleType(ScaleType.CENTER_INSIDE);
-			cdToRootButton.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					cd("/");
-				}
-			});
-			cdToRootButton.setVisibility(View.GONE);
+        // Horizontal ScrollView container
+        mPathButtonsContainer = new HorizontalScrollView(getContext());
+        {
+            android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(
+                    LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+            layoutParams.addRule(RelativeLayout.LEFT_OF,
+                    mSwitchToManualModeButton.getId());
+            layoutParams.addRule(RelativeLayout.RIGHT_OF,
+                    cdToRootButton.getId());
+            layoutParams.alignWithParent = true;
 
-			standardModeLayout.addView(cdToRootButton);
-		}
+            mPathButtonsContainer.setLayoutParams(layoutParams);
+            mPathButtonsContainer.setHorizontalScrollBarEnabled(false);
+            mPathButtonsContainer.setHorizontalFadingEdgeEnabled(true);
 
-		// Horizontal ScrollView container
-		mPathButtonsContainer = new HorizontalScrollView(getContext());
-		{
-			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(
-					LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-			layoutParams.addRule(RelativeLayout.LEFT_OF,
-					mSwitchToManualModeButton.getId());
-			layoutParams.addRule(RelativeLayout.RIGHT_OF,
-					cdToRootButton.getId());
-			layoutParams.alignWithParent = true;
+            standardModeLayout.addView(mPathButtonsContainer);
+        }
 
-			mPathButtonsContainer.setLayoutParams(layoutParams);
-			mPathButtonsContainer.setHorizontalScrollBarEnabled(false);
-			mPathButtonsContainer.setHorizontalFadingEdgeEnabled(true);
+        // PathButtonLayout
+        mPathButtons = new PathButtonLayout(getContext());
+        {
+            android.widget.LinearLayout.LayoutParams layoutParams = new android.widget.LinearLayout.LayoutParams(
+                    LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
 
-			standardModeLayout.addView(mPathButtonsContainer);
-		}
+            mPathButtons.setLayoutParams(layoutParams);
+            mPathButtons.setNavigationBar(this);
 
-		// PathButtonLayout
-		mPathButtons = new PathButtonLayout(getContext());
-		{
-			android.widget.LinearLayout.LayoutParams layoutParams = new android.widget.LinearLayout.LayoutParams(
-					LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+            mPathButtonsContainer.addView(mPathButtons);
+        }
 
-			mPathButtons.setLayoutParams(layoutParams);
-			mPathButtons.setNavigationBar(this);
+        // RelativeLayout2
+        RelativeLayout manualModeLayout = new RelativeLayout(getContext());
+        {
+            android.widget.ViewFlipper.LayoutParams layoutParams = new android.widget.ViewFlipper.LayoutParams(
+                    LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+            manualModeLayout.setLayoutParams(layoutParams);
 
-			mPathButtonsContainer.addView(mPathButtons);
-		}
+            this.addView(manualModeLayout);
+        }
 
-		// RelativeLayout2
-		RelativeLayout manualModeLayout = new RelativeLayout(getContext());
-		{
-			android.widget.ViewFlipper.LayoutParams layoutParams = new android.widget.ViewFlipper.LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-			manualModeLayout.setLayoutParams(layoutParams);
+        // ImageButton
+        mGoButton = new ImageButton(getContext());
+        {
+            android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
-			this.addView(manualModeLayout);
-		}
+            mGoButton.setLayoutParams(layoutParams);
+            mGoButton.setId(R.id.path_bar_go_button);
+            mGoButton.setBackgroundDrawable(getItemBackground());
+            mGoButton.setImageResource(R.drawable.ic_navbar_accept);
+            mGoButton.setScaleType(ScaleType.CENTER_INSIDE);
+            mGoButton.setOnClickListener(new View.OnClickListener() {
 
-		// ImageButton
-		mGoButton = new ImageButton(getContext());
-		{
-			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                @Override
+                public void onClick(View v) {
+                    manualInputCd(mPathEditText.getText().toString());
+                }
+            });
 
-			mGoButton.setLayoutParams(layoutParams);
-			mGoButton.setId(R.id.path_bar_go_button);
-			mGoButton.setBackgroundDrawable(getItemBackground());
-			mGoButton.setImageResource(R.drawable.ic_navbar_accept);
-			mGoButton.setScaleType(ScaleType.CENTER_INSIDE);
-			mGoButton.setOnClickListener(new View.OnClickListener() {
+            manualModeLayout.addView(mGoButton);
+        }
 
-				@Override
-				public void onClick(View v) {
-					manualInputCd(mPathEditText.getText().toString());
-				}
-			});
+        // EditText
+        mPathEditText = new EditText(getContext());
+        {
+            android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(
+                    LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            layoutParams.alignWithParent = true;
+            layoutParams.addRule(RelativeLayout.LEFT_OF, mGoButton.getId());
 
-			manualModeLayout.addView(mGoButton);
-		}
+            mPathEditText.setLayoutParams(layoutParams);
+            mPathEditText.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
+            mPathEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
+            mPathEditText.setId(R.id.path_bar_path_edit_text);
+            mPathEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId,
+                                              KeyEvent event) {
+                    if (actionId == EditorInfo.IME_ACTION_GO
+                            || (event.getAction() == KeyEvent.ACTION_DOWN && (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER || event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
+                        if (manualInputCd(v.getText().toString()))
+                            // Since we have successfully navigated.
+                            return true;
+                    }
 
-		// EditText
-		mPathEditText = new EditText(getContext());
-		{
-			android.widget.RelativeLayout.LayoutParams layoutParams = new android.widget.RelativeLayout.LayoutParams(
-					LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-			layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-			layoutParams.alignWithParent = true;
-			layoutParams.addRule(RelativeLayout.LEFT_OF, mGoButton.getId());
+                    return false;
+                }
+            });
 
-			mPathEditText.setLayoutParams(layoutParams);
-			mPathEditText.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
-			mPathEditText.setImeOptions(EditorInfo.IME_ACTION_GO);
-			mPathEditText.setId(R.id.path_bar_path_edit_text);
-			mPathEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-						@Override
-						public boolean onEditorAction(TextView v, int actionId,
-								KeyEvent event) {
-							if (actionId == EditorInfo.IME_ACTION_GO
-									|| (event.getAction() == KeyEvent.ACTION_DOWN && (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER || event.getKeyCode() == KeyEvent.KEYCODE_ENTER))) {
-								if (manualInputCd(v.getText().toString()))
-									// Since we have successfully navigated.
-									return true;
-							}
+            manualModeLayout.addView(mPathEditText);
+        }
 
-							return false;
-						}
-					});
+    }
 
-			manualModeLayout.addView(mPathEditText);
-		}
+    /**
+     * Sets the directory the parent activity showed first so that back behavior is fixed.
+     *
+     * @param initDir The directory.
+     */
+    public void setInitialDirectory(File initDir) {
+        mInitialDirectory = initDir;
+        cd(initDir);
+    }
 
-	}
+    /**
+     * @return The initial directory.
+     * @see #setInitialDirectory(File)
+     */
+    public File getInitialDirectory() {
+        return mInitialDirectory;
+    }
 
-	/**
-	 * Sets the directory the parent activity showed first so that back behavior is fixed.
-	 * 
-	 * @param initDir
-	 *            The directory.
-	 */
-	public void setInitialDirectory(File initDir) {
-		mInitialDirectory = initDir;
-		cd(initDir);
-	}
+    /**
+     * See {@link #setInitialDirectory(File)}.
+     */
+    public void setInitialDirectory(String initPath) {
+        setInitialDirectory(new File(initPath));
+    }
 
-	/**
-	 * See {@link #setInitialDirectory(File)}.
-	 */
-	public void setInitialDirectory(String initPath) {
-		setInitialDirectory(new File(initPath));
-	}
+    /**
+     * Get the currently active directory.
+     *
+     * @return A {@link File} representing the currently active directory.
+     */
+    public File getCurrentDirectory() {
+        return mCurrentDirectory;
+    }
 
-	/**
-	 * @see #setInitialDirectory(File)
-	 * @return The initial directory.
-	 */
-	public File getInitialDirectory() {
-		return mInitialDirectory;
-	}
+    /**
+     * Use instead of {@link #cd(String)} when in {@link Mode#MANUAL_INPUT}.
+     *
+     * @param path The path to cd() to.
+     * @return true if the cd succeeded.
+     */
+    boolean manualInputCd(String path) {
+        if (cd(path)) {
+            // if cd() successful, hide the keyboard
+            InputMethodManager imm = (InputMethodManager) getContext()
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getWindowToken(), 0);
+            switchToStandardInput();
+            return true;
+        } else {
+            Log.w(TAG, "Input path does not exist or is not a folder!");
+            return false;
+        }
+    }
 
-	/**
-	 * Get the currently active directory.
-	 * 
-	 * @return A {@link File} representing the currently active directory.
-	 */
-	public File getCurrentDirectory() {
-		return mCurrentDirectory;
-	}
+    /**
+     * {@code cd} to the passed file. If the file is legal input, sets it as the currently active Directory. Otherwise calls the listener to handle it, if any.
+     *
+     * @param file The file to {@code cd} to.
+     * @return Whether the path entered exists and can be navigated to.
+     */
+    public boolean cd(File file) {
+        boolean res;
 
-	/**
-	 * Use instead of {@link #cd(String)} when in {@link Mode#MANUAL_INPUT}.
-	 * 
-	 * @param path The path to cd() to.
-	 * @return true if the cd succeeded.
-	 */
-	boolean manualInputCd(String path) {
-		if (cd(path)) {
-			// if cd() successful, hide the keyboard
-			InputMethodManager imm = (InputMethodManager) getContext()
-					.getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.hideSoftInputFromWindow(getWindowToken(), 0);
-			switchToStandardInput();
-			return true;
-		} else {
-			Log.w(TAG, "Input path does not exist or is not a folder!");
-			return false;
-		}
-	}
+        if (isFileOk(file)) {
+            // Set proper current directory.
+            mCurrentDirectory = file;
 
-	/**
-	 * {@code cd} to the passed file. If the file is legal input, sets it as the currently active Directory. Otherwise calls the listener to handle it, if any.
-	 * 
-	 * @param file The file to {@code cd} to.
-	 * @return Whether the path entered exists and can be navigated to.
-	 */
-	public boolean cd(File file) {
-		boolean res;
-		
-		if (isFileOk(file)) {
-			// Set proper current directory.
-			mCurrentDirectory = file;
-	
-			// Refresh button layout.
-			mPathButtons.refresh(mCurrentDirectory);
-	
-			// Reset scrolling position. http://stackoverflow.com/questions/3263259/scrollview-scrollto-not-working-saving-scrollview-position-on-rotation
-			mPathButtonsContainer.post(new Runnable() {
-				@Override
-				public void run() {
-					mPathButtonsContainer.scrollTo(
-							mPathButtonsContainer.getMaxScrollAmount(),
-							(int) mPathButtonsContainer.getTop());
-				}
-			});
-	
-			// Refresh manual input field.
-			mPathEditText.setText(file.getAbsolutePath());
-			
-			res = true;
-		} else
-			res = false;
+            // Refresh button layout.
+            mPathButtons.refresh(mCurrentDirectory);
 
-		mDirectoryChangedListener.directoryChanged(file);
+            // Reset scrolling position. http://stackoverflow.com/questions/3263259/scrollview-scrollto-not-working-saving-scrollview-position-on-rotation
+            mPathButtonsContainer.post(new Runnable() {
+                @Override
+                public void run() {
+                    mPathButtonsContainer.scrollTo(
+                            mPathButtonsContainer.getMaxScrollAmount(),
+                            (int) mPathButtonsContainer.getTop());
+                }
+            });
 
-		return res;
-	}
+            // Refresh manual input field.
+            mPathEditText.setText(file.getAbsolutePath());
 
-	/**
-	 * @see {@link org.openintents.filemanager.view.PathBar#cd(File) cd(File)}
-	 * @param path
-	 *            The path of the Directory to {@code cd} to.
-	 * @return Whether the path entered exists and can be navigated to.
-	 */
-	public boolean cd(String path) {
-		return cd(new File(path));
-	}
+            res = true;
+        } else
+            res = false;
 
-	/**
-	 * The same as running {@code File.listFiles()} on the currently active Directory.
-	 */
-	public File[] ls() {
-		return mCurrentDirectory.listFiles();
-	}
+        mDirectoryChangedListener.directoryChanged(file);
 
-	public void setOnDirectoryChangedListener(
-			OnDirectoryChangedListener listener) {
-		if (listener != null)
-			mDirectoryChangedListener = listener;
-		else
-			mDirectoryChangedListener = new OnDirectoryChangedListener() {
-				@Override
-				public void directoryChanged(File newCurrentDir) {
-				}
-			};
-	}
+        return res;
+    }
 
-	/**
-	 * Switches to {@link Mode#MANUAL_INPUT}.
-	 */
-	public void switchToManualInput() {
-		setDisplayedChild(1);
-		mCurrentMode = Mode.MANUAL_INPUT;
-	}
+    /**
+     * @param path The path of the Directory to {@code cd} to.
+     * @return Whether the path entered exists and can be navigated to.
+     * @see {@link org.openintents.filemanager.view.PathBar#cd(File) cd(File)}
+     */
+    public boolean cd(String path) {
+        return cd(new File(path));
+    }
 
-	/**
-	 * Switches to {@link Mode#STANDARD_INPUT}.
-	 */
-	public void switchToStandardInput() {
-		setDisplayedChild(0);
-		mCurrentMode = Mode.STANDARD_INPUT;
-	}
+    /**
+     * The same as running {@code File.listFiles()} on the currently active Directory.
+     */
+    public File[] ls() {
+        return mCurrentDirectory.listFiles();
+    }
 
-	/**
-	 * Activities containing this bar, will have to call this method when the back button is pressed to provide correct backstack redirection and mode switching.
-	 * 
-	 * @return Whether this view consumed the event.
-	 */
-	public boolean pressBack() {
-		// Switch mode.
-		if (mCurrentMode == Mode.MANUAL_INPUT) {
-			switchToStandardInput();
-		}
-		// Go back.
-		else if (mCurrentMode == Mode.STANDARD_INPUT) {
-			if (!backWillExit(mCurrentDirectory.getAbsolutePath())) {
-				cd(mCurrentDirectory.getParent());
-				return true;
-			} else
-				return false;
-		}
+    public void setOnDirectoryChangedListener(
+            OnDirectoryChangedListener listener) {
+        if (listener != null)
+            mDirectoryChangedListener = listener;
+        else
+            mDirectoryChangedListener = new OnDirectoryChangedListener() {
+                @Override
+                public void directoryChanged(File newCurrentDir) {
+                }
+            };
+    }
 
-		return true;
-	}
+    /**
+     * Switches to {@link Mode#MANUAL_INPUT}.
+     */
+    public void switchToManualInput() {
+        setDisplayedChild(1);
+        mCurrentMode = Mode.MANUAL_INPUT;
+    }
 
-	/**
-	 * Returns the current {@link PathBar.Mode}.
-	 * 
-	 */
-	public Mode getMode() {
-		return mCurrentMode;
-	}
+    /**
+     * Switches to {@link Mode#STANDARD_INPUT}.
+     */
+    public void switchToStandardInput() {
+        setDisplayedChild(0);
+        mCurrentMode = Mode.STANDARD_INPUT;
+    }
 
-	/**
-	 * 
-	 * @param dirPath The current directory's absolute path.
-	 * @return
-	 */
-	private boolean backWillExit(String dirPath) {
-		// Count tree depths
-		String[] dir = dirPath.split("/");
-		int dirTreeDepth = dir.length;
+    /**
+     * Activities containing this bar, will have to call this method when the back button is pressed to provide correct backstack redirection and mode switching.
+     *
+     * @return Whether this view consumed the event.
+     */
+    public boolean pressBack() {
+        // Switch mode.
+        if (mCurrentMode == Mode.MANUAL_INPUT) {
+            switchToStandardInput();
+        }
+        // Go back.
+        else if (mCurrentMode == Mode.STANDARD_INPUT) {
+            if (!backWillExit(mCurrentDirectory.getAbsolutePath())) {
+                cd(mCurrentDirectory.getParent());
+                return true;
+            } else
+                return false;
+        }
 
-		String[] init = mInitialDirectory.getAbsolutePath().split("/");
-		int initTreeDepth = init.length;
+        return true;
+    }
 
-		// analyze and return
-		if (dirTreeDepth > initTreeDepth) {
-			return false;
-		} else if (dirTreeDepth < initTreeDepth) {
-			return true;
-		} else {
-			return dirPath.equals(mInitialDirectory.getAbsolutePath());
-		}
-	}
-	
-	@Override
-	public void setEnabled(boolean enabled) {
-		if(enabled)
-			switchToStandardInput();
-		else
-			switchToManualInput();
-		mPathEditText.setEnabled(enabled);
-		mGoButton.setVisibility(enabled ? View.VISIBLE : View.GONE);
-		
-		super.setEnabled(enabled);
-	}
+    /**
+     * Returns the current {@link PathBar.Mode}.
+     */
+    public Mode getMode() {
+        return mCurrentMode;
+    }
 
-	/**
-	 * Interface notifying users of this class when the user has chosen to navigate elsewhere.
-	 */
-	public interface OnDirectoryChangedListener {
-		public void directoryChanged(File newCurrentDir);
-	}
+    /**
+     * @param dirPath The current directory's absolute path.
+     * @return
+     */
+    private boolean backWillExit(String dirPath) {
+        // Count tree depths
+        String[] dir = dirPath.split("/");
+        int dirTreeDepth = dir.length;
 
-	public PathButtonLayout getPathButtonLayout() {
-		return mPathButtons;
-	}
-	
-	boolean isFileOk(File file) {
-		// Check file state.
-		boolean isFileOK = true;
-		isFileOK &= file.exists();
-		isFileOK &= file.isDirectory();
-		// add more filters here..
-		
-		return isFileOK;
-	}
-	
-	public Drawable getItemBackground(){
-		int[] attrs = new int[] {R.attr.pathBarItemBackground};
+        String[] init = mInitialDirectory.getAbsolutePath().split("/");
+        int initTreeDepth = init.length;
 
-		TypedArray ta = getContext().obtainStyledAttributes(attrs);
-		Drawable d = ta.getDrawable(0);
-		
-		ta.recycle();
-		
-		return d.mutate();
-	}
+        // analyze and return
+        if (dirTreeDepth > initTreeDepth) {
+            return false;
+        } else if (dirTreeDepth < initTreeDepth) {
+            return true;
+        } else {
+            return dirPath.equals(mInitialDirectory.getAbsolutePath());
+        }
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        if (enabled)
+            switchToStandardInput();
+        else
+            switchToManualInput();
+        mPathEditText.setEnabled(enabled);
+        mGoButton.setVisibility(enabled ? View.VISIBLE : View.GONE);
+
+        super.setEnabled(enabled);
+    }
+
+    public PathButtonLayout getPathButtonLayout() {
+        return mPathButtons;
+    }
+
+    boolean isFileOk(File file) {
+        // Check file state.
+        boolean isFileOK = true;
+        isFileOK &= file.exists();
+        isFileOK &= file.isDirectory();
+        // add more filters here..
+
+        return isFileOK;
+    }
+
+    public Drawable getItemBackground() {
+        int[] attrs = new int[]{R.attr.pathBarItemBackground};
+
+        TypedArray ta = getContext().obtainStyledAttributes(attrs);
+        Drawable d = ta.getDrawable(0);
+
+        ta.recycle();
+
+        return d.mutate();
+    }
+
+    /**
+     * The available Modes of this PathBar. </br> See {@link PathBar#switchToManualInput() switchToManualInput()} and {@link PathBar#switchToStandardInput() switchToStandardInput()}.
+     */
+    public enum Mode {
+        /**
+         * The button path selection mode.
+         */
+        STANDARD_INPUT,
+        /**
+         * The text path input mode.
+         */
+        MANUAL_INPUT
+    }
+
+    /**
+     * Interface notifying users of this class when the user has chosen to navigate elsewhere.
+     */
+    public interface OnDirectoryChangedListener {
+        public void directoryChanged(File newCurrentDir);
+    }
 }

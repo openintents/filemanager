@@ -36,152 +36,149 @@ import org.openintents.filemanager.search.SearchableActivity;
 import org.openintents.filemanager.util.UIUtils;
 
 public class PreferenceActivity extends android.preference.PreferenceActivity
-                                implements OnSharedPreferenceChangeListener {
+        implements OnSharedPreferenceChangeListener {
 
-	public static final String PREFS_MEDIASCAN = "mediascan";
-	/**
-	 * @since 2011-09-30
-	 */
-	public static final String PREFS_SHOWALLWARNING = "showallwarning";
-	
-	
-	public static final String PREFS_DISPLAYHIDDENFILES = "displayhiddenfiles";
- 	
-	public static final String PREFS_SORTBY = "sortby";
-	
-	public static final String PREFS_ASCENDING = "ascending";
-	
-	public static final String PREFS_DEFAULTPICKFILEPATH = "defaultpickfilepath";
+    public static final String PREFS_MEDIASCAN = "mediascan";
+    /**
+     * @since 2011-09-30
+     */
+    public static final String PREFS_SHOWALLWARNING = "showallwarning";
+
+
+    public static final String PREFS_DISPLAYHIDDENFILES = "displayhiddenfiles";
+
+    public static final String PREFS_SORTBY = "sortby";
+
+    public static final String PREFS_ASCENDING = "ascending";
+
+    public static final String PREFS_DEFAULTPICKFILEPATH = "defaultpickfilepath";
     public static final String PREFS_USEBESTMATCH = "usebestmatch";
-		
-	@Override
-	protected void onCreate(Bundle icicle) {
-		UIUtils.setThemeFor(this);
-		
-		super.onCreate(icicle);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
-		}
-		
-		UIUtils.setThemeFor(this);
-		
-		addPreferencesFromResource(R.xml.preferences);
-		
+
+    public static boolean getMediaScanFromPreference(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(PREFS_MEDIASCAN, false);
+    }
+
+    /**
+     * @since 2011-09-30
+     */
+    public static void setShowAllWarning(Context context, boolean enabled) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(PREFS_SHOWALLWARNING, enabled);
+        editor.commit();
+    }
+
+    /**
+     * @since 2011-09-30
+     */
+    public static boolean getShowAllWarning(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(PREFS_SHOWALLWARNING, true);
+    }
+
+    @VisibleForTesting
+    public static void setDisplayHiddenFiles(Context context, boolean enabled) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(PREFS_DISPLAYHIDDENFILES, enabled);
+        editor.commit();
+    }
+
+    public static boolean getDisplayHiddenFiles(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(PREFS_DISPLAYHIDDENFILES, true);
+    }
+
+    public static void setDefaultPickFilePath(Context context, String path) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(PREFS_DEFAULTPICKFILEPATH, path);
+        editor.commit();
+    }
+
+    static String getDefaultPickFilePath(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(PREFS_DEFAULTPICKFILEPATH, Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/");
+    }
+
+    public static int getSortBy(Context context) {
+        /* entryValues must be a string-array while we need integers */
+        return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(PREFS_SORTBY, "1"));
+    }
+
+    public static boolean getAscending(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(PREFS_ASCENDING, true);
+    }
+
+    @Override
+    protected void onCreate(Bundle icicle) {
+        UIUtils.setThemeFor(this);
+
+        super.onCreate(icicle);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
+        }
+
+        UIUtils.setThemeFor(this);
+
+        addPreferencesFromResource(R.xml.preferences);
+
 		/* Register the onSharedPreferenceChanged listener to update the SortBy ListPreference summary */
-		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 		/* Set the onSharedPreferenceChanged listener summary to its initial value */
-		changeListPreferenceSummaryToCurrentValue((ListPreference)findPreference("sortby"));
-		
-		// Initialize search history reset confirmation dialog.
-		findPreference("clear_search_button").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				new AlertDialog.Builder(PreferenceActivity.this)
-				.setTitle(R.string.preference_search_title)
-				.setMessage(R.string.preference_search_dialog_message)
-				.setIcon(android.R.drawable.ic_dialog_alert)
-				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-				    public void onClick(DialogInterface dialog, int whichButton) {
-				    	SearchableActivity.clearSearchRecents(PreferenceActivity.this);
-				    	Toast.makeText(PreferenceActivity.this, R.string.search_history_cleared, Toast.LENGTH_SHORT).show();
-				    }})
-				 .setNegativeButton(android.R.string.cancel, null).show();
-				
-				return true;
-			}
-		});
-		
-		findPreference("usedarktheme").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-			
-			@Override
-			public boolean onPreferenceChange(Preference preference, Object newValue) {
-				//TODO show dialog about restarting app
-				return true;
-			}
-		});
-	}
+        changeListPreferenceSummaryToCurrentValue((ListPreference) findPreference("sortby"));
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			HomeIconHelper.showHome(this);
-			break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+        // Initialize search history reset confirmation dialog.
+        findPreference("clear_search_button").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                new AlertDialog.Builder(PreferenceActivity.this)
+                        .setTitle(R.string.preference_search_title)
+                        .setMessage(R.string.preference_search_dialog_message)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                SearchableActivity.clearSearchRecents(PreferenceActivity.this);
+                                Toast.makeText(PreferenceActivity.this, R.string.search_history_cleared, Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, null).show();
 
-	public static boolean getMediaScanFromPreference(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context)
-					.getBoolean(PREFS_MEDIASCAN, false);
-	}
+                return true;
+            }
+        });
 
-	/**
-	 * @since 2011-09-30
-	 */
-	public static void setShowAllWarning(Context context, boolean enabled) {
-		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-		SharedPreferences.Editor editor = settings.edit();
-		editor.putBoolean(PREFS_SHOWALLWARNING, enabled);
-		editor.commit();
-	}
+        findPreference("usedarktheme").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
 
-	/**
-	 * @since 2011-09-30
-	 */
-	public static boolean getShowAllWarning(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context)
-				.getBoolean(PREFS_SHOWALLWARNING, true);
-	}
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                //TODO show dialog about restarting app
+                return true;
+            }
+        });
+    }
 
-	@VisibleForTesting
-	public static void setDisplayHiddenFiles(Context context, boolean enabled) {
-		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-		SharedPreferences.Editor editor = settings.edit();
-		editor.putBoolean(PREFS_DISPLAYHIDDENFILES, enabled);
-		editor.commit();
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                HomeIconHelper.showHome(this);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals("sortby")) {
+            changeListPreferenceSummaryToCurrentValue((ListPreference) findPreference(key));
+        }
+    }
 
-	public static boolean getDisplayHiddenFiles(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context)
-				.getBoolean(PREFS_DISPLAYHIDDENFILES, true);
-	}
-	
-	public static void setDefaultPickFilePath(Context context, String path) {
-		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-		SharedPreferences.Editor editor = settings.edit();
-		editor.putString(PREFS_DEFAULTPICKFILEPATH, path);
-		editor.commit();
-	}
-
-
-	static String getDefaultPickFilePath(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context)
-				.getString(PREFS_DEFAULTPICKFILEPATH, Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() : "/");
-	}
-	
-	
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		if(key.equals("sortby")){
-			changeListPreferenceSummaryToCurrentValue((ListPreference)findPreference(key));
-		}
-	}
-	
-	private void changeListPreferenceSummaryToCurrentValue(ListPreference listPref){
-		listPref.setSummary(listPref.getEntry());
-	}
-	
-
-	public static int getSortBy(Context context) {
-		/* entryValues must be a string-array while we need integers */
-		return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
-								 .getString(PREFS_SORTBY, "1"));
-	}
-	
-	public static boolean getAscending(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context)
-				.getBoolean(PREFS_ASCENDING, true);
-	}
+    private void changeListPreferenceSummaryToCurrentValue(ListPreference listPref) {
+        listPref.setSummary(listPref.getEntry());
+    }
 }

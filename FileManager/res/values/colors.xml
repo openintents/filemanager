@@ -1,8 +1,7 @@
+<resources>
+    <color name="navbar_details">#CCFFFFFF</color>
 
-    <resources>
-        <color name="navbar_details">#CCFFFFFF</color>
-        
-        <!-- Borderless button colors -->
-        <color name="press">#400099CC</color>
-        <color name="focus">#800099CC</color>
-    </resources>
+    <!-- Borderless button colors -->
+    <color name="press">#400099CC</color>
+    <color name="focus">#800099CC</color>
+</resources>

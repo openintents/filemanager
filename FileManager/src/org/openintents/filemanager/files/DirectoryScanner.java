@@ -14,7 +14,6 @@ import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.MimeTypes;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

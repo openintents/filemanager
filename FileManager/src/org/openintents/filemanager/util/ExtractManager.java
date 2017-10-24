@@ -1,5 +1,13 @@
 package org.openintents.filemanager.util;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
+
+import org.openintents.filemanager.R;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -8,14 +16,6 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-
-import org.openintents.filemanager.R;
-
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
 public class ExtractManager {
     /**
@@ -26,14 +26,23 @@ public class ExtractManager {
     private static final int BUFFER_SIZE = 1024;
     private Context context;
     private ProgressDialog progressDialog;
-	private OnExtractFinishedListener onExtractFinishedListener = null;
+    private OnExtractFinishedListener onExtractFinishedListener = null;
 
     public ExtractManager(Context context) {
         this.context = context;
     }
 
     public void extract(File f, String destinationPath) {
-            new ExtractTask().execute(f, destinationPath);
+        new ExtractTask().execute(f, destinationPath);
+    }
+
+    public ExtractManager setOnExtractFinishedListener(OnExtractFinishedListener listener) {
+        this.onExtractFinishedListener = listener;
+        return this;
+    }
+
+    public interface OnExtractFinishedListener {
+        public abstract void extractFinished();
     }
 
     private class ExtractTask extends AsyncTask<Object, Void, Integer> {
@@ -53,11 +62,11 @@ public class ExtractManager {
             try {
                 zipfile = new ZipFile(archive);
                 int fileCount = zipfile.size();
-                for (Enumeration e = zipfile.entries(); e.hasMoreElements();) {
+                for (Enumeration e = zipfile.entries(); e.hasMoreElements(); ) {
                     ZipEntry entry = (ZipEntry) e.nextElement();
                     unzipEntry(zipfile, entry, destinationPath);
                     isExtracted++;
-                    progressDialog.setProgress((isExtracted * 100)/ fileCount);
+                    progressDialog.setProgress((isExtracted * 100) / fileCount);
                 }
                 return true;
             } catch (Exception e) {
@@ -72,8 +81,8 @@ public class ExtractManager {
                     }
                 }
             }
-        }        
-        
+        }
+
         private void createDir(File dir) {
             if (dir.exists()) {
                 return;
@@ -82,8 +91,8 @@ public class ExtractManager {
             if (!dir.mkdirs()) {
                 throw new RuntimeException("Can not create dir " + dir);
             }
-        }        
-        
+        }
+
         private void unzipEntry(ZipFile zipfile, ZipEntry entry,
                                 String outputDir) throws IOException {
             if (entry.isDirectory()) {
@@ -123,7 +132,7 @@ public class ExtractManager {
 
         @Override
         protected Integer doInBackground(Object... params) {
-            File f= (File) params[0];
+            File f = (File) params[0];
             String destination = (String) params[1];
             boolean result = extract(f, destination);
             return result ? SUCCESS : ERROR;
@@ -132,23 +141,14 @@ public class ExtractManager {
         @Override
         protected void onPostExecute(Integer result) {
             progressDialog.cancel();
-            if (result == ERROR){
+            if (result == ERROR) {
                 Toast.makeText(context, R.string.extracting_error, Toast.LENGTH_SHORT).show();
-            } else if (result == SUCCESS){
+            } else if (result == SUCCESS) {
                 Toast.makeText(context, R.string.extracting_success, Toast.LENGTH_SHORT).show();
             }
-            
-            if(onExtractFinishedListener != null)
-            	onExtractFinishedListener.extractFinished();
+
+            if (onExtractFinishedListener != null)
+                onExtractFinishedListener.extractFinished();
         }
     }
-    
-    public interface OnExtractFinishedListener{
-    	public abstract void extractFinished();
-    }
-
-	public ExtractManager setOnExtractFinishedListener(OnExtractFinishedListener listener) {
-		this.onExtractFinishedListener = listener;
-		return this;
-	}
 }

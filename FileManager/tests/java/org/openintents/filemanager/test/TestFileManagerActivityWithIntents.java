@@ -36,7 +36,7 @@ public class TestFileManagerActivityWithIntents extends BaseTestFileManager {
 
     @BeforeClass
     public static void setup() throws IOException {
-        sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath()+'/';
+        sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath() + '/';
 
         createDirectory(sdcardPath + TEST_DIRECTORY);
         createDirectory(sdcardPath + "oi-filemanager-tests/oi-dir-to-open");

@@ -16,10 +16,6 @@
 
 package org.openintents.filemanager.view;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -35,16 +31,26 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
 /**
  * Implementation of the {@link android.view.Menu} interface for creating a
  * standard menu UI.
  */
 public class MenuBuilder implements Menu {
-    /** The number of different menu types */
+    /**
+     * The number of different menu types
+     */
     public static final int NUM_TYPES = 3;
-    /** The menu type that represents the icon menu view */
+    /**
+     * The menu type that represents the icon menu view
+     */
     public static final int TYPE_ICON = 0;
-    /** The menu type that represents the expanded menu view */
+    /**
+     * The menu type that represents the expanded menu view
+     */
     public static final int TYPE_EXPANDED = 1;
     /**
      * The menu type that represents a menu dialog. Examples are context and sub
@@ -52,165 +58,202 @@ public class MenuBuilder implements Menu {
      * have an ItemView.
      */
     public static final int TYPE_DIALOG = 2;
-
-    private static final int[]  sCategoryToOrder = new int[] {
-        1, /* No category */
-        4, /* CONTAINER */
-        5, /* SYSTEM */
-        3, /* SECONDARY */
-        2, /* ALTERNATIVE */
-        0, /* SELECTED_ALTERNATIVE */
+    /**
+     * This is the part of an order integer that supplies the category of the
+     * item.
+     *
+     * @hide
+     */
+    static final int CATEGORY_MASK = 0xffff0000;
+    /**
+     * Bit shift of the category portion of the order integer.
+     *
+     * @hide
+     */
+    static final int CATEGORY_SHIFT = 16;
+    /**
+     * This is the part of an order integer that the user can provide.
+     *
+     * @hide
+     */
+    static final int USER_MASK = 0x0000ffff;
+    private static final int[] sCategoryToOrder = new int[]{
+            1, /* No category */
+            4, /* CONTAINER */
+            5, /* SYSTEM */
+            3, /* SECONDARY */
+            2, /* ALTERNATIVE */
+            0, /* SELECTED_ALTERNATIVE */
     };
-
     private final Context mContext;
     private final Resources mResources;
-
+    /**
+     * Header title for menu types that have a header (context and submenus)
+     */
+    CharSequence mHeaderTitle;
+    /**
+     * Header icon for menu types that have a header and support icons (context)
+     */
+    Drawable mHeaderIcon;
+    /**
+     * Header custom view for menu types that have a header and support custom views (context)
+     */
+    View mHeaderView;
     /**
      * Whether the shortcuts should be qwerty-accessible. Use isQwertyMode()
      * instead of accessing this directly.
      */
     private boolean mQwertyMode;
-        
-    /** Contains all of the items for this menu */
+    /**
+     * Contains all of the items for this menu
+     */
     private ArrayList<MenuItemImpl> mItems;
-
-    /** Contains only the items that are currently visible.  This will be created/refreshed from
-     * {@link #getVisibleItems()} */
+    /**
+     * Contains only the items that are currently visible.  This will be created/refreshed from
+     * {@link #getVisibleItems()}
+     */
     private ArrayList<MenuItemImpl> mVisibleItems;
     /**
      * Whether or not the items (or any one item's shown state) has changed since it was last
      * fetched from {@link #getVisibleItems()}
-     */ 
+     */
     private boolean mIsVisibleItemsStale;
-
     /**
      * Current use case is Context Menus: As Views populate the context menu, each one has
      * extra information that should be passed along.  This is the current menu info that
      * should be set on all items added to this menu.
      */
     private ContextMenuInfo mCurrentMenuInfo;
-    
-    /** Header title for menu types that have a header (context and submenus) */
-    CharSequence mHeaderTitle;
-    /** Header icon for menu types that have a header and support icons (context) */
-    Drawable mHeaderIcon;
-    /** Header custom view for menu types that have a header and support custom views (context) */
-    View mHeaderView;
-
     /**
      * Prevents onItemsChanged from doing its junk, useful for batching commands
      * that may individually call onItemsChanged.
      */
     private boolean mPreventDispatchingItemsChanged = false;
-    
     private MenuType[] mMenuTypes;
-    class MenuType {
-        MenuType(int menuType) {
-        }
-        
-        boolean hasMenuView() {
-        	return false;
-        }
-    }
-    
-    /**
-     * Called by menu items to execute their associated action
-     */
-    public interface ItemInvoker {
-        public boolean invokeItem(MenuItemImpl item);
-    }
 
     public MenuBuilder(Context context) {
         mMenuTypes = new MenuType[NUM_TYPES];
-        
+
         mContext = context;
         mResources = context.getResources();
-        
+
         mItems = new ArrayList<>();
-        
+
         mVisibleItems = new ArrayList<>();
         mIsVisibleItemsStale = true;
     }
-    
+
+    /**
+     * Returns the ordering across all items. This will grab the category from
+     * the upper bits, find out how to order the category with respect to other
+     * categories, and combine it with the lower bits.
+     *
+     * @param categoryOrder The category order for a particular item (if it has
+     *                      not been or/add with a category, the default category is
+     *                      assumed).
+     * @return An ordering integer that can be used to order this item across
+     * all the items (even from other categories).
+     */
+    private static int getOrdering(int categoryOrder) {
+        final int index = (categoryOrder & CATEGORY_MASK) >> CATEGORY_SHIFT;
+
+        if (index < 0 || index >= sCategoryToOrder.length) {
+            throw new IllegalArgumentException("order does not contain a valid category.");
+        }
+
+        return (sCategoryToOrder[index] << CATEGORY_SHIFT) | (categoryOrder & USER_MASK);
+    }
+
+    private static int findInsertIndex(ArrayList<MenuItemImpl> items, int ordering) {
+        for (int i = items.size() - 1; i >= 0; i--) {
+            MenuItemImpl item = items.get(i);
+            if (item.getOrdering() <= ordering) {
+                return i + 1;
+            }
+        }
+
+        return 0;
+    }
+
     MenuType getMenuType(int menuType) {
         if (mMenuTypes[menuType] == null) {
             mMenuTypes[menuType] = new MenuType(menuType);
         }
-        
+
         return mMenuTypes[menuType];
     }
-    
+
     /**
      * Adds an item to the menu.  The other add methods funnel to this.
      */
     private MenuItem addInternal(int group, int id, int categoryOrder, CharSequence title) {
         final int ordering = getOrdering(categoryOrder);
-        
+
         final MenuItemImpl item = new MenuItemImpl(this, group, id, categoryOrder, ordering, title);
 
         if (mCurrentMenuInfo != null) {
             // Pass along the current menu info
             item.setMenuInfo(mCurrentMenuInfo);
         }
-        
+
         mItems.add(findInsertIndex(mItems, ordering), item);
         onItemsChanged(false);
-        
+
         return item;
     }
-    
+
     @Override
-	public MenuItem add(CharSequence title) {
+    public MenuItem add(CharSequence title) {
         return addInternal(0, 0, 0, title);
     }
 
     @Override
-	public MenuItem add(int titleRes) {
+    public MenuItem add(int titleRes) {
         return addInternal(0, 0, 0, mResources.getString(titleRes));
     }
 
     @Override
-	public MenuItem add(int group, int id, int categoryOrder, CharSequence title) {
+    public MenuItem add(int group, int id, int categoryOrder, CharSequence title) {
         return addInternal(group, id, categoryOrder, title);
     }
 
     @Override
-	public MenuItem add(int group, int id, int categoryOrder, int title) {
+    public MenuItem add(int group, int id, int categoryOrder, int title) {
         return addInternal(group, id, categoryOrder, mResources.getString(title));
     }
 
     @Override
-	public SubMenu addSubMenu(CharSequence title) {
+    public SubMenu addSubMenu(CharSequence title) {
         return addSubMenu(0, 0, 0, title);
     }
 
     @Override
-	public SubMenu addSubMenu(int titleRes) {
+    public SubMenu addSubMenu(int titleRes) {
         return addSubMenu(0, 0, 0, mResources.getString(titleRes));
     }
 
     @Override
-	public SubMenu addSubMenu(int group, int id, int categoryOrder, CharSequence title) {
+    public SubMenu addSubMenu(int group, int id, int categoryOrder, CharSequence title) {
         throw new UnsupportedOperationException("No submenu for context menu");
     }
 
     @Override
-	public SubMenu addSubMenu(int group, int id, int categoryOrder, int title) {
+    public SubMenu addSubMenu(int group, int id, int categoryOrder, int title) {
         return addSubMenu(group, id, categoryOrder, mResources.getString(title));
     }
 
     @Override
-	public int addIntentOptions(int group, int id, int categoryOrder, ComponentName caller,
-            Intent[] specifics, Intent intent, int flags, MenuItem[] outSpecificItems) {
+    public int addIntentOptions(int group, int id, int categoryOrder, ComponentName caller,
+                                Intent[] specifics, Intent intent, int flags, MenuItem[] outSpecificItems) {
         PackageManager pm = mContext.getPackageManager();
-        final List<ResolveInfo> lri =  pm.queryIntentActivityOptions(caller, specifics, intent, 0);
+        final List<ResolveInfo> lri = pm.queryIntentActivityOptions(caller, specifics, intent, 0);
         final int N = lri != null ? lri.size() : 0;
 
         if ((flags & FLAG_APPEND_TO_GROUP) == 0) {
             removeGroup(group);
         }
 
-        for (int i=0; i<N; i++) {
+        for (int i = 0; i < N; i++) {
             final ResolveInfo ri = lri.get(i);
             Intent rintent = new Intent(ri.specificIndex < 0 ? intent : specifics[ri.specificIndex]);
             rintent.setComponent(new ComponentName(ri.activityInfo.applicationInfo.packageName, ri.activityInfo.name));
@@ -226,12 +269,12 @@ public class MenuBuilder implements Menu {
     }
 
     @Override
-	public void removeItem(int id) {
+    public void removeItem(int id) {
         removeItemAtInt(findItemIndex(id), true);
     }
 
     @Override
-	public void removeGroup(int group) {
+    public void removeGroup(int group) {
         final int i = findGroupIndex(group);
 
         if (i >= 0) {
@@ -249,48 +292,48 @@ public class MenuBuilder implements Menu {
     /**
      * Remove the item at the given index and optionally forces menu views to
      * update.
-     * 
-     * @param index The index of the item to be removed. If this index is
-     *            invalid an exception is thrown.
+     *
+     * @param index                     The index of the item to be removed. If this index is
+     *                                  invalid an exception is thrown.
      * @param updateChildrenOnMenuViews Whether to force update on menu views.
-     *            Please make sure you eventually call this after your batch of
-     *            removals.
+     *                                  Please make sure you eventually call this after your batch of
+     *                                  removals.
      */
     private void removeItemAtInt(int index, boolean updateChildrenOnMenuViews) {
         if ((index < 0) || (index >= mItems.size())) return;
 
         mItems.remove(index);
-        
+
         if (updateChildrenOnMenuViews) onItemsChanged(false);
     }
-    
+
     @Override
-	public void clear() {
+    public void clear() {
         mItems.clear();
-        
+
         onItemsChanged(true);
     }
 
     void setExclusiveItemChecked(MenuItem item) {
         final int group = item.getGroupId();
-        
+
         final int N = mItems.size();
         for (int i = 0; i < N; i++) {
             MenuItemImpl curItem = mItems.get(i);
             if (curItem.getGroupId() == group) {
                 if (!curItem.isExclusiveCheckable()) continue;
                 if (!curItem.isCheckable()) continue;
-                
+
                 // Check the item meant to be checked, uncheck the others (that are in the group)
                 curItem.setCheckedInt(curItem == item);
             }
         }
     }
-    
+
     @Override
-	public void setGroupCheckable(int group, boolean checkable, boolean exclusive) {
+    public void setGroupCheckable(int group, boolean checkable, boolean exclusive) {
         final int N = mItems.size();
-       
+
         for (int i = 0; i < N; i++) {
             MenuItemImpl item = mItems.get(i);
             if (item.getGroupId() == group) {
@@ -301,12 +344,12 @@ public class MenuBuilder implements Menu {
     }
 
     @Override
-	public void setGroupVisible(int group, boolean visible) {
+    public void setGroupVisible(int group, boolean visible) {
         final int N = mItems.size();
 
         // We handle the notification of items being changed ourselves, so we use setVisibleInt rather
         // than setVisible and at the end notify of items being changed
-        
+
         boolean changedAtLeastOneItem = false;
         for (int i = 0; i < N; i++) {
             MenuItemImpl item = mItems.get(i);
@@ -319,7 +362,7 @@ public class MenuBuilder implements Menu {
     }
 
     @Override
-	public void setGroupEnabled(int group, boolean enabled) {
+    public void setGroupEnabled(int group, boolean enabled) {
         final int N = mItems.size();
 
         for (int i = 0; i < N; i++) {
@@ -331,7 +374,7 @@ public class MenuBuilder implements Menu {
     }
 
     @Override
-	public boolean hasVisibleItems() {
+    public boolean hasVisibleItems() {
         final int size = size();
 
         for (int i = 0; i < size; i++) {
@@ -345,7 +388,7 @@ public class MenuBuilder implements Menu {
     }
 
     @Override
-	public MenuItem findItem(int id) {
+    public MenuItem findItem(int id) {
         final int size = size();
         for (int i = 0; i < size; i++) {
             MenuItemImpl item = mItems.get(i);
@@ -353,13 +396,13 @@ public class MenuBuilder implements Menu {
                 return item;
             } else if (item.hasSubMenu()) {
                 MenuItem possibleItem = item.getSubMenu().findItem(id);
-                
+
                 if (possibleItem != null) {
                     return possibleItem;
                 }
             }
         }
-        
+
         return null;
     }
 
@@ -382,14 +425,14 @@ public class MenuBuilder implements Menu {
 
     public int findGroupIndex(int group, int start) {
         final int size = size();
-        
+
         if (start < 0) {
             start = 0;
         }
-        
+
         for (int i = start; i < size; i++) {
             final MenuItemImpl item = mItems.get(i);
-            
+
             if (item.getGroupId() == group) {
                 return i;
             }
@@ -397,23 +440,24 @@ public class MenuBuilder implements Menu {
 
         return -1;
     }
-    
+
     @Override
-	public int size() {
+    public int size() {
         return mItems.size();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-	public MenuItem getItem(int index) {
+    public MenuItem getItem(int index) {
         return mItems.get(index);
     }
 
     @Override
-	public boolean isShortcutKey(int keyCode, KeyEvent event) {
+    public boolean isShortcutKey(int keyCode, KeyEvent event) {
         return findItemWithShortcutForKey(keyCode, event) != null;
     }
-
 
     /*
      * We want to return the menu item associated with the key, but if there is no
@@ -451,61 +495,14 @@ public class MenuBuilder implements Menu {
             final char shortcutChar = qwerty ? item.getAlphabeticShortcut() : item.getNumericShortcut();
             if ((shortcutChar == possibleChars.meta[0] &&
                     (metaState & KeyEvent.META_ALT_ON) == 0)
-                || (shortcutChar == possibleChars.meta[2] &&
+                    || (shortcutChar == possibleChars.meta[2] &&
                     (metaState & KeyEvent.META_ALT_ON) != 0)
-                || (qwerty && shortcutChar == '\b' &&
+                    || (qwerty && shortcutChar == '\b' &&
                     keyCode == KeyEvent.KEYCODE_DEL)) {
                 return item;
             }
         }
         return null;
-    }
-    
-    @Override
-	public void setQwertyMode(boolean isQwerty) {
-        mQwertyMode = isQwerty;
-    }
-
-    /**
-     * This is the part of an order integer that supplies the category of the
-     * item.
-     * @hide
-     */
-    static final int CATEGORY_MASK = 0xffff0000;
-    /**
-     * Bit shift of the category portion of the order integer.
-     * @hide
-     */
-    static final int CATEGORY_SHIFT = 16;
-    
-
-    /**
-     * This is the part of an order integer that the user can provide.
-     * @hide
-     */
-    static final int USER_MASK = 0x0000ffff;
-    
-    
-    /**
-     * Returns the ordering across all items. This will grab the category from
-     * the upper bits, find out how to order the category with respect to other
-     * categories, and combine it with the lower bits.
-     * 
-     * @param categoryOrder The category order for a particular item (if it has
-     *            not been or/add with a category, the default category is
-     *            assumed).
-     * @return An ordering integer that can be used to order this item across
-     *         all the items (even from other categories).
-     */
-    private static int getOrdering(int categoryOrder)
-    {
-        final int index = (categoryOrder & CATEGORY_MASK) >> CATEGORY_SHIFT;
-        
-        if (index < 0 || index >= sCategoryToOrder.length) {
-            throw new IllegalArgumentException("order does not contain a valid category.");
-        }
-        
-        return (sCategoryToOrder[index] << CATEGORY_SHIFT) | (categoryOrder & USER_MASK);
     }
 
     /**
@@ -515,35 +512,29 @@ public class MenuBuilder implements Menu {
         return mQwertyMode;
     }
 
+    @Override
+    public void setQwertyMode(boolean isQwerty) {
+        mQwertyMode = isQwerty;
+    }
+
     Resources getResources() {
         return mResources;
     }
 
-    private static int findInsertIndex(ArrayList<MenuItemImpl> items, int ordering) {
-        for (int i = items.size() - 1; i >= 0; i--) {
-            MenuItemImpl item = items.get(i);
-            if (item.getOrdering() <= ordering) {
-                return i + 1;
-            }
-        }
-        
-        return 0;
-    }
-    
     @Override
-	public boolean performShortcut(int keyCode, KeyEvent event, int flags) {
+    public boolean performShortcut(int keyCode, KeyEvent event, int flags) {
         final MenuItemImpl item = findItemWithShortcutForKey(keyCode, event);
 
         boolean handled = false;
-        
+
         if (item != null) {
             handled = performItemAction(item, flags);
         }
-        
+
         if ((flags & FLAG_ALWAYS_PERFORM_CLOSE) != 0) {
             close(true);
         }
-        
+
         return handled;
     }
 
@@ -570,69 +561,70 @@ public class MenuBuilder implements Menu {
         for (int i = 0; i < N; i++) {
             MenuItemImpl item = mItems.get(i);
             if (item.hasSubMenu()) {
-                List<MenuItemImpl> subMenuItems = ((MenuBuilder)item.getSubMenu())
-                    .findItemsWithShortcutForKey(keyCode, event);
+                List<MenuItemImpl> subMenuItems = ((MenuBuilder) item.getSubMenu())
+                        .findItemsWithShortcutForKey(keyCode, event);
                 items.addAll(subMenuItems);
             }
             final char shortcutChar = qwerty ? item.getAlphabeticShortcut() : item.getNumericShortcut();
             if (((metaState & (KeyEvent.META_SHIFT_ON | KeyEvent.META_SYM_ON)) == 0) &&
-                  (shortcutChar != 0) &&
-                  (shortcutChar == possibleChars.meta[0]
-                      || shortcutChar == possibleChars.meta[2]
-                      || (qwerty && shortcutChar == '\b' &&
-                          keyCode == KeyEvent.KEYCODE_DEL)) &&
-                  item.isEnabled()) {
+                    (shortcutChar != 0) &&
+                    (shortcutChar == possibleChars.meta[0]
+                            || shortcutChar == possibleChars.meta[2]
+                            || (qwerty && shortcutChar == '\b' &&
+                            keyCode == KeyEvent.KEYCODE_DEL)) &&
+                    item.isEnabled()) {
                 items.add(item);
             }
         }
         return items;
     }
 
-
     @Override
-	public boolean performIdentifierAction(int id, int flags) {
+    public boolean performIdentifierAction(int id, int flags) {
         // Look for an item whose identifier is the id.
-        return performItemAction(findItem(id), flags);           
+        return performItemAction(findItem(id), flags);
     }
 
     public boolean performItemAction(MenuItem item, int flags) {
         MenuItemImpl itemImpl = (MenuItemImpl) item;
-        
+
         if (itemImpl == null || !itemImpl.isEnabled()) {
             return false;
-        }        
-        
+        }
+
         if (item.hasSubMenu()) {
         } else {
             if ((flags & FLAG_PERFORM_NO_CLOSE) == 0) {
                 close(true);
             }
         }
-        
+
         return true;
     }
-    
+
     /**
      * Closes the visible menu.
-     * 
+     *
      * @param allMenusAreClosing Whether the menus are completely closing (true),
-     *            or whether there is another menu coming in this menu's place
-     *            (false). For example, if the menu is closing because a
-     *            sub menu is about to be shown, <var>allMenusAreClosing</var>
-     *            is false.
+     *                           or whether there is another menu coming in this menu's place
+     *                           (false). For example, if the menu is closing because a
+     *                           sub menu is about to be shown, <var>allMenusAreClosing</var>
+     *                           is false.
      */
     final void close(boolean allMenusAreClosing) {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-	public void close() {
+    public void close() {
         close(true);
     }
 
     /**
      * Called when an item is added or removed.
-     * 
+     *
      * @param cleared Whether the items were cleared or just changed.
      */
     private void onItemsChanged(boolean cleared) {
@@ -643,32 +635,49 @@ public class MenuBuilder implements Menu {
 
     /**
      * Called by {@link MenuItemImpl} when its visible flag is changed.
+     *
      * @param item The item that has gone through a visibility change.
      */
     void onItemVisibleChanged(MenuItemImpl item) {
         // Notify of items being changed
         onItemsChanged(false);
     }
-    
+
     ArrayList<MenuItemImpl> getVisibleItems() {
         if (!mIsVisibleItemsStale) return mVisibleItems;
-        
+
         // Refresh the visible items
         mVisibleItems.clear();
-        
-        final int itemsSize = mItems.size(); 
+
+        final int itemsSize = mItems.size();
         MenuItemImpl item;
         for (int i = 0; i < itemsSize; i++) {
             item = mItems.get(i);
             if (item.isVisible()) mVisibleItems.add(item);
         }
-        
+
         mIsVisibleItemsStale = false;
-        
+
         return mVisibleItems;
     }
 
-	public Context getContext() {
-		return mContext;
-	}
+    public Context getContext() {
+        return mContext;
+    }
+
+    /**
+     * Called by menu items to execute their associated action
+     */
+    public interface ItemInvoker {
+        public boolean invokeItem(MenuItemImpl item);
+    }
+
+    class MenuType {
+        MenuType(int menuType) {
+        }
+
+        boolean hasMenuView() {
+            return false;
+        }
+    }
 }

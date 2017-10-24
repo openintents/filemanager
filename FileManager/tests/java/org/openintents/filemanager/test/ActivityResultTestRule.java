@@ -31,31 +31,6 @@ public class ActivityResultTestRule<T extends Activity> extends ActivityTestRule
         super(activityClass, initialTouchMode, launchActivity);
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public ActivityResult getActivityResult() {
-        T activity = getActivity();
-        assertThat("Activity did not finish (destroyed: " + activity.isDestroyed() + ")", activity.isFinishing(), is(true));
-
-
-        try {
-            Field resultCodeField = Activity.class.getDeclaredField("mResultCode");
-            resultCodeField.setAccessible(true);
-
-            Field resultDataField = Activity.class.getDeclaredField("mResultData");
-            resultDataField.setAccessible(true);
-
-            return new ActivityResult((int) resultCodeField.get(activity),
-                    (Intent) resultDataField.get(activity));
-
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException("Looks like the Android Activity class has changed it's" +
-                    "private fields for mResultCode or mResultData. Time to update the reflection code.", e);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
     public static Matcher<? super ActivityResult> hasResultData(final Matcher<Intent> intentMatcher) {
         return new TypeSafeMatcher<ActivityResult>(ActivityResult.class) {
 
@@ -89,5 +64,29 @@ public class ActivityResultTestRule<T extends Activity> extends ActivityTestRule
                 return activityResult.getResultCode() == resultCode;
             }
         };
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public ActivityResult getActivityResult() {
+        T activity = getActivity();
+        assertThat("Activity did not finish (destroyed: " + activity.isDestroyed() + ")", activity.isFinishing(), is(true));
+
+
+        try {
+            Field resultCodeField = Activity.class.getDeclaredField("mResultCode");
+            resultCodeField.setAccessible(true);
+
+            Field resultDataField = Activity.class.getDeclaredField("mResultData");
+            resultDataField.setAccessible(true);
+
+            return new ActivityResult((int) resultCodeField.get(activity),
+                    (Intent) resultDataField.get(activity));
+
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException("Looks like the Android Activity class has changed it's" +
+                    "private fields for mResultCode or mResultData. Time to update the reflection code.", e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

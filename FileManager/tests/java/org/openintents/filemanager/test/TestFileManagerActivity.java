@@ -55,7 +55,6 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.action.ViewActions.pressKey;
 import static android.support.test.espresso.action.ViewActions.replaceText;
-import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -69,82 +68,110 @@ import static org.hamcrest.Matchers.not;
 @RunWith(AndroidJUnit4.class)
 public class TestFileManagerActivity extends BaseTestFileManager {
 
-	private static String filenameIsInRightDirectory;
-	private Random random = new Random();
-
-	@Rule
+    private static String filenameIsInRightDirectory;
+    @Rule
     public ActivityTestRule<FileManagerActivity> rule = new ActivityTestRule<>(FileManagerActivity.class);
+    private Random random = new Random();
 
+    @BeforeClass
+    public static void setUp() throws Exception {
 
-	@BeforeClass
-	public static void setUp() throws Exception {
+        Context context = InstrumentationRegistry.getTargetContext();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        prefs.edit()
+                .putBoolean("eula_accepted", true)
+                .putInt("org.openintents.distribution.version_number_check", VersionUtils.getVersionCode(context))
+                .commit();
+        sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath() + '/';
 
-		Context context = InstrumentationRegistry.getTargetContext();
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		prefs.edit()
-				.putBoolean("eula_accepted", true)
-				.putInt("org.openintents.distribution.version_number_check", VersionUtils.getVersionCode(context))
-				.commit();
-		sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath()+'/';
+        // need to do this before creating activity
+        cleanDirectory(new File(sdcardPath + TEST_DIRECTORY));
+        createDirectory(sdcardPath + TEST_DIRECTORY);
 
-		// need to do this before creating activity
-		cleanDirectory(new File(sdcardPath + TEST_DIRECTORY));
-		createDirectory(sdcardPath + TEST_DIRECTORY);
+        createFile(sdcardPath + TEST_DIRECTORY + "/oi-rem-test.txt", "");
+        filenameIsInRightDirectory = "oi-test-is-in-right-directory";
+        createFile(sdcardPath + TEST_DIRECTORY + "/" + filenameIsInRightDirectory, "");
 
-		createFile(sdcardPath + TEST_DIRECTORY + "/oi-rem-test.txt", "");
-		filenameIsInRightDirectory = "oi-test-is-in-right-directory";
-		createFile(sdcardPath + TEST_DIRECTORY + "/" + filenameIsInRightDirectory, "");
+        createDirectory(sdcardPath + "oi-filemanager-tests/oi-move-target");
+        createFile(sdcardPath + "oi-filemanager-tests/oi-file-1.txt", "");
+        createFile(sdcardPath + "oi-filemanager-tests/oi-file-2.txt", "");
+        createFile(sdcardPath + "oi-filemanager-tests/oi-file-3.txt", "");
+        createFile(sdcardPath + "oi-filemanager-tests/oi-file-4.txt", "");
+        createFile(sdcardPath + "oi-filemanager-tests/oi-file-5.txt", "");
+        createFile(sdcardPath + "oi-filemanager-tests/.oi-hidden.txt", "");
+    }
 
-		createDirectory(sdcardPath + "oi-filemanager-tests/oi-move-target");
-		createFile(sdcardPath + "oi-filemanager-tests/oi-file-1.txt", "");
-		createFile(sdcardPath + "oi-filemanager-tests/oi-file-2.txt", "");
-		createFile(sdcardPath + "oi-filemanager-tests/oi-file-3.txt", "");
-		createFile(sdcardPath + "oi-filemanager-tests/oi-file-4.txt", "");
-		createFile(sdcardPath + "oi-filemanager-tests/oi-file-5.txt", "");
-		createFile(sdcardPath + "oi-filemanager-tests/.oi-hidden.txt", "");
-	}
+    private static Matcher<View> isSortedInThisOrder(final String a, final String b, final String c) {
+        return new TypeSafeMatcher<View>() {
 
-	@Before
-	public void setUpTest() {
-		Espresso.registerIdlingResources(new DirectoryScannerIdlingResource(rule.getActivity()));
-	}
+            @Override
+            protected boolean matchesSafely(View item) {
+                ListView fileList = (ListView) item;
+                FileHolderListAdapter adapter = (FileHolderListAdapter) fileList.getAdapter();
+                int positionOfA = find(adapter, a);
+                int positionOfB = find(adapter, b);
+                int positionOfC = find(adapter, c);
+                return positionOfA < positionOfB && positionOfB < positionOfC;
+            }
+
+            private int find(FileHolderListAdapter adapter, String fileName) {
+                int size = adapter.getCount();
+                for (int i = 0; i < size; i++) {
+                    if (((FileHolder) adapter.getItem(i)).getName().equals(fileName)) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("has items sorted in this order: " + a + " " + b + " " + c);
+            }
+        };
+    }
+
+    @Before
+    public void setUpTest() {
+        Espresso.registerIdlingResources(new DirectoryScannerIdlingResource(rule.getActivity()));
+    }
 
     @After
-	public void tearDown() throws Exception {
-		//cleanDirectory(new File(sdcardPath + TEST_DIRECTORY));
-	}
+    public void tearDown() throws Exception {
+        //cleanDirectory(new File(sdcardPath + TEST_DIRECTORY));
+    }
 
-	@Test
-	public void testNavigation() throws IOException {
+    @Test
+    public void testNavigation() throws IOException {
 //		if(solo.searchText("Accept")) {
 //			solo.clickOnButton("Accept");
 //			if(solo.searchButton("Continue"))
 //				solo.clickOnButton("Continue");
 //		}
-		createDirectory(sdcardPath + TEST_DIRECTORY);
-		createFile(sdcardPath + "oi-filemanager-tests/oi-test.txt", "");
-		createDirectory(sdcardPath + "oi-filemanager-tests/oi-test-dir");
-		createFile(sdcardPath + "oi-filemanager-tests/oi-test-dir/oi-fff.txt", "");
+        createDirectory(sdcardPath + TEST_DIRECTORY);
+        createFile(sdcardPath + "oi-filemanager-tests/oi-test.txt", "");
+        createDirectory(sdcardPath + "oi-filemanager-tests/oi-test-dir");
+        createFile(sdcardPath + "oi-filemanager-tests/oi-test-dir/oi-fff.txt", "");
 
         clickOnTestDirectory();
-		onView(withText(TEST_DIRECTORY)).check(matches(isDisplayed()));
+        onView(withText(TEST_DIRECTORY)).check(matches(isDisplayed()));
         clickOnFile("oi-test-dir");
-		onView(withText("oi-fff.txt")).check(matches(isDisplayed()));
+        onView(withText("oi-fff.txt")).check(matches(isDisplayed()));
 
         pressBack();
         pressBack();
 
         clickOnTestDirectory();
-		onData(hasName("oi-test.txt")).check(matches(isDisplayed()));
+        onData(hasName("oi-test.txt")).check(matches(isDisplayed()));
 
-		clickOnFile("oi-test-dir");
+        clickOnFile("oi-test-dir");
         pressBack();
-		onData(hasName("oi-test.txt")).check(matches(isDisplayed()));
+        onData(hasName("oi-test.txt")).check(matches(isDisplayed()));
         pressBack();
-	}
+    }
 
-	@Test
-	public void testModification() throws IOException {
+    @Test
+    public void testModification() throws IOException {
         clickOnTestDirectory();
         longClickOnFile("oi-rem-test.txt");
 
@@ -159,35 +186,35 @@ public class TestFileManagerActivity extends BaseTestFileManager {
 
         checkFile("oi-created-folder", matches(isDisplayed()));
         pressBack();
-		
-		File createdFolder = new File(sdcardPath + "oi-filemanager-tests/oi-created-folder");
-		assertThat(createdFolder.exists(), is(true));
+
+        File createdFolder = new File(sdcardPath + "oi-filemanager-tests/oi-created-folder");
+        assertThat(createdFolder.exists(), is(true));
         assertThat(createdFolder.isDirectory(), is(true));
         assertThat(new File(sdcardPath + "oi-filemanager-tests/oi-rem-test.txt").exists(), is(false));
-	}
+    }
 
-	@Test
-	public void testBookmarks() throws IOException {
-		String fn = "oi-bookmark-" + random.nextInt(1000);
-		createDirectory(sdcardPath + TEST_DIRECTORY);
-		createDirectory(sdcardPath + "oi-filemanager-tests/" + fn);
-		createFile(sdcardPath + "oi-filemanager-tests/" + fn + "/oi-inside-book.txt", "");
-		
-		// create bookmark
+    @Test
+    public void testBookmarks() throws IOException {
+        String fn = "oi-bookmark-" + random.nextInt(1000);
+        createDirectory(sdcardPath + TEST_DIRECTORY);
+        createDirectory(sdcardPath + "oi-filemanager-tests/" + fn);
+        createFile(sdcardPath + "oi-filemanager-tests/" + fn + "/oi-inside-book.txt", "");
+
+        // create bookmark
         clickOnTestDirectory();
-		longClickOnFile(fn);
+        longClickOnFile(fn);
 
         openContextualActionModeOverflowMenu();
         onView(withText(R.string.menu_bookmark)).perform(click());
         clickOnFile(fn);
 
-		checkFile("oi-inside-book.txt", matches(isDisplayed()));
+        checkFile("oi-inside-book.txt", matches(isDisplayed()));
 
 
-		// remove it
+        // remove it
         openActionBarOverflowOrOptionsMenu(rule.getActivity());
         onView(withText(R.string.menu_bookmarks)).perform(click());
-		longClickOnBookmark(fn);
+        longClickOnBookmark(fn);
         onView(withContentDescription(R.string.menu_delete)).perform(click());
 
         pressBack();
@@ -196,207 +223,176 @@ public class TestFileManagerActivity extends BaseTestFileManager {
         openActionBarOverflowOrOptionsMenu(rule.getActivity());
         onView(withText(R.string.menu_bookmarks)).perform(click());
 
-		checkIsNotContainedInList(hasBookmarkName(fn));
-		pressBack();
+        checkIsNotContainedInList(hasBookmarkName(fn));
         pressBack();
-	}
+        pressBack();
+    }
 
-	private void checkIsNotContainedInList(Matcher<Object> matches) {
-		onView(withId(android.R.id.list))
-				.check(matches(not(withAdaptedData(matches))));
-	}
+    private void checkIsNotContainedInList(Matcher<Object> matches) {
+        onView(withId(android.R.id.list))
+                .check(matches(not(withAdaptedData(matches))));
+    }
 
-	@Test
+    @Test
     public void testActions() throws IOException {
 
         clickOnTestDirectory();
-		// copy
-		longClickOnFile("oi-file-1.txt");
-		openContextualActionModeOverflowMenu();
-		onView(withText(R.string.menu_copy)).perform(click());
+        // copy
+        longClickOnFile("oi-file-1.txt");
+        openContextualActionModeOverflowMenu();
+        onView(withText(R.string.menu_copy)).perform(click());
 
-		navigateToTargetAndPasteAndCheck("oi-move-target", "oi-file-1.txt", null);
-		checkFile("oi-file-1.txt", matches(isDisplayed()));
+        navigateToTargetAndPasteAndCheck("oi-move-target", "oi-file-1.txt", null);
+        checkFile("oi-file-1.txt", matches(isDisplayed()));
 
-		// move
-		longClickOnFile("oi-file-2.txt");
-		onView(withContentDescription(R.string.menu_move)).perform(click());
-		navigateToTargetAndPasteAndCheck("oi-move-target", "oi-file-2.txt", null);
-		checkIsNotContainedInList(hasName("oi-file-2.txt"));
+        // move
+        longClickOnFile("oi-file-2.txt");
+        onView(withContentDescription(R.string.menu_move)).perform(click());
+        navigateToTargetAndPasteAndCheck("oi-move-target", "oi-file-2.txt", null);
+        checkIsNotContainedInList(hasName("oi-file-2.txt"));
 
-		// multi select
-		if(android.os.Build.VERSION.SDK_INT < 11){
-			onView(withText(R.id.menu_multiselect)).perform(click());
-			clickOnFile("oi-file-3.txt");
-			clickOnFile("oi-file-4.txt");
-			onView(withId(R.id.menu_copy)); // TODO verify solo.clickOnImageButton(1);
-			pressBack();
-			
-			navigateToTargetAndPasteAndCheck("oi-move-target", "oi-file-3.txt", "oi-file-4.txt");
-		}
+        // multi select
+        if (android.os.Build.VERSION.SDK_INT < 11) {
+            onView(withText(R.id.menu_multiselect)).perform(click());
+            clickOnFile("oi-file-3.txt");
+            clickOnFile("oi-file-4.txt");
+            onView(withId(R.id.menu_copy)); // TODO verify solo.clickOnImageButton(1);
+            pressBack();
 
-		// rename
-		longClickOnFile("oi-file-5.txt");
-		openContextualActionModeOverflowMenu();
-		onView(withText(R.string.menu_rename)).perform(click());
-		onView(withId(R.id.foldername)).perform(replaceText("oi-renamed-file.txt"));
-		onView(withText(android.R.string.ok)).perform(click());
-		checkFile("oi-renamed-file.txt", matches(isDisplayed()));
+            navigateToTargetAndPasteAndCheck("oi-move-target", "oi-file-3.txt", "oi-file-4.txt");
+        }
 
-		pressBack();
-	}
-	
-	private void navigateToTargetAndPasteAndCheck(String dirname, String name1, String name2) throws IOException {
-		createDirectory(sdcardPath + "oi-filemanager-tests/");
-		clickOnFile(dirname);
+        // rename
+        longClickOnFile("oi-file-5.txt");
+        openContextualActionModeOverflowMenu();
+        onView(withText(R.string.menu_rename)).perform(click());
+        onView(withId(R.id.foldername)).perform(replaceText("oi-renamed-file.txt"));
+        onView(withText(android.R.string.ok)).perform(click());
+        checkFile("oi-renamed-file.txt", matches(isDisplayed()));
 
-		openActionBarOverflowOrOptionsMenu(rule.getActivity());
-		onView(withText(R.string.menu_paste)).perform(click());
+        pressBack();
+    }
 
-		checkFile(name1, matches(isDisplayed()));
+    private void navigateToTargetAndPasteAndCheck(String dirname, String name1, String name2) throws IOException {
+        createDirectory(sdcardPath + "oi-filemanager-tests/");
+        clickOnFile(dirname);
 
-		if(name2 != null) {
-			checkFile(name2, matches(isDisplayed()));
-		}
+        openActionBarOverflowOrOptionsMenu(rule.getActivity());
+        onView(withText(R.string.menu_paste)).perform(click());
 
-		pressBack();
-	}
+        checkFile(name1, matches(isDisplayed()));
 
-	@Test
-	public void testDetails() throws IOException {
-		createDirectory(sdcardPath + TEST_DIRECTORY);
-		createFile(sdcardPath + "oi-filemanager-tests/oi-detail.txt", "abcdefg");
+        if (name2 != null) {
+            checkFile(name2, matches(isDisplayed()));
+        }
 
-		clickOnTestDirectory();
+        pressBack();
+    }
 
+    @Test
+    public void testDetails() throws IOException {
+        createDirectory(sdcardPath + TEST_DIRECTORY);
+        createFile(sdcardPath + "oi-filemanager-tests/oi-detail.txt", "abcdefg");
 
-		longClickOnFile("oi-detail.txt");
-		openContextualActionModeOverflowMenu();
-		onView(withText(R.string.menu_details)).perform(click());
-
-		onView(withText(R.string.details_type_file)).check(matches(isDisplayed()));
-
-		onView(withId(R.id.details_size_value)).check(matches(withText(Formatter.formatFileSize(rule.getActivity(), 7))));
-
-		
-		// not sure:
-		//Calendar today = new GregorianCalendar();
-		//String todayString = today.get(Calendar.DAY_OF_MONTH) + "/" + today.get(Calendar.MONTH) + "/" + today.get(Calendar.YEAR);
-		//assertTrue(solo.searchText(todayString));
-
-		pressBack();
-		pressBack();
-	}
-
-	@Test
-	public void testHiddenFiles() throws IOException {
-		clickOnTestDirectory();
-
-		PreferenceActivity.setDisplayHiddenFiles(rule.getActivity(), true);
-		checkFile(".oi-hidden.txt", matches(isDisplayed()));
-		
-		openActionBarOverflowOrOptionsMenu(rule.getActivity());
-		onView(withText(R.string.settings)).perform(click());
-		
-		onView(allOf(withText(R.string.preference_displayhiddenfiles_title), withResourceName("android:id/title"))).perform(click());
-		
-		pressBack();
-		checkIsNotContainedInList(hasName(".oi-hidden.txt"));
-
-		pressBack();
-	}
-
-	@Test
-	public void testOrder() throws IOException, InterruptedException {
-		createDirectory(sdcardPath + TEST_DIRECTORY);
-		createFile(sdcardPath + "oi-filemanager-tests/oi-b.txt", "bbb");
-		Thread.sleep(10); // make sure that next file is younger
-		createFile(sdcardPath + "oi-filemanager-tests/oi-a.txt", "aaaaaa");
-		Thread.sleep(10);
-		createFile(sdcardPath + "oi-filemanager-tests/oi-c.txt", "");
-		clickOnTestDirectory();
-
-		String[] sortOrders = rule.getActivity().getResources().getStringArray(org.openintents.filemanager.R.array.preference_sortby_names);
-		
-		setAscending(true);
-		setSortOrder(sortOrders[0]);
-		isSortedInThisOrder("oi-a.txt", "oi-b.txt", "oi-c.txt");
-		
-		setSortOrder(sortOrders[1]);
-		isSortedInThisOrder("oi-c.txt", "oi-b.txt", "oi-a.txt");
-		
-		setSortOrder(sortOrders[2]);
-		isSortedInThisOrder("oi-b.txt", "oi-a.txt", "oi-c.txt");
-		
-		setAscending(false);
-		setSortOrder(sortOrders[0]);
-		isSortedInThisOrder("oi-c.txt", "oi-b.txt", "oi-a.txt");
-	}
-	
-	private void setSortOrder(String name) {
-		openActionBarOverflowOrOptionsMenu(rule.getActivity());
-		onView(withText(R.string.settings)).perform(click());
-		onView(withText(R.string.preference_sortby)).perform(click());
-		onView(withText(name)).perform(click());
-		pressBack();
-	}
-	
-	private void setAscending(boolean enabled) {
-		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(rule.getActivity());
-		SharedPreferences.Editor editor = settings.edit();
-		editor.putBoolean("ascending", enabled);
-		editor.commit();
-	}
+        clickOnTestDirectory();
 
 
-	private static Matcher<View> isSortedInThisOrder(final String a, final String b, final String c) {
-		return new TypeSafeMatcher<View>() {
+        longClickOnFile("oi-detail.txt");
+        openContextualActionModeOverflowMenu();
+        onView(withText(R.string.menu_details)).perform(click());
 
-			@Override
-			protected boolean matchesSafely(View item) {
-				ListView fileList = (ListView) item;
-				FileHolderListAdapter adapter = (FileHolderListAdapter) fileList.getAdapter();
-				int positionOfA = find(adapter, a);
-				int positionOfB = find(adapter, b);
-				int positionOfC = find(adapter, c);
-				return positionOfA < positionOfB && positionOfB < positionOfC;
-			}
+        onView(withText(R.string.details_type_file)).check(matches(isDisplayed()));
 
-			private int find(FileHolderListAdapter adapter, String fileName) {
-				int size = adapter.getCount();
-				for (int i=0; i < size; i++) {
-					if (((FileHolder) adapter.getItem(i)).getName().equals(fileName)) {
-						return i;
-					}
-				}
-				return -1;
-			}
+        onView(withId(R.id.details_size_value)).check(matches(withText(Formatter.formatFileSize(rule.getActivity(), 7))));
 
-			@Override
-			public void describeTo(Description description) {
-				description.appendText("has items sorted in this order: " + a + " " + b + " " + c);
-			}
-		};
-	}
 
-	@Test
-	public void testBrowseToOnPressEnter() throws IOException {
-		
+        // not sure:
+        //Calendar today = new GregorianCalendar();
+        //String todayString = today.get(Calendar.DAY_OF_MONTH) + "/" + today.get(Calendar.MONTH) + "/" + today.get(Calendar.YEAR);
+        //assertTrue(solo.searchText(todayString));
+
+        pressBack();
+        pressBack();
+    }
+
+    @Test
+    public void testHiddenFiles() throws IOException {
+        clickOnTestDirectory();
+
+        PreferenceActivity.setDisplayHiddenFiles(rule.getActivity(), true);
+        checkFile(".oi-hidden.txt", matches(isDisplayed()));
+
+        openActionBarOverflowOrOptionsMenu(rule.getActivity());
+        onView(withText(R.string.settings)).perform(click());
+
+        onView(allOf(withText(R.string.preference_displayhiddenfiles_title), withResourceName("android:id/title"))).perform(click());
+
+        pressBack();
+        checkIsNotContainedInList(hasName(".oi-hidden.txt"));
+
+        pressBack();
+    }
+
+    @Test
+    public void testOrder() throws IOException, InterruptedException {
+        createDirectory(sdcardPath + TEST_DIRECTORY);
+        createFile(sdcardPath + "oi-filemanager-tests/oi-b.txt", "bbb");
+        Thread.sleep(10); // make sure that next file is younger
+        createFile(sdcardPath + "oi-filemanager-tests/oi-a.txt", "aaaaaa");
+        Thread.sleep(10);
+        createFile(sdcardPath + "oi-filemanager-tests/oi-c.txt", "");
+        clickOnTestDirectory();
+
+        String[] sortOrders = rule.getActivity().getResources().getStringArray(org.openintents.filemanager.R.array.preference_sortby_names);
+
+        setAscending(true);
+        setSortOrder(sortOrders[0]);
+        isSortedInThisOrder("oi-a.txt", "oi-b.txt", "oi-c.txt");
+
+        setSortOrder(sortOrders[1]);
+        isSortedInThisOrder("oi-c.txt", "oi-b.txt", "oi-a.txt");
+
+        setSortOrder(sortOrders[2]);
+        isSortedInThisOrder("oi-b.txt", "oi-a.txt", "oi-c.txt");
+
+        setAscending(false);
+        setSortOrder(sortOrders[0]);
+        isSortedInThisOrder("oi-c.txt", "oi-b.txt", "oi-a.txt");
+    }
+
+    private void setSortOrder(String name) {
+        openActionBarOverflowOrOptionsMenu(rule.getActivity());
+        onView(withText(R.string.settings)).perform(click());
+        onView(withText(R.string.preference_sortby)).perform(click());
+        onView(withText(name)).perform(click());
+        pressBack();
+    }
+
+    private void setAscending(boolean enabled) {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(rule.getActivity());
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("ascending", enabled);
+        editor.commit();
+    }
+
+    @Test
+    public void testBrowseToOnPressEnter() throws IOException {
+
 		/*
-		 *  We start at the SD card. 
+         *  We start at the SD card.
 		 */
-		onView(withText(Environment.getExternalStorageDirectory().getParentFile().getName())).perform(longClick());
-		onView(withId(R.id.path_bar_path_edit_text)).perform(click()); // Let the editText have focus to be able to send the enter key.
-		onView(withId(R.id.path_bar_path_edit_text)).perform(replaceText(sdcardPath + TEST_DIRECTORY));
-		onView(withId(R.id.path_bar_path_edit_text)).perform(pressKey(KeyEvent.KEYCODE_ENTER));
+        onView(withText(Environment.getExternalStorageDirectory().getParentFile().getName())).perform(longClick());
+        onView(withId(R.id.path_bar_path_edit_text)).perform(click()); // Let the editText have focus to be able to send the enter key.
+        onView(withId(R.id.path_bar_path_edit_text)).perform(replaceText(sdcardPath + TEST_DIRECTORY));
+        onView(withId(R.id.path_bar_path_edit_text)).perform(pressKey(KeyEvent.KEYCODE_ENTER));
 
 
-		checkFile(filenameIsInRightDirectory, matches(isDisplayed()));
-		
-		pressBack();
-		pressBack();
-	}
-	
+        checkFile(filenameIsInRightDirectory, matches(isDisplayed()));
+
+        pressBack();
+        pressBack();
+    }
+
 // Current implementation directly opens the file and therefore can't be tested.
 //	public void testIntentUri() throws IOException {
 //		createDirectory(sdcardPath + "oi-filemanager-tests");
@@ -413,7 +409,7 @@ public class TestFileManagerActivity extends BaseTestFileManager {
 //		pressBack();
 //		pressBack();	
 //	}
-	
+
 //	Removed as Filter action is obsolete and removed.
 //	public void testFilters() throws IOException {
 //		createDirectory(sdcardPath + "oi-filemanager-tests");
@@ -433,9 +429,9 @@ public class TestFileManagerActivity extends BaseTestFileManager {
 //		pressBack();
 //		pressBack();
 //	}
-	
-	// Other possible tests:
-	// 		testSend
-	// 		testMore
-	// 		testKeyboardFilter
+
+    // Other possible tests:
+    // 		testSend
+    // 		testMore
+    // 		testKeyboardFilter
 }

@@ -5,68 +5,67 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.VectorDrawable;
 
 public final class ImageUtils {
 
-	private ImageUtils() {
-	}
+    private ImageUtils() {
+    }
 
-	/**
-	 * Resizes specific a Bitmap with keeping ratio.
-	 */
-	public static Bitmap resizeBitmap(Bitmap drawable, int desireWidth,
-			int desireHeight) {
-		int width = drawable.getWidth();
-		int height = drawable.getHeight();
+    /**
+     * Resizes specific a Bitmap with keeping ratio.
+     */
+    public static Bitmap resizeBitmap(Bitmap drawable, int desireWidth,
+                                      int desireHeight) {
+        int width = drawable.getWidth();
+        int height = drawable.getHeight();
 
-		if (0 < width && 0 < height && desireWidth < width
-				|| desireHeight < height) {
-			// Calculate scale
-			float scale;
-			if (width < height) {
-				scale = (float) desireHeight / (float) height;
-				if (desireWidth < width * scale) {
-					scale = (float) desireWidth / (float) width;
-				}
-			} else {
-				scale = (float) desireWidth / (float) width;
-			}
+        if (0 < width && 0 < height && desireWidth < width
+                || desireHeight < height) {
+            // Calculate scale
+            float scale;
+            if (width < height) {
+                scale = (float) desireHeight / (float) height;
+                if (desireWidth < width * scale) {
+                    scale = (float) desireWidth / (float) width;
+                }
+            } else {
+                scale = (float) desireWidth / (float) width;
+            }
 
-			// Draw resized image
-			Matrix matrix = new Matrix();
-			matrix.postScale(scale, scale);
-			Bitmap bitmap = Bitmap.createBitmap(drawable, 0, 0, width, height,
-					matrix, true);
-			Canvas canvas = new Canvas(bitmap);
-			canvas.drawBitmap(bitmap, 0, 0, null);
+            // Draw resized image
+            Matrix matrix = new Matrix();
+            matrix.postScale(scale, scale);
+            Bitmap bitmap = Bitmap.createBitmap(drawable, 0, 0, width, height,
+                    matrix, true);
+            Canvas canvas = new Canvas(bitmap);
+            canvas.drawBitmap(bitmap, 0, 0, null);
 
-			drawable = bitmap;
-		}
+            drawable = bitmap;
+        }
 
-		return drawable;
-	}
+        return drawable;
+    }
 
-	/**
-	 * Resizes specific a Drawable with keeping ratio.
-	 */
-	public static Drawable resizeDrawable(Drawable drawable, int desireWidth,
-			int desireHeight) {
-		Drawable dr = drawable;
-		int width = drawable.getIntrinsicWidth();
-		int height = drawable.getIntrinsicHeight();
+    /**
+     * Resizes specific a Drawable with keeping ratio.
+     */
+    public static Drawable resizeDrawable(Drawable drawable, int desireWidth,
+                                          int desireHeight) {
+        Drawable dr = drawable;
+        int width = drawable.getIntrinsicWidth();
+        int height = drawable.getIntrinsicHeight();
 
-		if (0 < width && 0 < height && desireWidth < width
-				|| desireHeight < height) {
-			if (drawable instanceof BitmapDrawable) {
-				Bitmap b = ((BitmapDrawable) drawable).getBitmap();
-				Bitmap resized = Bitmap.createScaledBitmap(b, desireWidth,
-						desireHeight, true);
-				dr = new BitmapDrawable(resized);
-			}
-		}
+        if (0 < width && 0 < height && desireWidth < width
+                || desireHeight < height) {
+            if (drawable instanceof BitmapDrawable) {
+                Bitmap b = ((BitmapDrawable) drawable).getBitmap();
+                Bitmap resized = Bitmap.createScaledBitmap(b, desireWidth,
+                        desireHeight, true);
+                dr = new BitmapDrawable(resized);
+            }
+        }
 
-		return dr;
-	}
+        return dr;
+    }
 
 }

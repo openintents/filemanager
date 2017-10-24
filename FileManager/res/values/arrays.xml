@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?><resources/>
+<?xml version="1.0" encoding="utf-8"?>
+<resources/>
 
-	<!-- NOTICE: 
-	
-	* There are no arrays in here.
-	
-	* All arrays have been moved either to strings.xml
-	  (if they should be translated)
-	  
-	* Or to donottranslate.xml
-	  (if they should not be translated)
-	
-	 -->
+    <!-- NOTICE:
+
+    * There are no arrays in here.
+
+    * All arrays have been moved either to strings.xml
+      (if they should be translated)
+
+    * Or to donottranslate.xml
+      (if they should not be translated)
+
+     -->

@@ -34,7 +34,7 @@ public class TestIntentFilterActivityForPickFile extends BaseTestFileManager {
 
     @BeforeClass
     public static void setup() throws IOException {
-        sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath()+'/';
+        sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath() + '/';
         createDirectory(sdcardPath + TEST_DIRECTORY);
         createFile(sdcardPath + TEST_DIRECTORY + "/oi-pick-file", "");
     }

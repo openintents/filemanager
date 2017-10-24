@@ -16,9 +16,6 @@
 
 package org.openintents.filemanager.test;
 
-import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
-
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
@@ -27,6 +24,9 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.annotation.Beta;
 import android.support.test.rule.UiThreadTestRule;
 import android.util.Log;
+
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
 
 import static android.support.test.internal.util.Checks.checkNotNull;
 
@@ -60,8 +60,8 @@ public class TestActivityTestRule<T extends Activity> extends UiThreadTestRule {
     /**
      * Similar to {@link #TestActivityTestRule(Class, boolean, boolean)} but with "touch mode" disabled.
      *
-     * @param activityClass    The activity under test. This must be a class in the instrumentation
-     *                         targetPackage specified in the AndroidManifest.xml
+     * @param activityClass The activity under test. This must be a class in the instrumentation
+     *                      targetPackage specified in the AndroidManifest.xml
      * @see TestActivityTestRule#TestActivityTestRule(Class, boolean, boolean)
      */
     public TestActivityTestRule(Class<T> activityClass) {
@@ -189,6 +189,7 @@ public class TestActivityTestRule<T extends Activity> extends UiThreadTestRule {
      *        mActivity = mActivityRule.launchActivity(intent);
      *    }
      * </pre>
+     *
      * @param startIntent The Intent that will be used to start the Activity under test. If
      *                    {@code startIntent} is null, the Intent returned by
      *                    {@link TestActivityTestRule#getActivityIntent()} is used.

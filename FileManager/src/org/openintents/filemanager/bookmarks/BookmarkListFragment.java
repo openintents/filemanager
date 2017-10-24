@@ -2,6 +2,7 @@ package org.openintents.filemanager.bookmarks;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -24,7 +25,7 @@ public class BookmarkListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setListAdapter(new BookmarkListAdapter(getActivity()));
+        setListAdapter(new BookmarkListAdapter((FragmentActivity) getActivity()));
     }
 
     @Override

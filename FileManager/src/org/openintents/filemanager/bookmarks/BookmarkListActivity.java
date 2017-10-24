@@ -22,8 +22,11 @@ public class BookmarkListActivity extends FragmentActivity {
             HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
         }
 
-        if (getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG) == null)
-            getSupportFragmentManager().beginTransaction().add(android.R.id.content, new BookmarkListFragment(), FRAGMENT_TAG).commit();
+        if (getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG) == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(android.R.id.content, new BookmarkListFragment(), FRAGMENT_TAG)
+                    .commit();
+        }
     }
 
     public void onListItemClick(String path) {

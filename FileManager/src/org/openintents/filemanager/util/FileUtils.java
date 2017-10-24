@@ -182,7 +182,7 @@ public class FileUtils {
      * Recursively count all files in the <code>file</code>'s subtree.
      *
      * @param countSoFar file count of previous counting
-     * @param file The root of the tree to count.
+     * @param file       The root of the tree to count.
      */
     private static int calculateFileCount(File file, int countSoFar) {
         if (!file.isDirectory()) {
@@ -294,5 +294,21 @@ public class FileUtils {
 
     public static String getNameWithoutExtension(File f) {
         return f.getName().substring(0, f.getName().length() - getExtension(getUri(f).toString()).length());
+    }
+
+    /**
+     * Given any file/folder inside an sd card, this will return the path of the sd card
+     */
+    public static String getRootOfInnerSdCardFolder(File file) {
+        if (file == null)
+            return null;
+        final long totalSpace = file.getTotalSpace();
+        while (true) {
+            final File parentFile = file.getParentFile();
+            if (parentFile == null || parentFile.getTotalSpace() != totalSpace) {
+                return file.getAbsolutePath();
+            }
+            file = parentFile;
+        }
     }
 }

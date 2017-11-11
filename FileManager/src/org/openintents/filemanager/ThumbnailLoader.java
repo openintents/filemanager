@@ -29,6 +29,7 @@ import org.openintents.filemanager.util.MimeTypes;
 import java.io.File;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -60,7 +61,7 @@ public class ThumbnailLoader {
     // This gets cleared by the Garbage Collector everytime we get low on memory.
     private ConcurrentHashMap<String, SoftReference<Bitmap>> mSoftBitmapCache;
     private LinkedHashMap<String, Bitmap> mHardBitmapCache;
-    private ArrayList<String> mBlacklist;
+    private List<String> mBlacklist;
 
     /**
      * Used for loading and decoding thumbnails from files.
@@ -82,7 +83,7 @@ public class ThumbnailLoader {
         purgeHandler = new Handler();
         mExecutor = new PausableThreadPoolExecutor(POOL_SIZE);
 
-        mBlacklist = new ArrayList<>();
+        mBlacklist = Collections.synchronizedList(new ArrayList<String>());
         mSoftBitmapCache = new ConcurrentHashMap<>(MAX_CACHE_CAPACITY / 2);
         mHardBitmapCache = new LinkedHashMap<String, Bitmap>(MAX_CACHE_CAPACITY / 2, 0.75f, true) {
 
@@ -166,8 +167,6 @@ public class ThumbnailLoader {
 
     /**
      * Purges the cache every (DELAY_BEFORE_PURGE) milliseconds.
-     *
-     * @see DELAY_BEFORE_PURGE
      */
     private void resetPurgeTimer() {
         purgeHandler.removeCallbacks(purger);

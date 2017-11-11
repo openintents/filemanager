@@ -134,7 +134,9 @@ public class CopyHelper {
                 // ignore
             }
             try {
-                output.close();
+                if (output != null) {
+                    output.close();
+                }
             } catch (IOException e) {
                 // ignore
             }

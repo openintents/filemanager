@@ -99,12 +99,12 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="vnd.android.documents/directory"/>
+                <data android:mimeType="vnd.android.document/directory"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="resources/folder"/>
+                <data android:mimeType="resource/folder"/>
             </intent-filter>
 
             <meta-data

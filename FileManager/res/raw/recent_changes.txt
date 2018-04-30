@@ -1,4 +1,9 @@
 ----------------
+release: 2.2.3
+
+- add svg mime type
+
+----------------
 release: 2.0.6
 
 - fix file icons

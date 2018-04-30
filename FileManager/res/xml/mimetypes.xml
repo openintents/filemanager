@@ -36,6 +36,10 @@
         extension=".bmp"
         icon="@drawable/ic_launcher_image"
         mimetype="image/bmp"/>
+    <type
+        extension=".svg"
+        icon="@drawable/ic_launcher_image"
+        mimetype="image/svg+xml"/>
 
     <!-- Audio types -->
     <type

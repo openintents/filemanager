@@ -1,0 +1,7 @@
+# Application:
+OI Fayl Menecer
+
+# Promo text:
+OI Fayl Meneceri ilə yaddaş kartınızdakı fayllarınızı idarə edin.
+
+# Description:

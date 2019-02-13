@@ -1,7 +1,7 @@
 # Application:
-檔案總管
+OI 檔案總管
 
 # Promo text:
-使用 OI 檔案總管管理 SD card 的檔案
+使用 OI 檔案總管管理 SD 卡的檔案
 
 # Description:

@@ -30,10 +30,11 @@
     <string name="about_translators">Launchpad Contributions:
   André Gondim https://launchpad.net/~andregondim
   DanielElias https://launchpad.net/~danielelias
+  Gabriel Souza Ribeiro https://launchpad.net/~gsr.gabriel
   Luiz Lopes https://launchpad.net/~luizlopes</string>
 
     <!-- Short explanation of the application (max. 80 characters) -->
-    <string name="about_comments">Manage files on the SD card with OI File Manager.</string>
+    <string name="about_comments">Gerencie seus arquivos do catão SD com o OI File Manager.</string>
 
     <!--
          ***************************
@@ -48,39 +49,39 @@
 
     <string name="menu_send">Enviar</string>
     <string name="menu_open">Abrir</string>
-    <string name="menu_move">Cut</string>
+    <string name="menu_move">Cortar</string>
     <string name="menu_copy">Copiar</string>
-    <string name="menu_details">Details</string>
-    <string name="menu_more">More</string>
-    <string name="menu_compress">Compress (ZIP)</string>
-    <string name="menu_extract">Extract (ZIP)</string>
+    <string name="menu_details">Detalhes</string>
+    <string name="menu_more">Mais</string>
+    <string name="menu_compress">Comprimir(ZIP)</string>
+    <string name="menu_extract">Extrair(ZIP)</string>
     <string name="menu_include_in_media_scan">Incluir no scanner de mídia.</string>
     <string name="menu_exclude_from_media_scan">Remover do scanner de mídia.</string>
-    <string name="menu_bookmark">Bookmark</string>
+    <string name="menu_bookmark">Marcador</string>
     <string name="create_new_folder">Criar nova pasta</string>
     <string name="folder_name">Nome da Pasta</string>
     <string name="this_folder_is_empty">Esta pasta está vazia.</string>
     <string name="really_delete">Você realmente deseja deletar %s ?</string>
-    <string name="title_warning_some_may_not_work">Warning</string>
-    <string name="warning_some_may_not_work">Some of the following options may not work.</string>
-    <string name="show_warning_again">Show warning again</string>
+    <string name="title_warning_some_may_not_work">Atenção</string>
+    <string name="warning_some_may_not_work">Algumas das seguintes opções podem não funcionar.</string>
+    <string name="show_warning_again">Mostrar aviso novamente</string>
 
     <!-- Strings for a multi select feature -->
     <string name="really_delete_multiselect">Tem certeza de que deseja deletar %d arquivos?</string>
     <string name="multiselect_title">Selecione varios arquivos</string>
-    <string name="pick_title">File picker</string>
+    <string name="pick_title">Seletor de arquivos</string>
 
     <!-- Strings for details table -->
-    <string name="details_type">Type</string>
-    <string name="details_type_folder">Folder</string>
-    <string name="details_type_file">File</string>
-    <string name="details_type_other">Other</string>
-    <string name="details_size">Size</string>
-    <string name="details_permissions">Permissions</string>
+    <string name="details_type">Tipo</string>
+    <string name="details_type_folder">Pasta</string>
+    <string name="details_type_file">Arquivo</string>
+    <string name="details_type_other">Outros</string>
+    <string name="details_size">Tamanho:</string>
+    <string name="details_permissions">Permissões</string>
     <string name="details_hidden">Hidden</string>
-    <string name="details_lastmodified">Last Modified</string>
-    <string name="details_yes">Yes</string>
-    <string name="details_no">No</string>
+    <string name="details_lastmodified">Última Modificação</string>
+    <string name="details_yes">Sìm</string>
+    <string name="details_no">Não</string>
 
     <!-- Construct a unique file name of a file called %s. -->
     <string name="copied_file_name">Cópia de %s</string>
@@ -91,7 +92,7 @@
     <string name="media_scan_excluded">Esta pasta será excluída durante o próximo escaneamento de mídia.</string>
     <string name="error_generic">Um erro ocorreu:</string>
     <string name="error_media_scan">Não é possível mudar configurações do scanner de mídia.</string>
-    <string name="send_not_available">Sem aplicativos disponíveis para envio.</string>
+    <string name="send_not_available">Nenhum aplicativo disponível para envio.</string>
     <string name="application_not_available">Aplicativo indisponível.</string>
 
     <!--
@@ -108,22 +109,22 @@
     <string name="preference_mediascan_title">Remover do scanner de mídia.</string>
     <string name="preference_mediascan_summary_on">Mostrar item de menu para excluir arquivos da pesquisa de mídia.</string>
     <string name="preference_mediascan_summary_off">Ocultar item de menu para excluir arquivos da pesquisa de mídia.</string>
-    <string name="preference_showallwarning_title">Show all warnings</string>
-    <string name="preference_showallwarning_summary_on">Show all warning messages</string>
-    <string name="preference_showallwarning_summary_off">Suppress warning messages</string>
-    <string name="preference_displayhiddenfiles_title">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_on">Display hidden files</string>
-    <string name="preference_displayhiddenfiles_summary_off">Hide hidden files</string>
+    <string name="preference_showallwarning_title">Mostrar todos os avisos</string>
+    <string name="preference_showallwarning_summary_on">Mostrar todas as mensagens de aviso</string>
+    <string name="preference_showallwarning_summary_off">Suprimir mensagens de advertência</string>
+    <string name="preference_displayhiddenfiles_title">Mostrar arquivos ocultos</string>
+    <string name="preference_displayhiddenfiles_summary_on">Mostrar arquivos ocultos</string>
+    <string name="preference_displayhiddenfiles_summary_off">Esconder arquivos ocultos</string>
     <string name="preference_sort_settings">Sort settings</string>
-    <string name="preference_sortby">Sort by</string>
-    <string name="preference_sortby_ascending">In ascending order</string>
-    <string name="preference_sortby_ascending_summary_on">Sort in ascending order</string>
-    <string name="preference_sortby_ascending_summary_off">Sort in descending order</string>
+    <string name="preference_sortby">Ordenar por</string>
+    <string name="preference_sortby_ascending">Em ordem crescente</string>
+    <string name="preference_sortby_ascending_summary_on">Ordenar em ordem crescente</string>
+    <string name="preference_sortby_ascending_summary_off">Ordenar em ordem decrescente</string>
 
     <string-array name="preference_sortby_names">
-        <item>Name</item>
-        <item>Size</item>
-        <item>Last modified</item>
+        <item>Nome</item>
+        <item>Tamanho:</item>
+        <item>Última modificação</item>
         <item>File extension</item>
     </string-array>
 
@@ -137,9 +138,9 @@
     	 ***************************
 
     -->
-    <string name="saveas_no_file_picked">You haven\'t picked any file.</string>
-    <string name="saveas_error">An error occured.</string>
-    <string name="saveas_file_saved">File successfully saved!</string>
+    <string name="saveas_no_file_picked">Você não escolheu nenhum arquivo.</string>
+    <string name="saveas_error">Ocorreu um erro.</string>
+    <string name="saveas_file_saved">arquivo salvo com sucesso!</string>
 
     <!--
          ***************************
@@ -147,73 +148,73 @@
           ***************************
 
     -->
-    <string name="compressing_success">Item compressed successfully</string>
-    <string name="compressing_error">Could not compress the item</string>
-    <string name="extracting_success">Item extracted successfully</string>
+    <string name="compressing_success">Item compactado com sucesso</string>
+    <string name="compressing_error">Não foi possível comprimir o item</string>
+    <string name="extracting_success">Item extraído com sucesso</string>
     <string name="extracting_error">Could not extract the item</string>
-    <string name="extracting">Extracting…</string>
-    <string name="compressing">Compressing…</string>
+    <string name="extracting">Extraindo...</string>
+    <string name="compressing">Comprimindo...</string>
 
     <!-- new menu strings -->
-    <string name="menu_bookmarks">Bookmarks</string>
-    <string name="menu_search">Search</string>
-    <string name="menu_create_folder">Create folder</string>
-    <string name="menu_paste">Paste</string>
+    <string name="menu_bookmarks">Marcadores</string>
+    <string name="menu_search">Pesquisar</string>
+    <string name="menu_create_folder">Cria uma pasta</string>
+    <string name="menu_paste">Colar</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Configurações</string>
     <string name="menu_donate">Donate</string>
-    <string name="menu_create_shortcut">Create shortcut</string>
-    <string name="send_chooser_title">Send using:</string>
-    <string name="menu_check_all">Check all</string>
-    <string name="menu_uncheck_all">Uncheck all</string>
+    <string name="menu_create_shortcut">Criar atalho</string>
+    <string name="send_chooser_title">Enviar usando:</string>
+    <string name="menu_check_all">Selecionar todos</string>
+    <string name="menu_uncheck_all">Desmarcar todos</string>
 
     <!-- Multi selection action strings -->
-    <string name="selected">selected</string>
-    <string name="no_selection">No items checked</string>
-    <string name="bookmark_empty">No bookmarks added.</string>
+    <string name="selected">selecionado</string>
+    <string name="no_selection">Nenhum item marcado</string>
+    <string name="bookmark_empty">Não foram adicionados favoritos.</string>
     <string name="bookmark_added">Bookmark added</string>
-    <string name="bookmark_already_exists">This file is already bookmarked</string>
-    <string name="bookmarks">Bookmarks</string>
+    <string name="bookmark_already_exists">Este arquivo já foi adicionado aos favoritos</string>
+    <string name="bookmarks">Marcadores</string>
 
     <!-- Search related -->
-    <string name="search_hint">Search files</string>
-    <string name="query_error">Query error</string>
-    <string name="search_settings_descr">Files and folders in storage</string>
-    <string name="preference_search_title">Clear history</string>
-    <string name="preference_search_category">Search</string>
-    <string name="preference_search_dialog_message">Clear search history?</string>
-    <string name="search_history_cleared">Search history cleared</string>
+    <string name="search_hint">Pesquisar arquivos</string>
+    <string name="query_error">Erro de consulta</string>
+    <string name="search_settings_descr">Arquivos e pastas no armazenamento</string>
+    <string name="preference_search_title">Limpar histórico</string>
+    <string name="preference_search_category">Pesquisar</string>
+    <string name="preference_search_dialog_message">Limpar histórico de pesquisa?</string>
+    <string name="search_history_cleared">Histórico de pesquisa limpo</string>
 
     <!-- icon content description -->
-    <string name="item_icon">Item icon</string>
+    <string name="item_icon">Ícone do item</string>
 
     <!-- list layout -->
-    <string name="scanning">Scanning…</string>
+    <string name="scanning">Verificando...</string>
 
     <!-- Dialogs -->
     <string name="delete_success">Successfully deleted</string>
     <string name="delete_failure">Some files not deleted</string>
-    <string name="deleting">Deleting…</string>
-    <string name="rename_success">Successfully renamed</string>
-    <string name="rename_failure">Couldn\'t rename</string>
-    <string name="loading">Loading…</string>
+    <string name="deleting">Excluindo…</string>
+    <string name="rename_success">Renomeado com sucesso</string>
+    <string name="rename_failure">Não foi possível renomear</string>
+    <string name="loading">Carregando…</string>
     <string name="create_dir_success">Successfully created directory</string>
-    <string name="create_dir_failure">Couldn\'t create directory</string>
-    <string name="compressed_file_name">Zip file name</string>
-    <string name="file_exists">File exists</string>
-    <string name="overwrite_question">Overwrite old file?</string>
-    <string name="directory_pick">Select current directory</string>
+    <string name="create_dir_failure">Não foi possível criar diretório</string>
+    <string name="compressed_file_name">Nome do arquivo Zip</string>
+    <string name="file_exists">O arquivo já existe</string>
+    <string name="overwrite_question">Sobrescrever o arquivo antigo?</string>
+    <string name="directory_pick">Selecione o diretório atual</string>
     <string name="filename_hint">File name</string>
     <string name="choose_filename">File name can\'t be empty!</string>
     <string name="pick_button_default">Pick file</string>
 
     <!-- CopyHelper statuses -->
-    <string name="copying">Copying…</string>
-    <string name="copied">Successfully copied</string>
-    <string name="copy_error">Some or all items couldn\'t be copied!</string>
-    <string name="moving">Moving…</string>
-    <string name="moved">Successfully moved</string>
-    <string name="move_error">Some or all items couldn\'t be moved!</string>
+    <string name="copying">Copiando...</string>
+    <string name="copied">Copiado com sucesso</string>
+    <string name="copy_error">Alguns ou todos os itens não podem ser copiados!</string>
+    <string name="moving">Movendo...</string>
+    <string name="moved">Movido com sucesso</string>
+    <string name="move_error">Alguns ou todos os itens não podem ser movidos!</string>
     <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 
     <plurals name="clipboard_info_items_to_copy">

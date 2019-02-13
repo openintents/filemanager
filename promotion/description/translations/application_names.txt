@@ -1,19 +1,22 @@
+Gestionnaire de fichiers OI File Manager
 Gestor de fitxers d'OI.
+OI 파일 관리자
 OI Bestandsbeheer
 OI Dateimanager
 OI Dosya Yöneticisi
 OI Failu pārvaldnieks
+OI Fájlkezelő
 OI Fajl Meneger
+OI Fayl Menecer
 OI Filbehandler
 OI File Manager
 OI File Manedyer
-OI Fájlkezelő
 OI Gestore File
 OI Menedżer plików
 OI Správca Súborov
 OI Správce souborů
 OI Tiedostonhallinta
-OI Διαχειριστής Αρχείων
+OI Διαχείριση αρχείων
 OI Файл-мэнэджар
 OI Файлов Мениджър
 OI مدير پرونده‌
@@ -22,8 +25,8 @@ OI फ़ाइल प्रबंधक
 OI ਫਾਇਲ ਮੈਨਿਜਰ
 OI ແຟ້ມ ບໍລີຫານ
 OI ファイルマネージャー
-OI 파일 관리자
 OI文件管理器
+OI 檔案總管
+Менеджер файлів OI
 מנהל קבצים OI
 مدير الملفات OI
-檔案總管

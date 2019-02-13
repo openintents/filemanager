@@ -52,7 +52,7 @@ Launchpad Contributions:
 
     <string name="menu_send">Gönder</string>
     <string name="menu_open">Aç</string>
-    <string name="menu_move">Cut</string>
+    <string name="menu_move">Kes</string>
     <string name="menu_copy">Kopyala</string>
     <string name="menu_details">Detaylar.</string>
     <string name="menu_more">Daha Fazla</string>
@@ -60,7 +60,7 @@ Launchpad Contributions:
     <string name="menu_extract">Extract (ZIP)</string>
     <string name="menu_include_in_media_scan">Medya tarama dahil</string>
     <string name="menu_exclude_from_media_scan">Medya tarama hariç</string>
-    <string name="menu_bookmark">Bookmark</string>
+    <string name="menu_bookmark">Yerimi</string>
     <string name="create_new_folder">Yeni klasör oluştur</string>
     <string name="folder_name">Klasör adı</string>
     <string name="this_folder_is_empty">Bu klasör boş.</string>
@@ -160,19 +160,19 @@ Launchpad Contributions:
 
     <!-- new menu strings -->
     <string name="menu_bookmarks">Yer imleri</string>
-    <string name="menu_search">Search</string>
-    <string name="menu_create_folder">Create folder</string>
-    <string name="menu_paste">Paste</string>
+    <string name="menu_search">Ara</string>
+    <string name="menu_create_folder">Klasör oluştur</string>
+    <string name="menu_paste">Yapıştır</string>
     <string name="menu_multiselect">Multiselect</string>
     <string name="menu_settings">Ayarlar</string>
     <string name="menu_donate">Donate</string>
-    <string name="menu_create_shortcut">Create shortcut</string>
+    <string name="menu_create_shortcut">Kısayol oluştur</string>
     <string name="send_chooser_title">Send using:</string>
-    <string name="menu_check_all">Check all</string>
+    <string name="menu_check_all">Tümünü denetle</string>
     <string name="menu_uncheck_all">Uncheck all</string>
 
     <!-- Multi selection action strings -->
-    <string name="selected">selected</string>
+    <string name="selected">seçildi</string>
     <string name="no_selection">No items checked</string>
     <string name="bookmark_empty">No bookmarks added.</string>
     <string name="bookmark_added">Yer imi eklendi</string>
@@ -180,11 +180,11 @@ Launchpad Contributions:
     <string name="bookmarks">Yer imleri</string>
 
     <!-- Search related -->
-    <string name="search_hint">Search files</string>
+    <string name="search_hint">Dosyalarda ara</string>
     <string name="query_error">Query error</string>
     <string name="search_settings_descr">Files and folders in storage</string>
-    <string name="preference_search_title">Clear history</string>
-    <string name="preference_search_category">Search</string>
+    <string name="preference_search_title">Geçmişi temizle</string>
+    <string name="preference_search_category">Ara</string>
     <string name="preference_search_dialog_message">Clear search history?</string>
     <string name="search_history_cleared">Search history cleared</string>
 
@@ -192,19 +192,19 @@ Launchpad Contributions:
     <string name="item_icon">Item icon</string>
 
     <!-- list layout -->
-    <string name="scanning">Scanning…</string>
+    <string name="scanning">Taranıyor...</string>
 
     <!-- Dialogs -->
-    <string name="delete_success">Successfully deleted</string>
+    <string name="delete_success">Başarıyla silindi</string>
     <string name="delete_failure">Some files not deleted</string>
-    <string name="deleting">Deleting…</string>
+    <string name="deleting">Siliniyor…</string>
     <string name="rename_success">Successfully renamed</string>
     <string name="rename_failure">Couldn\'t rename</string>
-    <string name="loading">Loading…</string>
+    <string name="loading">Yükleniyor…</string>
     <string name="create_dir_success">Successfully created directory</string>
     <string name="create_dir_failure">Couldn\'t create directory</string>
     <string name="compressed_file_name">Zip file name</string>
-    <string name="file_exists">File exists</string>
+    <string name="file_exists">Dosya mevcut</string>
     <string name="overwrite_question">Overwrite old file?</string>
     <string name="directory_pick">Select current directory</string>
     <string name="filename_hint">File name</string>

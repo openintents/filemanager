@@ -125,7 +125,7 @@ public abstract class MenuUtils {
                 intent.setType("text/plain");
 
                 for (FileHolder fh : fItems)
-                    uris.add(FileUtils.getUri(fh.getFile()));
+                    uris.add(FileManagerProvider.getUriForFile(fh.getFile().getAbsolutePath()));
 
                 intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 

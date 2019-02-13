@@ -6,10 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.test.espresso.IdlingResource;
-import androidx.fragment.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +27,11 @@ import org.openintents.intents.FileManagerIntents;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.ListFragment;
+import androidx.test.espresso.IdlingResource;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -218,7 +219,7 @@ public abstract class FileListFragment extends ListFragment {
     }
 
     private boolean hasPermissions() {
-        return checkSelfPermission(getActivity(), WRITE_EXTERNAL_STORAGE) == PERMISSION_GRANTED;
+        return getActivity() != null && checkSelfPermission(getActivity(), WRITE_EXTERNAL_STORAGE) == PERMISSION_GRANTED;
     }
 
     private void requestPermissions() {

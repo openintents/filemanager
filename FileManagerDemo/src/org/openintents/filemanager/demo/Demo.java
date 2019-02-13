@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2008 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -50,8 +50,8 @@ public class Demo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        mEditText = (EditText) findViewById(R.id.file_path);
-        mTextView = (TextView) findViewById(R.id.info);
+        mEditText = findViewById(R.id.file_path);
+        mTextView = findViewById(R.id.info);
     }
 
     public void onClickOpenFile(View view) {
@@ -78,13 +78,7 @@ public class Demo extends Activity {
      * Opens the file manager to select a file to open.
      */
     public void openFile() {
-        String fileName = mEditText.getText().toString();
-
         Intent intent = new Intent(FileManagerIntents.ACTION_PICK_FILE);
-
-        // Construct URI from file name.
-        File file = new File(fileName);
-        intent.setData(Uri.fromFile(file));
 
         // Set fancy title and button (optional)
         intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.open_title));
@@ -130,14 +124,8 @@ public class Demo extends Activity {
      * Opens the file manager to pick a directory.
      */
     private void pickDirectory() {
-        String fileName = mEditText.getText().toString();
-
         // Note the different intent: PICK_DIRECTORY
         Intent intent = new Intent(FileManagerIntents.ACTION_PICK_DIRECTORY);
-
-        // Construct URI from file name.
-        File file = new File(fileName);
-        intent.setData(Uri.fromFile(file));
 
         // Set fancy title and button (optional)
         intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.pick_directory_title));
@@ -174,14 +162,11 @@ public class Demo extends Activity {
      * Use URI to get a file
      */
     public void openFileUri() {
-        String filePath = mEditText.getText().toString();
-        Uri uri = Uri.parse("file://" + filePath);
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(uri);
 
         // optionally:
-        //intent.setPackage("org.openintents.filemanager");
+        intent.setPackage("org.openintents.filemanager");
 
         try {
             startActivity(intent);

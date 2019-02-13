@@ -1,9 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_open"
-        android:title="@string/menu_open">
-    </item>
-    <item
         android:id="@+id/menu_delete"
         android:icon="@drawable/ic_action_delete"
         android:title="@string/menu_delete">
@@ -18,6 +14,11 @@
         android:icon="@drawable/ic_action_copy"
         android:title="@string/menu_copy">
     </item>
+    <item
+        android:id="@+id/menu_select_all"
+        android:alphabeticShortcut="a"
+        android:icon="@drawable/select_all"
+        android:title="@string/menu_check_all"/>
     <item
         android:id="@+id/menu_send"
         android:icon="@drawable/ic_action_send"

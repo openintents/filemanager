@@ -18,9 +18,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.openintents.filemanager"
-          android:installLocation="auto"
-          android:versionCode="38"
-          android:versionName="2.2.1">
+          android:installLocation="auto">
 
     <!--
     History: 
@@ -51,10 +49,6 @@
 	[2] 1.0.1: 2009-01-16 
 	[1] 1.0.0: 2008-12-10
     -->
-
-    <uses-sdk
-        android:minSdkVersion="4"
-        android:targetSdkVersion="19"/>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>

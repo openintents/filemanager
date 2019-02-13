@@ -1,1 +1,1 @@
-include 'FileManager'
+include 'FileManager', 'FileManagerDemo'

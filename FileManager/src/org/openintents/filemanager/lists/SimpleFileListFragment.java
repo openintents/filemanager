@@ -236,7 +236,6 @@ public class SimpleFileListFragment extends FileListFragment {
             case R.id.menu_media_scan_exclude:
                 excludeFromMediaScan();
                 return true;
-
             case R.id.menu_paste:
                 if (((FileManagerApplication) getActivity().getApplication()).getCopyHelper().canPaste())
                     ((FileManagerApplication) getActivity().getApplication()).getCopyHelper().paste(new File(getPath()), new CopyHelper.OnOperationFinishedListener() {

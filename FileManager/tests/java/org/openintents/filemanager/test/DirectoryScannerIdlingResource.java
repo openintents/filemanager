@@ -1,6 +1,6 @@
 package org.openintents.filemanager.test;
 
-import android.support.test.espresso.IdlingResource;
+import androidx.test.espresso.IdlingResource;
 
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.IntentFilterActivity;

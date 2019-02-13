@@ -3,8 +3,8 @@ package org.openintents.filemanager.test;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -14,8 +14,8 @@ import org.openintents.filemanager.FileManagerActivity;
 
 import java.io.IOException;
 
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 
 @RunWith(AndroidJUnit4.class)
 public class TestFileManagerActivityWithIntents extends BaseTestFileManager {

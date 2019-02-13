@@ -1,7 +1,7 @@
 package org.openintents.filemanager.lists;
 
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;

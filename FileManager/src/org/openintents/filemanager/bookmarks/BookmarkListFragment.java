@@ -2,8 +2,8 @@ package org.openintents.filemanager.bookmarks;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.ListFragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuInflater;

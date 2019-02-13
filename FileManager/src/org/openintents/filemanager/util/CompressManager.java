@@ -26,7 +26,7 @@ public class CompressManager {
     /**
      * TAG for log messages.
      */
-    static final String TAG = "CompressManager";
+    private static final String TAG = "CompressManager";
 
     private static final int BUFFER_SIZE = 1024;
     private Context mContext;
@@ -84,7 +84,6 @@ public class CompressManager {
         /**
          * Recursively compress file or directory
          *
-         * @returns 0 if successful, error value otherwise.
          */
         private void compressFile(File file, String path) throws IOException {
             progressDialog.setOnDismissListener(new OnDismissListener() {

@@ -1,4 +1,9 @@
 ----------------
+release: 2.2.4
+
+- add hungarian translations
+
+----------------
 release: 2.2.3
 
 - add svg mime type

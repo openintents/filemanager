@@ -177,11 +177,11 @@
         <!-- Activities from OI Distribution Library -->
         <activity
             android:name="org.openintents.distribution.EulaActivity"
-            android:theme="@android:style/Theme.DeviceDefault"
+            android:theme="@style/Theme.AppCompat"
             tools:ignore="NewApi"/>
         <activity
             android:name="org.openintents.distribution.NewVersionActivity"
-            android:theme="@android:style/Theme.DeviceDefault"
+            android:theme="@style/Theme.AppCompat"
             tools:ignore="NewApi"/>
         <activity
             android:name=".search.SearchableActivity"

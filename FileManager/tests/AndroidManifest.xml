@@ -4,7 +4,7 @@
           package="org.openintents.filemanager.test">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-sdk tools:overrideLibrary="android.support.test.uiautomator.v18"/>
+    <uses-sdk tools:overrideLibrary="android_libs.ub_uiautomator"/>
 
     <application>
     </application>

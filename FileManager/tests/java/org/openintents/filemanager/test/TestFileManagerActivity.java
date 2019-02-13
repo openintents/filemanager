@@ -247,7 +247,8 @@ public class TestFileManagerActivity extends BaseTestFileManager {
 
         // move
         longClickOnFile("oi-file-2.txt");
-        onView(withContentDescription(R.string.menu_move)).perform(click());
+        openContextualActionModeOverflowMenu();
+        onView(withText(R.string.menu_move)).perform(click());
         navigateToTargetAndPasteAndCheck("oi-move-target", "oi-file-2.txt", null);
         checkIsNotContainedInList(hasName("oi-file-2.txt"));
 

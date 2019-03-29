@@ -1,7 +1,6 @@
 package org.openintents.filemanager.search;
 
 import android.app.SearchManager;
-import android.bluetooth.BluetoothClass;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;

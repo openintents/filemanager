@@ -11,6 +11,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+
 /**
  * Used by the standard search Service, in order to provide results asynchronously to the SearchableActivity.
  *
@@ -43,7 +45,7 @@ public class SearchResultsProvider extends ContentProvider {
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection,
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         SQLiteQueryBuilder sqlBuilder = new SQLiteQueryBuilder();
         sqlBuilder.setTables(TABLE_NAME);
@@ -58,7 +60,7 @@ public class SearchResultsProvider extends ContentProvider {
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues values) {
+    public Uri insert(@NonNull Uri uri, ContentValues values) {
         long rowID = db.insert(TABLE_NAME, "", values);
         if (rowID > 0) {
             Uri _uri = ContentUris.withAppendedId(CONTENT_URI, rowID);
@@ -69,21 +71,21 @@ public class SearchResultsProvider extends ContentProvider {
     }
 
     @Override
-    public int update(Uri uri, ContentValues values, String selection,
+    public int update(@NonNull Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
         // We only write, read and delete the db. Not implemented for now.
         return 0;
     }
 
     @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         int count = db.delete(TABLE_NAME, selection, selectionArgs);
         getContext().getContentResolver().notifyChange(uri, null);
         return count;
     }
 
     @Override
-    public String getType(Uri uri) {
+    public String getType(@NonNull Uri uri) {
         return SEARCH_MIMETYPE;
     }
 

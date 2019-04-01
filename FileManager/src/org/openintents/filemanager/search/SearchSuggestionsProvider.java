@@ -12,6 +12,8 @@ import android.provider.BaseColumns;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+
 /**
  * Not that good, but it's a working implementation at least. We REALLY need asynchronous suggestion refreshing.
  *
@@ -32,7 +34,7 @@ public class SearchSuggestionsProvider extends ContentProvider {
     /**
      * Always clears all suggestions. Parameters other than uri are ignored.
      */
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         int count = mSuggestions.size();
         mSuggestions.clear();
         getContext().getContentResolver().notifyChange(uri, null);
@@ -41,12 +43,13 @@ public class SearchSuggestionsProvider extends ContentProvider {
     }
 
     @Override
-    public String getType(Uri uri) {
+    public String getType(@NonNull Uri uri) {
         return SEARCH_SUGGEST_MIMETYPE;
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues values) {
+    @NonNull
+    public Uri insert(@NonNull Uri uri, ContentValues values) {
         long id = mSuggestions.size() + 1;
         values.put(BaseColumns._ID, id);
         mSuggestions.add(values);
@@ -69,7 +72,7 @@ public class SearchSuggestionsProvider extends ContentProvider {
     /**
      * NOT a cheap call. Actual search happens here.
      */
-    public Cursor query(Uri uri, String[] projection, String selection,
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         searcher.setQuery(uri.getLastPathSegment().toLowerCase());
 
@@ -97,7 +100,7 @@ public class SearchSuggestionsProvider extends ContentProvider {
     /**
      * We don't care about updating. Unimplemented.
      */
-    public int update(Uri uri, ContentValues values, String selection,
+    public int update(@NonNull Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
         return 0;
     }

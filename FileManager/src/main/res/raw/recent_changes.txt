@@ -1,0 +1,49 @@
+----------------
+release: 2.2.7
+
+- add product flavors for foss distribution and google play distribution
+- hide donation menu in google play distribution
+
+----------------
+release: 2.2.6
+
+- fix recent changes
+
+----------------
+release: 2.2.5
+
+- add hungarian translations
+- fix send multiple files
+
+----------------
+release: 2.2.3
+
+- add svg mime type
+
+----------------
+release: 2.0.6
+
+- fix file icons
+
+----------------
+release: 2.0.5
+
+- fix file opening
+- add indicator for copy/cut and paste
+
+----------------
+release: 2.0.3
+
+- Update for Android 4.4
+- Support for x86
+- try to open any file
+
+----------------
+For the complete list of changes and a list of frequently asked questions, please visit:
+http://www.openintents.org
+
+You can help to improve the translation into your language at Launchpad:
+https://translations.launchpad.net/openintents/trunk
+
+The source code of this free and open source application is available at:
+http://code.google.com/p/openintents

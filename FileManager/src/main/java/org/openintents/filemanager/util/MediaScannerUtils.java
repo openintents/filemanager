@@ -2,6 +2,7 @@ package org.openintents.filemanager.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 
 import org.openintents.filemanager.files.FileHolder;
@@ -45,7 +46,9 @@ public abstract class MediaScannerUtils {
     }
 
     public static void informFileDeleted(Context c, File f) {
-        // TODO implement
+        String[] file = new String[]{f.getPath()};
+
+        MediaScannerConnection.scanFile(c, file, null, null);
     }
 
     public static void informFilesDeleted(Context c, File[] files) {

@@ -1,17 +1,22 @@
-package androidTest.java.org.openintents.filemanager.test;
+package org.openintents.filemanager.test;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.view.View;
+
 import androidx.test.InstrumentationRegistry;
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.matcher.BoundedMatcher;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.UiThreadTestRule;
 import androidx.test.runner.AndroidJUnit4;
-import android.view.View;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,14 +28,6 @@ import org.openintents.intents.FileManagerIntents;
 
 import java.io.File;
 import java.io.IOException;
-
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.endsWith;
 
 @RunWith(AndroidJUnit4.class)
 public class TestPickFilePathHistory extends BaseTestFileManager {

@@ -15,7 +15,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import androidx.fragment.app.DialogFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,10 +24,12 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import androidx.fragment.app.DialogFragment;
+
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.FileManagerApplication;
 import org.openintents.filemanager.FileManagerProvider;
-import org.openintents.filemanager.PreferenceActivity;
+import org.openintents.filemanager.PreferenceFragment;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.bookmarks.BookmarksProvider;
 import org.openintents.filemanager.dialogs.DetailsDialog;
@@ -281,7 +282,7 @@ public abstract class MenuUtils {
                 return true;
 
             case R.id.menu_more:
-                if (!PreferenceActivity.getShowAllWarning(context)) {
+                if (!PreferenceFragment.getShowAllWarning(context)) {
                     showMoreCommandsDialog(fItem, context);
                     return true;
                 }
@@ -350,9 +351,9 @@ public abstract class MenuUtils {
     private static void showWarningDialog(final FileHolder holder, final Context context) {
         LayoutInflater li = LayoutInflater.from(context);
         View warningView = li.inflate(R.layout.dialog_warning, null);
-        final CheckBox showWarningAgain = (CheckBox) warningView.findViewById(R.id.showagaincheckbox);
+        final CheckBox showWarningAgain = warningView.findViewById(R.id.showagaincheckbox);
 
-        showWarningAgain.setChecked(PreferenceActivity.getShowAllWarning(context));
+        showWarningAgain.setChecked(PreferenceFragment.getShowAllWarning(context));
 
         new AlertDialog.Builder(context).setView(warningView).setTitle(context.getString(R.string.title_warning_some_may_not_work))
                 .setMessage(context.getString(R.string.warning_some_may_not_work))
@@ -360,7 +361,7 @@ public abstract class MenuUtils {
                 android.R.string.ok, new OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
-                        PreferenceActivity.setShowAllWarning(context, showWarningAgain.isChecked());
+                        PreferenceFragment.setShowAllWarning(context, showWarningAgain.isChecked());
 
                         showMoreCommandsDialog(holder, context);
                     }
@@ -391,8 +392,8 @@ public abstract class MenuUtils {
             final List<CharSequence> items = new ArrayList<>();
             /* Some of the options don't go to the list hence we have to remove them
              * to keep the lri correspond with the menu items. In the addition, we have
-			 * to remove them after the first iteration, otherwise the iteration breaks.
-			 */
+             * to remove them after the first iteration, otherwise the iteration breaks.
+             */
             List<ResolveInfo> toRemove = new ArrayList<>();
             for (int i = 0; i < N; i++) {
                 final ResolveInfo ri = lri.get(i);

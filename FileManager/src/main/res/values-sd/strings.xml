@@ -61,13 +61,13 @@
     <string name="create_new_folder">नयो फ़ोल्डर ठायो</string>
     <string name="folder_name">फ़ोल्डर यो नाम</string>
     <string name="this_folder_is_empty">|हे फ़ोल्डर खाली आ</string>
-    <string name="really_delete">शा ताहाँ सहिय्में  में%sखे मितायण ता चाह्यो ?</string>
+    <string name="really_delete">शा ताहाँ सहिय्में में %s खे मितायण ता चाह्यो ?</string>
     <string name="title_warning_some_may_not_work">चेतावनी</string>
     <string name="warning_some_may_not_work">कोई कोई  विकल्प कम न कंदवा</string>
     <string name="show_warning_again">चेतवानी वारी सां दिखार्यो</string>
 
     <!-- Strings for a multi select feature -->
-    <string name="really_delete_multiselect">\?शा  तहां खे  सहिया में% d फईल्यूं  मिटायनी तव</string>
+    <string name="really_delete_multiselect">\?शा तहां खे सहिया में %d फईल्यूं मिटायनी तव</string>
     <string name="multiselect_title">हिक्क खान वधीक फईलोयूं चुन्द्यो</string>
     <string name="pick_title">File picker</string>
 

@@ -13,7 +13,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import org.openintents.filemanager.FileManagerProvider;
-import org.openintents.filemanager.PreferenceActivity;
+import org.openintents.filemanager.PreferenceFragment;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.view.PickBar;
@@ -41,13 +41,13 @@ public class PickFileListFragment extends SimpleFileListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ViewFlipper modeSelector = (ViewFlipper) view.findViewById(R.id.modeSelector);
+        ViewFlipper modeSelector = view.findViewById(R.id.modeSelector);
 
         // Folder init
         if (getArguments().getBoolean(FileManagerIntents.EXTRA_DIRECTORIES_ONLY)) {
             modeSelector.setDisplayedChild(0);
 
-            Button button = (Button) view.findViewById(R.id.button);
+            Button button = view.findViewById(R.id.button);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -62,7 +62,7 @@ public class PickFileListFragment extends SimpleFileListFragment {
         else {
             modeSelector.setDisplayedChild(1);
 
-            mPickBar = (PickBar) view.findViewById(R.id.pickBar);
+            mPickBar = view.findViewById(R.id.pickBar);
             mPickBar.setButtonText(getArguments().getString(FileManagerIntents.EXTRA_BUTTON_TEXT));
 
             mPickBar.setText(getFilename());
@@ -105,7 +105,7 @@ public class PickFileListFragment extends SimpleFileListFragment {
         Intent intent = new Intent();
         intent.putExtras(getArguments());
 
-        PreferenceActivity.setDefaultPickFilePath(getActivity(), selection.getParent() != null ? selection.getParent() : "/");
+        PreferenceFragment.setDefaultPickFilePath(getActivity(), selection.getParent() != null ? selection.getParent() : "/");
 
         if (getContentInitiated)
             intent.setData(Uri.parse(FileManagerProvider.FILE_PROVIDER_PREFIX + selection));

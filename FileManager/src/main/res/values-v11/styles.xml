@@ -1,6 +1,0 @@
-<resources>
-
-    <style name="listItemBackground">
-        <item name="android:background">?android:attr/activatedBackgroundIndicator</item>
-    </style>
-</resources>

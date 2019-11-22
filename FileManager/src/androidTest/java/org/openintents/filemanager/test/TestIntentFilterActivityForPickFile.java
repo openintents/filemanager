@@ -1,8 +1,11 @@
-package androidTest.java.org.openintents.filemanager.test;
+package org.openintents.filemanager.test;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+
+import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -14,9 +17,6 @@ import org.openintents.filemanager.IntentFilterActivity;
 import org.openintents.intents.FileManagerIntents;
 
 import java.io.IOException;
-
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 
 @RunWith(AndroidJUnit4.class)
 public class TestIntentFilterActivityForPickFile extends BaseTestFileManager {

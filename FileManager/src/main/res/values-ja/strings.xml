@@ -222,12 +222,10 @@
     <string name="nothing_to_paste">貼り付けできません。先にコピーまたは切り取りしてください。</string>
 
     <plurals name="clipboard_info_items_to_copy">
-        <item quantity="one">%1$d item to copy</item>
-        <item quantity="other">%1$d items to copy</item>
+        <item quantity="other">%1$d item(s) to copy</item>
     </plurals>
     <plurals name="clipboard_info_items_to_move">
-        <item quantity="one">%1$d item to move</item>
-        <item quantity="other">%1$d items to move</item>
+        <item quantity="other">%1$d item(s) to move</item>
     </plurals>
 
     <string name="clipboard_undo">Undo</string>

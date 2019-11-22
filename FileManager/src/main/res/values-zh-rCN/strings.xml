@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  * Copyright (C) 2007-2008 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -198,7 +197,7 @@
     <string name="deleting">正在删除…</string>
     <string name="rename_success">重命名成功</string>
     <string name="rename_failure">未能重命名</string>
-    <string name="loading">正在加载...</string>
+    <string name="loading">正在加载…</string>
     <string name="create_dir_success">创建目录成功</string>
     <string name="create_dir_failure">未能创建目录</string>
     <string name="compressed_file_name">Zip 文件名</string>
@@ -219,12 +218,10 @@
     <string name="nothing_to_paste">没有可以粘贴的内容。请先复制或者剪切文件。</string>
 
     <plurals name="clipboard_info_items_to_copy">
-        <item quantity="one">%1$d item to copy</item>
-        <item quantity="other">%1$d items to copy</item>
+        <item quantity="other">%1$d item(s) to copy</item>
     </plurals>
     <plurals name="clipboard_info_items_to_move">
-        <item quantity="one">%1$d item to move</item>
-        <item quantity="other">%1$d items to move</item>
+        <item quantity="other">%1$d item(s) to move</item>
     </plurals>
 
     <string name="clipboard_undo">Undo</string>

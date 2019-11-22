@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2008 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,28 +20,30 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import androidx.annotation.VisibleForTesting;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.VisibleForTesting;
+import androidx.appcompat.widget.Toolbar;
+
+import org.openintents.distribution.DistributionLibrary;
+import org.openintents.distribution.DistributionLibraryActivity;
 import org.openintents.filemanager.bookmarks.BookmarkListActivity;
-import org.openintents.filemanager.compatibility.HomeIconHelper;
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.lists.SimpleFileListFragment;
 import org.openintents.filemanager.util.FileUtils;
-import org.openintents.filemanager.util.UIUtils;
 import org.openintents.intents.FileManagerIntents;
 import org.openintents.util.MenuIntentOptionsWithIcons;
 
 import java.io.File;
 
-public class FileManagerActivity extends DistributionLibraryFragmentActivity {
+public class FileManagerActivity extends DistributionLibraryActivity {
     @VisibleForTesting
     public static final String FRAGMENT_TAG = "ListFragment";
 
@@ -80,12 +82,18 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
      */
     @Override
     public void onCreate(Bundle icicle) {
-        UIUtils.setThemeFor(this);
-
         super.onCreate(icicle);
+        // update theme from preferences
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("usedarktheme", true)) {
+            this.setTheme(R.style.Theme_Dark_NoActionBar);
+        } else {
+            this.setTheme(R.style.Theme_Light_DarkTitle_NoActionBar);
+        }
 
-        mDistribution.setFirst(MENU_DISTRIBUTION_START,
-                DIALOG_DISTRIBUTION_START);
+        setContentView(R.layout.activity_filemanager);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
 
         // Check whether EULA has been accepted
         // or information about new version can be presented.
@@ -93,9 +101,8 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
             return;
         }
 
-        // Enable home button.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-            HomeIconHelper.activity_actionbar_setHomeButtonEnabled(this);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
 
         // Search when the user types.
         setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
@@ -126,7 +133,7 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
                 }
             }
             mFragment.setArguments(args);
-            getSupportFragmentManager().beginTransaction().add(android.R.id.content, mFragment, FRAGMENT_TAG).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.container_file_list, mFragment, FRAGMENT_TAG).commit();
         } else {
             // If we didn't rotate and data wasn't null.
             if (icicle == null && data != null)
@@ -144,10 +151,12 @@ public class FileManagerActivity extends DistributionLibraryFragmentActivity {
         MenuInflater inflater = new MenuInflater(this);
         inflater.inflate(R.menu.main, menu);
 
+        mDistribution.onCreateOptionsMenu(menu);
+
         if (FileManagerApplication.hideDonateMenu(this)) {
             menu.findItem(R.id.menu_donate).setVisible(false);
+            menu.getItem(DistributionLibrary.OFFSET_SUPPORT).setVisible(false);
         }
-        mDistribution.onCreateOptionsMenu(menu);
         return true;
     }
 

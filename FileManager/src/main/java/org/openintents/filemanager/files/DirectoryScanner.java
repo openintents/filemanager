@@ -9,6 +9,7 @@ import android.os.SystemClock;
 import android.util.Log;
 
 import org.openintents.filemanager.PreferenceActivity;
+import org.openintents.filemanager.PreferenceFragment;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.util.FileUtils;
 import org.openintents.filemanager.util.MimeTypes;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 public class DirectoryScanner extends Thread {
     /**
@@ -77,7 +79,7 @@ public class DirectoryScanner extends Thread {
         progress = 0;
         files = currentDirectory.listFiles();
         noMedia = false;
-        displayHidden = PreferenceActivity.getDisplayHiddenFiles(context);
+        displayHidden = PreferenceFragment.getDisplayHiddenFiles(context);
         sdIcon = context.getResources().getDrawable(R.drawable.ic_launcher_sdcard);
         folderIcon = context.getResources().getDrawable(R.drawable.ic_launcher_folder);
         genericFileIcon = context.getResources().getDrawable(R.drawable.ic_launcher_file);
@@ -168,8 +170,8 @@ public class DirectoryScanner extends Thread {
         }
 
         Log.v(TAG, "Sorting results...");
-        int sortBy = PreferenceActivity.getSortBy(context);
-        boolean ascending = PreferenceActivity.getAscending(context);
+        int sortBy = PreferenceFragment.getSortBy(context);
+        boolean ascending = PreferenceFragment.getAscending(context);
 
         // Sort lists
         if (!cancelled) {
@@ -293,13 +295,15 @@ abstract class FileHolderComparator implements Comparator<FileHolder> {
 }
 
 class NameComparator extends FileHolderComparator {
+    Locale locale = Locale.getDefault();
+
     public NameComparator(boolean asc) {
         super(asc);
     }
 
     @Override
     protected int comp(FileHolder f1, FileHolder f2) {
-        return f1.getName().toLowerCase().compareTo(f2.getName().toLowerCase());
+        return f1.getName().toLowerCase(locale).compareTo(f2.getName().toLowerCase(locale));
     }
 }
 

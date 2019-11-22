@@ -1,4 +1,4 @@
-package androidTest.java.org.openintents.filemanager.test;
+package org.openintents.filemanager.test;
 
 import androidx.test.espresso.IdlingResource;
 

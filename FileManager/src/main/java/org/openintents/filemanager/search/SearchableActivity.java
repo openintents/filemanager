@@ -12,12 +12,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ListView;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import org.openintents.filemanager.FileManagerActivity;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.compatibility.HomeIconHelper;
@@ -51,9 +51,7 @@ public class SearchableActivity extends ListActivity {
         // Presentation settings
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
-        }
+        HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
 
         lbm = LocalBroadcastManager.getInstance(getApplicationContext());
 

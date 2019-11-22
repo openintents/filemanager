@@ -1,13 +1,17 @@
-package androidTest.java.org.openintents.filemanager.test;
+package org.openintents.filemanager.test;
 
-import androidx.test.espresso.ViewAssertion;
-import androidx.test.espresso.matcher.BoundedMatcher;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.ViewAssertion;
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.matcher.BoundedMatcher;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.openintents.filemanager.bookmarks.BookmarkListAdapter;
 import org.openintents.filemanager.files.FileHolder;
@@ -16,14 +20,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-
-import static androidx.test.espresso.Espresso.onData;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.longClick;
-import static androidx.test.espresso.action.ViewActions.pressBack;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
+import java.nio.charset.StandardCharsets;
 
 public class BaseTestFileManager {
     public static final String TEST_DIRECTORY = "oi-filemanager-tests";
@@ -49,7 +46,7 @@ public class BaseTestFileManager {
 
     protected static void createFile(String path, String content) throws IOException {
         File file = new File(path);
-        OutputStreamWriter wr = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
+        OutputStreamWriter wr = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
         wr.write(content);
         wr.close();
     }

@@ -26,6 +26,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class MimeTypes {
@@ -69,7 +70,7 @@ public class MimeTypes {
 
     public void put(String extension, String type) {
         // Convert extensions to lower case letters for easier comparison
-        extension = extension.toLowerCase();
+        extension = extension.toLowerCase(Locale.ROOT);
         mExtensionsToTypes.put(extension, type);
     }
 

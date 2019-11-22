@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  * Copyright (C) 2007-2008 OpenIntents.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -217,10 +216,12 @@
     <plurals name="clipboard_info_items_to_copy">
         <item quantity="one">%1$d item to copy</item>
         <item quantity="other">%1$d items to copy</item>
+        <item quantity="few">%1$d items to copy</item>
     </plurals>
     <plurals name="clipboard_info_items_to_move">
         <item quantity="one">%1$d item to move</item>
         <item quantity="other">%1$d items to move</item>
+        <item quantity="few">%1$d items to move</item>
     </plurals>
 
     <string name="clipboard_undo">Undo</string>

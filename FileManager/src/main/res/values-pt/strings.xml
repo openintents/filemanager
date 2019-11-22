@@ -65,7 +65,7 @@
     <string name="show_warning_again">Mostrar aviso novamente</string>
 
     <!-- Strings for a multi select feature -->
-    <string name="really_delete_multiselect">Quer mesmo eliminar %s ficheiros?</string>
+    <string name="really_delete_multiselect">Quer mesmo eliminar %d ficheiros?</string>
     <string name="multiselect_title">Selecionar vários ficheiros</string>
     <string name="pick_title">Seletor de ficheiros</string>
 

@@ -68,7 +68,7 @@
 
     <!-- Strings for a multi select feature -->
     <string name="really_delete_multiselect">Tem certeza de que deseja deletar %d arquivos?</string>
-    <string name="multiselect_title">Selecione varios arquivos</string>
+    <string name="multiselect_title">Selecione vários arquivos</string>
     <string name="pick_title">Seletor de arquivos</string>
 
     <!-- Strings for details table -->

@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.provider.BaseColumns;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 
@@ -74,7 +75,7 @@ public class SearchSuggestionsProvider extends ContentProvider {
      */
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        searcher.setQuery(uri.getLastPathSegment().toLowerCase());
+        searcher.setQuery(uri.getLastPathSegment().toLowerCase(Locale.ROOT));
 
         searcher.dropPreviousResults();
 

@@ -1,33 +1,38 @@
 /*
- * This is an example test project created in Eclipse to test NotePad which is a sample 
+ * This is an example test project created in Eclipse to test NotePad which is a sample
  * project located in AndroidSDK/samples/android-11/NotePad
  * Just click on File --> New --> Project --> Android Project --> Create Project from existing source and
  * select NotePad.
- * 
+ *
  * Then you can run these test cases either on the emulator or on device. You right click
  * the test project and select Run As --> Run As Android JUnit Test
- * 
+ *
  * @author Renas Reda, renas.reda@jayway.com
- * 
+ *
  */
 
-package androidTest.java.org.openintents.filemanager.test;
+package org.openintents.filemanager.test;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
-import androidx.test.InstrumentationRegistry;
-import androidx.test.espresso.Espresso;
-import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
 import android.text.format.Formatter;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
 
+import androidx.test.InstrumentationRegistry;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.After;
 import org.junit.Before;
@@ -46,27 +51,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-import static androidx.test.espresso.Espresso.onData;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
-import static androidx.test.espresso.Espresso.pressBack;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.longClick;
-import static androidx.test.espresso.action.ViewActions.pressKey;
-import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.assertThat;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-
 @RunWith(AndroidJUnit4.class)
-public class TestFileManagerActivity extends BaseTestFileManager {
+public class TestFileManagerActivity extends org.openintents.filemanager.test.BaseTestFileManager {
 
     private static String filenameIsInRightDirectory;
     @Rule
@@ -379,9 +365,9 @@ public class TestFileManagerActivity extends BaseTestFileManager {
     @Test
     public void testBrowseToOnPressEnter() throws IOException {
 
-		/*
+        /*
          *  We start at the SD card.
-		 */
+         */
         Espresso.onView(ViewMatchers.withText(Environment.getExternalStorageDirectory().getParentFile().getName())).perform(ViewActions.longClick());
         Espresso.onView(ViewMatchers.withId(R.id.path_bar_path_edit_text)).perform(ViewActions.click()); // Let the editText have focus to be able to send the enter key.
         Espresso.onView(ViewMatchers.withId(R.id.path_bar_path_edit_text)).perform(ViewActions.replaceText(sdcardPath + TEST_DIRECTORY));

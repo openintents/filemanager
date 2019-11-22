@@ -29,6 +29,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.FileProvider;
+
 import org.openintents.intents.FileManagerIntents;
 
 import java.io.File;
@@ -104,7 +106,7 @@ public class Demo extends Activity {
 
         // Construct URI from file name.
         File file = new File(fileName);
-        intent.setData(Uri.fromFile(file));
+        intent.setData(FileProvider.getUriForFile(this, "org.openintents.filemanager", file));
 
         // Set fancy title and button (optional)
         intent.putExtra(FileManagerIntents.EXTRA_TITLE, getString(R.string.save_title));

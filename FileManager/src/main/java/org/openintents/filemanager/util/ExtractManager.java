@@ -42,7 +42,7 @@ public class ExtractManager {
     }
 
     public interface OnExtractFinishedListener {
-        public abstract void extractFinished();
+        void extractFinished();
     }
 
     private class ExtractTask extends AsyncTask<Object, Integer, Integer> {
@@ -101,8 +101,15 @@ public class ExtractManager {
                 return;
             }
             File outputFile = new File(outputDir, entry.getName());
-            if (!outputFile.getParentFile().exists()) {
-                createDir(outputFile.getParentFile());
+
+            String canonicalPath = outputFile.getCanonicalPath();
+            if (!canonicalPath.startsWith(outputDir)) {
+                throw new IOException("Zip Path Traversal Attack detected for " + canonicalPath);
+            }
+
+            File parentFile = outputFile.getParentFile();
+            if (parentFile != null && !parentFile.exists()) {
+                createDir(parentFile);
             }
             BufferedInputStream inputStream = new BufferedInputStream(zipfile.getInputStream(entry));
             BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));

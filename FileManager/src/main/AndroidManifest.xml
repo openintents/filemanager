@@ -61,6 +61,7 @@
 
     <!-- We use this theme here, so that for the time the user waits for the app to launch, he doesn't get blinded by the white default theme. Proper theme is set onCreate of any Activity. -->
     <application
+        android:allowBackup="true"
         android:name="FileManagerApplication"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -80,6 +81,7 @@
         <activity
             android:name=".FileManagerActivity"
             android:configChanges="orientation"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -90,12 +92,12 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:scheme="file"/>
             </intent-filter>
-            <intent-filter>
+            <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="vnd.android.document/directory"/>
             </intent-filter>
-            <intent-filter>
+            <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="resource/folder"/>
@@ -111,6 +113,7 @@
         </activity>
         <activity
             android:name=".PreferenceActivity"
+            android:theme="@style/Theme.AppCompat"
             android:label="@string/settings"/>
 
         <!-- Filters for the Save as feature -->
@@ -172,6 +175,9 @@
             android:exported="true"
             android:grantUriPermissions="true"
             android:permission="android.permission.READ_EXTERNAL_STORAGE">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
         </provider>
 
         <!-- Activities from OI Distribution Library -->

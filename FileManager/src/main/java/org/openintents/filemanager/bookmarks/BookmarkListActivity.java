@@ -18,9 +18,7 @@ public class BookmarkListActivity extends FragmentActivity {
         UIUtils.setThemeFor(this);
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-            HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
-        }
+        HomeIconHelper.activity_actionbar_setDisplayHomeAsUpEnabled(this);
 
         if (getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG) == null) {
             getSupportFragmentManager().beginTransaction()

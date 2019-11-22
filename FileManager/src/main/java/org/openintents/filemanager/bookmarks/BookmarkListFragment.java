@@ -53,12 +53,8 @@ public class BookmarkListFragment extends ListFragment {
         setEmptyText(getString(R.string.bookmark_empty));
 
         // Handle item selection.
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            registerForContextMenu(getListView());
-        } else {
-            getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-            BookmarkMultiChoiceModeHelper.listView_setMultiChoiceModeListener(getListView(), getActivity());
-        }
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        BookmarkMultiChoiceModeHelper.listView_setMultiChoiceModeListener(getListView(), getActivity());
     }
 
     @Override

@@ -1,12 +1,11 @@
 apply plugin: 'com.android.application'
 
 dependencies {
-    implementation 'com.github.openintents:distribution:3.0.2'
+    implementation 'com.github.openintents:distribution:3.2.0'
 }
 
 android {
     compileSdkVersion compile_sdk_version
-    buildToolsVersion build_tools_version
 
     defaultConfig {
         applicationId "org.openintents.filemanager.demo"

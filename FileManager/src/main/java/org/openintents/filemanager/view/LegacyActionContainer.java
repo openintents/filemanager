@@ -72,7 +72,7 @@ public class LegacyActionContainer extends LinearLayout {
                             ((MenuItem) v.getTag()).getTitle(),
                             Toast.LENGTH_SHORT);
                     // Position the toast near the item but not on it so that the user can see it appearing.
-                    t.setGravity(Gravity.TOP | Gravity.LEFT, v.getLeft() - 50,
+                    t.setGravity(Gravity.TOP | Gravity.START, v.getLeft() - 50,
                             v.getBottom() + 40);
                     t.show();
                     return true;
@@ -97,6 +97,6 @@ public class LegacyActionContainer extends LinearLayout {
     }
 
     public interface OnActionSelectedListener {
-        public void actionSelected(MenuItem item);
+        void actionSelected(MenuItem item);
     }
 }

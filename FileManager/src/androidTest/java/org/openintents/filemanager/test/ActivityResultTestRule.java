@@ -1,21 +1,22 @@
-package androidTest.java.org.openintents.filemanager.test;
+package org.openintents.filemanager.test;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.test.rule.ActivityTestRule;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 
 import java.lang.reflect.Field;
 
 import static android.app.Instrumentation.ActivityResult;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 public class ActivityResultTestRule<T extends Activity> extends ActivityTestRule<T> {
 

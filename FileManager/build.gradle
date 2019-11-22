@@ -1,9 +1,13 @@
 apply plugin: 'com.android.application'
 
 dependencies {
-    implementation 'com.github.openintents:distribution:3.0.2'
+    implementation 'com.github.openintents:distribution:3.2.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.preference:preference:1.1.0"
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta3"
 
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -15,7 +19,6 @@ dependencies {
 
 android {
     compileSdkVersion compile_sdk_version
-    buildToolsVersion build_tools_version
 
     defaultConfig {
         applicationId "org.openintents.filemanager"

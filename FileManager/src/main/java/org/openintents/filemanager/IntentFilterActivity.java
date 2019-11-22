@@ -1,12 +1,11 @@
 package org.openintents.filemanager;
 
 import android.content.Intent;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Environment;
-import androidx.fragment.app.FragmentActivity;
 import android.view.KeyEvent;
+
+import androidx.fragment.app.FragmentActivity;
 
 import org.openintents.filemanager.lists.FileListFragment;
 import org.openintents.filemanager.lists.MultiselectListFragment;
@@ -36,12 +35,12 @@ public class IntentFilterActivity extends FragmentActivity {
         if (!extras.containsKey(FileManagerIntents.EXTRA_DIR_PATH)) {
             // Set a default path so that we launch a proper list.
             File defaultFile = new File(
-                    PreferenceActivity.getDefaultPickFilePath(this));
+                    PreferenceFragment.getDefaultPickFilePath(this));
             if (!defaultFile.exists()) {
-                PreferenceActivity.setDefaultPickFilePath(this, Environment
+                PreferenceFragment.setDefaultPickFilePath(this, Environment
                         .getExternalStorageDirectory().getAbsolutePath());
                 defaultFile = new File(
-                        PreferenceActivity.getDefaultPickFilePath(this));
+                        PreferenceFragment.getDefaultPickFilePath(this));
             }
             extras.putString(FileManagerIntents.EXTRA_DIR_PATH,
                     defaultFile.getAbsolutePath());
@@ -132,24 +131,12 @@ public class IntentFilterActivity extends FragmentActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         // Only check fragment back-ability if we're on the filepicker fragment.
-        if (mFragment instanceof PickFileListFragment && VERSION.SDK_INT > VERSION_CODES.DONUT) {
+        if (mFragment instanceof PickFileListFragment) {
             if (keyCode == KeyEvent.KEYCODE_BACK
                     && ((PickFileListFragment) mFragment).pressBack())
                 return true;
         }
 
         return super.onKeyUp(keyCode, event);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // Only check fragment back-ability if we're on the filepicker fragment.
-        if (mFragment instanceof PickFileListFragment && VERSION.SDK_INT <= VERSION_CODES.DONUT) {
-            if (keyCode == KeyEvent.KEYCODE_BACK
-                    && ((PickFileListFragment) mFragment).pressBack())
-                return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
     }
 }

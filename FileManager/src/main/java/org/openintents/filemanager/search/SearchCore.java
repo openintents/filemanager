@@ -10,6 +10,7 @@ import org.openintents.filemanager.R;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.Locale;
 
 /**
  * Provides the search core, used by every search subsystem that provides results.
@@ -33,7 +34,7 @@ public class SearchCore {
     private FilenameFilter filter = new FilenameFilter() {
         @Override
         public boolean accept(File dir, String filename) {
-            return mQuery == null ? false : filename.toLowerCase().contains(mQuery.toLowerCase());
+            return mQuery != null && filename.toLowerCase(Locale.getDefault()).contains(mQuery.toLowerCase(Locale.getDefault()));
         }
     };
 

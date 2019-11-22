@@ -214,14 +214,12 @@
     <string name="move_error">Some or all items couldn\'t be moved!</string>
     <string name="nothing_to_paste">Nothing to paste. Copy or cut files first.</string>
 
-    <plurals name="clipboard_info_items_to_copy">
-        <item quantity="one">%1$d item to copy</item>
-        <item quantity="other">%1$d items to copy</item>
-    </plurals>
-    <plurals name="clipboard_info_items_to_move">
-        <item quantity="one">%1$d item to move</item>
-        <item quantity="other">%1$d items to move</item>
-    </plurals>
+  <plurals name="clipboard_info_items_to_copy">
+    <item quantity="other">%1$d item(s) to copy</item>
+  </plurals>
+  <plurals name="clipboard_info_items_to_move">
+    <item quantity="other">%1$d item(s) to move</item>
+  </plurals>
 
     <string name="clipboard_undo">Undo</string>
     <string name="clipboard_dismiss">Dismiss</string>

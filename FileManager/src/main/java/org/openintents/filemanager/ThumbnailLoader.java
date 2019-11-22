@@ -14,12 +14,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
+
+import androidx.preference.PreferenceManager;
 
 import org.openintents.filemanager.files.FileHolder;
 import org.openintents.filemanager.util.FileUtils;
@@ -102,7 +102,7 @@ public class ThumbnailLoader {
             }
         };
 
-        mUseBestMatch = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PreferenceActivity.PREFS_USEBESTMATCH, true);
+        mUseBestMatch = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PreferenceFragment.PREFS_USEBESTMATCH, true);
     }
 
     public static void setThumbnailHeight(int height) {
@@ -315,10 +315,8 @@ public class ThumbnailLoader {
 
                 // Bug in SDK versions >= 8. See here:
                 // http://code.google.com/p/android/issues/detail?id=9151
-                if (Build.VERSION.SDK_INT >= 8) {
-                    aInfo.sourceDir = path;
-                    aInfo.publicSourceDir = path;
-                }
+                aInfo.sourceDir = path;
+                aInfo.publicSourceDir = path;
 
                 return aInfo.loadIcon(pm);
             }

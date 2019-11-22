@@ -1,19 +1,25 @@
-package androidTest.java.org.openintents.filemanager.test;
+package org.openintents.filemanager.test;
 
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.SystemClock;
-import androidx.test.InstrumentationRegistry;
-import androidx.test.espresso.InjectEventSecurityException;
-import androidx.test.espresso.UiController;
-import androidx.test.espresso.ViewAction;
-import androidx.test.rule.ActivityTestRule;
 import android.view.KeyEvent;
 import android.view.View;
 
+import androidx.test.InstrumentationRegistry;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.InjectEventSecurityException;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.rule.ActivityTestRule;
+
 import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -22,15 +28,6 @@ import org.openintents.filemanager.SaveAsActivity;
 
 import java.io.File;
 import java.io.IOException;
-
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.actionWithAssertions;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withHint;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
 public class TestSaveAsActivity extends BaseTestFileManager {
 

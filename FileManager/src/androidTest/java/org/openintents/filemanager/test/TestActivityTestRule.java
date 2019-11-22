@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package androidTest.java.org.openintents.filemanager.test;
+package org.openintents.filemanager.test;
 
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.test.InstrumentationRegistry;
 import androidx.test.annotation.Beta;
+import androidx.test.espresso.intent.Checks;
 import androidx.test.rule.UiThreadTestRule;
-import android.util.Log;
 
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
-
-import static androidx.test.internal.util.Checks.checkNotNull;
 
 /**
  * This rule provides functional testing of a single activity. The activity under test will be

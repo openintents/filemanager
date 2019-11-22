@@ -1,5 +1,6 @@
 package org.openintents.filemanager.lists;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
@@ -15,6 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.ListFragment;
+import androidx.test.espresso.IdlingResource;
+
 import org.openintents.filemanager.FileHolderListAdapter;
 import org.openintents.filemanager.FileManagerApplication;
 import org.openintents.filemanager.R;
@@ -27,11 +33,6 @@ import org.openintents.intents.FileManagerIntents;
 
 import java.io.File;
 import java.util.ArrayList;
-
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.ListFragment;
-import androidx.test.espresso.IdlingResource;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -128,10 +129,10 @@ public abstract class FileListFragment extends ListFragment {
         getListView().requestFocusFromTouch();
 
         // Init flipper
-        mFlipper = (ViewFlipper) view.findViewById(R.id.flipper);
+        mFlipper = view.findViewById(R.id.flipper);
         mClipboardInfo = view.findViewById(R.id.clipboard_info);
-        mClipboardContent = (TextView) view.findViewById(R.id.clipboard_content);
-        mClipboardAction = (TextView) view.findViewById(R.id.clipboard_action);
+        mClipboardContent = view.findViewById(R.id.clipboard_content);
+        mClipboardAction = view.findViewById(R.id.clipboard_action);
         mClipboardAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -219,7 +220,8 @@ public abstract class FileListFragment extends ListFragment {
     }
 
     private boolean hasPermissions() {
-        return getActivity() != null && checkSelfPermission(getActivity(), WRITE_EXTERNAL_STORAGE) == PERMISSION_GRANTED;
+        Activity activity = getActivity();
+        return activity != null && checkSelfPermission(activity, WRITE_EXTERNAL_STORAGE) == PERMISSION_GRANTED;
     }
 
     private void requestPermissions() {

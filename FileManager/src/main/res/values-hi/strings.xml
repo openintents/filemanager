@@ -63,13 +63,13 @@
     <string name="create_new_folder">नया फ़ोल्डर बनाएँ</string>
     <string name="folder_name">फ़ोल्डर का नाम</string>
     <string name="this_folder_is_empty">यह फ़ोल्डर खाली है|</string>
-    <string name="really_delete">क्या आप वास्तव में% s को मिटाना चाहते हैं?</string>
+    <string name="really_delete">क्या आप वास्तव में %1$s को मिटाना चाहते हैं?</string>
     <string name="title_warning_some_may_not_work">चेतावनी</string>
     <string name="warning_some_may_not_work">निम्न विकल्पों में से कुछ काम नहीं करेंगे|</string>
     <string name="show_warning_again">चेतावनी फिर से दिखाएँ</string>
 
     <!-- Strings for a multi select feature -->
-    <string name="really_delete_multiselect">क्या आप वास्तव में% d फ़ाइलें हटाना चाहते हैं?</string>
+    <string name="really_delete_multiselect">क्या आप वास्तव में %1$d फ़ाइलें हटाना चाहते हैं?</string>
     <string name="multiselect_title">एकाधिक फ़ाइलों का चयन करें</string>
     <string name="pick_title">File picker</string>
 

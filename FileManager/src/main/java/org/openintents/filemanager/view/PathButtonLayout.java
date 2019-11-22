@@ -1,5 +1,6 @@
 package org.openintents.filemanager.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Environment;
 import android.util.AttributeSet;
@@ -43,6 +44,7 @@ class PathButtonLayout extends LinearLayout implements OnLongClickListener {
         return mPathDrawables;
     }
 
+    @SuppressLint("SdCardPath")
     private void init() {
         this.setOrientation(LinearLayout.HORIZONTAL);
         this.setOnLongClickListener(this);

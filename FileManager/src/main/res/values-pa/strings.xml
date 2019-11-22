@@ -65,7 +65,7 @@
     <string name="show_warning_again">ਚੇਤਾਵਨੀ ਫਿਰਸੇ ਦਿਖਾਓ</string>
 
     <!-- Strings for a multi select feature -->
-    <string name="really_delete_multiselect"> </string>
+    <string name="really_delete_multiselect">Do you really want to delete %d files?</string>
     <string name="multiselect_title">ਕਇ ਫਾਇਲ ਚੁਨੇ</string>
     <string name="pick_title">File picker</string>
 
@@ -82,7 +82,7 @@
     <string name="details_no">ਨਹੀ</string>
 
     <!-- Construct a unique file name of a file called %s. -->
-    <string name="copied_file_name"> </string>
+    <string name="copied_file_name">ਕਾਪੀ %s</string>
 
     <!-- Construct a unique file name with number %1$d of a file called %2$s. -->
     <string name="copied_file_name_2">ਕਾਪੀ %1$d ਓਫ %2$s</string>

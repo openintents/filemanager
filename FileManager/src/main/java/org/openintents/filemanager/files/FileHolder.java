@@ -12,6 +12,7 @@ import org.openintents.filemanager.util.MimeTypes;
 import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class FileHolder implements Parcelable, Comparable<FileHolder> {
     public static final Parcelable.Creator<FileHolder> CREATOR = new Parcelable.Creator<FileHolder>() {
@@ -148,7 +149,7 @@ public class FileHolder implements Parcelable, Comparable<FileHolder> {
      * Parse the extension from the filename of the mFile member.
      */
     private String parseExtension() {
-        return FileUtils.getExtension(mFile.getName()).toLowerCase();
+        return FileUtils.getExtension(mFile.getName()).toLowerCase(Locale.ROOT);
     }
 
     @Override

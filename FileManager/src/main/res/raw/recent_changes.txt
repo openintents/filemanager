@@ -1,4 +1,15 @@
 ----------------
+release: 2.3.0
+
+- minor bug fixes
+- better support for newer Android versions
+
+----------------
+release: 2.2.8
+
+- improve handling of deleted files
+
+----------------
 release: 2.2.7
 
 - add product flavors for foss distribution and google play distribution

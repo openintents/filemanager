@@ -33,10 +33,7 @@ public class PickBar extends LinearLayout {
 
     private void init() {
         // Apply borderless style when applicable.
-        if (VERSION.SDK_INT >= 11)
-            mButton = new Button(getContext(), null, android.R.attr.buttonBarButtonStyle);
-        else
-            mButton = new Button(getContext());
+        mButton = new Button(getContext(), null, android.R.attr.buttonBarButtonStyle);
         {
             mButton.setText(R.string.pick_button_default);
             mButton.setId(R.id.pickbar_button);

@@ -2,8 +2,6 @@ package org.openintents.filemanager.lists;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -20,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.openintents.filemanager.FileManagerApplication;
-import org.openintents.filemanager.PreferenceActivity;
+import org.openintents.filemanager.PreferenceFragment;
 import org.openintents.filemanager.R;
 import org.openintents.filemanager.compatibility.FileMultiChoiceModeHelper;
 import org.openintents.filemanager.dialogs.CreateDirectoryDialog;
@@ -61,8 +59,8 @@ public class SimpleFileListFragment extends FileListFragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Pathbar init.
-        mPathBar = (PathBar) view.findViewById(R.id.pathbar);
-        mMessageView = (TextView) view.findViewById(R.id.message);
+        mPathBar = view.findViewById(R.id.pathbar);
+        mMessageView = view.findViewById(R.id.message);
         mMessageView.setText(getString(R.string.error_generic) + "no access");
         // Handle mPath differently if we restore state or just initially create the view.
         if (savedInstanceState == null)
@@ -92,15 +90,11 @@ public class SimpleFileListFragment extends FileListFragment {
      */
     void initContextualActions() {
         if (mActionsEnabled) {
-            if (VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                registerForContextMenu(getListView());
-            } else {
-                FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper(mSingleSelectionMenu, mMultiSelectionMenu);
-                multiChoiceModeHelper.setListView(getListView());
-                multiChoiceModeHelper.setPathBar(mPathBar);
-                multiChoiceModeHelper.setContext(this);
-                getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-            }
+            FileMultiChoiceModeHelper multiChoiceModeHelper = new FileMultiChoiceModeHelper(mSingleSelectionMenu, mMultiSelectionMenu);
+            multiChoiceModeHelper.setListView(getListView());
+            multiChoiceModeHelper.setPathBar(mPathBar);
+            multiChoiceModeHelper.setContext(this);
+            getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
             setHasOptionsMenu(true);
         }
     }
@@ -200,7 +194,7 @@ public class SimpleFileListFragment extends FileListFragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         // We only know about ".nomedia" once scanning is finished.
-        boolean showMediaScanMenuItem = PreferenceActivity.getMediaScanFromPreference(getActivity());
+        boolean showMediaScanMenuItem = PreferenceFragment.getMediaScanFromPreference(getActivity());
         if (!mScanner.isRunning() && showMediaScanMenuItem) {
             menu.findItem(R.id.menu_media_scan_include).setVisible(mScanner.getNoMedia());
             menu.findItem(R.id.menu_media_scan_exclude).setVisible(!mScanner.getNoMedia());
